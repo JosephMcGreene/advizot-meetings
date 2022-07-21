@@ -4,8 +4,8 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const axios = require("axios");
+const PORT = process.env.PORT || 8080;
 
-const publicPath = path.join(__dirname, "client/build/index.html");
 //Middleware
 app.use(
 	express.urlencoded({
@@ -15,19 +15,19 @@ app.use(
 
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, "./client/build")));
-
 //Routes
-app.get("*", (req, res) => {
-	res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
-
 app.post("/post", cors(), (req, res) => {
 	console.log(req.body);
 });
 
+if (process.env.NODE_ENV === "production") {
+	app.use(express.static(path.join(__dirname, "./client/build")));
+	app.get("*", (req, res) => {
+		req.sendFile(path.join(__dirname, "./client/build/index.html"));
+	});
+}
+
 //Server Start
-const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
 	console.log(`Server is listening at http://localhost:${PORT}`);
 });
