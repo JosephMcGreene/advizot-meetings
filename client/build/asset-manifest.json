@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.2ff3528a.css",
+    "main.js": "/static/js/main.f0aaea46.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
+    "static/media/big-a.png": "/static/media/big-a.3fff276efdd012c2fbbb.png",
+    "static/media/Sansation-Regular-webfont.woff": "/static/media/Sansation-Regular-webfont.18a2f25d3a6f2f6077e0.woff",
+    "index.html": "/index.html",
+    "main.2ff3528a.css.map": "/static/css/main.2ff3528a.css.map",
+    "main.f0aaea46.js.map": "/static/js/main.f0aaea46.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2ff3528a.css",
+    "static/js/main.f0aaea46.js"
+  ]
+}
