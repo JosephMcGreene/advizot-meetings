@@ -1,0 +1,70 @@
+@use "../abstracts/index" as *;
+
+input[type="range"] {
+	-webkit-appearance: none;
+	display: block;
+	@include border();
+	border: none;
+	margin-top: 10px;
+	width: 88%;
+	height: 8px;
+	background-image: linear-gradient($advizot-color, $advizot-color);
+	background-repeat: no-repeat;
+	box-shadow: inset -1px -1px 2px rgba(0, 0, 0, 0.5);
+
+	&:focus {
+		outline: none;
+		@include onFocus();
+	}
+}
+
+//* THUMB
+//* 	Webkit:
+input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	height: 27px;
+	width: 24px;
+	border-radius: 5px 0 5px 0;
+	transform: skew(-20deg);
+	background: $advizot-color;
+	cursor: ew-resize;
+	box-shadow:
+		// "3D" shadows on slider thumb; black, white
+		inset -1px -1px 4px rgba(0, 0, 0, 0.7),
+		inset 1px 1px 4px rgba(255, 255, 255, 0.9);
+	transition-property: background;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+//* 	Mozilla:
+input[type="range"]::-moz-range-thumb {
+	border: none;
+	height: 27px;
+	width: 24px;
+	border-radius: 5px 0 5px 0;
+	transform: skew(-20deg);
+	background: $advizot-color;
+	cursor: ew-resize;
+	box-shadow:
+		// "3D" shadows on slider thumb; black, white
+		inset -1px -1px 4px rgba(0, 0, 0, 0.7),
+		inset 1px 1px 4px rgba(255, 255, 255, 0.9);
+	transition-property: background;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+//* TRACK
+//* 	Webkit:
+input[type="range"]::-webkit-slider-runnable-track {
+	-webkit-appearance: none;
+	box-shadow: none;
+	border: none;
+	background: transparent;
+}
+//* 	Mozilla:
+input[type="range"]::-moz-range-track {
+	box-shadow: none;
+	border: none;
+	background: transparent;
+}

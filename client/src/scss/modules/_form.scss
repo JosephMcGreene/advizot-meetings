@@ -1,0 +1,140 @@
+//Internal
+@use "../abstracts/index" as *;
+
+//External
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+
+.form {
+	@include flex(column);
+	font-family: $main-font;
+	border-radius: 10px;
+	width: fit-content;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 10px;
+	padding-left: 30px;
+	padding-right: 30px;
+	background-color: white;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+	.personal-info {
+		@include flex(column);
+		max-width: fit-content;
+		margin-top: 0.25rem;
+		margin-bottom: 1rem;
+		margin-left: auto;
+		margin-right: auto;
+
+		input {
+			@include border;
+			padding: $padding;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+			&:focus {
+				@include onFocus();
+			}
+		}
+	}
+
+	.range-container {
+		position: relative;
+
+		.rating {
+			@include flex(column);
+			margin-bottom: 1rem;
+
+			label {
+				margin-bottom: 0.25rem;
+			}
+
+			&:focus {
+				@include onFocus();
+			}
+
+			.rating-select {
+				@include border();
+				margin-top: 0.15rem;
+				padding: $padding;
+
+				option {
+					text-align: center;
+				}
+
+				&:focus {
+					@include onFocus();
+				}
+			}
+		}
+
+		.rangeValue {
+			position: absolute;
+			left: 88%;
+			top: 47%;
+			display: block;
+			width: 12%;
+			text-align: right;
+		}
+	}
+
+	.priority {
+		@include flex(column);
+		margin-top: 0.75rem;
+
+		&:focus {
+			@include onFocus();
+		}
+
+		.rating-select {
+			@include border();
+			margin-top: 0.15rem;
+			padding: $padding;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+			option {
+				text-align: center;
+				font-family: $main-font;
+			}
+
+			&:focus {
+				@include onFocus();
+			}
+		}
+	}
+
+	.textarea {
+		@include flex(column);
+		max-width: fit-content;
+		margin-top: 0.75rem;
+		margin-left: auto;
+		margin-right: auto;
+
+		textarea {
+			@include border();
+			padding: $padding;
+			margin-top: 0.15rem;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+		}
+	}
+
+	.submit-confirmation {
+		font-family: "Audiowide", cursive;
+		text-align: center;
+		margin-bottom: 1rem;
+	}
+
+	.error {
+		width: fit-content;
+		margin-top: 1px;
+		padding: 0.25rem;
+		background-color: $advizot-color;
+		clip-path: polygon(
+			0 13%,
+			8% 13%,
+			12% 0,
+			16% 13%,
+			100% 13%,
+			100% 98%,
+			0 98%
+		);
+	}
+}

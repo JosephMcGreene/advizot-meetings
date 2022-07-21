@@ -1,0 +1,22 @@
+@use "../abstracts/variables" as var;
+
+@mixin flex($direction) {
+	display: flex;
+	flex-direction: $direction;
+}
+
+@mixin border-radius() {
+	border-radius: var.$border-radius 0 var.$border-radius 0;
+}
+
+@mixin border() {
+	@include border-radius();
+	border-top: 1px solid black;
+	border-right: 3px solid black;
+	border-left: 3px solid black;
+	border-bottom: 1px solid black;
+}
+
+@mixin onFocus() {
+	box-shadow: 0 0 12px var.$advizot-color, inset 0 0 8px var.$advizot-color;
+}

@@ -1,0 +1,70 @@
+//Internal
+@use "../abstracts/index" as *;
+
+//External
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+*::selection {
+	background-color: $advizot-light;
+}
+
+:root {
+	font-size: 16px;
+}
+
+.App {
+	background-color: whitesmoke;
+}
+
+.header {
+	font-family: "Audiowide", cursive;
+	letter-spacing: 1px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	padding-top: 0.5rem;
+	margin-bottom: 1rem;
+
+	.logo {
+		max-height: 2.25rem;
+		margin-right: 0.45rem;
+	}
+	.h1 {
+		font-size: 2rem;
+		font-weight: 400;
+	}
+}
+
+.btn {
+	@include border;
+	width: min-content;
+	margin: 1.25rem auto;
+	padding: 1rem 1.75rem;
+	background-color: $advizot-color;
+	border: none;
+	cursor: pointer;
+	font-weight: bold;
+	font-family: "Audiowide", cursive;
+	font-size: 1rem;
+	letter-spacing: 0.5px;
+
+	box-shadow: inset -1px -1px 7px rgba(0, 0, 0, 0.8),
+		inset 1px 1px 7px rgba(255, 255, 255, 0.9), 0 0 10px rgba(0, 0, 0, 0.3);
+
+	&:focus {
+		@include onFocus();
+	}
+}
+
+.show-responses-btn {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+}

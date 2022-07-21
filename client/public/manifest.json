@@ -1,0 +1,20 @@
+{
+	"short_name": "RSign-In",
+	"name": "Advizot Meeting Sign-In",
+	"description": "Sign in to the Vistage meeting here.",
+	"author": "Joseph McGreene",
+	"icons": [
+		{
+			"src": "favicon.png",
+			"sizes": "64x64 32x32 24x24 16x16",
+			"type": "image/x-icon"
+		}
+	],
+	"developer": {
+		"name": "Joseph McGreene"
+	},
+	"start_url": ".",
+	"display": "standalone",
+	"theme_color": "#f5912e",
+	"background_color": "#ffffff"
+}

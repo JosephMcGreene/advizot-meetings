@@ -1,0 +1,10 @@
+$advizot-color: hsl(30, 91%, 57%);
+$advizot-light: hsl(30, 91%, 77%);
+$padding: 0.5rem;
+$border-radius: 12px;
+
+@font-face {
+	font-family: "sansationregular";
+	src: url("../../fonts/Sansation-Regular-webfont.woff") format("woff");
+}
+$main-font: "sansationregular";
