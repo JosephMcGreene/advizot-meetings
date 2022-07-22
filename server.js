@@ -6,7 +6,7 @@ const cors = require("cors");
 const axios = require("axios");
 const PORT = process.env.PORT || 8080;
 
-//Middleware
+//=====MIDDLEWARE=====
 app.use(
 	express.urlencoded({
 		extended: true,
@@ -15,11 +15,14 @@ app.use(
 
 app.use(express.json());
 
-//Routes
-app.post("/post", cors(), (req, res) => {
+//=====ROUTES=====
+
+//POST Routes
+app.post("/postMetric", cors(), (req, res) => {
 	console.log(req.body);
 });
 
+//GET Routes
 if (process.env.NODE_ENV === "production") {
 	app.use(express.static("./client/build"));
 	app.get("*", (req, res) => {
@@ -27,7 +30,7 @@ if (process.env.NODE_ENV === "production") {
 	});
 }
 
-//Server Start
+//=====SERVER START=====
 app.listen(PORT, () => {
 	console.log(`Server is listening at http://localhost:${PORT}`);
 });

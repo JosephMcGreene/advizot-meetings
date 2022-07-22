@@ -51,47 +51,44 @@ export default function MeetingForm({ onSubmit }) {
 						className="personal-info"
 					/>
 
-					<div className="range-container">
-						<InputField
-							label="How is your business?"
-							name="business"
-							as="input"
-							type="range"
-							min={0}
-							max={10}
-							className="rating"
-							style={getSliderBGSize(props.values.business)}
-						/>
-						<span className="rangeValue">{props.values.business}</span>
-					</div>
+					<InputField
+						label="How is your business?"
+						name="business"
+						as="input"
+						type="range"
+						min={0}
+						max={10}
+						className="range-container"
+						style={getSliderBGSize(props.values.business)}
+						spanText={props.values.business}
+						spanClass="rangeValue"
+					/>
 
-					<div className="range-container">
-						<InputField
-							label="How is your health?"
-							name="personal"
-							as="input"
-							type="range"
-							min={0}
-							max={10}
-							className="rating"
-							style={getSliderBGSize(props.values.personal)}
-						/>
-						<span className="rangeValue">{props.values.personal}</span>
-					</div>
+					<InputField
+						label="How is your health?"
+						name="personal"
+						as="input"
+						type="range"
+						min={0}
+						max={10}
+						className="range-container"
+						style={getSliderBGSize(props.values.personal)}
+						spanText={props.values.personal}
+						spanClass="rangeValue"
+					/>
 
-					<div className="range-container">
-						<InputField
-							label="How are your relationships?"
-							name="relationships"
-							as="input"
-							type="range"
-							min={0}
-							max={10}
-							className="rating"
-							style={getSliderBGSize(props.values.relationships)}
-						/>
-						<span className="rangeValue">{props.values.relationships}</span>
-					</div>
+					<InputField
+						label="How are your relationships?"
+						name="relationships"
+						as="input"
+						type="range"
+						min={0}
+						max={10}
+						className="range-container"
+						style={getSliderBGSize(props.values.relationships)}
+						spanText={props.values.relationships}
+						spanClass="rangeValue"
+					/>
 
 					<InputField
 						label="Issue to process today:"

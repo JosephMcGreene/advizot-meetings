@@ -11,6 +11,7 @@ export default function InputField({ label, as, type, className, ...props }) {
 			{meta.touched && meta.error ? (
 				<div className="error">{meta.error}</div>
 			) : null}
+			<span className={props.spanClass}>{props.spanText}</span>
 		</div>
 	);
 }
