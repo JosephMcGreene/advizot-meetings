@@ -12,7 +12,8 @@
 	margin: 0 auto;
 	padding: 15px 45px 0;
 	background-color: white;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	box-shadow: inset -1px -1px 7px rgba(0, 0, 0, 0.8),
+		inset 1px 1px 7px rgba(255, 255, 255, 0.9);
 
 	.personal-info {
 		@include flex(column);

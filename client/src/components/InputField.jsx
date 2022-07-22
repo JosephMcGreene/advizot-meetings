@@ -1,7 +1,14 @@
 //External
 import { Field, useField } from "formik";
 
-export default function InputField({ text, as, type, className, ...props }) {
+export default function InputField({
+	text,
+	as,
+	type,
+	className,
+	spanText,
+	...props
+}) {
 	const [field, meta] = useField(props);
 
 	return (
@@ -14,12 +21,10 @@ export default function InputField({ text, as, type, className, ...props }) {
 				<div className="error">{meta.error}</div>
 			) : null}
 
-			{/* If on a range slider: */}
-			{props.spanClass ? (
-				<span className={props.spanClass} style={props.style}>
-					{props.spanText}
-				</span>
-			) : null}
+			{/* If InputField is a range-slider: */}
+			<span className="rangeValue" style={props.style}>
+				{spanText}
+			</span>
 		</div>
 	);
 }

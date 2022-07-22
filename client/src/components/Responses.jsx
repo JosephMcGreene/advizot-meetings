@@ -22,29 +22,40 @@ export default function Responses({ responses }) {
 							<p className="response-name">
 								<strong>{response.name}</strong>
 							</p>
-							<br />
+
 							<p className="response-p">
-								<strong>Business</strong> <br />
+								<strong>Business</strong>
+								<br />
 								{response.business}
 							</p>
+
 							<p className="response-p">
-								<strong>Personal</strong> <br />
+								<strong>Personal</strong>
+								<br />
 								{response.personal}
 							</p>
+
 							<p className="response-p">
-								<strong>People</strong> <br />
+								<strong>People</strong>
+								<br />
 								{response.relationships}
 							</p>
+
 							<p className="response-p">
-								<strong>Today's Issue</strong> <br />
+								<strong>Today's Issue</strong>
+								<br />
 								{response.monthlyIssue}
 							</p>
+
 							<p className="response-p">
-								<strong>Priority</strong> <br />
+								<strong>Priority</strong>
+								<br />
 								{response.priority}
 							</p>
+
 							<p className="response-p">
-								<strong>Goal Before Next Meeting</strong> <br />
+								<strong>Goal Before Next Meeting</strong>
+								<br />
 								{response.monthlyGoal}
 							</p>
 						</li>

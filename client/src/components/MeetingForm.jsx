@@ -1,5 +1,4 @@
 //Internal
-// import editPencil from "../img/pencil-alt-solid.svg";
 import InputField from "./InputField";
 import Select from "./Select";
 
@@ -8,7 +7,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
 export default function MeetingForm({ onSubmit }) {
-	function getSliderBGSize(value) {
+	function getSliderSizes(value) {
 		return {
 			backgroundSize: `${(value * 100) / 10}% 100%`,
 			fontSize: `${value * 2 + 16}px`,
@@ -50,7 +49,6 @@ export default function MeetingForm({ onSubmit }) {
 						as="input"
 						type="input"
 						className="personal-info"
-						spanClass={null}
 						spanText={null}
 					/>
 
@@ -62,8 +60,7 @@ export default function MeetingForm({ onSubmit }) {
 						min={0}
 						max={10}
 						className="range-container"
-						style={getSliderBGSize(props.values.business)}
-						spanClass="rangeValue"
+						style={getSliderSizes(props.values.business)}
 						spanText={props.values.business}
 					/>
 
@@ -75,8 +72,7 @@ export default function MeetingForm({ onSubmit }) {
 						min={0}
 						max={10}
 						className="range-container"
-						style={getSliderBGSize(props.values.personal)}
-						spanClass="rangeValue"
+						style={getSliderSizes(props.values.personal)}
 						spanText={props.values.personal}
 					/>
 
@@ -88,8 +84,7 @@ export default function MeetingForm({ onSubmit }) {
 						min={0}
 						max={10}
 						className="range-container"
-						style={getSliderBGSize(props.values.relationships)}
-						spanClass="rangeValue"
+						style={getSliderSizes(props.values.relationships)}
 						spanText={props.values.relationships}
 					/>
 
@@ -98,7 +93,6 @@ export default function MeetingForm({ onSubmit }) {
 						name="monthlyIssue"
 						as="textarea"
 						className="textarea"
-						spanClass={null}
 						spanText={null}
 					/>
 
@@ -116,7 +110,6 @@ export default function MeetingForm({ onSubmit }) {
 						name="monthlyGoal"
 						as="textarea"
 						className="textarea"
-						spanClass={null}
 						spanText={null}
 					/>
 
