@@ -38,12 +38,12 @@
 }
 
 .btn {
-	@include border;
+	@include border();
+	border: none;
 	width: min-content;
 	margin: 1.25rem auto;
 	padding: 1rem 2.5rem;
 	background-color: $advizot-color;
-	border: none;
 	cursor: pointer;
 	font-weight: bold;
 	font-family: "Audiowide", cursive;
@@ -61,6 +61,7 @@
 .footer {
 	background-color: $advizot-color;
 	padding: 1rem;
+	margin-top: 1.5rem;
 
 	.copyright {
 		font-family: $main-font;
