@@ -1,8 +1,8 @@
 # Advizot Meetings
 
-<span style="color:#f5912e;">What is Advizot Meetings?</span>
+## What is Advizot Meetings?</span>
 
-<p>Let's face it: that overly huge, pen-and-paper sign-in sheet at every Vistage meeting is less than ideal. It's hard to read people's writing, and during the meeting it is almost impossible to see it from across a room. Enter <strong>Advizot Meetings</strong>.</p>
+### Let's face it: that overly huge, pen-and-paper sign-in sheet at every Vistage meeting is less than ideal. It's hard to read people's writing, and during the meeting it is almost impossible to see it from across a room. Enter **Advizot Meetings**.
 
 <p>The questions and answers that are usually at the top of the sign-in sheets are presented as a submittable form for members to fill out. From there, each member's form submissions are displayed on each member's personal device as well as a projector at the front of the room, completely eliminating the need for a pen-and-paper sign-in sheet!</p>
 
