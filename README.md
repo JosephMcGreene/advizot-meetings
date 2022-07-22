@@ -1,19 +1,6 @@
-<style>
-  span {
-    font-size: 1.25rem;
-    color: #f5912e;
-  }
-  p {
-    font-size: 0.8rem;
-  }
-  strong {
-    color: #f5912e;
-  }
-</style>
-
 # Advizot Meetings
 
-<span>What is Advizot Meetings?</span>
+<span style="color:#f5912e;">What is Advizot Meetings?</span>
 
 <p>Let's face it: that overly huge, pen-and-paper sign-in sheet at every Vistage meeting is less than ideal. It's hard to read people's writing, and during the meeting it is almost impossible to see it from across a room. Enter <strong>Advizot Meetings</strong>.</p>
 
