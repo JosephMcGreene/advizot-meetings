@@ -1,17 +1,25 @@
 //External
 import { Field, useField } from "formik";
 
-export default function InputField({ label, as, type, className, ...props }) {
+export default function InputField({ text, as, type, className, ...props }) {
 	const [field, meta] = useField(props);
 
 	return (
 		<div className={className}>
-			<label htmlFor={props.id || props.name}>{label}</label>
-			<Field {...field} {...props} as={as} type={type}></Field>
+			<label htmlFor={props.id || props.name}>{text}</label>
+			<Field {...field} {...props} as={as} type={type} />
+
+			{/* Field Error: */}
 			{meta.touched && meta.error ? (
 				<div className="error">{meta.error}</div>
 			) : null}
-			<span className={props.spanClass}>{props.spanText}</span>
+
+			{/* If on a range slider: */}
+			{props.spanClass ? (
+				<span className={props.spanClass} style={props.style}>
+					{props.spanText}
+				</span>
+			) : null}
 		</div>
 	);
 }

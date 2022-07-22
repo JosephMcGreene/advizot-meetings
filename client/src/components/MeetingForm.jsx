@@ -11,6 +11,7 @@ export default function MeetingForm({ onSubmit }) {
 	function getSliderBGSize(value) {
 		return {
 			backgroundSize: `${(value * 100) / 10}% 100%`,
+			fontSize: `${value * 2 + 16}px`,
 		};
 	}
 
@@ -44,15 +45,17 @@ export default function MeetingForm({ onSubmit }) {
 			{({ isSubmitting, submitCount, ...props }) => (
 				<Form className="form">
 					<InputField
-						label="Name:"
+						text="Name:"
 						name="name"
 						as="input"
 						type="input"
 						className="personal-info"
+						spanClass={null}
+						spanText={null}
 					/>
 
 					<InputField
-						label="How is your business?"
+						text="How is your business?"
 						name="business"
 						as="input"
 						type="range"
@@ -60,12 +63,12 @@ export default function MeetingForm({ onSubmit }) {
 						max={10}
 						className="range-container"
 						style={getSliderBGSize(props.values.business)}
-						spanText={props.values.business}
 						spanClass="rangeValue"
+						spanText={props.values.business}
 					/>
 
 					<InputField
-						label="How is your health?"
+						text="How is your health?"
 						name="personal"
 						as="input"
 						type="range"
@@ -73,12 +76,12 @@ export default function MeetingForm({ onSubmit }) {
 						max={10}
 						className="range-container"
 						style={getSliderBGSize(props.values.personal)}
-						spanText={props.values.personal}
 						spanClass="rangeValue"
+						spanText={props.values.personal}
 					/>
 
 					<InputField
-						label="How are your relationships?"
+						text="How are your relationships?"
 						name="relationships"
 						as="input"
 						type="range"
@@ -86,18 +89,20 @@ export default function MeetingForm({ onSubmit }) {
 						max={10}
 						className="range-container"
 						style={getSliderBGSize(props.values.relationships)}
-						spanText={props.values.relationships}
 						spanClass="rangeValue"
+						spanText={props.values.relationships}
 					/>
 
 					<InputField
-						label="Issue to process today:"
+						text="Issue to process today:"
 						name="monthlyIssue"
 						as="textarea"
 						className="textarea"
+						spanClass={null}
+						spanText={null}
 					/>
 
-					<Select label="Priority:" name="priority" className="priority">
+					<Select text="Priority:" name="priority" className="priority">
 						<option value="">-- Select a Priority --</option>
 						<option value="A">A</option>
 						<option value="B">B</option>
@@ -107,21 +112,17 @@ export default function MeetingForm({ onSubmit }) {
 					</Select>
 
 					<InputField
-						label="Goal before next meeting:"
+						text="Goal before next meeting:"
 						name="monthlyGoal"
 						as="textarea"
 						className="textarea"
+						spanClass={null}
+						spanText={null}
 					/>
 
 					<button type="submit" className="btn">
 						{isSubmitting ? "Submitting..." : "Submit"}
 					</button>
-
-					{submitCount >= 1 ? (
-						<span className="submit-confirmation">Got it, thanks!</span>
-					) : (
-						""
-					)}
 				</Form>
 			)}
 		</Formik>

@@ -8,12 +8,9 @@
 	@include flex(column);
 	font-family: $main-font;
 	border-radius: $border-radius;
-	width: min(400px, 96%);
-	margin-left: auto;
-	margin-right: auto;
-	padding-top: 10px;
-	padding-left: 45px;
-	padding-right: 45px;
+	width: min(380px, 96%);
+	margin: 0 auto;
+	padding: 15px 45px 0;
 	background-color: white;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
@@ -40,7 +37,7 @@
 		grid-template-columns: 5fr 1fr;
 		grid-template-rows: 1fr 0.15fr 1fr;
 		align-items: start;
-		margin-bottom: 1rem;
+		padding-bottom: 1rem;
 
 		label {
 			margin-top: 0.25rem;
