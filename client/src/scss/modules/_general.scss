@@ -58,9 +58,16 @@
 	}
 }
 
-.show-responses-btn {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 10px;
+.footer {
+	background-color: $advizot-color;
+	padding: 1rem;
+
+	.copyright {
+		font-family: $main-font;
+		font-weight: bold;
+
+		.full-logo {
+			width: 80px;
+		}
+	}
 }

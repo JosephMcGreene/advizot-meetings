@@ -9,15 +9,17 @@
 // TODO 	 - Format Responses component to display info properly, helpfully, and aesthetically
 // TODO 	 - Add some animations(?)
 // TODO (3) Add a Back-End or some other way to have data persist
+// TODO    - Figure out authentication; email Coach Accountable
 // TODO    - POST data to Coach Accountable. Add ability to remove the data as well.
 
 //React
 import { useState } from "react";
 
 //Internal
-import logo from "./img/big-a.png";
+import Header from "./components/no-state/Header";
 import MeetingForm from "./components/MeetingForm";
 import Responses from "./components/Responses";
+import Footer from "./components/no-state/Footer";
 import "./scss/App.scss";
 
 export default function App() {
@@ -38,12 +40,12 @@ export default function App() {
 
 	return (
 		<div className="App">
-			<header className="header">
-				<img src={logo} alt="Advizot logo" className="logo" />
-				<h1 className="h1">Welcome!</h1>
-			</header>
+			<Header />
+
 			<MeetingForm onSubmit={(userResponse) => submitResponses(userResponse)} />
 			<Responses responses={responses} />
+
+			<Footer />
 		</div>
 	);
 

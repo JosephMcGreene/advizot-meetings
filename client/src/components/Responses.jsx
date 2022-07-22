@@ -1,6 +1,6 @@
 export default function Responses({ responses }) {
 	return (
-		<ul className="responses-ul modal-body">
+		<ul className="responses-ul">
 			{responses.map((response) => {
 				return (
 					<li
@@ -16,8 +16,8 @@ export default function Responses({ responses }) {
 						<p className="response-p">
 							{/* <strong>Name</strong> */}
 							<em>{response.name}:</em>
-							<br />
 						</p>
+						<br />
 						<p className="response-p">
 							<strong>Business</strong> <br />
 							{response.business}

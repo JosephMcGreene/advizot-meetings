@@ -1,8 +1,11 @@
 @use "../abstracts/index" as *;
 
 .responses-ul {
+	margin-top: 1.5rem;
+
 	.response-li {
 		display: flex;
+		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: space-around;
 
