@@ -50,8 +50,8 @@ export default function MeetingForm({ onSubmit }) {
 						as="input"
 						type="input"
 						className="personal-info"
-						spanClass={null}
-						spanText={null}
+						// spanClass={null}
+						// spanText={null}
 					/>
 
 					<InputField
@@ -98,8 +98,8 @@ export default function MeetingForm({ onSubmit }) {
 						name="monthlyIssue"
 						as="textarea"
 						className="textarea"
-						spanClass={null}
-						spanText={null}
+						// spanClass={null}
+						// spanText={null}
 					/>
 
 					<Select text="Priority:" name="priority" className="priority">
@@ -116,8 +116,8 @@ export default function MeetingForm({ onSubmit }) {
 						name="monthlyGoal"
 						as="textarea"
 						className="textarea"
-						spanClass={null}
-						spanText={null}
+						// spanClass={null}
+						// spanText={null}
 					/>
 
 					<button type="submit" className="btn">

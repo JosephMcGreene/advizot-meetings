@@ -22,13 +22,21 @@ import Responses from "./components/Responses";
 import Footer from "./components/no-state/Footer";
 import "./scss/App.scss";
 
+//External
+import io from "socket.io-client";
+const socket = io.connect("http://localhost:8080");
+
 export default function App() {
 	const [responses, setResponses] = useState([]);
+
+	function sendMessage() {
+		// socket.emit();
+	}
 
 	async function submitResponses(userResponse) {
 		setResponses([...responses, userResponse]);
 
-		const serverResponse = await fetch("../../../postMetric", {
+		const serverResponse = await fetch("../../postMetric", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -38,11 +46,20 @@ export default function App() {
 		const json = await serverResponse.json();
 	}
 
+	async function deleteMetric() {
+		const serverResponse = await fetch("../../deleteMetric");
+		const confirm = await serverResponse.json();
+	}
+
 	return (
 		<div className="App">
 			<Header />
 
 			<MeetingForm onSubmit={(userResponse) => submitResponses(userResponse)} />
+			<form action="../../deleteMetric"></form>
+			<button className="btn" onClick={() => deleteMetric()}>
+				Remove Metric
+			</button>
 			<Responses responses={responses} />
 
 			<Footer />
