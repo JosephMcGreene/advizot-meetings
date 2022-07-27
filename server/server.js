@@ -30,31 +30,36 @@ const io = new Server(server, {
 	},
 });
 
-//=====ROUTES=====
-// app.post("/postMetric", cors(), (req, res) => {
-// 	axios
-// 		.request({
-// 			method: "post",
-// 			url: coachAccountableURL,
-// 			params: params.postParams,
-// 		})
-// 		.then((response) => console.log(response))
-// 		.catch((error) => console.error(error));
-// });
+//=====ROUTES TO COACH ACCOUNTABLE=====
+app.post("/postMetric", cors(), (req, res) => {
+	axios
+		.request({
+			method: "post",
+			url: coachAccountableURL,
+			params: params.postParams,
+		})
+		.then((response) => console.log(response))
+		.catch((error) => console.error(error));
+});
 
-// app.get("/deleteMetric", cors(), (req, res) => {
-// 	axios
-// 		.request({
-// 			method: "post",
-// 			url: coachAccountableURL,
-// 			params: params.deleteParams,
-// 		})
-// 		.then((response) => console.log(response))
-// 		.catch((error) => console.error(error));
-// });
+app.get("/deleteMetric", cors(), (req, res) => {
+	axios
+		.request({
+			method: "post",
+			url: coachAccountableURL,
+			params: params.deleteParams,
+		})
+		.then((response) => console.log(response))
+		.catch((error) => console.error(error));
+});
 
+//=====SOCKET EVENTS=====
 io.on("connection", (socket) => {
-	console.log(`user connected: ${socket.id}`);
+	console.log(socket.id);
+
+	socket.on("send_message", (data) => {
+		socket.broadcast.emit("receive_message", data);
+	});
 });
 
 if (process.env.NODE_ENV === "production") {

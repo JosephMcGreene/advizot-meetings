@@ -13,9 +13,10 @@
 // TODO (3) Add a modal for Kevin to edit the form each month
 
 //React
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 //Internal
+import Modal from "./components/Modal";
 import Header from "./components/no-state/Header";
 import MeetingForm from "./components/MeetingForm";
 import Responses from "./components/Responses";
@@ -27,11 +28,18 @@ import io from "socket.io-client";
 const socket = io.connect("http://localhost:8080");
 
 export default function App() {
+	const [showModal, setShowModal] = useState(true);
 	const [responses, setResponses] = useState([]);
 
 	function sendMessage() {
-		// socket.emit();
+		socket.emit("send_message", { message: "Hello" });
 	}
+
+	useEffect(() => {
+		socket.on("receive_message", (data) => {
+			alert(data.message);
+		});
+	}, [socket]);
 
 	async function submitResponses(userResponse) {
 		setResponses([...responses, userResponse]);
@@ -43,23 +51,26 @@ export default function App() {
 			},
 			body: JSON.stringify(userResponse),
 		});
-		const json = await serverResponse.json();
+		// const json = await serverResponse.json();
 	}
 
 	async function deleteMetric() {
 		const serverResponse = await fetch("../../deleteMetric");
-		const confirm = await serverResponse.json();
+		// const confirm = await serverResponse.json();
 	}
 
 	return (
 		<div className="App">
+			<button onClick={() => setShowModal(!showModal)}>Show Modal</button>
+			<Modal showModal={showModal} onClose={() => setShowModal(!showModal)} />
 			<Header />
 
 			<MeetingForm onSubmit={(userResponse) => submitResponses(userResponse)} />
-			<form action="../../deleteMetric"></form>
-			<button className="btn" onClick={() => deleteMetric()}>
-				Remove Metric
-			</button>
+			<form action="../../deleteMetric">
+				<button className="btn" onClick={sendMessage}>
+					Remove Metric
+				</button>
+			</form>
 			<Responses responses={responses} />
 
 			<Footer />
