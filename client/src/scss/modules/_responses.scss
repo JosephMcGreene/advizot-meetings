@@ -2,6 +2,7 @@
 
 .responses-ul {
 	font-family: $main-font;
+	position: relative;
 
 	.response-li {
 		display: flex;
@@ -10,7 +11,7 @@
 		justify-content: space-around;
 
 		text-align: center;
-		margin: 5vh 1vw;
+		margin: 8vh 1vw;
 
 		.response-name {
 			@include border();
@@ -28,11 +29,6 @@
 				text-decoration: underline;
 			}
 		}
-	}
-
-	hr {
-		max-width: min(300px, 65vw);
-		margin: 0 auto;
 	}
 }
 
