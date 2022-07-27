@@ -3,17 +3,13 @@
 // !    - Secure Server Sign-In
 // !    - Answers to sign-in questions to be used during the course of the meeting via a projector
 // !    - POST data to Coach Accountable to be stored as a metric for user later on
-// TODO (1) Clean up UX:
-// TODO 	 - Change the font of the user input on Responses component
-// TODO 	 - Format Responses component to display info properly, helpfully, and aesthetically
-// TODO 	 - Add some animations(?)
-// TODO (2) Add a Back-End or some other way to have data persist
+// TODO (1) Add a Back-End or some other way to have data persist
 // TODO    - Figure out authentication; email Coach Accountable
 // TODO    - POST data to Coach Accountable. Add ability to remove the data as well.
-// TODO (3) Add a modal for Kevin to edit the form each month
+// TODO (2) Add a modal for Kevin to edit the form each month
 
 //React
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 //Internal
 import Modal from "./components/Modal";
@@ -23,28 +19,14 @@ import Responses from "./components/Responses";
 import Footer from "./components/no-state/Footer";
 import "./scss/App.scss";
 
-//External
-import io from "socket.io-client";
-const socket = io.connect("http://localhost:8080");
-
 export default function App() {
 	const [showModal, setShowModal] = useState(true);
 	const [responses, setResponses] = useState([]);
 
-	function sendMessage() {
-		socket.emit("send_message", { message: "Hello" });
-	}
-
-	useEffect(() => {
-		socket.on("receive_message", (data) => {
-			alert(data.message);
-		});
-	}, [socket]);
-
 	async function submitResponses(userResponse) {
 		setResponses([...responses, userResponse]);
 
-		const serverResponse = await fetch("../../postMetric", {
+		const serverResponse = await fetch("../../newMetric", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -67,7 +49,7 @@ export default function App() {
 
 			<MeetingForm onSubmit={(userResponse) => submitResponses(userResponse)} />
 			<form action="../../deleteMetric">
-				<button className="btn" onClick={sendMessage}>
+				<button className="btn" onClick={deleteMetric}>
 					Remove Metric
 				</button>
 			</form>
