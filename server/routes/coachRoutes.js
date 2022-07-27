@@ -1,13 +1,14 @@
+require("dotenv").config();
 const express = require("express");
 const coachRoutes = express.Router();
 const axios = require("axios");
 const cors = require("cors");
-const params = require("./params");
+const params = require("./coachParams");
 
 //VARS
 const coachAccountableURL = "https://www.coachaccountable.com/API/";
-const josephCoachID = 14865;
-const josephID = 87337;
+const josephCoachID = process.env.COACH_ID;
+const josephID = process.env.CLIENT_ID;
 
 coachRoutes.post("/newMetric", cors(), (req, res) => {
 	axios
