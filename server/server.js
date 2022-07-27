@@ -4,13 +4,8 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
+const axios = require("axios");
 const coachRoutes = require("./routes/coachRoutes");
-const Member = require("./models/member");
-
-const member = new Member({
-	name: "Joseph McGreene",
-	coachID: 87337,
-});
 
 //=====MIDDLEWARE=====
 app.use(
@@ -21,8 +16,31 @@ app.use(
 
 app.use(express.json());
 
-app.use("/newMetric", coachRoutes);
-app.use("/deleteMetric", coachRoutes);
+// app.use("/newMetric", coachRoutes);
+// app.use("/deleteMetric", coachRoutes);
+
+app.post("/newMetric", cors(), (req, res) => {
+	// axios
+	// 	.request({
+	// 		method: "post",
+	// 		url: coachAccountableURL,
+	// 		params: params.postParams,
+	// 	})
+	// 	.then((response) => console.log(response))
+	// 	.catch((error) => console.error(error));
+	console.log("Got it!");
+});
+app.delete("/deleteMetric", cors(), (req, res) => {
+	// axios
+	// 	.request({
+	// 		method: "post",
+	// 		url: coachAccountableURL,
+	// 		params: params.deleteParams,
+	// 	})
+	// 	.then((response) => console.log(response))
+	// 	.catch((error) => console.error(error));
+	console.log("Will Delete!");
+});
 
 //=====Connect MongoDB=====
 mongoose

@@ -20,7 +20,7 @@ import Footer from "./components/no-state/Footer";
 import "./scss/App.scss";
 
 export default function App() {
-	const [showModal, setShowModal] = useState(true);
+	const [showModal, setShowModal] = useState(false);
 	const [responses, setResponses] = useState([]);
 
 	async function submitResponses(userResponse) {
@@ -48,11 +48,11 @@ export default function App() {
 			<Header />
 
 			<MeetingForm onSubmit={(userResponse) => submitResponses(userResponse)} />
-			<form action="../../deleteMetric">
+			{/* <form action="../../deleteMetric">
 				<button className="btn" onClick={deleteMetric}>
 					Remove Metric
 				</button>
-			</form>
+			</form> */}
 			<Responses responses={responses} />
 
 			<Footer />

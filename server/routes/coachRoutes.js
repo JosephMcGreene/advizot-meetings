@@ -10,15 +10,16 @@ const coachAccountableURL = "https://www.coachaccountable.com/API/";
 const josephCoachID = process.env.COACH_ID;
 const josephID = process.env.CLIENT_ID;
 
-coachRoutes.post("/newMetric", cors(), (req, res) => {
-	axios
-		.request({
-			method: "post",
-			url: coachAccountableURL,
-			params: params.postParams,
-		})
-		.then((response) => console.log(response))
-		.catch((error) => console.error(error));
+coachRoutes.post("/newMetric", (req, res) => {
+	// axios
+	// 	.request({
+	// 		method: "post",
+	// 		url: coachAccountableURL,
+	// 		params: params.postParams,
+	// 	})
+	// 	.then((response) => console.log(response))
+	// 	.catch((error) => console.error(error));
+	console.log("Got it!");
 });
 
 coachRoutes.delete("/deleteMetric", cors(), (req, res) => {
