@@ -6,11 +6,10 @@ import Select from "./Select";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
-export default function MeetingForm({ onSubmit }) {
+export default function MeetingForm({ onSubmit, showModal }) {
 	function getSliderSizes(value) {
 		return {
 			backgroundSize: `${(value * 100) / 10}% 100%`,
-			fontSize: `${value * 2 + 16}px`,
 		};
 	}
 
@@ -27,18 +26,28 @@ export default function MeetingForm({ onSubmit }) {
 			}}
 			validationSchema={Yup.object({
 				name: Yup.string().required("Name is required"),
-				business: Yup.number().required("Don't forget this one!"),
-				personal: Yup.number().required("Don't forget this one!"),
-				relationships: Yup.number().required("Don't forget this one!"),
+				business: Yup.number().test(
+					"atLeast",
+					"This should be at least 1",
+					(val) => val > 0
+				),
+				personal: Yup.number().test(
+					"atLeast",
+					"This should be at least 1",
+					(val) => val > 0
+				),
+				relationships: Yup.number().test(
+					"atLeast",
+					"This should be at least 1",
+					(val) => val > 0
+				),
 				monthlyIssue: Yup.string().required("Don't forget this one!"),
 				priority: Yup.string().required("Don't forget this one!"),
 				monthlyGoal: Yup.string().required("Don't forget this one!"),
 			})}
-			onSubmit={(values, actions) => {
-				setTimeout(() => {
-					onSubmit(values);
-					actions.setSubmitting(false);
-				}, 0);
+			onSubmit={(values, { setSubmitting }) => {
+				onSubmit(values);
+				setSubmitting(false);
 			}}
 		>
 			{({ isSubmitting, submitCount, ...props }) => (
@@ -50,6 +59,7 @@ export default function MeetingForm({ onSubmit }) {
 						type="input"
 						className="personal-info"
 						spanText={null}
+						showModal={showModal}
 					/>
 
 					<InputField
@@ -62,6 +72,7 @@ export default function MeetingForm({ onSubmit }) {
 						className="range-container"
 						style={getSliderSizes(props.values.business)}
 						spanText={props.values.business}
+						showModal={showModal}
 					/>
 
 					<InputField
@@ -74,6 +85,7 @@ export default function MeetingForm({ onSubmit }) {
 						className="range-container"
 						style={getSliderSizes(props.values.personal)}
 						spanText={props.values.personal}
+						showModal={showModal}
 					/>
 
 					<InputField
@@ -86,6 +98,7 @@ export default function MeetingForm({ onSubmit }) {
 						className="range-container"
 						style={getSliderSizes(props.values.relationships)}
 						spanText={props.values.relationships}
+						showModal={showModal}
 					/>
 
 					<InputField

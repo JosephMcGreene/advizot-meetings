@@ -1,4 +1,11 @@
-export default function Modal({ responses, showModal, onClose }) {
+//Internal
+import InputField from "./InputField";
+
+//External
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
+
+export default function Modal({ showModal, onClose, onSubmit }) {
 	if (!showModal) {
 		return null;
 	}
@@ -9,12 +16,36 @@ export default function Modal({ responses, showModal, onClose }) {
 				<div className="modal-header" onClick={() => onClose()}>
 					<button className="close-x">&times;</button>
 				</div>
-				<div className="responses-ul modal-body"></div>
-				<div className="modal-footer">
-					<button className="btn" onClick={() => onClose()}>
-						Close
-					</button>
-				</div>
+
+				<Formik
+					initialValues={{
+						name: "",
+						coachID: 0,
+					}}
+					validationSchema={Yup.object({
+						name: Yup.string().required("Name is required"),
+						coachID: Yup.number().required("This is, like, really important"),
+					})}
+					onSubmit={(values, { setSubmitting }) => {
+						onSubmit(values);
+						setSubmitting(false);
+					}}
+				>
+					{({ isSubmitting, ...props }) => (
+						<Form className="form modal-body">
+							<InputField
+								text="Name:"
+								name="name"
+								as="input"
+								type="input"
+								className="personal-info"
+							/>
+							<button type="submit" className="btn" onClick={() => onClose()}>
+								{isSubmitting ? "Logging in..." : "Log in"}
+							</button>
+						</Form>
+					)}
+				</Formik>
 			</div>
 		</div>
 	);

@@ -1,0 +1,51 @@
+@use "../abstracts/index" as *;
+
+.modal {
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.modal-content {
+		border-radius: $border-radius 0 $border-radius 0;
+		background-color: #fff;
+		overflow-y: scroll;
+
+		.modal-header {
+			background-color: $advizot-color;
+			box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+
+			.close-x {
+				display: block;
+				margin-left: auto;
+				margin-right: 7px;
+				padding: 0 $padding;
+				background-color: transparent;
+				border-color: transparent;
+				border-radius: $border-radius 0 $border-radius 0;
+				font-size: 2rem;
+				cursor: pointer;
+
+				&:focus {
+					@include onFocus();
+				}
+			}
+		}
+
+		.modal-body {
+			padding: 10px 8px;
+			border-top: 1px solid #eee;
+			border-bottom: 1px solid #eee;
+		}
+
+		.modal-footer {
+			text-align: center;
+		}
+	}
+}

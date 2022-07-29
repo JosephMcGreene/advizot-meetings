@@ -8,10 +8,10 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-}
 
-*::selection {
-	background-color: $advizot-light;
+	&::selection {
+		background-color: $advizot-light;
+	}
 }
 
 :root {
@@ -41,7 +41,7 @@ code {
 	margin-bottom: 1rem;
 
 	.logo {
-		max-height: 2.25rem;
+		height: 2.5rem;
 		margin-right: 0.45rem;
 	}
 	.h1 {
@@ -53,14 +53,13 @@ code {
 .btn {
 	@include border();
 	border: none;
-	width: min-content;
 	margin: 1.25rem auto;
 	padding: 1rem 2.5rem;
 	background-color: $advizot-color;
 	cursor: pointer;
 	font-weight: bold;
 	font-family: "Audiowide", cursive;
-	font-size: 1rem;
+	font-size: 1.1rem;
 	letter-spacing: 0.5px;
 
 	box-shadow: inset -1px -1px 7px rgba(0, 0, 0, 0.8),
@@ -85,7 +84,7 @@ code {
 		text-align: right;
 
 		.full-logo {
-			width: 80px;
+			width: 95px;
 		}
 	}
 }

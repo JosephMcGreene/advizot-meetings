@@ -22,19 +22,15 @@ input[type="range"] {
 //* 	Webkit:
 input[type="range"]::-webkit-slider-thumb {
 	-webkit-appearance: none;
-	height: 27px;
-	width: 24px;
-	border-radius: 5px 0 5px 0;
-	transform: skew(-20deg);
+	height: 30px;
+	width: 26px;
+	border-radius: $border-radius 0 $border-radius 0;
 	background: $advizot-color;
 	cursor: ew-resize;
 	box-shadow:
 		// "3D" shadows on slider thumb; black, white
 		inset -1px -1px 4px rgba(0, 0, 0, 0.7),
 		inset 1px 1px 4px rgba(255, 255, 255, 0.9);
-	transition-property: background;
-	transition-duration: 0.3s;
-	transition-timing-function: ease-in-out;
 }
 //* 	Mozilla:
 input[type="range"]::-moz-range-thumb {

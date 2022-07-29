@@ -7,6 +7,7 @@ export default function InputField({
 	type,
 	className,
 	spanText,
+	showModal,
 	...props
 }) {
 	const [field, meta] = useField(props);
@@ -16,15 +17,15 @@ export default function InputField({
 			<label htmlFor={props.id || props.name}>{text}</label>
 			<Field {...field} {...props} as={as} type={type} />
 
-			{/* Field Error: */}
-			{meta.touched && meta.error ? (
-				<div className="error">{meta.error}</div>
-			) : null}
-
 			{/* If InputField is a range-slider: */}
-			<span className="rangeValue" style={props.style}>
-				{spanText}
-			</span>
+			<span className="rangeValue">{spanText}</span>
+
+			{/* Error Message: */}
+			{meta.touched && meta.error ? (
+				<span className={type === "range" ? "range-error" : "error"}>
+					{meta.error}
+				</span>
+			) : null}
 		</div>
 	);
 }
