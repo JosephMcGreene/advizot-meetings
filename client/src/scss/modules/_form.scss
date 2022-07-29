@@ -12,26 +12,7 @@
 	margin: 0 auto;
 	padding: 15px 45px 0;
 	background-color: white;
-	box-shadow: inset -1px -1px 7px rgba(0, 0, 0, 0.8),
-		inset 1px 1px 7px rgba(255, 255, 255, 0.9);
-
-	.personal-info {
-		@include flex(column);
-		margin-top: 0.25rem;
-		margin-bottom: 1rem;
-		margin-left: auto;
-		margin-right: auto;
-
-		input {
-			@include border;
-			padding: $padding;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-
-			&:focus {
-				@include onFocus();
-			}
-		}
-	}
+	box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.8);
 
 	.range-container {
 		display: grid;
@@ -112,29 +93,5 @@
 		font-family: "Audiowide", cursive;
 		text-align: center;
 		margin-bottom: 1rem;
-	}
-
-	.error {
-		width: fit-content;
-		margin-top: 2px;
-		padding: 0.25rem;
-		background-color: $advizot-color;
-		clip-path: polygon(
-			0 13%,
-			9% 13%,
-			12% 0,
-			15% 13%,
-			100% 13%,
-			100% 98%,
-			0 98%
-		);
-	}
-	.range-error {
-		width: fit-content;
-		margin-top: 0.55rem;
-		padding: 0.13rem 0.26rem;
-		background-color: $advizot-color;
-
-		grid-row-start: 4;
 	}
 }

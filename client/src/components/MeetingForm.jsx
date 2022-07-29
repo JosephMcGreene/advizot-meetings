@@ -6,7 +6,7 @@ import Select from "./Select";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
-export default function MeetingForm({ onSubmit, showModal }) {
+export default function MeetingForm({ onSubmit }) {
 	function getSliderSizes(value) {
 		return {
 			backgroundSize: `${(value * 100) / 10}% 100%`,
@@ -16,7 +16,6 @@ export default function MeetingForm({ onSubmit, showModal }) {
 	return (
 		<Formik
 			initialValues={{
-				name: "",
 				business: 0,
 				personal: 0,
 				relationships: 0,
@@ -25,7 +24,6 @@ export default function MeetingForm({ onSubmit, showModal }) {
 				monthlyGoal: "",
 			}}
 			validationSchema={Yup.object({
-				name: Yup.string().required("Name is required"),
 				business: Yup.number().test(
 					"atLeast",
 					"This should be at least 1",
@@ -53,16 +51,6 @@ export default function MeetingForm({ onSubmit, showModal }) {
 			{({ isSubmitting, submitCount, ...props }) => (
 				<Form className="form">
 					<InputField
-						text="Name:"
-						name="name"
-						as="input"
-						type="input"
-						className="personal-info"
-						spanText={null}
-						showModal={showModal}
-					/>
-
-					<InputField
 						text="How is your business?"
 						name="business"
 						as="input"
@@ -70,9 +58,9 @@ export default function MeetingForm({ onSubmit, showModal }) {
 						min={0}
 						max={10}
 						className="range-container"
+						placeholder=""
 						style={getSliderSizes(props.values.business)}
 						spanText={props.values.business}
-						showModal={showModal}
 					/>
 
 					<InputField
@@ -83,9 +71,9 @@ export default function MeetingForm({ onSubmit, showModal }) {
 						min={0}
 						max={10}
 						className="range-container"
+						placeholder=""
 						style={getSliderSizes(props.values.personal)}
 						spanText={props.values.personal}
-						showModal={showModal}
 					/>
 
 					<InputField
@@ -96,17 +84,17 @@ export default function MeetingForm({ onSubmit, showModal }) {
 						min={0}
 						max={10}
 						className="range-container"
+						placeholder=""
 						style={getSliderSizes(props.values.relationships)}
 						spanText={props.values.relationships}
-						showModal={showModal}
 					/>
 
 					<InputField
 						text="Issue to process today:"
 						name="monthlyIssue"
 						as="textarea"
+						placeholder=""
 						className="textarea"
-						spanText={null}
 					/>
 
 					<Select text="Priority:" name="priority" className="priority">
@@ -122,8 +110,8 @@ export default function MeetingForm({ onSubmit, showModal }) {
 						text="Goal before next meeting:"
 						name="monthlyGoal"
 						as="textarea"
+						placeholder=""
 						className="textarea"
-						spanText={null}
 					/>
 
 					<button type="submit" className="btn">

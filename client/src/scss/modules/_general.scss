@@ -70,6 +70,22 @@ code {
 	}
 }
 
+.error {
+	width: fit-content;
+	margin-top: 2px;
+	padding: 0.25rem;
+	background-color: $advizot-color;
+	clip-path: polygon(0 13%, 9% 13%, 12% 0, 15% 13%, 100% 13%, 100% 98%, 0 98%);
+}
+.range-error {
+	width: fit-content;
+	margin-top: 0.55rem;
+	padding: 0.13rem 0.26rem;
+	background-color: $advizot-color;
+
+	grid-row-start: 4;
+}
+
 .footer {
 	background-color: $advizot-color;
 	margin-top: 1.5rem;

@@ -24,29 +24,34 @@ export default function App() {
 	const [showModal, setShowModal] = useState(false);
 	const [responses, setResponses] = useState([]);
 
-	async function submitResponses(userResponse) {
-		setResponses([...responses, userResponse]);
-
-		const serverResponse = await fetch("../../newMetric", {
-			method: "POST",
+	async function fetch(url, method, body) {
+		const response = await fetch(url, {
+			method: method,
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify(userResponse),
+			body: JSON.stringify(body),
 		});
-		// const json = await serverResponse.json();
+		const json = await response.json();
+		return json;
+	}
+
+	async function submitResponses(userResponse) {
+		setResponses([...responses, userResponse]);
+
+		fetch("../../newMetric", "POST", userResponse);
 	}
 
 	return (
 		<div className="App">
-			<button onClick={() => setShowModal(!showModal)}>Show Modal</button>
-			<Modal showModal={showModal} onClose={() => setShowModal(!showModal)} />
+			<Modal
+				showModal={showModal}
+				onClose={() => setShowModal(!showModal)}
+				onSubmit={(loginInfo) => console.log(loginInfo)}
+			/>
 			<Header />
 
-			<MeetingForm
-				onSubmit={(userResponse) => submitResponses(userResponse)}
-				showModal={showModal}
-			/>
+			<MeetingForm onSubmit={(userResponse) => submitResponses(userResponse)} />
 			{/* <form action="../../deleteMetric">
 				<button className="btn" onClick={deleteMetric}>
 					Remove Metric
@@ -54,6 +59,7 @@ export default function App() {
 			</form> */}
 			<Responses responses={responses} />
 
+			<button onClick={() => setShowModal(!showModal)}>Show Modal</button>
 			<Footer />
 		</div>
 	);
