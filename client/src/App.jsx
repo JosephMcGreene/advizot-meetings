@@ -23,17 +23,26 @@ import "./scss/App.scss";
 export default function App() {
 	const [showLogin, setShowLogin] = useState(false);
 	const [responses, setResponses] = useState([]);
+	let currentUser;
 
-	async function fetch(url, method, body) {
-		const response = await fetch(url, {
-			method: method,
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(body),
-		});
-		const json = await response.json();
-		return json;
+	async function addUser(userInfo) {
+		sendFetch("../../newUser", "POST", userInfo);
+	}
+
+	async function sendFetch(url, method, body) {
+		try {
+			const response = await fetch(url, {
+				method: method,
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(body),
+			});
+			const json = await response.json();
+			currentUser = json;
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	async function submitResponses(userResponse) {
@@ -47,7 +56,7 @@ export default function App() {
 			<Modal
 				showLogin={showLogin}
 				onClose={() => setShowLogin(!showLogin)}
-				onSubmit={(loginInfo) => console.log(loginInfo)}
+				onSubmit={(userInfo) => addUser(userInfo)}
 			/>
 			<Header />
 

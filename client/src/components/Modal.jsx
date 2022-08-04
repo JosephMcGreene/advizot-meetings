@@ -34,9 +34,9 @@ export default function Modal({ showLogin, onClose, onSubmit }) {
 						),
 					})}
 					onSubmit={(values, { setSubmitting }) => {
-						values.coachID = parseInt(values.coachID);
 						values.firstName = values.firstName.toLowerCase();
 						values.lastName = values.lastName.toLowerCase();
+						values.coachID = parseInt(values.coachID);
 						onSubmit(values);
 						setSubmitting(false);
 					}}

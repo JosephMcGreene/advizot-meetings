@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const axios = require("axios");
 const coachRoutes = require("./routes/coachRoutes");
+const Member = require("./models/member");
 
 //=====MIDDLEWARE=====
 app.use(
@@ -18,6 +19,21 @@ app.use(express.json());
 
 // app.use("/newMetric", coachRoutes);
 // app.use("/deleteMetric", coachRoutes);
+
+//=====ROUTES=====
+app.post("/newUser", cors(), (req, res) => {
+	try {
+		const fullName = `${req.body.firstName} ${req.body.lastName}`;
+		const newMember = new Member({
+			name: fullName,
+			coachID: req.body.coachID,
+		});
+		newMember.save();
+		res.json(newMember);
+	} catch (error) {
+		console.error(error);
+	}
+});
 
 app.post("/newMetric", cors(), (req, res) => {
 	// axios
