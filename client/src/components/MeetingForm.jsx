@@ -7,7 +7,12 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
 export default function MeetingForm({ onSubmit }) {
-	function getSliderSizes(value) {
+	/**
+	 * Calculates how much of an input slider's background should be filled up based on where the user is sliding it
+	 * @param {Number} value The current value of the range-slider, used as a basis to calculate how much of the background of the slider needs to be turned orange
+	 * @returns {Object} A styles object specifying the percentage of the background should be orange.
+	 */
+	function getSliderSize(value) {
 		return {
 			backgroundSize: `${(value * 100) / 10}% 100%`,
 		};
@@ -59,7 +64,7 @@ export default function MeetingForm({ onSubmit }) {
 						max={10}
 						className="range-container"
 						placeholder=""
-						style={getSliderSizes(props.values.business)}
+						style={getSliderSize(props.values.business)}
 						spanText={props.values.business}
 					/>
 
@@ -72,7 +77,7 @@ export default function MeetingForm({ onSubmit }) {
 						max={10}
 						className="range-container"
 						placeholder=""
-						style={getSliderSizes(props.values.personal)}
+						style={getSliderSize(props.values.personal)}
 						spanText={props.values.personal}
 					/>
 
@@ -85,7 +90,7 @@ export default function MeetingForm({ onSubmit }) {
 						max={10}
 						className="range-container"
 						placeholder=""
-						style={getSliderSizes(props.values.relationships)}
+						style={getSliderSize(props.values.relationships)}
 						spanText={props.values.relationships}
 					/>
 

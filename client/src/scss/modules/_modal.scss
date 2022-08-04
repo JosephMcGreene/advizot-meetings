@@ -13,9 +13,7 @@
 	justify-content: center;
 
 	.modal-content {
-		border-radius: $border-radius 0 $border-radius 0;
 		background-color: #fff;
-		overflow-y: scroll;
 		width: min(320px, 75%);
 
 		.modal-header {

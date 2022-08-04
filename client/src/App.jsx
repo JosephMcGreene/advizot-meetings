@@ -21,7 +21,7 @@ import Footer from "./components/no-state/Footer";
 import "./scss/App.scss";
 
 export default function App() {
-	const [showModal, setShowModal] = useState(false);
+	const [showLogin, setShowLogin] = useState(false);
 	const [responses, setResponses] = useState([]);
 
 	async function fetch(url, method, body) {
@@ -39,27 +39,22 @@ export default function App() {
 	async function submitResponses(userResponse) {
 		setResponses([...responses, userResponse]);
 
-		fetch("../../newMetric", "POST", userResponse);
+		// fetch("../../newMetric", "POST", userResponse);
 	}
 
 	return (
 		<div className="App">
 			<Modal
-				showModal={showModal}
-				onClose={() => setShowModal(!showModal)}
+				showLogin={showLogin}
+				onClose={() => setShowLogin(!showLogin)}
 				onSubmit={(loginInfo) => console.log(loginInfo)}
 			/>
 			<Header />
 
 			<MeetingForm onSubmit={(userResponse) => submitResponses(userResponse)} />
-			{/* <form action="../../deleteMetric">
-				<button className="btn" onClick={deleteMetric}>
-					Remove Metric
-				</button>
-			</form> */}
 			<Responses responses={responses} />
 
-			<button onClick={() => setShowModal(!showModal)}>Show Modal</button>
+			<button onClick={() => setShowLogin(!showLogin)}>Show Login</button>
 			<Footer />
 		</div>
 	);

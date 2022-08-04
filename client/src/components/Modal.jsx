@@ -5,8 +5,8 @@ import InputField from "./InputField";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
-export default function Modal({ showModal, onClose, onSubmit }) {
-	if (!showModal) {
+export default function Modal({ showLogin, onClose, onSubmit }) {
+	if (!showLogin) {
 		return null;
 	}
 
@@ -65,7 +65,7 @@ export default function Modal({ showModal, onClose, onSubmit }) {
 								as="input"
 								type="input"
 								className="personal-info"
-								placeholder="i.e. 000000"
+								placeholder="Get this from Kevin"
 							/>
 							<button type="submit" className="btn">
 								{isSubmitting ? "Logging in..." : "Log in"}
