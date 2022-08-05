@@ -3,10 +3,7 @@ const path = require("path");
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const cors = require("cors");
-const axios = require("axios");
-const coachRoutes = require("./routes/coachRoutes");
-const Member = require("./models/member");
+const mongoRoutes = require("./routes/mongoRoutes");
 
 //=====MIDDLEWARE=====
 app.use(
@@ -17,54 +14,8 @@ app.use(
 
 app.use(express.json());
 
-// app.use("/newMetric", coachRoutes);
-// app.use("/deleteMetric", coachRoutes);
-
 //=====ROUTES=====
-app.post("/newUser", cors(), (req, res) => {
-	try {
-		const fullName = `${req.body.firstName} ${req.body.lastName}`;
-		const newMember = new Member({
-			name: fullName,
-			coachID: req.body.coachID,
-		});
-		newMember.save();
-		res.json(newMember);
-	} catch (error) {
-		console.error(error);
-	}
-});
-
-app.post("/newMetric", cors(), (req, res) => {
-	// axios
-	// 	.request({
-	// 		method: "post",
-	// 		url: coachAccountableURL,
-	// 		params: params.postParams,
-	// 	})
-	// 	.then((response) => console.log(response))
-	// 	.catch((error) => console.error(error));
-	console.log("Got it!");
-});
-app.delete("/deleteMetric", cors(), (req, res) => {
-	// axios
-	// 	.request({
-	// 		method: "post",
-	// 		url: coachAccountableURL,
-	// 		params: params.deleteParams,
-	// 	})
-	// 	.then((response) => console.log(response))
-	// 	.catch((error) => console.error(error));
-	console.log("Will Delete!");
-});
-
-//=====Connect MongoDB=====
-mongoose
-	.connect(process.env.MONGO_URI)
-	.then(() => {
-		console.log("Connected to MongoDB!");
-	})
-	.catch((error) => console.error(error));
+app.use(mongoRoutes);
 
 //To serve in prod
 if (process.env.NODE_ENV === "production") {
@@ -75,7 +26,14 @@ if (process.env.NODE_ENV === "production") {
 }
 
 //=====SERVER START=====
-app.listen(process.env.PORT || 8080, () => {
+app.listen(process.env.PORT || 8080, function () {
+	mongoose
+		.connect(process.env.MONGO_URI)
+		.then(() => {
+			console.log("Connected to MongoDB!");
+		})
+		.catch((error) => console.error(error));
+
 	console.log(
 		`Server is listening at http://localhost:${process.env.PORT || 8080}`
 	);
