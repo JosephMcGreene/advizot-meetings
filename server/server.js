@@ -4,6 +4,10 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const mongoRoutes = require("./routes/mongoRoutes");
+const passport = require("passport");
+const initializePassport = require("./passport/passport-config");
+
+initializePassport(passport);
 
 //=====MIDDLEWARE=====
 app.use(

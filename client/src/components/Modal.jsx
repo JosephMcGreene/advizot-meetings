@@ -1,6 +1,5 @@
 //Internal
 import InputField from "./InputField";
-
 //External
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -11,7 +10,7 @@ export default function Modal({ showLogin, onClose, onSubmit }) {
 	}
 
 	return (
-		<div className="modal" onClick={() => onClose()}>
+		<div className="modal">
 			<div className="modal-content">
 				<div className="modal-header">
 					<span>Login</span>

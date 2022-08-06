@@ -4,10 +4,10 @@ const format = require("date-fns/format");
 let todayDate = format(Date.now(), "MM/dd/yyyy");
 
 const postParams = {
-	APIID: process.env.COACH_ID,
+	APIID: process.env.COACH_APIID,
 	APIKey: process.env.COACH_KEY,
 	a: "Metric.add",
-	ClientID: 87337,
+	ClientID: process.env.CLIENT_ID,
 	name: "Joseph McGreene",
 	units: "happies",
 	startDate: todayDate,
@@ -17,7 +17,7 @@ const postParams = {
 	setReminders: false,
 };
 const deleteParams = {
-	APIID: process.env.COACH_ID,
+	APIID: process.env.COACH_APIID,
 	APIKey: process.env.COACH_KEY,
 	a: "Metric.delete",
 	MetricID: 285626,
