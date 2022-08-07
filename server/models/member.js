@@ -1,19 +1,9 @@
 const mongoose = require("mongoose");
 
-const responseSchema = new mongoose.Schema({
-	businessHealth: { type: Number },
-	personalHealth: { type: Number },
-	relationshipHealth: { type: Number },
-	monthlyIssue: { type: String },
-	priority: { type: String },
-	monthlyGoal: { type: String },
-});
-
 const memberSchema = new mongoose.Schema({
 	firstName: { type: String },
 	lastName: { type: String },
 	coachID: { type: Number },
-	response: responseSchema,
 });
 
 module.exports = mongoose.model("Member", memberSchema);

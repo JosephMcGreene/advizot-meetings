@@ -10,29 +10,20 @@ mongoRoutes.post("/newUser", cors(), async function (req, res) {
 			firstName: req.body.firstName,
 			lastName: req.body.lastName,
 			coachID: req.body.coachID,
-			response: {
-				businessHealth: req.body.business,
-				personalHealth: req.body.personal,
-				relationshipHealth: req.body.relationships,
-				monthlyIssue: req.body.monthlyIssue,
-				priority: req.body.priority,
-				monthlyGoal: req.body.monthlyGoal,
-			},
 		});
 		await newMember.save();
 		await res.json(newMember);
 	} catch (error) {
 		console.error(error);
 	}
-	console.log(req.body);
 });
 
 mongoRoutes.post("/newResponse", cors(), async function (req, res) {
 	try {
 		const newResponse = new Response({
-			businessHealth: req.body.businessHealth,
-			personalHealth: req.body.personalHealth,
-			relationshipHealth: req.body.relationshipHealth,
+			business: req.body.business,
+			personal: req.body.personal,
+			relationships: req.body.relationships,
 			monthlyIssue: req.body.monthlyIssue,
 			priority: req.body.priority,
 			monthlyGoal: req.body.monthlyGoal,
@@ -46,8 +37,8 @@ mongoRoutes.post("/newResponse", cors(), async function (req, res) {
 
 mongoRoutes.get("/getResponses", cors(), async function (req, res) {
 	try {
-		const members = await Member.find();
-		res.json(members);
+		const responses = await Response.find();
+		res.json(responses);
 	} catch (error) {
 		console.error(error);
 	}

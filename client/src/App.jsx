@@ -3,9 +3,8 @@
 //!    - Secure Server Sign-In
 //!    - Answers to sign-in questions to be used during the course of the meeting via a projector
 //!    - POST data to Coach Accountable to be stored as a metric for user later on
-//TODO (1) Add a Back-End or some other way to have data persist
-//?       - Figure out user authentication; email Coach Accountable
-//TODO    - POST data to Coach Accountable. Add ability to remove the data as well.
+//TODO (1) Figure out user authentication; email Coach Accountable
+//TODO    (- POST data to Coach Accountable. Add ability to remove the data as well.)
 //TODO (2) Add a modal for logging users in to the app (^see above^)
 //TODO 		- Add the code to the back end for this
 //TODO (3) (Add a modal for Kevin to edit the form each month)
@@ -26,12 +25,6 @@ export default function App() {
 	const [responses, setResponses] = useState([]);
 
 	useEffect(() => {
-		/**
-		 * fetches existing user responses from MongoDB to display them to the page
-		 */
-		async function getExistingResponses() {
-			fetchData("../../getResponses", "GET");
-		}
 		try {
 			getExistingResponses();
 		} catch (error) {
@@ -40,7 +33,15 @@ export default function App() {
 	}, []);
 
 	/**
-	 * A shorthand function to avoid typing out verbose code whenever fetch() needs to be used
+	 * fetches existing user responses from MongoDB to display them to the page
+	 */
+	async function getExistingResponses() {
+		const existingResponses = await fetchData("../../getResponses", "GET");
+		setResponses([...responses, ...existingResponses]);
+	}
+
+	/**
+	 * A shorthand function to avoid typing out verbose code whenever fetch() needs to be used to get json data
 	 * @param {String} url 		The url which data is gotten from, post to, etc.
 	 * @param {String} method http method being used: GET, POST, PUT, etc.
 	 * @param {Object} body 	Optional: json data to be POSTed, DELETEd, etc.
@@ -55,18 +56,18 @@ export default function App() {
 				body: JSON.stringify(body),
 			});
 			const json = await response.json();
-			return await json;
+			return json;
 		} catch (error) {
 			console.error(error);
 		}
 	}
 
 	/**
-	 * Takes in and distributes responses to MeetingForm.js to the appropriate places
+	 * Takes in and distributes responses from MeetingForm.js to the appropriate places
 	 * @param {Object} userResponse json body to be posted and displayed to the users
 	 */
 	async function submitResponses(userResponse) {
-		setResponses([...responses, userResponse]);
+		await setResponses([...responses, userResponse]);
 		fetchData("../../newResponse", "POST", userResponse);
 	}
 
@@ -79,11 +80,7 @@ export default function App() {
 			/>
 			<Header />
 
-			<MeetingForm
-				onSubmit={(userResponse) =>
-					fetchData("../../newUser", "POST", userResponse)
-				}
-			/>
+			<MeetingForm onSubmit={(userResponse) => submitResponses(userResponse)} />
 			<Responses responses={responses} />
 
 			<button onClick={() => setShowLogin(!showLogin)}>Show Login</button>
