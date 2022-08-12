@@ -8,25 +8,24 @@ const mongoRoutes = require("./routes/mongoRoutes");
 //=====MIDDLEWARE=====
 app.use(
 	express.urlencoded({
-		extended: true,
+		extended: false,
 	})
 );
 
 app.use(express.json());
 
 //=====ROUTES=====
-app.use(mongoRoutes);
 
 //To serve in prod
 if (process.env.NODE_ENV === "production") {
-	app.use(express.static("./client/build"));
-	app.get("*", cors(), (req, res) => {
-		res.sendFile(path.resolve(__dirname, "./client/build/index.html"));
-	});
+	app.use(express.static("client/build"));
 }
 
+app.use(mongoRoutes);
+
 //=====SERVER START=====
-app.listen(process.env.PORT || 8080, function () {
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, async function () {
 	mongoose
 		.connect(process.env.MONGO_URI)
 		.then(() => {
@@ -34,7 +33,5 @@ app.listen(process.env.PORT || 8080, function () {
 		})
 		.catch((error) => console.error(error));
 
-	console.log(
-		`Server is listening at http://localhost:${process.env.PORT || 8080}`
-	);
+	console.log(`Server is listening at http://localhost:${PORT}`);
 });
