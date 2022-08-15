@@ -2,36 +2,46 @@ require("dotenv").config();
 const path = require("path");
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const mongoose = require("mongoose");
-const mongoRoutes = require("./routes/mongoRoutes");
+const dbRoutes = require("./routes/db");
+
+//=====CONNECT MONGODB=====
+mongoose
+	.connect(process.env.MONGO_URI)
+	.then(() => {
+		console.log("Connected to MongoDB!");
+	})
+	.catch((error) => console.error(error));
 
 //=====MIDDLEWARE=====
 app.use(
 	express.urlencoded({
-		extended: false,
+		extended: true,
 	})
 );
-
 app.use(express.json());
+app.use(cors());
 
-//=====ROUTES=====
+app.use((req, res, next) => {
+	next();
+});
 
-//To serve in prod
+//=====TO SERVE=====
 if (process.env.NODE_ENV === "production") {
 	app.use(express.static("client/build"));
 }
+// app.use(express.static(path.join(__dirname, "../client/build")));
 
-app.use(mongoRoutes);
+//=====MOUNT ROUTES=====
+app.use("/db", dbRoutes);
+
+app.get("*", async function (req, res) {
+	res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+});
 
 //=====SERVER START=====
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, async function () {
-	mongoose
-		.connect(process.env.MONGO_URI)
-		.then(() => {
-			console.log("Connected to MongoDB!");
-		})
-		.catch((error) => console.error(error));
-
 	console.log(`Server is listening at http://localhost:${PORT}`);
 });
