@@ -36,7 +36,7 @@ export default function App() {
 	 * fetches existing user responses from MongoDB to display them to the page
 	 */
 	async function getExistingResponses() {
-		const existingResponses = await fetchData("../../getResponses", "GET");
+		const existingResponses = await fetchData("../../db/responses", "GET");
 		setResponses([...responses, ...existingResponses]);
 	}
 
@@ -68,7 +68,7 @@ export default function App() {
 	 */
 	async function submitResponses(userResponse) {
 		await setResponses([...responses, userResponse]);
-		fetchData("../../newResponse", "POST", userResponse);
+		fetchData("../../db/responses", "POST", userResponse);
 	}
 
 	return (
@@ -76,7 +76,7 @@ export default function App() {
 			<Modal
 				showLogin={showLogin}
 				onClose={() => setShowLogin(!showLogin)}
-				onSubmit={(userInfo) => fetchData("../../newUser", "POST", userInfo)}
+				onSubmit={(userInfo) => fetchData("../../db/members", "POST", userInfo)}
 			/>
 			<Header />
 
