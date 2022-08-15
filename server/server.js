@@ -31,13 +31,13 @@ app.use((req, res, next) => {
 if (process.env.NODE_ENV === "production") {
 	app.use(express.static("client/build"));
 }
-// app.use(express.static(path.join(__dirname, "../client/build")));
+app.use(express.static(path.join(__dirname, "/views/")));
 
 //=====MOUNT ROUTES=====
 app.use("/db", dbRoutes);
 
 app.get("*", async function (req, res) {
-	res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+	res.sendFile(path.join(__dirname, "/views/", "index.html"));
 });
 
 //=====SERVER START=====
