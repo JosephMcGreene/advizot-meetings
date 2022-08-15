@@ -28,9 +28,9 @@ app.use((req, res, next) => {
 });
 
 //=====TO SERVE=====
-if (process.env.NODE_ENV === "production") {
-	app.use(express.static("client/build"));
-}
+// if (process.env.NODE_ENV === "production") {
+// 	app.use(express.static("client/build"));
+// }
 app.use(express.static(path.join(__dirname, "/views/")));
 
 //=====MOUNT ROUTES=====
