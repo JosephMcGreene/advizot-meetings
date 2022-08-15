@@ -23,25 +23,21 @@ app.use(
 app.use(express.json());
 app.use(cors());
 
-app.use((req, res, next) => {
-	next();
-});
-
 //=====TO SERVE=====
 // if (process.env.NODE_ENV === "production") {
 // 	app.use(express.static("client/build"));
 // }
-app.use(express.static(path.join(__dirname, "/views/")));
+app.use(express.static(path.join(__dirname, "../client/build")));
 
 //=====MOUNT ROUTES=====
 app.use("/db", dbRoutes);
 
-app.get("*", async function (req, res) {
-	res.sendFile(path.join(__dirname, "/views/", "index.html"));
+app.get("*", function (req, res) {
+	res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
 
 //=====SERVER START=====
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, async function () {
+app.listen(PORT, () => {
 	console.log(`Server is listening at http://localhost:${PORT}`);
 });

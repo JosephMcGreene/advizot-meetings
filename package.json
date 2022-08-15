@@ -4,9 +4,11 @@
 	"description": "",
 	"main": "server/server.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "node server/server.js",
-		"dev": "nodemon server/server.js"
+		"server": "nodemon server/server.js",
+		"client": "npm start --prefix client",
+		"dev": "concurrently \"npm run client\" \"npm run server\"",
+		"build": "npm run build --prefix client"
 	},
 	"keywords": [],
 	"author": "",
@@ -18,5 +20,8 @@
 		"mongodb": "^4.8.1",
 		"mongoose": "^6.5.0",
 		"nodemon": "^2.0.19"
+	},
+	"devDependencies": {
+		"concurrently": "^7.3.0"
 	}
 }
