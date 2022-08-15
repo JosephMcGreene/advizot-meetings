@@ -5,9 +5,6 @@ client/.pnp
 client/.pnp.js
 .env
 
-#builds
-client/build
-
 #testing
 client/coverage
 
