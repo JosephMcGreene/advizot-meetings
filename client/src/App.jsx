@@ -24,6 +24,7 @@ export default function App() {
 	const [showLogin, setShowLogin] = useState(false);
 	const [responses, setResponses] = useState([]);
 
+	//=====EFFECTS=====
 	useEffect(() => {
 		try {
 			getExistingResponses();
@@ -32,21 +33,22 @@ export default function App() {
 		}
 	}, []);
 
+	//=====HELPERS=====
 	/**
-	 * fetches existing user responses from MongoDB to display them to the page
+	 * fetches existing user responses from MongoDB and updates state accordingly
 	 */
-	async function getExistingResponses() {
+	const getExistingResponses = async () => {
 		const existingResponses = await fetchData("../../db/responses", "GET");
 		setResponses([...responses, ...existingResponses]);
-	}
+	};
 
 	/**
 	 * A shorthand function to avoid typing out verbose code whenever fetch() needs to be used to get json data
-	 * @param {String} url 		The url which data is gotten from, post to, etc.
+	 * @param {String} url 		The url which data is got from, post to, etc.
 	 * @param {String} method http method being used: GET, POST, PUT, etc.
 	 * @param {Object} body 	Optional: json data to be POSTed, DELETEd, etc.
 	 */
-	async function fetchData(url, method, body) {
+	const fetchData = async (url, method, body) => {
 		try {
 			const response = await fetch(url, {
 				method: method,
@@ -61,24 +63,19 @@ export default function App() {
 		} catch (error) {
 			console.error(error);
 		}
-	}
+	};
 
 	/**
-	 * Takes in and distributes responses from MeetingForm.js to the appropriate places
+	 * Takes in and distributes responses from MeetingForm.js to the appropriate places: MongoDB and/or Coach Accountable
 	 * @param {Object} userResponse json body to be posted and displayed to the users
 	 */
-	async function submitResponses(userResponse) {
+	const submitResponses = async (userResponse) => {
 		await setResponses([...responses, userResponse]);
 		fetchData("../../db/responses", "POST", userResponse);
-	}
+	};
 
 	return (
 		<div className="App">
-			<Modal
-				showLogin={showLogin}
-				onClose={() => setShowLogin(!showLogin)}
-				onSubmit={(userInfo) => fetchData("../../db/members", "POST", userInfo)}
-			/>
 			<Header />
 
 			<MeetingForm onSubmit={(userResponse) => submitResponses(userResponse)} />
@@ -86,6 +83,13 @@ export default function App() {
 
 			<button onClick={() => setShowLogin(!showLogin)}>Show Login</button>
 			<Footer />
+
+			{/* =====MODAL BOX(ES)===== */}
+			<Modal
+				showLogin={showLogin}
+				onClose={() => setShowLogin(!showLogin)}
+				onSubmit={(userInfo) => fetchData("../../db/members", "POST", userInfo)}
+			/>
 		</div>
 	);
 }
