@@ -66,14 +66,21 @@ export default function App() {
 		return responses;
 	};
 
+	// CURRENTLY DELETES EVERY SINGLE DATABASE USER RESPONSE ENTRY
 	/**
-	 * For purposes of development; Deletes the current slate of documents from MongoDB. See server/routes/db.js
+	 * Deletes the current slate of documents from MongoDB. See server/routes/db.js
 	 */
 	const deleteAllResponses = async () => {
 		if (responses === []) {
 			return;
 		}
-		await console.log(fetchData("../../db/responses", "DELETE", responses));
+		const deleteRes = await fetchData(
+			"../../db/responses",
+			"DELETE",
+			responses
+		);
+		setResponses([]);
+		alert(`Deleted ${deleteRes.deletedCount} item(s) from the database.`);
 	};
 
 	/**
@@ -96,7 +103,7 @@ export default function App() {
 				Show Login
 			</button>
 			<button className="btn" onClick={() => deleteAllResponses()}>
-				Delete Responses
+				Delete All Responses (Please use after testing)
 			</button>
 			<Footer />
 

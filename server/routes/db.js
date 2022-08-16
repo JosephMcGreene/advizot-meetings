@@ -45,11 +45,12 @@ dbRouter
 	})
 	.delete(async function (req, res) {
 		try {
-			await Response.deleteMany({ monthlyGoal: /[A-Za-z]/g });
+			const deleteRes = await Response.deleteMany({ monthlyGoal: /[A-Za-z]/g });
+			await res.json(deleteRes);
+			console.log("Deleted!");
 		} catch (error) {
 			console.error(error);
 		}
-		console.log(res.body);
 	});
 
 module.exports = dbRouter;
