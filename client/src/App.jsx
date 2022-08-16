@@ -35,14 +35,6 @@ export default function App() {
 
 	//=====HELPERS=====
 	/**
-	 * fetches existing user responses from MongoDB and updates state accordingly
-	 */
-	const getExistingResponses = async () => {
-		const existingResponses = await fetchData("../../db/responses", "GET");
-		setResponses([...responses, ...existingResponses]);
-	};
-
-	/**
 	 * A shorthand function to avoid typing out verbose code whenever fetch() needs to be used to get json data
 	 * @param {String} url 		The url which data is got from, post to, etc.
 	 * @param {String} method http method being used: GET, POST, PUT, etc.
@@ -66,7 +58,26 @@ export default function App() {
 	};
 
 	/**
-	 * Takes in and distributes responses from MeetingForm.js to the appropriate places: MongoDB and/or Coach Accountable
+	 * fetches existing user responses from MongoDB and updates state accordingly. See server/routes/db.js
+	 */
+	const getExistingResponses = async () => {
+		const existingResponses = await fetchData("../../db/responses", "GET");
+		setResponses([...existingResponses]);
+		return responses;
+	};
+
+	/**
+	 * For purposes of development; Deletes the current slate of documents from MongoDB. See server/routes/db.js
+	 */
+	const deleteAllResponses = async () => {
+		if (responses === []) {
+			return;
+		}
+		await console.log(fetchData("../../db/responses", "DELETE", responses));
+	};
+
+	/**
+	 * Takes in and distributes responses from MeetingForm.js to the appropriate places: MongoDB and/or Coach Accountable. See server/routes/db.js
 	 * @param {Object} userResponse json body to be posted and displayed to the users
 	 */
 	const submitResponses = async (userResponse) => {
@@ -81,7 +92,12 @@ export default function App() {
 			<MeetingForm onSubmit={(userResponse) => submitResponses(userResponse)} />
 			<Responses responses={responses} />
 
-			<button onClick={() => setShowLogin(!showLogin)}>Show Login</button>
+			<button className="btn" onClick={() => setShowLogin(!showLogin)}>
+				Show Login
+			</button>
+			<button className="btn" onClick={() => deleteAllResponses()}>
+				Delete Responses
+			</button>
 			<Footer />
 
 			{/* =====MODAL BOX(ES)===== */}

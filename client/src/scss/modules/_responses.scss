@@ -2,16 +2,13 @@
 
 .responses-ul {
 	font-family: $main-font;
-	position: relative;
 
 	.response-li {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: space-around;
+		display: grid;
+		grid-template-rows: 4rem 3.5rem fit-content fit-content;
+		grid-template-columns: repeat(3, 1fr);
 
-		text-align: center;
-		margin: 8vh 1vw;
+		margin: 7vh 1vw;
 
 		.response-name {
 			@include border();
@@ -20,10 +17,42 @@
 			background-color: $advizot-light;
 			padding: 8px 12px;
 			height: fit-content;
+			width: fit-content;
+
+			grid-row: 1;
+			justify-self: center;
+			align-self: center;
+		}
+		.priority {
+			grid-row: 1;
+			grid-column: 2;
+			justify-self: start;
+			align-self: center;
+		}
+		.range-response {
+			grid-row: 2 / 3;
+			text-align: center;
+		}
+		.issue {
+			grid-row: 3 / 4;
+		}
+		.goal {
+			grid-row: 4 / 5;
+		}
+		.issue,
+		.goal {
+			grid-column: 1 / 4;
+			margin-bottom: 0.5rem;
+
+			h4 {
+				text-align: center;
+			}
 		}
 
 		.response-p {
 			padding: 0 2vw 7px;
+			margin-left: 0.4rem;
+			margin-right: 0.4rem;
 
 			strong {
 				text-decoration: underline;

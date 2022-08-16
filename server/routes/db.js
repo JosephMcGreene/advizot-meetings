@@ -1,9 +1,9 @@
 const express = require("express");
 const Member = require("../models/member");
 const Response = require("../models/response");
-let router = express.Router();
+let dbRouter = express.Router();
 
-router.route("/members").post(async function (req, res) {
+dbRouter.route("/members").post(async function (req, res) {
 	try {
 		const newMember = new Member({
 			firstName: req.body.firstName,
@@ -17,7 +17,7 @@ router.route("/members").post(async function (req, res) {
 	}
 });
 
-router
+dbRouter
 	.route("/responses")
 	.get(async function (req, res) {
 		try {
@@ -42,6 +42,14 @@ router
 		} catch (error) {
 			console.error(error);
 		}
+	})
+	.delete(async function (req, res) {
+		try {
+			await Response.deleteMany({ monthlyGoal: /[A-Za-z]/g });
+		} catch (error) {
+			console.error(error);
+		}
+		console.log(res.body);
 	});
 
-module.exports = router;
+module.exports = dbRouter;

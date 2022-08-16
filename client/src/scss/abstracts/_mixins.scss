@@ -20,3 +20,12 @@
 @mixin onFocus() {
 	box-shadow: 0 0 12px var.$advizot-color, inset 0 0 9px var.$advizot-color;
 }
+
+@mixin onHover($background-color, $shadow-color) {
+	color: white;
+	background-color: $background-color;
+	box-shadow: inset 1px 1px 15px $shadow-color;
+	transition-property: all;
+	transition-duration: 150ms;
+	border: none;
+}

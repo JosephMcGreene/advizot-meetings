@@ -1,8 +1,11 @@
 export default function Responses({ responses }) {
-	const sortedResponses = responses.sort((a, b) => {
-		if (a.priority < b.priority) return -1;
-		return 1;
-	});
+	const sortedResponses =
+		responses !== undefined
+			? responses.sort((a, b) => {
+					if (a.priority < b.priority) return -1;
+					return 1;
+			  })
+			: null;
 
 	return (
 		<ul className="responses-ul">
@@ -17,45 +20,48 @@ export default function Responses({ responses }) {
 							response.priority
 						}
 					>
-						{/* <p className="response-name">
-							<strong>{response.name}</strong>
-						</p> */}
+						<span className="response-name">
+							{/* <strong>{response.name}</strong> */}
+							<strong>Amadeus</strong>
+						</span>
 
-						<p className="response-p">
+						<span className="response-p range-response">
 							<strong>Business</strong>
 							<br />
 							{response.business}
-						</p>
+						</span>
 
-						<p className="response-p">
+						<span className="response-p priority">
+							<strong>Priority:</strong> {response.priority}
+						</span>
+
+						<span className="response-p range-response">
 							<strong>Personal</strong>
 							<br />
 							{response.personal}
-						</p>
+						</span>
 
-						<p className="response-p">
+						<span className="response-p range-response">
 							<strong>People</strong>
 							<br />
 							{response.relationships}
-						</p>
+						</span>
 
-						<p className="response-p">
-							<strong>Today's Issue</strong>
+						<article className="response-p issue">
+							<h4>
+								<strong>Today's Issue</strong>
+							</h4>
 							<br />
-							{response.monthlyIssue}
-						</p>
+							<p>{response.monthlyIssue}</p>
+						</article>
 
-						<p className="response-p">
-							<strong>Priority</strong>
+						<article className="response-p goal">
+							<h4>
+								<strong>Goal Before Next Meeting</strong>
+							</h4>
 							<br />
-							{response.priority}
-						</p>
-
-						<p className="response-p">
-							<strong>Goal Before Next Meeting</strong>
-							<br />
-							{response.monthlyGoal}
-						</p>
+							<p>{response.monthlyGoal}</p>
+						</article>
 					</li>
 				);
 			})}
