@@ -1,6 +1,5 @@
 //Internal
 import InputField from "./InputField";
-
 //External
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -13,9 +12,11 @@ export default function Modal({ showLogin, onClose, onSubmit }) {
 	return (
 		<div className="modal">
 			<div className="modal-content">
-				<div className="modal-header" onClick={() => onClose()}>
+				<div className="modal-header">
 					<span>Login</span>
-					<button className="close-x">&times;</button>
+					<button className="close-x" onClick={() => onClose()}>
+						&times;
+					</button>
 				</div>
 
 				<Formik
@@ -29,14 +30,14 @@ export default function Modal({ showLogin, onClose, onSubmit }) {
 						lastName: Yup.string().required("This is required"),
 						coachID: Yup.number().test(
 							"length",
-							"5 or 6 digits",
+							"This should be 5 or 6 digits",
 							(val) => val > 10000 && val < 1000000
 						),
 					})}
 					onSubmit={(values, { setSubmitting }) => {
-						values.coachID = parseInt(values.coachID);
 						values.firstName = values.firstName.toLowerCase();
 						values.lastName = values.lastName.toLowerCase();
+						values.coachID = parseInt(values.coachID);
 						onSubmit(values);
 						setSubmitting(false);
 					}}

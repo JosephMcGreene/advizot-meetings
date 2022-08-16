@@ -24,6 +24,7 @@ body {
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	// padding-bottom: $footer-height;
 }
 
 code {
@@ -48,6 +49,10 @@ code {
 		font-size: 2rem;
 		font-weight: 400;
 	}
+}
+
+.App {
+	height: 100vh;
 }
 
 .btn {
@@ -87,6 +92,9 @@ code {
 }
 
 .footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 	background-color: $advizot-color;
 	margin-top: 1.5rem;
 	box-shadow: inset -2px -2px 7px rgba(0, 0, 0, 0.8),

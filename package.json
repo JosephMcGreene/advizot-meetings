@@ -2,24 +2,28 @@
 	"name": "advizot-meetings",
 	"version": "1.0.0",
 	"description": "",
+	"engines": {
+		"node": "16.x"
+	},
 	"main": "server/server.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "node server/server.js",
-		"dev": "nodemon server/server.js"
+		"server": "nodemon server/server.js",
+		"client": "npm start --prefix client",
+		"dev": "concurrently \"npm run client\" \"npm run server\""
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"axios": "^0.27.2",
 		"cors": "^2.8.5",
-		"date-fns": "^2.29.1",
 		"dotenv": "^16.0.1",
 		"express": "^4.18.1",
 		"mongodb": "^4.8.1",
 		"mongoose": "^6.5.0",
-		"nodemon": "^2.0.19",
-		"sass": "^1.54.4"
+		"nodemon": "^2.0.19"
+	},
+	"devDependencies": {
+		"concurrently": "^7.3.0"
 	}
 }

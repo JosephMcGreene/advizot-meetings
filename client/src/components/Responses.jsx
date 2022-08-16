@@ -11,16 +11,15 @@ export default function Responses({ responses }) {
 					<li
 						className="response-li"
 						key={
-							response.name +
 							response.business +
 							response.personal +
 							response.relationships +
 							response.priority
 						}
 					>
-						<p className="response-name">
+						{/* <p className="response-name">
 							<strong>{response.name}</strong>
-						</p>
+						</p> */}
 
 						<p className="response-p">
 							<strong>Business</strong>

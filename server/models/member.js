@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 
 const memberSchema = new mongoose.Schema({
-	name: { type: String, required: true },
-	coachID: { type: Number, required: true },
+	firstName: { type: String },
+	lastName: { type: String },
+	coachID: { type: Number },
 });
 
 module.exports = mongoose.model("Member", memberSchema);
