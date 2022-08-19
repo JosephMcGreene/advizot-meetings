@@ -1,7 +1,7 @@
 const express = require("express");
 const Member = require("../models/member");
 const Response = require("../models/response");
-let dbRouter = express.Router();
+const dbRouter = express.Router();
 
 dbRouter.route("/members").post(async function (req, res) {
 	try {
