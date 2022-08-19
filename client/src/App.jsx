@@ -100,10 +100,12 @@ export default function App() {
 			<Responses responses={responses} />
 
 			<button className="btn" onClick={() => setShowLogin(!showLogin)}>
-				Show Login
+				Login
 			</button>
 			<button className="btn" onClick={() => deleteAllResponses()}>
-				Delete All Responses (Please use after testing)
+				Delete All Responses
+				<br />
+				(Please use after testing)
 			</button>
 			<Footer />
 

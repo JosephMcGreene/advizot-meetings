@@ -1,13 +1,13 @@
-//Internal
-import InputField from "./InputField";
-//External
-import { Formik, Form } from "formik";
-import * as Yup from "yup";
+import LinkedInLogo from "../img/LI-In-Bug.png";
 
 export default function Modal({ showLogin, onClose, onSubmit }) {
 	if (!showLogin) {
 		return null;
 	}
+
+	const linkedinLogin = () => {
+		window.open("http://localhost:8080/auth/linkedin", "_self");
+	};
 
 	return (
 		<div className="modal">
@@ -18,62 +18,16 @@ export default function Modal({ showLogin, onClose, onSubmit }) {
 						&times;
 					</button>
 				</div>
-
-				<Formik
-					initialValues={{
-						firstName: "",
-						lastName: "",
-						coachID: "",
-					}}
-					validationSchema={Yup.object({
-						firstName: Yup.string().required("This is required"),
-						lastName: Yup.string().required("This is required"),
-						coachID: Yup.number().test(
-							"length",
-							"This should be 5 or 6 digits",
-							(val) => val > 10000 && val < 1000000
-						),
-					})}
-					onSubmit={(values, { setSubmitting }) => {
-						values.firstName = values.firstName.toLowerCase();
-						values.lastName = values.lastName.toLowerCase();
-						values.coachID = parseInt(values.coachID);
-						onSubmit(values);
-						setSubmitting(false);
-					}}
-				>
-					{({ isSubmitting, ...props }) => (
-						<Form className="modal-body">
-							<InputField
-								text="First Name:"
-								name="firstName"
-								as="input"
-								type="input"
-								className="personal-info"
-								placeholder=""
-							/>
-							<InputField
-								text="Last Name:"
-								name="lastName"
-								as="input"
-								type="input"
-								className="personal-info"
-								placeholder=""
-							/>
-							<InputField
-								text="Coach Accountable ID:"
-								name="coachID"
-								as="input"
-								type="input"
-								className="personal-info"
-								placeholder="Get this from Kevin"
-							/>
-							<button type="submit" className="btn">
-								{isSubmitting ? "Logging in..." : "Log in"}
-							</button>
-						</Form>
-					)}
-				</Formik>
+				<div className="modal-body">
+					<button className="linkedin-btn" onClick={() => linkedinLogin()}>
+						<img
+							src={LinkedInLogo}
+							alt="LinkedIn Logo"
+							className="linkedin-logo"
+						></img>
+						<span>Login with LinkedIn</span>
+					</button>
+				</div>
 			</div>
 		</div>
 	);

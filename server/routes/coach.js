@@ -1,16 +1,38 @@
 require("dotenv").config();
 const express = require("express");
-const coachRoutes = express.Router();
+const coachRouter = express.Router();
 const axios = require("axios");
 const cors = require("cors");
-const params = require("./coachParams");
+const format = require("date-fns/format");
+
+const coachAccountableURL = "https://www.coachaccountable.com/API/";
+let todayDate = format(Date.now(), "MM/dd/yyyy");
+
+const postParams = {
+	APIID: process.env.COACH_APIID,
+	APIKey: process.env.COACH_KEY,
+	a: "Metric.add",
+	ClientID: process.env.CLIENT_ID,
+	name: "Joseph McGreene",
+	units: "happies",
+	startDate: todayDate,
+	endDate: todayDate,
+	doTarget: false,
+	repeatRule: "monthlyDOM",
+	setReminders: false,
+};
+const deleteParams = {
+	APIID: process.env.COACH_APIID,
+	APIKey: process.env.COACH_KEY,
+	a: "Metric.delete",
+	MetricID: 285626,
+};
 
 //VARS
-const coachAccountableURL = "https://www.coachaccountable.com/API/";
 const josephCoachID = process.env.COACH_ID;
 const josephID = process.env.CLIENT_ID;
 
-coachRoutes.post("/newMetric", (req, res) => {
+coachRouter.post("/newMetric", (req, res) => {
 	// axios
 	// 	.request({
 	// 		method: "post",
@@ -22,7 +44,7 @@ coachRoutes.post("/newMetric", (req, res) => {
 	console.log("Got it!");
 });
 
-coachRoutes.delete("/deleteMetric", cors(), (req, res) => {
+coachRouter.delete("/deleteMetric", cors(), (req, res) => {
 	axios
 		.request({
 			method: "post",
@@ -33,4 +55,4 @@ coachRoutes.delete("/deleteMetric", cors(), (req, res) => {
 		.catch((error) => console.error(error));
 });
 
-module.exports = coachRoutes;
+module.exports = coachRouter;

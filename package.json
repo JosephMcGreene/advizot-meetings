@@ -9,8 +9,7 @@
 	"scripts": {
 		"start": "node server/server.js",
 		"server": "nodemon server/server.js",
-		"client": "npm start --prefix client",
-		"dev": "concurrently \"npm run client\" \"npm run server\""
+		"client": "npm start --prefix client"
 	},
 	"keywords": [],
 	"author": "",
@@ -19,11 +18,14 @@
 		"cors": "^2.8.5",
 		"dotenv": "^16.0.1",
 		"express": "^4.18.1",
+		"express-session": "^1.17.3",
 		"mongodb": "^4.8.1",
 		"mongoose": "^6.5.0",
-		"nodemon": "^2.0.19"
+		"passport": "^0.6.0",
+		"passport-linkedin-oauth2": "^2.0.0"
 	},
 	"devDependencies": {
-		"concurrently": "^7.3.0"
+		"concurrently": "^7.3.0",
+		"nodemon": "^2.0.19"
 	}
 }
