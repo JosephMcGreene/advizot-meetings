@@ -5,9 +5,9 @@ export default function Modal({ showLogin, onClose }) {
 		return null;
 	}
 
-	const linkedinLogin = () => {
+	function linkedinLogin() {
 		window.open("http://localhost:8080/auth/linkedin", "_self");
-	};
+	}
 
 	return (
 		<div className="modal">

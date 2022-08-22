@@ -9,6 +9,7 @@ dbRouter
 		try {
 			const responses = await Response.find();
 			res.json(responses);
+			console.log(req.user);
 		} catch (error) {
 			console.error(error);
 		}

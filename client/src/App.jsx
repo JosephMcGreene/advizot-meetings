@@ -13,6 +13,7 @@
 //TODO (- POST data to Coach Accountable. Add ability to remove the data as well.)
 
 //? In what order should the priorities be organized? What does each priority answer mean? Should "C" come before "Question" & "Lightning"?
+//? Check in with Kevin about the overall flow of how the app should function: Do we even need a login???
 
 //React
 import { useState, useEffect } from "react";
@@ -29,9 +30,9 @@ export default function App() {
 	const [responses, setResponses] = useState([]);
 
 	//=====EFFECTS=====
-	// useEffect(() => {
-	// 	getExistingResponses();
-	// }, []);
+	useEffect(() => {
+		getExistingResponses();
+	}, []);
 
 	//=====HELPERS=====
 	/**
@@ -62,7 +63,9 @@ export default function App() {
 	 */
 	async function getExistingResponses() {
 		const existingResponses = await fetchData("../../db/responses", "GET");
-		setResponses([...existingResponses]);
+		if (existingResponses && existingResponses.length > 0) {
+			setResponses([...existingResponses]);
+		}
 	}
 
 	/**
@@ -74,7 +77,7 @@ export default function App() {
 		setResponses([...responses, userResponse]);
 	}
 
-	// CURRENTLY DELETES EVERY SINGLE USER RESPONSE ENTRY IN DATABASE
+	// DELETES EVERY SINGLE USER RESPONSE ENTRY IN DATABASE
 	/**
 	 * Deletes the current slate of documents from MongoDB. See server/routes/db.js
 	 */
@@ -91,6 +94,11 @@ export default function App() {
 		setResponses([]);
 	}
 
+	async function logout() {
+		const logout = await fetchData("../../auth/logout", "GET");
+		await alert(`${logout.message}`);
+	}
+
 	return (
 		<div className="App">
 			<Header />
@@ -100,6 +108,9 @@ export default function App() {
 
 			<button className="btn" onClick={() => setShowLogin(!showLogin)}>
 				Login
+			</button>
+			<button className="btn" onClick={() => logout()}>
+				Log out
 			</button>
 			<button className="btn" onClick={() => deleteAllResponses()}>
 				Delete All Responses

@@ -12,4 +12,9 @@ authRouter.route("/linkedin/callback").get(
 	})
 );
 
+authRouter.route("/logout").get((req, res) => {
+	req.logout();
+	res.json({ message: "You are logged out" });
+});
+
 module.exports = authRouter;
