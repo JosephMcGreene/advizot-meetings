@@ -22,6 +22,11 @@
 			grid-row: 1;
 			justify-self: center;
 			align-self: center;
+
+			&:hover {
+				@include onHover(black, white);
+				cursor: default;
+			}
 		}
 		.priority {
 			grid-row: 1;
