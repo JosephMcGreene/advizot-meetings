@@ -1,24 +1,10 @@
 const express = require("express");
-const Member = require("../models/member");
-const Response = require("../models/response");
+const Response = require("../models/Response");
 const dbRouter = express.Router();
-
-dbRouter.route("/members").post(async function (req, res) {
-	try {
-		const newMember = new Member({
-			firstName: req.body.firstName,
-			lastName: req.body.lastName,
-			coachID: req.body.coachID,
-		});
-		await newMember.save();
-		await res.json(newMember);
-	} catch (error) {
-		console.error(error);
-	}
-});
 
 dbRouter
 	.route("/responses")
+	// The only time a user needs to GET info is when they need all of it:
 	.get(async function (req, res) {
 		try {
 			const responses = await Response.find();
@@ -43,6 +29,7 @@ dbRouter
 			console.error(error);
 		}
 	})
+	// For now, deletes *ALL* db entries. Will later only delete individual entries
 	.delete(async function (req, res) {
 		try {
 			const deleteRes = await Response.deleteMany({ monthlyGoal: /[A-Za-z]/g });

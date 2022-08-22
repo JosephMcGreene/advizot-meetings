@@ -1,11 +1,8 @@
 export default function Responses({ responses }) {
-	const sortedResponses =
-		responses.length > 1
-			? responses.sort((a, b) => {
-					if (a.priority < b.priority) return -1;
-					return 1;
-			  })
-			: undefined;
+	const sortedResponses = responses.sort((a, b) => {
+		if (a.priority < b.priority) return -1;
+		return 1;
+	});
 
 	return (
 		<ul className="responses-ul">

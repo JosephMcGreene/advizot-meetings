@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
-const memberSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
+	linkedinID: { type: String },
 	firstName: { type: String },
 	lastName: { type: String },
-	coachID: { type: Number },
 });
 
-module.exports = mongoose.model("Member", memberSchema);
+module.exports = mongoose.model("User", userSchema);
 
 //=====NOTES FOR USING MONGOOSE=====
 // 	main: async () => {

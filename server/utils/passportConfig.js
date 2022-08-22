@@ -1,6 +1,8 @@
 require("dotenv").config();
+const { default: mongoose } = require("mongoose");
 const passport = require("passport");
 const LinkedInStrategy = require("passport-linkedin-oauth2").Strategy;
+const User = require("../models/User");
 
 passport.use(
 	new LinkedInStrategy(
@@ -11,11 +13,19 @@ passport.use(
 			scope: ["r_liteprofile"],
 			state: true,
 		},
-		(accessToken, refreshToken, profile, done) => {
-			console.log("ACCESS: " + accessToken);
-			console.log("REFRESH: " + refreshToken);
-			console.log("PROFILE ID: " + profile.id);
-			// return done(null, profile);
+		async (accessToken, refreshToken, profile, done) => {
+			console.log(profile.id);
+			try {
+				const newUser = await new User({
+					firstName: profile.givenName,
+					lastName: profile.familyName,
+					linkedinID: profile.id,
+				});
+				await newUser.save();
+				await res.json(newUser);
+			} catch (error) {
+				console.error(error);
+			}
 		}
 	)
 );

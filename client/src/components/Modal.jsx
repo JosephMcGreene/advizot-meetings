@@ -1,6 +1,6 @@
 import LinkedInLogo from "../img/LI-In-Bug.png";
 
-export default function Modal({ showLogin, onClose, onSubmit }) {
+export default function Modal({ showLogin, onClose }) {
 	if (!showLogin) {
 		return null;
 	}

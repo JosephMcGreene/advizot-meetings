@@ -7,7 +7,7 @@ authRouter.route("/linkedin").get(passport.authenticate("linkedin"));
 
 authRouter.route("/linkedin/callback").get(
 	passport.authenticate("linkedin", {
-		successRedirect: "/",
+		successRedirect: "http://localhost:3000/",
 		failureRedirect: "/login",
 	})
 );

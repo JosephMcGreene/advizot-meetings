@@ -7,7 +7,9 @@
 //TODO			- Add session to server
 //TODO			- Add logout functionality
 //TODO			- Add log in cookie(s)
-//TODO (2) Add user settings
+//TODO (2) Add user
+//TODO			- settings
+//TODO			- ability to delete/change their own responses
 //TODO (- POST data to Coach Accountable. Add ability to remove the data as well.)
 
 //? In what order should the priorities be organized? What does each priority answer mean? Should "C" come before "Question" & "Lightning"?
@@ -107,11 +109,7 @@ export default function App() {
 			<Footer />
 
 			{/* =====MODAL BOX(ES)===== */}
-			<Modal
-				showLogin={showLogin}
-				onClose={() => setShowLogin(!showLogin)}
-				onSubmit={(userInfo) => fetchData("../../db/members", "POST", userInfo)}
-			/>
+			<Modal showLogin={showLogin} onClose={() => setShowLogin(!showLogin)} />
 		</div>
 	);
 }
