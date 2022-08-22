@@ -5,7 +5,7 @@ import Select from "./Select";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
-export default function MeetingForm({ onSubmit }) {
+export default function MeetingForm({ onSubmit, serverResponse }) {
 	/**
 	 * Calculates how much of an input slider's background should be filled up based on where the user is sliding it
 	 * @param {Number} value The current value of the range-slider, used as a basis to calculate how much of the background of the slider needs to be turned orange
@@ -48,8 +48,12 @@ export default function MeetingForm({ onSubmit }) {
 				monthlyGoal: Yup.string().required("Don't forget this one!"),
 			})}
 			onSubmit={(values, { setSubmitting }) => {
-				onSubmit(values);
-				setSubmitting(false);
+				try {
+					onSubmit(values);
+					setSubmitting(false);
+				} catch (error) {
+					console.error(error);
+				}
 			}}
 		>
 			{({ isSubmitting, submitCount, ...props }) => (
@@ -121,6 +125,11 @@ export default function MeetingForm({ onSubmit }) {
 					<button type="submit" className="btn">
 						{isSubmitting ? "Submitting..." : "Submit"}
 					</button>
+					{/* <span>
+						{serverResponse === "success"
+							? "Got it, thanks!"
+							: "Actually, something went wrong. Try again later."}
+					</span> */}
 				</Form>
 			)}
 		</Formik>
