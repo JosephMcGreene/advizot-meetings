@@ -1,11 +1,11 @@
 export default function Responses({ responses }) {
 	const sortedResponses =
-		responses !== undefined
+		responses.length > 1
 			? responses.sort((a, b) => {
 					if (a.priority < b.priority) return -1;
 					return 1;
 			  })
-			: null;
+			: undefined;
 
 	return (
 		<ul className="responses-ul">
@@ -22,7 +22,7 @@ export default function Responses({ responses }) {
 					>
 						<span className="response-name">
 							{/* <strong>{response.name}</strong> */}
-							<strong>Amadeus</strong>
+							<strong>(Member Name)</strong>
 						</span>
 
 						<span className="response-p range-response">
