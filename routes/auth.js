@@ -9,7 +9,12 @@ authRouter.route("/linkedin/callback").get(
 	passport.authenticate("linkedin", {
 		successRedirect: "http://localhost:3000/",
 		failureRedirect: "/login",
-	})
+	}),
+	(req, res) => {
+		if (req.user) {
+			res.json({ message: "You are logged in" });
+		}
+	}
 );
 
 authRouter.route("/logout").get((req, res) => {

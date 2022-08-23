@@ -5,10 +5,10 @@
 	"engines": {
 		"node": "16.x"
 	},
-	"main": "server/server.js",
+	"main": "server.js",
 	"scripts": {
-		"start": "node server/server.js",
-		"server": "nodemon server/server.js",
+		"start": "node server.js",
+		"server": "nodemon server.js",
 		"client": "npm start --prefix client",
 		"dev": "concurrently \"npm run client\" \"npm run server\""
 	},

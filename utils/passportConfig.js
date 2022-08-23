@@ -19,6 +19,7 @@ passport.use(
 			clientID: process.env.LINKEDIN_KEY,
 			clientSecret: process.env.LINKEDIN_SECRET,
 			callbackURL: "/auth/linkedin/callback",
+			proxy: true,
 			scope: ["r_liteprofile"],
 			state: true,
 		},
