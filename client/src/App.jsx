@@ -94,10 +94,10 @@ export default function App() {
 		setResponses([]);
 	}
 
-	async function logout() {
-		const logout = await fetchData("../../auth/logout", "GET");
-		await alert(`${logout.message}`);
-	}
+	// async function logout() {
+	// 	const logout = await fetchData("/auth/logout", "GET");
+	// 	await alert(`${logout.message}`);
+	// }
 
 	return (
 		<div className="App">
@@ -109,9 +109,9 @@ export default function App() {
 			<button className="btn" onClick={() => setShowLogin(!showLogin)}>
 				Login
 			</button>
-			<button className="btn" onClick={() => logout()}>
-				Log out
-			</button>
+			<a href="/auth/logout">
+				<button className="btn">Log out</button>
+			</a>
 			<button className="btn" onClick={() => deleteAllResponses()}>
 				Delete All Responses
 				<br />

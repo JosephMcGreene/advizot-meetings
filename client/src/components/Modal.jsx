@@ -5,10 +5,6 @@ export default function Modal({ showLogin, onClose }) {
 		return null;
 	}
 
-	function linkedinLogin() {
-		window.open("http://localhost:8080/auth/linkedin", "_self");
-	}
-
 	return (
 		<div className="modal">
 			<div className="modal-content">
@@ -19,14 +15,16 @@ export default function Modal({ showLogin, onClose }) {
 					</button>
 				</div>
 				<div className="modal-body">
-					<button className="linkedin-btn" onClick={() => linkedinLogin()}>
-						<img
-							src={LinkedInLogo}
-							alt="LinkedIn Logo"
-							className="linkedin-logo"
-						></img>
-						<span>Login with LinkedIn</span>
-					</button>
+					<a href="/auth/linkedin">
+						<button className="linkedin-btn">
+							<img
+								src={LinkedInLogo}
+								alt="LinkedIn Logo"
+								className="linkedin-logo"
+							></img>
+							<span>Login with LinkedIn</span>
+						</button>
+					</a>
 				</div>
 			</div>
 		</div>
