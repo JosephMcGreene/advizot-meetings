@@ -7,7 +7,6 @@ const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const { v4: uuidv4 } = require("uuid");
 const passport = require("passport");
-const session = require("express-session");
 const dbRouter = require("./routes/db");
 const authRouter = require("./routes/auth");
 require("./utils/passportConfig");
@@ -48,21 +47,12 @@ app.use(passport.session());
 
 //=====IN PROD=====
 if (process.env.NODE_ENV === "production") {
-	app.use(express.static(path.join(__dirname, "../client/build")));
+	app.use(express.static(path.join(__dirname, "/client/build")));
 }
-// app.use(express.static(path.join(__dirname, "../client/build")));
 
 //=====MOUNT ROUTES=====
 app.use("/db", dbRouter);
 app.use("/auth", authRouter);
-
-app.get("/", (req, res) => {
-	if (req.user) {
-		res.send(req.user);
-	} else {
-		res.send("No one is logged in!");
-	}
-});
 
 app.get("*", function (req, res) {
 	res.sendFile(path.join(__dirname, "../client/build/index.html"));

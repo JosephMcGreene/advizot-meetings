@@ -3,17 +3,12 @@
 //!    - Secure Server Sign-In
 //!    - Answers to sign-in questions to be used during the course of the meeting via a projector
 //!    (- POST data to Coach Accountable to be stored as a metric for user later on)
-//TODO (1) Add user authentication
-//TODO			- Add session to server
-//TODO			- Add logout functionality
-//TODO			- Add log in cookie(s)
-//TODO (2) Add user
+//TODO (1) Add user
 //TODO			- settings
 //TODO			- ability to delete/change their own responses
 //TODO (- POST data to Coach Accountable. Add ability to remove the data as well.)
 
 //? In what order should the priorities be organized? What does each priority answer mean? Should "C" come before "Question" & "Lightning"?
-//? Check in with Kevin about the overall flow of how the app should function: Do we even need a login???
 
 //React
 import { useState, useEffect } from "react";
@@ -62,7 +57,7 @@ export default function App() {
 	 * fetches existing user responses from MongoDB and updates state accordingly. See server/routes/db.js
 	 */
 	async function getExistingResponses() {
-		const existingResponses = await fetchData("../../db/responses", "GET");
+		const existingResponses = await fetchData("/db/responses", "GET");
 		if (existingResponses && existingResponses.length > 0) {
 			setResponses([...existingResponses]);
 		}
@@ -73,7 +68,7 @@ export default function App() {
 	 * @param {Object} userResponse json body to be posted and displayed to the users
 	 */
 	async function submitResponses(userResponse) {
-		await fetchData("../../db/responses", "POST", userResponse);
+		await fetchData("/db/responses", "POST", userResponse);
 		setResponses([...responses, userResponse]);
 	}
 
@@ -85,19 +80,10 @@ export default function App() {
 		if (responses.length === 0) {
 			return;
 		}
-		const deleteRes = await fetchData(
-			"../../db/responses",
-			"DELETE",
-			responses
-		);
+		const deleteRes = await fetchData("/db/responses", "DELETE", responses);
 		await alert(`Deleted ${deleteRes.deletedCount} item(s) from the database.`);
 		setResponses([]);
 	}
-
-	// async function logout() {
-	// 	const logout = await fetchData("/auth/logout", "GET");
-	// 	await alert(`${logout.message}`);
-	// }
 
 	return (
 		<div className="App">
@@ -111,6 +97,9 @@ export default function App() {
 			</button>
 			<a href="/auth/logout">
 				<button className="btn">Log out</button>
+			</a>
+			<a href="/auth/loggedIn">
+				<button className="btn">Am I logged in?</button>
 			</a>
 			<button className="btn" onClick={() => deleteAllResponses()}>
 				Delete All Responses
