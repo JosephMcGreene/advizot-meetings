@@ -23,10 +23,12 @@ import Modal from "./components/Modal";
 export default function App() {
 	const [showLogin, setShowLogin] = useState(false);
 	const [responses, setResponses] = useState([]);
+	const [currentUser, setCurrentUser] = useState({});
 
 	//=====EFFECTS=====
 	useEffect(() => {
 		getExistingResponses();
+		// getCurrentUser();
 	}, []);
 
 	//=====HELPERS=====
@@ -40,6 +42,7 @@ export default function App() {
 		try {
 			const fetchResponse = await fetch(url, {
 				method: method,
+				credentials: "include",
 				headers: {
 					Accept: "application/json",
 					"Content-Type": "application/json",
@@ -63,6 +66,14 @@ export default function App() {
 		}
 	}
 
+	// async function getCurrentUser() {
+	// 	const userData = await fetchData("/", "GET");
+	// 	if (userData) {
+	// 		userData.user.json();
+	// 	}
+	// 	console.log(userData);
+	// }
+
 	/**
 	 * Takes in and distributes responses from MeetingForm.js to the appropriate places: MongoDB and/or Coach Accountable. See server/routes/db.js
 	 * @param {Object} userResponse json body to be posted and displayed to the users
@@ -84,6 +95,11 @@ export default function App() {
 		await alert(`Deleted ${deleteRes.deletedCount} item(s) from the database.`);
 		setResponses([]);
 	}
+
+	// async function handleLogin() {
+	// 	const loginResponse = await fetchData("/auth/linkedin", "GET");
+	// 	console.log(loginResponse.user);
+	// }
 
 	return (
 		<div className="App">

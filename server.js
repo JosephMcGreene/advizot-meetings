@@ -2,11 +2,12 @@ require("dotenv").config();
 const path = require("path");
 const express = require("express");
 const app = express();
-const cors = require("cors");
 const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const { v4: uuidv4 } = require("uuid");
+const cors = require("cors");
 const passport = require("passport");
+//Internal Modules
 const dbRouter = require("./routes/db");
 const authRouter = require("./routes/auth");
 require("./utils/passportConfig");
@@ -28,15 +29,15 @@ app.use(
 
 app.use(
 	cookieSession({
-		// cookie expires in 40 days
-		maxAge: 1000 * 60 * 60 * 24 * 40,
+		// cookie expires in 14 days
+		maxAge: 1000 * 60 * 60 * 24 * 14,
 		keys: [uuidv4()],
 	})
 );
 
 app.use(
 	cors({
-		origin: "http://localhost:3000",
+		origin: ["http://localhost:3000", "https://advizot-meetings.herokuapp.com"],
 		credentials: true,
 	})
 );
@@ -54,8 +55,17 @@ if (process.env.NODE_ENV === "production") {
 app.use("/db", dbRouter);
 app.use("/auth", authRouter);
 
-app.get("*", function (req, res) {
-	res.sendFile(path.join(__dirname, "../client/build/index.html"));
+// app.get("/", (req, res) => {
+// 	if (req.user) {
+// 		res.json(req.user);
+// 		console.log(req.user);
+// 	} else {
+// 		console.log("No one is logged in");
+// 	}
+// });
+
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname, "/client/build/index.html"));
 });
 
 //=====SERVER START=====

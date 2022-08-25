@@ -1,7 +1,7 @@
 require("dotenv").config();
-const mongoose = require("mongoose");
 const passport = require("passport");
 const LinkedInStrategy = require("passport-linkedin-oauth2").Strategy;
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require("../models/User");
 
 passport.serializeUser((user, done) => {
@@ -28,16 +28,49 @@ passport.use(
 				const existingUser = await User.findOne({ linkedinID: profile.id });
 
 				if (existingUser) {
-					done(null, existingUser);
-				} else {
-					const newUser = await new User({
-						linkedinID: profile.id,
-						firstName: profile.name.givenName,
-						lastName: profile.name.familyName,
-					});
-					await newUser.save();
-					done(null, newUser);
+					return done(null, existingUser);
 				}
+
+				const newUser = await new User({
+					ID: profile.id,
+					firstName: profile.name.givenName,
+					lastName: profile.name.familyName,
+				});
+				await newUser.save();
+
+				done(null, newUser);
+			} catch (error) {
+				console.error(error);
+			}
+		}
+	)
+);
+
+passport.use(
+	new GoogleStrategy(
+		{
+			clientID: process.env.GOOGLE_CLIENT_ID,
+			clientSecret: process.env.GOOGLE_SECRET,
+			callbackURL: "/auth/google/callback",
+			scope: "https://www.googleapis.com/auth/userinfo.profile",
+		},
+		async function (accessToken, refreshToken, profile, done) {
+			try {
+				const existingUser = await User.findOne({ ID: profile.id });
+
+				if (existingUser) {
+					return done(null, existingUser);
+				}
+
+				const newUser = await new User({
+					ID: profile.id,
+					firstName: profile.name.givenName,
+					lastName: profile.name.familyName,
+				});
+				await newUser.save();
+				console.log(newUser);
+
+				done(null, newUser);
 			} catch (error) {
 				console.error(error);
 			}
