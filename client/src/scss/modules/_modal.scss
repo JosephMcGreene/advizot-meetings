@@ -43,45 +43,48 @@
 		}
 
 		.modal-body {
-			margin: 1.5rem;
+			margin: 0 1.5rem;
 
 			.linkedin-btn {
-				cursor: pointer;
-				display: flex;
-				align-items: center;
-				justify-content: space-evenly;
-
-				font-family: $main-font;
-				font-size: 1.1rem;
-				color: black;
-				font-weight: 600;
-				padding: 1rem 0.75rem;
-				width: 100%;
-				background-color: $advizot-color;
-				border: none;
+				@include loginButton();
 
 				.linkedin-logo {
-					width: 30px;
-					margin: 0 7px;
+					@include logoSize();
 				}
 				span {
 					text-align: center;
-
-					&:active {
-						text-shadow: 0 0 7px #0a66c2;
-						transition-property: all;
-						transition-duration: 150ms;
-					}
+					width: 100%;
 				}
 
 				&:hover {
 					background-color: white;
 					outline: 2px solid #0a66c2;
-					// box-shadow: inset 0 0 7px #0a66c2;
 					border-radius: 28.75px;
 					color: #0a66c2;
 					transition-property: all;
-					transition-duration: 150ms;
+					transition-duration: 200ms;
+				}
+			}
+
+			.google-btn {
+				@include loginButton();
+				margin-bottom: 1.5rem;
+
+				.google-logo {
+					@include logoSize();
+				}
+				span {
+					text-align: center;
+					width: 100%;
+				}
+
+				&:hover {
+					background-color: white;
+					outline: 2px solid #34a853;
+					border-radius: 30px;
+					color: #34a853;
+					transition-property: all;
+					transition-duration: 200ms;
 				}
 			}
 		}

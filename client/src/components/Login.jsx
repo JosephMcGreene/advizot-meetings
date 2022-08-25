@@ -1,6 +1,7 @@
 import LinkedInLogo from "../img/LI-In-Bug.png";
+import GoogleLogo from "../img/Search_GSA.max-2800x2800.png";
 
-export default function Modal({ showLogin, onClose }) {
+export default function Login({ showLogin, onClose }) {
 	if (!showLogin) {
 		return null;
 	}
@@ -23,6 +24,17 @@ export default function Modal({ showLogin, onClose }) {
 								className="linkedin-logo"
 							></img>
 							<span>Login with LinkedIn</span>
+						</button>
+					</a>
+
+					<a href="/auth/google">
+						<button className="google-btn">
+							<img
+								src={GoogleLogo}
+								alt="Google Logo"
+								className="google-logo"
+							></img>
+							<span>Login with Google</span>
 						</button>
 					</a>
 				</div>

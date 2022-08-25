@@ -18,7 +18,7 @@ import Header from "./components/no-state/Header";
 import MeetingForm from "./components/MeetingForm";
 import Responses from "./components/Responses";
 import Footer from "./components/no-state/Footer";
-import Modal from "./components/Modal";
+import Login from "./components/Login";
 
 export default function App() {
 	const [showLogin, setShowLogin] = useState(false);
@@ -125,7 +125,7 @@ export default function App() {
 			<Footer />
 
 			{/* =====MODAL BOX(ES)===== */}
-			<Modal showLogin={showLogin} onClose={() => setShowLogin(!showLogin)} />
+			<Login showLogin={showLogin} onClose={() => setShowLogin(!showLogin)} />
 		</div>
 	);
 }

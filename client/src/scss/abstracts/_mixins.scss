@@ -29,3 +29,23 @@
 	transition-duration: 150ms;
 	border: none;
 }
+
+@mixin loginButton() {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-family: var.$main-font;
+	font-size: 1.1rem;
+	font-weight: 600;
+	color: black;
+	width: 100%;
+	background-color: var.$advizot-color;
+	border: none;
+	padding: 1rem 0.75rem;
+	margin-top: 1.5rem;
+}
+@mixin logoSize() {
+	width: 30px;
+	margin: 0 7px;
+}
