@@ -68,7 +68,6 @@ passport.use(
 					lastName: profile.name.familyName,
 				});
 				await newUser.save();
-				console.log(newUser);
 
 				done(null, newUser);
 			} catch (error) {

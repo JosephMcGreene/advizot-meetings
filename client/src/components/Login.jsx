@@ -23,7 +23,7 @@ export default function Login({ showLogin, onClose }) {
 								alt="LinkedIn Logo"
 								className="linkedin-logo"
 							></img>
-							<span>Login with LinkedIn</span>
+							<span>Sign in with LinkedIn</span>
 						</button>
 					</a>
 
@@ -34,8 +34,12 @@ export default function Login({ showLogin, onClose }) {
 								alt="Google Logo"
 								className="google-logo"
 							></img>
-							<span>Login with Google</span>
+							<span>Sign in with Google</span>
 						</button>
+					</a>
+
+					<a href="/auth/logout">
+						<button className="btn">Log out</button>
 					</a>
 				</div>
 			</div>

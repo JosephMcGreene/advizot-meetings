@@ -32,28 +32,41 @@ code {
 }
 
 .header {
-	font-family: "Audiowide", cursive;
-	letter-spacing: 1px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
 	display: flex;
-	justify-content: center;
-	padding-top: 1rem;
-	margin-bottom: 1rem;
+	justify-content: space-between;
+	align-items: center;
+	font-family: "Audiowide", cursive;
+	margin-bottom: 1.25rem;
+	background-color: whitesmoke;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
 
 	.logo {
-		height: 1;
-		width: 2.5rem;
-		margin-right: 0.5rem;
+		width: clamp(145px, 35%, 175px);
+		margin-right: auto;
+		align-self: flex-start;
+		margin-top: 12.5px;
+		margin-left: 0.25vw;
 	}
-	.h1 {
-		font-size: 2.1rem;
-		font-weight: 400;
-	}
+}
+
+.welcome {
+	font-family: "Audiowide", cursive;
+	font-size: 2rem;
+	font-weight: 400;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+	letter-spacing: 1px;
+	text-align: center;
+	margin: 110px auto 0;
 }
 
 .btn {
 	@include borderRadius();
 	border: none;
-	margin: 1.75rem auto 0.75rem;
+	margin: 1.25rem 1rem;
 	display: block;
 	padding: 1rem 2.5rem;
 	background-color: $advizot-color;

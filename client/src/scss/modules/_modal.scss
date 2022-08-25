@@ -78,6 +78,11 @@
 					@include loginHover(#34a853, 30px);
 				}
 			}
+
+			.btn {
+				margin-left: auto;
+				padding: 1rem 1.75rem;
+			}
 		}
 	}
 }

@@ -14,14 +14,13 @@
 import { useState, useEffect } from "react";
 //Internal
 import "./scss/App.scss";
-import Header from "./components/no-state/Header";
+import Header from "./components/Header";
 import MeetingForm from "./components/MeetingForm";
 import Responses from "./components/Responses";
 import Footer from "./components/no-state/Footer";
 import Login from "./components/Login";
 
 export default function App() {
-	const [showLogin, setShowLogin] = useState(false);
 	const [responses, setResponses] = useState([]);
 	const [currentUser, setCurrentUser] = useState({});
 
@@ -104,16 +103,10 @@ export default function App() {
 	return (
 		<div className="App">
 			<Header />
-
+			<h1 className="welcome">Welcome!</h1>
 			<MeetingForm onSubmit={(userResponse) => submitResponses(userResponse)} />
 			<Responses responses={responses} />
 
-			<button className="btn" onClick={() => setShowLogin(!showLogin)}>
-				Login
-			</button>
-			<a href="/auth/logout">
-				<button className="btn">Log out</button>
-			</a>
 			<a href="/auth/loggedIn">
 				<button className="btn">Am I logged in?</button>
 			</a>
@@ -123,9 +116,6 @@ export default function App() {
 				(Please use after testing)
 			</button>
 			<Footer />
-
-			{/* =====MODAL BOX(ES)===== */}
-			<Login showLogin={showLogin} onClose={() => setShowLogin(!showLogin)} />
 		</div>
 	);
 }

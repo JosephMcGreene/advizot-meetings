@@ -8,8 +8,8 @@
 	font-family: $main-font;
 	border-radius: $border-radius;
 	width: min(380px, 96%);
-	margin: 0 auto;
-	padding: 25px 45px 25px;
+	margin: 20px auto;
+	padding: 25px 45px;
 	box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);
 
 	.range-container {
@@ -82,5 +82,9 @@
 				@include onFocus();
 			}
 		}
+	}
+
+	.btn {
+		margin: 1.75rem auto 0.75rem;
 	}
 }
