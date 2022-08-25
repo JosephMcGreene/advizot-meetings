@@ -35,25 +35,26 @@ code {
 	font-family: "Audiowide", cursive;
 	letter-spacing: 1px;
 	display: flex;
-	align-items: flex-start;
 	justify-content: center;
-	padding-top: 0.5rem;
+	padding-top: 1rem;
 	margin-bottom: 1rem;
 
 	.logo {
-		height: 2.5rem;
-		margin-right: 0.45rem;
+		height: 1;
+		width: 2.5rem;
+		margin-right: 0.5rem;
 	}
 	.h1 {
-		font-size: 2rem;
+		font-size: 2.1rem;
 		font-weight: 400;
 	}
 }
 
 .btn {
-	@include border();
+	@include borderRadius();
 	border: none;
-	margin: 1.25rem auto;
+	margin: 1.75rem auto 0.75rem;
+	display: block;
 	padding: 1rem 2.5rem;
 	background-color: $advizot-color;
 	cursor: pointer;
@@ -74,17 +75,21 @@ code {
 	}
 }
 
+a {
+	text-decoration: none;
+}
+
 .error {
 	width: fit-content;
-	margin-top: 2px;
-	padding: 0.25rem;
+	margin-top: 1px;
+	padding: 0.5rem;
 	background-color: $advizot-color;
-	clip-path: polygon(0 13%, 9% 13%, 12% 0, 15% 13%, 100% 13%, 100% 98%, 0 98%);
+	clip-path: polygon(0 13%, 9% 13%, 12% 0, 15% 13%, 100% 13%, 100% 93%, 0 93%);
 }
 .range-error {
 	width: fit-content;
 	margin-top: 0.55rem;
-	padding: 0.13rem 0.26rem;
+	padding: 0.2rem 0.4rem;
 	background-color: $advizot-color;
 
 	grid-row-start: 4;

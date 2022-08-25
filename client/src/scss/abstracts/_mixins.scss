@@ -5,12 +5,12 @@
 	flex-direction: $direction;
 }
 
-@mixin border-radius() {
+@mixin borderRadius() {
 	border-radius: var.$border-radius 0 var.$border-radius 0;
 }
 
-@mixin border() {
-	@include border-radius();
+@mixin inputBorder() {
+	@include borderRadius();
 	border-top: 1px solid black;
 	border-right: 3px solid black;
 	border-left: 3px solid black;
@@ -26,10 +26,10 @@
 	background-color: $background-color;
 	box-shadow: inset 1px 1px 15px $shadow-color;
 	transition-property: all;
-	transition-duration: 150ms;
-	border: none;
+	transition-duration: 200ms;
 }
 
+//Login Buttons
 @mixin loginButton() {
 	cursor: pointer;
 	display: flex;
@@ -44,6 +44,14 @@
 	border: none;
 	padding: 1rem 0.75rem;
 	margin-top: 1.5rem;
+}
+@mixin loginHover($color, $radius) {
+	background-color: white;
+	outline: 2px solid $color;
+	border-radius: $radius;
+	color: $color;
+	transition-property: all;
+	transition-duration: 200ms;
 }
 @mixin logoSize() {
 	width: 30px;

@@ -11,7 +11,7 @@
 		margin: 7vh 1vw;
 
 		.response-name {
-			@include border();
+			@include borderRadius();
 			border: none;
 			font-size: 1.1rem;
 			background-color: $advizot-light;
