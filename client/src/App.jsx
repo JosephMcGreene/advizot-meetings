@@ -15,19 +15,16 @@ import { useState, useEffect } from "react";
 //Internal
 import "./scss/App.scss";
 import Header from "./components/Header";
-import MeetingForm from "./components/MeetingForm";
+import MeetingForm from "./components/form/MeetingForm";
 import Responses from "./components/Responses";
-import Footer from "./components/no-state/Footer";
-import Login from "./components/Login";
+import Footer from "./components/Footer";
 
 export default function App() {
 	const [responses, setResponses] = useState([]);
-	const [currentUser, setCurrentUser] = useState({});
 
 	//=====EFFECTS=====
 	useEffect(() => {
 		getExistingResponses();
-		// getCurrentUser();
 	}, []);
 
 	//=====HELPERS=====

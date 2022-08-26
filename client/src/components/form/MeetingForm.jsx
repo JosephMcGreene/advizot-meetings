@@ -5,7 +5,7 @@ import Select from "./Select";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
-export default function MeetingForm({ onSubmit, serverResponse }) {
+export default function MeetingForm({ onSubmit }) {
 	/**
 	 * Calculates how much of an input slider's background should be filled up based on where the user is sliding it
 	 * @param {Number} value The current value of the range-slider, used as a basis to calculate how much of the background of the slider needs to be turned orange
@@ -107,11 +107,11 @@ export default function MeetingForm({ onSubmit, serverResponse }) {
 
 					<Select text="Priority:" name="priority" className="priority">
 						<option value="">-- Select a Priority --</option>
-						<option value="A">A</option>
-						<option value="B">B</option>
-						<option value="C">C</option>
-						<option value="Question">Question</option>
-						<option value="Lightning">Lightning</option>
+						<option value="aA">A</option>
+						<option value="bB">B</option>
+						<option value="cQuestion">Question</option>
+						<option value="dLightning">Lightning</option>
+						<option value="eC">C</option>
 					</Select>
 
 					<InputField

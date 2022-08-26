@@ -21,10 +21,11 @@
 	box-shadow: 0 0 12px var.$advizot-color, inset 0 0 9px var.$advizot-color;
 }
 
-@mixin onHover($background-color, $shadow-color) {
+@mixin btnHover() {
+	transform: scale(1.1);
 	color: white;
-	background-color: $background-color;
-	box-shadow: inset 1px 1px 15px $shadow-color;
+	background-color: black;
+	box-shadow: inset 1px 1px 15px white;
 	transition-property: all;
 	transition-duration: 200ms;
 }
@@ -39,11 +40,8 @@
 	font-size: 1.1rem;
 	font-weight: 600;
 	color: black;
-	width: 100%;
-	background-color: var.$advizot-color;
 	border: none;
-	padding: 1rem 0.75rem;
-	margin-top: 1.5rem;
+	margin: 1rem;
 }
 @mixin loginHover($color, $radius) {
 	background-color: white;

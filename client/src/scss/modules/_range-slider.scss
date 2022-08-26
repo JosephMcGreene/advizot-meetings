@@ -3,7 +3,6 @@
 input[type="range"] {
 	@include borderRadius();
 	-webkit-appearance: none;
-	z-index: -1;
 	display: block;
 	margin-top: 10px;
 	width: 100%;
@@ -34,7 +33,8 @@ input[type="range"]::-webkit-slider-thumb {
 		inset 1px 1px 7px rgba(255, 255, 255, 0.9);
 }
 input[type="range"]::-webkit-slider-thumb:hover {
-	@include onHover(black, white);
+	@include btnHover();
+	transform: scale(1.15) skew(-15deg);
 }
 //===== Mozilla =====
 input[type="range"]::-moz-range-thumb {
@@ -54,5 +54,6 @@ input[type="range"]::-moz-range-thumb {
 	transition-timing-function: ease-in-out;
 }
 input[type="range"]::-moz-range-thumb:hover {
-	@include onHover(black, white);
+	transform: scale(1.15) skew(-15deg);
+	@include btnHover();
 }

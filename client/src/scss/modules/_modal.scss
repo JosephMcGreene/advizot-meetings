@@ -7,6 +7,7 @@
 	right: 0;
 	bottom: 0;
 	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 10;
 
 	display: flex;
 	align-items: center;
@@ -30,58 +31,70 @@
 			}
 
 			.close-x {
+				cursor: pointer;
 				margin-left: auto;
 				padding: 0 1rem;
 				background-color: transparent;
 				border-color: transparent;
 				font-size: 2.25rem;
-				cursor: pointer;
 
 				&:focus {
 					@include onFocus();
+				}
+
+				&:hover {
+					transform: rotate(90deg);
+					transition-property: all;
+					transition-duration: 200ms;
 				}
 			}
 		}
 
 		.modal-body {
-			margin: 0 1.5rem;
+			@include flex(column);
+			margin: 0 1rem 0;
 
-			.linkedin-btn {
-				@include loginButton();
+			.signin-btn {
+				margin-top: 1rem;
 
-				.linkedin-logo {
-					@include logoSize();
-				}
-				span {
-					text-align: center;
+				button {
+					cursor: pointer;
+					display: flex;
+					align-items: center;
 					width: 100%;
+					font-family: $main-font;
+					font-size: 1.1rem;
+					font-weight: 600;
+					background-color: $advizot-color;
+					color: black;
+					border: none;
+					padding: 1rem 1.25rem;
+
+					.logo {
+						width: 30px;
+						margin: 0 7px;
+					}
+					span {
+						margin: 0 auto;
+					}
 				}
 
-				&:hover {
-					@include loginHover(#0a66c2, 28.75px);
+				.linkedin-hover {
+					&:hover {
+						@include loginHover(#0077b5, 30px);
+					}
+				}
+				.google-hover {
+					&:hover {
+						@include loginHover(#34a853, 30px);
+					}
 				}
 			}
 
-			.google-btn {
-				@include loginButton();
-				margin-bottom: 1.5rem;
-
-				.google-logo {
-					@include logoSize();
-				}
-				span {
-					text-align: center;
-					width: 100%;
-				}
-
-				&:hover {
-					@include loginHover(#34a853, 30px);
-				}
-			}
-
-			.btn {
+			.logout {
+				width: fit-content;
+				margin: 1rem;
 				margin-left: auto;
-				padding: 1rem 1.75rem;
 			}
 		}
 	}

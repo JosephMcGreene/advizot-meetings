@@ -18,7 +18,6 @@ export default function Responses({ responses }) {
 						}
 					>
 						<span className="response-name">
-							{/* <strong>{response.name}</strong> */}
 							<strong>(Member Name)</strong>
 						</span>
 
@@ -29,7 +28,7 @@ export default function Responses({ responses }) {
 						</span>
 
 						<span className="response-p priority">
-							<strong>Priority:</strong> {response.priority}
+							<strong>Priority:</strong> {response.priority.substring(1)}
 						</span>
 
 						<span className="response-p range-response">

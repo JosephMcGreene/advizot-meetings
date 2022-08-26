@@ -16,29 +16,25 @@ export default function Login({ showLogin, onClose }) {
 					</button>
 				</div>
 				<div className="modal-body">
-					<a href="/auth/linkedin">
-						<button className="linkedin-btn">
+					<a href="/auth/linkedin" className="signin-btn">
+						<button className="linkedin-hover">
 							<img
 								src={LinkedInLogo}
 								alt="LinkedIn Logo"
-								className="linkedin-logo"
+								className="logo"
 							></img>
 							<span>Sign in with LinkedIn</span>
 						</button>
 					</a>
 
-					<a href="/auth/google">
-						<button className="google-btn">
-							<img
-								src={GoogleLogo}
-								alt="Google Logo"
-								className="google-logo"
-							></img>
+					<a href="/auth/google" className="signin-btn">
+						<button className="google-hover">
+							<img src={GoogleLogo} alt="Google Logo" className="logo"></img>
 							<span>Sign in with Google</span>
 						</button>
 					</a>
 
-					<a href="/auth/logout">
+					<a href="/auth/logout" className="logout">
 						<button className="btn">Log out</button>
 					</a>
 				</div>
