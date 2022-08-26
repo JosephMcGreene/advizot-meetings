@@ -10,6 +10,7 @@ const passport = require("passport");
 //Internal Modules
 const dbRouter = require("./routes/db");
 const authRouter = require("./routes/auth");
+const apiRouter = require("./routes/api");
 require("./utils/passportConfig");
 
 //=====CONNECT MONGODB=====
@@ -54,15 +55,7 @@ if (process.env.NODE_ENV === "production") {
 //=====MOUNT ROUTES=====
 app.use("/db", dbRouter);
 app.use("/auth", authRouter);
-
-// app.get("/", (req, res) => {
-// 	if (req.user) {
-// 		res.json(req.user);
-// 		console.log(req.user);
-// 	} else {
-// 		console.log("No one is logged in");
-// 	}
-// });
+app.use("/api", apiRouter);
 
 app.get("*", (req, res) => {
 	res.sendFile(path.join(__dirname, "/client/build/index.html"));

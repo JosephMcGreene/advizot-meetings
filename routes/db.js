@@ -9,7 +9,6 @@ dbRouter
 		try {
 			const responses = await Response.find();
 			res.json(responses);
-			console.log(req.user);
 		} catch (error) {
 			console.error(error);
 		}
@@ -35,7 +34,6 @@ dbRouter
 		try {
 			const deleteRes = await Response.deleteMany({ monthlyGoal: /[A-Za-z]/g });
 			await res.json(deleteRes);
-			console.log("Deleted!");
 		} catch (error) {
 			console.error(error);
 		}

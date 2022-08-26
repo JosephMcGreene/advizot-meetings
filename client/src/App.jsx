@@ -18,15 +18,29 @@ import Header from "./components/Header";
 import MeetingForm from "./components/form/MeetingForm";
 import Responses from "./components/Responses";
 import Footer from "./components/Footer";
+import Modal from "./components/Modal";
+//External
+import axios from "axios";
 
 export default function App() {
 	const [responses, setResponses] = useState([]);
+	const [currentUser, setCurrentUser] = useState({});
 
 	//=====EFFECTS=====
 	useEffect(() => {
 		getExistingResponses();
+		axiosGet("/api/current_user");
 	}, []);
 
+	async function axiosGet(url) {
+		try {
+			const current_user = await axios.get(url);
+			console.log(current_user);
+			setCurrentUser(current_user);
+		} catch (error) {
+			console.error(error);
+		}
+	}
 	//=====HELPERS=====
 	/**
 	 * A shorthand function to avoid typing out verbose code whenever fetch() needs to be used to get json data
@@ -56,19 +70,11 @@ export default function App() {
 	 * fetches existing user responses from MongoDB and updates state accordingly. See server/routes/db.js
 	 */
 	async function getExistingResponses() {
-		const existingResponses = await fetchData("/db/responses", "GET");
+		const existingResponses = await axios.get("/db/responses");
 		if (existingResponses && existingResponses.length > 0) {
 			setResponses([...existingResponses]);
 		}
 	}
-
-	// async function getCurrentUser() {
-	// 	const userData = await fetchData("/", "GET");
-	// 	if (userData) {
-	// 		userData.user.json();
-	// 	}
-	// 	console.log(userData);
-	// }
 
 	/**
 	 * Takes in and distributes responses from MeetingForm.js to the appropriate places: MongoDB and/or Coach Accountable. See server/routes/db.js
@@ -92,11 +98,6 @@ export default function App() {
 		setResponses([]);
 	}
 
-	// async function handleLogin() {
-	// 	const loginResponse = await fetchData("/auth/linkedin", "GET");
-	// 	console.log(loginResponse.user);
-	// }
-
 	return (
 		<div className="App">
 			<Header />
@@ -104,7 +105,10 @@ export default function App() {
 			<MeetingForm onSubmit={(userResponse) => submitResponses(userResponse)} />
 			<Responses responses={responses} />
 
-			<a href="/auth/loggedIn">
+			<a href="/api/logout">
+				<button className="btn">Log out</button>
+			</a>
+			<a href="/api/loggedIn">
 				<button className="btn">Am I logged in?</button>
 			</a>
 			<button className="btn" onClick={() => deleteAllResponses()}>
