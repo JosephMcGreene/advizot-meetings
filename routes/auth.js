@@ -21,17 +21,4 @@ authRouter
 		}
 	);
 
-authRouter.route("/logout").get((req, res) => {
-	req.logout();
-	res.redirect("/");
-});
-
-authRouter.route("/loggedIn").get((req, res) => {
-	if (req.user) {
-		return res.send(`${req.user.firstName} ${req.user.lastName} is logged in!`);
-	}
-
-	res.send("No one is logged in right now.");
-});
-
 module.exports = authRouter;
