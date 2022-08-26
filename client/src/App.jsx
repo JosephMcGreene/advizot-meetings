@@ -15,12 +15,18 @@ import { useState, useEffect } from "react";
 //Internal
 import "./scss/App.scss";
 import Header from "./components/Header";
+import Login from "./components/Login";
 import MeetingForm from "./components/form/MeetingForm";
 import Responses from "./components/Responses";
 import Footer from "./components/Footer";
+<<<<<<< HEAD
 import Modal from "./components/Modal";
 //External
 import axios from "axios";
+=======
+//External
+import { Routes, Route } from "react-router-dom";
+>>>>>>> styles-layout
 
 export default function App() {
 	const [responses, setResponses] = useState([]);
@@ -101,9 +107,23 @@ export default function App() {
 	return (
 		<div className="App">
 			<Header />
-			<h1 className="welcome">Welcome!</h1>
-			<MeetingForm onSubmit={(userResponse) => submitResponses(userResponse)} />
-			<Responses responses={responses} />
+			<Routes>
+				{/* <Route path="/" element={<h1 className="welcome">Welcome!</h1>} /> */}
+				<Route
+					path="/"
+					element={
+						<MeetingForm
+							onSubmit={(userResponse) => submitResponses(userResponse)}
+						/>
+					}
+				/>
+				<Route
+					path="/responses"
+					element={<Responses responses={responses} />}
+				/>
+			</Routes>
+			{/* <MeetingForm onSubmit={(userResponse) => submitResponses(userResponse)} />
+			<Responses responses={responses} /> */}
 
 			<a href="/api/logout">
 				<button className="btn">Log out</button>
