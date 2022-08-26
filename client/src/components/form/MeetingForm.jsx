@@ -125,11 +125,6 @@ export default function MeetingForm({ onSubmit }) {
 					<button type="submit" className="btn">
 						{isSubmitting ? "Submitting..." : "Submit"}
 					</button>
-					{/* <span>
-						{serverResponse === "success"
-							? "Got it, thanks!"
-							: "Actually, something went wrong. Try again later."}
-					</span> */}
 				</Form>
 			)}
 		</Formik>

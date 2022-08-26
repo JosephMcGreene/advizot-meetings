@@ -34,7 +34,7 @@ export default function Login({ showLogin, onClose }) {
 						</button>
 					</a>
 
-					<a href="/auth/logout" className="logout">
+					<a href="/api/logout" className="logout">
 						<button className="btn">Log out</button>
 					</a>
 				</div>

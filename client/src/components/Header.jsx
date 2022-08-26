@@ -7,15 +7,13 @@ export default function Header() {
 	const [showLogin, setShowLogin] = useState(false);
 
 	return (
-		<>
-			<header className="header">
-				<img src={logoIcon} alt="Advizot 'A'" className="logo" />
-				<button className="btn" onClick={() => setShowLogin(!showLogin)}>
-					Sign-in
-				</button>
+		<header className="header">
+			<img src={logoIcon} alt="Advizot 'A'" className="logo" />
+			<button className="btn" onClick={() => setShowLogin(!showLogin)}>
+				Sign-in
+			</button>
 
-				<Login showLogin={showLogin} onClose={() => setShowLogin(!showLogin)} />
-			</header>
-		</>
+			<Login showLogin={showLogin} onClose={() => setShowLogin(!showLogin)} />
+		</header>
 	);
 }
