@@ -1,4 +1,4 @@
-export default function Responses({ responses }) {
+export default function Responses({ currentUser, responses }) {
 	const sortedResponses = responses.sort((a, b) => {
 		if (a.priority < b.priority) return -1;
 		return 1;
@@ -18,7 +18,9 @@ export default function Responses({ responses }) {
 						}
 					>
 						<span className="response-name">
-							<strong>(Member Name)</strong>
+							<strong>
+								{currentUser.firstName} {currentUser.lastName}
+							</strong>
 						</span>
 
 						<span className="response-p range-response">

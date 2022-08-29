@@ -3,7 +3,7 @@
 //!    - Secure Server Sign-In
 //!    - Answers to sign-in questions to be used during the course of the meeting via a projector
 //!    (- POST data to Coach Accountable to be stored as a metric for user later on)
-//TODO (1) Figure out Axios configuration
+//TODO (1) Connect user to user response (display user's name next to their response)
 //TODO (2) Add user
 //TODO			- settings
 //TODO			- ability to delete/change their own responses
@@ -30,39 +30,54 @@ export default function App() {
 		 * makes ajax request for details on the current user, defined to keep useEffect happy by remaining "synchronous" *eyeroll*
 		 * @param {String} url
 		 */
-		async function axiosGet(url) {
+		async function getCurrentUser(url) {
 			try {
-				const current_user = await axios.get(url);
-				console.log(current_user);
+				const current_user = await axios(url, {
+					headers: {
+						Accept: "application/json",
+						"Content-Type": "application/json",
+					},
+				});
+				console.log(current_user.data);
 				setCurrentUser(current_user.data);
 			} catch (error) {
 				console.error(error);
 			}
 		}
-		axiosGet("/api/current_user");
+		getCurrentUser("/api/current_user");
 	}, []);
 
 	useEffect(() => {
+		/**
+		 * fetches existing user responses from MongoDB and updates state accordingly. See server/routes/db.js
+		 */
+		async function getExistingResponses() {
+			try {
+				const existingResponses = await axios({
+					method: "get",
+					url: "/db/responses",
+					headers: {
+						Accept: "application/json",
+						"Content-Type": "application/json",
+					},
+				});
+				if (existingResponses.data && existingResponses.data.length > 0) {
+					setResponses([...existingResponses.data]);
+				}
+			} catch (error) {
+				console.error(error);
+			}
+		}
 		getExistingResponses();
 	}, []);
 
 	//=====HELPERS=====
 	/**
-	 * fetches existing user responses from MongoDB and updates state accordingly. See server/routes/db.js
-	 */
-	async function getExistingResponses() {
-		const existingResponses = await axios.get("/db/responses");
-		if (existingResponses && existingResponses.length > 0) {
-			setResponses([...existingResponses]);
-		}
-	}
-
-	/**
 	 * Takes in and distributes responses from MeetingForm.js to the appropriate places: MongoDB and/or Coach Accountable. See server/routes/db.js
 	 * @param {Object} userResponse json body to be posted and displayed to the users
 	 */
 	async function submitResponses(userResponse) {
-		await axios.post("/db/responses", userResponse);
+		await axios({ method: "post", url: "/db/responses", data: userResponse });
 		setResponses([...responses, userResponse]);
 	}
 
@@ -74,7 +89,11 @@ export default function App() {
 		if (responses.length === 0) {
 			return;
 		}
-		const deleteRes = await axios.delete("/db/responses", responses);
+		const deleteRes = await axios({
+			method: "delete",
+			url: "/db/responses",
+			data: responses,
+		});
 		await alert(`Deleted ${deleteRes.deletedCount} item(s) from the database.`);
 		setResponses([]);
 	}
@@ -90,7 +109,7 @@ export default function App() {
 			)}
 
 			<MeetingForm onSubmit={(userResponse) => submitResponses(userResponse)} />
-			<Responses responses={responses} />
+			<Responses currentUser={currentUser} responses={responses} />
 
 			<button className="btn" onClick={() => deleteAllResponses()}>
 				Delete All Responses
