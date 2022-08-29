@@ -33,10 +33,6 @@ export default function Login({ showLogin, onClose }) {
 							<span>Sign in with Google</span>
 						</button>
 					</a>
-
-					<a href="/api/logout" className="logout">
-						<button className="btn">Log out</button>
-					</a>
 				</div>
 			</div>
 		</div>
