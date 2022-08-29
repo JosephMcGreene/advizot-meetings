@@ -100,7 +100,7 @@ export default function App() {
 
 	return (
 		<div className="App">
-			<Header />
+			<Header currentUser={currentUser} />
 
 			{currentUser ? (
 				<h1 className="welcome">Hello, {currentUser.firstName}!</h1>

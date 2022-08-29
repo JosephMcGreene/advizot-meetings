@@ -44,8 +44,7 @@ code {
 	font-size: 1.1rem;
 	letter-spacing: 0.5px;
 
-	box-shadow: inset -1px -1px 7px rgba(0, 0, 0, 0.8),
-		inset 1px 1px 7px rgba(255, 255, 255, 0.9), 0 0 10px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 
 	&:hover {
 		@include btnHover();
@@ -62,40 +61,13 @@ code {
 	}
 }
 
-.header {
-	z-index: 10;
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	font-family: "Audiowide", cursive;
-	margin-bottom: 1.25rem;
-	background-color: whitesmoke;
-	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
-
-	.logo {
-		width: clamp(145px, 35%, 175px);
-		margin-right: auto;
-		align-self: flex-start;
-		margin-top: 12.5px;
-		margin-left: 0.25vw;
-	}
-
-	.btn {
-		margin: 1rem;
-	}
-}
-
 .welcome {
 	font-family: "Audiowide", cursive;
 	font-size: 2rem;
 	font-weight: 400;
 	letter-spacing: 1px;
 	text-align: center;
-	margin: 110px auto 0;
+	margin: 90px auto 0;
 }
 
 a {
