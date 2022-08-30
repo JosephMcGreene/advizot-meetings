@@ -16,15 +16,17 @@ dbRouter
 	.post(async function (req, res) {
 		try {
 			const newResponse = new Response({
+				userName: req.body.userName,
 				business: req.body.business,
 				personal: req.body.personal,
 				relationships: req.body.relationships,
 				monthlyIssue: req.body.monthlyIssue,
 				priority: req.body.priority,
 				monthlyGoal: req.body.monthlyGoal,
+				date: req.body.date,
 			});
 			await newResponse.save();
-			await res.json(newResponse);
+			res.json(newResponse);
 		} catch (error) {
 			console.error(error);
 		}

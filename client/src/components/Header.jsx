@@ -15,7 +15,7 @@ export default function Header({ currentUser }) {
 					<img src={actionBars} alt="actions" className="action-bars" />
 					<ul className="nav-list">
 						{currentUser ? (
-							<a href="/api/logout">
+							<a href="/auth/logout">
 								<li className="nav-item">Log out</li>
 							</a>
 						) : (

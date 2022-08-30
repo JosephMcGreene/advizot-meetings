@@ -18,9 +18,7 @@ export default function Responses({ currentUser, responses }) {
 						}
 					>
 						<span className="response-name">
-							<strong>
-								{currentUser.firstName} {currentUser.lastName}
-							</strong>
+							<strong>{response.userName}</strong>
 						</span>
 
 						<span className="response-p range-response">

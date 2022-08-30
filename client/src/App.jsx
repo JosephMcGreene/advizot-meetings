@@ -38,13 +38,12 @@ export default function App() {
 						"Content-Type": "application/json",
 					},
 				});
-				console.log(current_user.data);
 				setCurrentUser(current_user.data);
 			} catch (error) {
 				console.error(error);
 			}
 		}
-		getCurrentUser("/api/current_user");
+		getCurrentUser("/auth/current_user");
 	}, []);
 
 	useEffect(() => {
@@ -77,7 +76,10 @@ export default function App() {
 	 * @param {Object} userResponse json body to be posted and displayed to the users
 	 */
 	async function submitResponses(userResponse) {
+		userResponse.userName = `${currentUser.firstName} ${currentUser.lastName}`;
+		userResponse.date = Date.now();
 		await axios({ method: "post", url: "/db/responses", data: userResponse });
+		console.log(userResponse);
 		setResponses([...responses, userResponse]);
 	}
 
@@ -89,28 +91,30 @@ export default function App() {
 		if (responses.length === 0) {
 			return;
 		}
-		const deleteRes = await axios({
+		await axios({
 			method: "delete",
 			url: "/db/responses",
 			data: responses,
 		});
-		await alert(`Deleted ${deleteRes.deletedCount} item(s) from the database.`);
+		await alert(`Deleted all items from the database.`);
 		setResponses([]);
 	}
 
 	return (
 		<div className="App">
 			<Header currentUser={currentUser} />
-
+			{/* Personal Welcome Message: */}
 			{currentUser ? (
 				<h1 className="welcome">Hello, {currentUser.firstName}!</h1>
 			) : (
 				<h1 className="welcome">Welcome!</h1>
 			)}
 
-			<MeetingForm onSubmit={(userResponse) => submitResponses(userResponse)} />
+			<MeetingForm
+				onSubmit={(userResponse) => submitResponses(userResponse)}
+				currentUser={currentUser}
+			/>
 			<Responses currentUser={currentUser} responses={responses} />
-
 			<button className="btn" onClick={() => deleteAllResponses()}>
 				Delete All Responses
 				<br />
