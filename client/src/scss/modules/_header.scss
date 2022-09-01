@@ -53,13 +53,14 @@
 				.nav-item {
 					font-size: 1.5rem;
 					padding: 12px 4vw;
-					width: fit-content;
+					width: 100%;
 					margin-left: auto;
 					text-decoration: none;
 
 					&:hover {
 						@include borderRadius();
 						@include btnHover();
+						box-shadow: 0 2px 4px rgba(0, 0, 0, 0.75);
 						background-color: $advizot-color;
 						cursor: pointer;
 					}
