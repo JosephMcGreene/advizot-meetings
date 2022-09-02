@@ -3,14 +3,17 @@
 //!    - Secure Server Sign-In
 //!    - Answers to sign-in questions to be used during the course of the meeting via a projector
 //!    (- POST data to Coach Accountable to be stored as a metric for user later on)
-//TODO (1) Authorize users as Vistage Members to ensure only members can add responses.
-//TODO (2) Add user
+//TODO (1) Add user...
 //TODO			- settings
 //TODO			- ability to delete/change their own responses
+//TODO (2) Create session rooms for each of the three groups
 //TODO (- POST data to Coach Accountable. Add ability to remove the data as well.)
+
+//? What is the best way to authorize users as group members?
 
 //React
 import { useState, useEffect } from "react";
+import { Routes, Route, Link } from "react-router-dom";
 //Internal
 import "./scss/App.scss";
 import Header from "./components/Header";
@@ -114,6 +117,7 @@ export default function App() {
 				onSubmit={(userResponse) => submitResponses(userResponse)}
 				currentUser={currentUser}
 			/>
+			<Link to="/responses">Responses</Link>
 			<Responses currentUser={currentUser} responses={responses} />
 
 			<button className="btn" onClick={() => deleteAllResponses()}>
