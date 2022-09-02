@@ -11,22 +11,15 @@ export default function Header({ currentUser }) {
 		<header className="header">
 			<nav className="nav-bar">
 				<img src={logoIcon} alt="Advizot 'A'" className="logo" />
-				<div className="actions-container">
-					<img src={actionBars} alt="actions" className="action-bars" />
-					<ul className="nav-list">
-						{currentUser ? (
-							<a href="/auth/logout">
-								<li className="nav-item">Log out</li>
-							</a>
-						) : (
-							<li className="nav-item" onClick={() => setShowLogin(!showLogin)}>
-								Log in
-							</li>
-						)}
-						<li className="nav-item">(Settings)</li>
-						<li className="nav-item">(1:1 Check In)</li>
-					</ul>
-				</div>
+				{currentUser ? (
+					<a href="/auth/logout">
+						<button className="btn">Sign out</button>
+					</a>
+				) : (
+					<button className="btn" onClick={() => setShowLogin(!showLogin)}>
+						Sign in
+					</button>
+				)}
 			</nav>
 
 			<Login showLogin={showLogin} onClose={() => setShowLogin(!showLogin)} />

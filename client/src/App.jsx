@@ -13,7 +13,6 @@
 
 //React
 import { useState, useEffect } from "react";
-import { Routes, Route, Link } from "react-router-dom";
 //Internal
 import "./scss/App.scss";
 import Header from "./components/Header";
@@ -104,28 +103,33 @@ export default function App() {
 	}
 
 	return (
-		<div>
-			<Header currentUser={currentUser} />
-			{/* Personalized Welcome Message for logged-in users: */}
-			{currentUser ? (
-				<h1 className="welcome">Hello, {currentUser.firstName}!</h1>
-			) : (
-				<h1 className="welcome">Welcome!</h1>
-			)}
+		<div className="App">
+			<div className="forcer">
+				<Header currentUser={currentUser} />
+				{/* Only show form and responses if user is signed in: */}
+				{currentUser ? (
+					<>
+						<h1 className="welcome">Hello, {currentUser.firstName}!</h1>
+						<MeetingForm
+							onSubmit={(userResponse) => submitResponses(userResponse)}
+							currentUser={currentUser}
+						/>
+						<Responses currentUser={currentUser} responses={responses} />
+					</>
+				) : (
+					<h1 className="welcome">
+						Welcome!
+						<br />
+						Please sign in to Continue.
+					</h1>
+				)}
 
-			<MeetingForm
-				onSubmit={(userResponse) => submitResponses(userResponse)}
-				currentUser={currentUser}
-			/>
-			<Link to="/responses">Responses</Link>
-			<Responses currentUser={currentUser} responses={responses} />
-
-			<button className="btn" onClick={() => deleteAllResponses()}>
-				Delete All Responses
-				<br />
-				(Please use after testing)
-			</button>
-
+				<button className="btn" onClick={() => deleteAllResponses()}>
+					Delete All Responses
+					<br />
+					(Please use after testing)
+				</button>
+			</div>
 			<Footer />
 		</div>
 	);
