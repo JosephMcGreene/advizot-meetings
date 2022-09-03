@@ -9,8 +9,12 @@
 	border-radius: $border-radius;
 	width: min(380px, 96%);
 	margin: 20px auto;
-	padding: 25px 45px;
+	padding: 12px 35px;
 	box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);
+
+	.chevron {
+		width: 25px;
+	}
 
 	.range-container {
 		display: grid;
@@ -87,4 +91,26 @@
 	.btn {
 		margin: 1.25rem auto;
 	}
+}
+
+.minimized-form {
+	border-radius: 24.5px;
+	width: min(380px, 96%);
+	margin: 20px auto;
+	padding: 0 35px;
+	box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);
+
+	.chevron-flipped {
+		width: 25px;
+		transform: rotate(180deg);
+	}
+}
+
+.minimize-btn {
+	background-color: transparent;
+	border: none;
+	display: block;
+	margin-left: auto;
+	padding: 0.5rem;
+	cursor: pointer;
 }

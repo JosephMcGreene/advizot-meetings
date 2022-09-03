@@ -1,11 +1,27 @@
+import { useState } from "react";
 //Internal
 import InputField from "./InputField";
 import Select from "./Select";
+import chevron from "../../img/chevron-up-solid.svg";
 //External
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
 export default function MeetingForm({ onSubmit, currentUser }) {
+	const [formVisibility, setFormVisibility] = useState(true);
+	if (!formVisibility) {
+		return (
+			<div className="minimized-form">
+				<button
+					onClick={() => setFormVisibility(!formVisibility)}
+					className="minimize-btn"
+				>
+					<img src={chevron} alt="Close Form" className="chevron-flipped" />
+				</button>
+			</div>
+		);
+	}
+
 	/**
 	 * Calculates how much of an input slider's background should be filled up based on where the user is sliding it
 	 * @param {Number} value The current value of the range-slider, used as a basis to calculate how much of the background of the slider needs to be turned orange
@@ -62,6 +78,13 @@ export default function MeetingForm({ onSubmit, currentUser }) {
 		>
 			{({ isSubmitting, submitCount, ...props }) => (
 				<Form className="form">
+					<button
+						className="minimize-btn"
+						onClick={() => setFormVisibility(!formVisibility)}
+					>
+						<img src={chevron} alt="Close Form" className="chevron" />
+					</button>
+
 					<InputField
 						text="How is your business?"
 						name="business"

@@ -1,5 +1,13 @@
 @use "../abstracts/index" as *;
 
+.responses-header {
+	font-family: "Audiowide", cursive;
+	font-weight: 400;
+	letter-spacing: 1px;
+	text-align: center;
+	text-decoration: underline;
+}
+
 .responses-ul {
 	@include flex(row);
 	flex-wrap: wrap;

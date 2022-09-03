@@ -101,27 +101,27 @@ export default function App() {
 	}
 
 	return (
-		<div>
+		<div className="App">
 			<Header currentUser={currentUser} />
-			{/* Personalized Welcome Message for logged-in users: */}
-			{currentUser ? (
-				<h1 className="welcome">Hello, {currentUser.firstName}!</h1>
-			) : (
-				<h1 className="welcome">Welcome!</h1>
-			)}
-
-			<MeetingForm
-				onSubmit={(userResponse) => submitResponses(userResponse)}
-				currentUser={currentUser}
-			/>
-			<Responses currentUser={currentUser} responses={responses} />
-
-			<button className="btn" onClick={() => deleteAllResponses()}>
-				Delete All Responses
-				<br />
-				(Please use after testing)
-			</button>
-
+			<div className="spacer">
+				{currentUser ? (
+					<>
+						<h1 className="welcome">Hello, {currentUser.firstName}!</h1>
+						<MeetingForm
+							onSubmit={(userResponse) => submitResponses(userResponse)}
+							currentUser={currentUser}
+						/>
+						<Responses currentUser={currentUser} responses={responses} />
+						<button className="btn" onClick={() => deleteAllResponses()}>
+							Delete All Responses
+							<br />
+							(Please use after testing)
+						</button>
+					</>
+				) : (
+					<h1 className="welcome">Welcome! Please sign in to continue.</h1>
+				)}
+			</div>
 			<Footer />
 		</div>
 	);

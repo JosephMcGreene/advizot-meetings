@@ -2,18 +2,13 @@
 
 .header {
 	z-index: 10;
-	position: absolute;
+	position: relative;
 	top: 0;
 	left: 0;
 	right: 0;
 	font-family: "Audiowide", cursive;
 	background-color: whitesmoke;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
-	padding-bottom: 1rem;
-
-	&:hover {
-		@include borderRadius();
-	}
 
 	.nav-bar {
 		display: flex;
@@ -21,7 +16,9 @@
 		align-items: center;
 
 		.logo {
-			width: clamp(145px, 35%, 175px);
+			//might bring back clamp later. Keep commented for now
+			// width: clamp(145px, 35%, 175px);
+			width: 175px;
 			align-self: flex-start;
 		}
 
@@ -29,53 +26,10 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			margin-top: 15px;
-			margin-right: 3vw;
 
-			.action-bars {
-				width: 30px;
-				align-self: flex-end;
-				margin-right: 6px;
-			}
-
-			.nav-list {
-				display: none;
-				text-align: right;
-				list-style: none;
-				margin-top: 0.5rem;
-
-				a {
-					&:visited {
-						color: black;
-					}
-				}
-
-				.nav-item {
-					font-size: 1.5rem;
-					padding: 12px 4vw;
-					width: 100%;
-					margin-left: auto;
-					text-decoration: none;
-
-					&:hover {
-						@include borderRadius();
-						@include btnHover();
-						box-shadow: 0 2px 4px rgba(0, 0, 0, 0.75);
-						background-color: $advizot-color;
-						cursor: pointer;
-					}
-				}
-			}
-		}
-
-		&:hover {
-			.action-bars {
-				transform: translateX(-50%);
-				transition-property: transform;
-				transition-duration: 200ms;
-			}
-			.nav-list {
-				display: inline-block;
+			.btn {
+				padding: 1rem;
+				margin: 1rem;
 			}
 		}
 	}
