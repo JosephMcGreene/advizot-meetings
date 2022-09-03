@@ -1,14 +1,16 @@
 import { useState } from "react";
+//External
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
 //Internal
 import InputField from "./InputField";
 import Select from "./Select";
 import chevron from "../../img/chevron-up-solid.svg";
-//External
-import { Formik, Form } from "formik";
-import * as Yup from "yup";
 
 export default function MeetingForm({ onSubmit, currentUser }) {
 	const [formVisibility, setFormVisibility] = useState(true);
+
+	// User can minimize the form to focus on displaying user responses:
 	if (!formVisibility) {
 		return (
 			<div className="minimized-form">
@@ -93,7 +95,6 @@ export default function MeetingForm({ onSubmit, currentUser }) {
 						min={0}
 						max={10}
 						className="range-container"
-						placeholder=""
 						style={getSliderSize(props.values.business)}
 						spanText={props.values.business}
 					/>
@@ -106,7 +107,6 @@ export default function MeetingForm({ onSubmit, currentUser }) {
 						min={0}
 						max={10}
 						className="range-container"
-						placeholder=""
 						style={getSliderSize(props.values.personal)}
 						spanText={props.values.personal}
 					/>
@@ -119,7 +119,6 @@ export default function MeetingForm({ onSubmit, currentUser }) {
 						min={0}
 						max={10}
 						className="range-container"
-						placeholder=""
 						style={getSliderSize(props.values.relationships)}
 						spanText={props.values.relationships}
 					/>
@@ -128,7 +127,6 @@ export default function MeetingForm({ onSubmit, currentUser }) {
 						text="Issue to process today:"
 						name="monthlyIssue"
 						as="textarea"
-						placeholder=""
 						className="textarea"
 					/>
 
@@ -145,7 +143,6 @@ export default function MeetingForm({ onSubmit, currentUser }) {
 						text="Goal before next meeting:"
 						name="monthlyGoal"
 						as="textarea"
-						placeholder=""
 						className="textarea"
 					/>
 

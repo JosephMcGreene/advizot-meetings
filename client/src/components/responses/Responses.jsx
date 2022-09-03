@@ -1,6 +1,7 @@
 import Response from "./Response";
 
 export default function Responses({ responses }) {
+	//Sort responses to be displayed in order of priority
 	const sortedResponses = responses.sort((a, b) => {
 		if (a.priority < b.priority) return -1;
 		return 1;
@@ -21,7 +22,7 @@ export default function Responses({ responses }) {
 								response.relationships +
 								response.priority
 							}
-							responseBody={response}
+							userResponseBody={response}
 						/>
 					);
 				})}

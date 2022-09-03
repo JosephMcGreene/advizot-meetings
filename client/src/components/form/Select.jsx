@@ -1,4 +1,3 @@
-//External
 import { useField } from "formik";
 
 export default function Select({ text, className, ...props }) {

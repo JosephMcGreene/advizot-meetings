@@ -10,6 +10,7 @@ export default function Header({ currentUser }) {
 			<nav className="nav-bar">
 				<img src={logo} alt="Advizot logo" className="logo" />
 				<div className="actions-container">
+					{/* Show sign out link if logged in, or sign in if logged out */}
 					{currentUser ? (
 						<a href="/auth/logout">
 							<button className="btn">Sign out</button>

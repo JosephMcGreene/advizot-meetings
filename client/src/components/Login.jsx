@@ -29,7 +29,7 @@ export default function Login({ showLogin, onClose }) {
 
 					<a href="/auth/google" className="signin-btn">
 						<button className="google-hover">
-							<img src={GoogleLogo} alt="Google Logo" className="logo"></img>
+							<img src={GoogleLogo} alt="Google Logo" className="logo" />
 							<span>Sign in with Google</span>
 						</button>
 					</a>

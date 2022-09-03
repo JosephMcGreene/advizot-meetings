@@ -1,30 +1,30 @@
-export default function Response({ responseBody }) {
+export default function Response({ userResponseBody }) {
 	return (
 		<li className="response-li">
 			<span className="response-name">
-				<strong>{responseBody.userName}</strong>
+				<strong>{userResponseBody.userName}</strong>
 			</span>
 
 			<span className="response-p priority">
-				<strong>Priority:</strong> {responseBody.priority.substring(1)}
+				<strong>Priority:</strong> {userResponseBody.priority.substring(1)}
 			</span>
 
 			<span className="response-p range-response">
 				<strong>Business</strong>
 				<br />
-				{responseBody.business}
+				{userResponseBody.business}
 			</span>
 
 			<span className="response-p range-response">
 				<strong>Personal</strong>
 				<br />
-				{responseBody.personal}
+				{userResponseBody.personal}
 			</span>
 
 			<span className="response-p range-response">
 				<strong>Relationships</strong>
 				<br />
-				{responseBody.relationships}
+				{userResponseBody.relationships}
 			</span>
 
 			<article className="response-p issue">
@@ -32,7 +32,7 @@ export default function Response({ responseBody }) {
 					<strong>Today's Issue</strong>
 				</h4>
 				<br />
-				<p>{responseBody.monthlyIssue}</p>
+				<p>{userResponseBody.monthlyIssue}</p>
 			</article>
 
 			<article className="response-p goal">
@@ -40,7 +40,7 @@ export default function Response({ responseBody }) {
 					<strong>Goal Before Next Meeting</strong>
 				</h4>
 				<br />
-				<p>{responseBody.monthlyGoal}</p>
+				<p>{userResponseBody.monthlyGoal}</p>
 			</article>
 		</li>
 	);

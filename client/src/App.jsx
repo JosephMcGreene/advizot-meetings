@@ -11,16 +11,15 @@
 
 //? What is the best way to authorize users as group members?
 
-//React
 import { useState, useEffect } from "react";
+//External
+import axios from "axios";
 //Internal
 import "./scss/App.scss";
 import Header from "./components/Header";
 import MeetingForm from "./components/form/MeetingForm";
 import Responses from "./components/responses/Responses";
 import Footer from "./components/Footer";
-//External
-import axios from "axios";
 
 export default function App() {
 	const [responses, setResponses] = useState([]);
@@ -106,22 +105,26 @@ export default function App() {
 		<div className="App">
 			<Header currentUser={currentUser} />
 			<div className="spacer">
+				{/* User must sign in to use app features: */}
 				{currentUser ? (
 					<>
 						<h1 className="welcome">Hello, {currentUser.firstName}!</h1>
+
 						<MeetingForm
 							onSubmit={(userResponse) => submitResponses(userResponse)}
 							currentUser={currentUser}
 						/>
+
 						<Responses currentUser={currentUser} responses={responses} />
+
 						<button className="btn" onClick={() => deleteAllResponses()}>
-							Delete All Responses
-							<br />
-							(Please use after testing)
+							Delete All Responses <br /> (Please use after testing)
 						</button>
 					</>
 				) : (
-					<h1 className="welcome">Welcome! Please sign in to continue.</h1>
+					<h1 className="welcome">
+						Welcome! <br /> Please sign in to continue.
+					</h1>
 				)}
 			</div>
 			<Footer />
