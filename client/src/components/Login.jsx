@@ -10,7 +10,7 @@ export default function Login({ showLogin, onClose }) {
 		<div className="modal">
 			<div className="modal-content">
 				<div className="modal-header">
-					<span>Login</span>
+					<span>Sign in</span>
 					<button className="close-x" onClick={() => onClose()}>
 						&times;
 					</button>

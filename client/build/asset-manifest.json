@@ -1,16 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.c5069266.css",
-    "main.js": "/static/js/main.ca172e33.js",
+    "main.css": "/static/css/main.19d70ff8.css",
+    "main.js": "/static/js/main.8ed92b2a.js",
+    "static/media/Search_GSA.max-2800x2800.png": "/static/media/Search_GSA.max-2800x2800.19665ff37f8e5a19b2f0.png",
+    "static/media/Original on Transparent.png": "/static/media/Original on Transparent.0264d1ef0f52ddbeba38.png",
     "static/media/black-on-transparent.png": "/static/media/black-on-transparent.194cd7db528d029cbc8e.png",
-    "static/media/big-a.png": "/static/media/big-a.3fff276efdd012c2fbbb.png",
     "static/media/Sansation-Regular-webfont.woff": "/static/media/Sansation-Regular-webfont.18a2f25d3a6f2f6077e0.woff",
     "index.html": "/index.html",
-    "main.c5069266.css.map": "/static/css/main.c5069266.css.map",
-    "main.ca172e33.js.map": "/static/js/main.ca172e33.js.map"
+    "static/media/bars-solid.svg": "/static/media/bars-solid.cc422b9702b29002bb1a1f973c66332a.svg",
+    "main.19d70ff8.css.map": "/static/css/main.19d70ff8.css.map",
+    "main.8ed92b2a.js.map": "/static/js/main.8ed92b2a.js.map"
   },
   "entrypoints": [
-    "static/css/main.c5069266.css",
-    "static/js/main.ca172e33.js"
+    "static/css/main.19d70ff8.css",
+    "static/js/main.8ed92b2a.js"
   ]
 }

@@ -22,10 +22,10 @@
 }
 
 @mixin btnHover() {
-	transform: scale(1.1);
+	transform: scale(1.08);
 	color: white;
 	background-color: black;
-	box-shadow: 0 3px 4px rgba(0, 0, 0, 0.8);
+	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.75);
 	transition-property: all;
 	transition-duration: 200ms;
 }

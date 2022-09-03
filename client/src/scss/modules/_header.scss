@@ -22,15 +22,9 @@
 			align-self: flex-start;
 		}
 
-		.actions-container {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-
-			.btn {
-				padding: 1rem;
-				margin: 1rem;
-			}
+		.btn {
+			padding: 1rem;
+			margin: 1rem 1.5rem;
 		}
 	}
 }
