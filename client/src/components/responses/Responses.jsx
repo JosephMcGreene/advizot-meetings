@@ -1,6 +1,6 @@
 import Response from "./Response";
 
-export default function Responses({ responses, currentUser }) {
+export default function Responses({ responses, currentUser, onDelete }) {
 	//Sort responses to be displayed in order of priority
 	const sortedResponses = responses.sort((a, b) => {
 		if (a.priority < b.priority) return -1;
@@ -23,6 +23,7 @@ export default function Responses({ responses, currentUser }) {
 							}
 							userResponseBody={response}
 							currentUser={currentUser}
+							onDelete={onDelete}
 						/>
 					);
 				})}

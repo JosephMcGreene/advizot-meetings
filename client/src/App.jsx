@@ -88,17 +88,42 @@ export default function App() {
 	/**
 	 * Deletes the current slate of documents from MongoDB. See /routes/db.js
 	 */
-	async function deleteAllResponses() {
-		if (responses.length === 0) {
-			return;
-		}
-		await axios({
+	// async function deleteAllResponses() {
+	// 	if (responses.length === 0) {
+	// 		return;
+	// 	}
+	// 	await axios({
+	// 		method: "delete",
+	// 		url: "/db/responses",
+	// 		data: responses,
+	// 	});
+	// 	await alert(`Deleted all items from the database.`);
+	// 	setResponses([]);
+	// }
+
+	async function deleteResponse(userResponse) {
+		const deleteResponse = await axios({
 			method: "delete",
 			url: "/db/responses",
-			data: responses,
+			data: userResponse,
 		});
-		await alert(`Deleted all items from the database.`);
-		setResponses([]);
+
+		if (deleteResponse.status === 200) {
+			let responsesArray = responses;
+			const responseToDelete = responsesArray.findIndex(
+				(response) => response._id === userResponse._id
+			);
+			while (responseToDelete !== 0) {
+				const shiftResponse = responsesArray.shift();
+				responsesArray.push(shiftResponse);
+			}
+			responsesArray.shift();
+			console.log(responsesArray);
+			alert(
+				`Deleted ${userResponse.userName}'s response of ${userResponse.personal}`
+			);
+			return setResponses([...responsesArray]);
+		}
 	}
 
 	return (
@@ -115,11 +140,11 @@ export default function App() {
 							currentUser={currentUser}
 						/>
 
-						<Responses currentUser={currentUser} responses={responses} />
-
-						<button className="btn" onClick={() => deleteAllResponses()}>
-							Delete All Responses <br /> (Please use after testing)
-						</button>
+						<Responses
+							currentUser={currentUser}
+							responses={responses}
+							onDelete={(userResponse) => deleteResponse(userResponse)}
+						/>
 					</>
 				) : (
 					<h1 className="welcome">

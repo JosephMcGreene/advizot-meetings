@@ -31,11 +31,10 @@ dbRouter
 			console.error(error);
 		}
 	})
-	// For now, deletes *ALL* db entries. Will later only delete individual entries
 	.delete(async function (req, res) {
 		try {
-			const deleteRes = await Response.deleteMany({ monthlyGoal: /[A-Za-z]/g });
-			await res.json(deleteRes);
+			const deleteRes = await Response.deleteOne({ _id: req.body._id });
+			res.json(deleteRes);
 		} catch (error) {
 			console.error(error);
 		}
