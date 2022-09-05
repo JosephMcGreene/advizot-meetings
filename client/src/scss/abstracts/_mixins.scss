@@ -5,6 +5,12 @@
 	flex-direction: $direction;
 }
 
+@mixin transition($properties) {
+	transition-property: $properties;
+	transition-timing-function: ease-in-out;
+	transition-duration: 200ms;
+}
+
 @mixin borderRadius() {
 	border-radius: var.$border-radius 0 var.$border-radius 0;
 }
@@ -22,12 +28,11 @@
 }
 
 @mixin btnHover() {
-	transform: scale(1.08);
+	transform: translateY(-1.5px);
 	color: white;
 	background-color: black;
 	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.75);
-	transition-property: all;
-	transition-duration: 200ms;
+	@include transition(all);
 }
 
 //Login Buttons
@@ -48,8 +53,7 @@
 	outline: 2px solid $color;
 	border-radius: $radius;
 	color: $color;
-	transition-property: all;
-	transition-duration: 200ms;
+	@include transition(all);
 }
 @mixin logoSize() {
 	width: 30px;

@@ -46,6 +46,30 @@
 			justify-self: start;
 			align-self: center;
 		}
+		.response-edits {
+			display: flex;
+			align-items: flex-start;
+			grid-row: 1;
+			grid-column: 3;
+			justify-self: end;
+			align-self: start;
+		}
+		.edit-icon,
+		.delete-icon {
+			border: none;
+			background-color: transparent;
+			width: 44px;
+			height: 44px;
+			padding: 13.5px;
+			border-radius: 50%;
+
+			&:hover {
+				background-color: $advizot-light;
+				box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+				cursor: pointer;
+				@include transition(all);
+			}
+		}
 		.range-response {
 			grid-row: 2 / 3;
 			text-align: center;

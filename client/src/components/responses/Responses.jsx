@@ -1,6 +1,6 @@
 import Response from "./Response";
 
-export default function Responses({ responses }) {
+export default function Responses({ responses, currentUser }) {
 	//Sort responses to be displayed in order of priority
 	const sortedResponses = responses.sort((a, b) => {
 		if (a.priority < b.priority) return -1;
@@ -16,13 +16,13 @@ export default function Responses({ responses }) {
 					return (
 						<Response
 							key={
-								response.date +
-								response.business +
+								response.priority +
 								response.personal +
-								response.relationships +
-								response.priority
+								response.business +
+								response.relationships
 							}
 							userResponseBody={response}
+							currentUser={currentUser}
 						/>
 					);
 				})}

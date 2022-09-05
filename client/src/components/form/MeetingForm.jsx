@@ -67,10 +67,6 @@ export default function MeetingForm({ onSubmit, currentUser }) {
 			})}
 			onSubmit={(values, { setSubmitting }) => {
 				try {
-					if (!currentUser) {
-						setSubmitting(false);
-						alert("Please log in before adding a response.");
-					}
 					onSubmit(values);
 					setSubmitting(false);
 				} catch (error) {

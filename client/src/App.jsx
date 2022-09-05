@@ -104,8 +104,8 @@ export default function App() {
 	return (
 		<div className="App">
 			<Header currentUser={currentUser} />
-			<div className="spacer">
-				{/* User must sign in to use app features: */}
+			<main className="main-content">
+				{/* User must sign in to use app features, so only show the features if logged in: */}
 				{currentUser ? (
 					<>
 						<h1 className="welcome">Hello, {currentUser.firstName}!</h1>
@@ -126,7 +126,7 @@ export default function App() {
 						Welcome! <br /> Please sign in to continue.
 					</h1>
 				)}
-			</div>
+			</main>
 			<Footer />
 		</div>
 	);

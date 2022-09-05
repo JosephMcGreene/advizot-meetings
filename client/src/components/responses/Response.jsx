@@ -1,4 +1,11 @@
-export default function Response({ userResponseBody }) {
+import editPencil from "../../img/pen-to-square-solid.svg";
+import trashCan from "../../img/trash-can-solid.svg";
+
+export default function Response({
+	userResponseBody,
+	currentUser,
+	editResponse,
+}) {
 	return (
 		<li className="response-li">
 			<span className="response-name">
@@ -8,6 +15,20 @@ export default function Response({ userResponseBody }) {
 			<span className="response-p priority">
 				<strong>Priority:</strong> {userResponseBody.priority.substring(1)}
 			</span>
+
+			{userResponseBody.userName ===
+			`${currentUser.firstName} ${currentUser.lastName}` ? (
+				<div className="response-edits">
+					<button className="edit-icon">
+						<img src={editPencil} alt="Edit Response" className="edit-pencil" />
+					</button>
+					<button className="delete-icon">
+						<img src={trashCan} alt="Delete Response" className="trash-can" />
+					</button>
+				</div>
+			) : (
+				""
+			)}
 
 			<span className="response-p range-response">
 				<strong>Business</strong>

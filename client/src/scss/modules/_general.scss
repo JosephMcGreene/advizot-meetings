@@ -22,7 +22,7 @@
 	position: relative;
 	min-height: 100vh;
 
-	.spacer {
+	.main-content {
 		padding-bottom: $footer-height;
 	}
 }
@@ -121,8 +121,7 @@ a {
 
 		&:hover {
 			transform: scale(1.15);
-			transition-property: transform;
-			transition-duration: 200ms;
+			@include transition(transform);
 		}
 	}
 }

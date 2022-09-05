@@ -1,6 +1,6 @@
 import { useField } from "formik";
 
-export default function Select({ text, className, ...props }) {
+export default function Select({ text, className, options, ...props }) {
 	const [field, meta] = useField(props);
 
 	return (

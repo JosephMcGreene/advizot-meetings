@@ -26,7 +26,7 @@ input[type="range"]::-webkit-slider-thumb {
 	border-radius: 10px 0 10px 0;
 	transform: skew(-15deg);
 	background: $advizot-color;
-	cursor: ew-resize;
+	cursor: grab;
 	box-shadow:
 		// "3D" shadows on slider thumb; black, white
 		inset -1px -1px 6px rgba(0, 0, 0, 0.7),
@@ -36,6 +36,9 @@ input[type="range"]::-webkit-slider-thumb:hover {
 	@include btnHover();
 	transform: scale(1.15) skew(-15deg);
 }
+input[type="range"]::-webkit-slider-thumb:active {
+	cursor: grabbing;
+}
 //===== Mozilla =====
 input[type="range"]::-moz-range-thumb {
 	border: none;
@@ -44,7 +47,7 @@ input[type="range"]::-moz-range-thumb {
 	border-radius: 10px 0 10px 0;
 	transform: skew(-15deg);
 	background: $advizot-color;
-	cursor: ew-resize;
+	cursor: grab;
 	box-shadow:
 	// "3D" shadows on slider thumb; black, white
 		inset -1px -1px 6px rgba(0, 0, 0, 0.7),
@@ -56,4 +59,7 @@ input[type="range"]::-moz-range-thumb {
 input[type="range"]::-moz-range-thumb:hover {
 	transform: scale(1.15) skew(-15deg);
 	@include btnHover();
+}
+input[type="range"]::-moz-range-thumb:active {
+	cursor: grabbing;
 }
