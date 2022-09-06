@@ -9,7 +9,12 @@ export default function Responses({ responses, currentUser, onDelete }) {
 
 	return (
 		<>
-			<h2 className="responses-header">Responses</h2>
+			{/* Only show Responses header if there are responses to display */}
+			{responses.length > 0 ? (
+				<h2 className="responses-header">Responses</h2>
+			) : (
+				""
+			)}
 
 			<ul className="responses-ul">
 				{sortedResponses.map((response) => {

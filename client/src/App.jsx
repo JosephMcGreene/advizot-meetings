@@ -102,6 +102,7 @@ export default function App() {
 	// }
 
 	async function deleteResponse(userResponse) {
+		console.log(userResponse);
 		const deleteResponse = await axios({
 			method: "delete",
 			url: "/db/responses",
@@ -109,20 +110,9 @@ export default function App() {
 		});
 
 		if (deleteResponse.status === 200) {
-			let responsesArray = responses;
-			const responseToDelete = responsesArray.findIndex(
-				(response) => response._id === userResponse._id
+			setResponses(
+				responses.filter((response) => response._id !== userResponse._id)
 			);
-			while (responseToDelete !== 0) {
-				const shiftResponse = responsesArray.shift();
-				responsesArray.push(shiftResponse);
-			}
-			responsesArray.shift();
-			console.log(responsesArray);
-			alert(
-				`Deleted ${userResponse.userName}'s response of ${userResponse.personal}`
-			);
-			return setResponses([...responsesArray]);
 		}
 	}
 
