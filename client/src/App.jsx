@@ -79,30 +79,49 @@ export default function App() {
 	/**
 	 * Takes in response from MeetingForm.js adds it to the database. See /routes/db.js
 	 * @param {Object} userResponse json body to be added to the database and displayed to the users
+	 * @returns {Object} the response from the server
 	 */
-	async function submitResponses(userResponse) {
+	async function submitResponse(userResponse) {
 		userResponse.userName = `${currentUser.firstName} ${currentUser.lastName}`;
 		userResponse.date = Date.now();
-		await axios({ method: "post", url: "/db/responses", data: userResponse });
-		setResponses([...responses, userResponse]);
+		try {
+			const submitResponse = await axios({
+				method: "post",
+				url: "/db/responses",
+				data: userResponse,
+			});
+
+			if (submitResponse.status >= 200 && submitResponse < 300) {
+				setResponses([...responses, userResponse]);
+				return submitResponse;
+			}
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
 	 * Deletes the specified user response from the list as well as the db
 	 * @param {Object} userResponse The user response to be deleted from db and UI
+	 * @returns {Object} the response from the server
 	 */
 	async function deleteResponse(userResponse) {
-		console.log(userResponse);
-		const deleteResponse = await axios({
-			method: "delete",
-			url: "/db/responses",
-			data: userResponse,
-		});
+		try {
+			const deleteResponse = await axios({
+				method: "delete",
+				url: "/db/responses",
+				data: userResponse,
+			});
 
-		if (deleteResponse.status === 200) {
-			setResponses(
-				responses.filter((response) => response._id !== userResponse._id)
-			);
+			if (deleteResponse.status >= 200 && deleteResponse.status < 300) {
+				// Make a new array of all responses EXCEPT the one to be deleted
+				setResponses(
+					responses.filter((response) => response._id !== userResponse._id)
+				);
+				return deleteResponse;
+			}
+		} catch (error) {
+			console.error(error);
 		}
 	}
 
@@ -116,7 +135,7 @@ export default function App() {
 						<h1 className="welcome">Hello, {currentUser.firstName}!</h1>
 
 						<MeetingForm
-							onSubmit={(userResponse) => submitResponses(userResponse)}
+							onSubmit={(userResponse) => submitResponse(userResponse)}
 							currentUser={currentUser}
 						/>
 
