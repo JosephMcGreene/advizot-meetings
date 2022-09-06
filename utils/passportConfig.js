@@ -25,30 +25,16 @@ passport.use(
 		},
 		async function (accessToken, refreshToken, profile, done) {
 			try {
-				const existingUser = await User.findOne({ linkedinID: profile.id });
+				const existingUser = await User.findOne({ providerID: profile.id });
 
 				if (existingUser) {
 					return done(null, existingUser);
 				}
 
-				const fullName = profile.name.givenName + " " + profile.name.familyName;
-
-				if (fullName === "Joseph McGreene" || fullName === "Kevin McVicker") {
-					const newUser = await new User({
-						ID: profile.id,
-						firstName: profile.name.givenName,
-						lastName: profile.name.familyName,
-						clearance: "ADMIN",
-					});
-					await newUser.save();
-					return done(null, newUser);
-				}
-
 				const newUser = await new User({
-					ID: profile.id,
+					providerID: profile.id,
 					firstName: profile.name.givenName,
 					lastName: profile.name.familyName,
-					clearance: "MEMBER",
 				});
 				await newUser.save();
 				return done(null, newUser);
@@ -69,30 +55,16 @@ passport.use(
 		},
 		async function (accessToken, refreshToken, profile, done) {
 			try {
-				const existingUser = await User.findOne({ ID: profile.id });
+				const existingUser = await User.findOne({ providerID: profile.id });
 
 				if (existingUser) {
 					return done(null, existingUser);
 				}
 
-				const fullName = profile.name.givenName + " " + profile.name.familyName;
-
-				if (fullName === "Joseph McGreene" || fullName === "Kevin McVicker") {
-					const newUser = await new User({
-						ID: profile.id,
-						firstName: profile.name.givenName,
-						lastName: profile.name.familyName,
-						clearance: "ADMIN",
-					});
-					await newUser.save();
-					return done(null, newUser);
-				}
-
 				const newUser = await new User({
-					ID: profile.id,
+					providerID: profile.id,
 					firstName: profile.name.givenName,
 					lastName: profile.name.familyName,
-					clearance: "MEMBER",
 				});
 				await newUser.save();
 				return done(null, newUser);

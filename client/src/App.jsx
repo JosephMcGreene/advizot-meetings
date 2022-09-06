@@ -11,6 +11,9 @@
 
 //? What is the best way to authorize users as group members?
 
+//*>>>BUGS:
+//* Kevin logging in with LinkedIn makes him logged in as me
+
 import { useState, useEffect } from "react";
 //External
 import axios from "axios";
@@ -84,23 +87,10 @@ export default function App() {
 		setResponses([...responses, userResponse]);
 	}
 
-	// DELETES EVERY SINGLE USER RESPONSE ENTRY IN DATABASE
 	/**
-	 * Deletes the current slate of documents from MongoDB. See /routes/db.js
+	 * Deletes the specified user response from the list as well as the db
+	 * @param {Object} userResponse The user response to be deleted from db and UI
 	 */
-	// async function deleteAllResponses() {
-	// 	if (responses.length === 0) {
-	// 		return;
-	// 	}
-	// 	await axios({
-	// 		method: "delete",
-	// 		url: "/db/responses",
-	// 		data: responses,
-	// 	});
-	// 	await alert(`Deleted all items from the database.`);
-	// 	setResponses([]);
-	// }
-
 	async function deleteResponse(userResponse) {
 		console.log(userResponse);
 		const deleteResponse = await axios({
