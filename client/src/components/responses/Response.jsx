@@ -1,4 +1,3 @@
-import editPencil from "../../img/pen-to-square-solid.svg";
 import trashCan from "../../img/trash-can-solid.svg";
 
 export default function Response({ userResponseBody, currentUser, onDelete }) {
@@ -16,9 +15,6 @@ export default function Response({ userResponseBody, currentUser, onDelete }) {
 			{userResponseBody.userName ===
 			`${currentUser.firstName} ${currentUser.lastName}` ? (
 				<div className="response-edits">
-					<button className="edit-icon">
-						<img src={editPencil} alt="Edit Response" className="edit-pencil" />
-					</button>
 					<button
 						className="delete-icon"
 						onClick={() => onDelete(userResponseBody)}
