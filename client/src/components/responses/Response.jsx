@@ -1,3 +1,4 @@
+import ResponseDetail from "./ResponseDetail";
 import trashCan from "../../img/trash-can-solid.svg";
 
 export default function Response({ userResponseBody, currentUser, onDelete }) {
@@ -7,58 +8,66 @@ export default function Response({ userResponseBody, currentUser, onDelete }) {
 				<strong>{userResponseBody.userName}</strong>
 			</span>
 
-			<span className="response-p priority">
-				<strong>Priority:</strong> {userResponseBody.priority.substring(1)}
-			</span>
+			<ResponseDetail
+				text="Priority"
+				userResponseBody={userResponseBody}
+				currentUser={currentUser}
+				className="response-p priority"
+				inputValue={userResponseBody.priority.substring(1)}
+			/>
 
-			{/* Only display edit tools to appropriate user: */}
+			{/* Only display delete icon to correct user: */}
 			{userResponseBody.userName ===
 			`${currentUser.firstName} ${currentUser.lastName}` ? (
-				<div className="response-edits">
-					<button
-						className="delete-icon"
-						onClick={() => onDelete(userResponseBody)}
-					>
-						<img src={trashCan} alt="Delete Response" className="trash-can" />
-					</button>
-				</div>
+				<button
+					className="delete-icon"
+					onClick={() => onDelete(userResponseBody)}
+				>
+					<img src={trashCan} alt="Delete Response" className="trash-can" />
+				</button>
 			) : (
 				""
 			)}
 
-			<span className="response-p range-response">
-				<strong>Business</strong>
-				<br />
-				{userResponseBody.business}
-			</span>
+			<ResponseDetail
+				text="Business"
+				userResponseBody={userResponseBody}
+				currentUser={currentUser}
+				className="response-p range-response business"
+				inputValue={userResponseBody.business}
+			/>
 
-			<span className="response-p range-response">
-				<strong>Personal</strong>
-				<br />
-				{userResponseBody.personal}
-			</span>
+			<ResponseDetail
+				text="Personal"
+				userResponseBody={userResponseBody}
+				currentUser={currentUser}
+				className="response-p range-response personal"
+				inputValue={userResponseBody.personal}
+			/>
 
-			<span className="response-p range-response">
-				<strong>Relationships</strong>
-				<br />
-				{userResponseBody.relationships}
-			</span>
+			<ResponseDetail
+				text="Relationships"
+				userResponseBody={userResponseBody}
+				currentUser={currentUser}
+				className="response-p range-response relationships"
+				inputValue={userResponseBody.relationships}
+			/>
 
-			<article className="response-p issue">
-				<h4>
-					<strong>Today's Issue</strong>
-				</h4>
-				<br />
-				<p>{userResponseBody.monthlyIssue}</p>
-			</article>
+			<ResponseDetail
+				text="Today's Issue"
+				userResponseBody={userResponseBody}
+				currentUser={currentUser}
+				className="response-p issue"
+				inputValue={userResponseBody.monthlyIssue}
+			/>
 
-			<article className="response-p goal">
-				<h4>
-					<strong>Goal Before Next Meeting</strong>
-				</h4>
-				<br />
-				<p>{userResponseBody.monthlyGoal}</p>
-			</article>
+			<ResponseDetail
+				text="Goal Before Next Meeting"
+				userResponseBody={userResponseBody}
+				currentUser={currentUser}
+				className="response-p goal"
+				inputValue={userResponseBody.monthlyGoal}
+			/>
 		</li>
 	);
 }

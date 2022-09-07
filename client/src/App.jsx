@@ -1,20 +1,3 @@
-//! Overall Goals:
-//!    - Easy and Fast to use
-//!    - Secure Server Sign-In
-//!    - Answers to sign-in questions to be used during the course of the meeting via a projector
-//!    (- POST data to Coach Accountable to be stored as a metric for user later on)
-//TODO (1) Add user...
-//TODO			- settings
-//TODO			- ability to delete/change their own responses
-//TODO (2) Create session rooms for each of the three groups
-//TODO (- POST data to Coach Accountable. Add ability to remove the data as well.)
-
-//? What is the best way to authorize users as group members? Does Vistage have an API?
-
-//*>>>BUGS:
-//* ? Kevin logging in with LinkedIn makes him logged in as me
-//*		Logging in with both LinkedIn and Google results in two separate accounts...
-
 import { useState, useEffect } from "react";
 //External
 import axios from "axios";

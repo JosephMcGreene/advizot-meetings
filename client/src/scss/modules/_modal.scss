@@ -25,9 +25,8 @@
 			box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
 
 			span {
-				font-family: "Audiowide", cursive;
+				@include advizotFont(1.25rem, 400, 0);
 				margin: 0.75rem 0.9rem;
-				font-size: 1.25rem;
 			}
 
 			.close-x {

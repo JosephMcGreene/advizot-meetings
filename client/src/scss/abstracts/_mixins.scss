@@ -1,5 +1,13 @@
 @use "../abstracts/variables" as var;
 
+@mixin advizotFont($size, $weight, $spacing) {
+	@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+	font-family: "Audiowide", cursive;
+	font-size: $size;
+	font-weight: $weight;
+	letter-spacing: $spacing;
+}
+
 @mixin flex($direction) {
 	display: flex;
 	flex-direction: $direction;
@@ -33,6 +41,21 @@
 	background-color: black;
 	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.75);
 	@include transition(all);
+}
+
+@mixin editIcon($size, $padding) {
+	display: none;
+	border: none;
+	background-color: transparent;
+	border-radius: 50%;
+	width: $size;
+	height: $size;
+	padding: $padding;
+}
+
+@mixin penPosition($left) {
+	top: 10px;
+	left: $left;
 }
 
 //Login Buttons
