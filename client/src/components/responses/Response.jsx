@@ -1,5 +1,6 @@
-import ResponseDetail from "./ResponseDetail";
+import RatingPriority from "./RatingPriority";
 import trashCan from "../../img/trash-can-solid.svg";
+import IssueGoal from "./IssueGoal";
 
 export default function Response({ userResponseBody, currentUser, onDelete }) {
 	return (
@@ -8,12 +9,12 @@ export default function Response({ userResponseBody, currentUser, onDelete }) {
 				<strong>{userResponseBody.userName}</strong>
 			</span>
 
-			<ResponseDetail
-				text="Priority"
+			<RatingPriority
+				title="Priority"
 				userResponseBody={userResponseBody}
 				currentUser={currentUser}
 				className="response-p priority"
-				inputValue={userResponseBody.priority.substring(1)}
+				text={userResponseBody.priority.substring(1)}
 			/>
 
 			{/* Only display delete icon to correct user: */}
@@ -29,44 +30,44 @@ export default function Response({ userResponseBody, currentUser, onDelete }) {
 				""
 			)}
 
-			<ResponseDetail
-				text="Business"
+			<RatingPriority
+				title="Business"
 				userResponseBody={userResponseBody}
 				currentUser={currentUser}
-				className="response-p range-response business"
-				inputValue={userResponseBody.business}
+				className="response-p range-response"
+				text={userResponseBody.business}
 			/>
 
-			<ResponseDetail
-				text="Personal"
+			<RatingPriority
+				title="Personal"
 				userResponseBody={userResponseBody}
 				currentUser={currentUser}
-				className="response-p range-response personal"
-				inputValue={userResponseBody.personal}
+				className="response-p range-response"
+				text={userResponseBody.personal}
 			/>
 
-			<ResponseDetail
-				text="Relationships"
+			<RatingPriority
+				title="Relationships"
 				userResponseBody={userResponseBody}
 				currentUser={currentUser}
-				className="response-p range-response relationships"
-				inputValue={userResponseBody.relationships}
+				className="response-p range-response"
+				text={userResponseBody.relationships}
 			/>
 
-			<ResponseDetail
-				text="Today's Issue"
+			<IssueGoal
+				title="Today's Issue"
 				userResponseBody={userResponseBody}
 				currentUser={currentUser}
 				className="response-p issue"
-				inputValue={userResponseBody.monthlyIssue}
+				text={userResponseBody.monthlyIssue}
 			/>
 
-			<ResponseDetail
-				text="Goal Before Next Meeting"
+			<IssueGoal
+				title="Goal Before Next Meeting"
 				userResponseBody={userResponseBody}
 				currentUser={currentUser}
 				className="response-p goal"
-				inputValue={userResponseBody.monthlyGoal}
+				text={userResponseBody.monthlyGoal}
 			/>
 		</li>
 	);
