@@ -53,8 +53,8 @@
 	padding: $padding;
 }
 
-@mixin penPosition($left) {
-	top: 10px;
+@mixin penPosition($top, $left) {
+	top: $top;
 	left: $left;
 }
 
