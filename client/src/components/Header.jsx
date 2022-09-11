@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../App";
 import logo from "../img/Original on Transparent.png";
 import Login from "./Login";
 
-export default function Header({ currentUser }) {
+export default function Header() {
 	const [showLogin, setShowLogin] = useState(false);
+	const currentUser = useContext(UserContext);
 
 	return (
 		<header className="header">

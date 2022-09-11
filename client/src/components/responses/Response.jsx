@@ -1,20 +1,26 @@
-import RatingPriority from "./RatingPriority";
-import trashCan from "../../img/trash-can-solid.svg";
+import { useContext } from "react";
+import { UserContext } from "../../App";
+import Rating from "./Rating";
+import Priority from "./Priority";
 import IssueGoal from "./IssueGoal";
+import trashCan from "../../img/trash-can-solid.svg";
 
-export default function Response({ userResponseBody, currentUser, onDelete }) {
+export default function Response({ userResponseBody, onSubmit, onDelete }) {
+	const currentUser = useContext(UserContext);
+
 	return (
 		<li className="response-li">
 			<span className="response-name">
 				<strong>{userResponseBody.userName}</strong>
 			</span>
 
-			<RatingPriority
+			<Priority
 				title="Priority"
 				userResponseBody={userResponseBody}
 				currentUser={currentUser}
 				className="response-p priority"
 				text={userResponseBody.priority.substring(1)}
+				onSubmit={onSubmit}
 			/>
 
 			{/* Only display delete icon to correct user: */}
@@ -30,28 +36,34 @@ export default function Response({ userResponseBody, currentUser, onDelete }) {
 				""
 			)}
 
-			<RatingPriority
+			<Rating
 				title="Business"
 				userResponseBody={userResponseBody}
 				currentUser={currentUser}
 				className="response-p range-response"
 				text={userResponseBody.business}
+				onSubmit={onSubmit}
+				onDelete={onDelete}
 			/>
 
-			<RatingPriority
+			<Rating
 				title="Personal"
 				userResponseBody={userResponseBody}
 				currentUser={currentUser}
 				className="response-p range-response"
 				text={userResponseBody.personal}
+				onSubmit={onSubmit}
+				onDelete={onDelete}
 			/>
 
-			<RatingPriority
+			<Rating
 				title="Relationships"
 				userResponseBody={userResponseBody}
 				currentUser={currentUser}
 				className="response-p range-response"
 				text={userResponseBody.relationships}
+				onSubmit={onSubmit}
+				onDelete={onDelete}
 			/>
 
 			<IssueGoal

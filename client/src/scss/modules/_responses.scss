@@ -41,6 +41,14 @@
 					display: block;
 				}
 			}
+
+			.edit-response {
+				@include inputBorder();
+				padding: 5px;
+				width: min-content;
+				display: block;
+				margin: 0 auto;
+			}
 		}
 
 		.response-name {
@@ -75,6 +83,7 @@
 				@include transition(all);
 			}
 		}
+
 		.priority {
 			grid-row: 1;
 			grid-column: 2;
@@ -82,6 +91,7 @@
 			align-self: start;
 			text-align: center;
 		}
+
 		.range-response {
 			grid-row: 2 / 3;
 			text-align: center;

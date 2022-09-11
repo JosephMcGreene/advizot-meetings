@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 //External
 import axios from "axios";
 //Internal
@@ -7,12 +7,13 @@ import Header from "./components/Header";
 import MeetingForm from "./components/form/MeetingForm";
 import Responses from "./components/responses/Responses";
 import Footer from "./components/Footer";
+//Context for logged in user data, currentUser:
+export const UserContext = React.createContext();
 
 export default function App() {
 	const [responses, setResponses] = useState([]);
 	const [currentUser, setCurrentUser] = useState({});
 
-	//=====EFFECTS=====
 	useEffect(() => {
 		getCurrentUser();
 	}, []);
@@ -111,30 +112,31 @@ export default function App() {
 
 	return (
 		<div className="App">
-			<Header currentUser={currentUser} />
-			<main className="main-content">
-				{/* User must sign in to use app features, so only show the features if logged in: */}
-				{currentUser ? (
-					<>
-						<h1 className="welcome">Hello, {currentUser.firstName}!</h1>
+			<UserContext.Provider value={currentUser}>
+				<Header />
+				<main className="main-content">
+					{/* User must sign in to use app features, so only show the features if logged in: */}
+					{currentUser ? (
+						<>
+							<h1 className="welcome">Hello, {currentUser.firstName}!</h1>
 
-						<MeetingForm
-							onSubmit={(userResponse) => submitResponse(userResponse)}
-							currentUser={currentUser}
-						/>
+							<MeetingForm
+								onSubmit={(userResponse) => submitResponse(userResponse)}
+							/>
 
-						<Responses
-							currentUser={currentUser}
-							responses={responses}
-							onDelete={(userResponse) => deleteResponse(userResponse)}
-						/>
-					</>
-				) : (
-					<h1 className="welcome">
-						Welcome! <br /> Please sign in to continue.
-					</h1>
-				)}
-			</main>
+							<Responses
+								responses={responses}
+								onSubmit={(userEdit) => submitResponse(userEdit)}
+								onDelete={(userResponse) => deleteResponse(userResponse)}
+							/>
+						</>
+					) : (
+						<h1 className="welcome">
+							Welcome! <br /> Please sign in to continue.
+						</h1>
+					)}
+				</main>
+			</UserContext.Provider>
 			<Footer />
 		</div>
 	);

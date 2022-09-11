@@ -9,5 +9,6 @@ Overall Goals:
 What is the best way to authorize users as group members? Does Vistage have an API?
 
 >>>BUGS:
- ? Kevin logging in with LinkedIn makes him logged in as me
+	? Kevin logging in with LinkedIn makes him logged in as me
 		Logging in with both LinkedIn and Google results in two separate accounts...
+	?	mobile users cannot see trash can
