@@ -29,6 +29,8 @@
 				position: relative;
 
 				.edit-icon {
+					// display set to block on response-p:hover. See below
+					display: none;
 					position: absolute;
 					@include editIcon(15px, 0);
 					@include penPosition(2px, -19px);
@@ -56,7 +58,7 @@
 			font-size: 1.1rem;
 			background-color: $advizot-light;
 			padding: 7px 10%;
-			width: fit-content;
+			width: min-content;
 
 			grid-row: 1;
 			justify-self: center;
@@ -69,7 +71,6 @@
 		}
 
 		.delete-icon {
-			// display is none until hover over .response-li
 			@include editIcon(50px, 17.5px);
 			grid-row: 1;
 			grid-column: 3;
@@ -87,7 +88,7 @@
 		.priority {
 			grid-row: 1;
 			grid-column: 2;
-			justify-self: center;
+			justify-self: start;
 			align-self: start;
 			text-align: center;
 		}
@@ -113,10 +114,8 @@
 			}
 		}
 
-		&:hover {
-			.delete-icon {
-				display: block;
-			}
+		.btn {
+			letter-spacing: 0;
 		}
 	}
 }

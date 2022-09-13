@@ -21,8 +21,7 @@ export default function Priority({
 	 * Ensures that the correct user is able to edit the response
 	 * @returns {func} function to enable editing mode
 	 */
-	function setEditingMode(event) {
-		// event.preventDefault();
+	function setEditingMode() {
 		if (
 			userResponseBody.userName ===
 			`${currentUser.firstName} ${currentUser.lastName}`
@@ -32,7 +31,7 @@ export default function Priority({
 	}
 
 	return (
-		<span className={className} onClick={(event) => setEditingMode(event)}>
+		<span className={className} onClick={() => setEditingMode()}>
 			<strong>
 				{/* only show edit pen icon on hover to correct user: */}
 				{userResponseBody.userName ===
@@ -55,7 +54,7 @@ export default function Priority({
 						priorty: userResponseBody.priority,
 					}}
 					validationSchema={Yup.object({
-						priority: Yup.string(),
+						priority: Yup.string().required("Make Selection"),
 					})}
 					onSubmit={(values, { setSubmitting }) => {
 						try {
@@ -79,7 +78,7 @@ export default function Priority({
 								<option value="eC">C</option>
 							</Select>
 
-							<button type="submit" className="done-btn">
+							<button type="submit" className="btn">
 								Done
 							</button>
 						</Form>
