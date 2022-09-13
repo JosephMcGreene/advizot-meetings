@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 //Internal
+import MinimizedForm from "./MinimizedForm";
 import InputField from "./InputField";
 import Select from "./Select";
 import chevron from "../../img/chevron-up-solid.svg";
@@ -10,17 +11,9 @@ import chevron from "../../img/chevron-up-solid.svg";
 export default function MeetingForm({ onSubmit }) {
 	const [formVisibility, setFormVisibility] = useState(true);
 
-	// User can minimize the form to focus on displaying user responses:
 	if (!formVisibility) {
 		return (
-			<div className="minimized-form">
-				<button
-					onClick={() => setFormVisibility(!formVisibility)}
-					className="minimize-btn"
-				>
-					<img src={chevron} alt="Close Form" className="chevron-flipped" />
-				</button>
-			</div>
+			<MinimizedForm expandForm={() => setFormVisibility(!formVisibility)} />
 		);
 	}
 
@@ -77,6 +70,7 @@ export default function MeetingForm({ onSubmit }) {
 			{({ isSubmitting, submitCount, ...props }) => (
 				<Form className="form">
 					<button
+						type="button"
 						className="minimize-btn"
 						onClick={() => setFormVisibility(!formVisibility)}
 					>

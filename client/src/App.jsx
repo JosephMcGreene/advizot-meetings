@@ -7,7 +7,7 @@ import Header from "./components/Header";
 import MeetingForm from "./components/form/MeetingForm";
 import Responses from "./components/responses/Responses";
 import Footer from "./components/Footer";
-//Context for logged in user data, currentUser:
+//Context for logged in user data currentUser:
 export const UserContext = React.createContext();
 
 export default function App() {
@@ -20,7 +20,7 @@ export default function App() {
 
 	useEffect(() => {
 		getExistingResponses();
-	}, []);
+	}, [currentUser]);
 
 	//=====HELPERS=====
 	/**
@@ -62,9 +62,8 @@ export default function App() {
 	}
 
 	/**
-	 * Takes in response from MeetingForm.js adds it to the database. See /routes/db.js
-	 * @param {Object} userResponse json body to be added to the database and displayed to the users
-	 * @returns {Object} the response from the server
+	 * Takes in user response from MeetingForm.js and adds it to the database or updates an existing user response. See /routes/db.js
+	 * @param {Object} userResponse json body to be added to edited in the database and displayed to the users
 	 */
 	async function submitResponse(userResponse) {
 		userResponse.userName = `${currentUser.firstName} ${currentUser.lastName}`;
@@ -76,9 +75,13 @@ export default function App() {
 				data: userResponse,
 			});
 
-			if (submitResponse.status >= 200 && submitResponse < 300) {
-				setResponses([...responses, userResponse]);
-				return submitResponse;
+			if (submitResponse.status >= 200 && submitResponse.status < 300) {
+				const newResponses = responses.filter(
+					(response) => response._id !== userResponse._id
+				);
+				newResponses.push(submitResponse.data);
+
+				setResponses(newResponses);
 			}
 		} catch (error) {
 			console.error(error);
@@ -126,7 +129,7 @@ export default function App() {
 
 							<Responses
 								responses={responses}
-								onSubmit={(userEdit) => submitResponse(userEdit)}
+								onSubmitEdits={(userEdit) => submitResponse(userEdit)}
 								onDelete={(userResponse) => deleteResponse(userResponse)}
 							/>
 						</>

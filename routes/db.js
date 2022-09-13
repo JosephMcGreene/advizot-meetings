@@ -13,9 +13,14 @@ dbRouter
 			console.error(error);
 		}
 	})
+	//Used to post both new responses and edit existing responses if there is already one in the db with a matching _id
 	.post(async function (req, res) {
 		try {
-			const newResponse = new Response({
+			if (req.body._id) {
+				await Response.deleteOne({ _id: req.body._id });
+			}
+
+			const newUserResponse = new Response({
 				userName: req.body.userName,
 				business: req.body.business,
 				personal: req.body.personal,
@@ -25,16 +30,17 @@ dbRouter
 				monthlyGoal: req.body.monthlyGoal,
 				date: req.body.date,
 			});
-			await newResponse.save();
-			res.json(newResponse);
+			await newUserResponse.save();
+
+			res.json(newUserResponse);
 		} catch (error) {
 			console.error(error);
 		}
 	})
 	.delete(async function (req, res) {
 		try {
-			const deleteRes = await Response.deleteOne({ _id: req.body._id });
-			res.json(deleteRes);
+			const deletionRes = await Response.deleteOne({ _id: req.body._id });
+			res.json(deletionRes);
 		} catch (error) {
 			console.error(error);
 		}

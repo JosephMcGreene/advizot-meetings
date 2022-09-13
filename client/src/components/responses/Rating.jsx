@@ -1,5 +1,10 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../App";
+////External
+// import { Formik, Form } from "formik";
+// import * as Yup from "yup";
+////Internal
+// import InputField from "../form/InputField";
 import editPen from "../../img/pen-solid.svg";
 
 export default function Rating({
@@ -10,31 +15,30 @@ export default function Rating({
 	onSubmit,
 	onDelete,
 }) {
-	const [isEditing, setIsEditing] = useState(false);
-	const [inputValue, setInputValue] = useState("");
+	// const [isEditing, setIsEditing] = useState(false);
+	// const [inputValue, setInputValue] = useState("");
 	const currentUser = useContext(UserContext);
 
 	/**
 	 * edits the user's response and sends the new data up the component tree
 	 * @param {Object} event the event triggering the function
 	 */
-	function handleSubmit(event) {
-		event.preventDefault();
+	// function handleSubmit(event) {
+	// 	event.preventDefault();
 
-		let saveResponse = userResponseBody;
-		//submit new response:
-		saveResponse[title.toLowerCase()] = parseInt(inputValue);
-		onSubmit(saveResponse);
-		//delete old user response:
-		onDelete(userResponseBody);
+	// 	let saveResponse = userResponseBody;
+	// 	//submit new response:
+	// 	saveResponse[title.toLowerCase()] = parseInt(inputValue);
+	// 	onSubmit(saveResponse);
+	// 	//delete old user response:
+	// 	onDelete(userResponseBody);
 
-		setIsEditing(false);
-	}
+	// 	setIsEditing();
+	// }
 
 	return (
-		<span className={className} onClick={() => setIsEditing(true)}>
+		<span className={className}>
 			<strong>
-				{/* only show edit pen icon on hover and to correct user: */}
 				{userResponseBody.userName ===
 				`${currentUser.firstName} ${currentUser.lastName}` ? (
 					<button className="edit-icon">
@@ -49,23 +53,7 @@ export default function Rating({
 
 			<br />
 
-			{isEditing ? (
-				<form onSubmit={handleSubmit}>
-					<input
-						type="number"
-						min="1"
-						max="10"
-						className="edit-response"
-						value={inputValue}
-						onChange={(e) => setInputValue(e.target.value)}
-					/>
-					<button type="submit" className="btn">
-						Done
-					</button>
-				</form>
-			) : (
-				<>{text}</>
-			)}
+			{text}
 		</span>
 	);
 }

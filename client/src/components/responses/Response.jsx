@@ -5,7 +5,11 @@ import Priority from "./Priority";
 import IssueGoal from "./IssueGoal";
 import trashCan from "../../img/trash-can-solid.svg";
 
-export default function Response({ userResponseBody, onSubmit, onDelete }) {
+export default function Response({
+	userResponseBody,
+	onSubmitEdits,
+	onDelete,
+}) {
 	const currentUser = useContext(UserContext);
 
 	return (
@@ -20,7 +24,7 @@ export default function Response({ userResponseBody, onSubmit, onDelete }) {
 				currentUser={currentUser}
 				className="response-p priority"
 				text={userResponseBody.priority.substring(1)}
-				onSubmit={onSubmit}
+				onSubmitEdits={onSubmitEdits}
 			/>
 
 			{/* Only display delete icon to correct user: */}
@@ -42,8 +46,6 @@ export default function Response({ userResponseBody, onSubmit, onDelete }) {
 				currentUser={currentUser}
 				className="response-p range-response"
 				text={userResponseBody.business}
-				onSubmit={onSubmit}
-				onDelete={onDelete}
 			/>
 
 			<Rating
@@ -52,8 +54,6 @@ export default function Response({ userResponseBody, onSubmit, onDelete }) {
 				currentUser={currentUser}
 				className="response-p range-response"
 				text={userResponseBody.personal}
-				onSubmit={onSubmit}
-				onDelete={onDelete}
 			/>
 
 			<Rating
@@ -62,8 +62,6 @@ export default function Response({ userResponseBody, onSubmit, onDelete }) {
 				currentUser={currentUser}
 				className="response-p range-response"
 				text={userResponseBody.relationships}
-				onSubmit={onSubmit}
-				onDelete={onDelete}
 			/>
 
 			<IssueGoal
