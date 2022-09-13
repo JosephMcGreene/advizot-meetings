@@ -15,8 +15,7 @@ export default function Rating({
 	onSubmit,
 	onDelete,
 }) {
-	// const [isEditing, setIsEditing] = useState(false);
-	// const [inputValue, setInputValue] = useState("");
+	const [isEditing, setIsEditing] = useState(false);
 	const currentUser = useContext(UserContext);
 
 	/**

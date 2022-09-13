@@ -17,8 +17,22 @@ export default function Priority({
 	const [isEditing, setIsEditing] = useState(false);
 	const currentUser = useContext(UserContext);
 
+	/**
+	 * Ensures that the correct user is able to edit the response
+	 * @returns {func} function to enable editing mode
+	 */
+	function setEditingMode(event) {
+		// event.preventDefault();
+		if (
+			userResponseBody.userName ===
+			`${currentUser.firstName} ${currentUser.lastName}`
+		) {
+			setIsEditing(true);
+		}
+	}
+
 	return (
-		<span className={className} onClick={() => setIsEditing(true)}>
+		<span className={className} onClick={(event) => setEditingMode(event)}>
 			<strong>
 				{/* only show edit pen icon on hover to correct user: */}
 				{userResponseBody.userName ===

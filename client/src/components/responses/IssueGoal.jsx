@@ -8,17 +8,11 @@ export default function IssueGoal({
 	className,
 	text,
 }) {
-	const [isEditing, setIsEditing] = useState(false);
-	const [inputValue, setInputValue] = useState("");
+	// const [isEditing, setIsEditing] = useState(false);
 	const currentUser = useContext(UserContext);
 
-	function handleSubmit(event) {
-		console.log(inputValue);
-		return setIsEditing(false);
-	}
-
 	return (
-		<article className={className} onClick={() => setIsEditing(true)}>
+		<article className={className}>
 			<h4>
 				<strong>
 					{/* only show edit pen icon on hover to correct user: */}
@@ -37,8 +31,8 @@ export default function IssueGoal({
 
 			<br />
 
-			{isEditing ? (
-				<form onSubmit={handleSubmit}>
+			{/* {isEditing ? (
+				<form>
 					<textarea
 						className="edit-response"
 						value={inputValue}
@@ -50,7 +44,8 @@ export default function IssueGoal({
 				</form>
 			) : (
 				<p>{text}</p>
-			)}
+			)} */}
+			{text}
 		</article>
 	);
 }
