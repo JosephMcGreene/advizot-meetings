@@ -67,7 +67,7 @@ export default function Priority({
 						}
 					}}
 				>
-					{({ ...props }) => (
+					{() => (
 						<Form>
 							<Select name="priority" className="priority">
 								<option>Select</option>

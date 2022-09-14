@@ -3,8 +3,8 @@ import Response from "./Response";
 
 export default function Responses({
 	responses,
-	loading,
 	onSubmitEdits,
+	loading,
 	onDelete,
 }) {
 	//Sort responses to be displayed in order of priority
@@ -22,6 +22,7 @@ export default function Responses({
 				""
 			)}
 
+			{/* If Promises in fetching are pending, render a loading animation */}
 			{loading ? (
 				<LoadingSpinner />
 			) : (
