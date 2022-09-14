@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 export const UserContext = React.createContext();
 
 export default function App() {
+	const [loading, setLoading] = useState(false);
 	const [responses, setResponses] = useState([]);
 	const [currentUser, setCurrentUser] = useState({});
 
@@ -45,6 +46,8 @@ export default function App() {
 	 */
 	async function getExistingResponses() {
 		try {
+			setLoading(true);
+
 			const existingResponses = await axios({
 				method: "get",
 				url: "/db/responses",
@@ -53,9 +56,11 @@ export default function App() {
 					"Content-Type": "application/json",
 				},
 			});
-			if (existingResponses.data && existingResponses.data.length > 0) {
+
+			if (existingResponses.status >= 200 && existingResponses.status < 300) {
 				setResponses([...existingResponses.data]);
 			}
+			setLoading(false);
 		} catch (error) {
 			console.error(error);
 		}
@@ -69,6 +74,8 @@ export default function App() {
 		userResponse.userName = `${currentUser.firstName} ${currentUser.lastName}`;
 		userResponse.date = Date.now();
 		try {
+			setLoading(true);
+
 			const submitResponse = await axios({
 				method: "post",
 				url: "/db/responses",
@@ -83,6 +90,7 @@ export default function App() {
 
 				setResponses(newResponses);
 			}
+			setLoading(false);
 		} catch (error) {
 			console.error(error);
 		}
@@ -95,6 +103,7 @@ export default function App() {
 	 */
 	async function deleteResponse(userResponse) {
 		try {
+			setLoading(true);
 			const deleteResponse = await axios({
 				method: "delete",
 				url: "/db/responses",
@@ -106,6 +115,7 @@ export default function App() {
 				setResponses(
 					responses.filter((response) => response._id !== userResponse._id)
 				);
+				setLoading(false);
 				return deleteResponse;
 			}
 		} catch (error) {
@@ -129,6 +139,7 @@ export default function App() {
 
 							<Responses
 								responses={responses}
+								loading={loading}
 								onSubmitEdits={(userEdit) => submitResponse(userEdit)}
 								onDelete={(userResponse) => deleteResponse(userResponse)}
 							/>

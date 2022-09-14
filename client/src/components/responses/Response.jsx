@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "../../App";
+import LoadingSpinner from "../LoadingSpinner";
 import Rating from "./Rating";
 import Priority from "./Priority";
 import IssueGoal from "./IssueGoal";
@@ -7,10 +8,15 @@ import trashCan from "../../img/trash-can-solid.svg";
 
 export default function Response({
 	userResponseBody,
+	loading,
 	onSubmitEdits,
 	onDelete,
 }) {
 	const currentUser = useContext(UserContext);
+
+	// if (loading) {
+	// 	return <LoadingSpinner />;
+	// }
 
 	return (
 		<li className="response-li">
