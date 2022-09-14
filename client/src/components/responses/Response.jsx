@@ -12,6 +12,19 @@ export default function Response({
 }) {
 	const currentUser = useContext(UserContext);
 
+	/**
+	 * Ensures the correct user is able to edit the resposne
+	 * @param {func} callback calls setEditing in the appropriate input field
+	 */
+	function setEditingMode(callback) {
+		if (
+			userResponseBody.userName ===
+			`${currentUser.firstName} ${currentUser.lastName}`
+		) {
+			callback();
+		}
+	}
+
 	return (
 		<li className="response-li">
 			<span className="response-name">
@@ -24,6 +37,7 @@ export default function Response({
 				currentUser={currentUser}
 				className="response-p priority"
 				text={userResponseBody.priority.substring(1)}
+				setEditingMode={setEditingMode}
 				onSubmitEdits={onSubmitEdits}
 			/>
 
@@ -46,6 +60,8 @@ export default function Response({
 				currentUser={currentUser}
 				className="response-p range-response"
 				text={userResponseBody.business}
+				setEditingMode={setEditingMode}
+				onSubmitEdits={onSubmitEdits}
 			/>
 
 			<Rating
@@ -54,6 +70,8 @@ export default function Response({
 				currentUser={currentUser}
 				className="response-p range-response"
 				text={userResponseBody.personal}
+				setEditingMode={setEditingMode}
+				onSubmitEdits={onSubmitEdits}
 			/>
 
 			<Rating
@@ -62,10 +80,12 @@ export default function Response({
 				currentUser={currentUser}
 				className="response-p range-response"
 				text={userResponseBody.relationships}
+				setEditingMode={setEditingMode}
+				onSubmitEdits={onSubmitEdits}
 			/>
 
 			<IssueGoal
-				title="Today's Issue"
+				title="Issue to Process Today"
 				userResponseBody={userResponseBody}
 				currentUser={currentUser}
 				className="response-p issue"

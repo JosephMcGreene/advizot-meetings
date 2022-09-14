@@ -89,6 +89,7 @@
 			grid-row: 1;
 			grid-column: 2;
 			justify-self: center;
+			font-family: $main-font;
 			align-self: start;
 			text-align: center;
 		}
@@ -116,6 +117,14 @@
 
 		.btn {
 			letter-spacing: 0;
+			margin: 1vh auto;
+		}
+
+		input[type="number"] {
+			@include inputBorder();
+			padding: 6% 10%;
+			font-family: $main-font;
+			font-size: 1rem;
 		}
 	}
 }

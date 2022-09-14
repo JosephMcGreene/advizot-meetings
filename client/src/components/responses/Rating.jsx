@@ -1,10 +1,10 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../App";
-////External
-// import { Formik, Form } from "formik";
-// import * as Yup from "yup";
-////Internal
-// import InputField from "../form/InputField";
+//External
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
+//Internal
+import InputField from "../form/InputField";
 import editPen from "../../img/pen-solid.svg";
 
 export default function Rating({
@@ -12,32 +12,19 @@ export default function Rating({
 	userResponseBody,
 	className,
 	text,
-	onSubmit,
-	onDelete,
+	setEditingMode,
+	onSubmitEdits,
 }) {
 	const [isEditing, setIsEditing] = useState(false);
 	const currentUser = useContext(UserContext);
 
-	/**
-	 * edits the user's response and sends the new data up the component tree
-	 * @param {Object} event the event triggering the function
-	 */
-	// function handleSubmit(event) {
-	// 	event.preventDefault();
-
-	// 	let saveResponse = userResponseBody;
-	// 	//submit new response:
-	// 	saveResponse[title.toLowerCase()] = parseInt(inputValue);
-	// 	onSubmit(saveResponse);
-	// 	//delete old user response:
-	// 	onDelete(userResponseBody);
-
-	// 	setIsEditing();
-	// }
-
 	return (
-		<span className={className}>
+		<span
+			className={className}
+			onClick={() => setEditingMode(setIsEditing(true))}
+		>
 			<strong>
+				{/* only show edit pen icon on hover to correct user: */}
 				{userResponseBody.userName ===
 				`${currentUser.firstName} ${currentUser.lastName}` ? (
 					<button className="edit-icon">
@@ -52,7 +39,45 @@ export default function Rating({
 
 			<br />
 
-			{text}
+			{isEditing ? (
+				<Formik
+					initialValues={{
+						[title.toLowerCase()]: userResponseBody[title.toLowerCase()],
+					}}
+					validationSchema={Yup.object({
+						[title.toLowerCase()]: Yup.number(),
+					})}
+					onSubmit={(values, { setSubmitting }) => {
+						try {
+							userResponseBody[title.toLowerCase()] =
+								values[title.toLowerCase()];
+							onSubmitEdits(userResponseBody);
+							setSubmitting(false);
+							setIsEditing(false);
+						} catch (error) {
+							console.error(error);
+						}
+					}}
+				>
+					{() => (
+						<Form>
+							<InputField
+								name={title.toLowerCase()}
+								as="input"
+								type="number"
+								min={1}
+								max={10}
+							/>
+
+							<button type="submit" className="btn">
+								Done
+							</button>
+						</Form>
+					)}
+				</Formik>
+			) : (
+				<>{text}</>
+			)}
 		</span>
 	);
 }

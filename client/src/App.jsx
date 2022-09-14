@@ -69,28 +69,30 @@ export default function App() {
 	/**
 	 * Takes in user response from MeetingForm.js and adds it to the database or updates an existing user response. See /routes/db.js
 	 * @param {Object} userResponse json body to be added to edited in the database and displayed to the users
+	 * @returns {Object} response object from the server
 	 */
-	async function submitResponse(userResponse) {
-		userResponse.userName = `${currentUser.firstName} ${currentUser.lastName}`;
-		userResponse.date = Date.now();
+	async function submitResponse(responseToSubmit) {
+		responseToSubmit.userName = `${currentUser.firstName} ${currentUser.lastName}`;
+		responseToSubmit.date = Date.now();
 		try {
 			setLoading(true);
 
-			const submitResponse = await axios({
+			const submitRes = await axios({
 				method: "post",
 				url: "/db/responses",
-				data: userResponse,
+				data: responseToSubmit,
 			});
 
-			if (submitResponse.status >= 200 && submitResponse.status < 300) {
+			if (submitRes.status >= 200 && submitRes.status < 300) {
 				const newResponses = responses.filter(
-					(response) => response._id !== userResponse._id
+					(response) => response._id !== responseToSubmit._id
 				);
-				newResponses.push(submitResponse.data);
+				newResponses.push(submitRes.data);
 
 				setResponses(newResponses);
 			}
 			setLoading(false);
+			return submitRes;
 		} catch (error) {
 			console.error(error);
 		}
@@ -101,22 +103,22 @@ export default function App() {
 	 * @param {Object} userResponse The user response to be deleted from db and UI
 	 * @returns {Object} the response from the server
 	 */
-	async function deleteResponse(userResponse) {
+	async function deleteResponse(responseToDelete) {
 		try {
 			setLoading(true);
-			const deleteResponse = await axios({
+			const deleteRes = await axios({
 				method: "delete",
 				url: "/db/responses",
-				data: userResponse,
+				data: responseToDelete,
 			});
 
-			if (deleteResponse.status >= 200 && deleteResponse.status < 300) {
+			if (deleteRes.status >= 200 && deleteRes.status < 300) {
 				// Make a new array of all responses EXCEPT the one to be deleted
 				setResponses(
-					responses.filter((response) => response._id !== userResponse._id)
+					responses.filter((response) => response._id !== responseToDelete._id)
 				);
 				setLoading(false);
-				return deleteResponse;
+				return deleteRes;
 			}
 		} catch (error) {
 			console.error(error);
@@ -134,14 +136,18 @@ export default function App() {
 							<h1 className="welcome">Hello, {currentUser.firstName}!</h1>
 
 							<MeetingForm
-								onSubmit={(userResponse) => submitResponse(userResponse)}
+								onSubmit={(responseToSubmit) =>
+									submitResponse(responseToSubmit)
+								}
 							/>
 
 							<Responses
 								responses={responses}
 								loading={loading}
 								onSubmitEdits={(userEdit) => submitResponse(userEdit)}
-								onDelete={(userResponse) => deleteResponse(userResponse)}
+								onDelete={(responseToDelete) =>
+									deleteResponse(responseToDelete)
+								}
 							/>
 						</>
 					) : (
