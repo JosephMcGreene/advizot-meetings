@@ -3,12 +3,10 @@ Overall Goals:
 	- Secure Server Sign-In
 	- Answers to sign-in questions to be used during the course of the meeting via a projector  
 
-(1) Add ability for user to delete/change their own responses
+(1) Figure out how to authorize users as actual Vistage Members. Not just anyone should be able to make an account, or at least not be able to log in to session rooms... =>
 (2) Create session rooms for each of the three groups
 
 What is the best way to authorize users as group members? Does Vistage have an API?
 
 >>>BUGS:
-	? Kevin logging in with LinkedIn makes him logged in as me
 		Logging in with both LinkedIn and Google results in two separate accounts...
-	?	mobile users cannot see trash can

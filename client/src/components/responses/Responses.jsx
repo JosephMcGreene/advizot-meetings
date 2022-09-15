@@ -3,8 +3,8 @@ import Response from "./Response";
 
 export default function Responses({
 	responses,
-	onSubmitEdits,
 	loading,
+	onSubmitEdits,
 	onDelete,
 }) {
 	//Sort responses to be displayed in order of priority

@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../App";
+import { UserResponseContext } from "./Response";
 //External
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -9,7 +10,6 @@ import editPen from "../../img/pen-solid.svg";
 
 export default function Rating({
 	title,
-	userResponseBody,
 	className,
 	text,
 	setEditingMode,
@@ -17,6 +17,8 @@ export default function Rating({
 }) {
 	const [isEditing, setIsEditing] = useState(false);
 	const currentUser = useContext(UserContext);
+	const userResponseBody = useContext(UserResponseContext);
+	const name = title.toLowerCase();
 
 	return (
 		<span
@@ -42,15 +44,14 @@ export default function Rating({
 			{isEditing ? (
 				<Formik
 					initialValues={{
-						[title.toLowerCase()]: userResponseBody[title.toLowerCase()],
+						[name]: userResponseBody[name],
 					}}
 					validationSchema={Yup.object({
-						[title.toLowerCase()]: Yup.number(),
+						[name]: Yup.number(),
 					})}
 					onSubmit={(values, { setSubmitting }) => {
 						try {
-							userResponseBody[title.toLowerCase()] =
-								values[title.toLowerCase()];
+							userResponseBody[name] = values[name];
 							onSubmitEdits(userResponseBody);
 							setSubmitting(false);
 							setIsEditing(false);
@@ -62,7 +63,7 @@ export default function Rating({
 					{() => (
 						<Form>
 							<InputField
-								name={title.toLowerCase()}
+								name={name}
 								as="input"
 								type="number"
 								min={1}

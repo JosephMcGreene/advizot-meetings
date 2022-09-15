@@ -1,18 +1,30 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../App";
+import { UserResponseContext } from "./Response";
+//External
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
+//Internal
+import InputField from "../form/InputField";
 import editPen from "../../img/pen-solid.svg";
 
 export default function IssueGoal({
 	title,
-	userResponseBody,
+	name,
 	className,
 	text,
+	setEditingMode,
+	onSubmitEdits,
 }) {
-	// const [isEditing, setIsEditing] = useState(false);
+	const [isEditing, setIsEditing] = useState(false);
 	const currentUser = useContext(UserContext);
+	const userResponseBody = useContext(UserResponseContext);
 
 	return (
-		<article className={className}>
+		<article
+			className={className}
+			onClick={() => setEditingMode(setIsEditing(true))}
+		>
 			<h4>
 				<strong>
 					{/* only show edit pen icon on hover to correct user: */}
@@ -31,21 +43,38 @@ export default function IssueGoal({
 
 			<br />
 
-			{/* {isEditing ? (
-				<form>
-					<textarea
-						className="edit-response"
-						value={inputValue}
-						onChange={(e) => setInputValue(e.target.value)}
-					></textarea>
-					<button type="submit" className="btn">
-						Done
-					</button>
-				</form>
+			{isEditing ? (
+				<Formik
+					initialValues={{
+						[name]: userResponseBody[name],
+					}}
+					validationSchema={Yup.object({
+						[name]: Yup.string(),
+					})}
+					onSubmit={(values, { setSubmitting }) => {
+						try {
+							userResponseBody[name] = values[name];
+							onSubmitEdits(userResponseBody);
+							setSubmitting(false);
+							setIsEditing(false);
+						} catch (error) {
+							console.error(error);
+						}
+					}}
+				>
+					{() => (
+						<Form>
+							<InputField name={name} as="textarea" />
+
+							<button type="submit" className="btn">
+								Done
+							</button>
+						</Form>
+					)}
+				</Formik>
 			) : (
-				<p>{text}</p>
-			)} */}
-			{text}
+				<>{text}</>
+			)}
 		</article>
 	);
 }
