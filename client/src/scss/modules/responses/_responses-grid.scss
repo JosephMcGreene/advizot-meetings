@@ -1,0 +1,47 @@
+@use "../../abstracts/index" as *;
+
+.response-li {
+	display: grid;
+	grid-template-rows: 4rem 3.5rem fit-content fit-content;
+	grid-template-columns: repeat(3, 1fr);
+
+	width: 360px;
+	margin: 5vh 1.75vw;
+
+	.response-name {
+		grid-row: 1;
+		justify-self: center;
+		align-self: center;
+	}
+
+	.delete-icon {
+		grid-row: 1;
+		grid-column: 3;
+		justify-self: end;
+		align-self: start;
+	}
+
+	.priority {
+		grid-row: 1;
+		grid-column: 2;
+		justify-self: center;
+		align-self: start;
+	}
+
+	.range-response {
+		grid-row: 2 / 3;
+	}
+
+	.issue {
+		grid-row: 3 / 4;
+	}
+
+	.goal {
+		grid-row: 4 / 5;
+	}
+
+	.issue,
+	.goal {
+		grid-column: 1 / 4;
+	}
+}

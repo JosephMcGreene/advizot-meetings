@@ -8,11 +8,6 @@
 	letter-spacing: $spacing;
 }
 
-@mixin flex($direction) {
-	display: flex;
-	flex-direction: $direction;
-}
-
 @mixin transition($properties) {
 	transition-property: $properties;
 	transition-timing-function: ease-in-out;

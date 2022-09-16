@@ -1,5 +1,6 @@
 //Internal
-@use "../abstracts/index" as *;
+@use "../../abstracts/index" as *;
+@forward "range-grid";
 
 .form {
 	font-family: $main-font;
@@ -14,28 +15,18 @@
 	}
 
 	.range-container {
-		display: grid;
-		grid-template-columns: 5fr 0.75fr;
-		grid-template-rows: 1fr 0.15fr 1fr;
 		padding: 0 $form-padding 1rem;
 
 		label {
 			margin-top: 0.25rem;
-			grid-column: 1 / span 2;
-		}
-
-		input {
-			grid-column-start: 1;
-			grid-row-start: 3;
 		}
 
 		.rangeValue {
-			grid-column-start: 2;
-			grid-row: 2 / span 2;
-			justify-self: end;
-			align-self: end;
-
 			font-size: 1.3rem;
+		}
+
+		.range-error {
+			grid-row-start: 4;
 		}
 
 		&:focus {
@@ -44,7 +35,8 @@
 	}
 
 	.textarea {
-		@include flex(column);
+		display: flex;
+		flex-direction: column;
 		margin-top: 0.75rem;
 		padding: 0 $form-padding;
 
@@ -61,7 +53,8 @@
 	}
 
 	.priority {
-		@include flex(column);
+		display: flex;
+		flex-direction: column;
 		margin-top: 0.75rem;
 		padding: 0 $form-padding;
 

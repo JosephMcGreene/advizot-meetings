@@ -1,7 +1,7 @@
 @use "../abstracts/index" as *;
 
 .header {
-	z-index: 10;
+	z-index: $middle;
 	position: relative;
 	top: 0;
 	left: 0;

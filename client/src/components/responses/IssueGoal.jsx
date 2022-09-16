@@ -64,7 +64,7 @@ export default function IssueGoal({
 				>
 					{() => (
 						<Form>
-							<InputField name={name} as="textarea" />
+							<InputField name={name} as="textarea" className="edit-textarea" />
 
 							<button type="submit" className="btn">
 								Done

@@ -1,4 +1,5 @@
-@use "../abstracts/index" as *;
+@use "../../abstracts/index" as *;
+@forward "responses-grid";
 
 .responses-header {
 	@include advizotFont(1.5rem, 400, 0.75px);
@@ -7,18 +8,17 @@
 }
 
 .responses-ul {
-	@include flex(row);
+	display: flex;
+	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-evenly;
 	font-family: $main-font;
 
 	.response-li {
-		display: grid;
-		grid-template-rows: 4rem 3.5rem fit-content fit-content;
-		grid-template-columns: repeat(3, 1fr);
-
-		width: 360px;
-		margin: 5vh 1.75vw;
+		@include borderRadius();
+		background-color: whitesmoke;
+		padding: 10px;
+		box-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
 
 		.response-p {
 			padding: 0.75rem 0 0.5rem;
@@ -37,19 +37,21 @@
 				}
 			}
 
-			&:hover {
-				cursor: pointer;
-				.edit-icon {
-					display: block;
-				}
-			}
-
-			.edit-response {
+			.edit-response,
+			.edit-textarea textarea {
 				@include inputBorder();
 				padding: 5px;
 				width: min-content;
 				display: block;
 				margin: 0 auto;
+			}
+
+			&:hover {
+				cursor: pointer;
+
+				.edit-icon {
+					display: block;
+				}
 			}
 		}
 
@@ -60,10 +62,6 @@
 			padding: 7px 10%;
 			width: min-content;
 
-			grid-row: 1;
-			justify-self: center;
-			align-self: center;
-
 			&:hover {
 				@include btnHover();
 				cursor: default;
@@ -72,10 +70,6 @@
 
 		.delete-icon {
 			@include editIcon(50px, 17.5px);
-			grid-row: 1;
-			grid-column: 3;
-			justify-self: end;
-			align-self: start;
 
 			&:hover {
 				background-color: $advizot-light;
@@ -86,28 +80,16 @@
 		}
 
 		.priority {
-			grid-row: 1;
-			grid-column: 2;
-			justify-self: center;
 			font-family: $main-font;
-			align-self: start;
 			text-align: center;
 		}
 
 		.range-response {
-			grid-row: 2 / 3;
 			text-align: center;
 		}
 
-		.issue {
-			grid-row: 3 / 4;
-		}
-		.goal {
-			grid-row: 4 / 5;
-		}
 		.issue,
 		.goal {
-			grid-column: 1 / 4;
 			margin-bottom: 0.5rem;
 
 			h4 {

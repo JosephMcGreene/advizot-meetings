@@ -43,7 +43,7 @@ code {
 	@include advizotFont(1.1rem, bold, 0.5px);
 	border: none;
 	display: block;
-	padding: 4% 10%;
+	padding: 4% 9%;
 	background-color: $advizot-color;
 	cursor: pointer;
 
@@ -83,12 +83,11 @@ a {
 	margin-top: 0.55rem;
 	padding: 0.2rem 0.4rem;
 	background-color: $advizot-color;
-
-	grid-row-start: 4;
 }
 
 .footer {
-	@include flex(row);
+	display: flex;
+	flex-direction: row;
 	justify-content: flex-end;
 	position: absolute;
 	bottom: 0;
