@@ -1,5 +1,6 @@
 @use "../../abstracts/index" as *;
 @forward "responses-grid";
+@forward "wide-screens";
 
 .responses-header {
 	@include advizotFont(1.5rem, 400, 0.75px);
@@ -9,7 +10,6 @@
 
 .responses-ul {
 	display: flex;
-	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-evenly;
 	font-family: $main-font;
