@@ -41,7 +41,7 @@
 		padding: 0 $form-padding;
 
 		textarea {
-			@include inputBorder();
+			@include borderSides();
 			padding: $padding;
 			margin-top: 0.15rem;
 			box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -63,7 +63,7 @@
 		}
 
 		.rating-select {
-			@include inputBorder();
+			@include borderSides();
 			margin-top: 0.15rem;
 			padding: $padding;
 			box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);

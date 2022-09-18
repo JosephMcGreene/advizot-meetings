@@ -1,12 +1,12 @@
 @use "../../abstracts/index" as *;
 
-@media screen and (min-width: 790px) {
+@media screen and (min-width: 1000px) {
 	.response-li {
 		display: grid;
 		grid-template-rows: repeat(3, fit-content);
 		grid-template-columns: 0.75fr 1fr 1fr 1fr;
 
-		width: 720px;
+		width: 900px;
 
 		.response-name {
 			grid-row: 1;
@@ -25,7 +25,7 @@
 			grid-row: 3;
 			grid-column: 1;
 			justify-self: start;
-			align-self: center;
+			align-self: end;
 		}
 
 		.range-response {

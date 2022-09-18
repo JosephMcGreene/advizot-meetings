@@ -43,7 +43,7 @@ code {
 	@include advizotFont(1.1rem, bold, 0.5px);
 	border: none;
 	display: block;
-	padding: 4% 9%;
+	padding: 4% 8%;
 	background-color: $advizot-color;
 	cursor: pointer;
 
@@ -95,8 +95,6 @@ a {
 	background-color: $advizot-color;
 	margin-top: 1.5rem;
 	padding: 1.5rem 1.75rem;
-	box-shadow: inset -2px -2px 7px rgba(0, 0, 0, 0.8),
-		0 0 10px rgba(0, 0, 0, 0.3);
 
 	.copyright {
 		align-self: flex-end;

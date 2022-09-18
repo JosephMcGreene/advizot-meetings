@@ -15,9 +15,9 @@
 	font-family: $main-font;
 
 	.response-li {
+		@include borderSides();
 		@include borderRadius();
-		background-color: whitesmoke;
-		padding: 10px;
+		padding: 12px;
 		box-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
 
 		.response-p {
@@ -39,7 +39,7 @@
 
 			.edit-response,
 			.edit-textarea textarea {
-				@include inputBorder();
+				@include borderSides();
 				padding: 5px;
 				width: min-content;
 				display: block;
@@ -103,7 +103,7 @@
 		}
 
 		input[type="number"] {
-			@include inputBorder();
+			@include borderSides();
 			padding: 6% 10%;
 			font-family: $main-font;
 			font-size: 1rem;
