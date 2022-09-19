@@ -87,13 +87,22 @@
 .minimized-form {
 	border-radius: 24.5px;
 	width: min(380px, 96%);
+	height: 38.333px;
 	margin: 20px auto;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 1);
+	cursor: pointer;
+	overflow: hidden;
+	transition-property: height;
+	transition-duration: 250ms;
 
 	.chevron-flipped {
 		width: 25px;
 		transform: rotate(180deg);
 	}
+}
+
+.form-header {
+	cursor: pointer;
 }
 
 .minimize-btn {

@@ -3,19 +3,12 @@ import { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 //Internal
-import MinimizedForm from "./MinimizedForm";
 import InputField from "./InputField";
 import Select from "./Select";
 import chevron from "../../img/chevron-up-solid.svg";
 
 export default function MeetingForm({ onSubmit }) {
 	const [formVisibility, setFormVisibility] = useState(true);
-
-	if (!formVisibility) {
-		return (
-			<MinimizedForm expandForm={() => setFormVisibility(!formVisibility)} />
-		);
-	}
 
 	/**
 	 * Calculates how much of an input slider's background should be filled up based on where the user is sliding it
@@ -26,6 +19,11 @@ export default function MeetingForm({ onSubmit }) {
 		return {
 			backgroundSize: `${(value * 100) / 10}% 100%`,
 		};
+	}
+
+	async function showAndHideForm() {
+		await setFormVisibility(!formVisibility);
+		localStorage.setItem("formVisibility", !formVisibility);
 	}
 
 	return (
@@ -68,14 +66,16 @@ export default function MeetingForm({ onSubmit }) {
 			}}
 		>
 			{({ isSubmitting, submitCount, ...props }) => (
-				<Form className="form">
-					<button
-						type="button"
-						className="minimize-btn"
-						onClick={() => setFormVisibility(!formVisibility)}
-					>
-						<img src={chevron} alt="Close Form" className="chevron" />
-					</button>
+				<Form className={formVisibility ? "form" : "form minimized-form"}>
+					<div className="form-header" onClick={() => showAndHideForm()}>
+						<button type="button" className="minimize-btn">
+							<img
+								src={chevron}
+								alt="Close Form"
+								className={formVisibility ? "chevron" : "chevron-flipped"}
+							/>
+						</button>
+					</div>
 
 					<InputField
 						text="How is your business?"

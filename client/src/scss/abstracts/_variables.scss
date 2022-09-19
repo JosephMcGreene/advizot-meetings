@@ -1,10 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+$advizot-font: "Audiowide", cursive;
+
+@font-face {
+	font-family: "sansationregular";
+	src: url("../../fonts/Sansation-Regular-webfont.woff") format("woff");
+}
+$main-font: "sansationregular";
 
 //Colors:
 $advizot-color: hsl(30, 91%, 57%);
 $advizot-light: hsl(30, 91%, 77%);
-$advizot-font: "Audiowide", cursive;
-//Padding/BoxModification
+//Padding/Box Modification
 $padding: 0.5rem;
 $form-padding: 30px;
 $border-radius: 13px;
@@ -13,9 +19,3 @@ $footer-height: 85px;
 //z-index
 $top: 100;
 $middle: 10;
-
-@font-face {
-	font-family: "sansationregular";
-	src: url("../../fonts/Sansation-Regular-webfont.woff") format("woff");
-}
-$main-font: "sansationregular";

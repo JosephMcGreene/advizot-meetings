@@ -1,31 +1,17 @@
 @use "../../abstracts/index" as *;
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 900px) {
 	.response-li {
 		display: grid;
 		grid-template-rows: repeat(3, fit-content);
 		grid-template-columns: 0.75fr 1fr 1fr 1fr;
 
-		width: 900px;
+		width: 80%;
 
 		.response-name {
 			grid-row: 1;
 
 			width: fit-content;
-		}
-
-		.priority {
-			grid-row: 2;
-			grid-column: 1;
-			justify-self: center;
-			align-self: start;
-		}
-
-		.delete-icon {
-			grid-row: 3;
-			grid-column: 1;
-			justify-self: start;
-			align-self: end;
 		}
 
 		.range-response {
@@ -40,6 +26,20 @@
 		.goal {
 			grid-row: 3;
 			grid-column: 2 / end;
+		}
+
+		.priority {
+			grid-row: 2;
+			grid-column: 1;
+			justify-self: center;
+			align-self: start;
+		}
+
+		.delete-icon {
+			grid-row: 3;
+			grid-column: 1;
+			justify-self: start;
+			align-self: end;
 		}
 	}
 }
