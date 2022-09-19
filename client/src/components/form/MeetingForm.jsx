@@ -66,6 +66,7 @@ export default function MeetingForm({ onSubmit }) {
 						className="form-header"
 						onClick={() => setFormVisibility(!formVisibility)}
 					>
+						<span>Questions</span>
 						<button type="button" className="minimize-btn">
 							<img
 								src={chevron}

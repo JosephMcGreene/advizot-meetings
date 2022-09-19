@@ -11,11 +11,14 @@
 	box-shadow: $form-shadow;
 
 	.form-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 		cursor: pointer;
 		background-color: $advizot-color;
 		border-radius: $border-radius $border-radius 0 0;
 		box-shadow: $header-shadow;
-		margin-bottom: 5px;
+		margin-bottom: 10px;
 
 		&:hover .chevron {
 			transform: translateY(-4px);
@@ -28,12 +31,17 @@
 			transition-duration: 200ms;
 		}
 
+		span {
+			@include advizotFont(1.25rem, 400, 0);
+			margin-left: calc($form-padding/2);
+		}
+
 		.minimize-btn {
 			background-color: transparent;
 			border: none;
 			display: block;
 			margin-left: auto;
-			padding: 5px 20px;
+			padding: 5px calc($form-padding/2);
 			cursor: pointer;
 		}
 	}
@@ -88,22 +96,6 @@
 
 		&:focus {
 			@include onFocus();
-		}
-
-		.rating-select {
-			@include borderSides();
-			margin-top: 0.15rem;
-			padding: $padding;
-			box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-
-			option {
-				text-align: center;
-				font-family: $main-font;
-			}
-
-			&:focus {
-				@include onFocus();
-			}
 		}
 	}
 

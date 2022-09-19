@@ -48,5 +48,9 @@
 			justify-self: start;
 			align-self: end;
 		}
+
+		input[type="number"] {
+			padding: 1px;
+		}
 	}
 }
