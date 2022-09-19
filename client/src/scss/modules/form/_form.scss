@@ -8,7 +8,35 @@
 	width: min(380px, 94%);
 	margin: 20px auto;
 	padding-bottom: 1px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
+	box-shadow: $form-shadow;
+
+	.form-header {
+		cursor: pointer;
+		background-color: $advizot-color;
+		border-radius: $border-radius $border-radius 0 0;
+		box-shadow: $header-shadow;
+		margin-bottom: 5px;
+
+		&:hover .chevron {
+			transform: translateY(-4px);
+			transition-property: transform;
+			transition-duration: 200ms;
+		}
+		&:hover .chevron-flipped {
+			transform: translateY(4px) rotate(180deg);
+			transition-property: transform;
+			transition-duration: 200ms;
+		}
+
+		.minimize-btn {
+			background-color: transparent;
+			border: none;
+			display: block;
+			margin-left: auto;
+			padding: 5px 20px;
+			cursor: pointer;
+		}
+	}
 
 	.chevron {
 		width: 25px;
@@ -89,27 +117,12 @@
 	width: min(380px, 96%);
 	height: 38.333px;
 	margin: 20px auto;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 1);
+	box-shadow: $form-shadow;
 	cursor: pointer;
 	overflow: hidden;
-	transition-property: height;
-	transition-duration: 250ms;
 
 	.chevron-flipped {
 		width: 25px;
 		transform: rotate(180deg);
 	}
-}
-
-.form-header {
-	cursor: pointer;
-}
-
-.minimize-btn {
-	background-color: transparent;
-	border: none;
-	display: block;
-	margin-left: auto;
-	padding: 5px 20px;
-	cursor: pointer;
 }

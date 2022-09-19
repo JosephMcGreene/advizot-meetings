@@ -21,11 +21,6 @@ export default function MeetingForm({ onSubmit }) {
 		};
 	}
 
-	async function showAndHideForm() {
-		await setFormVisibility(!formVisibility);
-		localStorage.setItem("formVisibility", !formVisibility);
-	}
-
 	return (
 		<Formik
 			initialValues={{
@@ -67,7 +62,10 @@ export default function MeetingForm({ onSubmit }) {
 		>
 			{({ isSubmitting, submitCount, ...props }) => (
 				<Form className={formVisibility ? "form" : "form minimized-form"}>
-					<div className="form-header" onClick={() => showAndHideForm()}>
+					<div
+						className="form-header"
+						onClick={() => setFormVisibility(!formVisibility)}
+					>
 						<button type="button" className="minimize-btn">
 							<img
 								src={chevron}

@@ -19,6 +19,13 @@
 			align-self: center;
 		}
 
+		.priority {
+			grid-row: 2;
+			grid-column: 1;
+			justify-self: center;
+			align-self: start;
+		}
+
 		.issue {
 			grid-row: 2;
 			grid-column: 2 / end;
@@ -28,11 +35,11 @@
 			grid-column: 2 / end;
 		}
 
-		.priority {
-			grid-row: 2;
+		.save-btn {
+			grid-row: 2 / 4;
 			grid-column: 1;
 			justify-self: center;
-			align-self: start;
+			align-self: center;
 		}
 
 		.delete-icon {

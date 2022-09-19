@@ -7,7 +7,7 @@
 	left: 0;
 	right: 0;
 	background-color: whitesmoke;
-	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+	box-shadow: $header-shadow;
 
 	.nav-bar {
 		display: flex;

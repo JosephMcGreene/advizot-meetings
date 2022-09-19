@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { UserContext } from "../../App";
 import Priority from "./Priority";
 import Rating from "./Rating";
@@ -12,6 +12,7 @@ export default function Response({
 	onSubmitEdits,
 	onDelete,
 }) {
+	const [isEditing, setIsEditing] = useState(false);
 	const currentUser = useContext(UserContext);
 
 	/**
@@ -24,6 +25,7 @@ export default function Response({
 			`${currentUser.firstName} ${currentUser.lastName}`
 		) {
 			callback();
+			setIsEditing(!isEditing);
 		}
 	}
 
@@ -41,6 +43,8 @@ export default function Response({
 					setEditingMode={setEditingMode}
 					onSubmitEdits={onSubmitEdits}
 				/>
+
+				{/* <button className="btn save-btn">Save</button> */}
 
 				{/* Only display delete icon to correct user: */}
 				{userResponseBody.userName ===
