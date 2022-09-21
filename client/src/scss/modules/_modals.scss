@@ -54,43 +54,48 @@
 			flex-direction: column;
 			margin: 0 1rem 1rem;
 
-			.signin-btn {
-				margin-top: 1rem;
-
-				button {
-					@include borderRadius();
-					cursor: pointer;
-					display: flex;
-					align-items: center;
-					width: 100%;
-					font-family: $main-font;
-					font-size: 1.1rem;
-					font-weight: 600;
-					background-color: $advizot-color;
-					color: black;
-					border: none;
-					padding: 1rem 1.25rem;
-
-					.logo {
-						width: 30px;
-						margin: 0 7px;
-					}
-					span {
-						margin: 0 auto;
-					}
-				}
-
-				.linkedin-hover {
-					&:hover {
-						@include loginHover(#0077b5, 30px);
-					}
-				}
-				.google-hover {
-					&:hover {
-						@include loginHover(#34a853, 30px);
-					}
-				}
+			.btn {
+				margin: 0.75rem auto;
+				width: calc(100% - ($form-padding * 2));
 			}
+		}
+	}
+}
+
+.signin-btn {
+	margin-top: 1rem;
+
+	button {
+		@include borderRadius();
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		width: 100%;
+		font-family: $main-font;
+		font-size: 1.1rem;
+		font-weight: 600;
+		background-color: $advizot-color;
+		color: black;
+		border: none;
+		padding: 1rem 1.25rem;
+
+		.logo {
+			width: 30px;
+			margin: 0 7px;
+		}
+		span {
+			margin: 0 auto;
+		}
+	}
+
+	.linkedin-hover {
+		&:hover {
+			@include loginHover(#0077b5, 30px);
+		}
+	}
+	.google-hover {
+		&:hover {
+			@include loginHover(#34a853, 30px);
 		}
 	}
 }

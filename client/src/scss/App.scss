@@ -1,7 +1,7 @@
 @use "./modules/general";
-@use "./modules/form/form";
+@use "./modules/form/form-elements";
 @use "./modules/loading-spinner";
 @use "./modules/responses/responses";
 @use "./modules/form/range-slider";
-@use "./modules/modal";
+@use "./modules/modals";
 @use "./modules/header";

@@ -51,10 +51,10 @@ export default function MeetingForm({ onSubmit }) {
 				priority: Yup.string().required("Don't forget this one!"),
 				monthlyGoal: Yup.string().required("Don't forget this one!"),
 			})}
-			onSubmit={(values, { setSubmitting }) => {
+			onSubmit={(values, actions) => {
 				try {
 					onSubmit(values);
-					setSubmitting(false);
+					actions.setSubmitting(false);
 				} catch (error) {
 					console.error(error);
 				}
@@ -113,13 +113,13 @@ export default function MeetingForm({ onSubmit }) {
 					/>
 
 					<InputField
-						text="Issue to process today:"
+						text="Issue to process today"
 						name="monthlyIssue"
 						as="textarea"
-						className="textarea"
+						className="text-input"
 					/>
 
-					<Select text="Priority:" name="priority" className="priority">
+					<Select text="Priority" name="priority" className="select">
 						<option value="">-- Select a Priority --</option>
 						<option value="aA">A</option>
 						<option value="bB">B</option>
@@ -129,10 +129,10 @@ export default function MeetingForm({ onSubmit }) {
 					</Select>
 
 					<InputField
-						text="Goal before next meeting:"
+						text="Goal before next meeting"
 						name="monthlyGoal"
 						as="textarea"
-						className="textarea"
+						className="text-input"
 					/>
 
 					<button type="submit" className="btn">

@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../App";
 import logo from "../img/Original on Transparent.png";
-import Login from "./Login";
+import Login from "./modals/Login";
 
 export default function Header() {
 	const [showLogin, setShowLogin] = useState(false);

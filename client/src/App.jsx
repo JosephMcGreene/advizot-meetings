@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import MeetingForm from "./components/form/MeetingForm";
 import Responses from "./components/responses/Responses";
 import Footer from "./components/Footer";
+import RoomCode from "./components/modals/RoomCode";
 //Context for logged in user data currentUser:
 export const UserContext = React.createContext();
 
@@ -149,6 +150,7 @@ export default function App() {
 									deleteResponse(responseToDelete)
 								}
 							/>
+							{/* <RoomCode /> */}
 						</>
 					) : (
 						<h1 className="welcome">

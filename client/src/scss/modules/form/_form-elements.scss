@@ -70,37 +70,9 @@
 		}
 	}
 
-	.textarea {
-		display: flex;
-		flex-direction: column;
-		margin-top: 0.75rem;
-		padding: 0 $form-padding;
-
-		textarea {
-			@include borderSides();
-			padding: $padding;
-			margin-top: 0.15rem;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-
-			&:focus {
-				@include onFocus();
-			}
-		}
-	}
-
-	.priority {
-		display: flex;
-		flex-direction: column;
-		margin-top: 0.75rem;
-		padding: 0 $form-padding;
-
-		&:focus {
-			@include onFocus();
-		}
-	}
-
 	.btn {
-		margin: 1.25rem auto;
+		margin: 2rem auto;
+		width: calc(100% - ($form-padding * 2));
 	}
 }
 
@@ -116,5 +88,55 @@
 	.chevron-flipped {
 		width: 25px;
 		transform: rotate(180deg);
+	}
+}
+
+.text-input {
+	display: flex;
+	flex-direction: column;
+	font-family: $main-font;
+	margin-top: 0.75rem;
+	padding: 0 $form-padding;
+
+	textarea {
+		@include borderSides();
+		font-size: 1rem;
+		padding: $padding;
+		margin-top: 0.15rem;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+		&:focus {
+			@include onFocus();
+		}
+	}
+
+	label {
+		text-align: center;
+	}
+
+	input {
+		@include borderSides();
+		font-family: $main-font;
+		font-size: 1rem;
+		width: 50%;
+		padding: $padding;
+		text-align: center;
+		width: 100%;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	}
+}
+
+.select {
+	display: flex;
+	flex-direction: column;
+	margin-top: 0.75rem;
+	padding: 0 $form-padding;
+
+	label {
+		text-align: center;
+	}
+
+	&:focus {
+		@include onFocus();
 	}
 }
