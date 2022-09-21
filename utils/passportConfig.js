@@ -20,7 +20,7 @@ passport.use(
 			clientSecret: process.env.LINKEDIN_SECRET,
 			callbackURL: "/auth/linkedin/callback",
 			proxy: true,
-			scope: ["r_liteprofile"],
+			scope: ["r_liteprofile", "r_emailaddress"],
 			state: true,
 		},
 		async function (accessToken, refreshToken, profile, done) {
@@ -35,6 +35,7 @@ passport.use(
 					providerID: profile.id,
 					firstName: profile.name.givenName,
 					lastName: profile.name.familyName,
+					linkedin_email: profile.emails[0].value,
 				});
 				await newUser.save();
 				return done(null, newUser);
@@ -51,7 +52,10 @@ passport.use(
 			clientID: process.env.GOOGLE_CLIENT_ID,
 			clientSecret: process.env.GOOGLE_SECRET,
 			callbackURL: "/auth/google/callback",
-			scope: "https://www.googleapis.com/auth/userinfo.profile",
+			scope: [
+				"https://www.googleapis.com/auth/userinfo.profile",
+				"https://www.googleapis.com/auth/userinfo.email",
+			],
 		},
 		async function (accessToken, refreshToken, profile, done) {
 			try {
@@ -65,6 +69,7 @@ passport.use(
 					providerID: profile.id,
 					firstName: profile.name.givenName,
 					lastName: profile.name.familyName,
+					google_email: profile.emails[0].value,
 				});
 				await newUser.save();
 				return done(null, newUser);
