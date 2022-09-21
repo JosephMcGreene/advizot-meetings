@@ -7,7 +7,6 @@
 	height: 50px;
 	border-radius: 50%;
 	margin: 50px auto;
-	background-color: $advizot-color;
 	animation: spin 1.5s linear infinite;
 
 	.loading-spinner-small {
@@ -26,6 +25,13 @@
 		height: 50%;
 		background-color: white;
 	}
+}
+
+.black {
+	background-color: black;
+}
+.orange {
+	background-color: $advizot-color;
 }
 
 @keyframes spin {

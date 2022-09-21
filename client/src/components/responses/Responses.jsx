@@ -24,7 +24,7 @@ export default function Responses({
 
 			{/* If Promises in fetching are pending, render a loading animation */}
 			{loading ? (
-				<LoadingSpinner />
+				<LoadingSpinner color="orange" />
 			) : (
 				<ul className="responses-ul">
 					{sortedResponses.map((response) => {

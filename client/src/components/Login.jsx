@@ -15,6 +15,7 @@ export default function Login({ showLogin, onClose }) {
 						&times;
 					</button>
 				</div>
+
 				<div className="modal-body">
 					<a href="/auth/linkedin" className="signin-btn">
 						<button className="linkedin-hover">
