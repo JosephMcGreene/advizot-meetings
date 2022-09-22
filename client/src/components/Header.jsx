@@ -20,12 +20,12 @@ export default function Header({ onSubmit }) {
 						{/* Show sign out link if logged in, or sign in if logged out */}
 						{currentUser ? (
 							<>
-								<button
+								{/* <button
 									className="btn"
 									onClick={() => setShowMeetingCode(!showMeetingCode)}
 								>
 									Enter Meeting
-								</button>
+								</button> */}
 								<a href="/auth/logout">
 									<button className="btn">Sign out</button>
 								</a>

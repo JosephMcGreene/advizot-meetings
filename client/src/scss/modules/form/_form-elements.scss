@@ -3,20 +3,20 @@
 @forward "range-grid";
 
 .form {
+	@include borderRadius();
 	font-family: $main-font;
-	border-radius: $border-radius;
 	width: min(380px, 94%);
 	margin: 20px auto;
 	padding-bottom: 1px;
 	box-shadow: $form-shadow;
 
 	.form-header {
+		@include borderRadius();
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		cursor: pointer;
 		background-color: $advizot-color;
-		border-radius: $border-radius $border-radius 0 0;
 		box-shadow: $header-shadow;
 		margin-bottom: 10px;
 

@@ -10,7 +10,7 @@
 
 @mixin transition($properties) {
 	transition-property: $properties;
-	transition-timing-function: ease-in-out;
+	transition-timing-function: linear;
 	transition-duration: 200ms;
 }
 
@@ -31,11 +31,9 @@
 }
 
 @mixin btnHover() {
-	transform: translateY(-1.5px);
-	color: white;
-	background-color: black;
-	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.75);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 	@include transition(all);
+	transition-duration: 130ms;
 }
 
 @mixin editIcon($size, $padding) {
