@@ -7,7 +7,6 @@ import Header from "./components/Header";
 import MeetingForm from "./components/form/MeetingForm";
 import Responses from "./components/responses/Responses";
 import Footer from "./components/Footer";
-import RoomCode from "./components/modals/RoomCode";
 //Context for logged in user data currentUser:
 export const UserContext = React.createContext();
 
@@ -69,7 +68,7 @@ export default function App() {
 
 	/**
 	 * Takes in user response from MeetingForm.js and adds it to the database or updates an existing user response. See /routes/db.js
-	 * @param {Object} userResponse json body to be added to edited in the database and displayed to the users
+	 * @param {Object} responseToSubmit json body to be added to edited in the database and displayed to the users
 	 * @returns {Object} response object from the server
 	 */
 	async function submitResponse(responseToSubmit) {
@@ -101,7 +100,7 @@ export default function App() {
 
 	/**
 	 * Deletes the specified user response from the list as well as the db
-	 * @param {Object} userResponse The user response to be deleted from db and UI
+	 * @param {Object} responseToDelete The user response to be deleted from db and UI
 	 * @returns {Object} the response from the server
 	 */
 	async function deleteResponse(responseToDelete) {
@@ -150,7 +149,6 @@ export default function App() {
 									deleteResponse(responseToDelete)
 								}
 							/>
-							{/* <RoomCode /> */}
 						</>
 					) : (
 						<h1 className="welcome">

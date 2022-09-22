@@ -3,16 +3,17 @@
 .loading-spinner-big {
 	position: relative;
 	display: flex;
-	width: 50px;
-	height: 50px;
+	aspect-ratio: 1;
+	width: 12%;
 	border-radius: 50%;
-	margin: 50px auto;
+	margin: 0 auto;
+	background-color: $advizot-color;
 	animation: spin 1.5s linear infinite;
 
 	.loading-spinner-small {
 		margin: auto;
-		width: 35px;
-		height: 35px;
+		aspect-ratio: 1;
+		width: 65%;
 		border-radius: 50%;
 		background-color: white;
 	}
@@ -23,15 +24,18 @@
 		left: 0;
 		width: 50%;
 		height: 50%;
+		border-radius: 100% 0 0 0;
 		background-color: white;
 	}
 }
 
 .black {
 	background-color: black;
-}
-.orange {
-	background-color: $advizot-color;
+
+	.loading-spinner-small,
+	.block-square {
+		background-color: $advizot-color;
+	}
 }
 
 @keyframes spin {

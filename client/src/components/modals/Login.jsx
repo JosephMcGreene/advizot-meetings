@@ -1,11 +1,7 @@
 import LinkedInLogo from "../../img/LI-In-Bug.png";
 import GoogleLogo from "../../img/Search_GSA.max-2800x2800.png";
 
-export default function Login({ showLogin, onClose }) {
-	if (!showLogin) {
-		return null;
-	}
-
+export default function Login({ onClose }) {
 	return (
 		<div className="modal">
 			<div className="modal-content">

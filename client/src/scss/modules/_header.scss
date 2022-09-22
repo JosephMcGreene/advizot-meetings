@@ -10,20 +10,34 @@
 	box-shadow: $header-shadow;
 
 	.nav-bar {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+		.nav-ul {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			list-style: none;
 
-		.logo {
-			//might bring back clamp later. Keep commented for now
-			// width: clamp(145px, 35%, 175px);
-			width: 175px;
-			align-self: flex-start;
-		}
+			.logo-wrapper {
+				align-self: start;
 
-		.btn {
-			padding: 1rem;
-			margin: 1rem 1.5rem;
+				.logo {
+					//might bring back clamp later. Keep commented for now
+					// width: clamp(145px, 35%, 175px);
+					width: 175px;
+					align-self: flex-start;
+				}
+			}
+
+			.actions-container {
+				display: flex;
+				align-items: center;
+
+				.btn {
+					padding: 1rem;
+					margin-top: 1rem;
+					margin-bottom: 1rem;
+					margin-right: 1.25rem;
+				}
+			}
 		}
 	}
 }

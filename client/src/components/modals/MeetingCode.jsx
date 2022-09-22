@@ -5,12 +5,12 @@ import * as Yup from "yup";
 import InputField from "../form/InputField";
 import LoadingSpinner from "../LoadingSpinner";
 
-export default function RoomCode({ onClose }) {
+export default function MeetingCode({ onClose }) {
 	return (
 		<div className="modal">
 			<div className="modal-content">
 				<div className="modal-header">
-					<span>Room Code</span>
+					<span>Meeting Code</span>
 					<button className="close-x" onClick={() => onClose()}>
 						&times;
 					</button>
@@ -26,7 +26,7 @@ export default function RoomCode({ onClose }) {
 						})}
 						onSubmit={(values, actions) => {
 							try {
-								console.log(`The passcode is ${values.passcode}`);
+								alert(`You entered ${values.passcode}`);
 								actions.setSubmitting(false);
 							} catch (error) {
 								console.error(error);
@@ -36,7 +36,7 @@ export default function RoomCode({ onClose }) {
 						{({ isSubmitting, ...props }) => (
 							<Form>
 								<InputField
-									text="Please enter today's pass code:"
+									text="Please enter today's code:"
 									name="passcode"
 									as="input"
 									type="text"
