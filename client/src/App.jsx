@@ -4,16 +4,18 @@ import axios from "axios";
 //Internal
 import "./scss/App.scss";
 import Header from "./components/Header";
-import MeetingForm from "./components/form/MeetingForm";
-import Responses from "./components/responses/Responses";
+import MeetingContent from "./components/MeetingContent";
+import MeetingCode from "./components/modals/MeetingCode";
 import Footer from "./components/Footer";
 //Context for logged in user data currentUser:
 export const UserContext = React.createContext();
 
 export default function App() {
 	const [loading, setLoading] = useState(false);
-	const [responses, setResponses] = useState([]);
+	const [showMeetingCode, setShowMeetingCode] = useState(false);
+	const [gaveCorrectPassCode, setGaveCorrectPassCode] = useState(false);
 	const [currentUser, setCurrentUser] = useState({});
+	const [responses, setResponses] = useState([]);
 
 	useEffect(() => {
 		getCurrentUser();
@@ -125,6 +127,22 @@ export default function App() {
 		}
 	}
 
+	/**
+	 * Assesses whether the passcode the user entered is correct or not
+	 * @param {String} inputCode the code the user entered
+	 * @returns {Function} changes the state of gaveCorrectPassCode to reflect whether the user can continue and view the rest of the app or must try again
+	 */
+	function handlePasscodeSubmit(inputCode) {
+		if (inputCode === "123456") {
+			setShowMeetingCode(false);
+			alert("Welcome, enjoy the meeting!");
+			return setGaveCorrectPassCode(true);
+		}
+		alert("That is not the correct code. Try again.");
+		setShowMeetingCode(true);
+		return setGaveCorrectPassCode(false);
+	}
+
 	return (
 		<div className="App">
 			<UserContext.Provider value={currentUser}>
@@ -134,21 +152,37 @@ export default function App() {
 					{currentUser ? (
 						<>
 							<h1 className="welcome">Hello, {currentUser.firstName}!</h1>
+							{gaveCorrectPassCode ? (
+								<MeetingContent
+									onSubmit={(responseToSubmit) =>
+										submitResponse(responseToSubmit)
+									}
+									responses={responses}
+									loading={loading}
+									onSubmitEdits={(userEdit) => submitResponse(userEdit)}
+									onDelete={(responseToDelete) =>
+										deleteResponse(responseToDelete)
+									}
+								/>
+							) : (
+								<>
+									<button
+										className="btn"
+										onClick={() => setShowMeetingCode(true)}
+									>
+										Enter Meeting
+									</button>
 
-							<MeetingForm
-								onSubmit={(responseToSubmit) =>
-									submitResponse(responseToSubmit)
-								}
-							/>
-
-							<Responses
-								responses={responses}
-								loading={loading}
-								onSubmitEdits={(userEdit) => submitResponse(userEdit)}
-								onDelete={(responseToDelete) =>
-									deleteResponse(responseToDelete)
-								}
-							/>
+									{showMeetingCode && (
+										<MeetingCode
+											onClose={() => setShowMeetingCode(false)}
+											onCodeSubmit={(inputCode) =>
+												handlePasscodeSubmit(inputCode)
+											}
+										/>
+									)}
+								</>
+							)}
 						</>
 					) : (
 						<h1 className="welcome">

@@ -2,10 +2,8 @@ import { useState, useContext } from "react";
 import { UserContext } from "../App";
 import advizotLogo from "../img/Original on Transparent.png";
 import Login from "./modals/Login";
-import MeetingCode from "./modals/MeetingCode";
 
-export default function Header({ onSubmit }) {
-	const [showMeetingCode, setShowMeetingCode] = useState(false);
+export default function Header() {
 	const [showLogin, setShowLogin] = useState(false);
 	const currentUser = useContext(UserContext);
 
@@ -20,12 +18,6 @@ export default function Header({ onSubmit }) {
 						{/* Show sign out link if logged in, or sign in if logged out */}
 						{currentUser ? (
 							<>
-								<button
-									className="btn"
-									onClick={() => setShowMeetingCode(!showMeetingCode)}
-								>
-									Enter Meeting
-								</button>
 								<a href="/auth/logout">
 									<button className="btn">Sign out</button>
 								</a>
@@ -41,12 +33,6 @@ export default function Header({ onSubmit }) {
 
 			{/* don't always need to see the modals */}
 			{showLogin && <Login onClose={() => setShowLogin(!showLogin)} />}
-			{showMeetingCode && (
-				<MeetingCode
-					onClose={() => setShowMeetingCode(!showMeetingCode)}
-					onSubmit={onSubmit}
-				/>
-			)}
 		</header>
 	);
 }

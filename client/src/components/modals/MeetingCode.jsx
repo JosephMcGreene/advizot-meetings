@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import InputField from "../form/InputField";
 import LoadingSpinner from "../LoadingSpinner";
 
-export default function MeetingCode({ onClose }) {
+export default function MeetingCode({ onClose, onCodeSubmit }) {
 	return (
 		<div className="modal">
 			<div className="modal-content">
@@ -24,9 +24,9 @@ export default function MeetingCode({ onClose }) {
 						validationSchema={Yup.object({
 							passcode: Yup.string().required("You must add a valid room code"),
 						})}
-						onSubmit={(values, actions) => {
+						onSubmit={({ passcode }, actions) => {
 							try {
-								alert(`You entered ${values.passcode}`);
+								onCodeSubmit(passcode);
 								actions.setSubmitting(false);
 							} catch (error) {
 								console.error(error);
