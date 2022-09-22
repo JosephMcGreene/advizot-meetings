@@ -25,7 +25,7 @@ export default function App() {
 
 	//=====HELPERS=====
 	/**
-	 * makes request for info on the current user
+	 * makes request for info on the current user and updates currentUser state accordingly
 	 */
 	async function getCurrentUser() {
 		try {
