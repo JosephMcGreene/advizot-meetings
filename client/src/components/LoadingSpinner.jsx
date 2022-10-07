@@ -1,4 +1,6 @@
 export default function LoadingSpinner({ color }) {
+	//* props.color is "enumerated", which I put in quotes because I'm not sure exactly how to establish enums yet.
+	//* can be "black" or "orange"
 	return (
 		<div
 			className={

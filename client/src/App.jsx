@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 //External
 import axios from "axios";
+import { Routes, Route } from "react-router-dom";
 //Internal
 import "./scss/App.scss";
 import Header from "./components/Header";
-import MeetingForm from "./components/form/MeetingForm";
-import Responses from "./components/responses/Responses";
 import Footer from "./components/Footer";
+import MainContent from "./components/main-content/MainContent";
+import Projection from "./components/main-content/Projection";
 //Context for logged in user data currentUser:
 export const UserContext = React.createContext();
 
@@ -129,33 +130,44 @@ export default function App() {
 		<div className="App">
 			<UserContext.Provider value={currentUser}>
 				<Header />
-				<main className="main-content">
-					{/* User must sign in to use app features, so only show the features if logged in: */}
-					{currentUser ? (
-						<>
-							<h1 className="welcome">Hello, {currentUser.firstName}!</h1>
-
-							<MeetingForm
-								onSubmit={(responseToSubmit) =>
-									submitResponse(responseToSubmit)
-								}
-							/>
-
-							<Responses
-								responses={responses}
-								loading={loading}
-								onSubmitEdits={(userEdit) => submitResponse(userEdit)}
-								onDelete={(responseToDelete) =>
-									deleteResponse(responseToDelete)
-								}
-							/>
-						</>
-					) : (
-						<h1 className="welcome">
-							Welcome! <br /> Please sign in to continue.
-						</h1>
-					)}
-				</main>
+				{/* User must sign in to use app features, so only show the features if logged in: */}
+				{currentUser ? (
+					<Routes>
+						<Route
+							path="/"
+							element={
+								<MainContent
+									onSubmit={(responseToSubmit) =>
+										submitResponse(responseToSubmit)
+									}
+									responses={responses}
+									loading={loading}
+									onSubmitEdits={(userEdit) => submitResponse(userEdit)}
+									onDelete={(responseToDelete) =>
+										deleteResponse(responseToDelete)
+									}
+								/>
+							}
+						/>
+						<Route
+							path="/projection"
+							element={
+								<Projection
+									responses={responses}
+									loading={loading}
+									onSubmitEdits={(userEdit) => submitResponse(userEdit)}
+									onDelete={(responseToDelete) =>
+										deleteResponse(responseToDelete)
+									}
+								/>
+							}
+						/>
+					</Routes>
+				) : (
+					<h1 className="welcome">
+						Welcome! <br /> Please sign in to continue.
+					</h1>
+				)}
 			</UserContext.Provider>
 			<Footer />
 		</div>

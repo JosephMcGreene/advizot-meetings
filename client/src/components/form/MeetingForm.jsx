@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import InputField from "./InputField";
 import Select from "./Select";
 import chevron from "../../img/chevron-up-solid.svg";
+import LoadingSpinner from "../LoadingSpinner";
 
 export default function MeetingForm({ onSubmit }) {
 	const [formVisibility, setFormVisibility] = useState(true);
@@ -136,7 +137,7 @@ export default function MeetingForm({ onSubmit }) {
 					/>
 
 					<button type="submit" className="btn">
-						{isSubmitting ? "Submitting..." : "Submit"}
+						{isSubmitting ? <LoadingSpinner color="orange" /> : "Submit"}
 					</button>
 				</Form>
 			)}

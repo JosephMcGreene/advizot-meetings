@@ -1,0 +1,41 @@
+//Internal
+@use "../abstracts/index" as *;
+
+//Inside .App > .main-content
+.nav-btn-list {
+	list-style: none;
+
+	.nav-item {
+		.nav-btn {
+			position: fixed;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			top: 100px;
+			left: -40px;
+			z-index: $top;
+			padding: 0 20px;
+			text-align: center;
+			width: 70px;
+			height: 65px;
+			border-radius: 0 $border-radius $border-radius 0;
+			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+			@include transition(left);
+
+			.nav-icon {
+				position: absolute;
+				left: 0;
+				max-width: 55%;
+			}
+
+			&:hover {
+				left: 0;
+
+				.nav-icon {
+					left: 15px;
+					@include transition(left);
+				}
+			}
+		}
+	}
+}

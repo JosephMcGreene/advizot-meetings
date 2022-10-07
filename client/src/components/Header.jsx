@@ -11,33 +11,31 @@ export default function Header({ onSubmit }) {
 
 	return (
 		<header className="header">
-			<nav className="nav-bar">
-				<ul className="nav-ul">
-					<li className="logo-wrapper">
-						<img src={advizotLogo} alt="Advizot logo" className="logo" />
-					</li>
-					<li className="actions-container">
-						{/* Show sign out link if logged in, or sign in if logged out */}
-						{currentUser ? (
-							<>
-								{/* <button
+			<ul className="header-ul">
+				<li className="logo-wrapper">
+					<img src={advizotLogo} alt="Advizot logo" className="logo" />
+				</li>
+				<li className="actions-container">
+					{/* Show sign out link if logged in, or sign in if logged out */}
+					{currentUser ? (
+						<>
+							{/* <button
 									className="btn"
 									onClick={() => setShowMeetingCode(!showMeetingCode)}
 								>
 									Enter Meeting
 								</button> */}
-								<a href="/auth/logout">
-									<button className="btn">Sign out</button>
-								</a>
-							</>
-						) : (
-							<button className="btn" onClick={() => setShowLogin(!showLogin)}>
-								Sign in
-							</button>
-						)}
-					</li>
-				</ul>
-			</nav>
+							<a href="/auth/logout">
+								<button className="btn">Sign out</button>
+							</a>
+						</>
+					) : (
+						<button className="btn" onClick={() => setShowLogin(!showLogin)}>
+							Sign in
+						</button>
+					)}
+				</li>
+			</ul>
 
 			{/* don't always need to see the modals */}
 			{showLogin && <Login onClose={() => setShowLogin(!showLogin)} />}

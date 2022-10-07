@@ -9,34 +9,32 @@
 	background-color: whitesmoke;
 	box-shadow: $header-shadow;
 
-	.nav-bar {
-		.nav-ul {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			list-style: none;
+	.header-ul {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		list-style: none;
 
-			.logo-wrapper {
-				align-self: start;
+		.logo-wrapper {
+			align-self: start;
 
-				.logo {
-					//might bring back clamp later. Keep commented for now
-					// width: clamp(145px, 35%, 175px);
-					width: 175px;
-					align-self: flex-start;
-				}
+			.logo {
+				//might bring back clamp later. Keep commented for now
+				// width: clamp(145px, 35%, 175px);
+				width: 175px;
+				align-self: flex-start;
 			}
+		}
 
-			.actions-container {
-				display: flex;
-				align-items: center;
+		.actions-container {
+			display: flex;
+			align-items: center;
 
-				.btn {
-					padding: 1rem;
-					margin-top: 1rem;
-					margin-bottom: 1rem;
-					margin-right: 1.25rem;
-				}
+			.btn {
+				padding: 1rem;
+				margin-top: 1rem;
+				margin-bottom: 1rem;
+				margin-right: 1.25rem;
 			}
 		}
 	}
