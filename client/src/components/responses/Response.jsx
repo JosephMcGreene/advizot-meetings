@@ -3,7 +3,7 @@ import { UserContext } from "../../App";
 import Priority from "./Priority";
 import Rating from "./Rating";
 import IssueGoal from "./IssueGoal";
-import trashCan from "../../img/trash-can-solid.svg";
+import trashCan from "../../assets/img/trash-can-solid.svg";
 
 export const UserResponseContext = React.createContext();
 

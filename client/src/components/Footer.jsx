@@ -1,4 +1,4 @@
-import logoBlack from "../img/black-on-transparent.png";
+import logoBlack from "../assets/img/black-on-transparent.png";
 
 export default function Footer() {
 	return (

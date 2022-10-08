@@ -5,7 +5,7 @@ import * as Yup from "yup";
 //Internal
 import InputField from "./InputField";
 import Select from "./Select";
-import chevron from "../../img/chevron-up-solid.svg";
+import chevron from "../../assets/img/chevron-up-solid.svg";
 import LoadingSpinner from "../LoadingSpinner";
 
 export default function MeetingForm({ onSubmit }) {

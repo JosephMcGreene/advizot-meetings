@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../App";
-import advizotLogo from "../img/Original on Transparent.png";
+import advizotLogo from "../assets/img/original-on-transparent.png";
 import Login from "./modals/Login";
 import MeetingCode from "./modals/MeetingCode";
 

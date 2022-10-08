@@ -6,7 +6,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 //Internal
 import InputField from "../form/InputField";
-import editPen from "../../img/pen-solid.svg";
+import editPen from "../../assets/img/pen-solid.svg";
 
 export default function IssueGoal({
 	title,
