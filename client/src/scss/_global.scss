@@ -1,5 +1,5 @@
 //Internal
-@use "../abstracts/index" as *;
+@use "./index" as *;
 
 * {
 	box-sizing: border-box;
@@ -43,6 +43,7 @@ code {
 	padding: $padding;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 
+	//Necessary for <Select> components:
 	option {
 		text-align: center;
 		font-family: $main-font;
@@ -91,6 +92,7 @@ code {
 	@include advizotFont(1.1rem, bold, 0.5px);
 	border: none;
 	display: block;
+	//Padding will sometimes be overridden in specific places
 	padding: 4% 10%;
 	background-color: $advizot-color;
 	cursor: pointer;

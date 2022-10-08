@@ -17,7 +17,7 @@ export default function Responses({
 		<>
 			{/* Only show Responses header if there are responses to display */}
 			{responses.length > 0 ? (
-				<h2 className="responses-header">Responses</h2>
+				<h2 className="responses-heading">Responses</h2>
 			) : (
 				""
 			)}

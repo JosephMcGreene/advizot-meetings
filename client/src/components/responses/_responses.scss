@@ -1,8 +1,8 @@
-@use "../../abstracts/index" as *;
+@use "../../scss/index" as *;
 @forward "responses-grid";
 @forward "wide-screens";
 
-.responses-header {
+.responses-heading {
 	@include advizotFont(1.5rem, 400, 0.75px);
 	text-align: center;
 	text-decoration: underline;

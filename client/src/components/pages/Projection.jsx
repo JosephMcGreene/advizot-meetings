@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 //Internal
 import Responses from "../responses/Responses";
-import formIcon from "../../img/align-left-solid.svg";
+import formIcon from "../../assets/img/align-left-solid.svg";
 
 export default function Projection({
 	responses,

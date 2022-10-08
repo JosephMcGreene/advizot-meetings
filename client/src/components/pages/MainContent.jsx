@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 //Internal
 import MeetingForm from "../form/MeetingForm";
 import Responses from "../responses/Responses";
-import projectorScreen from "../../img/display-solid.svg";
+import projectorScreen from "../../assets/img/display-solid.svg";
 
 export default function MainContent({
 	onSubmit,
