@@ -1,8 +1,12 @@
 import { useState, useContext } from "react";
-import { UserContext } from "../App";
+//External
+import { Link } from "react-router-dom";
+//Internal
 import advizotLogo from "../assets/img/original-on-transparent.png";
 import Login from "./modals/Login";
 import MeetingCode from "./modals/MeetingCode";
+import projectorScreen from "../assets/img/display-solid.svg";
+import { UserContext } from "../App";
 
 export default function Header({ onSubmit }) {
 	const [showMeetingCode, setShowMeetingCode] = useState(false);
@@ -11,31 +15,33 @@ export default function Header({ onSubmit }) {
 
 	return (
 		<header className="header">
-			<ul className="header-ul">
-				<li className="logo-wrapper">
+			<nav className="nav-bar">
+				<div className="logo-wrapper">
 					<img src={advizotLogo} alt="Advizot logo" className="logo" />
-				</li>
-				<li className="actions-container">
+				</div>
+				<ul className="actions-ul">
 					{/* Show sign out link if logged in, or sign in if logged out */}
 					{currentUser ? (
-						<>
-							{/* <button
-									className="btn"
-									onClick={() => setShowMeetingCode(!showMeetingCode)}
-								>
-									Enter Meeting
-								</button> */}
+						<li className="nav-item">
 							<a href="/auth/logout">
 								<button className="btn">Sign out</button>
 							</a>
-						</>
+						</li>
 					) : (
-						<button className="btn" onClick={() => setShowLogin(!showLogin)}>
-							Sign in
-						</button>
+						<li className="nav-item">
+							<button className="btn" onClick={() => setShowLogin(!showLogin)}>
+								Sign in
+							</button>
+						</li>
 					)}
-				</li>
-			</ul>
+					<li className="nav-item">
+						<button className="btn">1:1 Check-in</button>
+					</li>
+					<li className="nav-item">
+						<button className="btn">Settings</button>
+					</li>
+				</ul>
+			</nav>
 
 			{/* don't always need to see the modals */}
 			{showLogin && <Login onClose={() => setShowLogin(!showLogin)} />}

@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import "./scss/App.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import MainContent from "./components/pages/MainContent";
+import MeetingContent from "./components/pages/MeetingContent";
 import Projection from "./components/pages/Projection";
 //Context for logged in user data currentUser:
 export const UserContext = React.createContext();
@@ -136,7 +136,7 @@ export default function App() {
 						<Route
 							path="/"
 							element={
-								<MainContent
+								<MeetingContent
 									onSubmit={(responseToSubmit) =>
 										submitResponse(responseToSubmit)
 									}
