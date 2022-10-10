@@ -1,7 +1,8 @@
 //External
 import { Link } from "react-router-dom";
-//Internal
+//Components
 import Responses from "../responses/Responses";
+//Assets
 // import formIcon from "../../assets/img/align-left-solid.svg";
 import formIcon from "../../assets/img/wpforms.svg";
 

@@ -154,10 +154,10 @@ a {
 
 	.footer-logo {
 		height: 1.95rem;
+		@include transition(transform);
 
 		&:hover {
 			transform: scale(1.15);
-			@include transition(transform);
 		}
 	}
 }

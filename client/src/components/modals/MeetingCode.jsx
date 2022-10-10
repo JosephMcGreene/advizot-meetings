@@ -1,7 +1,7 @@
 //External
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-//Internal
+//Components
 import InputField from "../form/InputField";
 import LoadingSpinner from "../LoadingSpinner";
 

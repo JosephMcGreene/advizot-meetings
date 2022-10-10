@@ -1,55 +1,59 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { UserContext } from "../../App";
-//External
-import { Link } from "react-router-dom";
-//Internal
+//Components
 import MeetingForm from "../form/MeetingForm";
 import Responses from "../responses/Responses";
 //Assets
-import projectorScreen from "../../assets/img/users-viewfinder-solid.svg";
+// import projectorScreen from "../../assets/img/users-viewfinder-solid.svg";
 import showEye from "../../assets/img/eye-solid.svg";
 import hideEye from "../../assets/img/eye-slash-solid.svg";
 
-export default function MainContent({
+export default function MeetingContent({
 	onSubmit,
 	responses,
 	loading,
+	onFullscreen,
+	fullscreen,
 	onSubmitEdits,
 	onDelete,
 }) {
-	const [formVisibility, setFormVisibility] = useState(true);
 	const currentUser = useContext(UserContext);
 
 	return (
 		<main className="main-content">
-			<h1 className="welcome">Hello, {currentUser.firstName}!</h1>
+			{fullscreen && (
+				<h1 className="welcome">Hello, {currentUser.firstName}!</h1>
+			)}
 
 			<ul className="util-list">
 				<li className="util-item">
-					<button
-						className="btn util-btn"
-						onClick={() => setFormVisibility(!formVisibility)}
-					>
+					<button className="btn util-btn" onClick={onFullscreen}>
 						<img
 							className="util-icon"
-							src={formVisibility ? hideEye : showEye}
-							alt="form-close icon"
+							src={fullscreen ? hideEye : showEye}
+							alt="fullscreen eye"
 						/>
+						<span className="util-text">
+							{fullscreen ? "Responses Only" : "Fill In"}
+						</span>
 					</button>
 				</li>
 
-				<li className="util-item">
-					<Link to="/projection" className="btn util-btn">
+				{/* <li className="util-item">
+					<button className="btn util-btn" onClick={onFullscreen}>
 						<img
 							className="util-icon"
 							src={projectorScreen}
 							alt="projection icon"
 						/>
-					</Link>
-				</li>
+						<span className="util-text">
+							{fullscreen ? "Responses Only" : "Fill In"}
+						</span>
+					</button>
+				</li> */}
 			</ul>
 
-			{formVisibility && (
+			{fullscreen && (
 				<MeetingForm
 					onSubmit={(responseToSubmit) => onSubmit(responseToSubmit)}
 				/>

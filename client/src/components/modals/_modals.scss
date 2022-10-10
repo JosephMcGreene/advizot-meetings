@@ -37,6 +37,8 @@
 				background-color: transparent;
 				border-color: transparent;
 				font-size: 2.25rem;
+				@include transition(transform);
+				transition-duration: 100ms;
 
 				&:focus {
 					@include onFocus();
@@ -44,7 +46,6 @@
 
 				&:hover {
 					transform: rotate(90deg);
-					@include transition(transform);
 				}
 			}
 		}

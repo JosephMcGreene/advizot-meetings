@@ -4,8 +4,9 @@ import { UserResponseContext } from "./Response";
 //External
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-//Internal
+//Components
 import Select from "../form/Select";
+//Assets
 import editPen from "../../assets/img/pen-solid.svg";
 
 export default function Priority({

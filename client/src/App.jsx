@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 //External
 import axios from "axios";
 import { Routes, Route } from "react-router-dom";
-//Internal
+//Internal & Components
 import "./scss/App.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -13,6 +13,7 @@ export const UserContext = React.createContext();
 
 export default function App() {
 	const [loading, setLoading] = useState(false);
+	const [fullscreen, setFullscreen] = useState(false);
 	const [responses, setResponses] = useState([]);
 	const [currentUser, setCurrentUser] = useState({});
 
@@ -129,7 +130,7 @@ export default function App() {
 	return (
 		<div className="App">
 			<UserContext.Provider value={currentUser}>
-				<Header />
+				{fullscreen && <Header />}
 				{/* User must sign in to use app features, so only show the features if logged in: */}
 				{currentUser ? (
 					<Routes>
@@ -142,6 +143,8 @@ export default function App() {
 									}
 									responses={responses}
 									loading={loading}
+									onFullscreen={() => setFullscreen(!fullscreen)}
+									fullscreen={fullscreen}
 									onSubmitEdits={(userEdit) => submitResponse(userEdit)}
 									onDelete={(responseToDelete) =>
 										deleteResponse(responseToDelete)

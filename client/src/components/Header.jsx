@@ -1,12 +1,10 @@
 import { useState, useContext } from "react";
-//External
-import { Link } from "react-router-dom";
-//Internal
-import advizotLogo from "../assets/img/original-on-transparent.png";
+import { UserContext } from "../App";
+//Components
 import Login from "./modals/Login";
 import MeetingCode from "./modals/MeetingCode";
-import projectorScreen from "../assets/img/display-solid.svg";
-import { UserContext } from "../App";
+//Assets
+import advizotLogo from "../assets/img/original-on-transparent.png";
 
 export default function Header({ onSubmit }) {
 	const [showMeetingCode, setShowMeetingCode] = useState(false);
@@ -34,18 +32,11 @@ export default function Header({ onSubmit }) {
 							</button>
 						</li>
 					)}
+
 					<li className="nav-item">
-						<button className="btn">
-							<s>
-								[1:1 <br /> Check-in]
-							</s>
-						</button>
+						[1:1 <br /> Check-in]
 					</li>
-					<li className="nav-item">
-						<button className="btn">
-							<s>[Settings]</s>
-						</button>
-					</li>
+					<li className="nav-item">[Settings]</li>
 				</ul>
 			</nav>
 

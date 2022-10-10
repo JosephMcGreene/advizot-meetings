@@ -1,8 +1,10 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "../../App";
+//Components
 import Priority from "./Priority";
 import Rating from "./Rating";
 import IssueGoal from "./IssueGoal";
+//Assets
 import trashCan from "../../assets/img/trash-can-solid.svg";
 
 export const UserResponseContext = React.createContext();

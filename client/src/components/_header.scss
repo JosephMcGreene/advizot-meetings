@@ -43,11 +43,18 @@
 			margin-right: 1rem;
 
 			.nav-item {
+				@include advizotFont(1.1rem, 600, 0);
 				margin-top: 1rem;
+				text-align: right;
+				cursor: pointer;
+				@include transition(text-shadow color);
 
+				&:hover {
+					text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+				}
 				.btn {
-					padding: 0.9ch 0;
-					width: 100%;
+					padding: 1ch;
+					margin-left: auto;
 				}
 			}
 		}
