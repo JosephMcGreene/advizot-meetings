@@ -20,6 +20,7 @@
 	min-height: 100vh;
 
 	.main-content {
+		// padding-top: $footer-height;
 		padding-bottom: $footer-height;
 	}
 }
@@ -109,8 +110,8 @@ code {
 .welcome {
 	@include advizotFont(2rem, 400, 1px);
 	text-align: center;
-	margin: 1rem auto 0;
-	padding: 0 3vw;
+	margin: 0 auto;
+	padding: calc($header-height + 0.5rem) 3vw 0;
 }
 
 a {

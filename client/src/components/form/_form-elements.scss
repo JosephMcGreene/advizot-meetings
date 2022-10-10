@@ -10,7 +10,7 @@
 	padding-bottom: 1px;
 	box-shadow: $form-shadow;
 
-	.form-header {
+	.form-heading {
 		@include borderRadius();
 		display: flex;
 		justify-content: space-between;
@@ -19,35 +19,12 @@
 		background-color: $advizot-color;
 		box-shadow: $header-shadow;
 		margin-bottom: 10px;
-
-		&:hover .chevron {
-			transform: translateY(-4px);
-			transition-property: transform;
-			transition-duration: 200ms;
-		}
-		&:hover .chevron-flipped {
-			transform: translateY(4px) rotate(180deg);
-			transition-property: transform;
-			transition-duration: 200ms;
-		}
+		padding: 5px 0;
 
 		span {
 			@include advizotFont(1.25rem, 400, 0);
 			margin-left: calc($form-padding/2);
 		}
-
-		.minimize-btn {
-			background-color: transparent;
-			border: none;
-			display: block;
-			margin-left: auto;
-			padding: 5px calc($form-padding/2);
-			cursor: pointer;
-		}
-	}
-
-	.chevron {
-		width: 25px;
 	}
 
 	.range-container {
@@ -73,21 +50,6 @@
 	.btn {
 		margin: 2rem auto;
 		width: calc(100% - ($form-padding * 2));
-	}
-}
-
-.minimized-form {
-	border-radius: 24.5px;
-	width: min(380px, 96%);
-	height: 38.333px;
-	margin: 20px auto;
-	box-shadow: $form-shadow;
-	cursor: pointer;
-	overflow: hidden;
-
-	.chevron-flipped {
-		width: 25px;
-		transform: rotate(180deg);
 	}
 }
 

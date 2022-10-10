@@ -5,12 +5,9 @@ import * as Yup from "yup";
 //Internal
 import InputField from "./InputField";
 import Select from "./Select";
-import chevron from "../../assets/img/chevron-up-solid.svg";
 import LoadingSpinner from "../LoadingSpinner";
 
 export default function MeetingForm({ onSubmit }) {
-	const [formVisibility, setFormVisibility] = useState(true);
-
 	/**
 	 * Calculates how much of an input slider's background should be filled up based on where the user is sliding it
 	 * @param {Number} value The current value of the range-slider, used as a basis to calculate how much of the background of the slider needs to be turned orange
@@ -62,19 +59,9 @@ export default function MeetingForm({ onSubmit }) {
 			}}
 		>
 			{({ isSubmitting, submitCount, ...props }) => (
-				<Form className={formVisibility ? "form" : "form minimized-form"}>
-					<div
-						className="form-header"
-						onClick={() => setFormVisibility(!formVisibility)}
-					>
+				<Form className="form">
+					<div className="form-heading">
 						<span>Questions</span>
-						<button type="button" className="minimize-btn">
-							<img
-								src={chevron}
-								alt="Close Form"
-								className={formVisibility ? "chevron" : "chevron-flipped"}
-							/>
-						</button>
 					</div>
 
 					<InputField

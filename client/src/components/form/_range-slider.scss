@@ -23,8 +23,8 @@ input[type="range"]::-webkit-slider-thumb {
 	-webkit-appearance: none;
 	height: 30px;
 	width: 28px;
-	border-radius: 10px 0 10px 0;
-	transform: skew(-15deg);
+	border-radius: $border-radius 0 $border-radius 0;
+	// transform: skew(-15deg);
 	background: $advizot-color;
 	cursor: grab;
 	box-shadow:
@@ -34,7 +34,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 input[type="range"]::-webkit-slider-thumb:hover {
 	@include btnHover();
-	transform: scale(1.15) skew(-15deg);
+	transform: scale(1.15);
 }
 input[type="range"]::-webkit-slider-thumb:active {
 	cursor: grabbing;
@@ -57,7 +57,7 @@ input[type="range"]::-moz-range-thumb {
 	transition-timing-function: ease-in-out;
 }
 input[type="range"]::-moz-range-thumb:hover {
-	transform: scale(1.15) skew(-15deg);
+	transform: scale(1.15);
 	@include btnHover();
 }
 input[type="range"]::-moz-range-thumb:active {

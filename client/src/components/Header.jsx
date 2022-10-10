@@ -35,10 +35,16 @@ export default function Header({ onSubmit }) {
 						</li>
 					)}
 					<li className="nav-item">
-						<button className="btn">1:1 Check-in</button>
+						<button className="btn">
+							<s>
+								[1:1 <br /> Check-in]
+							</s>
+						</button>
 					</li>
 					<li className="nav-item">
-						<button className="btn">Settings</button>
+						<button className="btn">
+							<s>[Settings]</s>
+						</button>
 					</li>
 				</ul>
 			</nav>

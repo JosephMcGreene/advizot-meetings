@@ -1,37 +1,43 @@
 //Internal
 @use "../../scss/index" as *;
 
-//Inside .App > .main-content
-.nav-btn-list {
+.util-list {
+	position: fixed;
 	list-style: none;
 
-	.nav-item {
-		.nav-btn {
-			position: fixed;
+	.util-item {
+		margin-bottom: 10px;
+
+		.util-btn {
+			@include borderSides();
+			border-left: none;
+			border-color: $advizot-color;
+			z-index: $top;
+			position: relative;
+			top: -30px;
+			left: -40px;
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			top: 100px;
-			left: -40px;
-			z-index: $top;
 			padding: 0 20px;
 			text-align: center;
 			width: 70px;
 			height: 65px;
+			background-color: whitesmoke;
 			border-radius: 0 $border-radius $border-radius 0;
 			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 			@include transition(left);
 
-			.nav-icon {
+			.util-icon {
 				position: absolute;
-				left: 0;
+				left: -10px;
 				max-width: 55%;
 			}
 
 			&:hover {
 				left: 0;
 
-				.nav-icon {
+				.util-icon {
 					left: 15px;
 					@include transition(left);
 				}

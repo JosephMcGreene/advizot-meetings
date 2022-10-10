@@ -1,11 +1,14 @@
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { UserContext } from "../../App";
 //External
 import { Link } from "react-router-dom";
 //Internal
 import MeetingForm from "../form/MeetingForm";
 import Responses from "../responses/Responses";
-import projectorScreen from "../../assets/img/display-solid.svg";
+//Assets
+import projectorScreen from "../../assets/img/users-viewfinder-solid.svg";
+import showEye from "../../assets/img/eye-solid.svg";
+import hideEye from "../../assets/img/eye-slash-solid.svg";
 
 export default function MainContent({
 	onSubmit,
@@ -14,29 +17,43 @@ export default function MainContent({
 	onSubmitEdits,
 	onDelete,
 }) {
+	const [formVisibility, setFormVisibility] = useState(true);
 	const currentUser = useContext(UserContext);
 
 	return (
 		<main className="main-content">
 			<h1 className="welcome">Hello, {currentUser.firstName}!</h1>
 
-			<nav className="nav-icons">
-				<ul className="nav-btn-list">
-					<li className="nav-item">
-						<Link to="/projection" className="btn nav-btn">
-							<img
-								src={projectorScreen}
-								alt="projection icon"
-								className="nav-icon"
-							/>
-						</Link>
-					</li>
-				</ul>
-			</nav>
+			<ul className="util-list">
+				<li className="util-item">
+					<button
+						className="btn util-btn"
+						onClick={() => setFormVisibility(!formVisibility)}
+					>
+						<img
+							className="util-icon"
+							src={formVisibility ? hideEye : showEye}
+							alt="form-close icon"
+						/>
+					</button>
+				</li>
 
-			<MeetingForm
-				onSubmit={(responseToSubmit) => onSubmit(responseToSubmit)}
-			/>
+				<li className="util-item">
+					<Link to="/projection" className="btn util-btn">
+						<img
+							className="util-icon"
+							src={projectorScreen}
+							alt="projection icon"
+						/>
+					</Link>
+				</li>
+			</ul>
+
+			{formVisibility && (
+				<MeetingForm
+					onSubmit={(responseToSubmit) => onSubmit(responseToSubmit)}
+				/>
+			)}
 
 			<Responses
 				responses={responses}

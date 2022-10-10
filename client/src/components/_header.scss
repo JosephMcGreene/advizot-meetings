@@ -2,24 +2,28 @@
 
 .header {
 	z-index: $middle;
-	position: relative;
+	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
 	background-color: whitesmoke;
 	box-shadow: $header-shadow;
 
-	&:hover .nav-bar {
-		z-index: calc($top + 1);
-		height: fit-content;
+	&:hover {
+		// 110
+		z-index: calc($top + $middle);
+
+		.nav-bar {
+			height: fit-content;
+		}
 	}
 
 	.nav-bar {
 		display: flex;
 		justify-content: space-between;
-		align-items: flex-start;
-		height: $footer-height;
+		height: $header-height;
 		overflow: hidden;
+		@include transition(height);
 
 		.logo-wrapper {
 			margin-top: 0.5rem;
@@ -32,12 +36,19 @@
 		.actions-ul {
 			display: flex;
 			flex-direction: column;
-			align-content: center;
+			justify-content: space-between;
 			list-style: none;
+			width: min(40%, 160px);
+			margin-bottom: 1rem;
+			margin-right: 1rem;
 
 			.nav-item {
-				margin-top: 1.2rem;
-				width: fit-content;
+				margin-top: 1rem;
+
+				.btn {
+					padding: 0.9ch 0;
+					width: 100%;
+				}
 			}
 		}
 	}
