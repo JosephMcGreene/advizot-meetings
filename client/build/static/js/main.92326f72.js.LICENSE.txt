@@ -48,13 +48,3 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
-//!    (- POST data to Coach Accountable to be stored as a metric for user later on)
-
-//!    - Answers to sign-in questions to be used during the course of the meeting via a projector
-
-//!    - Easy and Fast to use
-
-//!    - Secure Server Sign-In
-
-//! Overall Goals:
