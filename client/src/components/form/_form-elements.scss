@@ -7,8 +7,8 @@
 	font-family: $main-font;
 	width: 85%;
 	margin-top: 1rem;
-	margin-left: auto;
-	margin-right: 2vw;
+	margin-left: 3rem;
+	margin-right: 1rem;
 	padding-bottom: 1px;
 	box-shadow: $form-shadow;
 
@@ -106,7 +106,7 @@
 
 @media screen and (min-width: 500px) {
 	.form {
-		width: 380px;
-		margin-right: auto;
+		width: 410px;
+		margin: 1rem auto 1px;
 	}
 }

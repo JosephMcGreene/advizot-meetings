@@ -6,9 +6,8 @@ import MeetingCode from "./modals/MeetingCode";
 //Assets
 import advizotLogo from "../assets/img/original-on-transparent.png";
 
-export default function Header({ onSubmit }) {
+export default function Header({ showLoginModal, onSubmit }) {
 	const [showMeetingCode, setShowMeetingCode] = useState(false);
-	const [showLogin, setShowLogin] = useState(false);
 	const currentUser = useContext(UserContext);
 
 	return (
@@ -27,7 +26,7 @@ export default function Header({ onSubmit }) {
 						</li>
 					) : (
 						<li className="nav-item">
-							<button className="btn" onClick={() => setShowLogin(!showLogin)}>
+							<button className="btn" onClick={() => showLoginModal(true)}>
 								Sign in
 							</button>
 						</li>
@@ -41,7 +40,6 @@ export default function Header({ onSubmit }) {
 			</nav>
 
 			{/* don't always need to see the modals */}
-			{showLogin && <Login onClose={() => setShowLogin(!showLogin)} />}
 			{showMeetingCode && (
 				<MeetingCode
 					onClose={() => setShowMeetingCode(!showMeetingCode)}

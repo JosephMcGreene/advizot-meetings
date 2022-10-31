@@ -51,24 +51,11 @@
 }
 
 //Login Buttons
-@mixin loginButton() {
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	font-family: var.$main-font;
-	font-size: 1.1rem;
-	font-weight: 600;
-	color: black;
-	border: none;
-	margin: 1rem;
-}
 @mixin loginHover($color, $radius) {
 	background-color: white;
 	outline: 2px solid $color;
 	border-radius: $radius;
 	color: $color;
-	@include transition(all);
 }
 @mixin logoSize() {
 	width: 30px;

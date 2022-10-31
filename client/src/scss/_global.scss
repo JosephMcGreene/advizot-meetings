@@ -20,8 +20,11 @@
 	min-height: 100vh;
 
 	.main-content {
-		// padding-top: $footer-height;
+		padding-top: $footer-height;
 		padding-bottom: $footer-height;
+	}
+	.main-small-padding {
+		padding-top: 0;
 	}
 }
 
@@ -93,7 +96,7 @@ code {
 	@include advizotFont(1.1rem, bold, 0.5px);
 	border: none;
 	display: block;
-	//Padding will sometimes be overridden in specific places
+	//Padding will sometimes be overridden in specific instances
 	padding: 4% 10%;
 	background-color: $advizot-color;
 	cursor: pointer;
@@ -111,7 +114,11 @@ code {
 	@include advizotFont(2rem, 400, 1px);
 	text-align: center;
 	margin: 0 auto;
-	padding: calc($header-height + 0.5rem) 3vw 0;
+	padding-top: 1rem;
+}
+
+.welcome-signin-btn {
+	margin: 1rem auto;
 }
 
 a {
@@ -137,10 +144,10 @@ a {
 }
 
 .footer {
-	display: flex;
-	justify-content: flex-end;
 	position: absolute;
 	bottom: 0;
+	display: flex;
+	justify-content: flex-end;
 	width: 100%;
 	height: $footer-height;
 	background-color: $advizot-color;

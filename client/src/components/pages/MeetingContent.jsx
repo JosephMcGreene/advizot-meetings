@@ -5,8 +5,8 @@ import MeetingForm from "../form/MeetingForm";
 import Responses from "../responses/Responses";
 //Assets
 // import projectorScreen from "../../assets/img/users-viewfinder-solid.svg";
-import showEye from "../../assets/img/eye-solid.svg";
-import hideEye from "../../assets/img/eye-slash-solid.svg";
+import expandIcon from "../../assets/img/expand-solid.svg";
+import compressIcon from "../../assets/img/compress-solid.svg";
 
 export default function MeetingContent({
 	onSubmit,
@@ -20,8 +20,8 @@ export default function MeetingContent({
 	const currentUser = useContext(UserContext);
 
 	return (
-		<main className="main-content">
-			{fullscreen && (
+		<main className={!fullscreen ? "main-content" : "main-small-padding"}>
+			{!fullscreen && (
 				<h1 className="welcome">Hello, {currentUser.firstName}!</h1>
 			)}
 
@@ -30,11 +30,11 @@ export default function MeetingContent({
 					<button className="btn util-btn" onClick={onFullscreen}>
 						<img
 							className="util-icon"
-							src={fullscreen ? hideEye : showEye}
+							src={fullscreen ? compressIcon : expandIcon}
 							alt="fullscreen eye"
 						/>
 						<span className="util-text">
-							{fullscreen ? "Responses Only" : "Fill In"}
+							{fullscreen ? "Fill In" : "Fullscreen Responses"}
 						</span>
 					</button>
 				</li>
@@ -53,7 +53,7 @@ export default function MeetingContent({
 				</li> */}
 			</ul>
 
-			{fullscreen && (
+			{!fullscreen && (
 				<MeetingForm
 					onSubmit={(responseToSubmit) => onSubmit(responseToSubmit)}
 				/>

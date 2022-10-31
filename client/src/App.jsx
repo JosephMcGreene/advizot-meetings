@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 //External
 import axios from "axios";
-import { Routes, Route } from "react-router-dom";
 //Internal & Components
 import "./scss/App.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Login from "./components/modals/Login";
 import MeetingContent from "./components/pages/MeetingContent";
-import Projection from "./components/pages/Projection";
 //Context for logged in user data currentUser:
 export const UserContext = React.createContext();
 
 export default function App() {
 	const [loading, setLoading] = useState(false);
 	const [fullscreen, setFullscreen] = useState(false);
+	const [showLogin, setShowLogin] = useState(false);
 	const [responses, setResponses] = useState([]);
 	const [currentUser, setCurrentUser] = useState({});
 
@@ -31,13 +31,13 @@ export default function App() {
 	 */
 	async function getCurrentUser() {
 		try {
-			const current_user = await axios("/auth/current_user", {
+			const currentUserInfo = await axios("/auth/current_user", {
 				headers: {
 					Accept: "application/json",
 					"Content-Type": "application/json",
 				},
 			});
-			setCurrentUser(current_user.data);
+			setCurrentUser(currentUserInfo.data);
 		} catch (error) {
 			console.error(error);
 		}
@@ -76,6 +76,7 @@ export default function App() {
 	async function submitResponse(responseToSubmit) {
 		responseToSubmit.userName = `${currentUser.firstName} ${currentUser.lastName}`;
 		responseToSubmit.date = Date.now();
+
 		try {
 			setLoading(true);
 
@@ -130,47 +131,38 @@ export default function App() {
 	return (
 		<div className="App">
 			<UserContext.Provider value={currentUser}>
-				{fullscreen && <Header />}
+				{!fullscreen ? (
+					<Header showLoginModal={() => setShowLogin(!showLogin)} />
+				) : (
+					""
+				)}
 				{/* User must sign in to use app features, so only show the features if logged in: */}
 				{currentUser ? (
-					<Routes>
-						<Route
-							path="/"
-							element={
-								<MeetingContent
-									onSubmit={(responseToSubmit) =>
-										submitResponse(responseToSubmit)
-									}
-									responses={responses}
-									loading={loading}
-									onFullscreen={() => setFullscreen(!fullscreen)}
-									fullscreen={fullscreen}
-									onSubmitEdits={(userEdit) => submitResponse(userEdit)}
-									onDelete={(responseToDelete) =>
-										deleteResponse(responseToDelete)
-									}
-								/>
-							}
-						/>
-						<Route
-							path="/projection"
-							element={
-								<Projection
-									responses={responses}
-									loading={loading}
-									onSubmitEdits={(userEdit) => submitResponse(userEdit)}
-									onDelete={(responseToDelete) =>
-										deleteResponse(responseToDelete)
-									}
-								/>
-							}
-						/>
-					</Routes>
+					<MeetingContent
+						onSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
+						responses={responses}
+						loading={loading}
+						onFullscreen={() => setFullscreen(!fullscreen)}
+						fullscreen={fullscreen}
+						onSubmitEdits={(userEdit) => submitResponse(userEdit)}
+						onDelete={(responseToDelete) => deleteResponse(responseToDelete)}
+					/>
 				) : (
-					<h1 className="welcome">
-						Welcome! <br /> Please sign in to continue.
-					</h1>
+					<>
+						<h1 className="welcome">
+							Welcome! <br /> Please sign in to continue.
+						</h1>
+						<button
+							className="btn welcome-signin-btn"
+							onClick={() => setShowLogin(!showLogin)}
+						>
+							Sign in
+						</button>
+					</>
 				)}
+
+				{/* Don't always need to see modals */}
+				{showLogin && <Login onClose={() => setShowLogin(!showLogin)} />}
 			</UserContext.Provider>
 			<Footer />
 		</div>

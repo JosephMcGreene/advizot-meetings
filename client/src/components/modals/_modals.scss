@@ -79,6 +79,7 @@
 		color: black;
 		border: none;
 		padding: 1rem 1.25rem;
+		@include transition(all);
 
 		.logo {
 			width: 30px;
