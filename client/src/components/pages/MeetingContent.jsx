@@ -3,68 +3,35 @@ import { UserContext } from "../../App";
 //Components
 import MeetingForm from "../form/MeetingForm";
 import Responses from "../responses/Responses";
-//Assets
-// import projectorScreen from "../../assets/img/users-viewfinder-solid.svg";
-import expandIcon from "../../assets/img/expand-solid.svg";
-import compressIcon from "../../assets/img/compress-solid.svg";
+import UtilButtons from "../utilities/UtilButtons";
 
 export default function MeetingContent({
-	onSubmit,
-	responses,
-	loading,
-	onFullscreen,
-	fullscreen,
-	onSubmitEdits,
-	onDelete,
+  onSubmit,
+  responses,
+  loading,
+  onFullscreen,
+  fullscreen,
+  onSubmitEdits,
+  onDelete,
 }) {
-	const currentUser = useContext(UserContext);
+  const currentUser = useContext(UserContext);
 
-	return (
-		<main className={!fullscreen ? "main-content" : "main-small-padding"}>
-			{!fullscreen && (
-				<h1 className="welcome">Hello, {currentUser.firstName}!</h1>
-			)}
+  return (
+    <main className="main-content">
+      <h1 className="welcome">Hello, {currentUser.firstName}!</h1>
 
-			<ul className="util-list">
-				<li className="util-item">
-					<button className="btn util-btn" onClick={onFullscreen}>
-						<img
-							className="util-icon"
-							src={fullscreen ? compressIcon : expandIcon}
-							alt="fullscreen eye"
-						/>
-						<span className="util-text">
-							{fullscreen ? "Fill In" : "Fullscreen Responses"}
-						</span>
-					</button>
-				</li>
+      <MeetingForm
+        onSubmit={(responseToSubmit) => onSubmit(responseToSubmit)}
+      />
 
-				{/* <li className="util-item">
-					<button className="btn util-btn" onClick={onFullscreen}>
-						<img
-							className="util-icon"
-							src={projectorScreen}
-							alt="projection icon"
-						/>
-						<span className="util-text">
-							{fullscreen ? "Responses Only" : "Fill In"}
-						</span>
-					</button>
-				</li> */}
-			</ul>
+      <Responses
+        responses={responses}
+        loading={loading}
+        onSubmitEdits={(userEdit) => onSubmitEdits(userEdit)}
+        onDelete={(responseToDelete) => onDelete(responseToDelete)}
+      />
 
-			{!fullscreen && (
-				<MeetingForm
-					onSubmit={(responseToSubmit) => onSubmit(responseToSubmit)}
-				/>
-			)}
-
-			<Responses
-				responses={responses}
-				loading={loading}
-				onSubmitEdits={(userEdit) => onSubmitEdits(userEdit)}
-				onDelete={(responseToDelete) => onDelete(responseToDelete)}
-			/>
-		</main>
-	);
+      <UtilButtons />
+    </main>
+  );
 }

@@ -3,125 +3,125 @@
 @forward "wide-screens";
 
 .responses-heading {
-	@include advizotFont(1.5rem, 400, 0.75px);
-	text-align: center;
-	text-decoration: underline;
-	margin-top: 5vh;
-	margin-bottom: 5vh;
-	margin-left: 10%;
+  @include advizotFont(1.5rem, 400, 0.75px);
+  text-align: center;
+  text-decoration: underline;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  margin-left: 10%;
 }
 
 .responses-ul {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-evenly;
-	width: 87%;
-	margin-left: auto;
-	margin-right: 2vw;
-	font-family: $main-font;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 87%;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: $main-font;
 
-	.response-li {
-		@include borderSides();
-		@include borderRadius();
-		padding: 12px;
-		box-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
-		margin-bottom: 8vh;
+  .response-li {
+    @include borderSides();
+    @include borderRadius();
+    padding: 12px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
+    margin-bottom: 8vh;
 
-		.response-p {
-			padding: 0.75rem 0 0.5rem;
-			// margin: 0 0.4rem;
+    .response-p {
+      padding: 0.75rem 0 0.5rem;
+      // margin: 0 0.4rem;
 
-			strong {
-				text-decoration: underline;
-				position: relative;
+      strong {
+        text-decoration: underline;
+        position: relative;
 
-				.edit-icon {
-					// display set to block on response-p:hover. See below
-					display: none;
-					position: absolute;
-					@include editIcon(15px, 0);
-					@include penPosition(2px, -19px);
-				}
-			}
+        .edit-icon {
+          // display set to block on response-p:hover. See below
+          display: none;
+          position: absolute;
+          @include editIcon(15px, 0);
+          @include penPosition(2px, -19px);
+        }
+      }
 
-			.edit-response,
-			.edit-textarea textarea {
-				@include borderSides();
-				padding: 5px;
-				width: min-content;
-				display: block;
-				margin: 0 auto;
-			}
+      .edit-response,
+      .edit-textarea textarea {
+        @include borderSides();
+        padding: 5px;
+        width: min-content;
+        display: block;
+        margin: 0 auto;
+      }
 
-			&:hover {
-				cursor: pointer;
+      &:hover {
+        cursor: pointer;
 
-				.edit-icon {
-					display: block;
-				}
-			}
-		}
+        .edit-icon {
+          display: block;
+        }
+      }
+    }
 
-		.response-name {
-			@include borderRadius();
-			font-size: 1.1rem;
-			background-color: $advizot-light;
-			padding: 7px 10%;
-			width: min-content;
+    .response-name {
+      @include borderRadius();
+      font-size: 1.1rem;
+      background-color: $advizot-light;
+      padding: 7px 10%;
+      width: min-content;
 
-			&:hover {
-				@include btnHover();
-				cursor: default;
-			}
-		}
+      &:hover {
+        @include btnHover();
+        cursor: default;
+      }
+    }
 
-		.delete-icon {
-			@include editIcon(50px, 17.5px);
+    .delete-icon {
+      @include editIcon(50px, 17.5px);
 
-			&:hover {
-				background-color: $advizot-light;
-				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-				cursor: pointer;
-				@include transition(all);
-			}
-		}
+      &:hover {
+        background-color: $advizot-light;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+        @include transition(all);
+      }
+    }
 
-		.priority {
-			font-family: $main-font;
-			text-align: center;
-		}
+    .priority {
+      font-family: $main-font;
+      text-align: center;
+    }
 
-		.range-response {
-			text-align: center;
+    .range-response {
+      text-align: center;
 
-			.btn {
-				padding: 2% 3%;
-			}
-		}
+      .btn {
+        padding: 2% 3%;
+      }
+    }
 
-		.issue,
-		.goal {
-			margin-bottom: 0.5rem;
+    .issue,
+    .goal {
+      margin-bottom: 0.5rem;
 
-			h4 {
-				text-align: center;
-			}
+      h4 {
+        text-align: center;
+      }
 
-			.btn {
-				padding: 1% 2%;
-			}
-		}
+      .btn {
+        padding: 1% 2%;
+      }
+    }
 
-		.btn {
-			letter-spacing: 0;
-			margin: 1vh auto;
-		}
+    .btn {
+      letter-spacing: 0;
+      margin: 1vh auto;
+    }
 
-		input[type="number"] {
-			@include borderSides();
-			padding: 3% 7%;
-			font-family: $main-font;
-			font-size: 1rem;
-		}
-	}
+    input[type="number"] {
+      @include borderSides();
+      padding: 3% 7%;
+      font-family: $main-font;
+      font-size: 1rem;
+    }
+  }
 }
