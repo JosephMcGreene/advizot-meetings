@@ -1,8 +1,8 @@
 @use "./global";
 @use "../components/form/form-elements";
-@use "../components/loading-spinner";
+@use "../components/utilities/loading-spinner";
 @use "../components/responses/responses";
 @use "../components/form/range-slider";
 @use "../components/modals/modals";
-@use "../components/pages/util-btns";
+@use "../components/utilities/util-btns";
 @use "../components/header";

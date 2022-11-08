@@ -3,110 +3,108 @@
 @forward "range-grid";
 
 .form {
-	@include borderRadius();
-	font-family: $main-font;
-	width: 85%;
-	margin-top: 1rem;
-	margin-left: 3rem;
-	margin-right: 1rem;
-	padding-bottom: 1px;
-	box-shadow: $form-shadow;
+  @include borderRadius();
+  font-family: $main-font;
+  width: 85%;
+  margin: 1rem auto;
+  padding-bottom: 1px;
+  box-shadow: $form-shadow;
 
-	.form-heading {
-		@include borderRadius();
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		cursor: pointer;
-		background-color: $advizot-color;
-		box-shadow: $header-shadow;
-		margin-bottom: 1rem;
-		padding: calc($form-padding/4) calc($form-padding/2);
+  .form-heading {
+    @include borderRadius();
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background-color: $advizot-color;
+    box-shadow: $header-shadow;
+    margin-bottom: 1rem;
+    padding: calc($form-padding/4) calc($form-padding/2);
 
-		span {
-			@include advizotFont(1.25rem, 400, 0);
-		}
-	}
+    span {
+      @include advizotFont(1.25rem, 400, 0);
+    }
+  }
 
-	.range-container {
-		padding: 0 $form-padding 1rem;
+  .range-container {
+    padding: 0 $form-padding 1rem;
 
-		label {
-			margin-top: 0.25rem;
-		}
+    label {
+      margin-top: 0.25rem;
+    }
 
-		.rangeValue {
-			font-size: 1.25rem;
-		}
+    .rangeValue {
+      font-size: 1.25rem;
+    }
 
-		.range-error {
-			grid-row-start: 4;
-		}
+    .range-error {
+      grid-row-start: 4;
+    }
 
-		&:focus {
-			@include onFocus();
-		}
-	}
+    &:focus {
+      @include onFocus();
+    }
+  }
 
-	.btn {
-		margin: 2rem auto;
-		width: calc(100% - ($form-padding * 2));
-	}
+  .btn {
+    margin: 2rem auto;
+    width: calc(100% - ($form-padding * 2));
+  }
 }
 
 .text-input {
-	display: flex;
-	flex-direction: column;
-	font-family: $main-font;
-	margin-top: 1rem;
-	padding: 0 $form-padding;
+  display: flex;
+  flex-direction: column;
+  font-family: $main-font;
+  margin-top: 1rem;
+  padding: 0 $form-padding;
 
-	textarea {
-		@include borderSides();
-		font-size: 1rem;
-		padding: $padding;
-		margin-top: 0.15rem;
-		box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  textarea {
+    @include borderSides();
+    font-size: 1rem;
+    padding: $padding;
+    margin-top: 0.15rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 
-		&:focus {
-			@include onFocus();
-		}
-	}
+    &:focus {
+      @include onFocus();
+    }
+  }
 
-	label {
-		text-align: center;
-	}
+  label {
+    text-align: center;
+  }
 
-	input {
-		@include borderSides();
-		font-family: $main-font;
-		font-size: 1rem;
-		width: 50%;
-		padding: $padding;
-		text-align: center;
-		width: 100%;
-		box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-	}
+  input {
+    @include borderSides();
+    font-family: $main-font;
+    font-size: 1rem;
+    width: 50%;
+    padding: $padding;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
 }
 
 .select {
-	display: flex;
-	flex-direction: column;
-	margin-top: 0.75rem;
-	padding: 0 $form-padding;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.75rem;
+  padding: 0 $form-padding;
 
-	label {
-		text-align: center;
-	}
+  label {
+    text-align: center;
+  }
 
-	&:focus {
-		@include onFocus();
-	}
+  &:focus {
+    @include onFocus();
+  }
 }
 
 @media screen and (min-width: 500px) {
-	.form {
-		width: 410px;
-		margin: 1rem auto 1px;
-	}
+  .form {
+    width: 410px;
+    margin: 1rem auto 1px;
+  }
 }
