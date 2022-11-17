@@ -20,14 +20,11 @@
     box-shadow: $header-shadow;
     margin-bottom: 1rem;
     padding: calc($form-padding/4) calc($form-padding/2);
-
-    span {
-      @include advizotFont(1.25rem, 400, 0);
-    }
   }
 
   .range-container {
     padding: 0 $form-padding 1rem;
+    position: relative;
 
     label {
       margin-top: 0.25rem;
@@ -39,6 +36,18 @@
 
     .range-error {
       grid-row-start: 4;
+      z-index: $top;
+      position: absolute;
+      left: 9%;
+      clip-path: polygon(
+        0 13%,
+        9% 13%,
+        12% 0,
+        15% 13%,
+        100% 13%,
+        100% 93%,
+        0 93%
+      );
     }
 
     &:focus {

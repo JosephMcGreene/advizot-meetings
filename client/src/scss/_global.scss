@@ -2,169 +2,171 @@
 @use "./index" as *;
 
 * {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 
-	&::selection {
-		background-color: $advizot-light;
-	}
+  &::selection {
+    background-color: $advizot-light;
+  }
 }
 
 :root {
-	font-size: 16px;
+  font-size: 16px;
 }
 
 .App {
-	position: relative;
-	min-height: 100vh;
+  position: relative;
+  min-height: 100vh;
 
-	.main-content {
-		padding-top: $footer-height;
-		padding-bottom: $footer-height;
-	}
-	.main-small-padding {
-		padding-top: 0;
-	}
+  .main-content {
+    padding-top: $footer-height;
+    padding-bottom: $footer-height;
+  }
+  .main-small-padding {
+    padding-top: 0;
+  }
 }
 
 body {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-		sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-		monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 .rating-select {
-	@include borderSides();
-	margin-top: 0.15rem;
-	padding: $padding;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  @include borderSides();
+  margin-top: 0.15rem;
+  padding: $padding;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 
-	//Necessary for <Select> components:
-	option {
-		text-align: center;
-		font-family: $main-font;
-	}
+  //Necessary for <Select> components:
+  option {
+    text-align: center;
+    font-family: $main-font;
+  }
 
-	&:focus {
-		@include onFocus();
-	}
+  &:focus {
+    @include onFocus();
+  }
 }
 
 .text-input {
-	display: flex;
-	flex-direction: column;
-	font-family: $main-font;
-	margin-top: 0.75rem;
-	padding: 0 $form-padding;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-family: $main-font;
+  margin-top: 0.75rem;
+  padding: 0 $form-padding;
 
-	textarea {
-		@include borderSides();
-		padding: $padding;
-		margin-top: 0.15rem;
-		box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  textarea {
+    @include borderSides();
+    padding: $padding;
+    margin-top: 0.15rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 
-		&:focus {
-			@include onFocus();
-		}
-	}
+    &:focus {
+      @include onFocus();
+    }
+  }
 
-	label {
-		text-align: center;
-	}
+  label {
+    text-align: center;
+  }
 
-	input {
-		@include borderSides();
-		width: 50%;
-		padding: $padding;
-		text-align: center;
-		width: 100%;
-		box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-	}
+  input {
+    @include borderSides();
+    width: 50%;
+    padding: $padding;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
 }
 
 //Does not handle layout or margins. Placement of buttons handled on case-by-case basis
 .btn {
-	@include borderRadius();
-	@include advizotFont(1.1rem, bold, 0.5px);
-	border: none;
-	display: block;
-	//Padding will sometimes be overridden in specific instances
-	padding: 4% 10%;
-	background-color: $advizot-color;
-	cursor: pointer;
+  @include borderRadius();
+  @include advizotFont(1.1rem, bold, 0.5px);
+  border: none;
+  display: block;
+  //Padding will sometimes be overridden in specific instances
+  padding: 4% 10%;
+  background-color: $advizot-color;
+  cursor: pointer;
 
-	&:hover {
-		@include btnHover();
-	}
+  &:hover {
+    @include btnHover();
+  }
 
-	&:focus {
-		@include onFocus();
-	}
+  &:focus {
+    @include onFocus();
+  }
 }
 
 .welcome {
-	@include advizotFont(2rem, 400, 1px);
-	text-align: center;
-	margin: 0 auto;
-	padding-top: 1rem;
+  @include advizotFont(2rem, 400, 1px);
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 1rem;
 }
 
 .welcome-signin-btn {
-	margin: 1rem auto;
+  margin: 1rem auto;
 }
 
 a {
-	text-decoration: none;
+  text-decoration: none;
 
-	&:visited {
-		color: black;
-	}
+  &:visited {
+    color: black;
+  }
 }
 
 .error {
-	width: fit-content;
-	margin-top: 1px;
-	padding: 0.5rem;
-	background-color: $advizot-color;
-	clip-path: polygon(0 13%, 9% 13%, 12% 0, 15% 13%, 100% 13%, 100% 93%, 0 93%);
+  position: absolute;
+  width: fit-content;
+  margin-top: 1px;
+  padding: 0.5rem;
+  background-color: $advizot-color;
+  clip-path: polygon(3% 15%, 97% 15%, 97% 85%, 3% 85%);
 }
 .range-error {
-	width: fit-content;
-	margin-top: 0.55rem;
-	padding: 0.2rem 0.4rem;
-	background-color: $advizot-color;
+  width: fit-content;
+  margin-top: 0.55rem;
+  padding: 0.2rem 0.4rem;
+  background-color: $advizot-color;
 }
 
 .footer {
-	position: absolute;
-	bottom: 0;
-	display: flex;
-	justify-content: flex-end;
-	width: 100%;
-	height: $footer-height;
-	background-color: $advizot-color;
-	padding: 1.5rem 1.75rem;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: $footer-height;
+  background-color: $advizot-color;
+  padding: 1.5rem 1.75rem;
 
-	.copyright {
-		align-self: flex-end;
-		font-family: $main-font;
-		font-weight: bold;
-	}
+  .copyright {
+    align-self: flex-end;
+    font-family: $main-font;
+    font-weight: bold;
+  }
 
-	.footer-logo {
-		height: 1.95rem;
-		@include transition(transform);
+  .footer-logo {
+    height: 1.95rem;
+    @include transition(transform);
 
-		&:hover {
-			transform: scale(1.15);
-		}
-	}
+    &:hover {
+      transform: scale(1.15);
+    }
+  }
 }

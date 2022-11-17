@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { UserContext } from "../../App";
+//Internal
 import LoadingSpinner from "../utilities/LoadingSpinner";
 import Response from "./Response";
 
@@ -7,6 +10,8 @@ export default function Responses({
   onSubmitEdits,
   onDelete,
 }) {
+  const currentUser = useContext(UserContext);
+
   //Sort responses to be displayed in order of priority
   const sortedResponses = responses.sort((a, b) => {
     if (a.priority < b.priority) return -1;
@@ -17,7 +22,7 @@ export default function Responses({
     <>
       {/* Only show Responses header if there are responses to display */}
       {responses.length > 0 ? (
-        <h2 className="responses-heading">Responses</h2>
+        <h2 className="responses-heading">Hello, {currentUser.firstName}!</h2>
       ) : (
         ""
       )}

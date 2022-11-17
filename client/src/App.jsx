@@ -6,13 +6,15 @@ import "./scss/App.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Login from "./components/modals/Login";
-import MeetingContent from "./components/pages/MeetingContent";
+import MeetingForm from "./components/form/MeetingForm";
+import Responses from "./components/responses/Responses";
+import UtilButtons from "./components/utilities/UtilButtons";
 //Context for logged in user data currentUser:
 export const UserContext = React.createContext();
 
 export default function App() {
   const [loading, setLoading] = useState(false);
-  const [fullscreen, setFullscreen] = useState(false);
+  const [showForm, setshowForm] = useState(true);
   const [showLogin, setShowLogin] = useState(false);
   const [responses, setResponses] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
@@ -135,15 +137,28 @@ export default function App() {
 
         {/* User must sign in to use app features, so only show the features if logged in: */}
         {currentUser ? (
-          <MeetingContent
-            onSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
-            responses={responses}
-            loading={loading}
-            onFullscreen={() => setFullscreen(!fullscreen)}
-            fullscreen={fullscreen}
-            onSubmitEdits={(userEdit) => submitResponse(userEdit)}
-            onDelete={(responseToDelete) => deleteResponse(responseToDelete)}
-          />
+          <main className="main-content">
+            {showForm && (
+              <MeetingForm
+                onSubmit={(responseToSubmit) =>
+                  submitResponse(responseToSubmit)
+                }
+                onClose={() => setshowForm(false)}
+              />
+            )}
+
+            <Responses
+              responses={responses}
+              loading={loading}
+              onSubmitEdits={(userEdit) => submitResponse(userEdit)}
+              onDelete={(responseToDelete) => deleteResponse(responseToDelete)}
+            />
+
+            <UtilButtons
+              showForm={showForm}
+              openForm={() => setshowForm(true)}
+            />
+          </main>
         ) : (
           <>
             <h1 className="welcome">
