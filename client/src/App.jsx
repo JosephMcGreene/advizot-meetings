@@ -5,19 +5,17 @@ import axios from "axios";
 import "./scss/App.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Login from "./components/modals/Login";
-import MeetingForm from "./components/form/MeetingForm";
-import Responses from "./components/responses/Responses";
-import UtilButtons from "./components/utilities/UtilButtons";
+import MeetingContent from "./components/MeetingContent";
+import MeetingCode from "./components/modals/MeetingCode";
 //Context for logged in user data currentUser:
 export const UserContext = React.createContext();
 
 export default function App() {
   const [loading, setLoading] = useState(false);
-  const [showForm, setshowForm] = useState(true);
-  const [showLogin, setShowLogin] = useState(false);
   const [responses, setResponses] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
+  const [showMeetingCode, setShowMeetingCode] = useState(false);
+  const [gaveCorrectPassCode, setGaveCorrectPassCode] = useState(false);
 
   useEffect(() => {
     getCurrentUser();
@@ -25,7 +23,7 @@ export default function App() {
 
   useEffect(() => {
     getExistingResponses();
-  }, [currentUser]);
+  }, []);
 
   //=====HELPERS=====
   /**
@@ -116,65 +114,76 @@ export default function App() {
         url: "/db/responses",
         data: responseToDelete,
       });
-
-      if (deleteRes.status >= 200 && deleteRes.status < 300) {
-        // Make a new array of all responses EXCEPT the one to be deleted
-        setResponses(
-          responses.filter((response) => response._id !== responseToDelete._id)
-        );
-        setLoading(false);
-        return deleteRes;
-      }
+      console.log(deleteRes);
     } catch (error) {
       console.error(error);
     }
   }
 
+  /**
+   * Assesses whether the passcode the user entered is correct or not
+   * @param {String} inputCode the code the user entered
+   * @returns {Function} changes the state of gaveCorrectPassCode to reflect whether the user can continue and view the rest of the app or must try again
+   */
+  function handlePasscodeSubmit(inputCode) {
+    if (inputCode === "123456") {
+      setShowMeetingCode(false);
+      alert("Welcome, enjoy the meeting!");
+      return setGaveCorrectPassCode(true);
+    }
+
+    alert("That is not the correct code. Try again.");
+    setShowMeetingCode(true);
+    return setGaveCorrectPassCode(false);
+  }
+
   return (
     <div className="App">
       <UserContext.Provider value={currentUser}>
-        <Header showLoginModal={() => setShowLogin(!showLogin)} />
+        <Header />
+        <main className="main-content">
+          {/* User must sign in to use app features, so only show the features if logged in: */}
+          {currentUser ? (
+            <>
+              <h1 className="welcome">Hello, {currentUser.firstName}!</h1>
+              {gaveCorrectPassCode ? (
+                <MeetingContent
+                  onSubmit={(responseToSubmit) =>
+                    submitResponse(responseToSubmit)
+                  }
+                  responses={responses}
+                  loading={loading}
+                  onSubmitEdits={(userEdit) => submitResponse(userEdit)}
+                  onDelete={(responseToDelete) =>
+                    deleteResponse(responseToDelete)
+                  }
+                />
+              ) : (
+                <>
+                  <button
+                    className="btn"
+                    onClick={() => setShowMeetingCode(true)}
+                  >
+                    Enter Meeting
+                  </button>
 
-        {/* User must sign in to use app features, so only show the features if logged in: */}
-        {currentUser ? (
-          <main className="main-content">
-            {showForm && (
-              <MeetingForm
-                onSubmit={(responseToSubmit) =>
-                  submitResponse(responseToSubmit)
-                }
-                onClose={() => setshowForm(false)}
-              />
-            )}
-
-            <Responses
-              responses={responses}
-              loading={loading}
-              onSubmitEdits={(userEdit) => submitResponse(userEdit)}
-              onDelete={(responseToDelete) => deleteResponse(responseToDelete)}
-            />
-
-            <UtilButtons
-              showForm={showForm}
-              openForm={() => setshowForm(true)}
-            />
-          </main>
-        ) : (
-          <>
+                  {showMeetingCode && (
+                    <MeetingCode
+                      onClose={() => setShowMeetingCode(false)}
+                      onCodeSubmit={(inputCode) =>
+                        handlePasscodeSubmit(inputCode)
+                      }
+                    />
+                  )}
+                </>
+              )}
+            </>
+          ) : (
             <h1 className="welcome">
               Welcome! <br /> Please sign in to continue.
             </h1>
-            <button
-              className="btn welcome-signin-btn"
-              onClick={() => setShowLogin(!showLogin)}
-            >
-              Sign in
-            </button>
-          </>
-        )}
-
-        {/* Don't always need to see modals */}
-        {showLogin && <Login onClose={() => setShowLogin(!showLogin)} />}
+          )}
+        </main>
       </UserContext.Provider>
       <Footer />
     </div>
