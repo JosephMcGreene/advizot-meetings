@@ -109,12 +109,20 @@ export default function App() {
   async function deleteResponse(responseToDelete) {
     try {
       setLoading(true);
+
       const deleteRes = await axios({
         method: "delete",
         url: "/db/responses",
         data: responseToDelete,
       });
-      console.log(deleteRes);
+
+      if (deleteRes.status >= 200 && deleteRes.status < 300) {
+        // Make a new array of all responses EXCEPT the one to be deleted
+        setResponses(
+          responses.filter((response) => response._id !== responseToDelete._id)
+        );
+      }
+      setLoading(false);
     } catch (error) {
       console.error(error);
     }
