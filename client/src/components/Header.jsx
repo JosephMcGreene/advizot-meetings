@@ -10,11 +10,9 @@ export default function Header() {
   return (
     <header className="header">
       <nav className="nav-bar">
+        <img src={advizotLogo} alt="Advizot logo" className="logo" />
         <ul className="nav-ul">
-          <li className="logo-wrapper">
-            <img src={advizotLogo} alt="Advizot logo" className="logo" />
-          </li>
-          <li className="actions-container">
+          <li className="nav-item">
             {/* Show sign out link if logged in, or sign in if logged out */}
             {currentUser ? (
               <>

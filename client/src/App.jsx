@@ -146,6 +146,7 @@ export default function App() {
           {currentUser ? (
             <>
               <h1 className="welcome">Hello, {currentUser.firstName}!</h1>
+
               {gaveCorrectPassCode ? (
                 <MeetingContent
                   onSubmit={(responseToSubmit) =>

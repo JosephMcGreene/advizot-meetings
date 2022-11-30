@@ -1,56 +1,60 @@
 @use "../../scss/index" as *;
 
 @media screen and (min-width: 900px) {
-	.response-li {
-		display: grid;
-		grid-template-rows: repeat(3, fit-content);
-		grid-template-columns: 0.75fr 1fr 1fr 1fr;
+  .response-li {
+    position: relative;
+    display: grid;
+    grid-template-rows: repeat(1, fit-content);
+    grid-template-columns: 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 1fr 1fr;
 
-		width: 80%;
+    margin-left: auto;
+    width: 92.5%;
 
-		.response-name {
-			grid-row: 1;
+    .response-name {
+      grid-row: 1;
 
-			width: fit-content;
-		}
+      width: fit-content;
+    }
 
-		.range-response {
-			grid-row: 1;
-			align-self: center;
-		}
+    .range-response {
+      grid-row: 1;
+      align-self: center;
+    }
 
-		.priority {
-			grid-row: 2;
-			grid-column: 1;
-			justify-self: center;
-			align-self: start;
-		}
+    .priority {
+      grid-row: 1;
+      grid-column: 2;
+      justify-self: center;
+      align-self: center;
+    }
 
-		.issue {
-			grid-row: 2;
-			grid-column: 2 / end;
-		}
-		.goal {
-			grid-row: 3;
-			grid-column: 2 / end;
-		}
+    .issue {
+      grid-row: 1;
+      grid-column: 6 / 7;
+    }
+    .goal {
+      grid-row: 1;
+      grid-column: 7 / end;
+    }
+    .issue,
+    .goal {
+      margin-left: 1ch;
+      margin-right: 1ch;
+    }
 
-		.save-btn {
-			grid-row: 2 / 4;
-			grid-column: 1;
-			justify-self: center;
-			align-self: center;
-		}
+    .save-btn {
+      justify-self: center;
+      align-self: center;
+    }
 
-		.delete-icon {
-			grid-row: 3;
-			grid-column: 1;
-			justify-self: start;
-			align-self: end;
-		}
+    .delete-icon {
+      position: absolute;
+      left: -33.5%;
+      top: 17.2%;
+    }
 
-		input[type="number"] {
-			padding: 1px;
-		}
-	}
+    input[type="number"] {
+      padding: 1px;
+    }
+  }
 }
