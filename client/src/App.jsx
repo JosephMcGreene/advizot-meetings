@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 //External
 import axios from "axios";
+import { Routes, Route, Navigate } from "react-router-dom";
 //Internal & Components
 import "./scss/App.scss";
 import Header from "./components/Header";
@@ -37,6 +38,7 @@ export default function App() {
           "Content-Type": "application/json",
         },
       });
+      console.log(currentUserInfo);
       setCurrentUser(currentUserInfo.data);
     } catch (error) {
       console.error(error);
@@ -150,48 +152,47 @@ export default function App() {
       <UserContext.Provider value={currentUser}>
         <Header />
         <main className="main-content">
-          {/* User must sign in to use app features, so only show the features if logged in: */}
-          {currentUser ? (
-            <>
-              <h1 className="welcome">Hello, {currentUser.firstName}!</h1>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <h1 className="welcome">
+                  Welcome! <br /> Please sign in to continue.
+                </h1>
+              }
+            />
+            <Route
+              path="/app"
+              element={
+                currentUser ? (
+                  <MeetingContent
+                    onSubmit={(responseToSubmit) =>
+                      submitResponse(responseToSubmit)
+                    }
+                    responses={responses}
+                    loading={loading}
+                    onSubmitEdits={(userEdit) => submitResponse(userEdit)}
+                    onDelete={(responseToDelete) =>
+                      deleteResponse(responseToDelete)
+                    }
+                  />
+                ) : (
+                  <Navigate to="/" />
+                )
+              }
+            />
+          </Routes>
 
-              {gaveCorrectPassCode ? (
-                <MeetingContent
-                  onSubmit={(responseToSubmit) =>
-                    submitResponse(responseToSubmit)
-                  }
-                  responses={responses}
-                  loading={loading}
-                  onSubmitEdits={(userEdit) => submitResponse(userEdit)}
-                  onDelete={(responseToDelete) =>
-                    deleteResponse(responseToDelete)
-                  }
-                />
-              ) : (
-                <>
-                  <button
-                    className="btn"
-                    onClick={() => setShowMeetingCode(true)}
-                  >
-                    Enter Meeting
-                  </button>
+          {/* <button className="btn" onClick={() => setShowMeetingCode(true)}>
+            Enter Meeting
+          </button> */}
 
-                  {showMeetingCode && (
-                    <MeetingCode
-                      onClose={() => setShowMeetingCode(false)}
-                      onCodeSubmit={(inputCode) =>
-                        handlePasscodeSubmit(inputCode)
-                      }
-                    />
-                  )}
-                </>
-              )}
-            </>
-          ) : (
-            <h1 className="welcome">
-              Welcome! <br /> Please sign in to continue.
-            </h1>
-          )}
+          {/* {showMeetingCode && (
+            <MeetingCode
+              onClose={() => setShowMeetingCode(false)}
+              onCodeSubmit={(inputCode) => handlePasscodeSubmit(inputCode)}
+            />
+          )} */}
         </main>
       </UserContext.Provider>
       <Footer />

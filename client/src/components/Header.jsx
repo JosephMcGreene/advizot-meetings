@@ -29,7 +29,6 @@ export default function Header() {
         </ul>
       </nav>
 
-      {/* don't always need to see the modals */}
       {showLogin && <Login onClose={() => setShowLogin(!showLogin)} />}
     </header>
   );

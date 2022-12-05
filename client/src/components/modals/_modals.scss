@@ -29,12 +29,12 @@
       justify-content: space-between;
       align-items: center;
       background-color: $advizot-color;
-      font-family: $advizot-font;
-      font-size: 1.25rem;
       box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
 
       .modal-heading {
         @include advizotFont(1.25rem, 400, 0);
+        font-family: $advizot-font;
+        font-size: 1.25rem;
         margin-left: calc($form-padding / 2);
       }
 
