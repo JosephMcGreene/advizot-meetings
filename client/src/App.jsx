@@ -7,7 +7,7 @@ import "./scss/App.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import MeetingContent from "./components/MeetingContent";
-import MeetingCode from "./components/modals/MeetingCode";
+// import MeetingCode from "./components/modals/MeetingCode";
 //Context for logged in user data currentUser:
 export const UserContext = React.createContext();
 
@@ -15,8 +15,8 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [responses, setResponses] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
-  const [showMeetingCode, setShowMeetingCode] = useState(false);
-  const [gaveCorrectPassCode, setGaveCorrectPassCode] = useState(false);
+  // const [showMeetingCode, setShowMeetingCode] = useState(false);
+  // const [gaveCorrectPassCode, setGaveCorrectPassCode] = useState(false);
 
   useEffect(() => {
     getCurrentUser();
@@ -135,17 +135,17 @@ export default function App() {
    * @param {String} inputCode the code the user entered
    * @returns {Function} changes the state of gaveCorrectPassCode to reflect whether the user can continue and view the rest of the app or must try again
    */
-  function handlePasscodeSubmit(inputCode) {
-    if (inputCode === "123456") {
-      setShowMeetingCode(false);
-      alert("Welcome, enjoy the meeting!");
-      return setGaveCorrectPassCode(true);
-    }
+  // function handlePasscodeSubmit(inputCode) {
+  //   if (inputCode === "123456") {
+  //     setShowMeetingCode(false);
+  //     alert("Welcome, enjoy the meeting!");
+  //     return setGaveCorrectPassCode(true);
+  //   }
 
-    alert("That is not the correct code. Try again.");
-    setShowMeetingCode(true);
-    return setGaveCorrectPassCode(false);
-  }
+  //   alert("That is not the correct code. Try again.");
+  //   setShowMeetingCode(true);
+  //   return setGaveCorrectPassCode(false);
+  // }
 
   return (
     <div className="App">
