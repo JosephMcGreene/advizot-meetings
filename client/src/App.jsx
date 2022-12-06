@@ -6,8 +6,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import "./scss/App.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import PrivateRoute from "./components/utilities/PrivateRoute";
 import MeetingContent from "./components/MeetingContent";
-import MeetingCode from "./components/modals/MeetingCode";
 //Context for logged in user data currentUser:
 export const UserContext = React.createContext();
 
@@ -15,8 +15,6 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [responses, setResponses] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
-  const [showMeetingCode, setShowMeetingCode] = useState(false);
-  const [gaveCorrectPassCode, setGaveCorrectPassCode] = useState(false);
 
   useEffect(() => {
     getCurrentUser();
@@ -130,23 +128,6 @@ export default function App() {
     }
   }
 
-  /**
-   * Assesses whether the passcode the user entered is correct or not
-   * @param {String} inputCode the code the user entered
-   * @returns {Function} changes the state of gaveCorrectPassCode to reflect whether the user can continue and view the rest of the app or must try again
-   */
-  function handlePasscodeSubmit(inputCode) {
-    if (inputCode === "123456") {
-      setShowMeetingCode(false);
-      alert("Welcome, enjoy the meeting!");
-      return setGaveCorrectPassCode(true);
-    }
-
-    alert("That is not the correct code. Try again.");
-    setShowMeetingCode(true);
-    return setGaveCorrectPassCode(false);
-  }
-
   return (
     <div className="App">
       <UserContext.Provider value={currentUser}>
@@ -164,7 +145,7 @@ export default function App() {
             <Route
               path="/app"
               element={
-                currentUser ? (
+                <PrivateRoute>
                   <MeetingContent
                     onSubmit={(responseToSubmit) =>
                       submitResponse(responseToSubmit)
@@ -176,23 +157,10 @@ export default function App() {
                       deleteResponse(responseToDelete)
                     }
                   />
-                ) : (
-                  <Navigate to="/" />
-                )
+                </PrivateRoute>
               }
             />
           </Routes>
-
-          {/* <button className="btn" onClick={() => setShowMeetingCode(true)}>
-            Enter Meeting
-          </button> */}
-
-          {showMeetingCode && (
-            <MeetingCode
-              onClose={() => setShowMeetingCode(false)}
-              onCodeSubmit={(inputCode) => handlePasscodeSubmit(inputCode)}
-            />
-          )}
         </main>
       </UserContext.Provider>
       <Footer />
