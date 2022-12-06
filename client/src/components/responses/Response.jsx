@@ -34,10 +34,6 @@ export default function Response({
   return (
     <UserResponseContext.Provider value={userResponseBody}>
       <li className="response-li">
-        <span className="response-name">
-          <strong>{userResponseBody.userName}</strong>
-        </span>
-
         {/* Only display delete icon to correct user: */}
         {userResponseBody.userName ===
         `${currentUser.firstName} ${currentUser.lastName}` ? (
@@ -51,9 +47,14 @@ export default function Response({
           ""
         )}
 
+        <span className="response-name">
+          <strong>{userResponseBody.userName}</strong>
+        </span>
+
         <Priority
           title="Priority"
           text={userResponseBody.priority.substring(1)}
+          className="response-p priority"
           setEditingMode={setEditingMode}
           onSubmitEdits={onSubmitEdits}
         />
@@ -61,6 +62,7 @@ export default function Response({
         <Rating
           title="Business"
           text={userResponseBody.business}
+          className="response-p range-response business-rating"
           setEditingMode={setEditingMode}
           onSubmitEdits={onSubmitEdits}
         />
@@ -68,6 +70,7 @@ export default function Response({
         <Rating
           title="Personal"
           text={userResponseBody.personal}
+          className="response-p range-response personal-rating"
           setEditingMode={setEditingMode}
           onSubmitEdits={onSubmitEdits}
         />
@@ -75,6 +78,7 @@ export default function Response({
         <Rating
           title="Relationships"
           text={userResponseBody.relationships}
+          className="response-p range-response relationships-rating"
           setEditingMode={setEditingMode}
           onSubmitEdits={onSubmitEdits}
         />

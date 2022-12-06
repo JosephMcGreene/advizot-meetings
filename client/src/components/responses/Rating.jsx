@@ -9,7 +9,13 @@ import InputField from "../form/InputField";
 //Assets
 import editPen from "../../assets/img/pen-solid.svg";
 
-export default function Rating({ title, text, setEditingMode, onSubmitEdits }) {
+export default function Rating({
+  title,
+  text,
+  className,
+  setEditingMode,
+  onSubmitEdits,
+}) {
   const [isEditing, setIsEditing] = useState(false);
   const currentUser = useContext(UserContext);
   const userResponseBody = useContext(UserResponseContext);
@@ -17,7 +23,7 @@ export default function Rating({ title, text, setEditingMode, onSubmitEdits }) {
 
   return (
     <span
-      className="response-p range-response"
+      className={className}
       onClick={() => setEditingMode(setIsEditing(true))}
     >
       <strong>

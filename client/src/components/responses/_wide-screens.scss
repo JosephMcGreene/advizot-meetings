@@ -3,9 +3,8 @@
 @media screen and (min-width: 900px) {
   .response-li {
     display: grid;
-    grid-template-columns: 0.25fr 0.5fr 0.4fr 0.4fr 0.4fr 0.4fr 1fr 1fr;
+    grid-template-columns: 0.25fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 1fr 1fr;
 
-    // margin-left: auto;
     width: 100%;
 
     .delete-icon {
@@ -17,12 +16,8 @@
 
     .response-name {
       grid-row: 1;
+      grid-column: 2;
       width: fit-content;
-    }
-
-    .range-response {
-      grid-row: 1;
-      align-self: center;
     }
 
     .priority {
@@ -30,6 +25,23 @@
       grid-column: 3;
       justify-self: center;
       align-self: center;
+    }
+
+    .range-response {
+      grid-row: 1;
+      align-self: center;
+    }
+
+    .business-rating {
+      grid-column: 4;
+    }
+
+    .personal-rating {
+      grid-column: 5;
+    }
+
+    .relationships-rating {
+      grid-column: 6;
     }
 
     .issue {

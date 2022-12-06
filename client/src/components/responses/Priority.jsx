@@ -12,6 +12,7 @@ import editPen from "../../assets/img/pen-solid.svg";
 export default function Priority({
   title,
   text,
+  className,
   setEditingMode,
   onSubmitEdits,
 }) {
@@ -21,7 +22,7 @@ export default function Priority({
 
   return (
     <span
-      className="response-p priority"
+      className={className}
       onClick={() => setEditingMode(setIsEditing(true))}
     >
       <strong>
