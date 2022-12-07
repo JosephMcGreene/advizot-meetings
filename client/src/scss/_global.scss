@@ -48,7 +48,6 @@ code {
   padding: $padding;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 
-  //Necessary for <Select> components:
   option {
     text-align: center;
     font-family: $main-font;
@@ -92,7 +91,6 @@ code {
   }
 }
 
-//Does not handle layout or margins. Placement of buttons handled on case-by-case basis
 .btn {
   @include borderRadius();
   @include advizotFont(1.1rem, bold, 0.5px);
@@ -117,10 +115,6 @@ code {
   text-align: center;
   margin: 0 auto 1ch;
   padding-top: 1rem;
-}
-
-.welcome-signin-btn {
-  margin: 1rem auto;
 }
 
 a {
