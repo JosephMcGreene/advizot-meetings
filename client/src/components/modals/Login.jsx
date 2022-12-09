@@ -4,7 +4,7 @@ import GoogleLogo from "../../assets/img/Search_GSA.max-2800x2800.png";
 export default function Login({ onClose }) {
   return (
     <div className="modal">
-      <div className="modal-content">
+      <div className="modal-content login-box">
         <div className="modal-header">
           <span className="modal-heading">Sign in</span>
           <button className="close-x" onClick={() => onClose()}>

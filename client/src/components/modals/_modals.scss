@@ -12,13 +12,11 @@
 
   display: flex;
   justify-content: center;
-  align-items: center;
 
   .modal-content {
     @include borderRadius();
     z-index: $top;
     position: absolute;
-    margin-top: 8rem;
     background-color: #fff;
     width: min(340px, 90%);
 
@@ -44,7 +42,14 @@
         padding: 0 1rem;
         background-color: transparent;
         border-color: transparent;
+        font-family: Arial, Helvetica, sans-serif;
         font-size: 2.25rem;
+
+        &:hover {
+          transform: rotate(90deg);
+          @include transition(transform);
+          transition-duration: 100ms;
+        }
 
         &:focus {
           @include onFocus();
@@ -62,6 +67,10 @@
         width: calc(100% - ($form-padding * 2));
       }
     }
+  }
+
+  .login-box {
+    align-self: center;
   }
 }
 

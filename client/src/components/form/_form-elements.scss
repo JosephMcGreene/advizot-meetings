@@ -110,10 +110,3 @@
     @include onFocus();
   }
 }
-
-@media screen and (min-width: 500px) {
-  .form {
-    width: 410px;
-    margin: 1rem auto 1px;
-  }
-}

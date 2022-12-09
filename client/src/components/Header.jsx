@@ -13,13 +13,10 @@ export default function Header() {
         <img src={advizotLogo} alt="Advizot logo" className="logo" />
         <ul className="nav-ul">
           <li className="nav-item">
-            {/* Show sign out link if logged in, or sign in if logged out */}
             {currentUser ? (
-              <>
-                <a href="/auth/logout">
-                  <button className="btn">Sign out</button>
-                </a>
-              </>
+              <a href="/auth/logout">
+                <button className="btn">Sign out</button>
+              </a>
             ) : (
               <button className="btn" onClick={() => setShowLogin(!showLogin)}>
                 Sign in
