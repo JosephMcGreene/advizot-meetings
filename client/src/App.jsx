@@ -30,7 +30,6 @@ export default function App() {
           "Content-Type": "application/json",
         },
       });
-      console.log(currentUserInfo);
       setCurrentUser(currentUserInfo.data);
     } catch (error) {
       console.error(error);

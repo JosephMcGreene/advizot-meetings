@@ -14,32 +14,32 @@ require("./utils/passportConfig");
 
 //=====CONNECT MONGODB=====
 mongoose
-	.connect(process.env.MONGO_URI)
-	.then(() => {
-		console.log("Connected to MongoDB!");
-	})
-	.catch((error) => console.error(error));
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log("Connected to MongoDB!");
+  })
+  .catch((error) => console.error(error));
 
 //=====MIDDLEWARE=====
 app.use(
-	express.urlencoded({
-		extended: true,
-	})
+  express.urlencoded({
+    extended: true,
+  })
 );
 
 app.use(
-	cookieSession({
-		// cookie expires in 14 days
-		maxAge: 1000 * 60 * 60 * 24 * 14,
-		keys: [uuidv4()],
-	})
+  cookieSession({
+    // cookie expires in 14 days
+    maxAge: 1000 * 60 * 60 * 24 * 14,
+    keys: [uuidv4()],
+  })
 );
 
 app.use(
-	cors({
-		origin: ["http://localhost:3000", "https://advizot-meetings.herokuapp.com"],
-		credentials: true,
-	})
+  cors({
+    origin: ["http://localhost:3000", "https://advizot-meetings.herokuapp.com"],
+    credentials: true,
+  })
 );
 
 app.use(express.json());
@@ -48,7 +48,7 @@ app.use(passport.session());
 
 //=====IN PROD=====
 if (process.env.NODE_ENV === "production") {
-	app.use(express.static(path.join(__dirname, "/client/build")));
+  app.use(express.static(path.join(__dirname, "/client/build")));
 }
 
 //=====MOUNT ROUTES=====
@@ -56,11 +56,11 @@ app.use("/db", dbRouter);
 app.use("/auth", authRouter);
 
 app.get("*", (req, res) => {
-	res.sendFile(path.join(__dirname, "/client/build/index.html"));
+  res.sendFile(path.join(__dirname, "/client/build/index.html"));
 });
 
 //=====SERVER START=====
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-	console.log(`Server is listening at http://localhost:${PORT}`);
+  console.log(`Server is listening at http://localhost:${PORT}`);
 });

@@ -49,9 +49,6 @@ export default function MeetingContent() {
    * @returns {Object} response object from the server
    */
   async function submitResponse(responseToSubmit) {
-    responseToSubmit.userName = `${currentUser.firstName} ${currentUser.lastName}`;
-    responseToSubmit.date = Date.now();
-
     try {
       setLoading(true);
 
@@ -103,6 +100,7 @@ export default function MeetingContent() {
     }
   }
 
+  //TODO Make HTTP request to backend to authenticate a user as present at the meeting
   /**
    * Assesses whether or not the passcode the user entered is valid and correct
    * @param {String} inputCode the code the user entered
