@@ -1,8 +1,7 @@
-import { useState, useEffect, useContext } from "react";
-import { UserContext } from "../../App";
+import { useState, useEffect } from "react";
+//External
 import axios from "axios";
 //Internal
-import MeetingCode from "./MeetingCode";
 import MeetingForm from "../form/MeetingForm";
 import Responses from "../responses/Responses";
 import UtilButtons from "../utilities/UtilButtons";
@@ -11,8 +10,6 @@ export default function MeetingContent() {
   const [responses, setResponses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showForm, setShowForm] = useState(true);
-  const [meetingAccess, setMeetingAccess] = useState(false);
-  const currentUser = useContext(UserContext);
 
   useEffect(() => {
     getExistingResponses();
@@ -99,30 +96,6 @@ export default function MeetingContent() {
       console.error(error);
     }
   }
-
-  //TODO Make HTTP request to backend to authenticate a user as present at the meeting
-  /**
-   * Assesses whether or not the passcode the user entered is valid and correct
-   * @param {String} inputCode the code the user entered
-   * @returns {Function} changes the state of gaveCorrectPassCode to reflect whether the user can continue and view the rest of the app or must try again
-   */
-  function handlePasscodeSubmit(inputCode) {
-    //TODO Change this dummy passcode to a randomly generated one
-    if (inputCode === "123456") {
-      alert("Welcome, enjoy the meeting!");
-      return setMeetingAccess(true);
-    }
-
-    alert("That is not the correct code. Try again.");
-    return setMeetingAccess(false);
-  }
-
-  if (!meetingAccess)
-    return (
-      <MeetingCode
-        onCodeSubmit={(inputCode) => handlePasscodeSubmit(inputCode)}
-      />
-    );
 
   return (
     <>
