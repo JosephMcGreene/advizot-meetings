@@ -1,15 +1,18 @@
-import { useContext } from "react";
-import { UserContext } from "../../App";
-import { Navigate } from "react-router-dom";
+// import { useContext } from "react";
+// import { UserContext } from "../../App";
+// //External
+// import axios from "axios";
+// import { Navigate } from "react-router-dom";
+// //Internal
+// import MeetingCode from "../pages/MeetingCode";
 
-export default function CodeRoute({ hasCorrectCode, children }) {
-  const currentUser = useContext(UserContext);
+// export default function CodeRoute() {
+//   const currentUser = useContext(UserContext);
 
-  if (!currentUser) return <Navigate to="/" />;
+//   // Renders
+//   if (!currentUser) {
+//     return <Navigate to="/" />;
+//   }
 
-  if (!hasCorrectCode) {
-    return <Navigate to="/meetingCode" />;
-  }
-
-  return children;
-}
+//   return <MeetingCode onSubmit={(inputCode) => checkCorrectCode(inputCode)} />;
+// }

@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import InputField from "../form/InputField";
 import LoadingSpinner from "../utilities/LoadingSpinner";
 
-export default function MeetingCode({ onCodeSubmit }) {
+export default function MeetingCode({ onSubmit }) {
   return (
     <Formik
       initialValues={{
@@ -16,7 +16,7 @@ export default function MeetingCode({ onCodeSubmit }) {
       })}
       onSubmit={({ passcode }, actions) => {
         try {
-          onCodeSubmit(passcode);
+          onSubmit(passcode);
           actions.setSubmitting(false);
         } catch (error) {
           console.error(error);

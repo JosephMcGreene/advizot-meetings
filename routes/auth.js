@@ -8,7 +8,7 @@ require("../utils/passportConfig");
 authRouter.route("/linkedin").get(passport.authenticate("linkedin"));
 authRouter.route("/linkedin/callback").get(
   passport.authenticate("linkedin", {
-    successRedirect: "/meeting",
+    successRedirect: "/meetingCode",
     failureRedirect: "/",
   })
 );
@@ -19,7 +19,7 @@ authRouter
   .get(
     passport.authenticate("google", { failureRedirect: "/" }),
     (req, res) => {
-      res.redirect("/meeting");
+      res.redirect("/meetingCode");
     }
   );
 
@@ -33,13 +33,13 @@ authRouter.route("/current_user").get((req, res) => {
   res.json(req.user);
 });
 
-//Meeting Access Code
+//Meeting Access Passcode
 //TODO Replace dummy code with a randomly generated one
 authRouter.route("/code").post((req, res) => {
   if (req.body.enteredCode === "123456") {
-    res.json(true);
+    res.redirect("/meeting");
   } else {
-    res.json(false);
+    res.redirect("/meeting");
   }
 });
 

@@ -8,7 +8,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PrivateRoute from "./components/utilities/PrivateRoute";
 import MeetingCode from "./components/pages/MeetingCode";
-import CodeRoute from "./components/utilities/CodeRoute";
+// import CodeRoute from "./components/utilities/CodeRoute";
 import MeetingContent from "./components/pages/MeetingContent";
 //Context for logged in user data currentUser:
 export const UserContext = React.createContext();
@@ -18,7 +18,7 @@ export default function App() {
 
   useEffect(() => {
     getCurrentUser();
-  }, [currentUser]);
+  }, []);
 
   //=====HELPERS=====
   /**
@@ -42,15 +42,21 @@ export default function App() {
   /**
    * Assesses whether or not the passcode the user entered is valid and correct
    * @param {String} inputCode the code the user entered
-   * @returns {Function} changes the state of gaveCorrectPassCode to reflect whether the user can continue and view the rest of the app or must try again
    */
-  async function handlePasscodeSubmit(inputCode) {
-    const codeCheck = await axios({
-      method: "post",
-      url: "/auth/code",
-      data: { enteredCode: inputCode },
-    });
-    console.log(codeCheck.data);
+  async function checkCorrectCode(inputCode) {
+    try {
+      await axios({
+        method: "post",
+        url: "/auth/code",
+        data: { enteredCode: inputCode },
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   return (
@@ -72,9 +78,7 @@ export default function App() {
               element={
                 <PrivateRoute>
                   <MeetingCode
-                    onCodeSubmit={(inputCode) =>
-                      handlePasscodeSubmit(inputCode)
-                    }
+                    onSubmit={(inputCode) => checkCorrectCode(inputCode)}
                   />
                 </PrivateRoute>
               }
@@ -82,11 +86,12 @@ export default function App() {
             <Route
               path="/meeting"
               element={
-                <CodeRoute hasCorrectCode={true}>
+                <PrivateRoute>
                   <MeetingContent />
-                </CodeRoute>
+                </PrivateRoute>
               }
             />
+            <Route path="/works" element={<h1>This Route works!</h1>} />
           </Routes>
         </main>
         <Footer />
