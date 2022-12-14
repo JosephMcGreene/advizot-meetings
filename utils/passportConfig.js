@@ -40,6 +40,7 @@ passport.use(
           linkedin_email: profile.emails[0].value,
           advizotID: uuidv4(),
           role: userRoles.MEMBER,
+          hasMeetingCode: false,
         });
         await newUser.save();
         return done(null, newUser);
@@ -76,6 +77,7 @@ passport.use(
           google_email: profile.emails[0].value,
           advizotID: uuidv4(),
           role: userRoles.MEMBER,
+          hasMeetingCode: false,
         });
         await newUser.save();
         return done(null, newUser);

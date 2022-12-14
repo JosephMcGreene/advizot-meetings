@@ -6,9 +6,8 @@ import { Routes, Route } from "react-router-dom";
 import "./scss/App.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import PrivateRoute from "./components/utilities/PrivateRoute";
-import MeetingCode from "./components/pages/MeetingCode";
-// import CodeRoute from "./components/utilities/CodeRoute";
+import UsersOnly from "./components/utilities/UsersOnly";
+import PresentUsersOnly from "./components/utilities/PresentUsersOnly";
 import MeetingContent from "./components/pages/MeetingContent";
 //Context for logged in user data currentUser:
 export const UserContext = React.createContext();
@@ -32,7 +31,6 @@ export default function App() {
           "Content-Type": "application/json",
         },
       });
-      // console.log(currentUserInfo.data);
       setCurrentUser(currentUserInfo.data);
     } catch (error) {
       console.error(error);
@@ -43,19 +41,17 @@ export default function App() {
    * Assesses whether or not the passcode the user entered is valid and correct
    * @param {String} inputCode the code the user entered
    */
-  async function checkCorrectCode(inputCode) {
+  async function checkPasscode(inputCode) {
     try {
-      await axios({
+      const response = await axios({
         method: "post",
         url: "/auth/code",
         data: { enteredCode: inputCode },
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
+        withCredentials: true,
       });
+      setCurrentUser(response.data);
     } catch (err) {
-      console.error(err);
+      console.log(err);
     }
   }
 
@@ -74,21 +70,15 @@ export default function App() {
               }
             />
             <Route
-              path="/meetingCode"
-              element={
-                <PrivateRoute>
-                  <MeetingCode
-                    onSubmit={(inputCode) => checkCorrectCode(inputCode)}
-                  />
-                </PrivateRoute>
-              }
-            />
-            <Route
               path="/meeting"
               element={
-                <PrivateRoute>
-                  <MeetingContent />
-                </PrivateRoute>
+                <UsersOnly>
+                  <PresentUsersOnly
+                    onSubmit={(inputCode) => checkPasscode(inputCode)}
+                  >
+                    <MeetingContent />
+                  </PresentUsersOnly>
+                </UsersOnly>
               }
             />
             <Route path="/works" element={<h1>This Route works!</h1>} />
