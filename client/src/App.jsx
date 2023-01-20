@@ -6,9 +6,9 @@ import { Routes, Route } from "react-router-dom";
 import "./scss/App.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import UsersOnly from "./components/utilities/UsersOnly";
-import PresentUsersOnly from "./components/utilities/PresentUsersOnly";
-import MeetingContent from "./components/pages/MeetingContent";
+import UsersOnly from "./utilities/UsersOnly";
+import PresentUsersOnly from "./utilities/PresentUsersOnly";
+import Meeting from "./components/pages/Meeting";
 //Context for logged in user data currentUser:
 export const UserContext = React.createContext();
 
@@ -25,15 +25,18 @@ export default function App() {
    */
   async function getCurrentUser() {
     try {
-      const currentUserInfo = await axios("/auth/current_user", {
+      const currentUserInfo = await axios({
+        method: "get",
+        url: "/auth/current_user",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
       });
+
       setCurrentUser(currentUserInfo.data);
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
     }
   }
 
@@ -76,7 +79,7 @@ export default function App() {
                   <PresentUsersOnly
                     onSubmit={(inputCode) => checkPasscode(inputCode)}
                   >
-                    <MeetingContent />
+                    <Meeting />
                   </PresentUsersOnly>
                 </UsersOnly>
               }

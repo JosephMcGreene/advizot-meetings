@@ -6,7 +6,7 @@ import { constructDate } from "../../helpers";
 //Components
 import InputField from "./InputField";
 import Select from "./Select";
-import LoadingSpinner from "../utilities/LoadingSpinner";
+import LoadingSpinner from "../../utilities/LoadingSpinner";
 
 export default function MeetingForm({ onSubmit, onClose }) {
   /**

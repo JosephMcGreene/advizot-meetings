@@ -1,4 +1,4 @@
-import formIcon from "../../assets/img/align-left-solid.svg";
+import formIcon from "../assets/img/align-left-solid.svg";
 
 export default function UtilButtons({ openForm }) {
   return (

@@ -2,12 +2,10 @@ import { useState, useEffect } from "react";
 //External
 import axios from "axios";
 //Internal
-import MeetingForm from "../form/MeetingForm";
-import Responses from "../responses/user/Responses";
-import AdminResponses from "../responses/admin/AdminResponses";
-import UtilButtons from "../utilities/UtilButtons";
+import AdminContent from "./AdminContent";
+import MemberContent from "./MemberContent";
 
-export default function MeetingContent() {
+export default function Meeting() {
   const [userRole, setUserRole] = useState("");
 
   const [responses, setResponses] = useState([]);
@@ -22,9 +20,14 @@ export default function MeetingContent() {
     getUserRole();
   }, []);
 
+  /**
+   * Makes a request for the info on a certain user to identify their permissions
+   */
   async function getUserRole() {
     try {
-      const currentUserInfo = await axios("/auth/current_user", {
+      const currentUserInfo = await axios({
+        method: "get",
+        url: "/auth/current_user",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -126,38 +129,28 @@ export default function MeetingContent() {
 
   if (userRole === "admin") {
     return (
-      <>
-        <AdminResponses sortedResponses={sortedResponses} loading={loading} />
-        <UtilButtons openForm={() => setShowForm(true)} />
-
-        {showForm && (
-          <MeetingForm
-            onSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
-            onClose={() => setShowForm(false)}
-          />
-        )}
-      </>
+      <AdminContent
+        sortedResponses={sortedResponses}
+        loading={loading}
+        showForm={showForm}
+        openForm={() => setShowForm(true)}
+        closeForm={() => setShowForm(false)}
+        onSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
+      />
     );
   }
 
   if (userRole === "member") {
     return (
-      <>
-        <Responses
-          sortedResponses={sortedResponses}
-          loading={loading}
-          onSubmitEdits={(responseToSubmit) => submitResponse(responseToSubmit)}
-          onDelete={(responseToDelete) => deleteResponse(responseToDelete)}
-        />
-        <UtilButtons openForm={() => setShowForm(true)} />
-
-        {showForm && (
-          <MeetingForm
-            onSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
-            onClose={() => setShowForm(false)}
-          />
-        )}
-      </>
+      <MemberContent
+        sortedResponses={sortedResponses}
+        loading={loading}
+        showForm={showForm}
+        openForm={() => setShowForm(true)}
+        closeForm={() => setShowForm(false)}
+        onSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
+        onDelete={(responseToDelete) => deleteResponse(responseToDelete)}
+      />
     );
   }
 }
