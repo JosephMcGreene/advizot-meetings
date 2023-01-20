@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../App";
-import { UserResponseContext } from "./Response";
+import { UserResponseContext } from "./user/Response";
 //External
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -10,72 +10,72 @@ import InputField from "../form/InputField";
 import editPen from "../../assets/img/pen-solid.svg";
 
 export default function IssueGoal({
-	title,
-	name,
-	className,
-	text,
-	setEditingMode,
-	onSubmitEdits,
+  title,
+  name,
+  className,
+  text,
+  setEditingMode,
+  onSubmitEdits,
 }) {
-	const [isEditing, setIsEditing] = useState(false);
-	const currentUser = useContext(UserContext);
-	const userResponseBody = useContext(UserResponseContext);
+  const [isEditing, setIsEditing] = useState(false);
+  const currentUser = useContext(UserContext);
+  const userResponseBody = useContext(UserResponseContext);
 
-	return (
-		<article
-			className={className}
-			onClick={() => setEditingMode(setIsEditing(true))}
-		>
-			<h4>
-				<strong>
-					{/* only show edit pen icon on hover to correct user: */}
-					{userResponseBody.userName ===
-					`${currentUser.firstName} ${currentUser.lastName}` ? (
-						<button className="edit-icon">
-							<img src={editPen} alt="Edit" className="edit-pen" />
-						</button>
-					) : (
-						""
-					)}
+  return (
+    <article
+      className={className}
+      onClick={() => setEditingMode(setIsEditing(true))}
+    >
+      <h4>
+        <strong>
+          {/* only show edit pen icon on hover to correct user: */}
+          {userResponseBody.userName ===
+          `${currentUser.firstName} ${currentUser.lastName}` ? (
+            <button className="edit-icon">
+              <img src={editPen} alt="Edit" className="edit-pen" />
+            </button>
+          ) : (
+            ""
+          )}
 
-					{title}
-				</strong>
-			</h4>
+          {title}
+        </strong>
+      </h4>
 
-			<br />
+      <br />
 
-			{isEditing ? (
-				<Formik
-					initialValues={{
-						[name]: userResponseBody[name],
-					}}
-					validationSchema={Yup.object({
-						[name]: Yup.string(),
-					})}
-					onSubmit={(values, { setSubmitting }) => {
-						try {
-							userResponseBody[name] = values[name];
-							onSubmitEdits(userResponseBody);
-							setSubmitting(false);
-							setIsEditing(false);
-						} catch (error) {
-							console.error(error);
-						}
-					}}
-				>
-					{() => (
-						<Form>
-							<InputField name={name} as="textarea" className="edit-textarea" />
+      {isEditing ? (
+        <Formik
+          initialValues={{
+            [name]: userResponseBody[name],
+          }}
+          validationSchema={Yup.object({
+            [name]: Yup.string(),
+          })}
+          onSubmit={(values, { setSubmitting }) => {
+            try {
+              userResponseBody[name] = values[name];
+              onSubmitEdits(userResponseBody);
+              setSubmitting(false);
+              setIsEditing(false);
+            } catch (error) {
+              console.error(error);
+            }
+          }}
+        >
+          {() => (
+            <Form>
+              <InputField name={name} as="textarea" className="edit-textarea" />
 
-							<button type="submit" className="btn">
-								Done
-							</button>
-						</Form>
-					)}
-				</Formik>
-			) : (
-				<>{text}</>
-			)}
-		</article>
-	);
+              <button type="submit" className="btn">
+                Done
+              </button>
+            </Form>
+          )}
+        </Formik>
+      ) : (
+        <>{text}</>
+      )}
+    </article>
+  );
 }

@@ -1,0 +1,34 @@
+@use "../../index" as *;
+
+.admin-responses,
+.admin-response-head th,
+.admin-response-row td {
+  border: 1px solid black;
+}
+
+.admin-responses {
+  border-collapse: collapse;
+  font-family: $main-font;
+  margin: $form-padding auto;
+  width: 95%;
+
+  .admin-response-head th,
+  .admin-response-row td {
+    padding: calc($form-padding / 2);
+  }
+
+  .admin-response-row {
+    td {
+      text-align: center;
+
+      &:nth-child(6),
+      &:nth-child(7) {
+        text-align: left;
+      }
+
+      &:hover {
+        color: $advizot-color;
+      }
+    }
+  }
+}

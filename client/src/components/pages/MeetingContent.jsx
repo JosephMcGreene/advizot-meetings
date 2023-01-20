@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 //Internal
 import MeetingForm from "../form/MeetingForm";
-import Responses from "../responses/Responses";
+import Responses from "../responses/user/Responses";
+import AdminResponses from "../responses/admin/AdminResponses";
 import UtilButtons from "../utilities/UtilButtons";
 
 export default function MeetingContent() {
@@ -97,14 +98,22 @@ export default function MeetingContent() {
     }
   }
 
+  //Sort responses to be displayed in order of priority
+  const sortedResponses = responses.sort((a, b) => {
+    if (a.priority < b.priority) return -1;
+    return 1;
+  });
+
   return (
     <>
-      <Responses
-        responses={responses}
+      {/* <Responses
+        sortedResponses={sortedResponses}
         loading={loading}
         onSubmitEdits={(responseToSubmit) => submitResponse(responseToSubmit)}
         onDelete={(responseToDelete) => deleteResponse(responseToDelete)}
-      />
+      /> */}
+
+      <AdminResponses sortedResponses={sortedResponses} loading={loading} />
 
       <UtilButtons openForm={() => setShowForm(true)} />
 
