@@ -1,11 +1,11 @@
 import { useState, createContext, useContext } from "react";
-import { UserContext } from "../../App";
+import { UserContext } from "../../../App";
 //Components
-import Priority from "./Priority";
-import Rating from "./Rating";
-import IssueGoal from "./IssueGoal";
+import Priority from "../Priority";
+import Rating from "../Rating";
+import IssueGoal from "../IssueGoal";
 //Assets
-import trashCan from "../../assets/img/trash-can-solid.svg";
+import trashCan from "../../../assets/img/trash-can-solid.svg";
 
 export const UserResponseContext = createContext();
 
@@ -41,7 +41,7 @@ export default function Response({
             className="delete-icon"
             onClick={() => onDelete(userResponseBody)}
           >
-            <img src={trashCan} alt="Delete Response" className="trash-can" />
+            <img src={trashCan} alt="Delete Response" />
           </button>
         ) : (
           ""

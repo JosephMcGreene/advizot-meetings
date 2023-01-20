@@ -29,7 +29,7 @@ app.use(
 
 app.use(
   cookieSession({
-    maxAge: 1000 * 60 * 60 * 24 * 14, // cookie expires in 14 days
+    maxAge: 1000 * 60 * 60 * 24, // cookie expires in 1 day
     keys: [uuidv4()],
   })
 );

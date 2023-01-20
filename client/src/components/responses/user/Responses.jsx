@@ -1,21 +1,14 @@
-import LoadingSpinner from "../utilities/LoadingSpinner";
+import LoadingSpinner from "../../utilities/LoadingSpinner";
 import Response from "./Response";
 
 export default function Responses({
-  responses,
+  sortedResponses,
   loading,
   onSubmitEdits,
   onDelete,
 }) {
-  //Sort responses to be displayed in order of priority
-  const sortedResponses = responses.sort((a, b) => {
-    if (a.priority < b.priority) return -1;
-    return 1;
-  });
-
   return (
     <>
-      {/* If Promises in fetching are pending, render a loading animation */}
       {loading ? (
         <LoadingSpinner color="orange" />
       ) : (

@@ -12,7 +12,7 @@ dbRouter
       console.error(error);
     }
   })
-  // Used to post both new responses and edit existing responses
+  //Used to post both new responses and edit existing responses if there is already one in the db with a matching _id
   .post(async function (req, res) {
     try {
       if (req.body._id) {
@@ -20,14 +20,14 @@ dbRouter
       }
 
       const newUserResponse = new Response({
-        userName: req.body.userName,
+        userName: req.user.firstName + " " + req.user.lastName,
         business: req.body.business,
         personal: req.body.personal,
         relationships: req.body.relationships,
         monthlyIssue: req.body.monthlyIssue,
         priority: req.body.priority,
         monthlyGoal: req.body.monthlyGoal,
-        date: req.body.date,
+        date: Date.now(),
       });
       await newUserResponse.save();
 
