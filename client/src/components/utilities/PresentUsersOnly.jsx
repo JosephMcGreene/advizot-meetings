@@ -10,5 +10,6 @@ export default function PresentUsersOnly({ onSubmit, children }) {
     return <MeetingCode onSubmit={onSubmit} />;
   }
 
+  // child is <MeetingContent />
   return children;
 }

@@ -8,13 +8,6 @@ function generateMeetingCode() {
   return meetingCode;
 }
 
-// User permissions
-const userRoles = Object.freeze({
-  ADMIN: "admin",
-  MEMBER: "member",
-});
-
 module.exports = {
   generateMeetingCode,
-  userRoles,
 };

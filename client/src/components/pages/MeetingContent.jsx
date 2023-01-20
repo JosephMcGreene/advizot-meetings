@@ -8,13 +8,33 @@ import AdminResponses from "../responses/admin/AdminResponses";
 import UtilButtons from "../utilities/UtilButtons";
 
 export default function MeetingContent() {
+  const [userRole, setUserRole] = useState("");
+
   const [responses, setResponses] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [showForm, setShowForm] = useState(true);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     getExistingResponses();
   }, []);
+
+  useEffect(() => {
+    getUserRole();
+  }, []);
+
+  async function getUserRole() {
+    try {
+      const currentUserInfo = await axios("/auth/current_user", {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+      setUserRole(currentUserInfo.data.role);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   /**
    * fetches existing user responses from MongoDB and updates state accordingly. See server/routes/db.js
@@ -104,25 +124,40 @@ export default function MeetingContent() {
     return 1;
   });
 
-  return (
-    <>
-      {/* <Responses
-        sortedResponses={sortedResponses}
-        loading={loading}
-        onSubmitEdits={(responseToSubmit) => submitResponse(responseToSubmit)}
-        onDelete={(responseToDelete) => deleteResponse(responseToDelete)}
-      /> */}
+  if (userRole === "admin") {
+    return (
+      <>
+        <AdminResponses sortedResponses={sortedResponses} loading={loading} />
+        <UtilButtons openForm={() => setShowForm(true)} />
 
-      <AdminResponses sortedResponses={sortedResponses} loading={loading} />
+        {showForm && (
+          <MeetingForm
+            onSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
+            onClose={() => setShowForm(false)}
+          />
+        )}
+      </>
+    );
+  }
 
-      <UtilButtons openForm={() => setShowForm(true)} />
-
-      {showForm && (
-        <MeetingForm
-          onSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
-          onClose={() => setShowForm(false)}
+  if (userRole === "member") {
+    return (
+      <>
+        <Responses
+          sortedResponses={sortedResponses}
+          loading={loading}
+          onSubmitEdits={(responseToSubmit) => submitResponse(responseToSubmit)}
+          onDelete={(responseToDelete) => deleteResponse(responseToDelete)}
         />
-      )}
-    </>
-  );
+        <UtilButtons openForm={() => setShowForm(true)} />
+
+        {showForm && (
+          <MeetingForm
+            onSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
+            onClose={() => setShowForm(false)}
+          />
+        )}
+      </>
+    );
+  }
 }

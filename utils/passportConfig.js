@@ -4,7 +4,7 @@ const LinkedInStrategy = require("passport-linkedin-oauth2").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const { v4: uuidv4 } = require("uuid");
 const User = require("../models/User");
-const { userRoles } = require("../utils/helpers");
+const { userRoles } = require("../utils/userRoles");
 
 passport.serializeUser((user, done) => {
   done(null, user.id);

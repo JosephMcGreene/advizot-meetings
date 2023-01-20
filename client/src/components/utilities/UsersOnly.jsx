@@ -7,5 +7,6 @@ export default function UsersOnly({ children }) {
 
   if (!currentUser) return <Navigate to="/" />;
 
+  // child is <PresentUsersOnly />
   return children;
 }

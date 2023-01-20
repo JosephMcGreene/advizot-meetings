@@ -81,7 +81,6 @@ export default function App() {
                 </UsersOnly>
               }
             />
-            <Route path="/works" element={<h1>This Route works!</h1>} />
           </Routes>
         </main>
         <Footer />
