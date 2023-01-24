@@ -2,6 +2,7 @@
 
 .admin-responses,
 .admin-response-head th,
+.admin-response-row th,
 .admin-response-row td {
   border: 1px solid black;
 }
@@ -10,24 +11,32 @@
   border-collapse: collapse;
   font-family: $main-font;
   margin: $form-padding auto;
-  width: 95%;
+  width: 90%;
 
   .admin-response-head th,
+  .admin-response-row th,
   .admin-response-row td {
     padding: calc($form-padding / 2);
   }
 
   .admin-response-row {
+    th,
     td {
       text-align: center;
 
+      &:hover {
+        background-color: $advizot-color;
+      }
+    }
+
+    th {
+      cursor: pointer;
+    }
+
+    td {
       &:nth-child(6),
       &:nth-child(7) {
         text-align: left;
-      }
-
-      &:hover {
-        color: $advizot-color;
       }
     }
   }

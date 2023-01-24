@@ -34,6 +34,7 @@ export default function Response({
   return (
     <UserResponseContext.Provider value={userResponseBody}>
       <li className="response-li">
+        {console.log(currentUser)}
         {/* Only display delete icon to correct user: */}
         {userResponseBody.userName ===
         `${currentUser.firstName} ${currentUser.lastName}` ? (

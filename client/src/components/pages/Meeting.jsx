@@ -7,7 +7,6 @@ import MemberContent from "./MemberContent";
 
 export default function Meeting() {
   const [userRole, setUserRole] = useState("");
-
   const [responses, setResponses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showForm, setShowForm] = useState(false);

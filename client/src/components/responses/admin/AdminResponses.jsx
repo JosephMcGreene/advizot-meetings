@@ -6,13 +6,15 @@ export default function AdminResponses({ sortedResponses, loading }) {
   return (
     <table className="admin-responses">
       <thead className="admin-response-head">
-        <th>Name</th>
-        <th>Priority</th>
-        <th>Business</th>
-        <th>Personal</th>
-        <th>Relationships</th>
-        <th>Issue</th>
-        <th>Goal</th>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Priority</th>
+          <th scope="col">Business</th>
+          <th scope="col">Personal</th>
+          <th scope="col">Relationships</th>
+          <th scope="col">Issue</th>
+          <th scope="col">Goal</th>
+        </tr>
       </thead>
 
       <tbody className="admin-response-body">
