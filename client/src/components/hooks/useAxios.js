@@ -4,10 +4,6 @@ import axios from "axios";
 export function useAxios(method, url, body) {
   const [axiosData, setAxiosData] = useState({});
 
-  useEffect(() => {
-    if (axiosData !== {}) axiosFetch(method, url, body);
-  }, []);
-
   async function axiosFetch(method, url, body = undefined) {
     try {
       const response = await axios({
@@ -22,11 +18,14 @@ export function useAxios(method, url, body) {
       });
 
       setAxiosData(response.data);
-      return response.data;
     } catch (err) {
       console.error(err);
     }
   }
+
+  useEffect(() => {
+    if (axiosData !== {}) axiosFetch(method, url, body);
+  }, [body, method, url]);
 
   return axiosData;
 }

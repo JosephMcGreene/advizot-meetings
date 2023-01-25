@@ -11,37 +11,14 @@ import UsersOnly from "./utilities/UsersOnly";
 import PresentUsersOnly from "./utilities/PresentUsersOnly";
 import Meeting from "./components/pages/Meeting";
 import { useAxios } from "./components/hooks/useAxios";
+import { useCurrentUser } from "./components/hooks/useCurrentUser";
 //Context for logged in user data currentUser:
 export const UserContext = React.createContext();
 
 export default function App() {
-  const currentUser = useAxios("get", "/auth/current_user");
-
-  // useEffect(() => {
-  //   getCurrentUser();
-  // }, []);
+  const currentUser = useCurrentUser();
 
   //=====HELPERS=====
-  /**
-   * makes request for info on the current user and updates currentUser state accordingly
-   */
-  // async function getCurrentUser() {
-  //   try {
-  //     const currentUserInfo = await axios({
-  //       method: "get",
-  //       url: "/auth/current_user",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-
-  //     setCurrentUser(currentUserInfo.data);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }
-
   /**
    * Assesses whether or not the passcode the user entered is valid and correct
    * @param {String} inputCode the code the user entered
