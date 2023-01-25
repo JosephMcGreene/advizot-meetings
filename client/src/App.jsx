@@ -62,6 +62,7 @@ export default function App() {
     <div className="App">
       <UserContext.Provider value={currentUser}>
         <Header />
+
         <main className="main-content">
           <Routes>
             <Route
@@ -72,6 +73,7 @@ export default function App() {
                 </h1>
               }
             />
+
             <Route
               path="/meeting"
               element={
@@ -84,8 +86,18 @@ export default function App() {
                 </UsersOnly>
               }
             />
+
+            {/* <Route
+              path="/profile"
+              element={
+                <UsersOnly>
+                  <Profile />
+                </UsersOnly>
+              }
+            /> */}
           </Routes>
         </main>
+
         <Footer />
       </UserContext.Provider>
     </div>

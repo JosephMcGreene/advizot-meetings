@@ -135,6 +135,7 @@ export default function Meeting() {
         openForm={() => setShowForm(true)}
         closeForm={() => setShowForm(false)}
         onSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
+        onDelete={(responseToDelete) => deleteResponse(responseToDelete)}
       />
     );
   }

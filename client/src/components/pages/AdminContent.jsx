@@ -9,10 +9,15 @@ export default function AdminContent({
   openForm,
   closeForm,
   onSubmit,
+  onDelete,
 }) {
   return (
     <>
-      <AdminResponses sortedResponses={sortedResponses} loading={loading} />
+      <AdminResponses
+        sortedResponses={sortedResponses}
+        onDelete={onDelete}
+        loading={loading}
+      />
       <UtilButtons openForm={openForm} />
 
       {showForm && (

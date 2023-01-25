@@ -1,11 +1,11 @@
 import { useState, createContext, useContext } from "react";
 import { UserContext } from "../../../App";
 //Components
+import DeleteButton from "../DeleteButton";
 import Priority from "../Priority";
 import Rating from "../Rating";
 import IssueGoal from "../IssueGoal";
 //Assets
-import trashCan from "../../../assets/img/trash-can-solid.svg";
 
 export const UserResponseContext = createContext();
 
@@ -35,15 +35,11 @@ export default function Response({
     <UserResponseContext.Provider value={userResponseBody}>
       <li className="response-li">
         {console.log(currentUser)}
+        {/* //TODO Add actual auth here */}
         {/* Only display delete icon to correct user: */}
         {userResponseBody.userName ===
         `${currentUser.firstName} ${currentUser.lastName}` ? (
-          <button
-            className="delete-icon"
-            onClick={() => onDelete(userResponseBody)}
-          >
-            <img src={trashCan} alt="Delete Response" />
-          </button>
+          <DeleteButton onDelete={onDelete} />
         ) : (
           ""
         )}
