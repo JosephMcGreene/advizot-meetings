@@ -6,8 +6,8 @@ import { Routes, Route } from "react-router-dom";
 import "./scss/App.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import UsersOnly from "./utilities/UsersOnly";
-import PresentUsersOnly from "./utilities/PresentUsersOnly";
+import UsersOnly from "./components/utilities/UsersOnly";
+import PresentUsersOnly from "./components/utilities/PresentUsersOnly";
 import Meeting from "./components/pages/Meeting";
 //Context for logged in user data currentUser:
 export const UserContext = React.createContext();
@@ -86,15 +86,6 @@ export default function App() {
                 </UsersOnly>
               }
             />
-
-            {/* <Route
-              path="/profile"
-              element={
-                <UsersOnly>
-                  <Profile />
-                </UsersOnly>
-              }
-            /> */}
           </Routes>
         </main>
 

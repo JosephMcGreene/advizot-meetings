@@ -24,6 +24,8 @@ export default function Meeting() {
    */
   async function getUserRole() {
     try {
+      setLoading(true);
+
       const currentUserInfo = await axios({
         method: "get",
         url: "/auth/current_user",
@@ -33,6 +35,7 @@ export default function Meeting() {
         },
       });
       setUserRole(currentUserInfo.data.role);
+      setLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -94,7 +97,7 @@ export default function Meeting() {
   }
 
   /**
-   * Deletes the specified user response from the list as well as the db
+   * Deletes the specified user form data from the UI as well as the db
    * @param {Object} responseToDelete The user response to be deleted from db and UI
    * @returns {Object} the response from the server
    */

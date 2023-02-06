@@ -1,4 +1,4 @@
-import LoadingSpinner from "../../../utilities/LoadingSpinner";
+import LoadingSpinner from "../../utilities/LoadingSpinner";
 import Response from "./Response";
 
 export default function Responses({

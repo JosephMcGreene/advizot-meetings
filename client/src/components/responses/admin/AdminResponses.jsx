@@ -1,5 +1,5 @@
 import AdminResponse from "./AdminResponse";
-import LoadingSpinner from "../../../utilities/LoadingSpinner";
+import LoadingSpinner from "../../utilities/LoadingSpinner";
 
 export default function AdminResponses({ sortedResponses, onDelete, loading }) {
   if (loading) return <LoadingSpinner />;

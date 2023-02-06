@@ -44,13 +44,14 @@ code {
 
 .rating-select {
   @include borderSides();
+  font-family: $main-font;
   margin-top: 0.15rem;
   padding: $padding;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 
   option {
     text-align: center;
-    font-family: $main-font;
+    font-family: inherit;
   }
 
   &:focus {

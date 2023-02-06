@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../App";
 import advizotLogo from "../assets/img/original-on-transparent.png";
+import Modal from "./modals/Modal";
 import Login from "./modals/Login";
 
 export default function Header() {
@@ -26,7 +27,13 @@ export default function Header() {
         </ul>
       </nav>
 
-      {showLogin && <Login onClose={() => setShowLogin(!showLogin)} />}
+      {showLogin && (
+        <Modal
+          title="Sign In"
+          nClose={() => setShowLogin(!showLogin)}
+          body={<Login />}
+        />
+      )}
     </header>
   );
 }
