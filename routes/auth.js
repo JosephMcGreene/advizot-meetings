@@ -37,6 +37,7 @@ authRouter.route("/current_user").get((req, res) => {
 authRouter.route("/code").post((req, res) => {
   if (req.body.enteredCode === "123456") {
     req.user.hasMeetingCode = true;
+    console.log(req.user);
     res.json(req.user);
   } else {
     console.log("incorrect Code");

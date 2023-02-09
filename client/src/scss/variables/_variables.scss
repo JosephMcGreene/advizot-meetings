@@ -1,4 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+@font-face {
+  font-family: "Audiowide";
+  src: url("../../assets/fonts/audiowide-regular-webfont.woff2") format("woff2");
+}
 $advizot-font: "Audiowide", cursive;
 
 @font-face {

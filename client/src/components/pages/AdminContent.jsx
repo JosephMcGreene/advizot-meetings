@@ -3,7 +3,7 @@ import { constructDate } from "../../helpers";
 import AdminResponses from "../responses/admin/AdminResponses";
 import UtilButtons from "../utilities/UtilButtons";
 import MeetingForm from "../form/MeetingForm";
-import Modal from "../modals/Modal";
+import ModalTemplate from "../modals/ModalTemplate";
 import NewMeeting from "../modals/NewMeeting";
 
 export default function AdminContent({
@@ -17,6 +17,8 @@ export default function AdminContent({
 }) {
   const [showNewMeeting, setShowNewMeeting] = useState(false);
 
+  function generateMeeting() {}
+
   return (
     <>
       <AdminResponses
@@ -24,23 +26,26 @@ export default function AdminContent({
         onDelete={onDelete}
         loading={loading}
       />
+
       <UtilButtons
         openForm={openForm}
-        generateMeeting={() => setShowNewMeeting(true)}
+        openNewMeeting={() => setShowNewMeeting(true)}
       />
-
+      {showNewMeeting && (
+        <ModalTemplate
+          body={
+            <NewMeeting
+              onSubmit={(meetingInfo) => generateMeeting(meetingInfo)}
+            />
+          }
+          title={constructDate() + " Meeting"}
+          onClose={() => setShowNewMeeting(false)}
+        />
+      )}
       {showForm && (
         <MeetingForm
           onClose={() => closeForm(false)}
           onSubmit={(responseToSubmit) => onSubmit(responseToSubmit)}
-        />
-      )}
-
-      {showNewMeeting && (
-        <Modal
-          title={constructDate() + " Meeting"}
-          onClose={() => setShowNewMeeting(false)}
-          body={<NewMeeting />}
         />
       )}
     </>

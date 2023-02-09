@@ -1,7 +1,7 @@
 import formIcon from "../../assets/img/align-left-solid.svg";
 import meetingIcon from "../../assets/img/people-group-solid.svg";
 
-export default function UtilButtons({ openForm, generateMeeting }) {
+export default function UtilButtons({ openForm, openNewMeeting }) {
   return (
     <ul className="util-list">
       <li className="util-item">
@@ -11,9 +11,9 @@ export default function UtilButtons({ openForm, generateMeeting }) {
         </button>
       </li>
       <li className="util-item">
-        <button className="btn util-btn" onClick={() => generateMeeting()}>
+        <button className="btn util-btn" onClick={() => openNewMeeting()}>
           <img className="util-icon" src={meetingIcon} alt="group of people" />
-          <span className="util-text">Generate Meeting</span>
+          <span className="util-text">New Meeting</span>
         </button>
       </li>
     </ul>
