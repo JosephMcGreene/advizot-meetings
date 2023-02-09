@@ -1,6 +1,6 @@
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import Select from "../form/Select";
+import Select from "./form/Select";
 import LoadingSpinner from "../utilities/LoadingSpinner";
 
 export default function NewMeeting({ onSubmit, onClose }) {

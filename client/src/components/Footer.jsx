@@ -1,11 +1,7 @@
-// import { useContext } from "react";
-// import { UserContext } from "../App";
 //Assets
 import logoBlack from "../assets/img/black-on-transparent.png";
 
 export default function Footer() {
-  // const currentUser = useContext(UserContext);
-
   return (
     <footer className="footer">
       <span className="copyright">&copy; 2022</span>

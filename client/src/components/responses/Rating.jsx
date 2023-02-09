@@ -5,7 +5,7 @@ import { UserResponseContext } from "./user/Response";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 //Components
-import InputField from "../form/InputField";
+import InputField from "../modals/form/InputField";
 //Assets
 import editPen from "../../assets/img/pen-solid.svg";
 

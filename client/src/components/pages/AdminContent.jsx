@@ -1,36 +1,40 @@
 import { useState } from "react";
-import { constructDate } from "../../helpers";
+import { constructCurrentDate } from "../../helpers";
 import AdminResponses from "../responses/admin/AdminResponses";
 import UtilButtons from "../utilities/UtilButtons";
-import MeetingForm from "../form/MeetingForm";
+import MeetingForm from "../modals/form/MeetingForm";
 import ModalTemplate from "../modals/ModalTemplate";
 import NewMeeting from "../modals/NewMeeting";
 
-export default function AdminContent({
-  sortedResponses,
-  loading,
-  showForm,
-  openForm,
-  closeForm,
-  onSubmit,
-  onDelete,
-}) {
+export default function AdminContent(props) {
   const [showNewMeeting, setShowNewMeeting] = useState(false);
 
-  function generateMeeting() {}
+  async function generateMeeting() {}
 
   return (
     <>
       <AdminResponses
-        sortedResponses={sortedResponses}
-        onDelete={onDelete}
-        loading={loading}
+        sortedResponses={props.sortedResponses}
+        onDelete={props.onDelete}
+        loading={props.loading}
       />
 
       <UtilButtons
-        openForm={openForm}
+        openForm={() => props.openForm(true)}
         openNewMeeting={() => setShowNewMeeting(true)}
       />
+      {props.showForm && (
+        <ModalTemplate
+          body={
+            <MeetingForm
+              onSubmit={(responseToSubmit) => props.onSubmit(responseToSubmit)}
+              onClose={() => props.closeForm(false)}
+            />
+          }
+          title={constructCurrentDate() + " Meeting"}
+          onClose={() => props.closeForm(false)}
+        />
+      )}
       {showNewMeeting && (
         <ModalTemplate
           body={
@@ -38,14 +42,8 @@ export default function AdminContent({
               onSubmit={(meetingInfo) => generateMeeting(meetingInfo)}
             />
           }
-          title={constructDate() + " Meeting"}
+          title={"New Meeting"}
           onClose={() => setShowNewMeeting(false)}
-        />
-      )}
-      {showForm && (
-        <MeetingForm
-          onClose={() => closeForm(false)}
-          onSubmit={(responseToSubmit) => onSubmit(responseToSubmit)}
         />
       )}
     </>

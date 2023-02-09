@@ -21,7 +21,6 @@ export async function axiosFetch(method, url, data = null) {
       data,
       withCredentials: true,
     });
-    console.log(responseBody);
     return responseBody;
   } catch (err) {
     return console.error(err);
@@ -33,7 +32,7 @@ export async function axiosFetch(method, url, data = null) {
  *
  * @returns {String} a string representing the current date
  */
-export function constructDate() {
+export function constructCurrentDate() {
   let today = new Date();
   let month = today.getMonth() + 1;
   let date = today.getDate();
