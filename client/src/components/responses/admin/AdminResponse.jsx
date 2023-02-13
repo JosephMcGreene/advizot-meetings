@@ -1,12 +1,7 @@
-import DeleteButton from "../DeleteButton";
-
-export default function AdminResponse({ onDelete, userResponseBody }) {
+export default function AdminResponse({ userResponseBody }) {
   return (
     <tr className="admin-response-row">
       <th scope="row">{userResponseBody.userName}</th>
-      <td className="edit-td">
-        <DeleteButton onDelete={onDelete} />
-      </td>
       <td>{userResponseBody.priority.substring(1)}</td>
       <td>{userResponseBody.business}</td>
       <td>{userResponseBody.personal}</td>

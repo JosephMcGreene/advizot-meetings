@@ -1,3 +1,4 @@
+//Components
 import AdminResponse from "./AdminResponse";
 import LoadingSpinner from "../../utilities/LoadingSpinner";
 

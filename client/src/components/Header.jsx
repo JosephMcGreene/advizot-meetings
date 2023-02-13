@@ -1,6 +1,9 @@
 import { useState, useContext } from "react";
+//Internal
 import { UserContext } from "../App";
+//Assets
 import advizotLogo from "../assets/img/original-on-transparent.png";
+//Components
 import ModalTemplate from "./modals/ModalTemplate";
 import Login from "./modals/Login";
 

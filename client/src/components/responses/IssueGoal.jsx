@@ -1,81 +1,13 @@
-import { useState, useContext } from "react";
-import { UserContext } from "../../App";
-import { UserResponseContext } from "./user/Response";
-//External
-import { Formik, Form } from "formik";
-import * as Yup from "yup";
-//Components
-import InputField from "../modals/form/InputField";
-//Assets
-import editPen from "../../assets/img/pen-solid.svg";
-
-export default function IssueGoal({
-  title,
-  name,
-  className,
-  text,
-  setEditingMode,
-  onSubmitEdits,
-}) {
-  const [isEditing, setIsEditing] = useState(false);
-  const currentUser = useContext(UserContext);
-  const userResponseBody = useContext(UserResponseContext);
-
+export default function IssueGoal({ title, className, text, setEditingMode }) {
   return (
-    <article
-      className={className}
-      onClick={() => setEditingMode(setIsEditing(true))}
-    >
+    <article className={className}>
       <h4>
-        <strong>
-          {/* only show edit pen icon on hover to correct user: */}
-          {userResponseBody.userName ===
-          `${currentUser.firstName} ${currentUser.lastName}` ? (
-            <button className="edit-icon">
-              <img src={editPen} alt="Edit" className="edit-pen" />
-            </button>
-          ) : (
-            ""
-          )}
-
-          {title}
-        </strong>
+        <strong>{title}</strong>
       </h4>
 
       <br />
 
-      {isEditing ? (
-        <Formik
-          initialValues={{
-            [name]: userResponseBody[name],
-          }}
-          validationSchema={Yup.object({
-            [name]: Yup.string(),
-          })}
-          onSubmit={(values, { setSubmitting }) => {
-            try {
-              userResponseBody[name] = values[name];
-              onSubmitEdits(userResponseBody);
-              setSubmitting(false);
-              setIsEditing(false);
-            } catch (error) {
-              console.error(error);
-            }
-          }}
-        >
-          {() => (
-            <Form>
-              <InputField name={name} as="textarea" className="edit-textarea" />
-
-              <button type="submit" className="btn">
-                Done
-              </button>
-            </Form>
-          )}
-        </Formik>
-      ) : (
-        <>{text}</>
-      )}
+      {text}
     </article>
   );
 }

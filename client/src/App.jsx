@@ -3,8 +3,8 @@ import { useState, useEffect, createContext } from "react";
 import { Routes, Route } from "react-router-dom";
 //Internal
 import { axiosFetch } from "./helpers";
-//Components
 import "./scss/App.scss";
+//Components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import UsersOnly from "./components/utilities/UsersOnly";

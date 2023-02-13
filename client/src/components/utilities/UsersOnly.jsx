@@ -1,6 +1,8 @@
 import { useContext } from "react";
-import { UserContext } from "../../App";
+//External
 import { Navigate } from "react-router-dom";
+//Internal
+import { UserContext } from "../../App";
 
 export default function UsersOnly({ children }) {
   const currentUser = useContext(UserContext);

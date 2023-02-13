@@ -1,8 +1,9 @@
 import { useState, useEffect, useContext } from "react";
-import { UserContext } from "../../App";
 //External
 import { axiosFetch } from "../../helpers";
 //Internal
+import { UserContext } from "../../App";
+//Components
 import AdminContent from "./AdminContent";
 import MemberContent from "./MemberContent";
 

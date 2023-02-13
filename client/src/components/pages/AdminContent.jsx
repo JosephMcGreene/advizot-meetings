@@ -1,5 +1,7 @@
 import { useState } from "react";
+//Internal
 import { constructCurrentDate } from "../../helpers";
+//Components
 import AdminResponses from "../responses/admin/AdminResponses";
 import UtilButtons from "../utilities/UtilButtons";
 import MeetingForm from "../modals/form/MeetingForm";

@@ -1,18 +1,16 @@
 import { useState, createContext, useContext } from "react";
+//Internal
 import { UserContext } from "../../../App";
 //Components
-import DeleteButton from "../DeleteButton";
 import Priority from "../Priority";
 import Rating from "../Rating";
 import IssueGoal from "../IssueGoal";
-//Assets
 
 export const UserResponseContext = createContext();
 
 export default function Response({
   userResponseBody,
   onSubmitEdits,
-  onDelete,
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const currentUser = useContext(UserContext);
@@ -34,16 +32,6 @@ export default function Response({
   return (
     <UserResponseContext.Provider value={userResponseBody}>
       <li className="response-li">
-        {console.log(currentUser)}
-        {/* //TODO Add actual auth here */}
-        {/* Only display delete icon to correct user: */}
-        {userResponseBody.userName ===
-        `${currentUser.firstName} ${currentUser.lastName}` ? (
-          <DeleteButton onDelete={onDelete} />
-        ) : (
-          ""
-        )}
-
         <span className="response-name">
           <strong>{userResponseBody.userName}</strong>
         </span>
