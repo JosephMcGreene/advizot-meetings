@@ -36,7 +36,7 @@ app.use(
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://advizot-meetings.herokuapp.com"],
+    origin: ["http://localhost:3000"],
     credentials: true,
   })
 );

@@ -1,47 +1,49 @@
-import React from "react";
-// import React, { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 //External
-// import axios from "axios";
 import { Routes, Route } from "react-router-dom";
-//Internal & Components
-import "./scss/App.scss";
+//Internal
+import { axiosFetch } from "./helpers";
+import "./assets/scss/App.scss";
+//Components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import UsersOnly from "./utilities/UsersOnly";
-import PresentUsersOnly from "./utilities/PresentUsersOnly";
+import UsersOnly from "./components/utilities/UsersOnly";
+import PresentUsersOnly from "./components/utilities/PresentUsersOnly";
 import Meeting from "./components/pages/Meeting";
-import { useAxios } from "./components/hooks/useAxios";
-import { useCurrentUser } from "./components/hooks/useCurrentUser";
 //Context for logged in user data currentUser:
-export const UserContext = React.createContext();
+export const UserContext = createContext();
 
 export default function App() {
-  const currentUser = useCurrentUser();
+  const [currentUser, setCurrentUser] = useState({});
+
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
 
   //=====HELPERS=====
+  /**
+   * makes request for info on the current user and updates currentUser state accordingly
+   */
+  async function getCurrentUser() {
+    const response = await axiosFetch("get", "/auth/current_user");
+    setCurrentUser(response.data);
+  }
+
   /**
    * Assesses whether or not the passcode the user entered is valid and correct
    * @param {String} inputCode the code the user entered
    */
-  // async function checkPasscode(inputCode) {
-  //   try {
-  //     const response = await axios({
-  //       method: "post",
-  //       url: "/auth/code",
-  //       data: { enteredCode: inputCode },
-  //       withCredentials: true,
-  //     });
-  //     setCurrentUser(response.data);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
+  async function checkPasscode(inputCode) {
+    const response = await axiosFetch("post", "/auth/code", {
+      enteredCode: inputCode,
+    });
+    setCurrentUser(response.data);
+  }
 
   return (
     <div className="App">
       <UserContext.Provider value={currentUser}>
         <Header />
-        {console.log(currentUser)}
 
         <main className="main-content">
           <Routes>
@@ -59,7 +61,7 @@ export default function App() {
               element={
                 <UsersOnly>
                   <PresentUsersOnly
-                  // onSubmit={(inputCode) => checkPasscode(inputCode)}
+                    onSubmit={(inputCode) => checkPasscode(inputCode)}
                   >
                     <Meeting />
                   </PresentUsersOnly>

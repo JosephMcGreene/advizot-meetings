@@ -1,7 +1,8 @@
 import { useContext } from "react";
-import { UserContext } from "../App";
 //Internal
-import MeetingCode from "../components/pages/MeetingCode";
+import { UserContext } from "../../App";
+//Components
+import MeetingCode from "../pages/MeetingCode";
 
 export default function PresentUsersOnly({ onSubmit, children }) {
   const currentUser = useContext(UserContext);
@@ -10,6 +11,6 @@ export default function PresentUsersOnly({ onSubmit, children }) {
     return <MeetingCode onSubmit={onSubmit} />;
   }
 
-  // child is <MeetingContent />
+  // child is <Meeting />
   return children;
 }

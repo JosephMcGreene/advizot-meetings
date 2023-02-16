@@ -1,32 +1,25 @@
+//Components
 import Responses from "../responses/user/Responses";
-import UtilButtons from "../../utilities/UtilButtons";
-import MeetingForm from "../form/MeetingForm";
+// import UtilButtons from "../utilities/UtilButtons";
+// import MeetingForm from "../form/MeetingForm";
 
-export default function MemberContent({
-  sortedResponses,
-  loading,
-  showForm,
-  openForm,
-  closeForm,
-  onSubmit,
-  onDelete,
-}) {
+export default function MemberContent(props) {
   return (
     <>
       <Responses
-        sortedResponses={sortedResponses}
-        loading={loading}
-        onSubmitEdits={(responseToSubmit) => onSubmit(responseToSubmit)}
-        onDelete={(responseToDelete) => onDelete(responseToDelete)}
+        sortedResponses={props.sortedResponses}
+        loading={props.loading}
+        onSubmitEdits={(responseToSubmit) => props.onSubmit(responseToSubmit)}
+        onDelete={(responseToDelete) => props.onDelete(responseToDelete)}
       />
-      <UtilButtons openForm={openForm} />
+      {/* <UtilButtons props.openForm={openForm} />
 
       {showForm && (
         <MeetingForm
-          onClose={() => closeForm(false)}
-          onSubmit={(responseToSubmit) => onSubmit(responseToSubmit)}
+          onClose={() => props.closeForm(false)}
+          onSubmit={(responseToSubmit) => props.onSubmit(responseToSubmit)}
         />
-      )}
+      )} */}
     </>
   );
 }

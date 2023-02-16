@@ -3,9 +3,14 @@
 
 .util-list {
   z-index: $middle;
+
   position: fixed;
   bottom: 0;
   left: 1.25rem;
+
+  display: flex;
+  gap: 0 1rem;
+
   list-style: none;
 
   .util-item {

@@ -2,8 +2,8 @@
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 //Components
-import InputField from "../form/InputField";
-import LoadingSpinner from "../../utilities/LoadingSpinner";
+import InputField from "../modals/form/InputField";
+import LoadingSpinner from "../utilities/LoadingSpinner";
 
 export default function MeetingCode({ onSubmit }) {
   return (
