@@ -36,11 +36,6 @@ body {
   min-width: 320px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
 .rating-select {
   @include borderSides();
   font-family: $main-font;
@@ -63,8 +58,8 @@ code {
   display: flex;
   flex-direction: column;
   font-family: $main-font;
-  margin-top: 0.75rem;
-  // padding: 0 $form-padding;
+  margin: 0.75rem auto 0;
+  width: min(100%, 300px);
 
   textarea {
     @include borderSides();
@@ -97,7 +92,9 @@ code {
   border: none;
   display: block;
   //Padding will sometimes be overridden in specific instances
-  padding: 1.5ch 2ch;
+  width: fit-content;
+  padding: 1ch 3ch;
+  margin: 1rem auto;
   background-color: $advizot-color;
   cursor: pointer;
 

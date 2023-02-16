@@ -10,12 +10,18 @@
   background-color: rgba(0, 0, 0, 0.5);
   overflow-y: scroll;
 
+  display: flex;
+  justify-content: center;
+
   .modal-content {
     @include borderRadius();
     z-index: $top;
-    // position: absolute;
+    
+    position: absolute;
+    top: 3vh;
+    
+    width: min(340px, 92%);
     background-color: #fff;
-    width: min(340px, 90%);
 
     .modal-header {
       @include borderRadius();
@@ -68,7 +74,9 @@
 }
 
 .signin-btn {
-  margin-top: 1rem;
+  &:first-child {
+    margin-bottom: 1rem;
+  }
 
   button {
     @include borderRadius();

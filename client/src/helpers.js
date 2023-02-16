@@ -36,7 +36,7 @@ export function constructCurrentDate() {
   let today = new Date();
   let month = today.getMonth() + 1;
   let date = today.getDate();
-  let year = today.getFullYear();
+  let year = today.getFullYear().toString().slice(2);
 
   return `${month}/${date}/${year}`;
 }

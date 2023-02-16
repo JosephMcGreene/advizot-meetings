@@ -15,6 +15,7 @@
 
   .util-item {
     .util-btn {
+      @include transition(bottom);
       //Resets
       border-radius: $border-radius;
       border-top: 3px solid $advizot-color;
@@ -23,11 +24,10 @@
       border-color: $advizot-color;
       //Position
       position: relative;
-      bottom: -55px;
+      bottom: -53%;
       //Display
       display: flex;
       justify-content: center;
-      align-items: center;
       //Misc
       padding: 0 20px;
       width: 70px;
@@ -35,26 +35,26 @@
       text-align: center;
       background-color: whitesmoke;
       box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.4);
-      @include transition(bottom);
 
       .util-icon {
+        @include transition(bottom);
         position: absolute;
         max-width: 55%;
         bottom: 0;
-        @include transition(bottom);
       }
 
       .util-text {
+        @include transition(opacity bottom);
         position: absolute;
         bottom: 60px;
         left: -17px;
         opacity: 0;
         color: whitesmoke;
-        @include transition(opacity bottom);
       }
 
       &:hover {
-        bottom: -15px;
+        bottom: -22%;
+
         .util-icon {
           bottom: 25px;
         }
