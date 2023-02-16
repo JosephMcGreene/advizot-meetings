@@ -1,3 +1,5 @@
+const { userRoles, groups } = require("./userRoles");
+
 /**
  * Generates a 6-digit rancom number to be used as the meeting's meeting code for the month.
  * @returns {Number} the code for the meeting
@@ -8,31 +10,29 @@ function generateMeetingCode() {
   return meetingCode;
 }
 
-function getDayOfTheWeek() {
-  let today;
-  let group;
+/**
+ * Assess the day of the week in order to determine what group a newly registered member should be placed in
+ * @returns {string | null} The name of the group that corresponds to the day of the week of the group's meeting
+ */
+function determineGroup(userRole) {
+  if (userRole === userRoles.ADMIN) {
+    return "admin";
+  }
+
+  let group = null;
+
   switch (new Date().getDay()) {
-    case 0:
-      today = "sunday";
-      break;
-    case 1:
-      today = "monday";
-      break;
     case 2:
-      group = "CE5660";
+      group = groups.tuesday;
       break;
     case 3:
-      group = "KEY9330";
+      group = groups.wednesday;
       break;
     case 4:
-      group = "CE4659";
+      group = groups.thursday;
       break;
-    case 5:
-      today = "friday";
-      break;
-    case 6:
-      today = "saturday";
-      break;
+    default:
+      group = null;
   }
 
   return group;
@@ -40,5 +40,5 @@ function getDayOfTheWeek() {
 
 module.exports = {
   generateMeetingCode,
-  getDayOfTheWeek,
+  determineGroup,
 };

@@ -5,6 +5,7 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const { v4: uuidv4 } = require("uuid");
 const User = require("../models/User");
 const { userRoles } = require("../utils/userRoles");
+const { determineGroup } = require("./helpers");
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -40,6 +41,7 @@ passport.use(
           linkedin_email: profile.emails[0].value,
           advizotID: uuidv4(),
           role: userRoles.MEMBER,
+          group: determineGroup(),
           hasMeetingCode: false,
         });
         await newUser.save();
@@ -77,6 +79,7 @@ passport.use(
           google_email: profile.emails[0].value,
           advizotID: uuidv4(),
           role: userRoles.MEMBER,
+          group: determineGroup(this.role),
           hasMeetingCode: false,
         });
         await newUser.save();
