@@ -19,112 +19,113 @@ export default function MeetingForm({ onSubmit, onClose }) {
   }
 
   return (
-    <Formik
-      initialValues={{
-        business: 0,
-        personal: 0,
-        relationships: 0,
-        monthlyIssue: "",
-        priority: "",
-        monthlyGoal: "",
-      }}
-      validationSchema={Yup.object({
-        business: Yup.number().test(
-          "atLeast",
-          "This should be at least 1",
-          (val) => val > 0
-        ),
-        personal: Yup.number().test(
-          "atLeast",
-          "This should be at least 1",
-          (val) => val > 0
-        ),
-        relationships: Yup.number().test(
-          "atLeast",
-          "This should be at least 1",
-          (val) => val > 0
-        ),
-        monthlyIssue: Yup.string().required("Don't forget this one!"),
-        priority: Yup.string().required("Don't forget this one!"),
-        monthlyGoal: Yup.string().required("Don't forget this one!"),
-      })}
-      onSubmit={(values, actions) => {
-        try {
-          onSubmit(values);
-          actions.setSubmitting(false);
-          onClose();
-        } catch (error) {
-          console.error(error);
-        }
-      }}
-      className="modal-body"
-    >
-      {({ isSubmitting, submitCount, ...props }) => (
-        <Form className="form">
-          <InputField
-            text="How is your business?"
-            name="business"
-            as="input"
-            type="range"
-            min={0}
-            max={10}
-            className="range-container"
-            style={getSliderSize(props.values.business)}
-            spanText={props.values.business}
-          />
+    <div className="modal-body">
+      <Formik
+        initialValues={{
+          business: 0,
+          personal: 0,
+          relationships: 0,
+          monthlyIssue: "",
+          priority: "",
+          monthlyGoal: "",
+        }}
+        validationSchema={Yup.object({
+          business: Yup.number().test(
+            "atLeast",
+            "This should be at least 1",
+            (val) => val > 0
+          ),
+          personal: Yup.number().test(
+            "atLeast",
+            "This should be at least 1",
+            (val) => val > 0
+          ),
+          relationships: Yup.number().test(
+            "atLeast",
+            "This should be at least 1",
+            (val) => val > 0
+          ),
+          monthlyIssue: Yup.string().required("Don't forget this one!"),
+          priority: Yup.string().required("Don't forget this one!"),
+          monthlyGoal: Yup.string().required("Don't forget this one!"),
+        })}
+        onSubmit={(values, actions) => {
+          try {
+            onSubmit(values);
+            actions.setSubmitting(false);
+            onClose();
+          } catch (error) {
+            console.error(error);
+          }
+        }}
+      >
+        {({ isSubmitting, submitCount, ...props }) => (
+          <Form className="form">
+            <InputField
+              text="How is your business?"
+              name="business"
+              as="input"
+              type="range"
+              min={0}
+              max={10}
+              className="range-container"
+              style={getSliderSize(props.values.business)}
+              spanText={props.values.business}
+            />
 
-          <InputField
-            text="How is your health?"
-            name="personal"
-            as="input"
-            type="range"
-            min={0}
-            max={10}
-            className="range-container"
-            style={getSliderSize(props.values.personal)}
-            spanText={props.values.personal}
-          />
+            <InputField
+              text="How is your health?"
+              name="personal"
+              as="input"
+              type="range"
+              min={0}
+              max={10}
+              className="range-container"
+              style={getSliderSize(props.values.personal)}
+              spanText={props.values.personal}
+            />
 
-          <InputField
-            text="How are your relationships?"
-            name="relationships"
-            as="input"
-            type="range"
-            min={0}
-            max={10}
-            className="range-container"
-            style={getSliderSize(props.values.relationships)}
-            spanText={props.values.relationships}
-          />
+            <InputField
+              text="How are your relationships?"
+              name="relationships"
+              as="input"
+              type="range"
+              min={0}
+              max={10}
+              className="range-container"
+              style={getSliderSize(props.values.relationships)}
+              spanText={props.values.relationships}
+            />
 
-          <InputField
-            text="Issue to process today"
-            name="monthlyIssue"
-            as="textarea"
-            className="text-input"
-          />
+            <InputField
+              text="Issue to process today"
+              name="monthlyIssue"
+              as="textarea"
+              className="text-input"
+            />
 
-          <Select text="Priority" name="priority" className="select">
-            <option value="">-- Select a Priority --</option>
-            <option value="aA">A</option>
-            <option value="bB">B</option>
-            <option value="cQuestion">Question</option>
-            <option value="dLightning">Lightning</option>
-            <option value="eC">C</option>
-          </Select>
+            <Select text="Priority" name="priority" className="select">
+              <option value="">-- Select a Priority --</option>
+              <option value="aA">A</option>
+              <option value="bB">B</option>
+              <option value="cQuestion">Question</option>
+              <option value="dLightning">Lightning</option>
+              <option value="eC">C</option>
+            </Select>
 
-          <InputField
-            text="Goal before next meeting"
-            name="monthlyGoal"
-            as="textarea"
-            className="text-input"
-          />
+            <InputField
+              text="Goal before next meeting"
+              name="monthlyGoal"
+              as="textarea"
+              className="text-input"
+            />
 
-          <button type="submit" className="btn">
-            {isSubmitting ? <LoadingSpinner color="orange" /> : "Submit"}
-          </button>
-        </Form>
-      )}
-    </Formik>
+            <button type="submit" className="btn">
+              {isSubmitting ? <LoadingSpinner color="orange" /> : "Submit"}
+            </button>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
 }

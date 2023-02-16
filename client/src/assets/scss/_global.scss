@@ -64,7 +64,7 @@ code {
   flex-direction: column;
   font-family: $main-font;
   margin-top: 0.75rem;
-  padding: 0 $form-padding;
+  // padding: 0 $form-padding;
 
   textarea {
     @include borderSides();

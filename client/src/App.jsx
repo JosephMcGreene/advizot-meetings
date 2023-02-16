@@ -43,6 +43,7 @@ export default function App() {
 
   return (
     <div className="App">
+      {console.log(currentUser)}
       <UserContext.Provider value={currentUser}>
         <Header />
 
@@ -69,6 +70,15 @@ export default function App() {
                 </UsersOnly>
               }
             />
+
+            {/* <Route
+              path="/profile"
+              element={
+                <UsersOnly>
+                  <Profile />
+                </UsersOnly>
+              }
+            /> */}
           </Routes>
         </main>
 

@@ -20,7 +20,6 @@
   }
 
   .admin-response-row {
-    position: relative;
 
     th,
     td {
@@ -36,21 +35,9 @@
     }
 
     td {
-      &:nth-child(7),
-      &:nth-child(8) {
+      &:nth-child(6),
+      &:nth-child(7) {
         text-align: left;
-      }
-    }
-
-    .edit-td {
-      position: absolute;
-      top: -35%;
-      left: -6.5%;
-
-      border: none;
-
-      &:hover {
-        background-color: transparent;
       }
     }
   }

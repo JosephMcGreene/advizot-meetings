@@ -9,7 +9,6 @@ export default function AdminResponses({ sortedResponses, onDelete, loading }) {
       <thead className="admin-response-head">
         <tr>
           <th scope="col">Name</th>
-          <th scope="col" style={{ width: 0, padding: 0, border: 0 }}></th>
           <th scope="col">Priority</th>
           <th scope="col">Business</th>
           <th scope="col">Personal</th>

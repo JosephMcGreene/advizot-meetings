@@ -10,13 +10,10 @@
   background-color: rgba(0, 0, 0, 0.5);
   overflow-y: scroll;
 
-  display: flex;
-  justify-content: center;
-
   .modal-content {
     @include borderRadius();
     z-index: $top;
-    position: absolute;
+    // position: absolute;
     background-color: #fff;
     width: min(340px, 90%);
 
@@ -60,13 +57,13 @@
     .modal-body {
       display: flex;
       flex-direction: column;
-      margin: 0 1rem 1rem;
+      padding: $form-padding;
     }
   }
 
   .btn {
-    margin: 0.75rem auto;
-    width: calc(100% - ($form-padding * 2));
+    margin: 1rem auto 0;
+    width: 100%;
   }
 }
 
