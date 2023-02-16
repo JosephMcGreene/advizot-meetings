@@ -1,5 +1,5 @@
 //Assets
-import formIcon from "../../assets/img/align-left-solid.svg";
+import formIcon from "../../assets/img/file-pen-solid.svg";
 import meetingIcon from "../../assets/img/people-group-solid.svg";
 
 export default function UtilButtons({ openForm, openNewMeeting }) {

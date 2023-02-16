@@ -1,5 +1,5 @@
-import LinkedInLogo from "../../assets/img/LI-In-Bug.png";
-import GoogleLogo from "../../assets/img/Search_GSA.max-2800x2800.png";
+import LinkedInLogo from "../../assets/img/linkedin-logo.png";
+import GoogleLogo from "../../assets/img/google-G.png";
 
 export default function Login() {
   return (

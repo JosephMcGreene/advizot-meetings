@@ -3,7 +3,7 @@ import { useState, useEffect, createContext } from "react";
 import { Routes, Route } from "react-router-dom";
 //Internal
 import { axiosFetch } from "./helpers";
-import "./scss/App.scss";
+import "./assets/scss/App.scss";
 //Components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
