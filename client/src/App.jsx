@@ -43,7 +43,6 @@ export default function App() {
 
   return (
     <div className="App">
-      {console.log(currentUser)}
       <UserContext.Provider value={currentUser}>
         <Header />
 

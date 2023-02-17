@@ -8,7 +8,7 @@ const userSchema = new Schema({
   google_email: { type: String },
   advizotID: { type: String, required: true },
   role: { type: String, required: true },
-  group: { type: String || null, required: true },
+  group: { type: String, required: true },
   hasMeetingCode: { type: Boolean, required: true },
 });
 

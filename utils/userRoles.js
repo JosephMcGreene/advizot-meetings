@@ -1,12 +1,15 @@
 const userRoles = Object.freeze({
   ADMIN: "admin",
   MEMBER: "member",
+  GUEST: "guest",
 });
 
 const groups = Object.freeze({
-  tuesday: "CE5660",
-  wednesday: "KEY9330",
-  thursday: "CE4659",
+  TUESDAY: "CE5660",
+  WENDESDAY: "KEY9330",
+  THURSDAY: "CE4659",
+  ADMIN: "admin",
+  GUEST: "guest",
 });
 
 module.exports = {

@@ -11,31 +11,25 @@ function generateMeetingCode() {
 }
 
 /**
- * Assess the day of the week in order to determine what group a newly registered member should be placed in
- * @returns {string | null} The name of the group that corresponds to the day of the week of the group's meeting
+ * Assigns a new user to the the group they belong to, which is used in user authorization
+ * @param {String} userRole authorization status of the new user: "member", "guest", or "admin". Admins are placed into their own group
+ * @returns {String}        the group the new user is to be placed in, can be a group, "admin", or "guest"
  */
 function determineGroup(userRole) {
   if (userRole === userRoles.ADMIN) {
-    return "admin";
+    return groups.ADMIN;
   }
-
-  let group = null;
 
   switch (new Date().getDay()) {
     case 2:
-      group = groups.tuesday;
-      break;
+      return groups.TUESDAY;
     case 3:
-      group = groups.wednesday;
-      break;
+      return groups.WEDNESDAY;
     case 4:
-      group = groups.thursday;
-      break;
+      return groups.THURSDAY;
     default:
-      group = null;
+      return groups.GUEST;
   }
-
-  return group;
 }
 
 module.exports = {
