@@ -8,44 +8,47 @@ import MeetingForm from "../modals/form/MeetingForm";
 import ModalTemplate from "../modals/ModalTemplate";
 import NewMeeting from "../modals/NewMeeting";
 
-export default function AdminContent(props) {
+export default function AdminContent({
+  sortedResponses,
+  loading,
+  openForm,
+  formDisplayed,
+  onSubmit,
+  closeForm,
+}) {
   const [showNewMeeting, setShowNewMeeting] = useState(false);
 
   async function generateMeeting() {}
 
   return (
     <>
-      <AdminResponses
-        sortedResponses={props.sortedResponses}
-        onDelete={props.onDelete}
-        loading={props.loading}
-      />
+      <AdminResponses sortedResponses={sortedResponses} loading={loading} />
 
       <UtilButtons
-        openForm={() => props.openForm(true)}
+        openForm={() => openForm(true)}
         openNewMeeting={() => setShowNewMeeting(true)}
       />
-      {props.showForm && (
+      {formDisplayed && (
         <ModalTemplate
+          title={constructCurrentDate() + " Meeting"}
+          onClose={() => closeForm()}
           body={
             <MeetingForm
-              onSubmit={(responseToSubmit) => props.onSubmit(responseToSubmit)}
-              onClose={() => props.closeForm(false)}
+              onSubmit={(responseToSubmit) => onSubmit(responseToSubmit)}
+              onClose={() => closeForm()}
             />
           }
-          title={constructCurrentDate() + " Meeting"}
-          onClose={() => props.closeForm(false)}
         />
       )}
       {showNewMeeting && (
         <ModalTemplate
+          title={"New Meeting"}
+          onClose={() => setShowNewMeeting(false)}
           body={
             <NewMeeting
               onSubmit={(meetingInfo) => generateMeeting(meetingInfo)}
             />
           }
-          title={"New Meeting"}
-          onClose={() => setShowNewMeeting(false)}
         />
       )}
     </>

@@ -1,25 +1,40 @@
+//Internal
+import { constructCurrentDate } from "../../helpers";
 //Components
 import Responses from "../responses/user/Responses";
-// import UtilButtons from "../utilities/UtilButtons";
-// import MeetingForm from "../form/MeetingForm";
+import UtilButtons from "../utilities/UtilButtons";
+import MeetingForm from "../modals/form/MeetingForm";
+import ModalTemplate from "../modals/ModalTemplate";
 
-export default function MemberContent(props) {
+export default function MemberContent({
+  sortedResponses,
+  loading,
+  formDisplayed,
+  onSubmit,
+  openForm,
+  closeForm,
+}) {
   return (
     <>
       <Responses
-        sortedResponses={props.sortedResponses}
-        loading={props.loading}
-        onSubmitEdits={(responseToSubmit) => props.onSubmit(responseToSubmit)}
-        onDelete={(responseToDelete) => props.onDelete(responseToDelete)}
+        sortedResponses={sortedResponses}
+        loading={loading}
+        onSubmitEdits={(responseToSubmit) => onSubmit(responseToSubmit)}
       />
-      {/* <UtilButtons props.openForm={openForm} />
+      <UtilButtons openForm={openForm} />
 
-      {showForm && (
-        <MeetingForm
-          onClose={() => props.closeForm(false)}
-          onSubmit={(responseToSubmit) => props.onSubmit(responseToSubmit)}
+      {formDisplayed && (
+        <ModalTemplate
+          title={constructCurrentDate() + " Meeting"}
+          onClose={() => closeForm()}
+          body={
+            <MeetingForm
+              onSubmit={(responseToSubmit) => onSubmit(responseToSubmit)}
+              onClose={() => closeForm()}
+            />
+          }
         />
-      )} */}
+      )}
     </>
   );
 }

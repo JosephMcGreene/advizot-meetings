@@ -21,13 +21,13 @@ function determineGroup(userRole) {
   }
 
   switch (new Date().getDay()) {
-    case 2:
+    case 2: //If today is Tuesday:
       return groups.TUESDAY;
-    case 3:
+    case 3: //If today is Wednesday:
       return groups.WEDNESDAY;
-    case 4:
+    case 4: //If today is Thursday:
       return groups.THURSDAY;
-    default:
+    default: //If today is any other day:
       return groups.GUEST;
   }
 }

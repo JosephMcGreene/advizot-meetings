@@ -28,6 +28,7 @@ dbRouter
         priority: req.body.priority,
         monthlyGoal: req.body.monthlyGoal,
         date: Date.now(),
+        group: req.user.group,
       });
       await newUserResponse.save();
 

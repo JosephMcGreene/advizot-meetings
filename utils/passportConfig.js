@@ -41,7 +41,7 @@ passport.use(
           linkedin_email: profile.emails[0].value,
           advizotID: uuidv4(),
           role: userRoles.MEMBER,
-          group: determineGroup(),
+          group: determineGroup(this.role),
           hasMeetingCode: false,
         });
         await newUser.save();
