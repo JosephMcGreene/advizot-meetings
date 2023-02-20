@@ -1,0 +1,85 @@
+//Internal
+@use "../../index" as *;
+
+.user-actions {
+  z-index: $top;
+
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+
+  .user-action-btn {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 65px;
+    height: 65px;
+    border: none;
+    border-radius: 45% 0 45% 0;
+    background-color: $advizot-color;
+    box-shadow: $header-shadow;
+    cursor: pointer;
+
+    &:hover {
+      @include btnHover();
+    }
+
+    .actions-icon {
+      width: 9px;
+    }
+  }
+
+  .actions-list {
+    @include borderSides();
+    list-style: none;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+
+    padding: 1rem;
+    border-radius: 25px 0 25px 0;
+    background-color: white;
+    box-shadow: $header-shadow;
+
+
+    .actions-item {
+      display: flex;
+      align-items: center;
+      
+      width: 100%;
+      
+      
+      .actions-btn {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        padding: 0.75ch 1.5ch;
+        border-radius: 15px 0 15px 0;
+        border: none;
+        background-color: $advizot-color;
+        
+        .actions-label {
+          align-self: center;
+          text-align: center;
+          font-family: $advizot-font;
+          margin-right: 10px;
+        }
+        
+        .actions-list-icon {
+          width: 25px;
+          margin-left: auto;
+        }
+      }
+    }
+    
+  }
+}

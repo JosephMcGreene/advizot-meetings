@@ -1,4 +1,4 @@
-export default function ModalTemplate({ body, title, onClose }) {
+export default function ModalTemplate({ children, title, onClose }) {
   return (
     <div className="modal">
       <div className="modal-content">
@@ -9,7 +9,7 @@ export default function ModalTemplate({ body, title, onClose }) {
           </button>
         </header>
 
-        {body}
+        {children}
       </div>
     </div>
   );
