@@ -43,11 +43,11 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 0.5rem;
+    gap: 0.75rem;
 
     padding: 1rem;
     border-radius: 25px 0 25px 0;
-    background-color: white;
+    background-color: whitesmoke;
     box-shadow: $header-shadow;
 
 
@@ -57,20 +57,20 @@
       
       width: 100%;
       
-      
       .actions-btn {
         display: flex;
         justify-content: space-around;
         width: 100%;
-        padding: 0.75ch 1.5ch;
+        padding: 1ch 2ch;
         border-radius: 15px 0 15px 0;
         border: none;
         background-color: $advizot-color;
         
         .actions-label {
           align-self: center;
-          text-align: center;
           font-family: $advizot-font;
+          font-size: 1rem;
+          font-weight: bold;
           margin-right: 10px;
         }
         

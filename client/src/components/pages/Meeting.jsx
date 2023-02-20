@@ -1,18 +1,18 @@
 import { useState, useEffect, useContext } from "react";
-//External
-import { axiosFetch } from "../../helpers";
 //Internal
+import { axiosFetch } from "../../helpers";
 import { UserContext } from "../../App";
 //Components
-import AdminContent from "./AdminContent";
-import MemberContent from "./MemberContent";
+import LoadingSpinner from "../utilities/LoadingSpinner";
+import AdminResponses from "../responses/AdminResponses";
+import Responses from "../responses/user/Responses";
+import ActionsMenu from "../utilities/ActionsMenu";
 
 export default function Meeting() {
   const currentUser = useContext(UserContext);
 
   const [responses, setResponses] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [formDisplayed, setFormDisplayed] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getExistingResponses();
@@ -83,35 +83,19 @@ export default function Meeting() {
   // }
 
   //Sort responses to be displayed in order of priority
-
+  
   const sortedResponses = responses.sort((a, b) => {
     if (a.priority < b.priority) return -1;
     return 1;
   });
 
-  if (currentUser.role === "admin") {
-    return (
-      <AdminContent
-        sortedResponses={sortedResponses}
-        loading={loading}
-        formDisplayed={formDisplayed}
-        openForm={() => setFormDisplayed(true)}
-        closeForm={() => setFormDisplayed(false)}
-        onSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
-      />
-    );
-  }
+  if (loading) return <LoadingSpinner />;
+  return (
+    <>
+      {currentUser.role === "admin" ? <AdminResponses sortedResponses={sortedResponses} /> : null}
+      {currentUser.role === "member" ? <Responses sortedResponses={sortedResponses} /> : null}
 
-  if (currentUser.role === "member") {
-    return (
-      <MemberContent
-        sortedResponses={sortedResponses}
-        loading={loading}
-        onSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
-        showForm={formDisplayed}
-        openForm={() => setFormDisplayed(true)}
-        closeForm={() => setFormDisplayed(false)}
-      />
-    );
-  }
+      <ActionsMenu onSubmit={(responseToSubmit) => submitResponse(responseToSubmit)} />
+    </>
+  );
 }

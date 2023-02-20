@@ -1,8 +1,4 @@
-//Components
-import LoadingSpinner from "../utilities/LoadingSpinner";
-
-export default function AdminResponses({ sortedResponses, onDelete, loading }) {
-  if (loading) return <LoadingSpinner />;
+export default function AdminResponses({ sortedResponses }) {
   return (
     <table className="admin-responses">
       <thead className="admin-response-head">
@@ -28,7 +24,6 @@ export default function AdminResponses({ sortedResponses, onDelete, loading }) {
                 response.relationships +
                 response.date
               }
-              onDelete={onDelete}
               userResponseBody={response}
             />
           );
