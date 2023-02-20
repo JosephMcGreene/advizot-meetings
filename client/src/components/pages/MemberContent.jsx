@@ -2,7 +2,7 @@
 import { constructCurrentDate } from "../../helpers";
 //Components
 import Responses from "../responses/user/Responses";
-import UtilButtons from "../utilities/UtilButtons";
+// import UtilButtons from "../utilities/UtilButtons";
 import MeetingForm from "../modals/form/MeetingForm";
 import ModalTemplate from "../modals/ModalTemplate";
 
@@ -21,7 +21,7 @@ export default function MemberContent({
         loading={loading}
         onSubmitEdits={(responseToSubmit) => onSubmit(responseToSubmit)}
       />
-      <UtilButtons openForm={openForm} />
+      {/* <UtilButtons openForm={openForm} /> */}
 
       {formDisplayed && (
         <ModalTemplate
