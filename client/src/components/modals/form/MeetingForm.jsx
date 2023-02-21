@@ -121,7 +121,7 @@ export default function MeetingForm({ onSubmit, onClose }) {
             />
 
             <button type="submit" className="btn">
-              {isSubmitting ? <LoadingSpinner color="orange" /> : "Submit"}
+              {isSubmitting ? <LoadingSpinner /> : "Submit"}
             </button>
           </Form>
         )}

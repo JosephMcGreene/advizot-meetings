@@ -83,7 +83,11 @@ export default function Meeting() {
   // }
 
   //Sort responses to be displayed in order of priority
-  
+
+  function handleNewMeeting(newMeetingInfo) {
+    console.log(newMeetingInfo);
+  }
+
   const sortedResponses = responses.sort((a, b) => {
     if (a.priority < b.priority) return -1;
     return 1;
@@ -92,10 +96,25 @@ export default function Meeting() {
   if (loading) return <LoadingSpinner />;
   return (
     <>
-      {currentUser.role === "admin" ? <AdminResponses sortedResponses={sortedResponses} /> : null}
-      {currentUser.role === "member" ? <Responses sortedResponses={sortedResponses} /> : null}
+      {currentUser.role === "admin" && (
+        <AdminResponses sortedResponses={sortedResponses} />
+      )}
+      {currentUser.role === "member" ||
+        (currentUser.role === "guest" && (
+          <Responses sortedResponses={sortedResponses} />
+        ))}
 
-      <ActionsMenu onSubmit={(responseToSubmit) => submitResponse(responseToSubmit)} />
+      <ActionsMenu
+        onNewMeeting={(newMeetingInfo) => handleNewMeeting(newMeetingInfo)}
+        onFormSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
+      />
+
+      {currentUser.role !== "admin" && currentUser.role !== "member" ? (
+        <span style={{ fontSize: "2rem", textAlign: "center", margin: "auto" }}>
+          Look, I don't know how you're seeing this, but you probably shouldn't
+          be here.
+        </span>
+      ) : null}
     </>
   );
 }

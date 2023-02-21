@@ -1,12 +1,12 @@
 @use "../../index" as *;
 
 .loading-spinner {
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+
   aspect-ratio: 1;
-  width: 5%;
+  width: 6%;
   border-radius: 50%;
   background-color: transparent;
   border: 10px solid $advizot-color;
@@ -14,16 +14,6 @@
   border-right: 10px solid transparent;
   margin: auto;
   animation: bigSpin 1s ease-in-out infinite;
-  
-  // .loading-circle {
-  //   width: 10px;
-  //   border-radius: 50%;
-  //   border: 10px solid $advizot-color;
-  //   border-top: 10px solid transparent;
-  //   border-left: 10px solid transparent;
-  //   border-right: 10px solid transparent;
-  //   animation: smallSpin 1s ease-in-out infinite;
-  // }
 }
 
 @keyframes bigSpin {
@@ -34,12 +24,3 @@
     transform: rotate(180deg);
   }
 }
-
-// @keyframes smallSpin {
-//   from {
-//     transform: rotate(0deg);
-//   }
-//   to {
-//     transform: rotate(360deg);
-//   }
-// }

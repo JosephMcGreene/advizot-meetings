@@ -15,7 +15,6 @@ export default function NewMeeting({ onSubmit, onClose }) {
         })}
         onSubmit={(values, { setSubmitting }) => {
           try {
-            console.log(values);
             onSubmit(values);
             setSubmitting(false);
             onClose();

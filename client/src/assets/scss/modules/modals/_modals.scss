@@ -2,21 +2,25 @@
 
 .modal {
   z-index: $top;
+  
   position: fixed;
   top: 0;
   left: 0;
+  
+  display: flex;
+  justify-content: center;
+
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   overflow-y: scroll;
 
-  display: flex;
-  justify-content: center;
 
   .modal-content {
     @include borderRadius();
+
     z-index: $top;
-    
+
     position: absolute;
     top: 3vh;
     
@@ -25,17 +29,18 @@
 
     .modal-header {
       @include borderRadius();
+      
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+
       background-color: $advizot-color;
       box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
 
       .modal-heading {
         @include advizotFont(1.25rem, 400, 0);
-        font-family: $advizot-font;
-        font-size: 1.25rem;
+
         margin-left: calc($form-padding / 2);
       }
 
@@ -49,8 +54,9 @@
         font-size: 2.25rem;
 
         &:hover {
-          transform: rotate(90deg);
           @include transition(transform);
+
+          transform: rotate(90deg);
           transition-duration: 100ms;
         }
 
@@ -63,6 +69,7 @@
     .modal-body {
       display: flex;
       flex-direction: column;
+
       padding: $form-padding;
     }
   }
@@ -80,9 +87,12 @@
 
   button {
     @include borderRadius();
-    cursor: pointer;
+    @include transition(all);
+
     display: flex;
     align-items: center;
+
+    cursor: pointer;
     width: 100%;
     font-family: $main-font;
     font-size: 1.1rem;
@@ -91,7 +101,6 @@
     color: black;
     border: none;
     padding: 1rem 1.25rem;
-    @include transition(all);
 
     .logo {
       width: 30px;

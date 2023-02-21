@@ -14,7 +14,6 @@
   gap: 1rem;
 
   .user-action-btn {
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,7 +30,7 @@
       @include btnHover();
     }
 
-    .actions-icon {
+    .dots-icon {
       width: 9px;
     }
   }
@@ -50,7 +49,6 @@
     background-color: whitesmoke;
     box-shadow: $header-shadow;
 
-
     .actions-item {
       display: flex;
       align-items: center;
@@ -60,14 +58,21 @@
       .actions-btn {
         display: flex;
         justify-content: space-around;
+
         width: 100%;
+        cursor: pointer;
         padding: 1ch 2ch;
         border-radius: 15px 0 15px 0;
         border: none;
         background-color: $advizot-color;
+
+        &:hover {
+          @include btnHover();
+        }
         
         .actions-label {
           align-self: center;
+          
           font-family: $advizot-font;
           font-size: 1rem;
           font-weight: bold;
