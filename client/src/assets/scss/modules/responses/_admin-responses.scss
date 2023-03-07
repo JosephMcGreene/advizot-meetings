@@ -9,9 +9,8 @@
 
 .admin-responses {
   border-collapse: collapse;
-  font-family: $main-font;
   margin: $form-padding auto;
-  width: 90%;
+  width: 90vw;
 
   .admin-response-head th,
   .admin-response-row th,
@@ -20,7 +19,6 @@
   }
 
   .admin-response-row {
-
     th,
     td {
       text-align: center;

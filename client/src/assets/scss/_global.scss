@@ -28,9 +28,9 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: $main-font;
+  font-weight: 600;
+  font-size: 1.1rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-width: 320px;
@@ -44,8 +44,8 @@ button {
   @include borderRadius();
   @include advizotFont(1.1rem, bold, 0.5px);
   display: block;
-  //Padding will sometimes be overridden in specific instances
-  padding: 1ch 3ch;
+
+  padding: 1ch 3ch; //Will sometimes be overridden in specific instances
   margin: 1rem auto;
   background-color: $advizot-color;
   cursor: pointer;
@@ -96,10 +96,5 @@ a {
 
   .footer-logo {
     height: 1.95rem;
-    @include transition(transform);
-
-    &:hover {
-      transform: scale(1.15);
-    }
   }
 }

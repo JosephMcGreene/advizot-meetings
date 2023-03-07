@@ -2,11 +2,11 @@
 
 .modal {
   z-index: $top;
-  
+
   position: fixed;
   top: 0;
   left: 0;
-  
+
   display: flex;
   justify-content: center;
 
@@ -15,7 +15,6 @@
   background-color: rgba(0, 0, 0, 0.5);
   overflow-y: scroll;
 
-
   .modal-content {
     @include borderRadius();
 
@@ -23,13 +22,13 @@
 
     position: absolute;
     top: 3vh;
-    
+
     width: min(340px, 92%);
     background-color: #fff;
 
     .modal-header {
       @include borderRadius();
-      
+
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -94,12 +93,11 @@
 
     cursor: pointer;
     width: 100%;
-    font-family: $main-font;
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
     background-color: $advizot-color;
     color: black;
-    border: none;
     padding: 1rem 1.25rem;
 
     .logo {
@@ -111,14 +109,10 @@
     }
   }
 
-  .linkedin-hover {
-    &:hover {
-      @include loginHover(#0077b5, 30px);
-    }
+  .linkedin-hover:hover {
+    @include loginHover(#0077b5, 30px);
   }
-  .google-hover {
-    &:hover {
-      @include loginHover(#34a853, 30px);
-    }
+  .google-hover:hover {
+    @include loginHover(#34a853, 30px);
   }
 }
