@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 //Internal
-import { axiosFetch } from "../../helpers";
+import { axiosFetch, constructCurrentDate } from "../../helpers";
 import { UserContext } from "../../App";
 //Components
 import LoadingSpinner from "../utilities/LoadingSpinner";
@@ -24,10 +24,14 @@ export default function Meeting() {
   async function getExistingResponses() {
     setLoading(true);
 
-    const existingResponses = await axiosFetch("get", "/db/responses");
+    try {
+      const existingResponses = await axiosFetch("get", "/db/responses");
 
-    if (existingResponses.status >= 200 && existingResponses.status < 300) {
-      setResponses([...existingResponses.data]);
+      if (existingResponses.status >= 200 && existingResponses.status < 300) {
+        setResponses([...existingResponses.data]);
+      }
+    } catch (err) {
+      throw err;
     }
 
     setLoading(false);
@@ -40,19 +44,23 @@ export default function Meeting() {
   async function submitResponse(responseToSubmit) {
     setLoading(true);
 
-    const submitRes = await axiosFetch(
-      "post",
-      "/db/responses",
-      responseToSubmit
-    );
-
-    if (submitRes.status >= 200 && submitRes.status < 300) {
-      const newResponses = responses.filter(
-        (response) => response._id !== responseToSubmit._id
+    try {
+      const submitRes = await axiosFetch(
+        "post",
+        "/db/responses",
+        responseToSubmit
       );
 
-      newResponses.push(submitRes.data);
-      setResponses(newResponses);
+      if (submitRes.status >= 200 && submitRes.status < 300) {
+        const newResponses = responses.filter(
+          (response) => response._id !== responseToSubmit._id
+        );
+
+        newResponses.push(submitRes.data);
+        setResponses(newResponses);
+      }
+    } catch (err) {
+      throw err;
     }
 
     setLoading(false);
@@ -84,10 +92,6 @@ export default function Meeting() {
 
   //Sort responses to be displayed in order of priority
 
-  function handleNewMeeting(newMeetingInfo) {
-    console.log(newMeetingInfo);
-  }
-
   const sortedResponses = responses.sort((a, b) => {
     if (a.priority < b.priority) return -1;
     return 1;
@@ -96,6 +100,8 @@ export default function Meeting() {
   if (loading) return <LoadingSpinner />;
   return (
     <>
+      <h1 className="meeting-heading">Answers for {constructCurrentDate()}</h1>
+
       {currentUser.role === "admin" && (
         <AdminResponses sortedResponses={sortedResponses} />
       )}
@@ -104,7 +110,6 @@ export default function Meeting() {
       )}
 
       <ActionsMenu
-        onNewMeeting={(newMeetingInfo) => handleNewMeeting(newMeetingInfo)}
         onFormSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
       />
 
