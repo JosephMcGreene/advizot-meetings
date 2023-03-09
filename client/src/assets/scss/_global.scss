@@ -40,6 +40,14 @@ button {
   border: none;
 }
 
+.meeting-heading {
+  font-family: $advizot-font;
+  font-weight: 400;
+  text-align: center;
+  margin: 1.5rem 0;
+  text-decoration: underline;
+}
+
 .btn {
   @include borderRadius();
   @include advizotFont(1.1rem, bold, 0.5px);
