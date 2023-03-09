@@ -1,12 +1,12 @@
 @use "../../index" as *;
 
+//parent .modal styles in ../modals/_modals.scss
 .loading-spinner {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  place-items: center;
 
   aspect-ratio: 1;
-  width: 6%;
+  width: 75px;
   border-radius: 50%;
   background-color: transparent;
   border: 10px solid $advizot-color;

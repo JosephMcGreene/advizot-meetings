@@ -1,7 +1,7 @@
-export default function LoadingSpinner({ color }) {
+export default function LoadingSpinner() {
   return (
-    <div className="loading-spinner">
-      {/* <div className="loading-circle"></div> */}
+    <div className="modal">
+      <div className="loading-spinner"></div>
     </div>
   );
 }
