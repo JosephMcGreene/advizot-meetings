@@ -1,13 +1,27 @@
 const express = require("express");
 const Response = require("../models/Response");
 const dbRouter = express.Router();
+const { userRoles } = require("../utils/userRoles");
+const { determineDay } = require("../utils/helpers");
 
 dbRouter
   .route("/responses")
   .get(async function (req, res) {
     try {
-      const responses = await Response.find(); // The only time a user needs to GET info is when they need all of it
-      res.json(responses);
+      if (req.user.role === userRoles.ADMIN) {
+        const responses = await Response.find().or([
+          { group: determineDay() },
+          { group: "admin" },
+        ]);
+        console.log(userRoles.ADMIN);
+        res.json(responses);
+      } else {
+        const responses = await Response.find().or([
+          { group: req.user.group },
+          { group: "admin" },
+        ]);
+        res.json(responses);
+      }
     } catch (error) {
       console.error(error);
     }

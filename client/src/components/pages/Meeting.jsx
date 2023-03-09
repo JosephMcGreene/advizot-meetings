@@ -99,10 +99,9 @@ export default function Meeting() {
       {currentUser.role === "admin" && (
         <AdminResponses sortedResponses={sortedResponses} />
       )}
-      {currentUser.role === "member" ||
-        (currentUser.role === "guest" && (
-          <Responses sortedResponses={sortedResponses} />
-        ))}
+      {currentUser.role === "member" && (
+        <Responses sortedResponses={sortedResponses} />
+      )}
 
       <ActionsMenu
         onNewMeeting={(newMeetingInfo) => handleNewMeeting(newMeetingInfo)}

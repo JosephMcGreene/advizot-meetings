@@ -30,13 +30,15 @@ export async function axiosFetch(method, url, data = null) {
 /**
  * Parses Date object into a string representing the current date in MM/DD/YYY format
  *
+ * @param {Date | null} dateToParse date to parse
  * @returns {String} a string representing the current date
  */
-export function constructCurrentDate() {
-  let today = new Date();
-  let month = today.getMonth() + 1;
-  let date = today.getDate();
-  let year = today.getFullYear().toString().slice(2);
+export function constructCurrentDate(dateToParse = null) {
+  let day = dateToParse || new Date();
+  console.log(day);
+  let month = day.getMonth() + 1;
+  let date = day.getDate();
+  let year = day.getFullYear().toString().slice(2);
 
   return `${month}/${date}/${year}`;
 }
