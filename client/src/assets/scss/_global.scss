@@ -41,8 +41,8 @@ button {
 }
 
 .btn {
-  @include borderRadius();
   @include advizotFont(1.1rem, bold, 0.5px);
+  @include borderRadius();
   display: block;
 
   padding: 1ch 3ch; //Will sometimes be overridden in specific instances
@@ -61,6 +61,7 @@ button {
 
 .welcome {
   @include advizotFont(2rem, 400, 1px);
+
   text-align: center;
   margin: 0 auto 1ch;
   padding-top: 1rem;
@@ -82,17 +83,11 @@ a {
 
   display: flex;
   justify-content: flex-end;
+  align-items: flex-end;
 
   height: $footer-height;
   background-color: $advizot-color;
   padding: 1.5rem 1.75rem;
-
-  .copyright {
-    align-self: flex-end;
-
-    font-family: $main-font;
-    font-weight: bold;
-  }
 
   .footer-logo {
     height: 1.95rem;

@@ -2,111 +2,51 @@
 @forward "responses-grid";
 @forward "wide-screens";
 
-.responses-heading {
-  @include advizotFont(1.5rem, 400, 0.75px);
-  text-align: center;
-  text-decoration: underline;
-  margin-top: 5vh;
-  margin-bottom: 5vh;
-}
-
 .responses-ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+
   margin: 0 auto;
-  font-family: $main-font;
 
   .response-li {
     @include borderSides();
     @include borderRadius();
+
     padding: 12px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
-    margin-bottom: 8vh;
+    margin-bottom: 3rem;
 
     .response-p {
       padding: 0.75rem 0 0.5rem;
-
-      strong {
-        text-decoration: underline;
-        position: relative;
-
-        .edit-icon {
-          // display set to block on response-p:hover. See below
-          display: none;
-          position: absolute;
-          @include editIcon(15px, 0);
-          @include penPosition(2px, -19px);
-        }
-      }
-
-      .edit-response,
-      .edit-textarea textarea {
-        @include borderSides();
-        padding: 5px;
-        width: min-content;
-        display: block;
-        margin: 0 auto;
-      }
-
-      &:hover {
-        cursor: pointer;
-
-        .edit-icon {
-          display: block;
-        }
-      }
     }
 
     .response-name {
       @include borderRadius();
-      font-size: 1.1rem;
+
       background-color: $advizot-light;
       padding: 7px 10%;
       width: min-content;
 
       &:hover {
         @include btnHover();
-        cursor: default;
       }
     }
 
-    .priority {
-      font-family: $main-font;
-      text-align: center;
-    }
-
+    .priority,
     .range-response {
       text-align: center;
-
-      .btn {
-        padding: 2% 3%;
-      }
     }
 
     .issue,
     .goal {
       margin-bottom: 0.5rem;
+      overflow-wrap: break-word;
 
       h4 {
+        text-decoration: underline;
         text-align: center;
       }
-
-      .btn {
-        padding: 1% 2%;
-      }
-    }
-
-    .btn {
-      letter-spacing: 0;
-      margin: 1vh auto;
-    }
-
-    input[type="number"] {
-      @include borderSides();
-      padding: 3% 7%;
-      font-family: $main-font;
-      font-size: 1rem;
     }
   }
 }

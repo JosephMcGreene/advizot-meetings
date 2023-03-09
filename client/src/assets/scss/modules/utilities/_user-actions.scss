@@ -38,7 +38,7 @@
   .actions-list {
     @include borderSides();
     list-style: none;
-    
+
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -52,9 +52,9 @@
     .actions-item {
       display: flex;
       align-items: center;
-      
+
       width: 100%;
-      
+
       .actions-btn {
         display: flex;
         justify-content: space-around;
@@ -69,22 +69,20 @@
         &:hover {
           @include btnHover();
         }
-        
+
         .actions-label {
+          @include advizotFont(1rem, bold, 0);
+
           align-self: center;
-          
-          font-family: $advizot-font;
-          font-size: 1rem;
-          font-weight: bold;
+
           margin-right: 10px;
         }
-        
+
         .actions-list-icon {
           width: 25px;
           margin-left: auto;
         }
       }
     }
-    
   }
 }

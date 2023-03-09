@@ -1,71 +1,38 @@
-import { useState, createContext, useContext } from "react";
-//Internal
-import { UserContext } from "../../../App";
+import { createContext } from "react";
 //Components
-import Priority from "../Priority";
-import Rating from "../Rating";
+import RatingOrPriority from "../RatingOrPriority";
 import IssueGoal from "../IssueGoal";
 
 export const UserResponseContext = createContext();
 
-export default function Response({
-  userResponseBody,
-  onSubmitEdits,
-}) {
-  const [isEditing, setIsEditing] = useState(false);
-  const currentUser = useContext(UserContext);
-
-  /**
-   * Ensures the correct user is able to edit the resposne
-   * @param {func} callback calls setEditing in the appropriate input field
-   */
-  function setEditingMode(callback) {
-    if (
-      userResponseBody.userName ===
-      `${currentUser.firstName} ${currentUser.lastName}`
-    ) {
-      callback();
-      setIsEditing(!isEditing);
-    }
-  }
-
+export default function Response({ userResponseBody }) {
   return (
     <UserResponseContext.Provider value={userResponseBody}>
       <li className="response-li">
-        <span className="response-name">
-          <strong>{userResponseBody.userName}</strong>
-        </span>
+        <label className="response-name">{userResponseBody.userName}</label>
 
-        <Priority
+        <RatingOrPriority
           title="Priority"
           text={userResponseBody.priority.substring(1)}
           className="response-p priority"
-          setEditingMode={setEditingMode}
-          onSubmitEdits={onSubmitEdits}
         />
 
-        <Rating
+        <RatingOrPriority
           title="Business"
           text={userResponseBody.business}
           className="response-p range-response business-rating"
-          setEditingMode={setEditingMode}
-          onSubmitEdits={onSubmitEdits}
         />
 
-        <Rating
+        <RatingOrPriority
           title="Personal"
           text={userResponseBody.personal}
           className="response-p range-response personal-rating"
-          setEditingMode={setEditingMode}
-          onSubmitEdits={onSubmitEdits}
         />
 
-        <Rating
+        <RatingOrPriority
           title="Relationships"
           text={userResponseBody.relationships}
           className="response-p range-response relationships-rating"
-          setEditingMode={setEditingMode}
-          onSubmitEdits={onSubmitEdits}
         />
 
         <IssueGoal
@@ -73,8 +40,6 @@ export default function Response({
           name="monthlyIssue"
           className="response-p issue"
           text={userResponseBody.monthlyIssue}
-          setEditingMode={setEditingMode}
-          onSubmitEdits={onSubmitEdits}
         />
 
         <IssueGoal
@@ -82,8 +47,6 @@ export default function Response({
           name="monthlyGoal"
           className="response-p goal"
           text={userResponseBody.monthlyGoal}
-          setEditingMode={setEditingMode}
-          onSubmitEdits={onSubmitEdits}
         />
       </li>
     </UserResponseContext.Provider>
