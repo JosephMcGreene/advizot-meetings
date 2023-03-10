@@ -1,17 +1,13 @@
 import { useState, useEffect, createContext } from "react";
-//External
-import { Routes, Route } from "react-router-dom";
 //Internal
 import { axiosFetch } from "./helpers";
 import "./assets/scss/App.scss";
 //Components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import UsersOnly from "./components/utilities/UsersOnly";
-import PresentUsersOnly from "./components/utilities/PresentUsersOnly";
-import Meeting from "./components/pages/Meeting";
+import MainContent from "./components/MainContent";
 
-//Context for logged in user data currentUser:
+//Context for logged in user data:
 export const UserContext = createContext();
 
 export default function App() {
@@ -46,40 +42,9 @@ export default function App() {
       <UserContext.Provider value={currentUser}>
         <Header />
 
-        <main className="main-content">
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <h1 className="welcome">
-                  Welcome! <br /> Please sign in to continue.
-                </h1>
-              }
-            />
-
-            <Route
-              path="/meeting"
-              element={
-                <UsersOnly>
-                  <PresentUsersOnly
-                    onSubmit={(inputCode) => checkPasscode(inputCode)}
-                  >
-                    <Meeting />
-                  </PresentUsersOnly>
-                </UsersOnly>
-              }
-            />
-
-            {/* <Route
-              path="/profile"
-              element={
-                <UsersOnly>
-                  <Profile />
-                </UsersOnly>
-              }
-            /> */}
-          </Routes>
-        </main>
+        <MainContent
+          onSubmitPasscode={(inputCode) => checkPasscode(inputCode)}
+        />
 
         <Footer />
       </UserContext.Provider>

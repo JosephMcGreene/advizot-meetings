@@ -4,9 +4,9 @@ import { axiosFetch, constructCurrentDate } from "../../helpers";
 import { UserContext } from "../../App";
 //Components
 import LoadingSpinner from "../utilities/LoadingSpinner";
-import AdminResponses from "../responses/AdminResponses";
-import Responses from "../responses/user/Responses";
-import ActionsMenu from "../utilities/ActionsMenu";
+import AdminResponses from "./meeting-responses/AdminResponses";
+import Responses from "./meeting-responses/Responses";
+import ActionsMenu from "../utilities/user-actions/ActionsMenu";
 
 export default function Meeting() {
   const currentUser = useContext(UserContext);

@@ -1,7 +1,7 @@
 import { createContext } from "react";
 //Components
-import RatingOrPriority from "../RatingOrPriority";
-import IssueGoal from "../IssueGoal";
+import RatingOrPriority from "./RatingOrPriority";
+import IssueGoal from "./IssueGoal";
 
 export const UserResponseContext = createContext();
 

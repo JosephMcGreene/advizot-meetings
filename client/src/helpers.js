@@ -35,7 +35,6 @@ export async function axiosFetch(method, url, data = null) {
  */
 export function constructCurrentDate(dateToParse = null) {
   let day = dateToParse || new Date();
-  console.log(day);
   let month = day.getMonth() + 1;
   let date = day.getDate();
   let year = day.getFullYear().toString().slice(2);

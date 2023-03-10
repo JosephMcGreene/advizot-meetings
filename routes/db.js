@@ -13,7 +13,6 @@ dbRouter
           { group: determineDay() },
           { group: "admin" },
         ]);
-        console.log(userRoles.ADMIN);
         res.json(responses);
       } else {
         const responses = await Response.find().or([

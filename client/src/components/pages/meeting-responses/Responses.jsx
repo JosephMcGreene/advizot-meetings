@@ -5,7 +5,7 @@ export default function Responses({ sortedResponses }) {
   return (
     <>
       <ul className="responses-ul">
-        {sortedResponses.map((response) => {
+        {sortedResponses.map((response, index) => {
           return (
             <Response
               key={
@@ -13,7 +13,7 @@ export default function Responses({ sortedResponses }) {
                 response.personal +
                 response.business +
                 response.relationships +
-                response.date
+                index
               }
               userResponseBody={response}
             />

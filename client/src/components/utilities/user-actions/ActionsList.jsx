@@ -1,11 +1,11 @@
 import { useState } from "react";
 //Internal
-import { constructCurrentDate } from "../../helpers";
+import { constructCurrentDate } from "../../../helpers";
 //Assets
-import formIcon from "../../assets/img/file-pen-solid.svg";
+import formIcon from "../../../assets/img/file-pen-solid.svg";
 //Components
-import ModalTemplate from "../modals/ModalTemplate";
-import MeetingForm from "../modals/form/MeetingForm";
+import ModalTemplate from "../../modals/ModalTemplate";
+import MeetingForm from "../../modals/MeetingForm";
 
 export default function ActionsList({ onFormSubmit }) {
   const [formDisplayed, seFormDisplayed] = useState(false);
