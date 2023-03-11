@@ -1,48 +1,26 @@
 @use "../../index" as *;
 
-.loading-spinner-big {
-  position: relative;
+//parent .modal styles in ../modals/_modals.scss
+.loading-spinner {
   display: flex;
+  place-items: center;
+
   aspect-ratio: 1;
-  width: 5%;
+  width: 75px;
   border-radius: 50%;
-  margin: 0 auto;
-  background-color: $advizot-color;
-  animation: spin 1.5s linear infinite;
-
-  .loading-spinner-small {
-    margin: auto;
-    aspect-ratio: 1;
-    width: 65%;
-    border-radius: 50%;
-    background-color: white;
-  }
-
-  .block-square {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 50%;
-    border-radius: 100% 0 0 0;
-    background-color: white;
-  }
+  background-color: transparent;
+  border: 10px solid $advizot-color;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  margin: auto;
+  animation: bigSpin 1s ease-in-out infinite;
 }
 
-.black {
-  background-color: black;
-
-  .loading-spinner-small,
-  .block-square {
-    background-color: $advizot-color;
-  }
-}
-
-@keyframes spin {
-  0% {
+@keyframes bigSpin {
+  from {
     transform: rotate(0deg);
   }
-  100% {
-    transform: rotate(360deg);
+  to {
+    transform: rotate(180deg);
   }
 }

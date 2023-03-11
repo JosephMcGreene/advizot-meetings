@@ -1,7 +1,7 @@
-export default function ModalTemplate({ body, title, onClose }) {
+export default function ModalTemplate({ children, title, onClose }) {
   return (
     <div className="modal">
-      <div className="modal-content login-box">
+      <div className="modal-content">
         <header className="modal-header">
           <span className="modal-heading">{title}</span>
           <button className="close-x" onClick={() => onClose()}>
@@ -9,7 +9,7 @@ export default function ModalTemplate({ body, title, onClose }) {
           </button>
         </header>
 
-        {body}
+        {children}
       </div>
     </div>
   );

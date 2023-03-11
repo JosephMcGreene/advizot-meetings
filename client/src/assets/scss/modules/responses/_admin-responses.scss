@@ -9,9 +9,8 @@
 
 .admin-responses {
   border-collapse: collapse;
-  font-family: $main-font;
   margin: $form-padding auto;
-  width: 90%;
+  width: 90vw;
 
   .admin-response-head th,
   .admin-response-row th,
@@ -20,8 +19,6 @@
   }
 
   .admin-response-row {
-    position: relative;
-
     th,
     td {
       text-align: center;
@@ -36,21 +33,9 @@
     }
 
     td {
-      &:nth-child(7),
-      &:nth-child(8) {
+      &:nth-child(6),
+      &:nth-child(7) {
         text-align: left;
-      }
-    }
-
-    .edit-td {
-      position: absolute;
-      top: -35%;
-      left: -6.5%;
-
-      border: none;
-
-      &:hover {
-        background-color: transparent;
       }
     }
   }

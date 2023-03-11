@@ -1,15 +1,9 @@
-//Components
-import AdminResponse from "./AdminResponse";
-import LoadingSpinner from "../../utilities/LoadingSpinner";
-
-export default function AdminResponses({ sortedResponses, onDelete, loading }) {
-  if (loading) return <LoadingSpinner />;
+export default function AdminResponses({ sortedResponses }) {
   return (
     <table className="admin-responses">
       <thead className="admin-response-head">
         <tr>
           <th scope="col">Name</th>
-          <th scope="col" style={{ width: 0, padding: 0, border: 0 }}></th>
           <th scope="col">Priority</th>
           <th scope="col">Business</th>
           <th scope="col">Personal</th>
@@ -30,12 +24,25 @@ export default function AdminResponses({ sortedResponses, onDelete, loading }) {
                 response.relationships +
                 response.date
               }
-              onDelete={onDelete}
               userResponseBody={response}
             />
           );
         })}
       </tbody>
     </table>
+  );
+}
+
+function AdminResponse({ userResponseBody }) {
+  return (
+    <tr className="admin-response-row">
+      <th scope="row">{userResponseBody.userName}</th>
+      <td>{userResponseBody.priority.substring(1)}</td>
+      <td>{userResponseBody.business}</td>
+      <td>{userResponseBody.personal}</td>
+      <td>{userResponseBody.relationships}</td>
+      <td>{userResponseBody.monthlyIssue}</td>
+      <td>{userResponseBody.monthlyGoal}</td>
+    </tr>
   );
 }

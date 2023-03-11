@@ -28,76 +28,33 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: $main-font;
+  font-weight: 600;
+  font-size: 1.1rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-width: 320px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+button {
+  border: none;
 }
 
-.rating-select {
-  @include borderSides();
-  font-family: $main-font;
-  margin-top: 0.15rem;
-  padding: $padding;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-
-  option {
-    text-align: center;
-    font-family: inherit;
-  }
-
-  &:focus {
-    @include onFocus();
-  }
-}
-
-.text-input {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  font-family: $main-font;
-  margin-top: 0.75rem;
-  padding: 0 $form-padding;
-
-  textarea {
-    @include borderSides();
-    padding: $padding;
-    margin-top: 0.15rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-
-    &:focus {
-      @include onFocus();
-    }
-  }
-
-  label {
-    text-align: center;
-  }
-
-  input {
-    @include borderSides();
-    width: 50%;
-    padding: $padding;
-    text-align: center;
-    width: 100%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  }
+.meeting-heading {
+  font-family: $advizot-font;
+  font-weight: 400;
+  text-align: center;
+  margin: 1.5rem 0;
+  text-decoration: underline;
 }
 
 .btn {
-  @include borderRadius();
   @include advizotFont(1.1rem, bold, 0.5px);
-  border: none;
+  @include borderRadius();
   display: block;
-  //Padding will sometimes be overridden in specific instances
-  padding: 1.5ch 2ch;
+
+  padding: 1ch 3ch; //Will sometimes be overridden in specific instances
+  margin: 1rem auto;
   background-color: $advizot-color;
   cursor: pointer;
 
@@ -112,6 +69,7 @@ code {
 
 .welcome {
   @include advizotFont(2rem, 400, 1px);
+
   text-align: center;
   margin: 0 auto 1ch;
   padding-top: 1rem;
@@ -125,43 +83,21 @@ a {
   }
 }
 
-.error {
-  position: absolute;
-  width: fit-content;
-  margin-top: 1px;
-  padding: 0.5rem;
-  background-color: $advizot-color;
-  clip-path: polygon(3% 15%, 97% 15%, 97% 85%, 3% 85%);
-}
-.range-error {
-  width: fit-content;
-  margin-top: 0.55rem;
-  padding: 0.2rem 0.4rem;
-  background-color: $advizot-color;
-}
-
 .footer {
   position: absolute;
   bottom: 0;
+  left: 0;
+  right: 0;
+
   display: flex;
   justify-content: flex-end;
-  width: 100%;
+  align-items: flex-end;
+
   height: $footer-height;
   background-color: $advizot-color;
   padding: 1.5rem 1.75rem;
 
-  .copyright {
-    align-self: flex-end;
-    font-family: $main-font;
-    font-weight: bold;
-  }
-
   .footer-logo {
     height: 1.95rem;
-    @include transition(transform);
-
-    &:hover {
-      transform: scale(1.15);
-    }
   }
 }

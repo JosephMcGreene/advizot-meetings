@@ -3,8 +3,7 @@
 @use "./modules/utilities/loading-spinner";
 @use "./modules/responses/responses";
 @use "./modules/responses/admin-responses";
-@use "./modules/responses/admin-and-user";
 @use "./modules/modals/form/range-slider";
 @use "./modules/modals/modals";
-@use "./modules/utilities/util-btns";
+@use "./modules/utilities/user-actions";
 @use "./modules/header";

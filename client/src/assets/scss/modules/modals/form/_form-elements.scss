@@ -2,33 +2,48 @@
 @use "../../../index" as *;
 @forward "range-grid";
 
-.range-container {
-  font-family: $main-font;
-  padding: 0 $form-padding 1rem;
-  position: relative;
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 
-  label {
-    margin-top: 0.25rem;
+  .range-container {
+    .rangeValue {
+      font-size: 1.25rem;
+    }
+
+    &:focus {
+      @include onFocus();
+    }
   }
 
-  .rangeValue {
-    font-size: 1.25rem;
-  }
+  .select {
+    display: flex;
+    flex-direction: column;
 
-  .range-error {
-    grid-row-start: 4;
-    z-index: $top;
-    position: absolute;
-    left: 9%;
-    clip-path: polygon(
-      0 13%,
-      9% 13%,
-      12% 0,
-      15% 13%,
-      100% 13%,
-      100% 93%,
-      0 93%
-    );
+    label {
+      text-align: center;
+    }
+
+    &:focus {
+      @include onFocus();
+    }
+  }
+}
+
+.rating-select {
+  @include borderSides();
+
+  font-family: inherit;
+  font-size: inherit;
+  margin-top: 0.15rem;
+  padding: $padding;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+
+  option {
+    text-align: center;
+    font-family: inherit;
+    font-size: inherit;
   }
 
   &:focus {
@@ -36,19 +51,18 @@
   }
 }
 
-
 .text-input {
   display: flex;
   flex-direction: column;
-  font-family: $main-font;
-  margin-top: 1rem;
-  padding: 0 $form-padding;
+
+  margin: 0.75rem auto 0;
+  width: min(100%, 300px);
 
   textarea {
     @include borderSides();
-    font-size: 1rem;
+
+    font-size: inherit;
     padding: $padding;
-    margin-top: 0.15rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 
     &:focus {
@@ -62,9 +76,7 @@
 
   input {
     @include borderSides();
-    font-family: $main-font;
-    font-size: 1rem;
-    width: 50%;
+
     padding: $padding;
     text-align: center;
     width: 100%;
@@ -72,18 +84,11 @@
   }
 }
 
-.select {
-  display: flex;
-  flex-direction: column;
-  margin-top: 0.75rem;
-  padding: 0 $form-padding;
-  font-family: $main-font;
+.error,
+.range-error {
+  position: absolute;
+  right: $form-padding;
 
-  label {
-    text-align: center;
-  }
-
-  &:focus {
-    @include onFocus();
-  }
+  padding: 0.2rem;
+  background-color: $advizot-color;
 }

@@ -1,18 +1,18 @@
 import { useState, useEffect, useContext } from "react";
-//External
-import { axiosFetch } from "../../helpers";
 //Internal
+import { axiosFetch, constructCurrentDate } from "../../helpers";
 import { UserContext } from "../../App";
 //Components
-import AdminContent from "./AdminContent";
-import MemberContent from "./MemberContent";
+import LoadingSpinner from "../utilities/LoadingSpinner";
+import AdminResponses from "./meeting-responses/AdminResponses";
+import Responses from "./meeting-responses/Responses";
+import ActionsMenu from "../utilities/user-actions/ActionsMenu";
 
 export default function Meeting() {
   const currentUser = useContext(UserContext);
 
   const [responses, setResponses] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [showForm, setShowForm] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getExistingResponses();
@@ -24,10 +24,14 @@ export default function Meeting() {
   async function getExistingResponses() {
     setLoading(true);
 
-    const existingResponses = await axiosFetch("get", "/db/responses");
+    try {
+      const existingResponses = await axiosFetch("get", "/db/responses");
 
-    if (existingResponses.status >= 200 && existingResponses.status < 300) {
-      setResponses([...existingResponses.data]);
+      if (existingResponses.status >= 200 && existingResponses.status < 300) {
+        setResponses([...existingResponses.data]);
+      }
+    } catch (err) {
+      throw err;
     }
 
     setLoading(false);
@@ -35,30 +39,31 @@ export default function Meeting() {
 
   /**
    * Takes in user response from MeetingForm.js and adds it to the database or updates an existing user response. See /routes/db.js
-   * @param {Object} responseToSubmit json body to be added to edited in the database and displayed to the users
-   * @returns {Object} response object from the server
+   * @param {Object} responseToSubmit body to be added or edited in the database and displayed to the users
    */
   async function submitResponse(responseToSubmit) {
     setLoading(true);
 
-    const submitRes = await axiosFetch(
-      "post",
-      "/db/responses",
-      responseToSubmit
-    );
-
-    if (submitRes.status >= 200 && submitRes.status < 300) {
-      const newResponses = responses.filter(
-        (response) => response._id !== responseToSubmit._id
+    try {
+      const submitRes = await axiosFetch(
+        "post",
+        "/db/responses",
+        responseToSubmit
       );
 
-      newResponses.push(submitRes.data);
-      setResponses(newResponses);
+      if (submitRes.status >= 200 && submitRes.status < 300) {
+        const newResponses = responses.filter(
+          (response) => response._id !== responseToSubmit._id
+        );
+
+        newResponses.push(submitRes.data);
+        setResponses(newResponses);
+      }
+    } catch (err) {
+      throw err;
     }
 
     setLoading(false);
-    // TODO Test if this return is necessary
-    return submitRes;
   }
 
   /**
@@ -66,56 +71,54 @@ export default function Meeting() {
    * @param {Object} responseToDelete The user response to be deleted from db and UI
    * @returns {Object} the response from the server
    */
-  async function deleteResponse(responseToDelete) {
-    setLoading(true);
+  // async function deleteResponse(responseToDelete) {
+  //   setLoading(true);
 
-    const deleteRes = await axiosFetch(
-      "delete",
-      "/db/responses",
-      responseToDelete
-    );
+  //   const deleteRes = await axiosFetch(
+  //     "delete",
+  //     "/db/responses",
+  //     responseToDelete
+  //   );
 
-    if (deleteRes.status >= 200 && deleteRes.status < 300) {
-      // Make a new array of all responses EXCEPT the one to be deleted
-      setResponses(
-        responses.filter((response) => response._id !== responseToDelete._id)
-      );
-    }
+  //   if (deleteRes.status >= 200 && deleteRes.status < 300) {
+  //     // Make a new array of all responses EXCEPT the one to be deleted
+  //     setResponses(
+  //       responses.filter((response) => response._id !== responseToDelete._id)
+  //     );
+  //   }
 
-    setLoading(false);
-  }
+  //   setLoading(false);
+  // }
 
   //Sort responses to be displayed in order of priority
+
   const sortedResponses = responses.sort((a, b) => {
     if (a.priority < b.priority) return -1;
     return 1;
   });
 
-  if (currentUser.role === "admin") {
-    return (
-      <AdminContent
-        sortedResponses={sortedResponses}
-        loading={loading}
-        showForm={showForm}
-        openForm={() => setShowForm(true)}
-        closeForm={() => setShowForm(false)}
-        onSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
-        onDelete={(responseToDelete) => deleteResponse(responseToDelete)}
-      />
-    );
-  }
+  if (loading) return <LoadingSpinner />;
+  return (
+    <>
+      <h1 className="meeting-heading">Answers for {constructCurrentDate()}</h1>
 
-  if (currentUser.role === "member") {
-    return (
-      <MemberContent
-        sortedResponses={sortedResponses}
-        loading={loading}
-        showForm={showForm}
-        openForm={() => setShowForm(true)}
-        closeForm={() => setShowForm(false)}
-        onSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
-        onDelete={(responseToDelete) => deleteResponse(responseToDelete)}
+      {currentUser.role === "admin" && (
+        <AdminResponses sortedResponses={sortedResponses} />
+      )}
+      {currentUser.role === "member" && (
+        <Responses sortedResponses={sortedResponses} />
+      )}
+
+      <ActionsMenu
+        onFormSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
       />
-    );
-  }
+
+      {currentUser.role !== "admin" && currentUser.role !== "member" ? (
+        <span style={{ fontSize: "2rem", textAlign: "center", margin: "auto" }}>
+          Look, I don't know how you're seeing this, but you probably shouldn't
+          be here.
+        </span>
+      ) : null}
+    </>
+  );
 }
