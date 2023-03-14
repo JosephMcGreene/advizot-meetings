@@ -1,8 +1,9 @@
 import { createContext } from "react";
 //Internal
-import useUser from "./components/hooks/useUser";
+import useUser from "./hooks/useUser";
 import "./assets/scss/App.scss";
 //Components
+import LoadingSpinner from "./components/utilities/LoadingSpinner";
 import Header from "./components/Header";
 import MainContent from "./components/MainContent";
 import Footer from "./components/Footer";
@@ -11,7 +12,9 @@ import Footer from "./components/Footer";
 export const UserContext = createContext();
 
 export default function App() {
-  const [user, fetchUser] = useUser(); //fetches user data, enables refetching
+  const [user, loading, error, fetchUser] = useUser(); //fetches user data, enables refetching
+
+  if (loading) return <LoadingSpinner />;
 
   return (
     <div className="App">
