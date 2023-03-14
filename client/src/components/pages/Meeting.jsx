@@ -9,7 +9,7 @@ import Responses from "./meeting-responses/Responses";
 import ActionsMenu from "../utilities/user-actions/ActionsMenu";
 
 export default function Meeting() {
-  const currentUser = useContext(UserContext);
+  const user = useContext(UserContext);
 
   const [responses, setResponses] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -102,10 +102,10 @@ export default function Meeting() {
     <>
       <h1 className="meeting-heading">Answers for {constructCurrentDate()}</h1>
 
-      {currentUser.role === "admin" && (
+      {user.role === "admin" && (
         <AdminResponses sortedResponses={sortedResponses} />
       )}
-      {currentUser.role === "member" && (
+      {user.role === "member" && (
         <Responses sortedResponses={sortedResponses} />
       )}
 
@@ -113,7 +113,7 @@ export default function Meeting() {
         onFormSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
       />
 
-      {currentUser.role !== "admin" && currentUser.role !== "member" ? (
+      {user.role !== "admin" && user.role !== "member" ? (
         <span style={{ fontSize: "2rem", textAlign: "center", margin: "auto" }}>
           Look, I don't know how you're seeing this, but you probably shouldn't
           be here.

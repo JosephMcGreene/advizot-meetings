@@ -9,7 +9,7 @@ import Login from "./modals/Login";
 
 export default function Header() {
   const [showLogin, setShowLogin] = useState(false);
-  const currentUser = useContext(UserContext);
+  const user = useContext(UserContext);
 
   return (
     <header className="header">
@@ -17,7 +17,7 @@ export default function Header() {
         <img src={advizotLogo} alt="Advizot logo" className="logo" />
         <ul className="nav-ul">
           <li className="nav-item">
-            {currentUser ? (
+            {user ? (
               <a href="/auth/logout">
                 <button className="btn">Sign out</button>
               </a>

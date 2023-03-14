@@ -5,10 +5,9 @@ import { Navigate } from "react-router-dom";
 import { UserContext } from "../../App";
 
 export default function UsersOnly({ children }) {
-  const currentUser = useContext(UserContext);
+  const user = useContext(UserContext);
 
-  if (!currentUser) return <Navigate to="/" />;
-
+  if (!user) return <Navigate to="/" />;
   // child is <PresentUsersOnly />
   return children;
 }
