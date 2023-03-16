@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-//Internal
+//Context
 import { UserContext } from "../App";
 //Assets
 import advizotLogo from "../assets/img/original-on-transparent.png";

@@ -1,8 +1,8 @@
 import { useState } from "react";
-//Internal
-import { constructCurrentDate } from "../../../helpers";
 //Assets
 import formIcon from "../../../assets/img/file-pen-solid.svg";
+//Helpers
+import { constructCurrentDate } from "../../../helpers";
 //Components
 import ModalTemplate from "../../modals/ModalTemplate";
 import MeetingForm from "../../modals/MeetingForm";

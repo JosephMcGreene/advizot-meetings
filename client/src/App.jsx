@@ -1,7 +1,8 @@
 import { createContext } from "react";
-//Internal
-import useUser from "./hooks/useUser";
+//Assets
 import "./assets/scss/App.scss";
+//Hooks
+import useAxios from "./hooks/useAxios";
 //Components
 import LoadingSpinner from "./components/utilities/LoadingSpinner";
 import Header from "./components/Header";
@@ -12,23 +13,21 @@ import Footer from "./components/Footer";
 export const UserContext = createContext();
 
 export default function App() {
-  const [user, loading, error, fetchUser] = useUser(); //fetches user data, enables refetching
+  const [user, loading, error, fetchUser] = useAxios(
+    "get",
+    "/auth/current_user"
+  );
 
   if (loading) return <LoadingSpinner />;
-
   return (
     <div className="App">
       <UserContext.Provider value={user}>
         <Header />
-
         <MainContent
           onSubmitPasscode={(inputCode) => {
-            fetchUser("post", "/auth/code", {
-              enteredCode: inputCode,
-            });
+            fetchUser("post", "/auth/code", { enteredCode: inputCode });
           }}
         />
-
         <Footer />
       </UserContext.Provider>
     </div>

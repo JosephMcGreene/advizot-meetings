@@ -1,6 +1,9 @@
 import { useState, useEffect, useContext } from "react";
-//Internal
+//Helpers
 import { axiosFetch, constructCurrentDate } from "../../helpers";
+//Hooks
+import useAxios from "../../hooks/useAxios";
+//Context
 import { UserContext } from "../../App";
 //Components
 import LoadingSpinner from "../utilities/LoadingSpinner";
@@ -12,7 +15,7 @@ export default function Meeting() {
   const user = useContext(UserContext);
 
   const [responses, setResponses] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getExistingResponses();
@@ -91,7 +94,6 @@ export default function Meeting() {
   // }
 
   //Sort responses to be displayed in order of priority
-
   const sortedResponses = responses.sort((a, b) => {
     if (a.priority < b.priority) return -1;
     return 1;
