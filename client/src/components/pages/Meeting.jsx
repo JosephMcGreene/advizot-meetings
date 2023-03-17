@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 //Helpers
 import { axiosFetch, constructCurrentDate } from "../../helpers";
 //Hooks
-import useAxios from "../../hooks/useAxios";
+import useResponses from "../../hooks/useResponses";
 //Context
 import { UserContext } from "../../App";
 //Components
@@ -13,6 +13,8 @@ import ActionsMenu from "../utilities/user-actions/ActionsMenu";
 
 export default function Meeting() {
   const user = useContext(UserContext);
+
+  // const [sortedResponses, fetchResponses, loading, error] = useResponses();
 
   const [responses, setResponses] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -35,9 +37,9 @@ export default function Meeting() {
       }
     } catch (err) {
       throw err;
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   }
 
   /**
@@ -64,9 +66,9 @@ export default function Meeting() {
       }
     } catch (err) {
       throw err;
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   }
 
   /**

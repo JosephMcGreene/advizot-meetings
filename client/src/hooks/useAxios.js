@@ -23,5 +23,5 @@ export default function useAxios(method, url, data = null) {
     }
   }
 
-  return [fetchedData, loading, error, fetchData];
+  return [fetchedData, setFetchedData, fetchData, loading, error];
 }

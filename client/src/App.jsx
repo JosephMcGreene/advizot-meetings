@@ -13,7 +13,7 @@ import Footer from "./components/Footer";
 export const UserContext = createContext();
 
 export default function App() {
-  const [user, loading, error, fetchUser] = useAxios(
+  const [user, setUser, fetchUser, loading, error] = useAxios(
     "get",
     "/auth/current_user"
   );
