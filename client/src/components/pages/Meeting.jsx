@@ -1,8 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 //Helpers
 import { axiosFetch, constructCurrentDate } from "../../helpers";
-//Hooks
-import useResponses from "../../hooks/useResponses";
 //Context
 import { UserContext } from "../../App";
 //Components
@@ -13,9 +11,6 @@ import ActionsMenu from "../utilities/user-actions/ActionsMenu";
 
 export default function Meeting() {
   const user = useContext(UserContext);
-
-  // const [sortedResponses, fetchResponses, loading, error] = useResponses();
-
   const [responses, setResponses] = useState([]);
   const [loading, setLoading] = useState(false);
 
