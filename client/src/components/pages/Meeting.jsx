@@ -111,13 +111,6 @@ export default function Meeting() {
       <ActionsMenu
         onFormSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
       />
-
-      {user.role !== "admin" && user.role !== "member" ? (
-        <span style={{ fontSize: "2rem", textAlign: "center", margin: "auto" }}>
-          Look, I don't know how you're seeing this, but you probably shouldn't
-          be here.
-        </span>
-      ) : null}
     </>
   );
 }

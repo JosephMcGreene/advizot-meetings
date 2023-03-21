@@ -11,7 +11,7 @@ import axios from "axios";
  */
 export async function axiosFetch(method, url, data = null) {
   try {
-    const responseBody = await axios({
+    const response = await axios({
       method,
       url,
       headers: {
@@ -21,7 +21,7 @@ export async function axiosFetch(method, url, data = null) {
       data,
       withCredentials: true,
     });
-    return responseBody;
+    return response;
   } catch (err) {
     return console.error(err);
   }

@@ -1,6 +1,9 @@
 const express = require("express");
 const authRouter = express.Router();
 const passport = require("passport");
+//Internal Modules
+const { userRoles } = require("../utils/userRoles");
+const { generatePasscode } = require("../utils/helpers");
 require("../utils/passportConfig");
 
 //Passport Strategies
@@ -33,14 +36,19 @@ authRouter.route("/current_user").get((req, res) => {
 });
 
 //Meeting Access Passcode
-//TODO Replace dummy code with a randomly generated one
-authRouter.route("/code").post((req, res) => {
-  if (req.body.enteredCode === "123456") {
-    req.user.hasMeetingCode = true;
-    res.json(req.user);
-  } else {
-    console.log("incorrect Code");
-  }
-});
+authRouter
+  .route("/code")
+  .get((req, res) => {
+    const passcode = generatePasscode();
+    res.json({ passcode });
+  })
+  .post((req, res) => {
+    if (req.body.enteredCode === "123456") {
+      req.user.hasMeetingCode = true;
+      res.json(req.user);
+    } else {
+      console.log("wrong code!");
+    }
+  });
 
 module.exports = authRouter;
