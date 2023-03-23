@@ -2,8 +2,6 @@ const express = require("express");
 const authRouter = express.Router();
 const passport = require("passport");
 //Internal Modules
-const { userRoles } = require("../utils/userRoles");
-const { generatePasscode } = require("../utils/helpers");
 require("../utils/passportConfig");
 
 //Passport Strategies
@@ -34,21 +32,5 @@ authRouter.route("/logout").get((req, res) => {
 authRouter.route("/current_user").get((req, res) => {
   res.json(req.user);
 });
-
-//Meeting Access Passcode
-authRouter
-  .route("/code")
-  .get((req, res) => {
-    const passcode = generatePasscode();
-    res.json({ passcode });
-  })
-  .post((req, res) => {
-    if (req.body.enteredCode === "123456") {
-      req.user.hasMeetingCode = true;
-      res.json(req.user);
-    } else {
-      console.log("wrong code!");
-    }
-  });
 
 module.exports = authRouter;

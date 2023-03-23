@@ -12,10 +12,6 @@ export default function UsersOnly({ onSubmitPasscode }) {
 
   if (!user) return <Navigate to="/" />;
 
-  if (user.role === "admin") {
-    return;
-  }
-
   return (
     <PresentMembersOnly onSubmitPasscode={onSubmitPasscode}>
       <Meeting />
