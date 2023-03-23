@@ -5,22 +5,32 @@ const { generatePasscode } = require("../utils/helpers");
 
 passcodeRouter
   .route("/passcode")
-  .get((req, res) => {
-    const passcode = generatePasscode();
-    res.json({ passcode });
+  .post(async function (req, res) {
+    try {
+      const correctCode = await Passcode.find({});
+
+      if (req.body.enteredCode === correctCode[0].currentPasscode) {
+        req.user.hasMeetingCode = true;
+        console.log(`Got it! See?: ${correctCode[0].currentPasscode}`);
+        res.json(req.user);
+      } else {
+        console.log("wrong code!");
+      }
+    } catch (err) {
+      throw err;
+    }
   })
-  .post((req, res) => {
-    if (req.body.enteredCode === "123456") {
-      req.user.hasMeetingCode = true;
-      res.json(req.user);
-    } else {
-      console.log("wrong code!");
+  .put(async function (req, res) {
+    try {
+      const correctCode = await Passcode.findOneAndUpdate(
+        { currentPasscode: req.body.enteredCode },
+        { currentPasscode: generatePasscode() }
+      );
+
+      res.json({ correctCode });
+    } catch (err) {
+      throw err;
     }
   });
-
-passcodeRouter.route("/newPasscode").post((req, res) => {
-  console.log(req.body);
-  res.send("Got it!");
-});
 
 module.exports = passcodeRouter;
