@@ -21,8 +21,8 @@ dbRouter
         ]);
         res.json(responses);
       }
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      throw err;
     }
   })
   //Used to post both new responses and edit existing responses if there is already one in the db with a matching _id
@@ -46,16 +46,16 @@ dbRouter
       await newUserResponse.save();
 
       res.json(newUserResponse);
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      throw err;
     }
   })
   .delete(async function (req, res) {
     try {
       const deletionRes = await Response.deleteOne({ _id: req.body._id });
       res.json(deletionRes);
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      throw err;
     }
   });
 

@@ -5,6 +5,17 @@ const { generatePasscode } = require("../utils/helpers");
 
 passcodeRouter
   .route("/passcode")
+  .get(async function (req, res) {
+    try {
+      const correctCode = await Passcode.findById("64216da0f106942de7f8129e");
+      correctCode.currentPasscode = generatePasscode();
+      await correctCode.save();
+
+      res.json({ correctCode });
+    } catch (err) {
+      throw err;
+    }
+  })
   .post(async function (req, res) {
     try {
       const correctCode = await Passcode.find({});
@@ -16,18 +27,6 @@ passcodeRouter
       } else {
         console.log("wrong code!");
       }
-    } catch (err) {
-      throw err;
-    }
-  })
-  .put(async function (req, res) {
-    try {
-      const correctCode = await Passcode.findOneAndUpdate(
-        { currentPasscode: req.body.enteredCode },
-        { currentPasscode: generatePasscode() }
-      );
-
-      res.json({ correctCode });
     } catch (err) {
       throw err;
     }

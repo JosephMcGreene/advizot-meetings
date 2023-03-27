@@ -1,23 +1,31 @@
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { axiosFetch } from "../../helpers";
 //Context
 import { UserContext } from "../../App";
+//components
+import LoadingSpinner from "../utilities/LoadingSpinner";
 
 export default function NewPasscode() {
+  const [loading, setLoading] = useState(false);
   const user = useContext(UserContext);
 
   async function generatePasscode() {
     try {
-      const passcodeResponse = await axiosFetch("get", "/auth/code");
-      console.log(passcodeResponse.data);
+      setLoading(true);
+      const passcodeResponse = await axiosFetch("get", "/passcode/passcode");
+      console.log(passcodeResponse);
       localStorage.setItem(
         "passcode",
-        passcodeResponse.data.passcode.toString()
+        passcodeResponse.data.correctCode.currentPasscode.toString()
       );
     } catch (err) {
       throw err;
+    } finally {
+      setLoading(false);
     }
   }
+
+  if (loading) return <LoadingSpinner />;
 
   return (
     <div className="modal-body">

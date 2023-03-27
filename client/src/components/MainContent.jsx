@@ -2,8 +2,6 @@
 import { Routes, Route } from "react-router-dom";
 //Components
 import UsersOnly from "./utilities/UsersOnly";
-import PresentUsersOnly from "./utilities/PresentMembersOnly";
-import Meeting from "./pages/Meeting";
 
 export default function MainContent({ onSubmitPasscode }) {
   return (
