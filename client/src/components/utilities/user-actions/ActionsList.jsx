@@ -1,37 +1,45 @@
 import { useState } from "react";
 //Assets
 import formIcon from "../../../assets/img/file-pen-solid.svg";
+import keyIcon from "../../../assets/img/lock-open-solid.svg";
 //Helpers
 import { constructCurrentDate } from "../../../helpers";
 //Components
 import ModalTemplate from "../../modals/ModalTemplate";
 import MeetingForm from "../../modals/MeetingForm";
 
-export default function ActionsList({ onFormSubmit }) {
-  const [formDisplayed, seFormDisplayed] = useState(false);
+export default function ActionsList({ displayPasscode, onFormSubmit }) {
+  const [formDisplayed, setFormDisplayed] = useState(false);
 
   return (
     <ul className="actions-list">
       <li className="actions-item">
         <button
-          onClick={() => seFormDisplayed(!formDisplayed)}
+          onClick={() => setFormDisplayed(!formDisplayed)}
           className="actions-btn"
         >
           <span className="actions-label">Show Form</span>
-          <img className="actions-list-icon" src={formIcon} alt="Form" />
+          <img src={formIcon} alt="Form" className="actions-list-icon" />
         </button>
       </li>
       {formDisplayed && (
         <ModalTemplate
           title={constructCurrentDate() + " Meeting"}
-          onClose={() => seFormDisplayed(false)}
+          onClose={() => setFormDisplayed(false)}
         >
           <MeetingForm
             onSubmit={onFormSubmit}
-            onClose={() => seFormDisplayed(false)}
+            onClose={() => setFormDisplayed(false)}
           />
         </ModalTemplate>
       )}
+
+      <li className="actions-item">
+        <button onClick={() => displayPasscode()} className="actions-btn">
+          <span className="actions-label">Show Passcode</span>
+          <img src={keyIcon} alt="Key" className="actions-list-icon" />
+        </button>
+      </li>
     </ul>
   );
 }

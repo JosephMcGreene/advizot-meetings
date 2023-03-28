@@ -4,8 +4,7 @@ import { Navigate } from "react-router-dom";
 //Context
 import { UserContext } from "../../App";
 //Components
-import ModalTemplate from "../modals/ModalTemplate";
-import NewPasscode from "../modals/NewPasscode";
+import NewPasscode from "../pages/NewPasscode";
 import PresentMembersOnly from "./PresentMembersOnly";
 import Meeting from "../pages/Meeting";
 
@@ -15,10 +14,7 @@ export default function UsersOnly({ onSubmitPasscode }) {
   if (!user) return <Navigate to="/" />;
 
   if (user.role === "admin") {
-    return (
-      // <ModalTemplate title="New Passcode" onClose={() => {}}>
-      <NewPasscode />
-    );
+    return <NewPasscode />;
   }
 
   return (

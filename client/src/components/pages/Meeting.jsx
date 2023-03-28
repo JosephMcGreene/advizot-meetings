@@ -13,6 +13,7 @@ export default function Meeting() {
   const user = useContext(UserContext);
   const [responses, setResponses] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [passcodeDisplayed, setPasscodeDisplayed] = useState(false);
 
   useEffect(() => {
     getExistingResponses();
@@ -102,13 +103,17 @@ export default function Meeting() {
       <h1 className="meeting-heading">Answers for {constructCurrentDate()}</h1>
 
       {user.role === "admin" && (
-        <AdminResponses sortedResponses={sortedResponses} />
+        <AdminResponses
+          passcodeDisplayed={passcodeDisplayed}
+          sortedResponses={sortedResponses}
+        />
       )}
       {user.role === "member" && (
         <Responses sortedResponses={sortedResponses} />
       )}
 
       <ActionsMenu
+        displayPasscode={() => setPasscodeDisplayed(!passcodeDisplayed)}
         onFormSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
       />
     </>

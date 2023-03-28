@@ -1,5 +1,7 @@
 import { useState, useContext } from "react";
 import { axiosFetch } from "../../helpers";
+//External
+import { Link } from "react-router-dom";
 //Context
 import { UserContext } from "../../App";
 //components
@@ -12,7 +14,7 @@ export default function NewPasscode() {
   async function generatePasscode() {
     try {
       setLoading(true);
-      const passcodeResponse = await axiosFetch("get", "/passcode/passcode");
+      const passcodeResponse = await axiosFetch("get", "/passcode/newPasscode");
       console.log(passcodeResponse);
       localStorage.setItem(
         "passcode",
@@ -34,7 +36,7 @@ export default function NewPasscode() {
         meeting?
       </h4>
       <button className="btn" onClick={() => generatePasscode()}>
-        Yes, make a new code
+        <Link to="/meeting">Yes, make a new code</Link>
       </button>
       <button className="btn">No, keep the old code</button>
     </div>

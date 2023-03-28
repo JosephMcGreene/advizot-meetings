@@ -2,6 +2,7 @@
 import { Routes, Route } from "react-router-dom";
 //Components
 import UsersOnly from "./utilities/UsersOnly";
+import Meeting from "./pages/Meeting";
 
 export default function MainContent({ onSubmitPasscode }) {
   return (
@@ -17,9 +18,11 @@ export default function MainContent({ onSubmitPasscode }) {
         />
 
         <Route
-          path="/meeting"
+          path="/meetingCode"
           element={<UsersOnly onSubmitPasscode={onSubmitPasscode} />}
         />
+
+        <Route path="/meeting" element={<Meeting />} />
       </Routes>
     </main>
   );

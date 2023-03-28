@@ -3,7 +3,7 @@ import Response from "./Response";
 
 export default function Responses({ sortedResponses }) {
   return (
-    <>
+    <section className="responses-section">
       <ul className="responses-ul">
         {sortedResponses.map((response, index) => {
           return (
@@ -20,6 +20,6 @@ export default function Responses({ sortedResponses }) {
           );
         })}
       </ul>
-    </>
+    </section>
   );
 }
