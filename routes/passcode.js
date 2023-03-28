@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const Passcode = require("../models/Passcode");
 const passcodeRouter = express.Router();
@@ -31,7 +32,7 @@ passcodeRouter
 
 passcodeRouter.route("/newPasscode").get(async function (req, res) {
   try {
-    const correctCode = await Passcode.findById("64216da0f106942de7f8129e");
+    const correctCode = await Passcode.findById(process.env.PASSCODE_ID);
     correctCode.currentPasscode = generatePasscode();
     await correctCode.save();
 

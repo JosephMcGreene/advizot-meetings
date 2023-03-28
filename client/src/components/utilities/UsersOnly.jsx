@@ -19,7 +19,7 @@ export default function UsersOnly({ onSubmitPasscode }) {
 
   return (
     <PresentMembersOnly onSubmitPasscode={onSubmitPasscode}>
-      <Meeting />
+      <Navigate to="/meeting" />
     </PresentMembersOnly>
   );
 }
