@@ -31,10 +31,10 @@ export default function NewPasscode() {
 
   return (
     <div className="modal-body">
-      <h4>
+      <h3 className="centered-heading">
         Hi {user.firstName}, would you like to create a new passcode for this
         meeting?
-      </h4>
+      </h3>
       <button className="btn" onClick={() => generatePasscode()}>
         <Link to="/meeting">Yes, make a new code</Link>
       </button>

@@ -48,6 +48,11 @@ button {
   text-decoration: underline;
 }
 
+.centered-heading {
+  text-align: center;
+  padding: 1rem;
+}
+
 .btn {
   @include advizotFont(1.1rem, bold, 0.5px);
   @include borderRadius();
