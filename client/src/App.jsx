@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+// import React, { useState, useEffect } from "react";
 //External
-import axios from "axios";
+// import axios from "axios";
 import { Routes, Route } from "react-router-dom";
 //Internal & Components
 import "./scss/App.scss";
@@ -9,54 +10,55 @@ import Footer from "./components/Footer";
 import UsersOnly from "./utilities/UsersOnly";
 import PresentUsersOnly from "./utilities/PresentUsersOnly";
 import Meeting from "./components/pages/Meeting";
+import { useAxios } from "./components/hooks/useAxios";
 //Context for logged in user data currentUser:
 export const UserContext = React.createContext();
 
 export default function App() {
-  const [currentUser, setCurrentUser] = useState({});
+  const currentUser = useAxios("get", "/auth/current_user");
 
-  useEffect(() => {
-    getCurrentUser();
-  }, []);
+  // useEffect(() => {
+  //   getCurrentUser();
+  // }, []);
 
   //=====HELPERS=====
   /**
    * makes request for info on the current user and updates currentUser state accordingly
    */
-  async function getCurrentUser() {
-    try {
-      const currentUserInfo = await axios({
-        method: "get",
-        url: "/auth/current_user",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
+  // async function getCurrentUser() {
+  //   try {
+  //     const currentUserInfo = await axios({
+  //       method: "get",
+  //       url: "/auth/current_user",
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
 
-      setCurrentUser(currentUserInfo.data);
-    } catch (err) {
-      console.error(err);
-    }
-  }
+  //     setCurrentUser(currentUserInfo.data);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // }
 
   /**
    * Assesses whether or not the passcode the user entered is valid and correct
    * @param {String} inputCode the code the user entered
    */
-  async function checkPasscode(inputCode) {
-    try {
-      const response = await axios({
-        method: "post",
-        url: "/auth/code",
-        data: { enteredCode: inputCode },
-        withCredentials: true,
-      });
-      setCurrentUser(response.data);
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  // async function checkPasscode(inputCode) {
+  //   try {
+  //     const response = await axios({
+  //       method: "post",
+  //       url: "/auth/code",
+  //       data: { enteredCode: inputCode },
+  //       withCredentials: true,
+  //     });
+  //     setCurrentUser(response.data);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
   return (
     <div className="App">
@@ -79,7 +81,7 @@ export default function App() {
               element={
                 <UsersOnly>
                   <PresentUsersOnly
-                    onSubmit={(inputCode) => checkPasscode(inputCode)}
+                  // onSubmit={(inputCode) => checkPasscode(inputCode)}
                   >
                     <Meeting />
                   </PresentUsersOnly>
