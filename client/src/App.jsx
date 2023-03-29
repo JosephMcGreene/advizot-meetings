@@ -2,7 +2,7 @@ import { createContext } from "react";
 //Assets
 import "./assets/scss/App.scss";
 //Hooks
-import useAxios from "./hooks/useAxios";
+import useUser from "./hooks/useUser";
 //Components
 import LoadingSpinner from "./components/utilities/LoadingSpinner";
 import Header from "./components/Header";
@@ -13,12 +13,13 @@ import Footer from "./components/Footer";
 export const UserContext = createContext();
 
 export default function App() {
-  const [user, setUser, fetchUser, loading, error] = useAxios(
+  const [user, fetchUser, loading, error] = useUser(
     "get",
     "/auth/current_user"
   );
 
   if (loading) return <LoadingSpinner />;
+
   return (
     <div className="App">
       <UserContext.Provider value={user}>

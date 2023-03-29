@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { axiosFetch } from "../helpers";
 
-export default function useAxios(method, url, data = null) {
+export default function useUser(method, url, data = null) {
   const [fetchedData, setFetchedData] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -23,5 +23,5 @@ export default function useAxios(method, url, data = null) {
     }
   }
 
-  return [fetchedData, setFetchedData, fetchData, loading, error];
+  return [fetchedData, fetchData, loading, error];
 }
