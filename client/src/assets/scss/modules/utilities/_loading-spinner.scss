@@ -1,0 +1,26 @@
+@use "../../index" as *;
+
+//parent .modal styles in ../modals/_modals.scss
+.loading-spinner {
+  display: flex;
+  place-items: center;
+
+  aspect-ratio: 1;
+  width: 75px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 10px solid $advizot-color;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  margin: auto;
+  animation: bigSpin 1s ease-in-out infinite;
+}
+
+@keyframes bigSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}

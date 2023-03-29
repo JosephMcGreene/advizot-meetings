@@ -1,13 +1,14 @@
 const express = require("express");
 const authRouter = express.Router();
 const passport = require("passport");
+//Internal Modules
 require("../utils/passportConfig");
 
 //Passport Strategies
 authRouter.route("/linkedin").get(passport.authenticate("linkedin"));
 authRouter.route("/linkedin/callback").get(
   passport.authenticate("linkedin", {
-    successRedirect: "/meeting",
+    successRedirect: "/meetingCode",
     failureRedirect: "/",
   })
 );
@@ -18,7 +19,7 @@ authRouter
   .get(
     passport.authenticate("google", { failureRedirect: "/" }),
     (req, res) => {
-      res.redirect("/meeting");
+      res.redirect("/meetingCode");
     }
   );
 
@@ -30,17 +31,6 @@ authRouter.route("/logout").get((req, res) => {
 
 authRouter.route("/current_user").get((req, res) => {
   res.json(req.user);
-});
-
-//Meeting Access Passcode
-//TODO Replace dummy code with a randomly generated one
-authRouter.route("/code").post((req, res) => {
-  if (req.body.enteredCode === "123456") {
-    req.user.hasMeetingCode = true;
-    res.json(req.user);
-  } else {
-    console.log("incorrect Code");
-  }
 });
 
 module.exports = authRouter;

@@ -1,0 +1,52 @@
+@use "../../index" as *;
+@forward "responses-grid";
+@forward "wide-screens";
+
+.responses-ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  margin: 0 auto;
+
+  .response-li {
+    @include borderSides();
+    @include borderRadius();
+
+    padding: 12px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
+    margin-bottom: 3rem;
+
+    .response-p {
+      padding: 0.75rem 0 0.5rem;
+    }
+
+    .response-name {
+      @include borderRadius();
+
+      background-color: $advizot-light;
+      padding: 7px 10%;
+      width: min-content;
+
+      &:hover {
+        @include btnHover();
+      }
+    }
+
+    .priority,
+    .range-response {
+      text-align: center;
+    }
+
+    .issue,
+    .goal {
+      margin-bottom: 0.5rem;
+      overflow-wrap: break-word;
+
+      h4 {
+        text-decoration: underline;
+        text-align: center;
+      }
+    }
+  }
+}

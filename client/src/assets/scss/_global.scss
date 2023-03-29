@@ -1,0 +1,108 @@
+@use "./index" as *;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  &::selection {
+    background-color: $advizot-light;
+  }
+}
+
+:root {
+  font-size: 16px;
+}
+
+.App {
+  position: relative;
+  min-height: 100vh;
+
+  .main-content {
+    padding-top: $footer-height;
+    padding-bottom: $footer-height;
+  }
+  .main-small-padding {
+    padding-top: 0;
+  }
+}
+
+body {
+  font-family: $main-font;
+  font-weight: 600;
+  font-size: 1.1rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-width: 320px;
+}
+
+button {
+  border: none;
+}
+
+.meeting-heading {
+  font-family: $advizot-font;
+  font-weight: 400;
+  text-align: center;
+  margin: 1.5rem 0;
+  text-decoration: underline;
+}
+
+.centered-heading {
+  text-align: center;
+  padding: 1rem;
+}
+
+.btn {
+  @include advizotFont(1.1rem, bold, 0.5px);
+  @include borderRadius();
+  display: block;
+
+  padding: 1ch 3ch; //Will sometimes be overridden in specific instances
+  margin: 1rem auto;
+  background-color: $advizot-color;
+  cursor: pointer;
+
+  &:hover {
+    @include btnHover();
+  }
+
+  &:focus {
+    @include onFocus();
+  }
+}
+
+.welcome {
+  @include advizotFont(2rem, 400, 1px);
+
+  text-align: center;
+  margin: 0 auto 1ch;
+  padding-top: 1rem;
+}
+
+a {
+  text-decoration: none;
+
+  &:visited {
+    color: black;
+  }
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  height: $footer-height;
+  background-color: $advizot-color;
+  padding: 1.5rem 1.75rem;
+
+  .footer-logo {
+    height: 1.95rem;
+  }
+}

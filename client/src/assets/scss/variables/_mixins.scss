@@ -1,0 +1,48 @@
+@use "./variables" as var;
+
+@mixin advizotFont($size, $weight, $spacing) {
+  font-family: var.$advizot-font;
+  font-size: $size;
+  font-weight: $weight;
+  letter-spacing: $spacing;
+}
+
+@mixin transition($properties) {
+  transition-property: $properties;
+  transition-timing-function: linear;
+  transition-duration: 200ms;
+}
+
+@mixin borderRadius() {
+  border-radius: var.$border-radius 0 var.$border-radius 0;
+}
+
+@mixin borderSides() {
+  @include borderRadius();
+  border-top: 1px solid black;
+  border-right: 3px solid black;
+  border-bottom: 1px solid black;
+  border-left: 3px solid black;
+}
+
+@mixin onFocus() {
+  box-shadow: 0 0 12px var.$advizot-color, inset 0 0 9px var.$advizot-color;
+}
+
+@mixin btnHover() {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  @include transition(all);
+  transition-duration: 130ms;
+}
+
+//Login Buttons
+@mixin loginHover($color, $radius) {
+  background-color: white;
+  outline: 2px solid $color;
+  border-radius: $radius;
+  color: $color;
+}
+@mixin logoSize() {
+  width: 30px;
+  margin: 0 7px;
+}

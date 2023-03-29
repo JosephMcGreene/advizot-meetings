@@ -1,0 +1,118 @@
+@use "../../index" as *;
+
+.modal {
+  z-index: $top;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow-y: scroll;
+
+  .modal-content {
+    @include borderRadius();
+
+    z-index: $top;
+
+    position: absolute;
+    top: 3vh;
+
+    width: min(340px, 92%);
+    background-color: #fff;
+
+    .modal-header {
+      @include borderRadius();
+
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      background-color: $advizot-color;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+
+      .modal-heading {
+        @include advizotFont(1.25rem, 400, 0);
+
+        margin-left: calc($form-padding / 2);
+      }
+
+      .close-x {
+        cursor: pointer;
+        margin-left: auto;
+        padding: 0 1rem;
+        background-color: transparent;
+        border-color: transparent;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 2.25rem;
+
+        &:hover {
+          @include transition(transform);
+
+          transform: rotate(90deg);
+          transition-duration: 100ms;
+        }
+
+        &:focus {
+          @include onFocus();
+        }
+      }
+    }
+
+    .modal-body {
+      display: flex;
+      flex-direction: column;
+
+      padding: $form-padding;
+    }
+  }
+
+  .btn {
+    margin: 1rem auto 0;
+    width: 100%;
+  }
+}
+
+.signin-btn {
+  &:first-child {
+    margin-bottom: 1rem;
+  }
+
+  button {
+    @include borderRadius();
+    @include transition(all);
+
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    background-color: $advizot-color;
+    color: black;
+    padding: 1rem 1.25rem;
+
+    .logo {
+      width: 30px;
+      margin: 0 7px;
+    }
+    span {
+      margin: 0 auto;
+    }
+  }
+
+  .linkedin-hover:hover {
+    @include loginHover(#0077b5, 30px);
+  }
+  .google-hover:hover {
+    @include loginHover(#34a853, 30px);
+  }
+}

@@ -1,0 +1,54 @@
+@use "../index" as *;
+
+.header {
+  z-index: $middle;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  background-color: whitesmoke;
+  box-shadow: $header-shadow;
+  height: fit-content;
+
+  .nav-bar {
+    display: flex;
+    justify-content: space-between;
+
+    height: $header-height;
+    overflow: hidden;
+    @include transition(height);
+
+    .logo {
+      width: 190px;
+      height: calc(190px * 0.3262919);
+    }
+
+    .nav-ul {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      list-style: none;
+
+      .nav-item {
+        @include advizotFont(1.1rem, 600, 0);
+        @include transition(text-shadow);
+
+        margin-right: 1rem;
+        cursor: pointer;
+
+        &:hover {
+          .btn {
+            @include btnHover();
+          }
+        }
+
+        .btn {
+          padding: 1ch 4vw;
+        }
+      }
+    }
+  }
+}

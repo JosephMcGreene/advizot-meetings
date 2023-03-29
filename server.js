@@ -10,14 +10,13 @@ const passport = require("passport");
 //Internal Modules
 const dbRouter = require("./routes/db");
 const authRouter = require("./routes/auth");
+const passcodeRouter = require("./routes/passcode");
 require("./utils/passportConfig");
 
 //=====CONNECT MONGODB=====
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log("Connected to MongoDB!");
-  })
+  .then(() => console.log("Connected to MongoDB!"))
   .catch((error) => console.error(error));
 
 //=====MIDDLEWARE=====
@@ -36,7 +35,7 @@ app.use(
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://advizot-meetings.herokuapp.com"],
+    origin: ["http://localhost:3000"],
     credentials: true,
   })
 );
@@ -53,6 +52,7 @@ if (process.env.NODE_ENV === "production") {
 //=====MOUNT ROUTES=====
 app.use("/db", dbRouter);
 app.use("/auth", authRouter);
+app.use("/passcode", passcodeRouter);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "/client/build/index.html"));

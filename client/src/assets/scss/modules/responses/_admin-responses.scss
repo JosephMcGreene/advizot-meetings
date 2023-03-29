@@ -1,0 +1,58 @@
+@use "../../index" as *;
+
+.responses-section {
+  // position: relative;
+
+  .passcode-display {
+    @include borderRadius();
+
+    display: block;
+
+    width: fit-content;
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: $advizot-color;
+    letter-spacing: 1px;
+  }
+}
+
+.admin-responses,
+.admin-response-head th,
+.admin-response-row th,
+.admin-response-row td {
+  border: 1px solid black;
+}
+
+.admin-responses {
+  border-collapse: collapse;
+  margin: $form-padding auto;
+  width: 90vw;
+
+  .admin-response-head th,
+  .admin-response-row th,
+  .admin-response-row td {
+    padding: calc($form-padding / 2);
+  }
+
+  .admin-response-row {
+    th,
+    td {
+      text-align: center;
+
+      &:hover {
+        background-color: $advizot-color;
+      }
+    }
+
+    th {
+      cursor: pointer;
+    }
+
+    td {
+      &:nth-child(6),
+      &:nth-child(7) {
+        text-align: left;
+      }
+    }
+  }
+}

@@ -1,15 +1,28 @@
 const express = require("express");
 const Response = require("../models/Response");
 const dbRouter = express.Router();
+const { userRoles } = require("../utils/userRoles");
+const { determineDay } = require("../utils/helpers");
 
 dbRouter
   .route("/responses")
   .get(async function (req, res) {
     try {
-      const responses = await Response.find(); // The only time a user needs to GET info is when they need all of it
-      res.json(responses);
-    } catch (error) {
-      console.error(error);
+      if (req.user.role === userRoles.ADMIN) {
+        const responses = await Response.find().or([
+          { group: determineDay() },
+          { group: "admin" },
+        ]);
+        res.json(responses);
+      } else {
+        const responses = await Response.find().or([
+          { group: req.user.group },
+          { group: "admin" },
+        ]);
+        res.json(responses);
+      }
+    } catch (err) {
+      throw err;
     }
   })
   //Used to post both new responses and edit existing responses if there is already one in the db with a matching _id
@@ -28,20 +41,21 @@ dbRouter
         priority: req.body.priority,
         monthlyGoal: req.body.monthlyGoal,
         date: Date.now(),
+        group: req.user.group,
       });
       await newUserResponse.save();
 
       res.json(newUserResponse);
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      throw err;
     }
   })
   .delete(async function (req, res) {
     try {
       const deletionRes = await Response.deleteOne({ _id: req.body._id });
       res.json(deletionRes);
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      throw err;
     }
   });
 

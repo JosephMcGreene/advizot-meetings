@@ -1,0 +1,70 @@
+@use "../../../index" as *;
+
+input[type="range"] {
+  @include borderRadius();
+
+  -webkit-appearance: none;
+
+  display: block;
+
+  margin-top: 10px;
+  width: 100%;
+  height: 8px;
+  background-image: linear-gradient($advizot-color, $advizot-color);
+  background-repeat: no-repeat;
+  box-shadow: inset -1px -1px 2px rgba(0, 0, 0, 0.7);
+
+  &:focus {
+    outline: none;
+    @include onFocus();
+  }
+}
+
+//* ===== THUMB =====
+//===== Webkit =====
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  
+  height: 30px;
+  width: 28px;
+  border-radius: $border-radius 0 $border-radius 0;
+  background: $advizot-color;
+  cursor: grab;
+  box-shadow:
+		// "3D" shadows on slider thumb; black, white
+    inset -1px -1px 6px rgba(0, 0, 0, 0.7),
+    inset 1px 1px 7px rgba(255, 255, 255, 0.9), 0 2px 3px rgba(0, 0, 0, 0.3);
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  @include btnHover();
+
+  transform: scale(1.15);
+}
+input[type="range"]::-webkit-slider-thumb:active {
+  cursor: grabbing;
+}
+//===== Mozilla =====
+input[type="range"]::-moz-range-thumb {
+  border: none;
+  height: 30px;
+  width: 28px;
+  border-radius: 10px 0 10px 0;
+  transform: skew(-15deg);
+  background: $advizot-color;
+  cursor: grab;
+  box-shadow:
+	// "3D" shadows on slider thumb; black, white
+    inset -1px -1px 6px rgba(0, 0, 0, 0.7),
+    inset 1px 1px 7px rgba(255, 255, 255, 0.9);
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+input[type="range"]::-moz-range-thumb:hover {
+  @include btnHover();
+
+  transform: scale(1.15);
+}
+input[type="range"]::-moz-range-thumb:active {
+  cursor: grabbing;
+}

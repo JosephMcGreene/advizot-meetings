@@ -1,0 +1,94 @@
+//Internal
+@use "../../../index" as *;
+@forward "range-grid";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .range-container {
+    .rangeValue {
+      font-size: 1.25rem;
+    }
+
+    &:focus {
+      @include onFocus();
+    }
+  }
+
+  .select {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      text-align: center;
+    }
+
+    &:focus {
+      @include onFocus();
+    }
+  }
+}
+
+.rating-select {
+  @include borderSides();
+
+  font-family: inherit;
+  font-size: inherit;
+  margin-top: 0.15rem;
+  padding: $padding;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+
+  option {
+    text-align: center;
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+  &:focus {
+    @include onFocus();
+  }
+}
+
+.text-input {
+  display: flex;
+  flex-direction: column;
+
+  margin: 0.75rem auto 0;
+  width: min(100%, 300px);
+
+  textarea {
+    @include borderSides();
+
+    font-size: inherit;
+    padding: $padding;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+    &:focus {
+      @include onFocus();
+    }
+  }
+
+  label {
+    text-align: center;
+  }
+
+  input {
+    @include borderSides();
+
+    padding: $padding;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.error,
+.range-error {
+  position: absolute;
+  right: $form-padding;
+
+  padding: 0.2rem;
+  background-color: $advizot-color;
+}
