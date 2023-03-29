@@ -1,6 +1,8 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 //Helpers
-import { axiosFetch, constructCurrentDate } from "../../helpers";
+import { constructCurrentDate } from "../../helpers";
+//Hooks
+import useResponses from "../../hooks/useResponses";
 //Context
 import { UserContext } from "../../App";
 //Components
@@ -11,61 +13,11 @@ import ActionsMenu from "../utilities/user-actions/ActionsMenu";
 
 export default function Meeting() {
   const user = useContext(UserContext);
-  const [responses, setResponses] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [sortedResponses, loading, error, submitResponse] = useResponses(
+    "get",
+    "/db/responses"
+  );
   const [passcodeDisplayed, setPasscodeDisplayed] = useState(false);
-
-  useEffect(() => {
-    getExistingResponses();
-  }, []);
-
-  /**
-   * fetches existing user responses from MongoDB and updates state accordingly. See server/routes/db.js
-   */
-  async function getExistingResponses() {
-    setLoading(true);
-
-    try {
-      const existingResponses = await axiosFetch("get", "/db/responses");
-
-      if (existingResponses.status >= 200 && existingResponses.status < 300) {
-        setResponses([...existingResponses.data]);
-      }
-    } catch (err) {
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  /**
-   * Takes in user response from MeetingForm.js and adds it to the database or updates an existing user response. See /routes/db.js
-   * @param {Object} responseToSubmit body to be added or edited in the database and displayed to the users
-   */
-  async function submitResponse(responseToSubmit) {
-    setLoading(true);
-
-    try {
-      const submitRes = await axiosFetch(
-        "post",
-        "/db/responses",
-        responseToSubmit
-      );
-
-      if (submitRes.status >= 200 && submitRes.status < 300) {
-        const newResponses = responses.filter(
-          (response) => response._id !== responseToSubmit._id
-        );
-
-        newResponses.push(submitRes.data);
-        setResponses(newResponses);
-      }
-    } catch (err) {
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  }
 
   /**
    * Deletes the specified user form data from the UI as well as the db
@@ -91,13 +43,8 @@ export default function Meeting() {
   //   setLoading(false);
   // }
 
-  //Sort responses to be displayed in order of priority
-  const sortedResponses = responses.sort((a, b) => {
-    if (a.priority < b.priority) return -1;
-    return 1;
-  });
-
   if (loading) return <LoadingSpinner />;
+
   return (
     <>
       <h1 className="meeting-heading">Answers for {constructCurrentDate()}</h1>

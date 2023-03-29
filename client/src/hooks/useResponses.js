@@ -1,17 +1,40 @@
-import { useState } from "react";
-//Hooks
-import useAxios from "./useAxios";
+import { useState, useEffect } from "react";
+import { axiosFetch } from "../helpers";
 
 export default function useResponses(method, url, data = null) {
-  const [responses, setResponses, fetchResponses] = useAxios(method, url);
+  const [responses, setResponses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  async function submitResponse(responseToSubmit) {
-    try {
-      setLoading(true);
+  useEffect(() => {
+    getExistingResponses(method, url, data);
+  }, [method, url, data]);
 
-      const serverResponse = await fetchResponses(
+  /**
+   * fetches existing user responses from MongoDB and updates state accordingly. See server/routes/db.js
+   */
+  async function getExistingResponses(method, url, data = null) {
+    setLoading(true);
+
+    try {
+      const existingResponses = await axiosFetch(method, url, data);
+      setResponses(existingResponses.data);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  /**
+   * Takes in user response from MeetingForm.js and adds it to the database or updates an existing user response. See /routes/db.js
+   * @param {Object} responseToSubmit body to be added or edited in the database and displayed to the users
+   */
+  async function submitResponse(responseToSubmit) {
+    setLoading(true);
+
+    try {
+      const submitRes = await axiosFetch(
         "post",
         "/db/responses",
         responseToSubmit
@@ -21,7 +44,7 @@ export default function useResponses(method, url, data = null) {
         (response) => response._id !== responseToSubmit._id
       );
 
-      newResponses.push(serverResponse.data);
+      newResponses.push(submitRes.data);
       setResponses(newResponses);
     } catch (err) {
       setError(err);
@@ -30,10 +53,11 @@ export default function useResponses(method, url, data = null) {
     }
   }
 
+  //Sort responses to be displayed in order of priority
   const sortedResponses = responses.sort((a, b) => {
     if (a.priority < b.priority) return -1;
     return 1;
   });
 
-  return [sortedResponses, submitResponse, loading, error];
+  return [sortedResponses, loading, error, submitResponse];
 }
