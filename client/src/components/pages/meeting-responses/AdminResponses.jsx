@@ -2,40 +2,41 @@ import PasscodeDisplay from "../../utilities/PasscodeDisplay";
 
 export default function AdminResponses({ passcodeDisplayed, sortedResponses }) {
   return (
-    <section className="responses-section">
+    <>
       {passcodeDisplayed && <PasscodeDisplay />}
+      <section className="responses-section">
+        <table className="admin-responses">
+          <thead className="admin-response-head">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Priority</th>
+              <th scope="col">Business</th>
+              <th scope="col">Personal</th>
+              <th scope="col">Relationships</th>
+              <th scope="col">Issue</th>
+              <th scope="col">Goal</th>
+            </tr>
+          </thead>
 
-      <table className="admin-responses">
-        <thead className="admin-response-head">
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Priority</th>
-            <th scope="col">Business</th>
-            <th scope="col">Personal</th>
-            <th scope="col">Relationships</th>
-            <th scope="col">Issue</th>
-            <th scope="col">Goal</th>
-          </tr>
-        </thead>
-
-        <tbody className="admin-response-body">
-          {sortedResponses.map((response) => {
-            return (
-              <AdminResponse
-                key={
-                  response.priority +
-                  response.personal +
-                  response.business +
-                  response.relationships +
-                  response.date
-                }
-                userResponseBody={response}
-              />
-            );
-          })}
-        </tbody>
-      </table>
-    </section>
+          <tbody className="admin-response-body">
+            {sortedResponses.map((response) => {
+              return (
+                <AdminResponse
+                  key={
+                    response.priority +
+                    response.personal +
+                    response.business +
+                    response.relationships +
+                    response.date
+                  }
+                  userResponseBody={response}
+                />
+              );
+            })}
+          </tbody>
+        </table>
+      </section>
+    </>
   );
 }
 

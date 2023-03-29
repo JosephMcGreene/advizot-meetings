@@ -1,19 +1,20 @@
 @use "../../index" as *;
 
-.responses-section {
-  // position: relative;
+.passcode-display {
+  @include borderRadius();
 
-  .passcode-display {
-    @include borderRadius();
+  position: absolute;
+  top: calc($header-height + 1rem);
+  left: 4vw;
 
-    display: block;
+  display: block;
 
-    width: fit-content;
-    margin: 0 auto;
-    padding: 1rem;
-    background-color: $advizot-color;
-    letter-spacing: 1px;
-  }
+  width: fit-content;
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: $advizot-color;
+  letter-spacing: 1px;
+  transform: scale(1.2);
 }
 
 .admin-responses,

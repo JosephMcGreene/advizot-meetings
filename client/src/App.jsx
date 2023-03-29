@@ -20,6 +20,8 @@ export default function App() {
 
   if (loading) return <LoadingSpinner />;
 
+  if (error) return <h1>Looks like something went wrong...</h1>;
+
   return (
     <div className="App">
       <UserContext.Provider value={user}>

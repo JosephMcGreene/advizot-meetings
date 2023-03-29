@@ -1,14 +1,17 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 //Assets
 import formIcon from "../../../assets/img/file-pen-solid.svg";
 import lockIcon from "../../../assets/img/lock-open-solid.svg";
 //Helpers
 import { constructCurrentDate } from "../../../helpers";
+//Context
+import { UserContext } from "../../../App";
 //Components
 import ModalTemplate from "../../modals/ModalTemplate";
 import MeetingForm from "../../modals/MeetingForm";
 
 export default function ActionsList({ displayPasscode, onFormSubmit }) {
+  const user = useContext(UserContext);
   const [formDisplayed, setFormDisplayed] = useState(false);
 
   return (
@@ -34,12 +37,16 @@ export default function ActionsList({ displayPasscode, onFormSubmit }) {
         </ModalTemplate>
       )}
 
-      <li className="actions-item">
-        <button onClick={() => displayPasscode()} className="actions-btn">
-          <span className="actions-label">Show Passcode</span>
-          <img src={lockIcon} alt="Key" className="actions-list-icon" />
-        </button>
-      </li>
+      {user.role === "admin" ? (
+        <li className="actions-item">
+          <button onClick={() => displayPasscode()} className="actions-btn">
+            <span className="actions-label">Show Passcode</span>
+            <img src={lockIcon} alt="Key" className="actions-list-icon" />
+          </button>
+        </li>
+      ) : (
+        ""
+      )}
     </ul>
   );
 }
