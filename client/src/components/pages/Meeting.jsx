@@ -21,7 +21,7 @@ export default function Meeting() {
   const [passcodeDisplayed, setPasscodeDisplayed] = useState(false);
 
   if (loading) return <LoadingSpinner />;
-  if (error) return <Error error={error} />;
+  if (error !== null) return <Error error={error} />;
 
   return (
     <>

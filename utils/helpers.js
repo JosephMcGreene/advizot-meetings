@@ -36,7 +36,7 @@ function placeInGroup(role) {
     return groups.ADMIN;
   }
 
-  determineDay();
+  return determineDay();
 }
 
 module.exports = {

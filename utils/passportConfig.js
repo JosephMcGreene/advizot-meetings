@@ -46,8 +46,9 @@ passport.use(
         });
         await newUser.save();
         return done(null, newUser);
-      } catch (error) {
-        console.error(error);
+      } catch (err) {
+        done(err);
+        throw err;
       }
     }
   )
@@ -79,13 +80,14 @@ passport.use(
           google_email: profile.emails[0].value,
           advizotID: uuidv4(),
           role: userRoles.MEMBER,
-          group: determineGroup(this.role),
+          group: placeInGroup(this.role),
           hasMeetingCode: false,
         });
         await newUser.save();
         return done(null, newUser);
-      } catch (error) {
-        console.error(error);
+      } catch (err) {
+        done(err);
+        throw err;
       }
     }
   )

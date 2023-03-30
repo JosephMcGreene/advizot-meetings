@@ -1,4 +1,12 @@
-export default function Error({ error }) {
+const defaultError = {
+  message: "Something went wrong, but it is hard to tell what.",
+  request: {
+    statusText:
+      "This error occurred while authenticating the user with OAuth2.0 and Passport",
+  },
+};
+
+export default function Error({ error = defaultError }) {
   return (
     <div className="App" style={{ paddingLeft: "1rem", paddingTop: "1rem" }}>
       <h1 style={{ color: "#f5912e" }}>Error</h1>
