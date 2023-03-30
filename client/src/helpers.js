@@ -23,7 +23,7 @@ export async function axiosFetch(method, url, data = null) {
     });
     return response;
   } catch (err) {
-    return console.error(err);
+    throw err;
   }
 }
 

@@ -5,6 +5,7 @@ import "./assets/scss/App.scss";
 import useUser from "./hooks/useUser";
 //Components
 import LoadingSpinner from "./components/utilities/LoadingSpinner";
+import Error from "./components/utilities/Error";
 import Header from "./components/Header";
 import MainContent from "./components/MainContent";
 import Footer from "./components/Footer";
@@ -19,8 +20,7 @@ export default function App() {
   );
 
   if (loading) return <LoadingSpinner />;
-
-  if (error) return <h1>Looks like something went wrong...</h1>;
+  if (error !== null) return <Error error={error} />;
 
   return (
     <div className="App">

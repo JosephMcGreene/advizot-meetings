@@ -4,10 +4,15 @@ import { axiosFetch } from "../helpers";
 export default function useUser(method, url, data = null) {
   const [fetchedData, setFetchedData] = useState({});
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchData(method, url, data);
+    try {
+      fetchData(method, url, data);
+    } catch (err) {
+      setError(err);
+      throw err;
+    }
   }, [method, url, data]);
 
   async function fetchData(method, url, data = null) {

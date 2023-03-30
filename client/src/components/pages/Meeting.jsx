@@ -7,6 +7,7 @@ import useResponses from "../../hooks/useResponses";
 import { UserContext } from "../../App";
 //Components
 import LoadingSpinner from "../utilities/LoadingSpinner";
+import Error from "../utilities/Error";
 import AdminResponses from "./meeting-responses/AdminResponses";
 import Responses from "./meeting-responses/Responses";
 import ActionsMenu from "../utilities/user-actions/ActionsMenu";
@@ -19,31 +20,8 @@ export default function Meeting() {
   );
   const [passcodeDisplayed, setPasscodeDisplayed] = useState(false);
 
-  /**
-   * Deletes the specified user form data from the UI as well as the db
-   * @param {Object} responseToDelete The user response to be deleted from db and UI
-   * @returns {Object} the response from the server
-   */
-  // async function deleteResponse(responseToDelete) {
-  //   setLoading(true);
-
-  //   const deleteRes = await axiosFetch(
-  //     "delete",
-  //     "/db/responses",
-  //     responseToDelete
-  //   );
-
-  //   if (deleteRes.status >= 200 && deleteRes.status < 300) {
-  //     // Make a new array of all responses EXCEPT the one to be deleted
-  //     setResponses(
-  //       responses.filter((response) => response._id !== responseToDelete._id)
-  //     );
-  //   }
-
-  //   setLoading(false);
-  // }
-
   if (loading) return <LoadingSpinner />;
+  if (error) return <Error error={error} />;
 
   return (
     <>
