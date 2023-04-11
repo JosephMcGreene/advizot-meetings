@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { UserContext } from "../../../App";
 //Assets
 import formIcon from "../../../assets/img/file-pen-solid.svg";
-import keyIcon from "../../../assets/img/lock-open-solid.svg";
+import lockIcon from "../../../assets/img/lock-open-solid.svg";
 //Helpers
 import { constructCurrentDate } from "../../../helpers";
 //Components
@@ -40,7 +40,7 @@ export default function ActionsList({ displayPasscode, onFormSubmit }) {
         <li className="actions-item">
           <button onClick={() => displayPasscode()} className="actions-btn">
             <span className="actions-label">Show Passcode</span>
-            <img src={keyIcon} alt="Key" className="actions-list-icon" />
+            <img src={lockIcon} alt="Key" className="actions-list-icon" />
           </button>
         </li>
       ) : (
