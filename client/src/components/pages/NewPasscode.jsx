@@ -38,7 +38,9 @@ export default function NewPasscode() {
       <button className="btn" onClick={() => generatePasscode()}>
         <Link to="/meeting">Yes, make a new code</Link>
       </button>
-      <button className="btn">No, keep the old code</button>
+      <button className="btn">
+        <Link to="/meeting">No, keep the old code</Link>
+      </button>
     </div>
   );
 }

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../../../App";
 //Assets
 import formIcon from "../../../assets/img/file-pen-solid.svg";
 import keyIcon from "../../../assets/img/lock-open-solid.svg";
@@ -10,6 +11,7 @@ import MeetingForm from "../../modals/MeetingForm";
 
 export default function ActionsList({ displayPasscode, onFormSubmit }) {
   const [formDisplayed, setFormDisplayed] = useState(false);
+  const user = useContext(UserContext);
 
   return (
     <ul className="actions-list">
@@ -34,12 +36,16 @@ export default function ActionsList({ displayPasscode, onFormSubmit }) {
         </ModalTemplate>
       )}
 
-      <li className="actions-item">
-        <button onClick={() => displayPasscode()} className="actions-btn">
-          <span className="actions-label">Show Passcode</span>
-          <img src={keyIcon} alt="Key" className="actions-list-icon" />
-        </button>
-      </li>
+      {user.role === "admin" ? (
+        <li className="actions-item">
+          <button onClick={() => displayPasscode()} className="actions-btn">
+            <span className="actions-label">Show Passcode</span>
+            <img src={keyIcon} alt="Key" className="actions-list-icon" />
+          </button>
+        </li>
+      ) : (
+        ""
+      )}
     </ul>
   );
 }
