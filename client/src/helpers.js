@@ -28,7 +28,7 @@ export async function axiosFetch(method, url, data = null) {
 }
 
 /**
- * Parses Date object into a string representing the current date in MM/DD/YYY format
+ * Parses Date object into a string representing the current date in MM/DD/YY format
  *
  * @param {Date | null} dateToParse date to parse
  * @returns {String} a string representing the current date

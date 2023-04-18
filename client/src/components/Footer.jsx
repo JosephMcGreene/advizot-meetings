@@ -1,4 +1,3 @@
-//Assets
 import logoBlack from "../assets/img/black-on-transparent.png";
 
 export default function Footer() {

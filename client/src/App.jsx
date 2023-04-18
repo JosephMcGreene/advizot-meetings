@@ -1,7 +1,6 @@
 import { createContext } from "react";
 //Assets
 import "./assets/scss/App.scss";
-//External
 //Hooks
 import useUser from "./hooks/useUser";
 //Components
@@ -10,7 +9,7 @@ import Header from "./components/Header";
 import MainContent from "./components/MainContent";
 import Footer from "./components/Footer";
 
-//Context for logged in user data:
+//Logged-in user data context:
 export const UserContext = createContext();
 
 export default function App() {

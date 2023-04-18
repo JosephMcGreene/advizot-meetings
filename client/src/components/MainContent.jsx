@@ -1,5 +1,4 @@
 import { useContext } from "react";
-//Context
 import { UserContext } from "../App";
 //External
 import { Routes, Route, Navigate } from "react-router-dom";

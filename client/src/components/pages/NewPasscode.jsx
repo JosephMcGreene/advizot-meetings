@@ -1,10 +1,10 @@
 import { useState, useContext } from "react";
-import { axiosFetch } from "../../helpers";
+import { UserContext } from "../../App";
 //External
 import { Link } from "react-router-dom";
-//Context
-import { UserContext } from "../../App";
-//components
+//Helpers
+import { axiosFetch } from "../../helpers";
+//Components
 import LoadingSpinner from "../utilities/LoadingSpinner";
 
 export default function NewPasscode() {

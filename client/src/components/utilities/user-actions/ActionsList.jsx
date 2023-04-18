@@ -1,11 +1,10 @@
 import { useState, useContext } from "react";
+import { UserContext } from "../../../App";
 //Assets
 import formIcon from "../../../assets/img/file-pen-solid.svg";
 import lockIcon from "../../../assets/img/lock-open-solid.svg";
 //Helpers
 import { constructCurrentDate } from "../../../helpers";
-//Context
-import { UserContext } from "../../../App";
 //Components
 import ModalTemplate from "../../modals/ModalTemplate";
 import MeetingForm from "../../modals/MeetingForm";

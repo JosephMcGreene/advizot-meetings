@@ -1,8 +1,7 @@
 import { useContext } from "react";
+import { UserContext } from "../../App";
 //External
 import { Navigate } from "react-router-dom";
-//Context
-import { UserContext } from "../../App";
 //Components
 import NewPasscode from "../pages/NewPasscode";
 import PasscodePrompt from "./PasscodePrompt";

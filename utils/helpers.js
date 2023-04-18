@@ -9,8 +9,7 @@ function generatePasscode() {
 
   if (meetingCode < 100000 || meetingCode === 1000000) generateMeetingCode();
 
-  const meetingCodeString = meetingCode.toString();
-  return meetingCodeString;
+  return meetingCode.toString();
 }
 
 function determineDay() {

@@ -1,5 +1,4 @@
 import { useContext } from "react";
-//Context
 import { UserContext } from "../../App";
 //Components
 import MeetingCode from "../pages/MeetingCode";

@@ -1,10 +1,9 @@
 import { useState, useContext } from "react";
+import { UserContext } from "../../App";
 //Helpers
 import { constructCurrentDate } from "../../helpers";
 //Hooks
 import useResponses from "../../hooks/useResponses";
-//Context
-import { UserContext } from "../../App";
 //Components
 import LoadingSpinner from "../utilities/LoadingSpinner";
 import AdminResponses from "./meeting-responses/AdminResponses";
