@@ -33,8 +33,4 @@ authRouter.route("/current_user").get((req, res) => {
   res.json(req.user);
 });
 
-authRouter.route("/meeting").get((req, res) => {
-  res.redirect("/");
-});
-
 module.exports = authRouter;

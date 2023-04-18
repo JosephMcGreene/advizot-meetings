@@ -5,21 +5,18 @@ import { Navigate } from "react-router-dom";
 import { UserContext } from "../../App";
 //Components
 import NewPasscode from "../pages/NewPasscode";
-import PresentMembersOnly from "./PresentMembersOnly";
-import Meeting from "../pages/Meeting";
+import PasscodePrompt from "./PasscodePrompt";
 
 export default function UsersOnly({ onSubmitPasscode }) {
   const user = useContext(UserContext);
 
   if (!user) return <Navigate to="/" />;
 
-  if (user.role === "admin") {
-    return <NewPasscode />;
-  }
+  if (user.role === "admin") return <NewPasscode />;
 
   return (
-    <PresentMembersOnly onSubmitPasscode={onSubmitPasscode}>
+    <PasscodePrompt onSubmitPasscode={onSubmitPasscode}>
       <Navigate to="/meeting" />
-    </PresentMembersOnly>
+    </PasscodePrompt>
   );
 }

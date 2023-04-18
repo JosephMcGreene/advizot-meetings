@@ -1,6 +1,7 @@
 import { createContext } from "react";
 //Assets
 import "./assets/scss/App.scss";
+//External
 //Hooks
 import useUser from "./hooks/useUser";
 //Components
@@ -13,6 +14,7 @@ import Footer from "./components/Footer";
 export const UserContext = createContext();
 
 export default function App() {
+  //eslint-disable-next-line
   const [user, fetchUser, loading, error] = useUser(
     "get",
     "/auth/current_user"
@@ -20,10 +22,9 @@ export default function App() {
 
   if (loading) return <LoadingSpinner />;
 
-  if (error) return <h1>Looks like something went wrong...</h1>;
-
   return (
     <div className="App">
+      {console.log(user)}
       <UserContext.Provider value={user}>
         <Header />
         <MainContent

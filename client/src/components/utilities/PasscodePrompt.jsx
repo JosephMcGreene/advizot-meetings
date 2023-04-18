@@ -4,7 +4,7 @@ import { UserContext } from "../../App";
 //Components
 import MeetingCode from "../pages/MeetingCode";
 
-export default function PresentMembersOnly({ onSubmitPasscode, children }) {
+export default function PasscodePrompt({ onSubmitPasscode, children }) {
   const user = useContext(UserContext);
 
   if (!user.hasMeetingCode) {

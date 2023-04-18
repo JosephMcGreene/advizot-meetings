@@ -1,10 +1,15 @@
+import { useContext } from "react";
+//Context
+import { UserContext } from "../App";
 //External
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 //Components
 import UsersOnly from "./utilities/UsersOnly";
 import Meeting from "./pages/Meeting";
 
 export default function MainContent({ onSubmitPasscode }) {
+  const user = useContext(UserContext);
+
   return (
     <main className="main-content">
       <Routes>
@@ -22,7 +27,10 @@ export default function MainContent({ onSubmitPasscode }) {
           element={<UsersOnly onSubmitPasscode={onSubmitPasscode} />}
         />
 
-        <Route path="/meeting" element={<Meeting />} />
+        <Route
+          path="/meeting"
+          element={user.advizotID ? <Meeting /> : <Navigate to="/" />}
+        />
       </Routes>
     </main>
   );
