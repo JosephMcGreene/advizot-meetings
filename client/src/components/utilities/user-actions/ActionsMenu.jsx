@@ -5,19 +5,20 @@ import verticalEllipse from "../../../assets/img/ellipsis-vertical-solid.svg";
 import ActionsList from "./ActionsList";
 
 export default function ActionsMenu({ displayPasscode, onFormSubmit }) {
-  const [showActions, setShowActions] = useState(false);
+  const [actionsShown, setActionsShown] = useState(false);
 
   return (
     <nav className="user-actions">
-      {showActions && (
+      {actionsShown && (
         <ActionsList
           displayPasscode={displayPasscode}
           onFormSubmit={onFormSubmit}
+          onClose={() => setActionsShown(!actionsShown)}
         />
       )}
 
       <button
-        onClick={() => setShowActions(!showActions)}
+        onClick={() => setActionsShown(!actionsShown)}
         className="user-action-btn"
       >
         <img src={verticalEllipse} alt="user-actions" className="dots-icon" />

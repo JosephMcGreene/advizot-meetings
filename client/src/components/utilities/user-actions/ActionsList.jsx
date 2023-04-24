@@ -1,20 +1,32 @@
-import { useState, useContext } from "react";
+import { useState, useRef, useContext } from "react";
 import { UserContext } from "../../../App";
 //Assets
 import formIcon from "../../../assets/img/file-pen-solid.svg";
 import lockIcon from "../../../assets/img/lock-open-solid.svg";
 //Helpers
 import { constructCurrentDate } from "../../../helpers";
+//Hooks
+// import useOutsideClick from "../../../hooks/useOutsideClick";
 //Components
 import ModalTemplate from "../../modals/ModalTemplate";
 import MeetingForm from "../../modals/MeetingForm";
 
-export default function ActionsList({ displayPasscode, onFormSubmit }) {
+export default function ActionsList({
+  displayPasscode,
+  onFormSubmit,
+  onClose,
+}) {
   const user = useContext(UserContext);
   const [formDisplayed, setFormDisplayed] = useState(false);
+  // const actionsRef = useRef();
+
+  // useOutsideClick(actionsRef, () => onClose());
 
   return (
-    <ul className="actions-list">
+    <ul
+      className="actions-list"
+      // ref={actionsRef}
+    >
       <li className="actions-item">
         <button
           onClick={() => setFormDisplayed(!formDisplayed)}
