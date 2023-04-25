@@ -6,7 +6,7 @@ import lockIcon from "../../../assets/img/lock-open-solid.svg";
 //Helpers
 import { constructCurrentDate } from "../../../helpers";
 //Hooks
-// import useOutsideClick from "../../../hooks/useOutsideClick";
+import useOutsideClick from "../../../hooks/useOutsideClick";
 //Components
 import ModalTemplate from "../../modals/ModalTemplate";
 import MeetingForm from "../../modals/MeetingForm";
@@ -18,15 +18,12 @@ export default function ActionsList({
 }) {
   const user = useContext(UserContext);
   const [formDisplayed, setFormDisplayed] = useState(false);
-  // const actionsRef = useRef();
 
-  // useOutsideClick(actionsRef, () => onClose());
+  const actionsRef = useRef();
+  useOutsideClick(actionsRef, () => onClose());
 
   return (
-    <ul
-      className="actions-list"
-      // ref={actionsRef}
-    >
+    <ul ref={actionsRef} className="actions-list">
       <li className="actions-item">
         <button
           onClick={() => setFormDisplayed(!formDisplayed)}
