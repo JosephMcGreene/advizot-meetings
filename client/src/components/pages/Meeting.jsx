@@ -12,6 +12,7 @@ import ActionsMenu from "../utilities/user-actions/ActionsMenu";
 
 export default function Meeting() {
   const user = useContext(UserContext);
+  //eslint-disable-next-line
   const [sortedResponses, loading, error, submitResponse] = useResponses(
     "get",
     "/db/responses"

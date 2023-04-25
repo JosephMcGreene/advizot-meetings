@@ -3,6 +3,7 @@ import { UserContext } from "../App";
 //External
 import { Routes, Route, Navigate } from "react-router-dom";
 //Components
+import Welcome from "./pages/Welcome";
 import UsersOnly from "./utilities/UsersOnly";
 import Meeting from "./pages/Meeting";
 
@@ -14,16 +15,18 @@ export default function MainContent({ onSubmitPasscode }) {
       <Routes>
         <Route
           path="/"
-          element={
-            <h1 className="welcome">
-              Welcome! <br /> Please sign in to continue.
-            </h1>
-          }
+          element={user.advizotID ? <Navigate to="/meeting" /> : <Welcome />}
         />
 
         <Route
           path="/meetingCode"
-          element={<UsersOnly onSubmitPasscode={onSubmitPasscode} />}
+          element={
+            user.advizotID ? (
+              <UsersOnly onSubmitPasscode={onSubmitPasscode} />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
         />
 
         <Route
