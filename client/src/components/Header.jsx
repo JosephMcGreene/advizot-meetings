@@ -5,6 +5,7 @@ import advizotLogo from "../assets/img/original-on-transparent.png";
 //Components
 import ModalTemplate from "./modals/ModalTemplate";
 import Login from "./modals/Login";
+import DeleteButton from "./utilities/DeleteButton";
 
 export default function Header() {
   const [loginShown, setLoginShown] = useState(false);
@@ -12,6 +13,7 @@ export default function Header() {
 
   return (
     <header className="header">
+      <DeleteButton />
       <nav className="nav-bar">
         <img src={advizotLogo} alt="Advizot logo" className="logo" />
         <ul className="nav-ul">
