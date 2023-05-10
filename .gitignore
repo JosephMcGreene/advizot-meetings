@@ -8,6 +8,7 @@ project-notes.txt
 
 #testing
 client/coverage
+client/src/tests
 
 # misc
 client/.DS_Store
