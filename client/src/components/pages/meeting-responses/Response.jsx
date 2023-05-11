@@ -1,5 +1,6 @@
 import { createContext } from "react";
 //Components
+import DeleteButton from "../../utilities/DeleteButton";
 import RatingOrPriority from "./RatingOrPriority";
 import IssueGoal from "./IssueGoal";
 
@@ -9,6 +10,8 @@ export default function Response({ userResponseBody }) {
   return (
     <UserResponseContext.Provider value={userResponseBody}>
       <li className="response-li">
+        <DeleteButton />
+
         <label className="response-name">{userResponseBody.userName}</label>
 
         <RatingOrPriority

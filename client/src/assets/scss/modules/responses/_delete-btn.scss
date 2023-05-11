@@ -1,0 +1,18 @@
+@use "../../index" as *;
+
+.delete-btn {
+  @include borderRadius();
+
+  background-color: $advizot-light;
+  aspect-ratio: 1;
+  width: 3.25rem;
+  cursor: pointer;
+
+  &:hover {
+    @include btnHover();
+  }
+
+  .delete-icon {
+    width: 1.25rem;
+  }
+}
