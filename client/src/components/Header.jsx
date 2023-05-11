@@ -33,10 +33,7 @@ export default function Header() {
       </nav>
 
       {loginShown && (
-        <ModalTemplate
-          title="Sign In"
-          onClose={() => setLoginShown(!loginShown)}
-        >
+        <ModalTemplate title="Sign In" onClose={() => setLoginShown(false)}>
           <Login />
         </ModalTemplate>
       )}
