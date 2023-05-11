@@ -6,6 +6,7 @@ import useUser from "./hooks/useUser";
 //Components
 import LoadingSpinner from "./components/utilities/LoadingSpinner";
 import Header from "./components/Header";
+import DeleteButton from "./components/utilities/DeleteButton";
 import MainContent from "./components/MainContent";
 import Footer from "./components/Footer";
 
@@ -25,6 +26,7 @@ export default function App() {
     <div className="App">
       <UserContext.Provider value={user}>
         <Header />
+        <DeleteButton />
         <MainContent
           onSubmitPasscode={(enteredCode) => {
             fetchUser("post", "/passcode/passcode", { enteredCode });
