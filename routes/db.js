@@ -42,6 +42,7 @@ dbRouter
         monthlyGoal: req.body.monthlyGoal,
         date: Date.now(),
         group: req.user.group,
+        advizotID: req.user.advizotID,
       });
       await newUserResponse.save();
 

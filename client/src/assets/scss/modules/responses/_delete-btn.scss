@@ -1,6 +1,9 @@
 @use "../../index" as *;
 
 .delete-btn {
+  // display set to block on hover over response card. see _responses.scss and _admin-responses.scss
+  display: none;
+
   @include borderRadius();
 
   background-color: $advizot-light;

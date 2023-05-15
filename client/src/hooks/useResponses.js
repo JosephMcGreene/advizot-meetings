@@ -53,11 +53,37 @@ export default function useResponses(method, url, data = null) {
     }
   }
 
+  /**
+   * Deletes the specified form data from the UI as well as the db
+   * @param {Object} responseToDelete The user response to be deleted from db and UI
+   * @returns {Object} the response from the server
+   */
+  async function deleteResponse(responseToDelete) {
+    setLoading(true);
+
+    try {
+      const deleteRes = await axiosFetch(
+        "delete",
+        "/db/responses",
+        responseToDelete
+      );
+
+      // Make a new array of all responses EXCEPT the one to be deleted
+      setResponses(
+        responses.filter((response) => response._id !== responseToDelete._id)
+      );
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   //Sort responses to be displayed in order of priority
   const sortedResponses = responses.sort((a, b) => {
     if (a.priority < b.priority) return -1;
     return 1;
   });
 
-  return [sortedResponses, loading, error, submitResponse];
+  return [sortedResponses, loading, error, submitResponse, deleteResponse];
 }

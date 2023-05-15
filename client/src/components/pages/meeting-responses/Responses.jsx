@@ -1,7 +1,7 @@
 //Components
 import Response from "./Response";
 
-export default function Responses({ sortedResponses }) {
+export default function Responses({ sortedResponses, onDelete }) {
   return (
     <section className="responses-section">
       <ul className="responses-ul">
@@ -16,6 +16,7 @@ export default function Responses({ sortedResponses }) {
                 index
               }
               userResponseBody={response}
+              onDelete={onDelete}
             />
           );
         })}

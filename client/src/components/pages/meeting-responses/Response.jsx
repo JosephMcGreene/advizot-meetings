@@ -1,4 +1,5 @@
-import { createContext } from "react";
+import { useContext, createContext } from "react";
+import { UserContext } from "../../../App";
 //Components
 import DeleteButton from "../../utilities/DeleteButton";
 import RatingOrPriority from "./RatingOrPriority";
@@ -6,11 +7,18 @@ import IssueGoal from "./IssueGoal";
 
 export const UserResponseContext = createContext();
 
-export default function Response({ userResponseBody }) {
+export default function Response({ userResponseBody, onDelete }) {
+  const user = useContext(UserContext);
+
   return (
     <UserResponseContext.Provider value={userResponseBody}>
       <li className="response-li">
-        <DeleteButton />
+        {user.advizotID === userResponseBody.advizotID && (
+          <DeleteButton
+            responseID={userResponseBody.advizotID}
+            onDelete={onDelete}
+          />
+        )}
 
         <label className="response-name">{userResponseBody.userName}</label>
 
