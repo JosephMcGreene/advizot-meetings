@@ -1,7 +1,6 @@
 import { useRef } from "react";
 //Hooks
 import useOutsideClick from "../../hooks/useOutsideClick";
-import { motion } from "framer-motion";
 
 export default function ModalTemplate({ children, title, onClose }) {
   const modalRef = useRef();
@@ -9,12 +8,7 @@ export default function ModalTemplate({ children, title, onClose }) {
 
   return (
     <div className="modal">
-      <motion.div
-        className="modal-content"
-        ref={modalRef}
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-      >
+      <div ref={modalRef} className="modal-content">
         <header className="modal-header">
           <span className="modal-heading">{title}</span>
           <button className="close-x" onClick={() => onClose()}>
@@ -23,7 +17,7 @@ export default function ModalTemplate({ children, title, onClose }) {
         </header>
 
         {children}
-      </motion.div>
+      </div>
     </div>
   );
 }

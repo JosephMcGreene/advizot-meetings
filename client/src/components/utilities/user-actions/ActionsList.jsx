@@ -4,7 +4,6 @@ import { UserContext } from "../../../App";
 import formIcon from "../../../assets/img/file-pen-solid.svg";
 import lockIcon from "../../../assets/img/lock-open-solid.svg";
 //External
-import { motion } from "framer-motion";
 //Helpers
 import { constructCurrentDate } from "../../../helpers";
 //Hooks
@@ -26,16 +25,7 @@ export default function ActionsList({
 
   return (
     <>
-      <motion.ul
-        ref={actionsRef}
-        className="actions-list"
-        initial={{ x: "110%", y: "-180%", rotate: 90 }}
-        animate={{ x: 0, y: 0, rotate: 0 }}
-        transition={{
-          duration: 0.4,
-          ease: [0.12, 0.67, 0.57, 1.18],
-        }}
-      >
+      <ul ref={actionsRef} className="actions-list">
         <li className="actions-item">
           <button
             onClick={() => setFormDisplayed(!formDisplayed)}
@@ -45,6 +35,17 @@ export default function ActionsList({
             <img src={formIcon} alt="Form" className="actions-list-icon" />
           </button>
         </li>
+        {formDisplayed && (
+          <ModalTemplate
+            title={constructCurrentDate() + " Meeting"}
+            onClose={() => setFormDisplayed(false)}
+          >
+            <MeetingForm
+              onSubmit={onFormSubmit}
+              onClose={() => setFormDisplayed(false)}
+            />
+          </ModalTemplate>
+        )}
 
         {user.role === "admin" ? (
           <li className="actions-item">
@@ -56,18 +57,7 @@ export default function ActionsList({
         ) : (
           ""
         )}
-      </motion.ul>
-      {formDisplayed && (
-        <ModalTemplate
-          title={constructCurrentDate() + " Meeting"}
-          onClose={() => setFormDisplayed(false)}
-        >
-          <MeetingForm
-            onSubmit={onFormSubmit}
-            onClose={() => setFormDisplayed(false)}
-          />
-        </ModalTemplate>
-      )}
+      </ul>
     </>
   );
 }

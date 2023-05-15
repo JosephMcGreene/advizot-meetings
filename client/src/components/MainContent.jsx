@@ -20,13 +20,7 @@ export default function MainContent({ onSubmitPasscode }) {
 
         <Route
           path="/meetingCode"
-          element={
-            user.advizotID ? (
-              <UsersOnly onSubmitPasscode={onSubmitPasscode} />
-            ) : (
-              <Navigate to="/" />
-            )
-          }
+          element={<UsersOnly onSubmitPasscode={onSubmitPasscode} />}
         />
 
         <Route
