@@ -53,7 +53,10 @@ dbRouter
   })
   .delete(async function (req, res) {
     try {
-      const deletionRes = await Response.deleteOne({ _id: req.body._id });
+      const deletionRes = await Response.deleteOne({
+        advizotID: req.body.responseID,
+      });
+
       res.json(deletionRes);
     } catch (err) {
       throw err;

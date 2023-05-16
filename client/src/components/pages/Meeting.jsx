@@ -32,7 +32,7 @@ export default function Meeting() {
       {user.role === "member" && (
         <Responses
           sortedResponses={sortedResponses}
-          onDelete={(responseToDelete) => deleteResponse(responseToDelete)}
+          onDelete={(responseID) => deleteResponse(responseID)}
         />
       )}
 

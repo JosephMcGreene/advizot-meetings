@@ -58,19 +58,15 @@ export default function useResponses(method, url, data = null) {
    * @param {Object} responseToDelete The user response to be deleted from db and UI
    * @returns {Object} the response from the server
    */
-  async function deleteResponse(responseToDelete) {
+  async function deleteResponse(responseID) {
     setLoading(true);
 
     try {
-      const deleteRes = await axiosFetch(
-        "delete",
-        "/db/responses",
-        responseToDelete
-      );
+      await axiosFetch("delete", "/db/responses", { responseID });
 
       // Make a new array of all responses EXCEPT the one to be deleted
       setResponses(
-        responses.filter((response) => response._id !== responseToDelete._id)
+        responses.filter((response) => response.advizotID !== responseID)
       );
     } catch (err) {
       setError(err);
