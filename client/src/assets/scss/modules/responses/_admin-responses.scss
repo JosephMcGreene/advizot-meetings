@@ -3,9 +3,9 @@
 .passcode-display {
   @include borderRadius();
 
-  position: absolute;
-  top: calc($header-height + 1rem);
-  left: 4vw;
+  // position: absolute;
+  // top: calc($header-height + 1rem);
+  // left: 2vw;
 
   display: block;
 

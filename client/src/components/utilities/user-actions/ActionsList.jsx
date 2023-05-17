@@ -1,9 +1,10 @@
 import { useState, useRef, useContext } from "react";
 import { UserContext } from "../../../App";
 //Assets
-import formIcon from "../../../assets/img/file-pen-solid.svg";
-import lockIcon from "../../../assets/img/lock-open-solid.svg";
+import addResponseIcon from "../../../assets/img/file-circle-plus-solid.svg";
+import lockIcon from "../../../assets/img/lock-solid.svg";
 //External
+import { motion } from "framer-motion";
 //Helpers
 import { constructCurrentDate } from "../../../helpers";
 //Hooks
@@ -25,14 +26,23 @@ export default function ActionsList({
 
   return (
     <>
-      <ul ref={actionsRef} className="actions-list">
+      <motion.ul
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        ref={actionsRef}
+        className="actions-list"
+      >
         <li className="actions-item">
           <button
             onClick={() => setFormDisplayed(!formDisplayed)}
             className="actions-btn"
           >
-            <span className="actions-label">Show Form</span>
-            <img src={formIcon} alt="Form" className="actions-list-icon" />
+            <span className="actions-label">New Response</span>
+            <img
+              src={addResponseIcon}
+              alt="Form"
+              className="actions-list-icon"
+            />
           </button>
         </li>
         {formDisplayed && (
@@ -57,7 +67,7 @@ export default function ActionsList({
         ) : (
           ""
         )}
-      </ul>
+      </motion.ul>
     </>
   );
 }

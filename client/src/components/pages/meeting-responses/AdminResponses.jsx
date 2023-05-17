@@ -1,3 +1,6 @@
+//External
+import { motion } from "framer-motion";
+//Components
 import PasscodeDisplay from "../../utilities/PasscodeDisplay";
 
 export default function AdminResponses({ passcodeDisplayed, sortedResponses }) {
@@ -5,7 +8,11 @@ export default function AdminResponses({ passcodeDisplayed, sortedResponses }) {
     <>
       {passcodeDisplayed && <PasscodeDisplay />}
       <section className="responses-section">
-        <table className="admin-responses">
+        <motion.table
+          layout
+          transition={{ type: "tween", stiffness: 10, duration: 0.1 }}
+          className="admin-responses"
+        >
           <thead className="admin-response-head">
             <tr>
               <th scope="col">Name</th>
@@ -34,7 +41,7 @@ export default function AdminResponses({ passcodeDisplayed, sortedResponses }) {
               );
             })}
           </tbody>
-        </table>
+        </motion.table>
       </section>
     </>
   );
