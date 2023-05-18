@@ -7,7 +7,7 @@ import Welcome from "./pages/Welcome";
 import UsersOnly from "./utilities/UsersOnly";
 import Meeting from "./pages/Meeting";
 
-export default function MainContent({ onSubmitPasscode }) {
+export default function MainContent({ onSubmitRoomCode }) {
   const user = useContext(UserContext);
 
   return (
@@ -19,8 +19,8 @@ export default function MainContent({ onSubmitPasscode }) {
         />
 
         <Route
-          path="/meetingCode"
-          element={<UsersOnly onSubmitPasscode={onSubmitPasscode} />}
+          path="/roomCode"
+          element={<UsersOnly onSubmitRoomCode={onSubmitRoomCode} />}
         />
 
         <Route

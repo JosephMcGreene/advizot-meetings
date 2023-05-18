@@ -15,7 +15,7 @@ export default function Meeting() {
   //eslint-disable-next-line
   const [sortedResponses, loading, error, submitResponse, deleteResponse] =
     useResponses("get", "/db/responses");
-  const [passcodeDisplayed, setPasscodeDisplayed] = useState(false);
+  const [roomCodeDisplayed, setRoomCodeDisplayed] = useState(false);
 
   if (loading) return <LoadingSpinner />;
 
@@ -25,7 +25,7 @@ export default function Meeting() {
 
       {user.role === "admin" && (
         <AdminResponses
-          passcodeDisplayed={passcodeDisplayed}
+          roomCodeDisplayed={roomCodeDisplayed}
           sortedResponses={sortedResponses}
         />
       )}
@@ -37,7 +37,7 @@ export default function Meeting() {
       )}
 
       <ActionsMenu
-        displayPasscode={() => setPasscodeDisplayed(!passcodeDisplayed)}
+        displayRoomCode={() => setRoomCodeDisplayed(!roomCodeDisplayed)}
         onFormSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
       />
     </>

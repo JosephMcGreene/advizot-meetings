@@ -5,18 +5,18 @@ import * as Yup from "yup";
 import InputField from "../utilities/form/InputField";
 import LoadingSpinner from "../utilities/LoadingSpinner";
 
-export default function MeetingCode({ onSubmit }) {
+export default function RoomCodeEntry({ onSubmit }) {
   return (
     <Formik
       initialValues={{
-        passcode: "",
+        roomCode: "",
       }}
       validationSchema={Yup.object({
-        passcode: Yup.string().required("You must add a valid room code"),
+        roomCode: Yup.string().required("You must add a valid room code"),
       })}
-      onSubmit={({ passcode }, actions) => {
+      onSubmit={({ roomCode }, actions) => {
         try {
-          onSubmit(passcode);
+          onSubmit(roomCode);
           actions.setSubmitting(false);
         } catch (error) {
           console.error(error);
@@ -27,7 +27,7 @@ export default function MeetingCode({ onSubmit }) {
         <Form className="form">
           <InputField
             text="Please enter today's code:"
-            name="passcode"
+            name="roomCode"
             as="input"
             type="text"
             className="text-input"

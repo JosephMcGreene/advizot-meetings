@@ -14,7 +14,7 @@ import ModalTemplate from "../../modals/ModalTemplate";
 import MeetingForm from "../../modals/MeetingForm";
 
 export default function ActionsList({
-  displayPasscode,
+  displayRoomCode,
   onFormSubmit,
   onClose,
 }) {
@@ -59,8 +59,8 @@ export default function ActionsList({
 
         {user.role === "admin" ? (
           <li className="actions-item">
-            <button onClick={() => displayPasscode()} className="actions-btn">
-              <span className="actions-label">Show Passcode</span>
+            <button onClick={() => displayRoomCode()} className="actions-btn">
+              <span className="actions-label">Show Room Code</span>
               <img src={lockIcon} alt="Key" className="actions-list-icon" />
             </button>
           </li>

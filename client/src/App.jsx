@@ -26,8 +26,8 @@ export default function App() {
       <UserContext.Provider value={user}>
         <Header />
         <MainContent
-          onSubmitPasscode={(enteredCode) => {
-            fetchUser("post", "/passcode/passcode", { enteredCode });
+          onSubmitRoomCode={(enteredCode) => {
+            fetchUser("post", "/roomCode/roomCode", { enteredCode });
           }}
         />
         <Footer />

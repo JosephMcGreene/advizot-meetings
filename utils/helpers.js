@@ -1,15 +1,15 @@
 const { userRoles, groups } = require("./userRoles");
 
 /**
- * Generates a 6-digit random number to be used as the meeting's passcode.
+ * Generates a 6-digit random number to be used as the meeting's room code.
  * @returns {string} the code for the meeting
  */
-function generatePasscode() {
-  let meetingCode = Math.floor(Math.random() * 1000000); // 1,000,000
+function generateRoomCode() {
+  let roomCode = Math.floor(Math.random() * 1000000); // 1,000,000
 
-  if (meetingCode < 100000 || meetingCode === 1000000) generateMeetingCode();
+  if (roomCode < 100000 || roomCode === 1000000) generateRoomCode();
 
-  return meetingCode.toString();
+  return roomCode.toString();
 }
 
 function determineDay() {
@@ -39,7 +39,7 @@ function placeInGroup(role) {
 }
 
 module.exports = {
-  generatePasscode,
+  generateRoomCode,
   determineDay,
   placeInGroup,
 };

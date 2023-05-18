@@ -4,14 +4,14 @@ import verticalEllipse from "../../../assets/img/ellipsis-vertical-solid.svg";
 //Components
 import ActionsList from "./ActionsList";
 
-export default function ActionsMenu({ displayPasscode, onFormSubmit }) {
+export default function ActionsMenu({ displayRoomCode, onFormSubmit }) {
   const [actionsShown, setActionsShown] = useState(false);
 
   return (
     <nav className="user-actions">
       {actionsShown && (
         <ActionsList
-          displayPasscode={displayPasscode}
+          displayRoomCode={displayRoomCode}
           onFormSubmit={onFormSubmit}
           onClose={() => setActionsShown(!actionsShown)}
         />

@@ -10,7 +10,7 @@ const passport = require("passport");
 //Internal Modules
 const dbRouter = require("./routes/db");
 const authRouter = require("./routes/auth");
-const passcodeRouter = require("./routes/passcode");
+const roomCodeRouter = require("./routes/roomCode");
 require("./utils/passportConfig");
 
 //=====CONNECT MONGODB=====
@@ -52,7 +52,7 @@ if (process.env.NODE_ENV === "production") {
 //=====MOUNT ROUTES=====
 app.use("/db", dbRouter);
 app.use("/auth", authRouter);
-app.use("/passcode", passcodeRouter);
+app.use("/roomCode", roomCodeRouter);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "/client/build/index.html"));

@@ -1,12 +1,13 @@
 //External
 import { motion } from "framer-motion";
 //Components
-import PasscodeDisplay from "../../utilities/PasscodeDisplay";
+import RoomCodeDisplay from "../../utilities/RoomCodeDisplay";
 
-export default function AdminResponses({ passcodeDisplayed, sortedResponses }) {
+export default function AdminResponses({ roomCodeDisplayed, sortedResponses }) {
   return (
     <>
-      {passcodeDisplayed && <PasscodeDisplay />}
+      {roomCodeDisplayed && <RoomCodeDisplay />}
+
       <section className="responses-section">
         <motion.table
           layout

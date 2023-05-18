@@ -19,7 +19,7 @@ authRouter
   .get(
     passport.authenticate("google", { failureRedirect: "/" }),
     (req, res) => {
-      res.redirect("/meetingCode");
+      res.redirect("/roomCode");
     }
   );
 

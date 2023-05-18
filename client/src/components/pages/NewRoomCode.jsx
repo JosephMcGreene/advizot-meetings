@@ -7,18 +7,18 @@ import { axiosFetch } from "../../helpers";
 //Components
 import LoadingSpinner from "../utilities/LoadingSpinner";
 
-export default function NewPasscode() {
+export default function NewRoomCode() {
   const [loading, setLoading] = useState(false);
   const user = useContext(UserContext);
 
-  async function generatePasscode() {
+  async function makeRoomCode() {
     try {
       setLoading(true);
-      const passcodeResponse = await axiosFetch("get", "/passcode/newPasscode");
-      console.log(passcodeResponse);
+      const roomCodeResponse = await axiosFetch("get", "/roomCode/newRoomCode");
+      console.log(roomCodeResponse);
       localStorage.setItem(
-        "passcode",
-        passcodeResponse.data.correctCode.currentPasscode.toString()
+        "roomCode",
+        roomCodeResponse.data.correctCode.currentRoomCode.toString()
       );
     } catch (err) {
       throw err;
@@ -32,10 +32,10 @@ export default function NewPasscode() {
   return (
     <div className="modal-body">
       <h3 className="centered-heading">
-        Hi {user.firstName}, would you like to create a new passcode for this
+        Hi {user.firstName}, would you like to create a new room code for this
         meeting?
       </h3>
-      <button className="btn" onClick={() => generatePasscode()}>
+      <button className="btn" onClick={() => makeRoomCode()}>
         <Link to="/meeting">Yes, make a new code</Link>
       </button>
       <button className="btn">

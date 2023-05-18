@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { UserContext } from "../../App";
 //Components
-import MeetingCode from "../pages/MeetingCode";
+import RoomCodeEntry from "../pages/RoomCodeEntry";
 
-export default function PasscodePrompt({ onSubmitPasscode, children }) {
+export default function RoomCodePrompt({ onSubmitRoomCode, children }) {
   const user = useContext(UserContext);
 
   if (!user.hasMeetingCode) {
-    return <MeetingCode onSubmit={onSubmitPasscode} />;
+    return <RoomCodeEntry onSubmit={onSubmitRoomCode} />;
   }
   // child is <Meeting />
   return children;
