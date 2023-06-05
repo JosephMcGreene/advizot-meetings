@@ -19,7 +19,7 @@ export default function MainContent({ onSubmitRoomCode }) {
         />
 
         <Route
-          path="/roomCode"
+          path="/handleRoomCode"
           element={<UsersOnly onSubmitRoomCode={onSubmitRoomCode} />}
         />
 

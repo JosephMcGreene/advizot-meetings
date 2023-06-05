@@ -11,14 +11,19 @@ export default function NewRoomCode() {
   const [loading, setLoading] = useState(false);
   const user = useContext(UserContext);
 
-  async function makeRoomCode() {
+  async function setRoomCode(needNewCode) {
     try {
       setLoading(true);
-      const roomCodeResponse = await axiosFetch("get", "/roomCode/newRoomCode");
-      console.log(roomCodeResponse);
+
+      const roomCodeResponse = await axiosFetch(
+        "post",
+        "/roomCode/setRoomCode",
+        { needNewCode }
+      );
+
       localStorage.setItem(
         "roomCode",
-        roomCodeResponse.data.correctCode.currentRoomCode.toString()
+        roomCodeResponse.data.roomCodeDB.currentRoomCode.toString()
       );
     } catch (err) {
       throw err;
@@ -35,10 +40,10 @@ export default function NewRoomCode() {
         Hi {user.firstName}, would you like to create a new room code for this
         meeting?
       </h3>
-      <button className="btn" onClick={() => makeRoomCode()}>
+      <button className="btn" onClick={() => setRoomCode(true)}>
         <Link to="/meeting">Yes, make a new code</Link>
       </button>
-      <button className="btn">
+      <button className="btn" onClick={() => setRoomCode(false)}>
         <Link to="/meeting">No, keep the old code</Link>
       </button>
     </div>

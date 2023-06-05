@@ -1,7 +1,7 @@
 //External
 import { motion } from "framer-motion";
 //Components
-import RoomCodeDisplay from "../../utilities/RoomCodeDisplay";
+import RoomCodeDisplay from "../RoomCodeDisplay";
 
 export default function AdminResponses({ roomCodeDisplayed, sortedResponses }) {
   return (

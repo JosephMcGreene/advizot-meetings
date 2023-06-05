@@ -4,39 +4,37 @@ const RoomCode = require("../models/RoomCode");
 const roomCodeRouter = express.Router();
 const { generateRoomCode } = require("../utils/helpers");
 
-roomCodeRouter
-  .route("/roomCode")
-  .get(async function (req, res) {
-    try {
-      const correctCode = await RoomCode.find({});
-      res.send(correctCode[0].currentRoomCode);
-    } catch (err) {
-      throw err;
-    }
-  })
-  .post(async function (req, res) {
-    try {
-      const correctCode = await RoomCode.find({});
-
-      if (req.body.enteredCode === correctCode[0].currentRoomCode) {
-        req.user.hasMeetingCode = true;
-
-        res.json(req.user);
-      } else {
-        console.log("wrong code!");
-      }
-    } catch (err) {
-      throw err;
-    }
-  });
-
-roomCodeRouter.route("/newRoomCode").get(async function (req, res) {
+roomCodeRouter.route("/submitRoomCode").post(async function (req, res) {
   try {
-    const correctCode = await RoomCode.findById(process.env.ROOMCODE_ID);
-    correctCode.currentRoomCode = generateRoomCode();
-    await correctCode.save();
+    const roomCodeDB = await RoomCode.findById(process.env.ROOMCODE_ID);
 
-    res.json({ correctCode });
+    if (req.body.enteredCode === roomCodeDB.currentRoomCode) {
+      req.user.hasMeetingCode = true;
+
+      res.json(req.user);
+    } else {
+      console.log("wrong code!");
+    }
+  } catch (err) {
+    throw err;
+  }
+});
+
+roomCodeRouter.route("/setRoomCode").post(async function (req, res) {
+  try {
+    const roomCodeDB = await RoomCode.findById(process.env.ROOMCODE_ID);
+
+    if (roomCodeDB && req.body.needNewCode) {
+      roomCodeDB.currentRoomCode = generateRoomCode();
+      await roomCodeDB.save();
+    } else if (!roomCodeDB) {
+      const newRoomCode = new RoomCode({
+        currentRoomCode: generateRoomCode(),
+      });
+      await newRoomCode.save();
+    }
+
+    res.json({ roomCodeDB });
   } catch (err) {
     throw err;
   }

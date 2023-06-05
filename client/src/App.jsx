@@ -27,7 +27,7 @@ export default function App() {
         <Header />
         <MainContent
           onSubmitRoomCode={(enteredCode) => {
-            fetchUser("post", "/roomCode/roomCode", { enteredCode });
+            fetchUser("post", "/roomCode/submitRoomCode", { enteredCode });
           }}
         />
         <Footer />
