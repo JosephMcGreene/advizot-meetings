@@ -19,6 +19,7 @@
 
 @mixin borderSides() {
   @include borderRadius();
+
   border-top: 1px solid black;
   border-right: 3px solid black;
   border-bottom: 1px solid black;
@@ -30,19 +31,16 @@
 }
 
 @mixin btnHover() {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   @include transition(all);
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   transition-duration: 130ms;
 }
 
 //Login Buttons
-@mixin loginHover($color, $radius) {
-  background-color: white;
+@mixin loginHover($color) {
+  background-color: var.$light-bg;
   outline: 2px solid $color;
-  border-radius: $radius;
+  border-radius: 30px;
   color: $color;
-}
-@mixin logoSize() {
-  width: 30px;
-  margin: 0 7px;
 }

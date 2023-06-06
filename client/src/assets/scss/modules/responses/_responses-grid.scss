@@ -6,7 +6,6 @@
   grid-template-columns: repeat(3, 1fr);
 
   width: 360px;
-  margin: 0 1.75vw;
 
   .response-name {
     grid-row: 1;
@@ -17,8 +16,6 @@
   .priority {
     grid-row: 1;
     grid-column: 2;
-    justify-self: center;
-    align-self: start;
   }
 
   .delete-btn {

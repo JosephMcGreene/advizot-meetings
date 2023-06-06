@@ -5,14 +5,15 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.2rem;
 
   .range-container {
     .rangeValue {
       font-size: 1.25rem;
     }
 
-    &:focus {
+    &:focus,
+    &:focus-visible {
       @include onFocus();
     }
   }
@@ -25,28 +26,32 @@
       text-align: center;
     }
 
-    &:focus {
+    &:focus,
+    &:focus-visible {
       @include onFocus();
     }
   }
 }
 
+.rating-select,
+.text-input textarea {
+  margin-top: 0.15rem;
+  padding: $padding;
+  background-color: $light-bg;
+  font-size: inherit;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  font-family: inherit;
+}
+
 .rating-select {
   @include borderSides();
 
-  font-family: inherit;
-  font-size: inherit;
-  margin-top: 0.15rem;
-  padding: $padding;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-
   option {
     text-align: center;
-    font-family: inherit;
-    font-size: inherit;
   }
 
-  &:focus {
+  &:focus,
+  &:focus-visible {
     @include onFocus();
   }
 }
@@ -56,16 +61,15 @@
   flex-direction: column;
 
   margin: 0.75rem auto 0;
-  width: min(100%, 300px);
+  width: 100%;
 
   textarea {
     @include borderSides();
 
-    font-size: inherit;
-    padding: $padding;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 100%;
 
-    &:focus {
+    &:focus,
+    &:focus-visible {
       @include onFocus();
     }
   }
@@ -77,9 +81,11 @@
   input {
     @include borderSides();
 
+    font-family: inherit;
     padding: $padding;
     text-align: center;
-    width: 100%;
+    width: 220px;
+    margin: auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   }
 }

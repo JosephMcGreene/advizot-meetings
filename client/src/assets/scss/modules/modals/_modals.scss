@@ -1,7 +1,7 @@
 @use "../../index" as *;
 
 .modal {
-  z-index: $top;
+  z-index: calc($top + 1);
 
   position: fixed;
   top: 0;
@@ -12,25 +12,22 @@
 
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.35);
   overflow-y: scroll;
 
   .modal-content {
-    @include borderRadius();
-
-    z-index: $top;
+    border-radius: 14px 0 13px 0;
 
     position: absolute;
     top: 3vh;
 
     width: min(340px, 92%);
-    background-color: #fff;
+    background-color: $light-bg;
 
     .modal-header {
       @include borderRadius();
 
       display: flex;
-      flex-direction: row;
       justify-content: space-between;
       align-items: center;
 
@@ -45,11 +42,8 @@
 
       .close-x {
         cursor: pointer;
-        margin-left: auto;
         padding: 0 1rem;
         background-color: transparent;
-        border-color: transparent;
-        font-family: Arial, Helvetica, sans-serif;
         font-size: 2.25rem;
 
         &:hover {
@@ -68,6 +62,7 @@
     .modal-body {
       display: flex;
       flex-direction: column;
+      gap: 1rem;
 
       padding: $form-padding;
     }
@@ -80,10 +75,6 @@
 }
 
 .signin-btn {
-  &:first-child {
-    margin-bottom: 1rem;
-  }
-
   button {
     @include borderRadius();
     @include transition(all);
@@ -104,15 +95,15 @@
       width: 30px;
       margin: 0 7px;
     }
-    span {
+    label {
       margin: 0 auto;
     }
   }
 
   .linkedin-hover:hover {
-    @include loginHover(#0077b5, 30px);
+    @include loginHover(#0077b5);
   }
   .google-hover:hover {
-    @include loginHover(#34a853, 30px);
+    @include loginHover(#34a853);
   }
 }

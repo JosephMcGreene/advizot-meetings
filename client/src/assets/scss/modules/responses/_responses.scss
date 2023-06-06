@@ -6,6 +6,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  gap: 3rem;
 
   margin: 0 auto;
 
@@ -13,9 +14,8 @@
     @include borderSides();
     @include borderRadius();
 
-    padding: 12px;
+    padding: 1rem;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
-    margin-bottom: 3rem;
 
     &:hover {
       @include btnHover();
@@ -33,7 +33,7 @@
       @include borderRadius();
 
       background-color: $advizot-light;
-      padding: 7px 10%;
+      padding: 7px 1ch;
       width: min-content;
 
       &:hover {

@@ -5,8 +5,8 @@
   z-index: $top;
 
   position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
+  bottom: 1.75rem;
+  right: 1.75rem;
 
   display: flex;
   flex-direction: column;
@@ -14,13 +14,10 @@
   gap: 1rem;
 
   .user-action-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-left: auto;
 
     width: 65px;
     height: 65px;
-    border: none;
     border-radius: 45% 0 45% 0;
     background-color: $advizot-color;
     box-shadow: $header-shadow;
@@ -41,29 +38,23 @@
 
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
     gap: 0.75rem;
 
     padding: 1rem;
     border-radius: 25px 0 25px 0;
-    background-color: whitesmoke;
     box-shadow: $header-shadow;
 
     .actions-item {
-      display: flex;
-      align-items: center;
-
-      width: 100%;
-
       .actions-btn {
+        @include borderRadius();
+
         display: flex;
         justify-content: space-around;
+        gap: 1rem;
 
         width: 100%;
         cursor: pointer;
         padding: 1.5ch 2.5ch;
-        border-radius: 15px 0 15px 0;
-        border: none;
         background-color: $advizot-color;
 
         &:hover {
@@ -76,7 +67,6 @@
           align-self: center;
 
           letter-spacing: 0.5px;
-          margin-right: 10px;
         }
 
         .actions-list-icon {

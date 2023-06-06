@@ -31,9 +31,11 @@ body {
   font-family: $main-font;
   font-weight: 600;
   font-size: 1.1rem;
+  background-color: $light-bg;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-width: 320px;
+  min-height: 100vh;
 }
 
 button {
@@ -76,8 +78,7 @@ button {
   @include advizotFont(2rem, 400, 1px);
 
   text-align: center;
-  margin: 0 auto 1ch;
-  padding-top: 1rem;
+  margin-top: 25vh;
 }
 
 a {

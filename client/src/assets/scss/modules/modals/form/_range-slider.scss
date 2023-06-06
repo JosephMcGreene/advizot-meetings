@@ -5,16 +5,13 @@ input[type="range"] {
 
   -webkit-appearance: none;
 
-  display: block;
-
-  margin-top: 10px;
-  width: 100%;
+  margin-top: 12px;
   height: 8px;
-  background-image: linear-gradient($advizot-color, $advizot-color);
-  background-repeat: no-repeat;
+  background-color: $light-bg;
   box-shadow: inset -1px -1px 2px rgba(0, 0, 0, 0.7);
 
-  &:focus {
+  &:focus,
+  &:focus-visible {
     outline: none;
     @include onFocus();
   }
@@ -24,12 +21,13 @@ input[type="range"] {
 //===== Webkit =====
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  
+
   height: 30px;
   width: 28px;
   border-radius: $border-radius 0 $border-radius 0;
   background: $advizot-color;
   cursor: grab;
+  transform: skew(-9deg);
   box-shadow:
 		// "3D" shadows on slider thumb; black, white
     inset -1px -1px 6px rgba(0, 0, 0, 0.7),
@@ -38,7 +36,7 @@ input[type="range"]::-webkit-slider-thumb {
 input[type="range"]::-webkit-slider-thumb:hover {
   @include btnHover();
 
-  transform: scale(1.15);
+  transform: scale(1.15) skew(-19deg);
 }
 input[type="range"]::-webkit-slider-thumb:active {
   cursor: grabbing;
@@ -52,6 +50,7 @@ input[type="range"]::-moz-range-thumb {
   transform: skew(-15deg);
   background: $advizot-color;
   cursor: grab;
+  transform: skew(-9deg);
   box-shadow:
 	// "3D" shadows on slider thumb; black, white
     inset -1px -1px 6px rgba(0, 0, 0, 0.7),
@@ -63,7 +62,7 @@ input[type="range"]::-moz-range-thumb {
 input[type="range"]::-moz-range-thumb:hover {
   @include btnHover();
 
-  transform: scale(1.15);
+  transform: scale(1.15) skew(-19deg);
 }
 input[type="range"]::-moz-range-thumb:active {
   cursor: grabbing;

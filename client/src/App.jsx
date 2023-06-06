@@ -7,7 +7,7 @@ import useUser from "./hooks/useUser";
 import LoadingSpinner from "./components/utilities/LoadingSpinner";
 import Header from "./components/Header";
 import MainContent from "./components/MainContent";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 
 //Logged-in user data context:
 export const UserContext = createContext();
@@ -30,7 +30,7 @@ export default function App() {
             fetchUser("post", "/roomCode/submitRoomCode", { enteredCode });
           }}
         />
-        <Footer />
+        {/* <Footer /> */}
       </UserContext.Provider>
     </div>
   );

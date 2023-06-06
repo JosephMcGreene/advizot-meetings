@@ -27,7 +27,9 @@ roomCodeRouter.route("/setRoomCode").post(async function (req, res) {
     if (roomCodeDB && req.body.needNewCode) {
       roomCodeDB.currentRoomCode = generateRoomCode();
       await roomCodeDB.save();
-    } else if (!roomCodeDB) {
+    }
+
+    if (!roomCodeDB) {
       const newRoomCode = new RoomCode({
         currentRoomCode: generateRoomCode(),
       });

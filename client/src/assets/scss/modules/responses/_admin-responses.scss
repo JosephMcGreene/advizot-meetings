@@ -3,18 +3,13 @@
 .room-code-display {
   @include borderRadius();
 
-  // position: absolute;
-  // top: calc($header-height + 1rem);
-  // left: 2vw;
-
   display: block;
 
   width: fit-content;
   margin: 0 auto;
   padding: 1rem;
   background-color: $advizot-color;
-  letter-spacing: 1px;
-  transform: scale(1.2);
+  letter-spacing: 2px;
 }
 
 .admin-responses,
@@ -27,7 +22,7 @@
 .admin-responses {
   border-collapse: collapse;
   margin: $form-padding auto;
-  width: 90vw;
+  width: 85vw;
 
   .admin-response-head th,
   .admin-response-row th,

@@ -8,17 +8,16 @@
   left: 0;
   right: 0;
 
-  background-color: whitesmoke;
-  box-shadow: $header-shadow;
-  height: fit-content;
+  background-color: $light-bg;
+  box-shadow: 0 0.2vh 0.5vh rgba(0, 0, 0, 0.75);
 
   .nav-bar {
+    @include transition(height);
+
     display: flex;
     justify-content: space-between;
 
     height: $header-height;
-    overflow: hidden;
-    @include transition(height);
 
     .logo {
       width: 190px;
@@ -27,26 +26,16 @@
 
     .nav-ul {
       display: flex;
-      justify-content: space-between;
       align-items: center;
 
       list-style: none;
 
       .nav-item {
-        @include advizotFont(1.1rem, 600, 0);
-        @include transition(text-shadow);
-
         margin-right: 1rem;
         cursor: pointer;
 
-        &:hover {
-          .btn {
-            @include btnHover();
-          }
-        }
-
         .btn {
-          padding: 1ch 4vw;
+          padding: 1ch 2.25ch;
         }
       }
     }
