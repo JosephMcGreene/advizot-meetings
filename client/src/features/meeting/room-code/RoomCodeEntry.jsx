@@ -2,8 +2,8 @@
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 //Components
-import InputField from "../utilities/form/InputField";
-import LoadingSpinner from "../utilities/LoadingSpinner";
+import InputField from "../form/InputField";
+import LoadingSpinner from "../../../shared/LoadingSpinner";
 
 export default function RoomCodeEntry({ onSubmit }) {
   return (

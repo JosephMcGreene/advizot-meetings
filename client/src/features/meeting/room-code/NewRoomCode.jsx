@@ -1,11 +1,11 @@
 import { useState, useContext } from "react";
-import { UserContext } from "../../App";
+import { UserContext } from "../../../App";
 //External
 import { Link } from "react-router-dom";
 //Helpers
-import { axiosFetch } from "../../helpers";
+import { axiosFetch } from "../../../helpers";
 //Components
-import LoadingSpinner from "../utilities/LoadingSpinner";
+import LoadingSpinner from "../../../shared/LoadingSpinner";
 
 export default function NewRoomCode() {
   const [loading, setLoading] = useState(false);

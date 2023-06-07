@@ -10,8 +10,8 @@ import { constructCurrentDate } from "../../../helpers";
 //Hooks
 import useOutsideClick from "../../../hooks/useOutsideClick";
 //Components
-import ModalTemplate from "../../modals/ModalTemplate";
-import MeetingForm from "../../modals/MeetingForm";
+import ModalTemplate from "../../../shared/modals/ModalTemplate";
+import MeetingForm from "../form/MeetingForm";
 
 export default function ActionsList({
   displayRoomCode,

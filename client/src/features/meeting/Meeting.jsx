@@ -5,10 +5,10 @@ import { constructCurrentDate } from "../../helpers";
 //Hooks
 import useResponses from "../../hooks/useResponses";
 //Components
-import LoadingSpinner from "../utilities/LoadingSpinner";
+import LoadingSpinner from "../../shared/LoadingSpinner";
 import AdminResponses from "./meeting-responses/AdminResponses";
 import Responses from "./meeting-responses/Responses";
-import ActionsMenu from "../utilities/user-actions/ActionsMenu";
+import ActionsMenu from "./user-actions/ActionsMenu";
 
 export default function Meeting() {
   const user = useContext(UserContext);

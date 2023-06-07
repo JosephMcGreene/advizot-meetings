@@ -1,13 +1,17 @@
 import { createContext } from "react";
 //Assets
 import "./assets/scss/App.scss";
+//External
+import { Routes, Route, Navigate } from "react-router-dom";
 //Hooks
 import useUser from "./hooks/useUser";
 //Components
-import LoadingSpinner from "./components/utilities/LoadingSpinner";
-import Header from "./components/Header";
-import MainContent from "./components/MainContent";
-import Footer from "./components/Footer";
+import LoadingSpinner from "./shared/LoadingSpinner";
+import Welcome from "./shared/Welcome";
+import UsersOnly from "./features/meeting/UsersOnly";
+import Meeting from "./features/meeting/Meeting";
+import Header from "./shared/Header";
+import Footer from "./shared/Footer";
 
 //Logged-in user data context:
 export const UserContext = createContext();
@@ -25,11 +29,32 @@ export default function App() {
     <div className="App">
       <UserContext.Provider value={user}>
         <Header />
-        <MainContent
-          onSubmitRoomCode={(enteredCode) => {
-            fetchUser("post", "/roomCode/roomCode", { enteredCode });
-          }}
-        />
+        <main className="main-content">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                user.advizotID ? <Navigate to="/meeting" /> : <Welcome />
+              }
+            />
+
+            <Route
+              path="/roomCode"
+              element={
+                <UsersOnly
+                  onSubmitRoomCode={(enteredCode) => {
+                    fetchUser("post", "/roomCode/roomCode", { enteredCode });
+                  }}
+                />
+              }
+            />
+
+            <Route
+              path="/meeting"
+              element={user.advizotID ? <Meeting /> : <Navigate to="/" />}
+            />
+          </Routes>
+        </main>
         <Footer />
       </UserContext.Provider>
     </div>
