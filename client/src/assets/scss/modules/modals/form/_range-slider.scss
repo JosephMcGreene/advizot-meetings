@@ -20,6 +20,8 @@ input[type="range"] {
 //* ===== THUMB =====
 //===== Webkit =====
 input[type="range"]::-webkit-slider-thumb {
+  @include specialBoxShadow();
+
   -webkit-appearance: none;
 
   height: 30px;
@@ -28,10 +30,6 @@ input[type="range"]::-webkit-slider-thumb {
   background: $advizot-color;
   cursor: grab;
   transform: skew(-9deg);
-  box-shadow:
-		// "3D" shadows on slider thumb; black, white
-    inset -1px -1px 6px rgba(0, 0, 0, 0.7),
-    inset 1px 1px 7px rgba(255, 255, 255, 0.9), 0 2px 3px rgba(0, 0, 0, 0.3);
 }
 input[type="range"]::-webkit-slider-thumb:hover {
   @include btnHover();
@@ -43,18 +41,16 @@ input[type="range"]::-webkit-slider-thumb:active {
 }
 //===== Mozilla =====
 input[type="range"]::-moz-range-thumb {
+  @include specialBoxShadow();
+
   border: none;
   height: 30px;
   width: 28px;
   border-radius: 10px 0 10px 0;
-  transform: skew(-15deg);
   background: $advizot-color;
   cursor: grab;
+
   transform: skew(-9deg);
-  box-shadow:
-	// "3D" shadows on slider thumb; black, white
-    inset -1px -1px 6px rgba(0, 0, 0, 0.7),
-    inset 1px 1px 7px rgba(255, 255, 255, 0.9);
   transition-property: background-color;
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;

@@ -107,3 +107,26 @@ a {
     height: 1.95rem;
   }
 }
+
+::-webkit-scrollbar {
+  width: 1em;
+}
+::-webkit-scrollbar-track {
+  @include borderRadius();
+
+  background-color: $advizot-light;
+  margin-block: 0.25em;
+}
+::-webkit-scrollbar-thumb {
+  @include borderRadius();
+  @include specialBoxShadow();
+
+  background-color: $advizot-color;
+}
+
+@supports (scrollbar-color: red blue) {
+  * {
+    scrollbar-color: $advizot-color $advizot-light;
+    scrollbar-width: auto;
+  }
+}

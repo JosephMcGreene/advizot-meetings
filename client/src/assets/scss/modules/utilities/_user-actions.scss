@@ -15,7 +15,6 @@
 
   .user-action-btn {
     margin-left: auto;
-
     width: 65px;
     height: 65px;
     border-radius: 45% 0 45% 0;
@@ -34,6 +33,10 @@
 
   .actions-list {
     @include borderSides();
+
+    z-index: $top;
+    background-color: $light-bg;
+
     list-style: none;
 
     display: flex;

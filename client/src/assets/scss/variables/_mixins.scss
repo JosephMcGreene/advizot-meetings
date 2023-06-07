@@ -37,6 +37,12 @@
   transition-duration: 130ms;
 }
 
+@mixin specialBoxShadow() {
+  // "3D" shadows
+  box-shadow: inset -1px -1px 6px rgba(0, 0, 0, 0.7),
+    inset 1px 1px 7px rgba(255, 255, 255, 0.9);
+}
+
 //Login Buttons
 @mixin loginHover($color) {
   background-color: var.$light-bg;
