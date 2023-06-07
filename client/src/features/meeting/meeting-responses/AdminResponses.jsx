@@ -1,7 +1,11 @@
 //External
 import { motion } from "framer-motion";
 //Components
+<<<<<<< HEAD:client/src/components/pages/meeting-responses/AdminResponses.jsx
 import RoomCodeDisplay from "../RoomCodeDisplay";
+=======
+import RoomCodeDisplay from "../room-code/RoomCodeDisplay";
+>>>>>>> project-structure:client/src/features/meeting/meeting-responses/AdminResponses.jsx
 
 export default function AdminResponses({ roomCodeDisplayed, sortedResponses }) {
   return (

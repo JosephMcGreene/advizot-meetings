@@ -1,4 +1,4 @@
-import trashCan from "../../assets/img/trash-can-solid.svg";
+import trashCan from "../../../assets/img/trash-can-solid.svg";
 
 export default function DeleteButton({ responseID, onDelete }) {
   return (

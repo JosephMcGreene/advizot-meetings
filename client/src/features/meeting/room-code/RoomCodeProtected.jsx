@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { UserContext } from "../../App";
+import { UserContext } from "../../../App";
 //Components
-import RoomCodeEntry from "../pages/RoomCodeEntry";
+import RoomCodeEntry from "./RoomCodeEntry";
 
 export default function RoomCodePrompt({ onSubmitRoomCode, children }) {
   const user = useContext(UserContext);
