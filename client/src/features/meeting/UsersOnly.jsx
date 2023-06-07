@@ -3,8 +3,8 @@ import { UserContext } from "../../App";
 //External
 import { Navigate } from "react-router-dom";
 //Components
-import NewRoomCode from "../pages/NewRoomCode";
-import RoomCodePrompt from "./RoomCodePrompt";
+import NewRoomCode from "./room-code/NewRoomCode";
+import RoomCodeProtected from "./room-code/RoomCodeProtected";
 
 export default function UsersOnly({ onSubmitRoomCode }) {
   const user = useContext(UserContext);
@@ -14,8 +14,8 @@ export default function UsersOnly({ onSubmitRoomCode }) {
   if (user.role === "admin") return <NewRoomCode />;
 
   return (
-    <RoomCodePrompt onSubmitRoomCode={onSubmitRoomCode}>
+    <RoomCodeProtected onSubmitRoomCode={onSubmitRoomCode}>
       <Navigate to="/meeting" />
-    </RoomCodePrompt>
+    </RoomCodeProtected>
   );
 }

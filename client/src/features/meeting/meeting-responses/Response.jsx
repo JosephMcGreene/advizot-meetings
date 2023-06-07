@@ -1,7 +1,7 @@
 import { useContext, createContext } from "react";
 import { UserContext } from "../../../App";
 //Components
-import DeleteButton from "../../utilities/DeleteButton";
+import DeleteButton from "./DeleteButton";
 import RatingOrPriority from "./RatingOrPriority";
 import IssueGoal from "./IssueGoal";
 
