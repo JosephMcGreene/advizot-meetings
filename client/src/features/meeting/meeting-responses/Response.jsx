@@ -13,9 +13,9 @@ export default function Response({ userResponseBody, onDelete }) {
   return (
     <UserResponseContext.Provider value={userResponseBody}>
       <li className="response-li">
-        {user.advizotID === userResponseBody.advizotID && (
+        {userResponseBody.userID === user.advizotID && (
           <DeleteButton
-            responseID={userResponseBody.advizotID}
+            responseID={userResponseBody.userID}
             onDelete={onDelete}
           />
         )}

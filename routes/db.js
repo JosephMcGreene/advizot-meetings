@@ -13,19 +13,22 @@ dbRouter
           { group: determineDay() },
           { group: "admin" },
         ]);
-        res.json(responses);
-      } else {
-        const responses = await Response.find().or([
-          { group: req.user.group },
-          { group: "admin" },
-        ]);
-        res.json(responses);
+        return res.json(responses);
       }
+
+      if (determineDay() !== req.user.group) {
+        return res.json([]);
+      }
+
+      const responses = await Response.find().or([
+        { group: req.user.group },
+        { group: "admin" },
+      ]);
+      return res.json(responses);
     } catch (err) {
       throw err;
     }
   })
-  //Used to post both new responses and edit existing responses if there is already one in the db with a matching _id
   .post(async function (req, res) {
     try {
       if (req.body._id) {
@@ -42,7 +45,7 @@ dbRouter
         monthlyGoal: req.body.monthlyGoal,
         date: Date.now(),
         group: req.user.group,
-        advizotID: req.user.advizotID,
+        userID: req.user.advizotID,
       });
       await newUserResponse.save();
 
@@ -54,7 +57,7 @@ dbRouter
   .delete(async function (req, res) {
     try {
       const deletionRes = await Response.deleteOne({
-        advizotID: req.body.responseID,
+        userID: req.body.responseID,
       });
 
       res.json(deletionRes);

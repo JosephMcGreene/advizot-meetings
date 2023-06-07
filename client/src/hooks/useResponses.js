@@ -66,7 +66,7 @@ export default function useResponses(method, url, data = null) {
 
       // Make a new array of all responses EXCEPT the one to be deleted
       setResponses(
-        responses.filter((response) => response.advizotID !== responseID)
+        responses.filter((response) => response.userID !== responseID)
       );
     } catch (err) {
       setError(err);
