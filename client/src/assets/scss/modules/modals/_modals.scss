@@ -75,35 +75,38 @@
 }
 
 .signin-btn {
-  button {
-    @include borderRadius();
-    @include transition(all);
+  @include borderRadius();
+  @include transition(all);
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    cursor: pointer;
-    width: 100%;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    background-color: $advizot-color;
-    color: black;
-    padding: 1rem 1.25rem;
+  cursor: pointer;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  background-color: $advizot-color;
+  color: black;
+  padding: 1rem 1.25rem;
 
-    .logo {
-      width: 30px;
-      margin: 0 7px;
-    }
-    label {
-      margin: 0 auto;
-    }
+  .logo {
+    width: 30px;
+    margin: 0 7px;
+  }
+  label {
+    margin: 0 auto;
   }
 
-  .linkedin-hover:hover {
-    @include loginHover(#0077b5);
+  &:focus,
+  &:focus-visible {
+    @include onFocus();
   }
-  .google-hover:hover {
-    @include loginHover(#34a853);
-  }
+}
+
+.linkedin-hover:hover {
+  @include loginHover(#0077b5);
+}
+.google-hover:hover {
+  @include loginHover(#34a853);
 }

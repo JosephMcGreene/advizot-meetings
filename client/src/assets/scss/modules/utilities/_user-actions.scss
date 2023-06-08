@@ -22,12 +22,17 @@
     box-shadow: $header-shadow;
     cursor: pointer;
 
+    .dots-icon {
+      width: 9px;
+    }
+
     &:hover {
       @include btnHover();
     }
 
-    .dots-icon {
-      width: 9px;
+    &:focus,
+    &:focus-visible {
+      @include onFocus();
     }
   }
 
@@ -48,6 +53,8 @@
     box-shadow: $header-shadow;
 
     .actions-item {
+      @include borderRadius();
+
       .actions-btn {
         @include borderRadius();
 
@@ -76,6 +83,11 @@
           width: 25px;
           margin-left: auto;
         }
+      }
+
+      &:focus,
+      &:focus-visible {
+        @include onFocus();
       }
     }
   }

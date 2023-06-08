@@ -27,7 +27,8 @@
 }
 
 @mixin onFocus() {
-  box-shadow: 0 0 12px var.$advizot-color, inset 0 0 9px var.$advizot-color;
+  box-shadow: 0 0 15px var.$advizot-color, inset 0 0 9px var.$advizot-color;
+  outline: 2px solid var.$text-primary;
 }
 
 @mixin btnHover() {
@@ -45,6 +46,8 @@
 
 //Login Buttons
 @mixin loginHover($color) {
+  @include transition(border-radius outline background-color);
+
   background-color: var.$light-bg;
   outline: 2px solid $color;
   border-radius: 30px;

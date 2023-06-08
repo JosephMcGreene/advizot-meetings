@@ -12,7 +12,7 @@ export default function Response({ userResponseBody, onDelete }) {
 
   return (
     <UserResponseContext.Provider value={userResponseBody}>
-      <li className="response-li">
+      <li className="response-li" tabindex="0">
         {userResponseBody.userID === user.advizotID && (
           <DeleteButton
             responseID={userResponseBody.userID}

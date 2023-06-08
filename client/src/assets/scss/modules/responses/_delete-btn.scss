@@ -15,6 +15,13 @@
     @include btnHover();
   }
 
+  &:focus,
+  &:focus-visible {
+    @include onFocus();
+
+    display: block;
+  }
+
   .delete-icon {
     width: 1.25rem;
   }

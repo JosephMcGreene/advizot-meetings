@@ -32,7 +32,7 @@ export default function ActionsList({
         ref={actionsRef}
         className="actions-list"
       >
-        <li className="actions-item">
+        <li className="actions-item" tabindex="1">
           <button
             onClick={() => setFormDisplayed(!formDisplayed)}
             className="actions-btn"
@@ -58,7 +58,7 @@ export default function ActionsList({
         )}
 
         {user.role === "admin" ? (
-          <li className="actions-item">
+          <li className="actions-item" tabindex="2">
             <button onClick={() => displayRoomCode()} className="actions-btn">
               <span className="actions-label">Show Room Code</span>
               <img src={lockIcon} alt="Key" className="actions-list-icon" />

@@ -18,7 +18,9 @@ export default function Header() {
           <li className="nav-item">
             {user ? (
               <a href="/auth/logout">
-                <button className="btn">Sign out</button>
+                <button className="btn" tabindex="-1">
+                  Sign out
+                </button>
               </a>
             ) : (
               <button

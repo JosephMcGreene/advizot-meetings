@@ -45,10 +45,14 @@ export default function NewRoomCode() {
         meeting?
       </h3>
       <button className="btn" onClick={() => setRoomCode(true)}>
-        <Link to="/meeting">Yes, make a new code</Link>
+        <Link to="/meeting" tabindex="-1">
+          Yes, make a new code
+        </Link>
       </button>
       <button className="btn" onClick={() => setRoomCode(false)}>
-        <Link to="/meeting">No, keep the old code</Link>
+        <Link to="/meeting" tabindex="-1">
+          No, keep the old code
+        </Link>
       </button>
     </div>
   );

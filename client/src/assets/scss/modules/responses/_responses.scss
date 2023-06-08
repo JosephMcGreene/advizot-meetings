@@ -8,7 +8,7 @@
   justify-content: space-evenly;
   gap: 3rem;
 
-  margin: 0 auto;
+  margin: 0 auto 25vh;
 
   .response-li {
     @include borderSides();
@@ -19,6 +19,15 @@
 
     &:hover {
       @include btnHover();
+
+      .delete-btn {
+        display: block;
+      }
+    }
+
+    &:focus,
+    &:focus-visible {
+      @include onFocus();
 
       .delete-btn {
         display: block;

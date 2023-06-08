@@ -36,6 +36,11 @@
 
         .btn {
           padding: 1ch 2.25ch;
+
+          &:focus,
+          &:focus-visible {
+            @include onFocus();
+          }
         }
       }
     }

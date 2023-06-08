@@ -20,7 +20,6 @@
 
   .main-content {
     padding-top: $footer-height;
-    padding-bottom: $footer-height;
   }
   .main-small-padding {
     padding-top: 0;
@@ -38,26 +37,33 @@ body {
   min-height: 100vh;
 }
 
-button {
-  border: none;
-}
+.welcome {
+  @include advizotFont(2rem, 400, 1px);
 
-.meeting-heading {
-  font-family: $advizot-font;
-  font-weight: 400;
   text-align: center;
-  margin: 1.5rem 0;
-  text-decoration: underline;
+  margin-top: 25vh;
 }
 
 .centered-heading {
   text-align: center;
-  padding: 1rem;
+  padding-block: 1.75rem;
 }
 
+.meeting-heading {
+  @include advizotFont(2rem, 400, 0.5px);
+
+  text-align: center;
+  margin-block: 1.75rem;
+  text-decoration: underline;
+}
+
+button {
+  border: none;
+}
 .btn {
   @include advizotFont(1.1rem, bold, 0.5px);
   @include borderRadius();
+
   display: block;
 
   padding: 1ch 3ch; //Will sometimes be overridden in specific instances
@@ -69,45 +75,22 @@ button {
     @include btnHover();
   }
 
-  &:focus {
+  &:focus,
+  &:focus-visible {
     @include onFocus();
   }
 }
 
-.welcome {
-  @include advizotFont(2rem, 400, 1px);
-
-  text-align: center;
-  margin-top: 25vh;
-}
-
 a {
   text-decoration: none;
+  color: $text-primary;
 
   &:visited {
-    color: black;
+    color: $text-primary;
   }
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-
-  height: $footer-height;
-  background-color: $advizot-color;
-  padding: 1.5rem 1.75rem;
-
-  .footer-logo {
-    height: 1.95rem;
-  }
-}
-
+//Scrollbar
 ::-webkit-scrollbar {
   width: 1em;
 }
