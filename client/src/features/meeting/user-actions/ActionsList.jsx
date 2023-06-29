@@ -16,13 +16,12 @@ import MeetingForm from "../form/MeetingForm";
 export default function ActionsList({
   displayRoomCode,
   onFormSubmit,
-  onClose,
+  actionToggle,
 }) {
   const user = useContext(UserContext);
   const [formDisplayed, setFormDisplayed] = useState(false);
-
   const actionsRef = useRef();
-  useOutsideClick(actionsRef, () => onClose());
+  useOutsideClick(actionsRef, () => actionToggle());
 
   return (
     <>

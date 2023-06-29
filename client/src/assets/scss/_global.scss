@@ -92,7 +92,7 @@ a {
 
 //Scrollbar
 ::-webkit-scrollbar {
-  width: 1em;
+  width: 0.8em;
 }
 ::-webkit-scrollbar-track {
   @include borderRadius();

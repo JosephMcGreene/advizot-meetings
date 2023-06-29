@@ -19,10 +19,6 @@
 
     &:hover {
       @include btnHover();
-
-      .delete-btn {
-        display: block;
-      }
     }
 
     &:focus,

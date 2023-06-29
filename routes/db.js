@@ -13,6 +13,9 @@ dbRouter
           { group: determineDay() },
           { group: "admin" },
         ]);
+        //
+        // Also needs to filter out old responses, so only the current meeting's responses are displayed to user
+        //
         return res.json(responses);
       }
 
