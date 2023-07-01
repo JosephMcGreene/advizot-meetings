@@ -1,7 +1,10 @@
+import { useState } from "react";
 //External
 import { motion } from "framer-motion";
 //Components
 import RoomCodeDisplay from "../room-code/RoomCodeDisplay";
+import ActionsMenu from "../user-actions/ActionsMenu";
+import EditPanel from "../user-actions/EditPanel";
 
 export default function AdminResponses({ roomCodeDisplayed, sortedResponses }) {
   return (
@@ -49,6 +52,8 @@ export default function AdminResponses({ roomCodeDisplayed, sortedResponses }) {
 }
 
 function AdminResponse({ userResponseBody }) {
+  const [adminEditPanelShown, setAdminEditPanelShown] = useState(false);
+
   return (
     <tr className="admin-response-row">
       <th scope="row">{userResponseBody.userName}</th>
@@ -58,6 +63,14 @@ function AdminResponse({ userResponseBody }) {
       <td>{userResponseBody.relationships}</td>
       <td>{userResponseBody.monthlyIssue}</td>
       <td>{userResponseBody.monthlyGoal}</td>
+      <td className="admin-actions-container">
+        <ActionsMenu
+          actionToggle={() => setAdminEditPanelShown(!adminEditPanelShown)}
+          className="admin-response-actions"
+        >
+          {adminEditPanelShown && <EditPanel />}
+        </ActionsMenu>
+      </td>
     </tr>
   );
 }

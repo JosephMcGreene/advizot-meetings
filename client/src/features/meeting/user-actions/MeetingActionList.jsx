@@ -13,7 +13,7 @@ import useOutsideClick from "../../../hooks/useOutsideClick";
 import ModalTemplate from "../../../shared/modals/ModalTemplate";
 import MeetingForm from "../form/MeetingForm";
 
-export default function ActionsList({
+export default function MeetingActionList({
   displayRoomCode,
   onFormSubmit,
   actionToggle,

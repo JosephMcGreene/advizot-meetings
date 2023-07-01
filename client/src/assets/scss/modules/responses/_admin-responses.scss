@@ -12,7 +12,6 @@
   letter-spacing: 2px;
 }
 
-.admin-responses,
 .admin-response-head th,
 .admin-response-row th,
 .admin-response-row td {
@@ -34,10 +33,6 @@
     th,
     td {
       text-align: center;
-
-      &:hover {
-        background-color: $advizot-color;
-      }
     }
 
     th {
@@ -49,6 +44,11 @@
       &:nth-child(7) {
         text-align: left;
       }
+    }
+
+    .admin-actions-container {
+      position: relative;
+      border: none;
     }
   }
 }

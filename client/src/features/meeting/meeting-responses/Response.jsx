@@ -4,7 +4,7 @@ import { UserContext } from "../../../App";
 import DeleteButton from "./DeleteButton";
 import RatingOrPriority from "./RatingOrPriority";
 import IssueGoal from "./IssueGoal";
-import EditPanelButton from "./EditPanelButton";
+import ActionsMenu from "../user-actions/ActionsMenu";
 
 export const UserResponseContext = createContext();
 
@@ -21,7 +21,10 @@ export default function Response({ userResponseBody, onDelete }) {
           />
         )}
 
-        <EditPanelButton />
+        <ActionsMenu>
+          {/* <DeleteButton /> */}
+          Hi
+        </ActionsMenu>
 
         <label className="response-name">{userResponseBody.userName}</label>
 

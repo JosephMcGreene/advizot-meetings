@@ -1,7 +1,8 @@
 //Internal
 @use "../../index" as *;
 
-.user-actions {
+.user-actions,
+.admin-response-actions {
   z-index: $top;
 
   position: fixed;
@@ -89,6 +90,22 @@
       &:focus-visible {
         @include onFocus();
       }
+    }
+  }
+}
+
+.admin-response-actions {
+  position: absolute;
+  top: calc(50% - 28px);
+  left: 0.5rem;
+
+  .user-action-btn {
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 50%;
+
+    &:hover {
+      box-shadow: none;
     }
   }
 }

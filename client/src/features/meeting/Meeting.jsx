@@ -9,7 +9,7 @@ import LoadingSpinner from "../../shared/LoadingSpinner";
 import AdminResponses from "./meeting-responses/AdminResponses";
 import Responses from "./meeting-responses/Responses";
 import ActionsMenu from "./user-actions/ActionsMenu";
-import ActionsList from "./user-actions/ActionsList";
+import MeetingActionList from "./user-actions/MeetingActionList";
 
 export default function Meeting() {
   const user = useContext(UserContext);
@@ -40,9 +40,10 @@ export default function Meeting() {
 
       <ActionsMenu
         actionToggle={() => setMeetingActionsShown(!meetingActionsShown)}
+        className="user-actions main-meeting-actions"
       >
         {meetingActionsShown && (
-          <ActionsList
+          <MeetingActionList
             displayRoomCode={() => setRoomCodeDisplayed(!roomCodeDisplayed)}
             onFormSubmit={(responseToSubmit) =>
               submitResponse(responseToSubmit)
