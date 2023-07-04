@@ -1,0 +1,13 @@
+@use "../../index" as *;
+
+.admin-table-cell {
+  position: relative;
+
+  .edit-pen {
+    position: absolute;
+    top: 0.35rem;
+    right: 0.35rem;
+
+    max-width: 20px;
+  }
+}
