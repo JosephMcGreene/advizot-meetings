@@ -1,43 +1,34 @@
-import { useState } from "react";
-import editPen from "../../../assets/img/pen-solid.svg";
+import AdminTableCell from "./AdminTableCell";
 
 export default function AdminResponse({ userResponseBody }) {
   return (
     <tr className="admin-response-row">
       <th scope="row">{userResponseBody.userName}</th>
+
       <AdminTableCell
-        responseElement={userResponseBody.priority.substring(1)}
+        userResponse={userResponseBody}
+        responseItem={userResponseBody.priority.substring(1)}
       />
-      <AdminTableCell responseElement={userResponseBody.business} />
-      <AdminTableCell responseElement={userResponseBody.personal} />
-      <AdminTableCell responseElement={userResponseBody.relationships} />
-      <AdminTableCell responseElement={userResponseBody.monthlyIssue} />
-      <AdminTableCell responseElement={userResponseBody.monthlyGoal} />
+      <AdminTableCell
+        userResponse={userResponseBody}
+        responseItem={userResponseBody.business}
+      />
+      <AdminTableCell
+        userResponse={userResponseBody}
+        responseItem={userResponseBody.personal}
+      />
+      <AdminTableCell
+        userResponse={userResponseBody}
+        responseItem={userResponseBody.relationships}
+      />
+      <AdminTableCell
+        userResponse={userResponseBody}
+        responseItem={userResponseBody.monthlyIssue}
+      />
+      <AdminTableCell
+        userResponse={userResponseBody}
+        responseItem={userResponseBody.monthlyGoal}
+      />
     </tr>
   );
-}
-
-function AdminTableCell({ responseElement }) {
-  const [editPenShown, setEditPenShown] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
-
-  if (!isEditing) {
-    return (
-      <td
-        onMouseEnter={() => setEditPenShown(true)}
-        onMouseLeave={() => setEditPenShown(false)}
-        onClick={() => setIsEditing(true)}
-        className="admin-table-cell"
-      >
-        {responseElement}
-        {editPenShown && <img src={editPen} alt="pen" className="edit-pen" />}
-      </td>
-    );
-  }
-
-  // if (isEditing) {
-  //   return (
-
-  //   );
-  // }
 }
