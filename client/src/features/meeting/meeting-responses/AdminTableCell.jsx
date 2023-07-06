@@ -1,4 +1,5 @@
 import { useState } from "react";
+//Assets
 import editPen from "../../../assets/img/pen-solid.svg";
 //Hooks
 import useResponses from "../../../hooks/useResponses";
@@ -7,11 +8,11 @@ export default function AdminTableCell({ userResponse, responseItem }) {
   const [editPenShown, setEditPenShown] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [priority, setPriority] = useState(userResponse.priority);
-  const [business, setBusiness] = useState(userResponse.business);
-  const [personal, setPersonal] = useState(userResponse.personal);
-  const [relationships, setRelationships] = useState(userResponse);
-  const [issue, setIssue] = useState(userResponse.monthlyIssue);
-  const [goal, setGoal] = useState(userResponse.monthlyGoal);
+  // const [business, setBusiness] = useState(userResponse.business);
+  // const [personal, setPersonal] = useState(userResponse.personal);
+  // const [relationships, setRelationships] = useState(userResponse);
+  // const [issue, setIssue] = useState(userResponse.monthlyIssue);
+  // const [goal, setGoal] = useState(userResponse.monthlyGoal);
   //eslint-disable-next-line
   const [
     sortedResponses,
