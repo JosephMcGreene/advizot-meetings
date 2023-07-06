@@ -59,7 +59,7 @@ export default function MeetingActionList({
         {user.role === "admin" ? (
           <li className="actions-item" tabindex="2">
             <button onClick={() => displayRoomCode()} className="actions-btn">
-              <span className="actions-label">Show Room Code</span>
+              <span className="actions-label">Toggle Room Code</span>
               <img src={lockIcon} alt="Key" className="actions-list-icon" />
             </button>
           </li>

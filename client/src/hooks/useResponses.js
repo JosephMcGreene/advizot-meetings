@@ -75,11 +75,23 @@ export default function useResponses(method, url, data = null) {
     }
   }
 
+  function submitEdits(itemToEdit, responseID) {
+    console.log(itemToEdit);
+    console.log(responseID);
+  }
+
   //Sort responses to be displayed in order of priority
   const sortedResponses = responses.sort((a, b) => {
     if (a.priority < b.priority) return -1;
     return 1;
   });
 
-  return [sortedResponses, loading, error, submitResponse, deleteResponse];
+  return [
+    sortedResponses,
+    loading,
+    error,
+    submitResponse,
+    deleteResponse,
+    submitEdits,
+  ];
 }

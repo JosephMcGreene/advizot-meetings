@@ -2,6 +2,7 @@ import { useState } from "react";
 //External
 import { motion } from "framer-motion";
 //Components
+import AdminResponse from "./AdminResponse";
 import RoomCodeDisplay from "../room-code/RoomCodeDisplay";
 import ActionsMenu from "../user-actions/ActionsMenu";
 import EditPanel from "../user-actions/EditPanel";
@@ -30,7 +31,7 @@ export default function AdminResponses({ roomCodeDisplayed, sortedResponses }) {
           </thead>
 
           <tbody className="admin-response-body">
-            {sortedResponses.map((response) => {
+            {sortedResponses.map((response, index) => {
               return (
                 <AdminResponse
                   key={
@@ -38,7 +39,7 @@ export default function AdminResponses({ roomCodeDisplayed, sortedResponses }) {
                     response.personal +
                     response.business +
                     response.relationships +
-                    response.date
+                    index
                   }
                   userResponseBody={response}
                 />
@@ -48,29 +49,5 @@ export default function AdminResponses({ roomCodeDisplayed, sortedResponses }) {
         </motion.table>
       </section>
     </>
-  );
-}
-
-function AdminResponse({ userResponseBody }) {
-  const [adminEditPanelShown, setAdminEditPanelShown] = useState(false);
-
-  return (
-    <tr className="admin-response-row">
-      <th scope="row">{userResponseBody.userName}</th>
-      <td>{userResponseBody.priority.substring(1)}</td>
-      <td>{userResponseBody.business}</td>
-      <td>{userResponseBody.personal}</td>
-      <td>{userResponseBody.relationships}</td>
-      <td>{userResponseBody.monthlyIssue}</td>
-      <td>{userResponseBody.monthlyGoal}</td>
-      <td className="admin-actions-container">
-        <ActionsMenu
-          actionToggle={() => setAdminEditPanelShown(!adminEditPanelShown)}
-          className="admin-response-actions"
-        >
-          {adminEditPanelShown && <EditPanel />}
-        </ActionsMenu>
-      </td>
-    </tr>
   );
 }
