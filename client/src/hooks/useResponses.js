@@ -34,6 +34,7 @@ export default function useResponses(method = null, url = null, data = null) {
     setLoading(true);
 
     try {
+      console.log(responseToSubmit);
       const submitRes = await axiosFetch(
         "post",
         "/db/responses",

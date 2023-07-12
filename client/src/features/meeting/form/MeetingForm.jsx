@@ -18,16 +18,18 @@ export default function MeetingForm({ onSubmit, onClose, existingResponse }) {
     };
   }
 
+  console.log(existingResponse);
+
   return (
     <div className="modal-body">
       <Formik
         initialValues={{
-          business: existingResponse.business || 0,
-          personal: existingResponse.personal || 0,
-          relationships: existingResponse.relationships || 0,
-          monthlyIssue: existingResponse.monthlyIssue || "",
-          priority: existingResponse.priority || "",
-          monthlyGoal: existingResponse.monthlyGoal || "",
+          business: existingResponse?.business || 0,
+          personal: existingResponse?.personal || 0,
+          relationships: existingResponse?.relationships || 0,
+          monthlyIssue: existingResponse?.monthlyIssue || "",
+          priority: existingResponse?.priority || "",
+          monthlyGoal: existingResponse?.monthlyGoal || "",
         }}
         validationSchema={Yup.object({
           business: Yup.number().test(
@@ -51,6 +53,7 @@ export default function MeetingForm({ onSubmit, onClose, existingResponse }) {
         })}
         onSubmit={(values, actions) => {
           try {
+            values._id = existingResponse?._id;
             onSubmit(values);
             actions.setSubmitting(true);
             onClose();

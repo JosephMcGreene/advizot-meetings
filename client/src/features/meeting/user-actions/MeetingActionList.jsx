@@ -31,7 +31,7 @@ export default function MeetingActionList({
         ref={actionsRef}
         className="actions-list"
       >
-        <li className="actions-item" tabindex="1">
+        <li className="actions-item" tabIndex="1">
           <button
             onClick={() => setFormDisplayed(!formDisplayed)}
             className="actions-btn"
