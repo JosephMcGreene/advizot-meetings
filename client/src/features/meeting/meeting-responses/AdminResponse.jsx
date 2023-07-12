@@ -6,27 +6,27 @@ export default function AdminResponse({ userResponseBody }) {
       <th scope="row">{userResponseBody.userName}</th>
 
       <AdminTableCell
-        userResponse={userResponseBody}
+        userResponseBody={userResponseBody}
         responseItem={userResponseBody.priority.substring(1)}
       />
       <AdminTableCell
-        userResponse={userResponseBody}
+        userResponseBody={userResponseBody}
         responseItem={userResponseBody.business}
       />
       <AdminTableCell
-        userResponse={userResponseBody}
+        userResponseBody={userResponseBody}
         responseItem={userResponseBody.personal}
       />
       <AdminTableCell
-        userResponse={userResponseBody}
+        userResponseBody={userResponseBody}
         responseItem={userResponseBody.relationships}
       />
       <AdminTableCell
-        userResponse={userResponseBody}
+        userResponseBody={userResponseBody}
         responseItem={userResponseBody.monthlyIssue}
       />
       <AdminTableCell
-        userResponse={userResponseBody}
+        userResponseBody={userResponseBody}
         responseItem={userResponseBody.monthlyGoal}
       />
     </tr>

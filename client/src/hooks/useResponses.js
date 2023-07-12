@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { axiosFetch } from "../helpers";
 
-export default function useResponses(method, url, data = null) {
+export default function useResponses(method = null, url = null, data = null) {
   const [responses, setResponses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    getExistingResponses(method, url, data);
+    if (method !== null) getExistingResponses(method, url, data);
   }, [method, url, data]);
 
   /**
@@ -75,23 +75,11 @@ export default function useResponses(method, url, data = null) {
     }
   }
 
-  function submitEdits(itemToEdit, responseID) {
-    console.log(itemToEdit);
-    console.log(responseID);
-  }
-
   //Sort responses to be displayed in order of priority
   const sortedResponses = responses.sort((a, b) => {
     if (a.priority < b.priority) return -1;
     return 1;
   });
 
-  return [
-    sortedResponses,
-    loading,
-    error,
-    submitResponse,
-    deleteResponse,
-    submitEdits,
-  ];
+  return [sortedResponses, loading, error, submitResponse, deleteResponse];
 }

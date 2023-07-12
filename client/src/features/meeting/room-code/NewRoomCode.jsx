@@ -20,12 +20,12 @@ export default function NewRoomCode() {
         meeting?
       </h3>
       <button className="btn" onClick={() => setRoomCode(true)}>
-        <Link to="/meeting" tabindex="-1">
+        <Link to="/meeting" tabIndex="-1">
           Yes, make a new code
         </Link>
       </button>
       <button className="btn" onClick={() => setRoomCode(false)}>
-        <Link to="/meeting" tabindex="-1">
+        <Link to="/meeting" tabIndex="-1">
           No, keep the old code
         </Link>
       </button>

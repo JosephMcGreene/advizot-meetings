@@ -6,7 +6,7 @@ import InputField from "./InputField";
 import Select from "./Select";
 import LoadingSpinner from "../../../shared/LoadingSpinner";
 
-export default function MeetingForm({ onSubmit, onClose }) {
+export default function MeetingForm({ onSubmit, onClose, existingResponse }) {
   /**
    * Returns how much an input slider's background should be filled up based on where the user has dragged the thumb
    * @param {Number} value The current value of the range-slider, used as a basis to calculate how much of the background of the slider needs to be filled
@@ -22,12 +22,12 @@ export default function MeetingForm({ onSubmit, onClose }) {
     <div className="modal-body">
       <Formik
         initialValues={{
-          business: 0,
-          personal: 0,
-          relationships: 0,
-          monthlyIssue: "",
-          priority: "",
-          monthlyGoal: "",
+          business: existingResponse.business || 0,
+          personal: existingResponse.personal || 0,
+          relationships: existingResponse.relationships || 0,
+          monthlyIssue: existingResponse.monthlyIssue || "",
+          priority: existingResponse.priority || "",
+          monthlyGoal: existingResponse.monthlyGoal || "",
         }}
         validationSchema={Yup.object({
           business: Yup.number().test(
@@ -52,7 +52,7 @@ export default function MeetingForm({ onSubmit, onClose }) {
         onSubmit={(values, actions) => {
           try {
             onSubmit(values);
-            actions.setSubmitting(false);
+            actions.setSubmitting(true);
             onClose();
           } catch (error) {
             console.error(error);
