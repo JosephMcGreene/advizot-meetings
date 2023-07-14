@@ -4,10 +4,14 @@ import { motion } from "framer-motion";
 import AdminResponse from "./AdminResponse";
 import RoomCodeDisplay from "../room-code/RoomCodeDisplay";
 
-export default function AdminResponses({ roomCodeDisplayed, sortedResponses }) {
+export default function AdminResponses({
+  roomCodeDisplayed,
+  visibleResponses,
+}) {
   return (
     <>
       {roomCodeDisplayed && <RoomCodeDisplay />}
+      {console.log(visibleResponses)}
 
       <section className="responses-section">
         <motion.table
@@ -28,7 +32,7 @@ export default function AdminResponses({ roomCodeDisplayed, sortedResponses }) {
           </thead>
 
           <tbody className="admin-response-body">
-            {sortedResponses.map((response, index) => {
+            {visibleResponses.map((response, index) => {
               return (
                 <AdminResponse
                   key={

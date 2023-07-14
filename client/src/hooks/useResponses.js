@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { axiosFetch } from "../helpers";
 
 export default function useResponses(method = null, url = null, data = null) {
@@ -34,19 +34,24 @@ export default function useResponses(method = null, url = null, data = null) {
     setLoading(true);
 
     try {
-      console.log(responseToSubmit);
       const submitRes = await axiosFetch(
         "post",
         "/db/responses",
         responseToSubmit
       );
 
-      const newResponses = responses.filter(
-        (response) => response._id !== responseToSubmit._id
-      );
+      // setResponses((prevResponses) => {
+      //   prevResponses.filter(
+      //     (response) => response._id !== responseToSubmit._id
+      //   );
+      // });
 
-      newResponses.push(submitRes.data);
-      setResponses(newResponses);
+      // const newResponses = responses.filter(
+      //   (response) => response._id !== responseToSubmit._id
+      // );
+
+      // newResponses.push(submitRes.data);
+      // setResponses(newResponses);
     } catch (err) {
       setError(err);
     } finally {
@@ -82,5 +87,9 @@ export default function useResponses(method = null, url = null, data = null) {
     return 1;
   });
 
-  return [sortedResponses, loading, error, submitResponse, deleteResponse];
+  const visibleResponses = useMemo(() => {
+    return sortedResponses;
+  }, [sortedResponses]);
+
+  return [visibleResponses, loading, error, submitResponse, deleteResponse];
 }

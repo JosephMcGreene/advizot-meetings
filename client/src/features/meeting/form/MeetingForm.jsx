@@ -18,8 +18,6 @@ export default function MeetingForm({ onSubmit, onClose, existingResponse }) {
     };
   }
 
-  console.log(existingResponse);
-
   return (
     <div className="modal-body">
       <Formik
