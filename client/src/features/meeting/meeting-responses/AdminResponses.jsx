@@ -11,7 +11,6 @@ export default function AdminResponses({
   return (
     <>
       {roomCodeDisplayed && <RoomCodeDisplay />}
-      {console.log(visibleResponses)}
 
       <section className="responses-section">
         <motion.table

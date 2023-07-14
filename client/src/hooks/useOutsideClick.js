@@ -11,10 +11,10 @@ export default function useOutsideClick(elementRef, callback) {
       }
     }
 
-    document.addEventListener("click", handleOutsideClick, true);
+    document.addEventListener("mousedown", handleOutsideClick, true);
 
     return () => {
-      document.removeEventListener("click", handleOutsideClick, true);
+      document.removeEventListener("mousedown", handleOutsideClick, true);
     };
   }, [callbackRef, elementRef]);
 }
