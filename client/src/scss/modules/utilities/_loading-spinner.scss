@@ -5,18 +5,18 @@
   display: flex;
   place-items: center;
 
-  aspect-ratio: 1;
   width: 75px;
+  height: 75px;
   border-radius: 50%;
   background-color: transparent;
   border: 10px solid $advizot-color;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   margin: auto;
-  animation: bigSpin 1s ease-in-out infinite;
+  animation: spin 1s ease-in-out infinite;
 }
 
-@keyframes bigSpin {
+@keyframes spin {
   from {
     transform: rotate(0deg);
   }

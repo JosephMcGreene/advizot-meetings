@@ -4,8 +4,8 @@
   @include borderRadius();
 
   background-color: $advizot-light;
-  aspect-ratio: 1;
   width: 2rem;
+  height: 2rem;
   cursor: pointer;
 
   &:hover {

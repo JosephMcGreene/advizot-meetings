@@ -34,7 +34,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-width: 320px;
-  min-height: 100vh;
 }
 
 .welcome {
@@ -63,6 +62,7 @@ button {
 .btn {
   @include advizotFont(1.1rem, bold, 0.5px);
   @include borderRadius();
+  @include transition(box-shadow);
 
   display: block;
 
@@ -92,7 +92,7 @@ a {
 
 //Scrollbar
 ::-webkit-scrollbar {
-  width: 0.8em;
+  width: 0.7em;
 }
 ::-webkit-scrollbar-track {
   @include borderRadius();

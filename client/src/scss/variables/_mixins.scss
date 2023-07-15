@@ -1,7 +1,9 @@
-@use "./variables" as var;
+@use "./colors" as colors;
+@use "./box-mods" as sizes;
+@use "./fonts" as fonts;
 
 @mixin advizotFont($size, $weight, $spacing) {
-  font-family: var.$advizot-font;
+  font-family: fonts.$advizot-font;
   font-size: $size;
   font-weight: $weight;
   letter-spacing: $spacing;
@@ -14,7 +16,7 @@
 }
 
 @mixin borderRadius() {
-  border-radius: var.$border-radius 0 var.$border-radius 0;
+  border-radius: sizes.$border-radius 0 sizes.$border-radius 0;
 }
 
 @mixin borderSides() {
@@ -27,13 +29,12 @@
 }
 
 @mixin onFocus() {
-  box-shadow: 0 0 15px var.$advizot-color, inset 0 0 9px var.$advizot-color;
-  outline: 2px solid var.$text-primary;
+  box-shadow: 0 0 15px colors.$advizot-color,
+    inset 0 0 9px colors.$advizot-color;
+  outline: 2px solid colors.$text-primary;
 }
 
 @mixin btnHover() {
-  @include transition(all);
-
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   transition-duration: 130ms;
 }
@@ -48,7 +49,7 @@
 @mixin loginHover($color) {
   @include transition(border-radius outline background-color);
 
-  background-color: var.$light-bg;
+  background-color: colors.$light-bg;
   outline: 2px solid $color;
   border-radius: 30px;
   color: $color;

@@ -38,9 +38,9 @@
   margin-top: 0.15rem;
   padding: $padding;
   background-color: $light-bg;
+  font-family: inherit;
   font-size: inherit;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  font-family: inherit;
 }
 
 .rating-select {
@@ -82,10 +82,10 @@
     @include borderSides();
 
     font-family: inherit;
-    padding: $padding;
     text-align: center;
     width: 220px;
     margin: auto;
+    padding: $padding;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   }
 }
