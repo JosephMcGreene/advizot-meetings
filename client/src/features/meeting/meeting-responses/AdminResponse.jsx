@@ -13,7 +13,7 @@ export default function AdminResponse({ userResponseBody }) {
       onMouseLeave={() => setDeleteBtnShown(false)}
     >
       <th scope="row" className="admin-row-th">
-        {deleteBtnShown && <DeleteButton />}
+        {deleteBtnShown && <DeleteButton responseID={userResponseBody._id} />}
         {userResponseBody.userName}
       </th>
 

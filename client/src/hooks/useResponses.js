@@ -83,7 +83,7 @@ export default function useResponses(method = null, url = null, data = null) {
 
       // Make a new array of all responses EXCEPT the one to be deleted
       setResponses(
-        responses.filter((response) => response.userID !== responseID)
+        visibleResponses.filter((response) => response._id !== responseID)
       );
     } catch (err) {
       setError(err);

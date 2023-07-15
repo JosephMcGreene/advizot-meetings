@@ -60,7 +60,7 @@ dbRouter
   .delete(async function (req, res) {
     try {
       const deletionRes = await Response.deleteOne({
-        userID: req.body.responseID,
+        _id: req.body.responseID,
       });
 
       res.json(deletionRes);
