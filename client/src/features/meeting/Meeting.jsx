@@ -14,7 +14,7 @@ import MeetingActionList from "./user-actions/MeetingActionList";
 export default function Meeting() {
   const user = useContext(UserContext);
   //eslint-disable-next-line
-  const [visibleResponses, loading, error, submitResponse, deleteResponse] =
+  const [responses, loading, error, submitResponse, deleteResponse] =
     useResponses("get", "/db/responses");
   const [roomCodeDisplayed, setRoomCodeDisplayed] = useState(false);
   const [meetingActionsShown, setMeetingActionsShown] = useState(false);
@@ -28,12 +28,12 @@ export default function Meeting() {
       {user.role === "admin" && (
         <AdminResponses
           roomCodeDisplayed={roomCodeDisplayed}
-          visibleResponses={visibleResponses}
+          responses={responses}
         />
       )}
       {user.role === "member" && (
         <Responses
-          visibleResponses={visibleResponses}
+          responses={responses}
           onDelete={(responseID) => deleteResponse(responseID)}
         />
       )}

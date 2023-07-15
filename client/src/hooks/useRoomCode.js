@@ -6,7 +6,7 @@ export default function useRoomCode() {
 
   /**
    * Calls the server to update the room code and send it back to the user, or only send the existing room code, then updatews the user's local storage with the new room code
-   * @param {boolean} needNewCode whether or not the user has decided to create a new room code
+   * @param   {boolean} needNewCode Whether or not the user has decided to create a new room code
    */
   async function setRoomCode(needNewCode) {
     try {

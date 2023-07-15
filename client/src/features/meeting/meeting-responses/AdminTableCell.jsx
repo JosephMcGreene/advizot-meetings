@@ -11,7 +11,7 @@ export default function AdminTableCell({ userResponseBody, responseItem }) {
   const [editPenShown, setEditPenShown] = useState(false);
   const [meetingFormShown, setMeetingFormShown] = useState(false);
   //eslint-disable-next-line
-  const [sortedResponses, loading, error, submitResponse, deleteResponse] =
+  const [responses, loading, error, submitResponse, deleteResponse] =
     useResponses();
 
   return (

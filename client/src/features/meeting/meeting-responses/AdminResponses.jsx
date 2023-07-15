@@ -4,10 +4,7 @@ import { motion } from "framer-motion";
 import AdminResponse from "./AdminResponse";
 import RoomCodeDisplay from "../room-code/RoomCodeDisplay";
 
-export default function AdminResponses({
-  roomCodeDisplayed,
-  visibleResponses,
-}) {
+export default function AdminResponses({ roomCodeDisplayed, responses }) {
   return (
     <>
       {roomCodeDisplayed && <RoomCodeDisplay />}
@@ -31,16 +28,10 @@ export default function AdminResponses({
           </thead>
 
           <tbody className="admin-response-body">
-            {visibleResponses.map((response, index) => {
+            {responses.map((response, index) => {
               return (
                 <AdminResponse
-                  key={
-                    response.priority +
-                    response.personal +
-                    response.business +
-                    response.relationships +
-                    index
-                  }
+                  key={`${response.date}${index}`}
                   userResponseBody={response}
                 />
               );
