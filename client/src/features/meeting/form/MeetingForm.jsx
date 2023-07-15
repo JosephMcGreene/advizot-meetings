@@ -8,9 +8,11 @@ import LoadingSpinner from "../../../shared/LoadingSpinner";
 
 export default function MeetingForm({ onSubmit, onClose, existingResponse }) {
   /**
-   * Returns how much an input slider's background should be filled up based on where the user has dragged the thumb
-   * @param {Number} value The current value of the range-slider, used as a basis to calculate how much of the background of the slider needs to be filled
-   * @returns {Object} A styles object specifying the percentage of the background should be orange.
+   * Determines the percentage of an input slider's background that should be filled up based on where the user has dragged the thumb
+   *
+   * @param {number} value The current value of the range-slider, used as a basis to calculate how much of the background of the slider needs to be filled
+   *
+   * @returns {Object} A styles object specifying the percentage of the background that should be filled in.
    */
   function getSliderSize(value) {
     return {

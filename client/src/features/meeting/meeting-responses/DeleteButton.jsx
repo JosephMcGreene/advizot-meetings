@@ -5,7 +5,7 @@ export default function DeleteButton({ responseID, onDelete }) {
     <button
       className="delete-btn"
       onClick={() => onDelete(responseID)}
-      tabindex="0"
+      tabIndex="0"
     >
       <img src={trashCan} alt="Delete Response" className="delete-icon" />
     </button>
