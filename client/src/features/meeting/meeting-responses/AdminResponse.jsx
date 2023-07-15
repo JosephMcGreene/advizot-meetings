@@ -1,9 +1,21 @@
+import { useState } from "react";
+//Components
 import AdminTableCell from "./AdminTableCell";
+import DeleteButton from "./DeleteButton";
 
 export default function AdminResponse({ userResponseBody }) {
+  const [deleteBtnShown, setDeleteBtnShown] = useState(false);
+
   return (
-    <tr className="admin-response-row">
-      <th scope="row">{userResponseBody.userName}</th>
+    <tr
+      className="admin-response-row"
+      onMouseEnter={() => setDeleteBtnShown(true)}
+      onMouseLeave={() => setDeleteBtnShown(false)}
+    >
+      <th scope="row" className="admin-row-th">
+        {deleteBtnShown && <DeleteButton />}
+        {userResponseBody.userName}
+      </th>
 
       <AdminTableCell
         userResponseBody={userResponseBody}

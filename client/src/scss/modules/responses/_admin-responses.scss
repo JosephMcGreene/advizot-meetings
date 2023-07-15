@@ -30,6 +30,8 @@
   }
 
   .admin-response-row {
+    position: relative;
+
     th,
     td {
       text-align: center;
@@ -46,9 +48,25 @@
       }
     }
 
-    .admin-actions-container {
-      position: relative;
-      border: none;
+    &:hover {
+      .admin-row-th {
+        text-align: right;
+      }
+    }
+
+    .delete-btn {
+      $size: 40px;
+
+      position: absolute;
+      top: calc(50% - ($size / 2));
+      left: 2px;
+
+      width: $size;
+      height: $size;
+
+      .delete-icon {
+        width: 18px;
+      }
     }
   }
 }
