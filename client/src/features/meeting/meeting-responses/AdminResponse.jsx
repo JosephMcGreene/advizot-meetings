@@ -1,4 +1,6 @@
 import { useState } from "react";
+//External
+import { motion } from "framer-motion";
 //Components
 import AdminTableCell from "./AdminTableCell";
 import DeleteButton from "./DeleteButton";
@@ -14,7 +16,7 @@ export default function AdminResponse({ userResponseBody }) {
     >
       <th scope="row" className="admin-row-th">
         {deleteBtnShown && <DeleteButton responseID={userResponseBody._id} />}
-        {userResponseBody.userName}
+        <h4 className="admin-row-name">{userResponseBody.userName}</h4>
       </th>
 
       <AdminTableCell

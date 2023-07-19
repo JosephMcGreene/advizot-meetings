@@ -32,12 +32,11 @@
   .admin-response-row {
     position: relative;
 
-    th,
     td {
       text-align: center;
     }
 
-    th {
+    .admin-row-th {
       cursor: pointer;
     }
 
@@ -59,7 +58,7 @@
 
       position: absolute;
       top: calc(50% - ($size / 2));
-      left: 2px;
+      left: 0.5ch;
 
       width: $size;
       height: $size;
