@@ -12,59 +12,65 @@
   letter-spacing: 2px;
 }
 
-.admin-response-head th,
-.admin-response-row th,
-.admin-response-row td {
+.admin-responses,
+.admin-response-head tr th,
+.admin-response-row,
+.admin-table-cell {
   border: 1px solid black;
 }
 
 .admin-responses {
   border-collapse: collapse;
   margin: $form-padding auto;
-  width: 85vw;
+  width: 90vw;
 
   .admin-response-head th,
-  .admin-response-row th,
-  .admin-response-row td {
+  .admin-response-row td,
+  .admin-row-th {
     padding: calc($form-padding / 2);
   }
 
   .admin-response-row {
-    position: relative;
-
     td {
       text-align: center;
-    }
+      max-width: 300px;
 
-    .admin-row-th {
-      cursor: pointer;
-    }
-
-    td {
       &:nth-child(6),
       &:nth-child(7) {
         text-align: left;
       }
     }
 
-    &:hover {
-      .admin-row-th {
-        text-align: right;
+    .admin-row-th {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      gap: 0.5rem;
+
+      cursor: pointer;
+
+      .admin-row-name {
+        align-self: center;
+        margin: auto 0;
+      }
+
+      .delete-btn {
+        $size: 40px;
+
+        width: $size;
+        height: $size;
+
+        .delete-icon {
+          width: 18px;
+        }
       }
     }
 
-    .delete-btn {
-      $size: 40px;
-
-      position: absolute;
-      top: calc(50% - ($size / 2));
-      left: 0.5ch;
-
-      width: $size;
-      height: $size;
-
-      .delete-icon {
-        width: 18px;
+    &:hover {
+      .admin-row-th {
+        .admin-row-name {
+          text-align: right;
+        }
       }
     }
   }
