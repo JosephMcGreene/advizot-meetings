@@ -9,36 +9,30 @@ export default function AdminResponses({ roomCodeDisplayed, responses }) {
     <>
       {roomCodeDisplayed && <RoomCodeDisplay />}
 
-      <section className="responses-section">
-        <motion.table
-          layout
-          transition={{ type: "tween", stiffness: 10, duration: 0.1 }}
-          className="admin-responses"
-        >
-          <thead className="admin-response-head">
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Priority</th>
-              <th scope="col">Business</th>
-              <th scope="col">Personal</th>
-              <th scope="col">Relationships</th>
-              <th scope="col">Issue</th>
-              <th scope="col">Goal</th>
-            </tr>
-          </thead>
+      <motion.section
+        layout
+        transition={{ type: "tween", stiffness: 10, duration: 0.1 }}
+        className="admin-responses"
+      >
+        <ul className="admin-head">
+          <li className="admin-heading">Name</li>
+          <li className="admin-heading">Priority</li>
+          <li className="admin-heading">Business</li>
+          <li className="admin-heading">Personal</li>
+          <li className="admin-heading">People</li>
+          <li className="admin-heading">Issue</li>
+          <li className="admin-heading">Goal</li>
+        </ul>
 
-          <tbody className="admin-response-body">
-            {responses.map((response, index) => {
-              return (
-                <AdminResponse
-                  key={`${response.date}${index}`}
-                  userResponseBody={response}
-                />
-              );
-            })}
-          </tbody>
-        </motion.table>
-      </section>
+        {responses.map((response, index) => {
+          return (
+            <AdminResponse
+              key={`${response.date}${index}`}
+              userResponseBody={response}
+            />
+          );
+        })}
+      </motion.section>
     </>
   );
 }

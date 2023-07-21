@@ -20,7 +20,7 @@ export default function AdminTableCell({ userResponseBody, responseItem }) {
         onMouseEnter={() => setEditPenShown(true)}
         onMouseLeave={() => setEditPenShown(false)}
         onClick={() => setMeetingFormShown(true)}
-        className="admin-table-cell"
+        className="admin-info-cell"
       >
         {responseItem}
         {editPenShown && <img src={editPen} alt="edit" className="edit-pen" />}

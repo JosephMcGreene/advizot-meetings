@@ -12,28 +12,42 @@
   letter-spacing: 2px;
 }
 
-.admin-responses,
-.admin-response-head tr th,
-.admin-response-row,
-.admin-table-cell {
-  border: 1px solid black;
-}
-
 .admin-responses {
-  border-collapse: collapse;
   margin: $form-padding auto;
   width: 90vw;
 
-  .admin-response-head th,
-  .admin-response-row td,
-  .admin-row-th {
-    padding: calc($form-padding / 2);
+  .admin-head,
+  .admin-response-row {
+    display: grid;
+    grid-template-columns: 1fr repeat(4, 0.5fr) 1.5fr 1.5fr;
+
+    border: 1px solid black;
+    border-bottom: none;
+  }
+
+  .admin-head .admin-heading,
+  .admin-response-row .admin-info-cell {
+    border-right: 1px solid black;
+    padding: 0.875ch;
+  }
+  .admin-heading:last-child,
+  .admin-info-cell:last-child {
+    border-right: none;
+  }
+
+  .admin-head {
+    list-style: none;
+    text-align: center;
+    background-color: $advizot-color;
+
+    &:first-child {
+      border-radius: 12px 0 0 0;
+    }
   }
 
   .admin-response-row {
     td {
       text-align: center;
-      max-width: 300px;
 
       &:nth-child(6),
       &:nth-child(7) {
@@ -41,7 +55,7 @@
       }
     }
 
-    .admin-row-th {
+    .admin-info-cell {
       display: flex;
       justify-content: space-evenly;
       align-items: center;
@@ -51,7 +65,6 @@
 
       .admin-row-name {
         align-self: center;
-        margin: auto 0;
       }
 
       .delete-btn {
@@ -72,6 +85,11 @@
           text-align: right;
         }
       }
+    }
+
+    &:last-child {
+      border-bottom: 1px solid black;
+      border-radius: 0 0 12px 0;
     }
   }
 }
