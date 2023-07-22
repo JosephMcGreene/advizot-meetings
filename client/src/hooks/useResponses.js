@@ -17,11 +17,11 @@ export default function useResponses(method = null, url = null, data = null) {
    * @param {string} url    Endpoint of the proxy server for the fetch call
    * @param {object} [data] The request body sent to the server, if applicable
    */
-  async function getExistingResponses(method, url, data = null) {
+  async function getExistingResponses(method, url) {
     setLoading(true);
 
     try {
-      const existingResponses = await axiosFetch(method, url, data);
+      const existingResponses = await axiosFetch(method, url);
       setResponses(existingResponses.data);
     } catch (err) {
       setError(err);
@@ -79,9 +79,7 @@ export default function useResponses(method = null, url = null, data = null) {
     setLoading(true);
 
     try {
-      const deleteRes = await axiosFetch("delete", "/db/responses", {
-        responseID,
-      });
+      await axiosFetch("delete", "/db/responses", { responseID });
 
       console.log(responseID);
       // Make a new array of all responses EXCEPT the one to be deleted
