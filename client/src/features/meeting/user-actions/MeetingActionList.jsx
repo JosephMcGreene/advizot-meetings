@@ -56,15 +56,13 @@ export default function MeetingActionList({
           </ModalTemplate>
         )}
 
-        {user.role === "admin" ? (
-          <li className="actions-item" tabindex="2">
+        {user.role === "admin" && (
+          <li className="actions-item" tabIndex="2">
             <button onClick={() => displayRoomCode()} className="actions-btn">
               <span className="actions-label">Toggle Room Code</span>
               <img src={lockIcon} alt="Key" className="actions-list-icon" />
             </button>
           </li>
-        ) : (
-          ""
         )}
       </motion.ul>
     </>
