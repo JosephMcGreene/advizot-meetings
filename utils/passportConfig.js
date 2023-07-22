@@ -29,6 +29,7 @@ passport.use(
     async function (accessToken, refreshToken, profile, done) {
       try {
         const existingUser = await User.findOne({ providerID: profile.id });
+        console.log(profile);
 
         if (existingUser) {
           return done(null, existingUser);
@@ -39,6 +40,7 @@ passport.use(
           firstName: profile.name.givenName,
           lastName: profile.name.familyName,
           linkedin_email: profile.emails[0].value,
+          photo: profile.photos[0].value,
           advizotID: uuidv4(),
           role: userRoles.MEMBER,
           group: determineDay(),
@@ -77,6 +79,7 @@ passport.use(
           firstName: profile.name.givenName,
           lastName: profile.name.familyName,
           google_email: profile.emails[0].value,
+          photo: profile.photos[0].value,
           advizotID: uuidv4(),
           role: userRoles.MEMBER,
           group: determineDay(),
