@@ -16,7 +16,7 @@ export default function AdminTableCell({ userResponseBody, responseItem }) {
 
   return (
     <>
-      <td
+      <p
         onMouseEnter={() => setEditPenShown(true)}
         onMouseLeave={() => setEditPenShown(false)}
         onClick={() => setMeetingFormShown(true)}
@@ -24,7 +24,7 @@ export default function AdminTableCell({ userResponseBody, responseItem }) {
       >
         {responseItem}
         {editPenShown && <img src={editPen} alt="edit" className="edit-pen" />}
-      </td>
+      </p>
       {meetingFormShown && (
         <ModalTemplate
           title="Edit Response"

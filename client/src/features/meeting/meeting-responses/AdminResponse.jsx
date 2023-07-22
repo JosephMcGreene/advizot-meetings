@@ -9,14 +9,14 @@ export default function AdminResponse({ userResponseBody }) {
   const [deleteBtnShown, setDeleteBtnShown] = useState(false);
 
   return (
-    <motion.table
+    <motion.article
       layout
       transition={{ type: "tween", stiffness: 10, duration: 0.1 }}
       className="admin-response-row"
       onMouseEnter={() => setDeleteBtnShown(true)}
       onMouseLeave={() => setDeleteBtnShown(false)}
     >
-      <th className="admin-info-cell">
+      <span className="admin-info-cell">
         {deleteBtnShown && <DeleteButton responseID={userResponseBody._id} />}
         <motion.h4
           layout
@@ -25,7 +25,7 @@ export default function AdminResponse({ userResponseBody }) {
         >
           {userResponseBody.userName}
         </motion.h4>
-      </th>
+      </span>
 
       <AdminTableCell
         userResponseBody={userResponseBody}
@@ -51,6 +51,6 @@ export default function AdminResponse({ userResponseBody }) {
         userResponseBody={userResponseBody}
         responseItem={userResponseBody.monthlyGoal}
       />
-    </motion.table>
+    </motion.article>
   );
 }

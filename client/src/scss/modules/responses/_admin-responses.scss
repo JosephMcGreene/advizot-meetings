@@ -13,21 +13,23 @@
 }
 
 .admin-responses {
+  $border: 1px solid black;
+
   margin: $form-padding auto;
   width: 90vw;
 
   .admin-head,
   .admin-response-row {
     display: grid;
-    grid-template-columns: 1fr repeat(4, 0.5fr) 1.5fr 1.5fr;
+    grid-template-columns: 1.35fr repeat(3, 0.58fr) 0.8fr 1.5fr 1.5fr;
 
-    border: 1px solid black;
+    border: $border;
     border-bottom: none;
   }
 
   .admin-head .admin-heading,
   .admin-response-row .admin-info-cell {
-    border-right: 1px solid black;
+    border-right: $border;
     padding: 0.875ch;
   }
   .admin-heading:last-child,
@@ -46,9 +48,7 @@
   }
 
   .admin-response-row {
-    td {
-      text-align: center;
-
+    p {
       &:nth-child(6),
       &:nth-child(7) {
         text-align: left;
@@ -62,9 +62,11 @@
       gap: 0.5rem;
 
       cursor: pointer;
+      font-size: 1.2rem;
 
       .admin-row-name {
         align-self: center;
+        text-align: center;
       }
 
       .delete-btn {
@@ -77,18 +79,16 @@
           width: 18px;
         }
       }
-    }
 
-    &:hover {
-      .admin-row-th {
-        .admin-row-name {
-          text-align: right;
-        }
+      &:nth-child(6),
+      &:nth-child(7) {
+        display: inline;
+        text-align: left;
       }
     }
 
     &:last-child {
-      border-bottom: 1px solid black;
+      border-bottom: $border;
       border-radius: 0 0 12px 0;
     }
   }

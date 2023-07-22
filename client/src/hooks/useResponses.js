@@ -79,8 +79,11 @@ export default function useResponses(method = null, url = null, data = null) {
     setLoading(true);
 
     try {
-      await axiosFetch("delete", "/db/responses", { responseID });
+      const deleteRes = await axiosFetch("delete", "/db/responses", {
+        responseID,
+      });
 
+      console.log(responseID);
       // Make a new array of all responses EXCEPT the one to be deleted
       setResponses(
         visibleResponses.filter((response) => response._id !== responseID)

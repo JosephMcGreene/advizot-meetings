@@ -19,7 +19,7 @@ export default function AdminResponses({ roomCodeDisplayed, responses }) {
           <li className="admin-heading">Priority</li>
           <li className="admin-heading">Business</li>
           <li className="admin-heading">Personal</li>
-          <li className="admin-heading">People</li>
+          <li className="admin-heading">Relationships</li>
           <li className="admin-heading">Issue</li>
           <li className="admin-heading">Goal</li>
         </ul>

@@ -4,10 +4,12 @@
   position: relative;
 
   .edit-pen {
-    position: absolute;
-    top: 0.35rem;
-    right: 0.35rem;
+    $size: 20px;
 
-    max-width: 20px;
+    position: absolute;
+    top: calc(50% - ($size / 2));
+    right: 5%;
+
+    max-width: $size;
   }
 }
