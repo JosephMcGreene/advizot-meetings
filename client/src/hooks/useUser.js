@@ -20,7 +20,6 @@ export default function useUser(method, url, data = null) {
     try {
       setLoading(true);
       const response = await axiosFetch(method, url, data);
-      console.log(response.data);
       setFetchedData(response.data);
     } catch (err) {
       setError(err);

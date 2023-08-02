@@ -63,7 +63,7 @@ dbRouter
         _id: req.body.responseID,
       });
 
-      res.json(deletionRes);
+      res.json({ deletionRes, responseID: req.body.responseID });
     } catch (err) {
       throw err;
     }
