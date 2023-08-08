@@ -16,6 +16,11 @@ export default function Header() {
         <img src={advizotLogo} alt="Advizot logo" className="logo" />
         <ul className="nav-ul">
           <li className="nav-item">
+            {user && (
+              <img src={user.photo} alt="profile" className="profile-img" />
+            )}
+          </li>
+          <li className="nav-item">
             {user ? (
               <a href="/auth/logout">
                 <button className="btn" tabIndex="-1">

@@ -34,13 +34,15 @@
         margin-right: 1rem;
         cursor: pointer;
 
+        .profile-img {
+          vertical-align: middle;
+          max-width: 55px;
+          border-radius: 100vw;
+          border: 3px solid $advizot-color;
+        }
+
         .btn {
           padding: 1ch 2.25ch;
-
-          &:focus,
-          &:focus-visible {
-            @include onFocus();
-          }
         }
       }
     }

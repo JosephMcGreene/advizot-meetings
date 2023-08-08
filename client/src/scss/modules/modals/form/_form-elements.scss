@@ -11,11 +11,6 @@
     .rangeValue {
       font-size: 1.25rem;
     }
-
-    &:focus,
-    &:focus-visible {
-      @include onFocus();
-    }
   }
 
   .select {
@@ -24,11 +19,6 @@
 
     label {
       text-align: center;
-    }
-
-    &:focus,
-    &:focus-visible {
-      @include onFocus();
     }
   }
 }
@@ -49,11 +39,6 @@
   option {
     text-align: center;
   }
-
-  &:focus,
-  &:focus-visible {
-    @include onFocus();
-  }
 }
 
 .text-input {
@@ -67,11 +52,6 @@
     @include borderSides();
 
     max-width: 100%;
-
-    &:focus,
-    &:focus-visible {
-      @include onFocus();
-    }
   }
 
   label {
