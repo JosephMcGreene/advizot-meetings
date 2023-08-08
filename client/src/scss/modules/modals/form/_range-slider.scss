@@ -12,6 +12,7 @@ input[type="range"] {
 
   &:focus,
   &:focus-visible {
+    @include onFocus();
     outline: none;
   }
 }

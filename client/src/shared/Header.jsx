@@ -16,7 +16,7 @@ export default function Header() {
         <img src={advizotLogo} alt="Advizot logo" className="logo" />
         <ul className="nav-ul">
           <li className="nav-item">
-            {user && (
+            {user.photo && (
               <img src={user.photo} alt="profile" className="profile-img" />
             )}
           </li>

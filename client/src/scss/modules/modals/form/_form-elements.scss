@@ -31,6 +31,11 @@
   font-family: inherit;
   font-size: inherit;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+
+  &:focus,
+  &:focus-visible {
+    @include onFocus();
+  }
 }
 
 .rating-select {
