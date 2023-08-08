@@ -2,6 +2,8 @@ import { useState, useContext } from "react";
 import { UserContext } from "../App";
 //Assets
 import advizotLogo from "../assets/img/original-on-transparent.png";
+//External
+import { Link } from "react-router-dom";
 //Components
 import ModalTemplate from "./modals/ModalTemplate";
 import Login from "./modals/Login";
@@ -17,7 +19,9 @@ export default function Header() {
         <ul className="nav-ul">
           <li className="nav-item">
             {user.photo && (
-              <img src={user.photo} alt="profile" className="profile-img" />
+              <Link to="/profile">
+                <img src={user.photo} alt="profile" className="profile-img" />
+              </Link>
             )}
           </li>
           <li className="nav-item">

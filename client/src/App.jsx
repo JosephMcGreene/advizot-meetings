@@ -7,10 +7,11 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import useUser from "./hooks/useUser";
 //Components
 import LoadingSpinner from "./shared/LoadingSpinner";
+import Header from "./shared/Header";
 import Welcome from "./shared/Welcome";
 import UsersOnly from "./features/meeting/UsersOnly";
 import Meeting from "./features/meeting/Meeting";
-import Header from "./shared/Header";
+import Profile from "./features/profile/Profile";
 
 //Logged-in user data context:
 export const UserContext = createContext();
@@ -53,6 +54,11 @@ export default function App() {
             <Route
               path="/meeting"
               element={user.advizotID ? <Meeting /> : <Navigate to="/" />}
+            />
+
+            <Route
+              path="/profile"
+              element={user.advizotID ? <Profile /> : <Navigate to="/" />}
             />
           </Routes>
         </main>
