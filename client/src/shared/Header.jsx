@@ -19,17 +19,20 @@ export default function Header() {
         <ul className="nav-ul">
           <li className="nav-item">
             {user.photo && (
-              <Link to="/profile">
-                <img src={user.photo} alt="profile" className="profile-img" />
+              <Link to="/profile" className="profile-link">
+                <img
+                  src={user.photo}
+                  alt="profile"
+                  className="profile-img"
+                  tabIndex="-1"
+                />
               </Link>
             )}
           </li>
           <li className="nav-item">
             {user ? (
               <a href="/auth/logout">
-                <button className="btn" tabIndex="-1">
-                  Sign out
-                </button>
+                <button className="btn">Sign out</button>
               </a>
             ) : (
               <button

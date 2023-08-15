@@ -1,6 +1,6 @@
 import { createContext } from "react";
 //Assets
-import "./scss/App.scss";
+import "./assets/scss/App.scss";
 //External
 import { Routes, Route, Navigate } from "react-router-dom";
 //Hooks
