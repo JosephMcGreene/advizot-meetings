@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { axiosFetch } from "../helpers";
 
 export default function useResponses(method = null, url = null, data = null) {
@@ -7,8 +7,8 @@ export default function useResponses(method = null, url = null, data = null) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (method !== null) getExistingResponses(method, url, data);
-  }, [method, url, data]);
+    if (method !== null) getExistingResponses(method, url);
+  }, [method, url]);
 
   /**
    * Fetches existing user responses from MongoDB and updates state accordingly. See server/routes/db.js
@@ -30,22 +30,14 @@ export default function useResponses(method = null, url = null, data = null) {
     }
   }
 
-  //Sort responses to be displayed in order of priority
-  const sortedResponses = responses.sort((a, b) => {
-    if (a.priority < b.priority) return -1;
-    return 1;
-  });
-
-  const visibleResponses = useMemo(() => {
-    return sortedResponses;
-  }, [sortedResponses]);
-
   /**
    * Takes in user response from MeetingForm.js and adds it to the database or updates an existing user response. See /routes/db.js
    *
    * @param {Object} responseToSubmit Body to be added or edited in the database and displayed to the users
    */
   async function submitResponse(responseToSubmit) {
+    console.log("Response to Submit:", responseToSubmit);
+
     setLoading(true);
 
     try {
@@ -55,12 +47,7 @@ export default function useResponses(method = null, url = null, data = null) {
         responseToSubmit
       );
 
-      const newResponses = responses.filter(
-        (response) => response._id !== responseToSubmit._id
-      );
-
-      newResponses.push(submitRes.data);
-      setResponses(newResponses);
+      console.log("Response Data:", submitRes.data);
     } catch (err) {
       setError(err);
     } finally {
@@ -83,12 +70,11 @@ export default function useResponses(method = null, url = null, data = null) {
         responseID,
       });
 
-      console.log(deleteRes);
-      console.log(sortedResponses);
+      console.log("Deleted:", deleteRes.data);
+      console.log(responses);
       // Make a new array of all responses EXCEPT the one to be deleted
-
       setResponses(
-        sortedResponses.filter((response) => {
+        responses.filter((response) => {
           return response._id !== responseID;
         })
       );
@@ -99,5 +85,18 @@ export default function useResponses(method = null, url = null, data = null) {
     }
   }
 
-  return [visibleResponses, loading, error, submitResponse, deleteResponse];
+  function sortResponses(responses) {
+    return responses.sort((a, b) => {
+      if (a.priority < b.priority) return -1;
+      return 1;
+    });
+  }
+
+  //Sort responses to be displayed in order of priority
+  // const sortedResponses = responses.sort((a, b) => {
+  //   if (a.priority < b.priority) return -1;
+  //   return 1;
+  // });
+
+  return [responses, loading, error, submitResponse, deleteResponse];
 }

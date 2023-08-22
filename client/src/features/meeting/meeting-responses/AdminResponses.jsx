@@ -9,8 +9,6 @@ export default function AdminResponses({ roomCodeDisplayed, responses }) {
     <>
       {roomCodeDisplayed && <RoomCodeDisplay />}
 
-      {console.log(responses)}
-
       <motion.section
         layout
         transition={{ type: "tween", stiffness: 10, duration: 0.1 }}

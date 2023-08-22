@@ -25,6 +25,7 @@ export default function AdminTableCell({ userResponseBody, responseItem }) {
         {responseItem}
         {editPenShown && <img src={editPen} alt="edit" className="edit-pen" />}
       </p>
+
       {meetingFormShown && (
         <ModalTemplate
           title="Edit Response"
@@ -32,7 +33,7 @@ export default function AdminTableCell({ userResponseBody, responseItem }) {
         >
           <MeetingForm
             onSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
-            onClose={setMeetingFormShown}
+            onClose={() => setMeetingFormShown(false)}
             existingResponse={userResponseBody}
           />
         </ModalTemplate>
