@@ -24,10 +24,7 @@ export default function App() {
   );
 
   if (loading) return <LoadingSpinner />;
-<<<<<<< HEAD
-  if (error !== null) return <Error error={error} />;
-=======
->>>>>>> dcd4cbc5e649dd3f86831a7f80f22a54b27737fc
+  if (error) return <h2>{error.message}</h2>;
 
   return (
     <div className="App">

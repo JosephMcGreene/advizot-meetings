@@ -22,6 +22,7 @@ export default function useMeeting(method, url) {
       setLoading(true);
 
       const existingResponses = await axiosFetch(method, url);
+
       setResponses(existingResponses.data);
     } catch (err) {
       setError(err);
