@@ -6,6 +6,7 @@ const userSchema = new Schema({
   lastName: { type: String, required: true },
   linkedin_email: { type: String },
   google_email: { type: String },
+  photo: { type: String, required: true },
   advizotID: { type: String, required: true },
   role: { type: String, required: true },
   group: { type: String, required: true },

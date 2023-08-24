@@ -8,7 +8,7 @@ require("../utils/passportConfig");
 authRouter.route("/linkedin").get(passport.authenticate("linkedin"));
 authRouter.route("/linkedin/callback").get(
   passport.authenticate("linkedin", {
-    successRedirect: "/meetingCode",
+    successRedirect: "/handleRoomCode",
     failureRedirect: "/",
   })
 );
@@ -19,7 +19,7 @@ authRouter
   .get(
     passport.authenticate("google", { failureRedirect: "/" }),
     (req, res) => {
-      res.redirect("/meetingCode");
+      res.redirect("/handleRoomCode");
     }
   );
 

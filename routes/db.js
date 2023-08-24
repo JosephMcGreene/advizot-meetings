@@ -13,23 +13,31 @@ dbRouter
           { group: determineDay() },
           { group: "admin" },
         ]);
-        res.json(responses);
-      } else {
-        const responses = await Response.find().or([
-          { group: req.user.group },
-          { group: "admin" },
-        ]);
-        res.json(responses);
+        //
+        // Also needs to filter out old responses, so only the current meeting's responses are displayed to user
+        //
+        return res.json(responses);
       }
+
+      if (determineDay() !== req.user.group) {
+        return res.json([]);
+      }
+
+      const responses = await Response.find().or([
+        { group: req.user.group },
+        { group: "admin" },
+      ]);
+      return res.json(responses);
     } catch (err) {
       throw err;
     }
   })
-  //Used to post both new responses and edit existing responses if there is already one in the db with a matching _id
   .post(async function (req, res) {
+    let deleted;
+
     try {
-      if (req.body._id) {
-        await Response.deleteOne({ _id: req.body._id });
+      if (req.body?._id !== undefined) {
+        deleted = await Response.deleteOne({ _id: req.body._id });
       }
 
       const newUserResponse = new Response({
@@ -42,6 +50,7 @@ dbRouter
         monthlyGoal: req.body.monthlyGoal,
         date: Date.now(),
         group: req.user.group,
+        userID: req.user.advizotID,
       });
       await newUserResponse.save();
 
@@ -52,8 +61,11 @@ dbRouter
   })
   .delete(async function (req, res) {
     try {
-      const deletionRes = await Response.deleteOne({ _id: req.body._id });
-      res.json(deletionRes);
+      const deletionRes = await Response.deleteOne({
+        _id: req.body.responseID,
+      });
+
+      res.json({ deletionRes, responseID: req.body.responseID });
     } catch (err) {
       throw err;
     }

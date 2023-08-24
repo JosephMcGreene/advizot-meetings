@@ -1,18 +1,23 @@
-const { userRoles, groups } = require("./userRoles");
+const { groups } = require("./userRoles");
 
 /**
- * Generates a 6-digit random number to be used as the meeting's passcode.
- * @returns {string} the code for the meeting
+ * Generates a 6-digit random number to be used as the meeting's room code.
+ *
+ * @returns {string} The code for the meeting
  */
-function generatePasscode() {
-  let meetingCode = Math.floor(Math.random() * 1000000); // 1,000,000
+function generateRoomCode() {
+  let roomCode = Math.floor(Math.random() * 1000000); // 1,000,000
 
-  if (meetingCode < 100000 || meetingCode === 1000000) generateMeetingCode();
+  if (roomCode < 100000 || roomCode === 1000000) generateRoomCode();
 
-  const meetingCodeString = meetingCode.toString();
-  return meetingCodeString;
+  return roomCode.toString();
 }
 
+/**
+ * Determines the day of the week in order to decide what group and role to place a user in, or place them in a guest group
+ *
+ * @returns {string} The name of the day of the week if it is Tuesday, Wednesday, or Thursday, or guest
+ */
 function determineDay() {
   switch (new Date().getDay()) {
     case 2: //If today is Tuesday:
@@ -26,21 +31,7 @@ function determineDay() {
   }
 }
 
-/**
- * Assigns a new user to the the group they belong to, which is used in user authorization
- * @param {string} role authorization status of the new user: "member", "guest", or "admin". Admins are placed into their own group
- * @returns {string}  the group the new user is to be placed in, can be a group, "admin", or "guest"
- */
-function placeInGroup(role) {
-  if (role === userRoles.ADMIN) {
-    return groups.ADMIN;
-  }
-
-  return determineDay();
-}
-
 module.exports = {
-  generatePasscode,
+  generateRoomCode,
   determineDay,
-  placeInGroup,
 };

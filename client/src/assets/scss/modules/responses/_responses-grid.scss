@@ -6,7 +6,6 @@
   grid-template-columns: repeat(3, 1fr);
 
   width: 360px;
-  margin: 0 1.75vw;
 
   .response-name {
     grid-row: 1;
@@ -17,31 +16,29 @@
   .priority {
     grid-row: 1;
     grid-column: 2;
-    justify-self: center;
-    align-self: start;
   }
 
-  .save-btn {
+  .delete-btn {
     grid-row: 1;
-    grid-column: 2 / 4;
+    grid-column: 3;
     justify-self: center;
     align-self: center;
   }
 
   .range-response {
-    grid-row: 2 / 3;
+    grid-row: 2;
   }
 
   .issue {
-    grid-row: 3 / 4;
+    grid-row: 3;
   }
 
   .goal {
-    grid-row: 4 / 5;
+    grid-row: 4;
   }
 
   .issue,
   .goal {
-    grid-column: 1 / 4;
+    grid-column: 1 / span 3;
   }
 }

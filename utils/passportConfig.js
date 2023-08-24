@@ -4,8 +4,8 @@ const LinkedInStrategy = require("passport-linkedin-oauth2").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const { v4: uuidv4 } = require("uuid");
 const User = require("../models/User");
-const { userRoles } = require("../utils/userRoles");
-const { placeInGroup } = require("./helpers");
+const { userRoles } = require("./userRoles");
+const { determineDay } = require("./helpers");
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -29,6 +29,7 @@ passport.use(
     async function (accessToken, refreshToken, profile, done) {
       try {
         const existingUser = await User.findOne({ providerID: profile.id });
+        console.log(profile);
 
         if (existingUser) {
           return done(null, existingUser);
@@ -39,9 +40,10 @@ passport.use(
           firstName: profile.name.givenName,
           lastName: profile.name.familyName,
           linkedin_email: profile.emails[0].value,
+          photo: profile.photos[0].value,
           advizotID: uuidv4(),
           role: userRoles.MEMBER,
-          group: placeInGroup(this.role),
+          group: determineDay(),
           hasMeetingCode: false,
         });
         await newUser.save();
@@ -78,9 +80,10 @@ passport.use(
           firstName: profile.name.givenName,
           lastName: profile.name.familyName,
           google_email: profile.emails[0].value,
+          photo: profile.photos[0].value,
           advizotID: uuidv4(),
           role: userRoles.MEMBER,
-          group: placeInGroup(this.role),
+          group: determineDay(),
           hasMeetingCode: false,
         });
         await newUser.save();

@@ -10,6 +10,7 @@ const responseSchema = new Schema({
   monthlyGoal: { type: String, required: true },
   date: { type: Date, required: true },
   group: { type: String, required: true },
+  userID: { type: String, required: true },
 });
 
 module.exports = model("Response", responseSchema);

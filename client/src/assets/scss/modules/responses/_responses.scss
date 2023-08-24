@@ -6,16 +6,21 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  margin: 1.5rem;
+  gap: 3rem;
 
-  margin: 0 auto;
+  margin: 0 auto 25vh;
 
   .response-li {
     @include borderSides();
     @include borderRadius();
 
-    padding: 12px;
+    padding: 1rem;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
-    margin-bottom: 3rem;
+
+    &:hover {
+      @include btnHover();
+    }
 
     .response-p {
       padding: 0.75rem 0 0.5rem;
@@ -25,7 +30,7 @@
       @include borderRadius();
 
       background-color: $advizot-light;
-      padding: 7px 10%;
+      padding: 7px 1ch;
       width: min-content;
 
       &:hover {

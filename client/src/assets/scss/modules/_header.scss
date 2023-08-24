@@ -1,24 +1,21 @@
 @use "../index" as *;
 
 .header {
-  z-index: $middle;
+  z-index: $header-z;
 
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
 
-  background-color: whitesmoke;
-  box-shadow: $header-shadow;
-  height: fit-content;
+  background-color: $light-bg;
+  box-shadow: 0 0.2vh 0.75vh 1px rgba(0, 0, 0, 0.75);
 
   .nav-bar {
     display: flex;
     justify-content: space-between;
 
     height: $header-height;
-    overflow: hidden;
-    @include transition(height);
 
     .logo {
       width: 190px;
@@ -27,26 +24,30 @@
 
     .nav-ul {
       display: flex;
-      justify-content: space-between;
       align-items: center;
 
       list-style: none;
 
       .nav-item {
-        @include advizotFont(1.1rem, 600, 0);
-        @include transition(text-shadow);
-
         margin-right: 1rem;
         cursor: pointer;
 
-        &:hover {
-          .btn {
-            @include btnHover();
+        .profile-link {
+          .profile-img {
+            vertical-align: middle;
+            max-width: 55px;
+            border-radius: 100vw;
+            border: 3px solid $advizot-color;
+          }
+
+          &:focus,
+          &:focus-visible {
+            @include onFocus();
           }
         }
 
         .btn {
-          padding: 1ch 4vw;
+          padding: 1ch 1.75ch;
         }
       }
     }

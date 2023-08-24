@@ -6,24 +6,21 @@
     grid-template-columns: 0.25fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 1fr 1fr;
 
     width: 100%;
+    margin: 0 3rem;
 
-    .delete-icon {
+    .delete-btn {
       grid-row: 1;
       grid-column: 1;
-      justify-self: center;
-      align-self: center;
     }
 
     .response-name {
       grid-row: 1;
       grid-column: 2;
-      width: fit-content;
     }
 
     .priority {
       grid-row: 1;
       grid-column: 3;
-      justify-self: center;
       align-self: center;
     }
 

@@ -7,15 +7,16 @@ export default function useUser(method, url, data = null) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    try {
-      fetchData(method, url, data);
-    } catch (err) {
-      setError(err);
-      throw err;
-    }
+    fetchUser(method, url, data);
   }, [method, url, data]);
 
-  async function fetchData(method, url, data = null) {
+  /**
+   * Makes an HTTP request to the server asking for user authentication and information
+   *
+   * @param {string} method HTTP verb GET
+   * @param {string} url    Endpoint of the proxy server used to fetch user data
+   */
+  async function fetchUser(method, url, data = null) {
     try {
       setLoading(true);
       const response = await axiosFetch(method, url, data);
@@ -28,5 +29,5 @@ export default function useUser(method, url, data = null) {
     }
   }
 
-  return [fetchedData, fetchData, loading, error];
+  return [fetchedData, fetchUser, loading, error];
 }
