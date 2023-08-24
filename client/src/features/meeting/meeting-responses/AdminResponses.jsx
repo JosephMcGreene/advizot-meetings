@@ -8,6 +8,7 @@ export default function AdminResponses({
   roomCodeDisplayed,
   responses,
   submitEdits,
+  onDelete,
 }) {
   return (
     <>
@@ -34,6 +35,7 @@ export default function AdminResponses({
               key={`${response.date}${index}`}
               userResponseBody={response}
               submitEdits={submitEdits}
+              onDelete={onDelete}
             />
           );
         })}

@@ -5,7 +5,11 @@ import { motion } from "framer-motion";
 import AdminTableCell from "./AdminTableCell";
 import DeleteButton from "./DeleteButton";
 
-export default function AdminResponse({ userResponseBody, submitEdits }) {
+export default function AdminResponse({
+  userResponseBody,
+  submitEdits,
+  onDelete,
+}) {
   const [deleteBtnShown, setDeleteBtnShown] = useState(false);
 
   return (
@@ -17,7 +21,10 @@ export default function AdminResponse({ userResponseBody, submitEdits }) {
       onMouseLeave={() => setDeleteBtnShown(false)}
     >
       <span className="admin-info-cell">
-        {deleteBtnShown && <DeleteButton responseID={userResponseBody._id} />}
+        {deleteBtnShown && (
+          <DeleteButton responseID={userResponseBody._id} onDelete={onDelete} />
+        )}
+
         <motion.h4
           layout
           transition={{ type: "tween", stiffness: 10, duration: 0.1 }}

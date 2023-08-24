@@ -31,6 +31,7 @@ export default function Meeting() {
           roomCodeDisplayed={roomCodeDisplayed}
           responses={responses}
           submitEdits={(responseToSubmit) => submitResponse(responseToSubmit)}
+          onDelete={(responseID) => deleteResponse(responseID)}
         />
       )}
       {user.role === "member" && (
