@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { axiosFetch } from "../helpers";
 
-export default function useResponses(method = null, url = null, data = null) {
+export default function useMeeting(method, url) {
   const [responses, setResponses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (method !== null) getExistingResponses(method, url);
+    getExistingResponses(method, url);
   }, [method, url]);
 
   /**
@@ -18,9 +18,9 @@ export default function useResponses(method = null, url = null, data = null) {
    * @param {object} [data] The request body sent to the server, if applicable
    */
   async function getExistingResponses(method, url) {
-    setLoading(true);
-
     try {
+      setLoading(true);
+
       const existingResponses = await axiosFetch(method, url);
       setResponses(existingResponses.data);
     } catch (err) {
@@ -36,19 +36,22 @@ export default function useResponses(method = null, url = null, data = null) {
    * @param {Object} responseToSubmit Body to be added or edited in the database and displayed to the users
    */
   async function submitResponse(responseToSubmit) {
-    setLoading(true);
-
     try {
+      setLoading(true);
+
       const submitRes = await axiosFetch(
         "post",
         "/db/responses",
         responseToSubmit
       );
 
+      //TODO Add logic for error handling and different HTTP responses
+
       const newResponses = [...responses, submitRes.data];
       const filteredResponses = newResponses.filter((response) => {
         return response._id !== responseToSubmit._id;
       });
+
       setResponses(filteredResponses);
     } catch (err) {
       setError(err);
@@ -65,10 +68,12 @@ export default function useResponses(method = null, url = null, data = null) {
    * @returns {Object} The response from the server
    */
   async function deleteResponse(responseID) {
-    setLoading(true);
-
     try {
+      setLoading(true);
+
       await axiosFetch("delete", "/db/responses", { responseID });
+
+      //TODO Add logic for error handling and different http responses
 
       // Make a new array of all responses EXCEPT the one to be deleted
       setResponses(
@@ -83,14 +88,15 @@ export default function useResponses(method = null, url = null, data = null) {
     }
   }
 
-  function sortResponses(responses) {
-    return responses.sort((a, b) => {
-      if (a.priority < b.priority) return -1;
-      return 1;
-    });
-  }
+  //TODO Implement a version of this...
+  // function sortResponses(responses) {
+  //   return responses.sort((a, b) => {
+  //     if (a.priority < b.priority) return -1;
+  //     return 1;
+  //   });
+  // }
 
-  //Sort responses to be displayed in order of priority
+  //TODO ...Or this:
   // const sortedResponses = responses.sort((a, b) => {
   //   if (a.priority < b.priority) return -1;
   //   return 1;

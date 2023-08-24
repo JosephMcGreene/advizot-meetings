@@ -3,7 +3,7 @@ import { UserContext } from "../../App";
 //Helpers
 import { constructCurrentDate } from "../../helpers";
 //Hooks
-import useResponses from "../../hooks/useResponses";
+import useMeeting from "../../hooks/useMeeting";
 //Components
 import LoadingSpinner from "../../shared/LoadingSpinner";
 import AdminResponses from "./meeting-responses/AdminResponses";
@@ -18,7 +18,7 @@ export default function Meeting() {
   const [meetingActionsShown, setMeetingActionsShown] = useState(false);
   //eslint-disable-next-line
   const [responses, loading, error, submitResponse, deleteResponse] =
-    useResponses("get", "/db/responses");
+    useMeeting("get", "/db/responses");
 
   if (loading) return <LoadingSpinner />;
 
