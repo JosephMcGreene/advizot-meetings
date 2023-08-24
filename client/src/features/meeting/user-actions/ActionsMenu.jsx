@@ -1,4 +1,3 @@
-//Assets
 import verticalEllipse from "../../../assets/img/ellipsis-vertical-solid.svg";
 
 export default function ActionsMenu({ children, actionToggle, className }) {

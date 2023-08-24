@@ -7,6 +7,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import useUser from "./hooks/useUser";
 //Components
 import LoadingSpinner from "./shared/LoadingSpinner";
+import ErrorPage from "./shared/ErrorPage";
 import Header from "./shared/Header";
 import Welcome from "./shared/Welcome";
 import UsersOnly from "./features/meeting/UsersOnly";
@@ -17,19 +18,19 @@ import Profile from "./features/profile/Profile";
 export const UserContext = createContext();
 
 export default function App() {
-  //eslint-disable-next-line
   const [user, fetchUser, loading, error] = useUser(
     "get",
     "/auth/current_user"
   );
 
   if (loading) return <LoadingSpinner />;
-  if (error) return <h2>{error.message}</h2>;
+  if (error) return <ErrorPage error={error} />;
 
   return (
     <div className="App">
       <UserContext.Provider value={user}>
         <Header />
+
         <main className="main-content">
           <Routes>
             <Route

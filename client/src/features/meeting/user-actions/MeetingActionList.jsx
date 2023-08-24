@@ -44,6 +44,16 @@ export default function MeetingActionList({
             />
           </button>
         </li>
+
+        {user.role === "admin" && (
+          <li className="actions-item" tabIndex="2">
+            <button onClick={() => displayRoomCode()} className="actions-btn">
+              <span className="actions-label">Toggle Room Code</span>
+              <img src={lockIcon} alt="Key" className="actions-list-icon" />
+            </button>
+          </li>
+        )}
+
         {formDisplayed && (
           <ModalTemplate
             title={constructCurrentDate() + " Meeting"}
@@ -54,15 +64,6 @@ export default function MeetingActionList({
               onClose={() => setFormDisplayed(false)}
             />
           </ModalTemplate>
-        )}
-
-        {user.role === "admin" && (
-          <li className="actions-item" tabIndex="2">
-            <button onClick={() => displayRoomCode()} className="actions-btn">
-              <span className="actions-label">Toggle Room Code</span>
-              <img src={lockIcon} alt="Key" className="actions-list-icon" />
-            </button>
-          </li>
         )}
       </motion.ul>
     </>
