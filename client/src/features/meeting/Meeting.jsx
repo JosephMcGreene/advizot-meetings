@@ -6,6 +6,7 @@ import { constructCurrentDate } from "../../helpers";
 import useMeeting from "../../hooks/useMeeting";
 //Components
 import LoadingSpinner from "../../shared/LoadingSpinner";
+import ErrorPage from "../../shared/ErrorPage";
 import AdminResponses from "./meeting-responses/AdminResponses";
 import Responses from "./meeting-responses/Responses";
 import ActionsMenu from "./user-actions/ActionsMenu";
@@ -16,11 +17,12 @@ export default function Meeting() {
 
   const [roomCodeDisplayed, setRoomCodeDisplayed] = useState(false);
   const [meetingActionsShown, setMeetingActionsShown] = useState(false);
-  //eslint-disable-next-line
+
   const [responses, loading, error, submitResponse, deleteResponse] =
     useMeeting("get", "/db/responses");
 
   if (loading) return <LoadingSpinner />;
+  if (error) return <ErrorPage error={error} />;
 
   return (
     <>

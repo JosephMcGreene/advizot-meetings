@@ -46,8 +46,6 @@ export default function useMeeting(method, url) {
         responseToSubmit
       );
 
-      //TODO Add logic for error handling and different HTTP responses
-
       const newResponses = [...responses, submitRes.data];
       const filteredResponses = newResponses.filter((response) => {
         return response._id !== responseToSubmit._id;
@@ -73,8 +71,6 @@ export default function useMeeting(method, url) {
       setLoading(true);
 
       await axiosFetch("delete", "/db/responses", { responseID });
-
-      //TODO Add logic for error handling and different http responses
 
       // Make a new array of all responses EXCEPT the one to be deleted
       setResponses(

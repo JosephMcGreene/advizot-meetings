@@ -89,6 +89,14 @@ a {
   }
 }
 
+.error-text {
+  margin-inline: auto;
+  margin-bottom: 2rem;
+  width: fit-content;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
 //Scrollbar
 ::-webkit-scrollbar {
   width: 0.7em;
