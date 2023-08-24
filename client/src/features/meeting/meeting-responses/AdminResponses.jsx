@@ -4,7 +4,11 @@ import { motion } from "framer-motion";
 import AdminResponse from "./AdminResponse";
 import RoomCodeDisplay from "../room-code/RoomCodeDisplay";
 
-export default function AdminResponses({ roomCodeDisplayed, responses }) {
+export default function AdminResponses({
+  roomCodeDisplayed,
+  responses,
+  submitEdits,
+}) {
   return (
     <>
       {roomCodeDisplayed && <RoomCodeDisplay />}
@@ -29,6 +33,7 @@ export default function AdminResponses({ roomCodeDisplayed, responses }) {
             <AdminResponse
               key={`${response.date}${index}`}
               userResponseBody={response}
+              submitEdits={submitEdits}
             />
           );
         })}

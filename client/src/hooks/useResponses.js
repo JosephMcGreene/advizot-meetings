@@ -36,8 +36,6 @@ export default function useResponses(method = null, url = null, data = null) {
    * @param {Object} responseToSubmit Body to be added or edited in the database and displayed to the users
    */
   async function submitResponse(responseToSubmit) {
-    console.log("Response to Submit:", responseToSubmit);
-
     setLoading(true);
 
     try {
@@ -47,7 +45,11 @@ export default function useResponses(method = null, url = null, data = null) {
         responseToSubmit
       );
 
-      console.log("Response Data:", submitRes.data);
+      const newResponses = [...responses, submitRes.data];
+      const filteredResponses = newResponses.filter((response) => {
+        return response._id !== responseToSubmit._id;
+      });
+      setResponses(filteredResponses);
     } catch (err) {
       setError(err);
     } finally {

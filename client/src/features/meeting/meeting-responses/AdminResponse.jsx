@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import AdminTableCell from "./AdminTableCell";
 import DeleteButton from "./DeleteButton";
 
-export default function AdminResponse({ userResponseBody }) {
+export default function AdminResponse({ userResponseBody, submitEdits }) {
   const [deleteBtnShown, setDeleteBtnShown] = useState(false);
 
   return (
@@ -30,26 +30,32 @@ export default function AdminResponse({ userResponseBody }) {
       <AdminTableCell
         userResponseBody={userResponseBody}
         responseItem={userResponseBody.priority.substring(1)}
+        submitEdits={submitEdits}
       />
       <AdminTableCell
         userResponseBody={userResponseBody}
         responseItem={userResponseBody.business}
+        submitEdits={submitEdits}
       />
       <AdminTableCell
         userResponseBody={userResponseBody}
         responseItem={userResponseBody.personal}
+        submitEdits={submitEdits}
       />
       <AdminTableCell
         userResponseBody={userResponseBody}
         responseItem={userResponseBody.relationships}
+        submitEdits={submitEdits}
       />
       <AdminTableCell
         userResponseBody={userResponseBody}
         responseItem={userResponseBody.monthlyIssue}
+        submitEdits={submitEdits}
       />
       <AdminTableCell
         userResponseBody={userResponseBody}
         responseItem={userResponseBody.monthlyGoal}
+        submitEdits={submitEdits}
       />
     </motion.article>
   );

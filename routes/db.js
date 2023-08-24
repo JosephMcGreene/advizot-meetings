@@ -33,9 +33,11 @@ dbRouter
     }
   })
   .post(async function (req, res) {
+    let deleted;
+
     try {
-      if (req.body._id) {
-        await Response.deleteOne({ _id: req.body._id });
+      if (req.body?._id !== undefined) {
+        deleted = await Response.deleteOne({ _id: req.body._id });
       }
 
       const newUserResponse = new Response({

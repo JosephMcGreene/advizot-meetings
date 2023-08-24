@@ -13,11 +13,12 @@ import MeetingActionList from "./user-actions/MeetingActionList";
 
 export default function Meeting() {
   const user = useContext(UserContext);
+
+  const [roomCodeDisplayed, setRoomCodeDisplayed] = useState(false);
+  const [meetingActionsShown, setMeetingActionsShown] = useState(false);
   //eslint-disable-next-line
   const [responses, loading, error, submitResponse, deleteResponse] =
     useResponses("get", "/db/responses");
-  const [roomCodeDisplayed, setRoomCodeDisplayed] = useState(false);
-  const [meetingActionsShown, setMeetingActionsShown] = useState(false);
 
   if (loading) return <LoadingSpinner />;
 
@@ -29,6 +30,7 @@ export default function Meeting() {
         <AdminResponses
           roomCodeDisplayed={roomCodeDisplayed}
           responses={responses}
+          submitEdits={(responseToSubmit) => submitResponse(responseToSubmit)}
         />
       )}
       {user.role === "member" && (
