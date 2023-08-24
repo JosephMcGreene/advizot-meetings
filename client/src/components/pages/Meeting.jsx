@@ -7,7 +7,7 @@ import useResponses from "../../hooks/useResponses";
 import { UserContext } from "../../App";
 //Components
 import LoadingSpinner from "../utilities/LoadingSpinner";
-import Error from "../utilities/Error";
+import ErrorPage from "../../shared/ErrorPage";
 import AdminResponses from "./meeting-responses/AdminResponses";
 import Responses from "./meeting-responses/Responses";
 import ActionsMenu from "../utilities/user-actions/ActionsMenu";
@@ -21,7 +21,7 @@ export default function Meeting() {
   const [passcodeDisplayed, setPasscodeDisplayed] = useState(false);
 
   if (loading) return <LoadingSpinner />;
-  if (error !== null) return <Error error={error} />;
+  if (error !== null) return <ErrorPage error={error} />;
 
   return (
     <>
