@@ -17,7 +17,8 @@ export default function RoomCodeEntry({ onSubmit }) {
       onSubmit={({ roomCode }, actions) => {
         try {
           onSubmit(roomCode);
-          actions.setSubmitting(false);
+          console.log("Room Code on Submit:", roomCode);
+          actions.setSubmitting(true);
         } catch (error) {
           console.error(error);
         }

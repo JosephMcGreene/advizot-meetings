@@ -16,10 +16,10 @@ export default function useUser(method, url) {
    * @param {string} method HTTP verb GET
    * @param {string} url    Endpoint of the proxy server used to fetch user data
    */
-  async function fetchUser(method, url) {
+  async function fetchUser(method, url, data = null) {
     try {
       setLoading(true);
-      const response = await axiosFetch(method, url);
+      const response = await axiosFetch(method, url, data);
       setFetchedData(response.data);
     } catch (err) {
       setError(err);

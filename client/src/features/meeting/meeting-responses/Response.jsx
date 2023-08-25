@@ -1,31 +1,18 @@
 import { useContext, createContext } from "react";
 import { UserContext } from "../../../App";
 //Components
-import DeleteButton from "./DeleteButton";
 import RatingOrPriority from "./RatingOrPriority";
 import IssueGoal from "./IssueGoal";
-import ActionsMenu from "../user-actions/ActionsMenu";
 
 export const UserResponseContext = createContext();
 
-export default function Response({ userResponseBody, onDelete }) {
+export default function Response({ userResponseBody }) {
+  // eslint-disable-next-line
   const user = useContext(UserContext);
 
   return (
     <UserResponseContext.Provider value={userResponseBody}>
-      <li className="response-li" tabindex="0">
-        {userResponseBody.userID === user.advizotID && (
-          <DeleteButton
-            responseID={userResponseBody.userID}
-            onDelete={onDelete}
-          />
-        )}
-
-        <ActionsMenu>
-          {/* <DeleteButton /> */}
-          Hi
-        </ActionsMenu>
-
+      <li className="response-li" tabIndex="0">
         <label className="response-name">{userResponseBody.userName}</label>
 
         <RatingOrPriority

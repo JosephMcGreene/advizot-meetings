@@ -28,7 +28,7 @@ export default function Meeting() {
     <>
       <h1 className="meeting-heading">Answers for {constructCurrentDate()}</h1>
 
-      {responses.length > 0 && user.role === "admin" && (
+      {user.role === "admin" && (
         <AdminResponses
           roomCodeDisplayed={roomCodeDisplayed}
           responses={responses}
@@ -36,12 +36,7 @@ export default function Meeting() {
           onDelete={(responseID) => deleteResponse(responseID)}
         />
       )}
-      {user.role === "member" && (
-        <Responses
-          responses={responses}
-          onDelete={(responseID) => deleteResponse(responseID)}
-        />
-      )}
+      {user.role === "member" && <Responses responses={responses} />}
 
       <ActionsMenu
         actionToggle={() => setMeetingActionsShown(!meetingActionsShown)}

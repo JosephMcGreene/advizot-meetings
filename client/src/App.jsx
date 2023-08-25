@@ -44,8 +44,10 @@ export default function App() {
               path="/handleRoomCode"
               element={
                 <UsersOnly
-                  onSubmitRoomCode={(enteredCode) => {
-                    fetchUser("post", "/roomCode/submitRoomCode", {
+                  onSubmitRoomCode={async (enteredCode) => {
+                    console.log("Room Code before Fetch:", enteredCode);
+
+                    await fetchUser("post", "/roomCode/submitRoomCode", {
                       enteredCode,
                     });
                   }}

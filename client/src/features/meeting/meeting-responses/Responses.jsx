@@ -1,13 +1,13 @@
 import Response from "./Response";
 
-export default function Responses({ sortedResponses, onDelete }) {
+export default function Responses({ responses }) {
   return (
     <section className="responses-section">
-      {sortedResponses.length === 0 ? (
+      {responses.length === 0 ? (
         <h2>There are no responses right now.</h2>
       ) : (
         <ul className="responses-ul">
-          {sortedResponses.map((response, index) => {
+          {responses.map((response, index) => {
             return (
               <Response
                 key={
@@ -18,7 +18,6 @@ export default function Responses({ sortedResponses, onDelete }) {
                   index
                 }
                 userResponseBody={response}
-                onDelete={onDelete}
               />
             );
           })}
