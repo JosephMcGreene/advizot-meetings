@@ -36,7 +36,12 @@ export default function Meeting() {
           onDelete={(responseID) => deleteResponse(responseID)}
         />
       )}
-      {user.role === "member" && <Responses responses={responses} />}
+      {user.role === "member" && (
+        <Responses
+          responses={responses}
+          onDelete={(responseID) => deleteResponse(responseID)}
+        />
+      )}
 
       <ActionsMenu
         actionToggle={() => setMeetingActionsShown(!meetingActionsShown)}
