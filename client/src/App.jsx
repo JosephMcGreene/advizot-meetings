@@ -45,8 +45,6 @@ export default function App() {
               element={
                 <UsersOnly
                   onSubmitRoomCode={async (enteredCode) => {
-                    console.log("Room Code before Fetch:", enteredCode);
-
                     await fetchUser("post", "/roomCode/submitRoomCode", {
                       enteredCode,
                     });

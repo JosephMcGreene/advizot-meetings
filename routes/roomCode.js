@@ -6,12 +6,7 @@ const { generateRoomCode } = require("../utils/helpers");
 
 roomCodeRouter.route("/submitRoomCode").post(async function (req, res) {
   try {
-    console.log("Current User:", req.user);
-    console.log("Entered Code:", req.body);
-
     const roomCodeDB = await RoomCode.findById(process.env.ROOMCODE_ID);
-
-    console.log("DB Room Code:", roomCodeDB);
 
     if (req.body.enteredCode === roomCodeDB.currentRoomCode) {
       req.user.hasMeetingCode = true;
