@@ -23,7 +23,7 @@ export default function useUser(method, url) {
       setFetchedData(response.data);
     } catch (err) {
       setError(err);
-      throw err;
+      throw new Error(err);
     } finally {
       setLoading(false);
     }
