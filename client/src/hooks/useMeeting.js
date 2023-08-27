@@ -6,6 +6,11 @@ export default function useMeeting(method, url) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const sortedResponses = responses.sort((a, b) => {
+    if (a.priority < b.priority) return -1;
+    return 1;
+  });
+
   useEffect(() => {
     getExistingResponses(method, url);
   }, [method, url]);
@@ -85,19 +90,5 @@ export default function useMeeting(method, url) {
     }
   }
 
-  //TODO Implement a version of this...
-  // function sortResponses(responses) {
-  //   return responses.sort((a, b) => {
-  //     if (a.priority < b.priority) return -1;
-  //     return 1;
-  //   });
-  // }
-
-  //TODO ...Or this:
-  // const sortedResponses = responses.sort((a, b) => {
-  //   if (a.priority < b.priority) return -1;
-  //   return 1;
-  // });
-
-  return [responses, loading, error, submitResponse, deleteResponse];
+  return [sortedResponses, loading, error, submitResponse, deleteResponse];
 }
