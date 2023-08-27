@@ -1,6 +1,6 @@
 import Response from "./Response";
 
-export default function Responses({ responses }) {
+export default function Responses({ responses, onDelete, submitEdits }) {
   return (
     <section className="responses-section">
       {responses.length === 0 ? (
@@ -18,6 +18,8 @@ export default function Responses({ responses }) {
                   index
                 }
                 userResponseBody={response}
+                onDelete={onDelete}
+                submitEdits={submitEdits}
               />
             );
           })}

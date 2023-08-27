@@ -1,6 +1,7 @@
 @use "../../index" as *;
 
-.admin-info-cell {
+.admin-info-cell,
+.response-p {
   position: relative;
 
   .edit-pen {

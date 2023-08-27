@@ -1,58 +1,60 @@
-import { useContext, createContext } from "react";
-import { UserContext } from "../../../App";
 //Components
 import RatingOrPriority from "./RatingOrPriority";
+import DeleteButton from "./DeleteButton";
 import IssueGoal from "./IssueGoal";
 
-export const UserResponseContext = createContext();
-
-export default function Response({ userResponseBody }) {
-  // eslint-disable-next-line
-  const user = useContext(UserContext);
-
+export default function Response({ userResponseBody, onDelete, submitEdits }) {
   return (
-    <UserResponseContext.Provider value={userResponseBody}>
-      <li className="response-li" tabIndex="0">
-        <label className="response-name">{userResponseBody.userName}</label>
+    <li className="response-li" tabIndex="0">
+      <label className="response-name">{userResponseBody.userName}</label>
 
-        <RatingOrPriority
-          title="Priority"
-          text={userResponseBody.priority.substring(1)}
-          className="response-p priority"
-        />
+      <RatingOrPriority
+        title="Priority"
+        text={userResponseBody.priority.substring(1)}
+        className="response-p priority"
+      />
 
-        <RatingOrPriority
-          title="Business"
-          text={userResponseBody.business}
-          className="response-p range-response business-rating"
-        />
+      <DeleteButton responseID={userResponseBody._id} onDelete={onDelete} />
 
-        <RatingOrPriority
-          title="Personal"
-          text={userResponseBody.personal}
-          className="response-p range-response personal-rating"
-        />
+      <RatingOrPriority
+        title="Business"
+        text={userResponseBody.business}
+        className="response-p range-response business-rating"
+        submitEdits={submitEdits}
+        userResponseBody={userResponseBody}
+      />
 
-        <RatingOrPriority
-          title="Relationships"
-          text={userResponseBody.relationships}
-          className="response-p range-response relationships-rating"
-        />
+      <RatingOrPriority
+        title="Personal"
+        text={userResponseBody.personal}
+        className="response-p range-response personal-rating"
+        submitEdits={submitEdits}
+        userResponseBody={userResponseBody}
+      />
 
-        <IssueGoal
-          title="Issue to Process Today"
-          name="monthlyIssue"
-          className="response-p issue"
-          text={userResponseBody.monthlyIssue}
-        />
+      <RatingOrPriority
+        title="Relationships"
+        text={userResponseBody.relationships}
+        className="response-p range-response relationships-rating"
+        submitEdits={submitEdits}
+        userResponseBody={userResponseBody}
+      />
 
-        <IssueGoal
-          title="Goal Before Next Meeting"
-          name="monthlyGoal"
-          className="response-p goal"
-          text={userResponseBody.monthlyGoal}
-        />
-      </li>
-    </UserResponseContext.Provider>
+      <IssueGoal
+        title="Issue to Process Today"
+        text={userResponseBody.monthlyIssue}
+        className="response-p issue"
+        submitEdits={submitEdits}
+        userResponseBody={userResponseBody}
+      />
+
+      <IssueGoal
+        title="Goal Before Next Meeting"
+        text={userResponseBody.monthlyGoal}
+        className="response-p goal"
+        submitEdits={submitEdits}
+        userResponseBody={userResponseBody}
+      />
+    </li>
   );
 }
