@@ -40,6 +40,7 @@ export default function Meeting() {
         <Responses
           responses={responses}
           onDelete={(responseID) => deleteResponse(responseID)}
+          submitEdits={(responseToSubmit) => submitResponse(responseToSubmit)}
         />
       )}
 

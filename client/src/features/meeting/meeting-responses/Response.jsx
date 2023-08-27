@@ -4,7 +4,7 @@ import RatingOrPriority from "./RatingOrPriority";
 import DeleteButton from "./DeleteButton";
 import IssueGoal from "./IssueGoal";
 
-export default function Response({ userResponseBody, onDelete }) {
+export default function Response({ userResponseBody, onDelete, submitEdits }) {
   return (
     <li className="response-li" tabIndex="0">
       <label className="response-name">{userResponseBody.userName}</label>
@@ -21,6 +21,7 @@ export default function Response({ userResponseBody, onDelete }) {
         title="Business"
         text={userResponseBody.business}
         className="response-p range-response business-rating"
+        submitEdits={submitEdits}
         userResponseBody={userResponseBody}
       />
 
@@ -28,6 +29,7 @@ export default function Response({ userResponseBody, onDelete }) {
         title="Personal"
         text={userResponseBody.personal}
         className="response-p range-response personal-rating"
+        submitEdits={submitEdits}
         userResponseBody={userResponseBody}
       />
 
@@ -35,6 +37,7 @@ export default function Response({ userResponseBody, onDelete }) {
         title="Relationships"
         text={userResponseBody.relationships}
         className="response-p range-response relationships-rating"
+        submitEdits={submitEdits}
         userResponseBody={userResponseBody}
       />
 

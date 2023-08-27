@@ -9,6 +9,7 @@ export default function RatingOrPriority({
   title,
   text,
   className,
+  submitEdits,
   userResponseBody,
 }) {
   const [editPenShown, setEditPenShown] = useState(false);
@@ -20,6 +21,7 @@ export default function RatingOrPriority({
         className={className}
         onMouseEnter={() => setEditPenShown(true)}
         onMouseLeave={() => setEditPenShown(false)}
+        onClick={() => setMeetingFormShown(!meetingFormShown)}
       >
         <u>{title}</u>
 
