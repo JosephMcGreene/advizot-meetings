@@ -1,4 +1,3 @@
-import { useContext } from "react";
 //Components
 import RatingOrPriority from "./RatingOrPriority";
 import DeleteButton from "./DeleteButton";
@@ -43,17 +42,17 @@ export default function Response({ userResponseBody, onDelete, submitEdits }) {
 
       <IssueGoal
         title="Issue to Process Today"
-        name="monthlyIssue"
-        className="response-p issue"
         text={userResponseBody.monthlyIssue}
+        className="response-p issue"
+        submitEdits={submitEdits}
         userResponseBody={userResponseBody}
       />
 
       <IssueGoal
         title="Goal Before Next Meeting"
-        name="monthlyGoal"
-        className="response-p goal"
         text={userResponseBody.monthlyGoal}
+        className="response-p goal"
+        submitEdits={submitEdits}
         userResponseBody={userResponseBody}
       />
     </li>
