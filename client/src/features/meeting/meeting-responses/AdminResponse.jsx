@@ -5,11 +5,7 @@ import { motion } from "framer-motion";
 import AdminTableCell from "./AdminTableCell";
 import DeleteButton from "./DeleteButton";
 
-export default function AdminResponse({
-  userResponseBody,
-  submitEdits,
-  onDelete,
-}) {
+export default function AdminResponse({ responseBody, submitEdits, onDelete }) {
   const [deleteBtnShown, setDeleteBtnShown] = useState(false);
 
   return (
@@ -22,7 +18,7 @@ export default function AdminResponse({
     >
       <span className="admin-info-cell">
         {deleteBtnShown && (
-          <DeleteButton responseID={userResponseBody._id} onDelete={onDelete} />
+          <DeleteButton responseID={responseBody._id} onDelete={onDelete} />
         )}
 
         <motion.h4
@@ -30,38 +26,38 @@ export default function AdminResponse({
           transition={{ type: "tween", stiffness: 10, duration: 0.1 }}
           className="admin-row-name"
         >
-          {userResponseBody.userName}
+          {responseBody.userName}
         </motion.h4>
       </span>
 
       <AdminTableCell
-        userResponseBody={userResponseBody}
-        responseItem={userResponseBody.priority.substring(1)}
+        responseBody={responseBody}
+        responseItem={responseBody.priority.substring(1)}
         submitEdits={submitEdits}
       />
       <AdminTableCell
-        userResponseBody={userResponseBody}
-        responseItem={userResponseBody.business}
+        responseBody={responseBody}
+        responseItem={responseBody.business}
         submitEdits={submitEdits}
       />
       <AdminTableCell
-        userResponseBody={userResponseBody}
-        responseItem={userResponseBody.personal}
+        responseBody={responseBody}
+        responseItem={responseBody.personal}
         submitEdits={submitEdits}
       />
       <AdminTableCell
-        userResponseBody={userResponseBody}
-        responseItem={userResponseBody.relationships}
+        responseBody={responseBody}
+        responseItem={responseBody.relationships}
         submitEdits={submitEdits}
       />
       <AdminTableCell
-        userResponseBody={userResponseBody}
-        responseItem={userResponseBody.monthlyIssue}
+        responseBody={responseBody}
+        responseItem={responseBody.monthlyIssue}
         submitEdits={submitEdits}
       />
       <AdminTableCell
-        userResponseBody={userResponseBody}
-        responseItem={userResponseBody.monthlyGoal}
+        responseBody={responseBody}
+        responseItem={responseBody.monthlyGoal}
         submitEdits={submitEdits}
       />
     </motion.article>

@@ -17,7 +17,7 @@ export default function Responses({ responses, onDelete, submitEdits }) {
                   response.relationships +
                   index
                 }
-                userResponseBody={response}
+                responseBody={response}
                 onDelete={onDelete}
                 submitEdits={submitEdits}
               />

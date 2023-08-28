@@ -6,7 +6,7 @@ import ModalTemplate from "../../../shared/modals/ModalTemplate";
 import MeetingForm from "../form/MeetingForm";
 
 export default function AdminTableCell({
-  userResponseBody,
+  responseBody,
   responseItem,
   submitEdits,
 }) {
@@ -33,7 +33,7 @@ export default function AdminTableCell({
           <MeetingForm
             onSubmit={(responseToSubmit) => submitEdits(responseToSubmit)}
             onClose={() => setMeetingFormShown(false)}
-            existingResponse={userResponseBody}
+            existingResponse={responseBody}
           />
         </ModalTemplate>
       )}

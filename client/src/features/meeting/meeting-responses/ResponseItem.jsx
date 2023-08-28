@@ -5,31 +5,40 @@ import editPen from "../../../assets/img/pen-solid.svg";
 import ModalTemplate from "../../../shared/modals/ModalTemplate";
 import MeetingForm from "../form/MeetingForm";
 
-export default function RatingOrPriority({
+export default function ResponseItem({
   title,
   text,
   className,
   submitEdits,
-  userResponseBody,
+  responseBody,
+  isCorrectUser,
 }) {
   const [editPenShown, setEditPenShown] = useState(false);
   const [meetingFormShown, setMeetingFormShown] = useState(false);
 
   return (
     <>
-      <span
+      <article
         className={className}
         onMouseEnter={() => setEditPenShown(true)}
         onMouseLeave={() => setEditPenShown(false)}
-        onClick={() => setMeetingFormShown(!meetingFormShown)}
+        onClick={
+          isCorrectUser()
+            ? () => setMeetingFormShown(!meetingFormShown)
+            : undefined
+        }
       >
-        <u>{title}</u>
+        <h4>
+          <strong>{title}</strong>
+        </h4>
 
         <br />
 
         {text}
-        {editPenShown && <img src={editPen} alt="edit" className="edit-pen" />}
-      </span>
+        {isCorrectUser() && editPenShown && (
+          <img src={editPen} alt="edit" className="edit-pen" />
+        )}
+      </article>
 
       {meetingFormShown && (
         <ModalTemplate
@@ -39,7 +48,7 @@ export default function RatingOrPriority({
           <MeetingForm
             onSubmit={(responseToSubmit) => submitEdits(responseToSubmit)}
             onClose={() => setMeetingFormShown(false)}
-            existingResponse={userResponseBody}
+            existingResponse={responseBody}
           />
         </ModalTemplate>
       )}
