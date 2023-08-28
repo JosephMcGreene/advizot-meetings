@@ -33,7 +33,7 @@ export default function AdminResponses({
           return (
             <AdminResponse
               key={`${response.date}${index}`}
-              userResponseBody={response}
+              responseBody={response}
               submitEdits={submitEdits}
               onDelete={onDelete}
             />
