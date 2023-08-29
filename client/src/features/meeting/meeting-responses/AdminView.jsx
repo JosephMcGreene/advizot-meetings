@@ -1,22 +1,31 @@
 import { useState } from "react";
+//Assets
+import verticalEllipse from "../../../assets/img/ellipsis-vertical-solid.svg";
 //External
 import { motion } from "framer-motion";
 //Components
-import AdminResponse from "./AdminResponse";
+import RoomCodeToggle from "../RoomCodeToggle";
 import RoomCodeDisplay from "../room-code/RoomCodeDisplay";
-import AdminMenu from "../admin-actions/AdminMenu";
+import AdminResponse from "./AdminResponse";
+import ActionsBtn from "./ActionsBtn";
 import AdminActionList from "../admin-actions/AdminActionList";
 
-export default function AdminResponses({
-  roomCodeDisplayed,
+export default function AdminView({
   responses,
   submitEdits,
   onDelete,
+  handleNewResponseClick,
 }) {
   const [adminActionsShown, setAdminActionsShown] = useState(false);
+  const [roomCodeDisplayed, setRoomCodeDisplayed] = useState(false);
 
   return (
     <>
+      <RoomCodeToggle
+        handleClick={() => setRoomCodeDisplayed(!roomCodeDisplayed)}
+        roomCodeDisplayed={roomCodeDisplayed}
+      />
+
       {roomCodeDisplayed && <RoomCodeDisplay />}
 
       <motion.section
@@ -45,17 +54,19 @@ export default function AdminResponses({
           );
         })}
 
-        <AdminMenu
-          actionToggle={() => setAdminActionsShown(!adminActionsShown)}
-          className="user-actions main-meeting-actions"
+        <ActionsBtn
+          handleClick={() => setAdminActionsShown(!adminActionsShown)}
         >
-          {adminActionsShown && (
-            <AdminActionList
-              onFormSubmit={(responseToSubmit) => submitEdits(responseToSubmit)}
-              actionToggle={() => setAdminActionsShown(!adminActionsShown)}
-            />
-          )}
-        </AdminMenu>
+          <img src={verticalEllipse} alt="user actions" className="dots-icon" />
+        </ActionsBtn>
+
+        {adminActionsShown && (
+          <AdminActionList
+            onFormSubmit={submitEdits}
+            actionToggle={() => setAdminActionsShown(!adminActionsShown)}
+            handleNewResponseClick={handleNewResponseClick}
+          />
+        )}
       </motion.section>
     </>
   );

@@ -1,6 +1,15 @@
+//Assets
+import newResponse from "../../../assets/img/file-circle-plus-solid.svg";
+//Components
 import Response from "./Response";
+import ActionsBtn from "./ActionsBtn";
 
-export default function Responses({ responses, onDelete, submitEdits }) {
+export default function MemberView({
+  responses,
+  onDelete,
+  submitEdits,
+  handleNewResponseClick,
+}) {
   return (
     <section className="responses-section">
       {responses.length === 0 ? (
@@ -10,13 +19,7 @@ export default function Responses({ responses, onDelete, submitEdits }) {
           {responses.map((response, index) => {
             return (
               <Response
-                key={
-                  response.priority +
-                  response.personal +
-                  response.business +
-                  response.relationships +
-                  index
-                }
+                key={`${response.date}${index}`}
                 responseBody={response}
                 onDelete={onDelete}
                 submitEdits={submitEdits}
@@ -25,6 +28,10 @@ export default function Responses({ responses, onDelete, submitEdits }) {
           })}
         </ul>
       )}
+
+      <ActionsBtn handleNewResponseClick={handleNewResponseClick}>
+        <img src={newResponse} alt="Add Response" className="add-icon" />
+      </ActionsBtn>
     </section>
   );
 }

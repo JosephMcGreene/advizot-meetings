@@ -5,7 +5,11 @@ export default function AdminMenu({ children, actionToggle, className }) {
     <nav className={className}>
       {children}
 
-      <button className="user-action-btn" onClick={() => actionToggle()}>
+      <button
+        type="button"
+        className="user-action-btn"
+        onClick={() => actionToggle()}
+      >
         <img src={verticalEllipse} alt="user actions" className="dots-icon" />
       </button>
     </nav>

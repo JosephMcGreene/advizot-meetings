@@ -1,0 +1,73 @@
+//Internal
+@use "../../index" as *;
+
+.actions-btn {
+  position: fixed;
+  bottom: 1.75rem;
+  right: 1.75rem;
+
+  width: 60px;
+  height: 60px;
+  border-radius: 45% 0 45% 0;
+  background-color: $advizot-color;
+  box-shadow: $header-shadow;
+  cursor: pointer;
+
+  .add-icon {
+    width: 30px;
+  }
+
+  .dots-icon {
+    width: 9px;
+    vertical-align: middle;
+  }
+
+  &:hover {
+    @include btnHover();
+  }
+}
+
+.admin-actions-list {
+  @include borderRadius();
+  @include borderSides();
+
+  position: fixed;
+  bottom: 100px;
+  right: 1.75rem;
+
+  list-style: none;
+  background-color: $light-bg;
+  padding: 1rem;
+
+  .admin-actions-item {
+    width: 225px;
+
+    .admin-actions-btn {
+      @include borderRadius();
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      width: 100%;
+      padding: 0.75rem;
+      background-color: $advizot-color;
+      font-family: inherit;
+      font-size: 1.25rem;
+      font-weight: bold;
+      cursor: pointer;
+
+      &:hover {
+        @include btnHover();
+      }
+
+      .admin-actions-label {
+        cursor: pointer;
+      }
+
+      .admin-actions-icon {
+        width: 30px;
+      }
+    }
+  }
+}
