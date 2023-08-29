@@ -54,7 +54,7 @@ export default function Meeting() {
 
       <button
         className="add-response-btn"
-        handleClick={() => setFormDisplayed(!formDisplayed)}
+        onClick={() => setFormDisplayed(!formDisplayed)}
       >
         <img src={newResponse} alt="user actions" className="add-icon" />
       </button>
