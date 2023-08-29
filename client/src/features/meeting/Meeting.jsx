@@ -1,8 +1,7 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../App";
 //Assets
-import eyeVisible from "../../assets/img/eye-solid.svg";
-import eyeHidden from "../../assets/img/eye-slash-solid.svg";
+import newResponse from "../../assets/img/file-circle-plus-solid.svg";
 //Helpers
 import { constructCurrentDate } from "../../helpers";
 //Hooks
@@ -10,16 +9,17 @@ import useMeeting from "../../hooks/useMeeting";
 //Components
 import LoadingSpinner from "../../shared/LoadingSpinner";
 import ErrorPage from "../../shared/ErrorPage";
+import RoomCodeToggle from "./RoomCodeToggle";
 import AdminResponses from "./meeting-responses/AdminResponses";
 import Responses from "./meeting-responses/Responses";
-import ActionsMenu from "./user-actions/ActionsMenu";
-import MeetingActionList from "./user-actions/MeetingActionList";
+import ModalTemplate from "../../shared/modals/ModalTemplate";
+import MeetingForm from "./form/MeetingForm";
 
 export default function Meeting() {
   const user = useContext(UserContext);
 
   const [roomCodeDisplayed, setRoomCodeDisplayed] = useState(false);
-  const [meetingActionsShown, setMeetingActionsShown] = useState(false);
+  const [formDisplayed, setFormDisplayed] = useState(false);
 
   const [responses, loading, error, submitResponse, deleteResponse] =
     useMeeting("get", "/db/responses");
@@ -30,16 +30,11 @@ export default function Meeting() {
   return (
     <>
       <h1 className="meeting-heading">Answers for {constructCurrentDate()}</h1>
-      <button
-        className="code-toggle"
-        onClick={() => setRoomCodeDisplayed(!roomCodeDisplayed)}
-      >
-        {roomCodeDisplayed ? (
-          <img src={eyeHidden} alt="Hide room code" className="eye-icon" />
-        ) : (
-          <img src={eyeVisible} alt="Show room code" className="eye-icon" />
-        )}
-      </button>
+
+      <RoomCodeToggle
+        handleClick={() => setRoomCodeDisplayed(!roomCodeDisplayed)}
+        roomCodeDisplayed={roomCodeDisplayed}
+      />
 
       {user.role === "admin" && (
         <AdminResponses
@@ -57,19 +52,24 @@ export default function Meeting() {
         />
       )}
 
-      <ActionsMenu
-        actionToggle={() => setMeetingActionsShown(!meetingActionsShown)}
-        className="user-actions main-meeting-actions"
+      <button
+        className="add-response-btn"
+        handleClick={() => setFormDisplayed(!formDisplayed)}
       >
-        {meetingActionsShown && (
-          <MeetingActionList
-            onFormSubmit={(responseToSubmit) =>
-              submitResponse(responseToSubmit)
-            }
-            actionToggle={() => setMeetingActionsShown(!meetingActionsShown)}
+        <img src={newResponse} alt="user actions" className="add-icon" />
+      </button>
+
+      {formDisplayed && (
+        <ModalTemplate
+          title={constructCurrentDate() + " Meeting"}
+          onClose={() => setFormDisplayed(false)}
+        >
+          <MeetingForm
+            onSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
+            onClose={() => setFormDisplayed(false)}
           />
-        )}
-      </ActionsMenu>
+        </ModalTemplate>
+      )}
     </>
   );
 }

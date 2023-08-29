@@ -1,0 +1,22 @@
+//Internal
+@use "../../index" as *;
+
+.add-response-btn {
+  position: fixed;
+  bottom: 1.75rem;
+  right: 1.75rem;
+
+  padding: 1rem;
+  border-radius: 45% 0 45% 0;
+  background-color: $advizot-color;
+  box-shadow: $header-shadow;
+  cursor: pointer;
+
+  .add-icon {
+    width: 30px;
+  }
+
+  &:hover {
+    @include btnHover();
+  }
+}
