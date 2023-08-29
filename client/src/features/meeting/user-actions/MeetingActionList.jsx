@@ -14,7 +14,6 @@ import ModalTemplate from "../../../shared/modals/ModalTemplate";
 import MeetingForm from "../form/MeetingForm";
 
 export default function MeetingActionList({
-  displayRoomCode,
   onFormSubmit,
   actionToggle,
 }) {
@@ -44,15 +43,6 @@ export default function MeetingActionList({
             />
           </button>
         </li>
-
-        {user.role === "admin" && (
-          <li className="actions-item" tabIndex="2">
-            <button onClick={() => displayRoomCode()} className="actions-btn">
-              <span className="actions-label">Toggle Room Code</span>
-              <img src={lockIcon} alt="Key" className="actions-list-icon" />
-            </button>
-          </li>
-        )}
 
         {formDisplayed && (
           <ModalTemplate

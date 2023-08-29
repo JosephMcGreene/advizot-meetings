@@ -6,10 +6,31 @@
   display: block;
 
   width: fit-content;
-  margin: 0 auto;
+  margin: 1rem auto;
   padding: 1rem;
   background-color: $advizot-color;
   letter-spacing: 2px;
+}
+
+.code-toggle {
+  display: block;
+  margin-left: auto;
+  margin-right: 28%;
+  margin-top: -70px;
+  border-radius: 100vw;
+  background-color: $advizot-light;
+  padding: 0.5rem;
+  cursor: pointer;
+
+  &:hover {
+    @include btnHover();
+  }
+
+  .eye-icon {
+    width: 29px;
+    height: 29px;
+    vertical-align: middle;
+  }
 }
 
 .admin-responses {

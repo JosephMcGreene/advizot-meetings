@@ -1,5 +1,8 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../App";
+//Assets
+import eyeVisible from "../../assets/img/eye-solid.svg";
+import eyeHidden from "../../assets/img/eye-slash-solid.svg";
 //Helpers
 import { constructCurrentDate } from "../../helpers";
 //Hooks
@@ -27,6 +30,16 @@ export default function Meeting() {
   return (
     <>
       <h1 className="meeting-heading">Answers for {constructCurrentDate()}</h1>
+      <button
+        className="code-toggle"
+        onClick={() => setRoomCodeDisplayed(!roomCodeDisplayed)}
+      >
+        {roomCodeDisplayed ? (
+          <img src={eyeHidden} alt="Hide room code" className="eye-icon" />
+        ) : (
+          <img src={eyeVisible} alt="Show room code" className="eye-icon" />
+        )}
+      </button>
 
       {user.role === "admin" && (
         <AdminResponses
@@ -50,7 +63,6 @@ export default function Meeting() {
       >
         {meetingActionsShown && (
           <MeetingActionList
-            displayRoomCode={() => setRoomCodeDisplayed(!roomCodeDisplayed)}
             onFormSubmit={(responseToSubmit) =>
               submitResponse(responseToSubmit)
             }
