@@ -1,6 +1,6 @@
 import verticalEllipse from "../../../assets/img/ellipsis-vertical-solid.svg";
 
-export default function ActionsMenu({ children, actionToggle, className }) {
+export default function AdminMenu({ children, actionToggle, className }) {
   return (
     <nav className={className}>
       {children}

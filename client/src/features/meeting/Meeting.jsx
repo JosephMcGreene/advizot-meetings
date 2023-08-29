@@ -12,14 +12,11 @@ import LoadingSpinner from "../../shared/LoadingSpinner";
 import ErrorPage from "../../shared/ErrorPage";
 import AdminResponses from "./meeting-responses/AdminResponses";
 import Responses from "./meeting-responses/Responses";
-import ActionsMenu from "./user-actions/ActionsMenu";
-import MeetingActionList from "./user-actions/MeetingActionList";
 
 export default function Meeting() {
   const user = useContext(UserContext);
 
   const [roomCodeDisplayed, setRoomCodeDisplayed] = useState(false);
-  const [meetingActionsShown, setMeetingActionsShown] = useState(false);
 
   const [responses, loading, error, submitResponse, deleteResponse] =
     useMeeting("get", "/db/responses");
@@ -56,20 +53,6 @@ export default function Meeting() {
           submitEdits={(responseToSubmit) => submitResponse(responseToSubmit)}
         />
       )}
-
-      <ActionsMenu
-        actionToggle={() => setMeetingActionsShown(!meetingActionsShown)}
-        className="user-actions main-meeting-actions"
-      >
-        {meetingActionsShown && (
-          <MeetingActionList
-            onFormSubmit={(responseToSubmit) =>
-              submitResponse(responseToSubmit)
-            }
-            actionToggle={() => setMeetingActionsShown(!meetingActionsShown)}
-          />
-        )}
-      </ActionsMenu>
     </>
   );
 }

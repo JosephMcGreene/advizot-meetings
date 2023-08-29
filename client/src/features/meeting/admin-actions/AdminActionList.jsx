@@ -2,7 +2,6 @@ import { useState, useRef, useContext } from "react";
 import { UserContext } from "../../../App";
 //Assets
 import addResponseIcon from "../../../assets/img/file-circle-plus-solid.svg";
-import lockIcon from "../../../assets/img/lock-solid.svg";
 //External
 import { motion } from "framer-motion";
 //Helpers
@@ -13,12 +12,11 @@ import useOutsideClick from "../../../hooks/useOutsideClick";
 import ModalTemplate from "../../../shared/modals/ModalTemplate";
 import MeetingForm from "../form/MeetingForm";
 
-export default function MeetingActionList({
-  onFormSubmit,
-  actionToggle,
-}) {
+export default function AdminActionList({ onFormSubmit, actionToggle }) {
   const user = useContext(UserContext);
+
   const [formDisplayed, setFormDisplayed] = useState(false);
+
   const actionsRef = useRef();
   useOutsideClick(actionsRef, () => actionToggle());
 

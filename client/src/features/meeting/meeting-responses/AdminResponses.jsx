@@ -1,8 +1,11 @@
+import { useState } from "react";
 //External
 import { motion } from "framer-motion";
 //Components
 import AdminResponse from "./AdminResponse";
 import RoomCodeDisplay from "../room-code/RoomCodeDisplay";
+import AdminMenu from "../admin-actions/AdminMenu";
+import AdminActionList from "../admin-actions/AdminActionList";
 
 export default function AdminResponses({
   roomCodeDisplayed,
@@ -10,6 +13,8 @@ export default function AdminResponses({
   submitEdits,
   onDelete,
 }) {
+  const [adminActionsShown, setAdminActionsShown] = useState(false);
+
   return (
     <>
       {roomCodeDisplayed && <RoomCodeDisplay />}
@@ -39,6 +44,18 @@ export default function AdminResponses({
             />
           );
         })}
+
+        <AdminMenu
+          actionToggle={() => setAdminActionsShown(!adminActionsShown)}
+          className="user-actions main-meeting-actions"
+        >
+          {adminActionsShown && (
+            <AdminActionList
+              onFormSubmit={(responseToSubmit) => submitEdits(responseToSubmit)}
+              actionToggle={() => setAdminActionsShown(!adminActionsShown)}
+            />
+          )}
+        </AdminMenu>
       </motion.section>
     </>
   );
