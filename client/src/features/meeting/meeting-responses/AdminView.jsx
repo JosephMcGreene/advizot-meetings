@@ -16,7 +16,7 @@ export default function AdminView({
   onDelete,
   handleNewResponseClick,
 }) {
-  const [adminActionsShown, setAdminActionsShown] = useState(false);
+  const [actionsShown, setActionsShown] = useState(false);
   const [roomCodeDisplayed, setRoomCodeDisplayed] = useState(false);
 
   return (
@@ -55,15 +55,15 @@ export default function AdminView({
         })}
 
         <ActionsBtn
-          handleClick={() => setAdminActionsShown(!adminActionsShown)}
+          handleNewResponseClick={() => setActionsShown(!actionsShown)}
         >
           <img src={verticalEllipse} alt="user actions" className="dots-icon" />
         </ActionsBtn>
 
-        {adminActionsShown && (
+        {actionsShown && (
           <AdminActionList
             onFormSubmit={submitEdits}
-            actionToggle={() => setAdminActionsShown(!adminActionsShown)}
+            actionToggle={() => setActionsShown(!actionsShown)}
             handleNewResponseClick={handleNewResponseClick}
           />
         )}
