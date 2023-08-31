@@ -11,17 +11,19 @@ import ActionsBtn from "./ActionsBtn";
 import AdminActionList from "../admin-actions/AdminActionList";
 import ModalTemplate from "../../../shared/modals/ModalTemplate";
 import FilterModal from "../admin-actions/FilterModal";
+import MemberEditModal from "../admin-actions/MemberEditModal";
 
 export default function AdminView({
   responses,
   submitEdits,
   onDelete,
   handleNewResponseClick,
-  handleSubmit,
+  handleFilterSubmit,
 }) {
   const [actionsShown, setActionsShown] = useState(false);
   const [roomCodeShown, setRoomCodeShown] = useState(false);
   const [filterModalShown, setFilterModalShown] = useState(false);
+  const [memberEditModalShown, setMemberEditModalShown] = useState(false);
 
   return (
     <>
@@ -63,28 +65,40 @@ export default function AdminView({
         >
           <img src={verticalEllipse} alt="user actions" className="dots-icon" />
         </ActionsBtn>
-
-        {actionsShown && (
-          <AdminActionList
-            onFormSubmit={submitEdits}
-            actionToggle={() => setActionsShown(!actionsShown)}
-            handleNewResponseClick={handleNewResponseClick}
-            handleFilterClick={() => setFilterModalShown(!filterModalShown)}
-          />
-        )}
-
-        {filterModalShown && (
-          <ModalTemplate
-            title="Filter Responses"
-            handleClose={() => setFilterModalShown(false)}
-          >
-            <FilterModal
-              handleSubmit={handleSubmit}
-              handleClose={() => setFilterModalShown(false)}
-            />
-          </ModalTemplate>
-        )}
       </motion.section>
+
+      {actionsShown && (
+        <AdminActionList
+          onFormSubmit={submitEdits}
+          actionToggle={() => setActionsShown(!actionsShown)}
+          handleNewResponseClick={handleNewResponseClick}
+          handleFilterClick={() => setFilterModalShown(!filterModalShown)}
+          handleMemberEditClick={() =>
+            setMemberEditModalShown(!memberEditModalShown)
+          }
+        />
+      )}
+
+      {filterModalShown && (
+        <ModalTemplate
+          title="Filter Responses"
+          handleClose={() => setFilterModalShown(false)}
+        >
+          <FilterModal
+            handleFilterSubmit={handleFilterSubmit}
+            handleClose={() => setFilterModalShown(false)}
+          />
+        </ModalTemplate>
+      )}
+
+      {memberEditModalShown && (
+        <ModalTemplate
+          title="Edit Members"
+          handleClose={() => setMemberEditModalShown(false)}
+        >
+          <MemberEditModal />
+        </ModalTemplate>
+      )}
     </>
   );
 }

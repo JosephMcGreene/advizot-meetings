@@ -33,7 +33,7 @@ export default function Meeting() {
           submitEdits={(responseToSubmit) => submitResponse(responseToSubmit)}
           onDelete={(responseID) => deleteResponse(responseID)}
           handleNewResponseClick={() => setFormShown(!formShown)}
-          handleSubmit={(filterToSubmit) => console.log(filterToSubmit)}
+          handleFilterSubmit={(filterToSubmit) => console.log(filterToSubmit)}
         />
       )}
       {user.role === "member" && (

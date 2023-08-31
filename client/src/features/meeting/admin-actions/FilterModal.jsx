@@ -4,7 +4,7 @@ import * as Yup from "yup";
 //Components
 import Select from "../form/Select";
 
-export default function FilterModal({ handleSubmit, handleClose }) {
+export default function FilterModal({ handleFilterSubmit, handleClose }) {
   return (
     <div className="modal-body">
       <Formik
@@ -16,7 +16,7 @@ export default function FilterModal({ handleSubmit, handleClose }) {
         })}
         onSubmit={(values, actions) => {
           try {
-            handleSubmit(values);
+            handleFilterSubmit(values);
             actions.setSubmitting(false);
           } catch (err) {
             console.error(err);

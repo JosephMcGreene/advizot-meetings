@@ -1,25 +1,19 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 //Assets
 import filterIcon from "../../../assets/img/filter-solid.svg";
+import memberEditIcon from "../../../assets/img/users-gear-solid.svg";
 import addResponseIcon from "../../../assets/img/file-circle-plus-solid.svg";
 //External
 import { motion } from "framer-motion";
-//Helpers
-import { constructCurrentDate } from "../../../helpers";
 //Hooks
 import useOutsideClick from "../../../hooks/useOutsideClick";
-//Components
-import ModalTemplate from "../../../shared/modals/ModalTemplate";
-import MeetingForm from "../form/MeetingForm";
 
 export default function AdminActionList({
-  onFormSubmit,
   actionToggle,
-  handleNewResponseClick,
   handleFilterClick,
+  handleMemberEditClick,
+  handleNewResponseClick,
 }) {
-  const [formDisplayed, setFormDisplayed] = useState(false);
-
   const actionsRef = useRef();
   useOutsideClick(actionsRef, () => actionToggle());
 
@@ -34,8 +28,11 @@ export default function AdminActionList({
         <button
           className="admin-actions-btn"
           onClick={() => handleFilterClick()}
+          id="filter"
         >
-          <label className="admin-actions-label">Filter Responses</label>
+          <label htmlFor="filter" className="admin-actions-label">
+            Filter Responses
+          </label>
           <img src={filterIcon} alt="Filter" className="admin-actions-icon" />
         </button>
       </li>
@@ -43,9 +40,29 @@ export default function AdminActionList({
       <li className="admin-actions-item">
         <button
           className="admin-actions-btn"
-          onClick={() => handleNewResponseClick()}
+          onClick={() => handleMemberEditClick()}
+          id="members"
         >
-          <label className="admin-actions-label">New Response</label>
+          <label htmlFor="members" className="admin-actions-label">
+            Edit Members
+          </label>
+          <img
+            src={memberEditIcon}
+            alt="Edit Members"
+            className="admin-actions-icon"
+          />
+        </button>
+      </li>
+
+      <li className="admin-actions-item">
+        <button
+          className="admin-actions-btn"
+          onClick={() => handleNewResponseClick()}
+          id="newResponse"
+        >
+          <label htmlFor="newResponse" className="admin-actions-label">
+            New Response
+          </label>
           <img
             src={addResponseIcon}
             alt="Form"
@@ -53,18 +70,6 @@ export default function AdminActionList({
           />
         </button>
       </li>
-
-      {formDisplayed && (
-        <ModalTemplate
-          title={constructCurrentDate() + " Meeting"}
-          onClose={() => setFormDisplayed(false)}
-        >
-          <MeetingForm
-            onSubmit={onFormSubmit}
-            onClose={() => setFormDisplayed(false)}
-          />
-        </ModalTemplate>
-      )}
     </motion.ul>
   );
 }
