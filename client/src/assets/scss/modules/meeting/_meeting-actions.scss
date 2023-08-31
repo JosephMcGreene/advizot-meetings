@@ -40,7 +40,12 @@
   padding: 1rem;
 
   .admin-actions-item {
-    width: 225px;
+    width: 230px;
+    margin-bottom: 1rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
 
     .admin-actions-btn {
       @include borderRadius();
@@ -50,7 +55,7 @@
       align-items: center;
 
       width: 100%;
-      padding: 0.75rem;
+      padding: 0.5rem 0.75rem;
       background-color: $advizot-color;
       font-family: inherit;
       font-size: 1.25rem;

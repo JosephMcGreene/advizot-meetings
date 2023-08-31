@@ -4,29 +4,33 @@ import verticalEllipse from "../../../assets/img/ellipsis-vertical-solid.svg";
 //External
 import { motion } from "framer-motion";
 //Components
-import RoomCodeToggle from "../RoomCodeToggle";
+import RoomCodeToggle from "../admin-actions/RoomCodeToggle";
 import RoomCodeDisplay from "../room-code/RoomCodeDisplay";
 import AdminResponse from "./AdminResponse";
 import ActionsBtn from "./ActionsBtn";
 import AdminActionList from "../admin-actions/AdminActionList";
+import ModalTemplate from "../../../shared/modals/ModalTemplate";
+import FilterModal from "../admin-actions/FilterModal";
 
 export default function AdminView({
   responses,
   submitEdits,
   onDelete,
   handleNewResponseClick,
+  handleSubmit,
 }) {
   const [actionsShown, setActionsShown] = useState(false);
-  const [roomCodeDisplayed, setRoomCodeDisplayed] = useState(false);
+  const [roomCodeShown, setRoomCodeShown] = useState(false);
+  const [filterModalShown, setFilterModalShown] = useState(false);
 
   return (
     <>
       <RoomCodeToggle
-        handleClick={() => setRoomCodeDisplayed(!roomCodeDisplayed)}
-        roomCodeDisplayed={roomCodeDisplayed}
+        handleClick={() => setRoomCodeShown(!roomCodeShown)}
+        roomCodeShown={roomCodeShown}
       />
 
-      {roomCodeDisplayed && <RoomCodeDisplay />}
+      {roomCodeShown && <RoomCodeDisplay />}
 
       <motion.section
         layout
@@ -65,7 +69,20 @@ export default function AdminView({
             onFormSubmit={submitEdits}
             actionToggle={() => setActionsShown(!actionsShown)}
             handleNewResponseClick={handleNewResponseClick}
+            handleFilterClick={() => setFilterModalShown(!filterModalShown)}
           />
+        )}
+
+        {filterModalShown && (
+          <ModalTemplate
+            title="Filter Responses"
+            handleClose={() => setFilterModalShown(false)}
+          >
+            <FilterModal
+              handleSubmit={handleSubmit}
+              handleClose={() => setFilterModalShown(false)}
+            />
+          </ModalTemplate>
         )}
       </motion.section>
     </>

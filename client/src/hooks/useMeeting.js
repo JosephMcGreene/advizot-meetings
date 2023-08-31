@@ -12,7 +12,7 @@ export default function useMeeting(method, url) {
   });
 
   useEffect(() => {
-    getExistingResponses(method, url);
+    getResponses(method, url);
   }, [method, url]);
 
   /**
@@ -22,15 +22,16 @@ export default function useMeeting(method, url) {
    * @param {string} url    Endpoint of the proxy server for the fetch call
    * @param {object} [data] The request body sent to the server, if applicable
    */
-  async function getExistingResponses(method, url) {
+  async function getResponses(method, url, data = null) {
     try {
       setLoading(true);
 
-      const existingResponses = await axiosFetch(method, url);
+      const existingResponses = await axiosFetch(method, url, data);
 
       setResponses(existingResponses.data);
     } catch (err) {
       setError(err);
+      throw new Error(err);
     } finally {
       setLoading(false);
     }
@@ -59,6 +60,7 @@ export default function useMeeting(method, url) {
       setResponses(filteredResponses);
     } catch (err) {
       setError(err);
+      throw new Error(err);
     } finally {
       setLoading(false);
     }
@@ -85,6 +87,7 @@ export default function useMeeting(method, url) {
       );
     } catch (err) {
       setError(err);
+      throw new Error(err);
     } finally {
       setLoading(false);
     }

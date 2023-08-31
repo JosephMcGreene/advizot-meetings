@@ -4,7 +4,6 @@ import * as Yup from "yup";
 //Components
 import InputField from "./InputField";
 import Select from "./Select";
-import LoadingSpinner from "../../../shared/LoadingSpinner";
 
 export default function MeetingForm({ onSubmit, onClose, existingResponse }) {
   /**
@@ -14,7 +13,7 @@ export default function MeetingForm({ onSubmit, onClose, existingResponse }) {
    *
    * @returns {Object} A styles object specifying the percentage of the background that should be filled in.
    */
-  function getSliderSize(value) {
+  function sliderSizeOf(value) {
     return {
       backgroundSize: `${(value * 100) / 10}% 100%`,
     };
@@ -55,10 +54,11 @@ export default function MeetingForm({ onSubmit, onClose, existingResponse }) {
           try {
             values._id = existingResponse?._id;
             onSubmit(values);
-            actions.setSubmitting(true);
+            actions.setSubmitting(false);
+          } catch (err) {
+            console.error(err);
+          } finally {
             onClose();
-          } catch (error) {
-            console.error(error);
           }
         }}
       >
@@ -72,7 +72,7 @@ export default function MeetingForm({ onSubmit, onClose, existingResponse }) {
               min={0}
               max={10}
               className="range-container"
-              style={getSliderSize(props.values.business)}
+              style={sliderSizeOf(props.values.business)}
               spanText={props.values.business}
             />
 
@@ -84,7 +84,7 @@ export default function MeetingForm({ onSubmit, onClose, existingResponse }) {
               min={0}
               max={10}
               className="range-container"
-              style={getSliderSize(props.values.personal)}
+              style={sliderSizeOf(props.values.personal)}
               spanText={props.values.personal}
             />
 
@@ -96,7 +96,7 @@ export default function MeetingForm({ onSubmit, onClose, existingResponse }) {
               min={0}
               max={10}
               className="range-container"
-              style={getSliderSize(props.values.relationships)}
+              style={sliderSizeOf(props.values.relationships)}
               spanText={props.values.relationships}
             />
 
@@ -124,7 +124,7 @@ export default function MeetingForm({ onSubmit, onClose, existingResponse }) {
             />
 
             <button type="submit" className="btn">
-              {isSubmitting ? <LoadingSpinner /> : "Submit"}
+              Submit
             </button>
           </Form>
         )}

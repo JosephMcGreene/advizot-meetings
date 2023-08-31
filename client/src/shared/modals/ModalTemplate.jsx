@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 //Hooks
 import useOutsideClick from "../../hooks/useOutsideClick";
 
-export default function ModalTemplate({ children, title, onClose }) {
+export default function ModalTemplate({ children, title, handleClose }) {
   const modalRef = useRef();
-  useOutsideClick(modalRef, () => onClose());
+  useOutsideClick(modalRef, () => handleClose());
 
   return (
     <div className="modal">
@@ -18,7 +18,7 @@ export default function ModalTemplate({ children, title, onClose }) {
       >
         <header className="modal-header">
           <span className="modal-heading">{title}</span>
-          <button className="close-x" onClick={() => onClose()}>
+          <button className="close-x" onClick={() => handleClose()}>
             &times;
           </button>
         </header>

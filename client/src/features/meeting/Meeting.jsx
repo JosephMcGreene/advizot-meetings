@@ -15,7 +15,7 @@ import MeetingForm from "./form/MeetingForm";
 export default function Meeting() {
   const user = useContext(UserContext);
 
-  const [formDisplayed, setFormDisplayed] = useState(false);
+  const [formShown, setFormShown] = useState(false);
 
   const [responses, loading, error, submitResponse, deleteResponse] =
     useMeeting("get", "/db/responses");
@@ -32,7 +32,8 @@ export default function Meeting() {
           responses={responses}
           submitEdits={(responseToSubmit) => submitResponse(responseToSubmit)}
           onDelete={(responseID) => deleteResponse(responseID)}
-          handleNewResponseClick={() => setFormDisplayed(!formDisplayed)}
+          handleNewResponseClick={() => setFormShown(!formShown)}
+          handleSubmit={(filterToSubmit) => console.log(filterToSubmit)}
         />
       )}
       {user.role === "member" && (
@@ -40,18 +41,18 @@ export default function Meeting() {
           responses={responses}
           onDelete={(responseID) => deleteResponse(responseID)}
           submitEdits={(responseToSubmit) => submitResponse(responseToSubmit)}
-          handleNewResponseClick={() => setFormDisplayed(!formDisplayed)}
+          handleNewResponseClick={() => setFormShown(!formShown)}
         />
       )}
 
-      {formDisplayed && (
+      {formShown && (
         <ModalTemplate
           title={constructCurrentDate() + " Meeting"}
-          onClose={() => setFormDisplayed(false)}
+          handleClose={() => setFormShown(false)}
         >
           <MeetingForm
             onSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
-            onClose={() => setFormDisplayed(false)}
+            onClose={() => setFormShown(false)}
           />
         </ModalTemplate>
       )}

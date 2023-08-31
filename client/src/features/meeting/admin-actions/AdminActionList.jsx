@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 //Assets
+import filterIcon from "../../../assets/img/filter-solid.svg";
 import addResponseIcon from "../../../assets/img/file-circle-plus-solid.svg";
 //External
 import { motion } from "framer-motion";
@@ -15,6 +16,7 @@ export default function AdminActionList({
   onFormSubmit,
   actionToggle,
   handleNewResponseClick,
+  handleFilterClick,
 }) {
   const [formDisplayed, setFormDisplayed] = useState(false);
 
@@ -28,10 +30,20 @@ export default function AdminActionList({
       ref={actionsRef}
       className="admin-actions-list"
     >
-      <li className="admin-actions-item" tabIndex="1">
+      <li className="admin-actions-item">
         <button
-          onClick={() => handleNewResponseClick()}
           className="admin-actions-btn"
+          onClick={() => handleFilterClick()}
+        >
+          <label className="admin-actions-label">Filter Responses</label>
+          <img src={filterIcon} alt="Filter" className="admin-actions-icon" />
+        </button>
+      </li>
+
+      <li className="admin-actions-item">
+        <button
+          className="admin-actions-btn"
+          onClick={() => handleNewResponseClick()}
         >
           <label className="admin-actions-label">New Response</label>
           <img
