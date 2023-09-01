@@ -21,6 +21,22 @@
       text-align: center;
     }
   }
+
+  .checkbox {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    width: 25px;
+    height: 25px;
+    border-radius: 8px 0 8px 0;
+    border: 3px solid $advizot-color;
+    vertical-align: middle;
+    margin-right: 0.75rem;
+  }
+  .checkbox:checked {
+    background-color: $advizot-color;
+  }
 }
 
 .rating-select,

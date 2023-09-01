@@ -1,5 +1,5 @@
 //External
-import { Formik, Form } from "formik";
+import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 //Components
 import Select from "../form/Select";
@@ -10,9 +10,11 @@ export default function FilterModal({ handleFilterSubmit, handleClose }) {
       <Formik
         initialValues={{
           group: "",
+          viewAdminResponses: false,
         }}
         validationSchema={Yup.object({
           group: Yup.string(),
+          viewAdminResponses: Yup.bool(),
         })}
         onSubmit={(values, actions) => {
           try {
@@ -34,6 +36,15 @@ export default function FilterModal({ handleFilterSubmit, handleClose }) {
               <option value="ce4659">CE4659</option>
               <option value="guest">Guests</option>
             </Select>
+
+            <label>
+              <Field
+                type="checkbox"
+                name="viewAdminResponses"
+                className="checkbox"
+              />
+              View my own Responses
+            </label>
 
             <button type="submit" className="btn">
               Submit
