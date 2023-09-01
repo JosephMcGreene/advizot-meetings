@@ -27,15 +27,18 @@
     -moz-appearance: none;
     appearance: none;
 
-    width: 25px;
-    height: 25px;
-    border-radius: 8px 0 8px 0;
-    border: 3px solid $advizot-color;
-    vertical-align: middle;
+    @include borderRadius();
+
+    width: 30px;
+    height: 30px;
     margin-right: 0.75rem;
-  }
-  .checkbox:checked {
-    background-color: $advizot-color;
+    vertical-align: middle;
+
+    border: 3px solid $advizot-color;
+
+    &:checked {
+      background-color: $advizot-color;
+    }
   }
 }
 
@@ -43,6 +46,7 @@
 .text-input textarea {
   margin-top: 0.15rem;
   padding: $padding;
+
   background-color: $light-bg;
   font-family: inherit;
   font-size: inherit;
@@ -65,7 +69,6 @@
 .text-input {
   display: flex;
   flex-direction: column;
-
   margin: 0.75rem auto 0;
   width: 100%;
 
@@ -82,11 +85,12 @@
   input {
     @include borderSides();
 
-    font-family: inherit;
-    text-align: center;
     width: 220px;
     margin: auto;
     padding: $padding;
+    text-align: center;
+
+    font-family: inherit;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   }
 }
@@ -95,7 +99,7 @@
 .range-error {
   position: absolute;
   right: $form-padding;
-
   padding: 0.2rem;
+
   background-color: $advizot-color;
 }

@@ -93,5 +93,12 @@ export default function useMeeting(method, url) {
     }
   }
 
-  return [sortedResponses, loading, error, submitResponse, deleteResponse];
+  return [
+    sortedResponses,
+    loading,
+    error,
+    getResponses,
+    submitResponse,
+    deleteResponse,
+  ];
 }

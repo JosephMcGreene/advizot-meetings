@@ -7,6 +7,7 @@ input[type="range"] {
 
   margin-top: 12px;
   height: 8px;
+
   background-color: $light-bg;
   box-shadow: inset -1px -1px 2px rgba(0, 0, 0, 0.7);
 
@@ -26,10 +27,11 @@ input[type="range"]::-webkit-slider-thumb {
 
   width: 28px;
   height: 30px;
+
   border-radius: $border-radius 0 $border-radius 0;
   background: $advizot-color;
-  cursor: grab;
   transform: skew(-9deg);
+  cursor: grab;
 }
 input[type="range"]::-webkit-slider-thumb:hover {
   @include btnHover();
@@ -43,17 +45,17 @@ input[type="range"]::-webkit-slider-thumb:active {
 input[type="range"]::-moz-range-thumb {
   @include specialBoxShadow();
 
-  border: none;
   width: 28px;
   height: 30px;
-  border-radius: 10px 0 10px 0;
-  background: $advizot-color;
-  cursor: grab;
 
+  border-radius: 10px 0 10px 0;
+  border: none;
+  background: $advizot-color;
   transform: skew(-9deg);
   transition-property: background-color;
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
+  cursor: grab;
 }
 input[type="range"]::-moz-range-thumb:hover {
   @include btnHover();

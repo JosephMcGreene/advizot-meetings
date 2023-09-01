@@ -17,8 +17,14 @@ export default function Meeting() {
 
   const [formShown, setFormShown] = useState(false);
 
-  const [responses, loading, error, submitResponse, deleteResponse] =
-    useMeeting("get", "/db/responses");
+  const [
+    responses,
+    loading,
+    error,
+    getResponses,
+    submitResponse,
+    deleteResponse,
+  ] = useMeeting("get", "/db/responses");
 
   if (loading) return <LoadingSpinner />;
   if (error) return <ErrorPage error={error} />;

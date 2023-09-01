@@ -3,9 +3,10 @@
 .delete-btn {
   @include borderRadius();
 
-  background-color: $advizot-light;
   width: 2.5rem;
   height: 2.5rem;
+
+  background-color: $advizot-light;
   cursor: pointer;
 
   &:hover {

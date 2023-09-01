@@ -2,7 +2,6 @@
 
 .header {
   z-index: $header-z;
-
   position: absolute;
   top: 0;
   left: 0;
@@ -14,7 +13,6 @@
   .nav-bar {
     display: flex;
     justify-content: space-between;
-
     height: $header-height;
 
     .logo {
@@ -30,14 +28,16 @@
 
       .nav-item {
         margin-right: 1rem;
+
         cursor: pointer;
 
         .profile-link {
           .profile-img {
             vertical-align: middle;
             max-width: 55px;
-            border-radius: 100vw;
+
             border: 3px solid $advizot-color;
+            border-radius: 100vw;
           }
 
           &:focus,

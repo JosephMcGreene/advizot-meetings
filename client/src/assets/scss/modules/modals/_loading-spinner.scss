@@ -4,15 +4,15 @@
 .loading-spinner {
   display: flex;
   place-items: center;
-
+  margin: auto;
   width: 75px;
   height: 75px;
+
   border-radius: 50%;
   background-color: transparent;
   border: 10px solid $advizot-color;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  margin: auto;
   animation: spin 1s ease-in-out infinite;
 }
 

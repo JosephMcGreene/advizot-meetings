@@ -6,9 +6,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  margin: 1.5rem;
   gap: 3rem;
-
   margin: 0 auto 25vh;
 
   .response-li {
@@ -16,6 +14,7 @@
     @include borderRadius();
 
     padding: 1rem;
+
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
 
     &:hover {
@@ -26,15 +25,17 @@
       margin-top: 0.5rem;
       margin-bottom: 1.25rem;
       line-height: 0.65rem;
+
       cursor: pointer;
     }
 
     .response-name {
       @include borderRadius();
 
-      background-color: $advizot-light;
-      padding: 7px 1ch;
       width: min-content;
+      padding: 7px 1ch;
+
+      background-color: $advizot-light;
 
       &:hover {
         @include btnHover();
@@ -48,13 +49,14 @@
 
     .issue,
     .goal {
-      overflow-wrap: break-word;
       line-height: 1.2rem;
+      overflow-wrap: break-word;
     }
 
     h4 {
-      text-decoration: underline;
       text-align: center;
+
+      text-decoration: underline;
     }
   }
 }

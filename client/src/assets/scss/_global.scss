@@ -70,9 +70,9 @@ button {
   @include transition(box-shadow);
 
   display: block;
-
   padding: 1ch 3ch; //Will sometimes be overridden in specific instances
   margin: 1rem auto;
+
   background-color: $advizot-color;
   cursor: pointer;
 
@@ -94,6 +94,7 @@ a {
   margin-inline: auto;
   margin-bottom: 2rem;
   width: fit-content;
+
   font-size: 1.5rem;
   font-weight: 400;
 }

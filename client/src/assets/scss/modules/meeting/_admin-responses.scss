@@ -4,12 +4,12 @@
   @include borderRadius();
 
   display: block;
-
   width: fit-content;
   margin: 1rem auto;
   padding: 1rem;
-  background-color: $advizot-color;
   letter-spacing: 2px;
+
+  background-color: $advizot-color;
 }
 
 .code-toggle {
@@ -17,9 +17,10 @@
   margin-left: auto;
   margin-right: 28%;
   margin-top: -70px;
+  padding: 0.5rem;
+
   border-radius: 100vw;
   background-color: $advizot-light;
-  padding: 0.5rem;
   cursor: pointer;
 
   &:hover {
@@ -58,8 +59,9 @@
   }
 
   .admin-head {
-    list-style: none;
     text-align: center;
+
+    list-style: none;
     background-color: $advizot-color;
 
     &:first-child {
@@ -83,8 +85,8 @@
       align-items: center;
       gap: 0.5rem;
 
-      cursor: pointer;
       font-size: 1.2rem;
+      cursor: pointer;
 
       .admin-row-name {
         align-self: center;

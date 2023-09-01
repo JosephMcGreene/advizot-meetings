@@ -5,9 +5,9 @@
   position: fixed;
   bottom: 1.75rem;
   right: 1.75rem;
-
   width: 60px;
   height: 60px;
+
   border-radius: 45% 0 45% 0;
   background-color: $advizot-color;
   box-shadow: $header-shadow;
@@ -34,10 +34,10 @@
   position: fixed;
   bottom: 100px;
   right: 1.75rem;
+  padding: 1rem;
 
   list-style: none;
   background-color: $light-bg;
-  padding: 1rem;
 
   .admin-actions-item {
     width: 230px;
@@ -48,18 +48,16 @@
     }
 
     .admin-actions-btn {
+      @include advizotFont(1.25rem, bold, 0.5px);
       @include borderRadius();
 
       display: flex;
       justify-content: space-between;
       align-items: center;
-
       width: 100%;
       padding: 0.5rem 0.75rem;
+
       background-color: $advizot-color;
-      font-family: inherit;
-      font-size: 1.25rem;
-      font-weight: bold;
       cursor: pointer;
 
       &:hover {
