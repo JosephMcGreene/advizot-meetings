@@ -33,11 +33,9 @@ dbRouter
     }
   })
   .post(async function (req, res) {
-    let deleted;
-
     try {
       if (req.body?._id !== undefined) {
-        deleted = await Response.deleteOne({ _id: req.body._id });
+        await Response.deleteOne({ _id: req.body._id });
       }
 
       const newUserResponse = new Response({
@@ -70,5 +68,11 @@ dbRouter
       throw err;
     }
   });
+
+dbRouter.route("/responses/filters").post(async function (req, res) {
+  console.log("Request Body", req.body);
+
+  res.json("This worked");
+});
 
 module.exports = dbRouter;

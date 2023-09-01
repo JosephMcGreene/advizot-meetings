@@ -39,7 +39,9 @@ export default function Meeting() {
           submitEdits={(responseToSubmit) => submitResponse(responseToSubmit)}
           onDelete={(responseID) => deleteResponse(responseID)}
           handleNewResponseClick={() => setFormShown(!formShown)}
-          handleFilterSubmit={(filterToSubmit) => console.log(filterToSubmit)}
+          handleFilterSubmit={(filtersToSubmit) =>
+            getResponses("post", "/db/responses/filters", filtersToSubmit)
+          }
         />
       )}
       {user.role === "member" && (
