@@ -3,6 +3,8 @@ import { useState } from "react";
 import verticalEllipse from "../../../assets/img/ellipsis-vertical-solid.svg";
 //External
 import { motion } from "framer-motion";
+//Internal
+import { currentDate } from "../../../helpers";
 //Components
 import RoomCodeToggle from "../admin-actions/RoomCodeToggle";
 import RoomCodeDisplay from "../room-code/RoomCodeDisplay";
@@ -26,7 +28,9 @@ export default function AdminView({
   const [memberEditModalShown, setMemberEditModalShown] = useState(false);
 
   return (
-    <>
+    <article>
+      <h1 className="meeting-heading">Answers for {currentDate("month")}</h1>
+
       <RoomCodeToggle
         handleClick={() => setRoomCodeShown(!roomCodeShown)}
         roomCodeShown={roomCodeShown}
@@ -99,6 +103,6 @@ export default function AdminView({
           <MemberEditModal />
         </ModalTemplate>
       )}
-    </>
+    </article>
   );
 }

@@ -1,5 +1,9 @@
+import { useContext } from "react";
+import { UserContext } from "../../../App";
 //Assets
 import newResponse from "../../../assets/img/file-circle-plus-solid.svg";
+//Internal
+import { currentDate } from "../../../helpers";
 //Components
 import Response from "./Response";
 import ActionsBtn from "./ActionsBtn";
@@ -10,8 +14,14 @@ export default function MemberView({
   submitEdits,
   handleNewResponseClick,
 }) {
+  const user = useContext(UserContext);
+
   return (
-    <section className="responses-section">
+    <article className="responses-section">
+      <h1 className="meeting-heading">
+        {user.group} {currentDate("month")}
+      </h1>
+
       {responses.length === 0 ? (
         <h2>There are no responses right now.</h2>
       ) : (
@@ -32,6 +42,6 @@ export default function MemberView({
       <ActionsBtn handleNewResponseClick={handleNewResponseClick}>
         <img src={newResponse} alt="Add Response" className="add-icon" />
       </ActionsBtn>
-    </section>
+    </article>
   );
 }

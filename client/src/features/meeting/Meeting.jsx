@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../App";
 //Helpers
-import { constructCurrentDate } from "../../helpers";
+import { currentDate } from "../../helpers";
 //Hooks
 import useMeeting from "../../hooks/useMeeting";
 //Components
@@ -31,8 +31,6 @@ export default function Meeting() {
 
   return (
     <>
-      <h1 className="meeting-heading">Answers for {constructCurrentDate()}</h1>
-
       {user.role === "admin" && (
         <AdminView
           responses={responses}
@@ -55,7 +53,7 @@ export default function Meeting() {
 
       {formShown && (
         <ModalTemplate
-          title={constructCurrentDate() + " Meeting"}
+          title={`${currentDate("month")}, ${currentDate("year")}`}
           handleClose={() => setFormShown(false)}
         >
           <MeetingForm

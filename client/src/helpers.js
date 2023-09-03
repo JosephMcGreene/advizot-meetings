@@ -28,17 +28,46 @@ export async function axiosFetch(method, url, data = null) {
 }
 
 /**
- * Parses Date object into a string representing the current date in MM/DD/YY format
+ * Parses Date object into a string representing the current month of the year
  *
- * @param {Date | null} dateToParse Date to parse
+ * @param {string}      monthOrYear "month" or "year" to be returned
+ * @param {Date | null} dateToParse Date to parse, default is current date
  *
- * @returns {String} A string representing the current date
+ * @returns {string | undefined} A string representing the current month or year
  */
-export function constructCurrentDate(dateToParse = null) {
-  let day = dateToParse || new Date();
-  let month = day.getMonth() + 1;
-  let date = day.getDate();
-  let year = day.getFullYear().toString().slice(2);
+export const currentDate = (monthOrYear, dateToParse = null) => {
+  let date = dateToParse || new Date();
 
-  return `${month}/${date}/${year}`;
-}
+  if (monthOrYear === "year") return date.getFullYear();
+
+  if (monthOrYear === "month") {
+    switch (date.getMonth()) {
+      case 0:
+        return "January";
+      case 1:
+        return "February";
+      case 2:
+        return "March";
+      case 3:
+        return "April";
+      case 4:
+        return "May";
+      case 5:
+        return "June";
+      case 6:
+        return "July";
+      case 7:
+        return "August";
+      case 8:
+        return "September";
+      case 9:
+        return "October";
+      case 10:
+        return "November";
+      case 11:
+        return "December";
+      default:
+        return undefined;
+    }
+  }
+};
