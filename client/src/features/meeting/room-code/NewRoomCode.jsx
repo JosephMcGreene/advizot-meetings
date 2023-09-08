@@ -8,8 +8,8 @@ import useRoomCode from "../../../hooks/useRoomCode";
 import LoadingSpinner from "../../../shared/LoadingSpinner";
 
 export default function NewRoomCode() {
-  const [setRoomCode, loading] = useRoomCode();
   const user = useContext(UserContext);
+  const [setRoomCode, loading] = useRoomCode();
 
   if (loading) return <LoadingSpinner />;
 

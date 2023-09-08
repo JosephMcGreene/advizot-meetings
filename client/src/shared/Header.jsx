@@ -9,8 +9,8 @@ import ModalTemplate from "./modals/ModalTemplate";
 import Login from "./modals/Login";
 
 export default function Header() {
-  const [loginShown, setLoginShown] = useState(false);
   const user = useContext(UserContext);
+  const [loginShown, setLoginShown] = useState(false);
 
   return (
     <header className="header">
@@ -47,7 +47,7 @@ export default function Header() {
       </nav>
 
       {loginShown && (
-        <ModalTemplate title="Log In" onClose={() => setLoginShown(false)}>
+        <ModalTemplate title="Log In" handleClose={() => setLoginShown(false)}>
           <Login />
         </ModalTemplate>
       )}

@@ -4,7 +4,11 @@ import { UserContext } from "../../../App";
 import ResponseItem from "./ResponseItem";
 import DeleteButton from "./DeleteButton";
 
-export default function Response({ responseBody, onDelete, submitEdits }) {
+export default function MemberResponse({
+  responseBody,
+  handleDelete,
+  handleSubmitEdits,
+}) {
   const user = useContext(UserContext);
 
   /**
@@ -12,10 +16,10 @@ export default function Response({ responseBody, onDelete, submitEdits }) {
    *
    * @returns {boolean} whether or not the user can edit or delete the response the response
    */
-  const isCorrectUser = () => {
+  function isCorrectUser() {
     if (user.advizotID === responseBody?.userID) return true;
     return false;
-  };
+  }
 
   return (
     <li className="response-li" tabIndex="0">
@@ -24,21 +28,24 @@ export default function Response({ responseBody, onDelete, submitEdits }) {
       <ResponseItem
         title="Priority"
         text={responseBody.priority.substring(1)}
-        className="response-p priority"
-        submitEdits={submitEdits}
+        className="response priority"
+        handleSubmitEdits={handleSubmitEdits}
         responseBody={responseBody}
         isCorrectUser={isCorrectUser}
       />
 
       {isCorrectUser() && (
-        <DeleteButton responseID={responseBody._id} onDelete={onDelete} />
+        <DeleteButton
+          responseID={responseBody._id}
+          handleDelete={handleDelete}
+        />
       )}
 
       <ResponseItem
         title="Business"
         text={responseBody.business}
-        className="response-p range-response business-rating"
-        submitEdits={submitEdits}
+        className="response range-response business-rating"
+        handleSubmitEdits={handleSubmitEdits}
         responseBody={responseBody}
         isCorrectUser={isCorrectUser}
       />
@@ -46,8 +53,8 @@ export default function Response({ responseBody, onDelete, submitEdits }) {
       <ResponseItem
         title="Personal"
         text={responseBody.personal}
-        className="response-p range-response personal-rating"
-        submitEdits={submitEdits}
+        className="response range-response personal-rating"
+        handleSubmitEdits={handleSubmitEdits}
         responseBody={responseBody}
         isCorrectUser={isCorrectUser}
       />
@@ -55,8 +62,8 @@ export default function Response({ responseBody, onDelete, submitEdits }) {
       <ResponseItem
         title="Relationships"
         text={responseBody.relationships}
-        className="response-p range-response relationships-rating"
-        submitEdits={submitEdits}
+        className="response range-response relationships-rating"
+        handleSubmitEdits={handleSubmitEdits}
         responseBody={responseBody}
         isCorrectUser={isCorrectUser}
       />
@@ -64,8 +71,8 @@ export default function Response({ responseBody, onDelete, submitEdits }) {
       <ResponseItem
         title="Issue to Process Today"
         text={responseBody.monthlyIssue}
-        className="response-p issue"
-        submitEdits={submitEdits}
+        className="response issue"
+        handleSubmitEdits={handleSubmitEdits}
         responseBody={responseBody}
         isCorrectUser={isCorrectUser}
       />
@@ -73,8 +80,8 @@ export default function Response({ responseBody, onDelete, submitEdits }) {
       <ResponseItem
         title="Goal Before Next Meeting"
         text={responseBody.monthlyGoal}
-        className="response-p goal"
-        submitEdits={submitEdits}
+        className="response goal"
+        handleSubmitEdits={handleSubmitEdits}
         responseBody={responseBody}
         isCorrectUser={isCorrectUser}
       />

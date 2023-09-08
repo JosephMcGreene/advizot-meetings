@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import InputField from "../form/InputField";
 import LoadingSpinner from "../../../shared/LoadingSpinner";
 
-export default function RoomCodeEntry({ onSubmit }) {
+export default function RoomCodeEntry({ handleSubmit }) {
   return (
     <Formik
       initialValues={{
@@ -16,7 +16,7 @@ export default function RoomCodeEntry({ onSubmit }) {
       })}
       onSubmit={({ roomCode }, actions) => {
         try {
-          onSubmit(roomCode);
+          handleSubmit(roomCode);
           actions.setSubmitting(true);
         } catch (error) {
           console.error(error);

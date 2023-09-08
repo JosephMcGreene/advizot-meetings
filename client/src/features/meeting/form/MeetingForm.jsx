@@ -5,7 +5,11 @@ import * as Yup from "yup";
 import InputField from "./InputField";
 import Select from "./Select";
 
-export default function MeetingForm({ onSubmit, onClose, existingResponse }) {
+export default function MeetingForm({
+  handleSubmit,
+  handleClose,
+  existingResponse,
+}) {
   /**
    * Determines the percentage of an input slider's background that should be filled up based on where the user has dragged the thumb
    *
@@ -53,12 +57,12 @@ export default function MeetingForm({ onSubmit, onClose, existingResponse }) {
         onSubmit={(values, actions) => {
           try {
             values._id = existingResponse?._id;
-            onSubmit(values);
+            handleSubmit(values);
             actions.setSubmitting(false);
           } catch (err) {
             console.error(err);
           } finally {
-            onClose();
+            handleClose();
           }
         }}
       >

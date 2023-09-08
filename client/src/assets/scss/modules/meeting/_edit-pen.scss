@@ -3,17 +3,24 @@
 $size: 20px;
 
 .admin-info-cell,
-.response-p {
+.response {
   position: relative;
+
+  &:hover {
+    .edit-pen {
+      display: block;
+    }
+  }
 
   .edit-pen {
     position: absolute;
     top: calc(50% - ($size / 2));
     right: 5%;
+    display: none;
     max-width: $size;
   }
 }
 
-.response-p .edit-pen {
+.response .edit-pen {
   top: 55%;
 }

@@ -10,29 +10,26 @@ export default function AdminTableCell({
   responseItem,
   submitEdits,
 }) {
-  const [editPenShown, setEditPenShown] = useState(false);
   const [meetingFormShown, setMeetingFormShown] = useState(false);
 
   return (
     <>
       <p
         onClick={() => setMeetingFormShown(!meetingFormShown)}
-        onMouseEnter={() => setEditPenShown(true)}
-        onMouseLeave={() => setEditPenShown(false)}
         className="admin-info-cell"
       >
         {responseItem}
-        {editPenShown && <img src={editPen} alt="edit" className="edit-pen" />}
+        <img src={editPen} alt="edit" className="edit-pen" />
       </p>
 
       {meetingFormShown && (
         <ModalTemplate
           title="Edit Response"
-          onClose={() => setMeetingFormShown(false)}
+          handleClose={() => setMeetingFormShown(false)}
         >
           <MeetingForm
-            onSubmit={(responseToSubmit) => submitEdits(responseToSubmit)}
-            onClose={() => setMeetingFormShown(false)}
+            handleSubmit={(responseToSubmit) => submitEdits(responseToSubmit)}
+            handleClose={() => setMeetingFormShown(false)}
             existingResponse={responseBody}
           />
         </ModalTemplate>

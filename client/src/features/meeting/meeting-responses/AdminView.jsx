@@ -1,6 +1,6 @@
 import { useState } from "react";
 //Assets
-import verticalEllipse from "../../../assets/img/sliders-solid.svg";
+import slidersIcon from "../../../assets/img/sliders-solid.svg";
 //External
 import { motion } from "framer-motion";
 //Internal
@@ -17,8 +17,8 @@ import MemberEditModal from "../admin-actions/MemberEditModal";
 
 export default function AdminView({
   responses,
-  submitEdits,
-  onDelete,
+  handleSubmitEdits,
+  handleDelete,
   handleNewResponseClick,
   handleFilterSubmit,
 }) {
@@ -58,20 +58,20 @@ export default function AdminView({
             <AdminResponse
               key={`${response.date}${index}`}
               responseBody={response}
-              submitEdits={submitEdits}
-              onDelete={onDelete}
+              handleSubmitEdits={handleSubmitEdits}
+              handleDelete={handleDelete}
             />
           );
         })}
 
         <ActionsBtn handleClick={() => setActionsShown(!actionsShown)}>
-          <img src={verticalEllipse} alt="user actions" className="dots-icon" />
+          <img src={slidersIcon} alt="user actions" className="sliders-icon" />
         </ActionsBtn>
       </motion.section>
 
       {actionsShown && (
         <AdminActionList
-          onFormSubmit={submitEdits}
+          onFormSubmit={handleSubmitEdits}
           actionToggle={() => setActionsShown(!actionsShown)}
           handleNewResponseClick={handleNewResponseClick}
           handleFilterClick={() => setFilterModalShown(!filterModalShown)}

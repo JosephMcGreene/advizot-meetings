@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom";
 import NewRoomCode from "./room-code/NewRoomCode";
 import RoomCodePrompt from "./room-code/RoomCodePrompt";
 
-export default function UsersOnly({ onSubmitRoomCode }) {
+export default function UsersOnly({ handleSubmitCode }) {
   const user = useContext(UserContext);
 
   if (!user) return <Navigate to="/" />;
@@ -14,7 +14,7 @@ export default function UsersOnly({ onSubmitRoomCode }) {
   if (user.role === "admin") return <NewRoomCode />;
 
   return (
-    <RoomCodePrompt onSubmitRoomCode={onSubmitRoomCode}>
+    <RoomCodePrompt handleSubmitCode={handleSubmitCode}>
       <Navigate to="/meeting" />
     </RoomCodePrompt>
   );

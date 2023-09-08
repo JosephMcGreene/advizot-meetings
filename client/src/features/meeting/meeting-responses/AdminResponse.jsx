@@ -5,7 +5,11 @@ import { motion } from "framer-motion";
 import AdminTableCell from "./AdminTableCell";
 import DeleteButton from "./DeleteButton";
 
-export default function AdminResponse({ responseBody, submitEdits, onDelete }) {
+export default function AdminResponse({
+  responseBody,
+  handleSubmitEdits,
+  handleDelete,
+}) {
   const [deleteBtnShown, setDeleteBtnShown] = useState(false);
 
   return (
@@ -18,7 +22,10 @@ export default function AdminResponse({ responseBody, submitEdits, onDelete }) {
     >
       <span className="admin-info-cell">
         {deleteBtnShown && (
-          <DeleteButton responseID={responseBody._id} onDelete={onDelete} />
+          <DeleteButton
+            responseID={responseBody._id}
+            handleDelete={handleDelete}
+          />
         )}
 
         <motion.h4
@@ -33,32 +40,32 @@ export default function AdminResponse({ responseBody, submitEdits, onDelete }) {
       <AdminTableCell
         responseBody={responseBody}
         responseItem={responseBody.priority.substring(1)}
-        submitEdits={submitEdits}
+        handleSubmitEdits={handleSubmitEdits}
       />
       <AdminTableCell
         responseBody={responseBody}
         responseItem={responseBody.business}
-        submitEdits={submitEdits}
+        handleSubmitEdits={handleSubmitEdits}
       />
       <AdminTableCell
         responseBody={responseBody}
         responseItem={responseBody.personal}
-        submitEdits={submitEdits}
+        handleSubmitEdits={handleSubmitEdits}
       />
       <AdminTableCell
         responseBody={responseBody}
         responseItem={responseBody.relationships}
-        submitEdits={submitEdits}
+        handleSubmitEdits={handleSubmitEdits}
       />
       <AdminTableCell
         responseBody={responseBody}
         responseItem={responseBody.monthlyIssue}
-        submitEdits={submitEdits}
+        handleSubmitEdits={handleSubmitEdits}
       />
       <AdminTableCell
         responseBody={responseBody}
         responseItem={responseBody.monthlyGoal}
-        submitEdits={submitEdits}
+        handleSubmitEdits={handleSubmitEdits}
       />
     </motion.article>
   );

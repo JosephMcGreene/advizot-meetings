@@ -9,19 +9,16 @@ export default function ResponseItem({
   title,
   text,
   className,
-  submitEdits,
+  handleSubmitEdits,
   responseBody,
   isCorrectUser,
 }) {
-  const [editPenShown, setEditPenShown] = useState(false);
   const [meetingFormShown, setMeetingFormShown] = useState(false);
 
   return (
     <>
       <article
         className={className}
-        onMouseEnter={() => setEditPenShown(true)}
-        onMouseLeave={() => setEditPenShown(false)}
         onClick={
           isCorrectUser()
             ? () => setMeetingFormShown(!meetingFormShown)
@@ -35,7 +32,7 @@ export default function ResponseItem({
         <br />
 
         {text}
-        {isCorrectUser() && editPenShown && (
+        {isCorrectUser() && (
           <img src={editPen} alt="edit" className="edit-pen" />
         )}
       </article>
@@ -43,11 +40,13 @@ export default function ResponseItem({
       {meetingFormShown && (
         <ModalTemplate
           title="Edit Response"
-          onClose={() => setMeetingFormShown(false)}
+          handleClose={() => setMeetingFormShown(false)}
         >
           <MeetingForm
-            onSubmit={(responseToSubmit) => submitEdits(responseToSubmit)}
-            onClose={() => setMeetingFormShown(false)}
+            handleSubmit={(responseToSubmit) =>
+              handleSubmitEdits(responseToSubmit)
+            }
+            handleClose={() => setMeetingFormShown(false)}
             existingResponse={responseBody}
           />
         </ModalTemplate>

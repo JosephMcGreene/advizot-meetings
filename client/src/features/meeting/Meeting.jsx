@@ -14,7 +14,6 @@ import MeetingForm from "./form/MeetingForm";
 
 export default function Meeting() {
   const user = useContext(UserContext);
-
   const [formShown, setFormShown] = useState(false);
 
   const [
@@ -35,7 +34,7 @@ export default function Meeting() {
         <AdminView
           responses={responses}
           submitEdits={(responseToSubmit) => submitResponse(responseToSubmit)}
-          onDelete={(responseID) => deleteResponse(responseID)}
+          handleDelete={(responseID) => deleteResponse(responseID)}
           handleNewResponseClick={() => setFormShown(!formShown)}
           handleFilterSubmit={(filtersToSubmit) =>
             getResponses("post", "/db/responses/filters", filtersToSubmit)
@@ -45,8 +44,10 @@ export default function Meeting() {
       {user.role === "member" && (
         <MemberView
           responses={responses}
-          onDelete={(responseID) => deleteResponse(responseID)}
-          submitEdits={(responseToSubmit) => submitResponse(responseToSubmit)}
+          handleDelete={(responseID) => deleteResponse(responseID)}
+          handleSubmitEdits={(responseToSubmit) =>
+            submitResponse(responseToSubmit)
+          }
           handleSignInClick={() => setFormShown(!formShown)}
         />
       )}
@@ -57,8 +58,10 @@ export default function Meeting() {
           handleClose={() => setFormShown(false)}
         >
           <MeetingForm
-            onSubmit={(responseToSubmit) => submitResponse(responseToSubmit)}
-            onClose={() => setFormShown(false)}
+            handleSubmit={(responseToSubmit) =>
+              submitResponse(responseToSubmit)
+            }
+            handleClose={() => setFormShown(false)}
           />
         </ModalTemplate>
       )}
