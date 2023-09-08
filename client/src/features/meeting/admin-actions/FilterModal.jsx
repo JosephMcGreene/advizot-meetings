@@ -29,7 +29,7 @@ export default function FilterModal({ handleFilterSubmit, handleClose }) {
       >
         {() => (
           <Form className="form">
-            <Select text="Group" name="group" className="select">
+            <Select text="Group to View" name="group" className="select">
               <option value="">-- Select a Group --</option>
               <option value="ce5660">CE5660</option>
               <option value="key9330">KEY9330</option>

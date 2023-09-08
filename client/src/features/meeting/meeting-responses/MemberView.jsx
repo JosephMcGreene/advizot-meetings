@@ -27,7 +27,7 @@ export default function MemberView({
   return (
     <article className="responses-section">
       <h1 className="meeting-heading">
-        {user.group} {currentDate("month")}
+        {user.group === "guest" ? "Guests" : user.group} {currentDate("month")}
       </h1>
 
       {responses.length === 0 ? (

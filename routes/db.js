@@ -29,7 +29,7 @@ dbRouter
       ]);
       return res.json(responses);
     } catch (err) {
-      throw err;
+      throw new Error(err);
     }
   })
   .post(async function (req, res) {
@@ -54,7 +54,7 @@ dbRouter
 
       res.json(newUserResponse);
     } catch (err) {
-      throw err;
+      throw new Error(err);
     }
   })
   .delete(async function (req, res) {
@@ -65,14 +65,24 @@ dbRouter
 
       res.json({ deletionRes, responseID: req.body.responseID });
     } catch (err) {
-      throw err;
+      throw new Error(err);
     }
   });
 
 dbRouter.route("/responses/filters").post(async function (req, res) {
-  console.log("Request Body", req.body);
+  try {
+    // Mongoose query for getting the right responses for:
+    // req.group
+    // req.viewAdminResponses
+    const groupResponses = await Response.find().or([
+      { group: req.group },
+      { group: "admin" },
+    ]);
 
-  res.json("This worked");
+    return res.json(groupResponses);
+  } catch (err) {
+    throw new Error(err);
+  }
 });
 
 module.exports = dbRouter;

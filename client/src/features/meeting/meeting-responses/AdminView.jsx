@@ -29,12 +29,13 @@ export default function AdminView({
 
   return (
     <article>
-      <h1 className="meeting-heading">Answers for {currentDate("month")}</h1>
-
-      <RoomCodeToggle
-        handleClick={() => setRoomCodeShown(!roomCodeShown)}
-        roomCodeShown={roomCodeShown}
-      />
+      <div className="heading-container">
+        <h1 className="meeting-heading">Answers for {currentDate("month")}</h1>
+        <RoomCodeToggle
+          handleClick={() => setRoomCodeShown(!roomCodeShown)}
+          roomCodeShown={roomCodeShown}
+        />
+      </div>
 
       {roomCodeShown && <RoomCodeDisplay />}
 

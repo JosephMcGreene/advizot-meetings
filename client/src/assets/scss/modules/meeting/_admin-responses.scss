@@ -1,43 +1,47 @@
 @use "../../index" as *;
 
+.heading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-block: 1.5rem;
+
+  .code-toggle {
+    padding: 0.75rem;
+    margin-left: 1.5rem;
+
+    border-radius: 100vw;
+    background-color: $advizot-light;
+    cursor: pointer;
+
+    &:hover {
+      @include btnHover();
+    }
+
+    .eye-icon {
+      width: 29px;
+      height: 29px;
+      vertical-align: middle;
+    }
+  }
+}
+
 .room-code-display {
   @include borderRadius();
 
   display: block;
   width: fit-content;
-  margin: 1rem auto;
+  margin: 0 auto 1.5rem;
   padding: 1rem;
   letter-spacing: 2px;
 
   background-color: $advizot-color;
 }
 
-.code-toggle {
-  display: block;
-  margin-left: auto;
-  margin-right: 28%;
-  margin-top: -70px;
-  padding: 0.5rem;
-
-  border-radius: 100vw;
-  background-color: $advizot-light;
-  cursor: pointer;
-
-  &:hover {
-    @include btnHover();
-  }
-
-  .eye-icon {
-    width: 29px;
-    height: 29px;
-    vertical-align: middle;
-  }
-}
-
 .admin-responses {
   $border: 1px solid black;
 
-  margin: $form-padding auto;
+  margin: 0 auto;
   width: 90vw;
 
   .admin-head,
