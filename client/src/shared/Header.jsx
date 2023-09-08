@@ -32,14 +32,14 @@ export default function Header() {
           <li className="nav-item">
             {user ? (
               <a href="/auth/logout">
-                <button className="btn">Sign out</button>
+                <button className="btn">Log out</button>
               </a>
             ) : (
               <button
                 className="btn"
                 onClick={() => setLoginShown(!loginShown)}
               >
-                Sign in
+                Log in
               </button>
             )}
           </li>
@@ -47,7 +47,7 @@ export default function Header() {
       </nav>
 
       {loginShown && (
-        <ModalTemplate title="Sign In" onClose={() => setLoginShown(false)}>
+        <ModalTemplate title="Log In" onClose={() => setLoginShown(false)}>
           <Login />
         </ModalTemplate>
       )}

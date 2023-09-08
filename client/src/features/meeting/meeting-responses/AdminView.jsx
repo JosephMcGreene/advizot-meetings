@@ -1,6 +1,6 @@
 import { useState } from "react";
 //Assets
-import verticalEllipse from "../../../assets/img/ellipsis-vertical-solid.svg";
+import verticalEllipse from "../../../assets/img/sliders-solid.svg";
 //External
 import { motion } from "framer-motion";
 //Internal

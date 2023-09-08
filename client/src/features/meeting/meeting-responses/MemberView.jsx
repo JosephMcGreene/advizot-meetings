@@ -16,12 +16,14 @@ export default function MemberView({
 }) {
   const user = useContext(UserContext);
 
+  const findResponseUserID = () =>
+    responses.find((response) => response.userID === user.advizotID);
+
   return (
     <article className="responses-section">
       <h1 className="meeting-heading">
         {user.group} {currentDate("month")}
       </h1>
-
       {responses.length === 0 ? (
         <h2>There are no responses right now.</h2>
       ) : (
@@ -39,9 +41,12 @@ export default function MemberView({
         </ul>
       )}
 
-      <ActionsBtn handleNewResponseClick={handleNewResponseClick}>
-        <img src={newResponse} alt="Add Response" className="add-icon" />
-      </ActionsBtn>
+      {findResponseUserID()?.userID !== user.advizotID && (
+        <ActionsBtn handleNewResponseClick={handleNewResponseClick}>
+          Sign In
+          <img src={newResponse} alt="Add Response" className="add-icon" />
+        </ActionsBtn>
+      )}
     </article>
   );
 }

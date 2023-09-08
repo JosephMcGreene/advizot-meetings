@@ -31,7 +31,7 @@ export default function AdminActionList({
           id="filter"
         >
           <label htmlFor="filter" className="admin-actions-label">
-            Filter Responses
+            Filter View
           </label>
           <img src={filterIcon} alt="Filter" className="admin-actions-icon" />
         </button>
