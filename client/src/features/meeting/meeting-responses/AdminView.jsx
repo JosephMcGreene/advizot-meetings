@@ -64,9 +64,7 @@ export default function AdminView({
           );
         })}
 
-        <ActionsBtn
-          handleNewResponseClick={() => setActionsShown(!actionsShown)}
-        >
+        <ActionsBtn handleClick={() => setActionsShown(!actionsShown)}>
           <img src={verticalEllipse} alt="user actions" className="dots-icon" />
         </ActionsBtn>
       </motion.section>

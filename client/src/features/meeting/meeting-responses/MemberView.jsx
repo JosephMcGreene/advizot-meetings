@@ -12,11 +12,11 @@ export default function MemberView({
   responses,
   onDelete,
   submitEdits,
-  handleNewResponseClick,
+  handleSignInClick,
 }) {
   const user = useContext(UserContext);
 
-  const findResponseUserID = () =>
+  const responseUserID = () =>
     responses.find((response) => response.userID === user.advizotID);
 
   return (
@@ -41,8 +41,8 @@ export default function MemberView({
         </ul>
       )}
 
-      {findResponseUserID()?.userID !== user.advizotID && (
-        <ActionsBtn handleNewResponseClick={handleNewResponseClick}>
+      {responseUserID()?.userID !== user.advizotID && (
+        <ActionsBtn handleClick={handleSignInClick}>
           Sign In
           <img src={newResponse} alt="Add Response" className="add-icon" />
         </ActionsBtn>

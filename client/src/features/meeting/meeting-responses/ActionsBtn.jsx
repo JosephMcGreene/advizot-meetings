@@ -1,10 +1,6 @@
-export default function ActionsBtn({ handleNewResponseClick, children }) {
+export default function ActionsBtn({ handleClick, children }) {
   return (
-    <button
-      type="button"
-      onClick={() => handleNewResponseClick()}
-      className="actions-btn"
-    >
+    <button type="button" onClick={() => handleClick()} className="actions-btn">
       {children}
     </button>
   );

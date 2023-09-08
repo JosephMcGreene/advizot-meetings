@@ -47,7 +47,7 @@ export default function Meeting() {
           responses={responses}
           onDelete={(responseID) => deleteResponse(responseID)}
           submitEdits={(responseToSubmit) => submitResponse(responseToSubmit)}
-          handleNewResponseClick={() => setFormShown(!formShown)}
+          handleSignInClick={() => setFormShown(!formShown)}
         />
       )}
 
