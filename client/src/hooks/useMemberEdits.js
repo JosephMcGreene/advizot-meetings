@@ -2,8 +2,26 @@ import { useState, useEffect } from "react";
 //Internal
 import { axiosFetch } from "../helpers";
 
-export default function useMemberEdits({}) {
-  const [guestMembers, setGuestMembers] = useState([]);
+export default function useMemberEdits() {
+  const [usersToEdit, setUsersToEdit] = useState([]);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    fetchGuestUsers();
+  }, []);
+
+  async function fetchGuestUsers() {
+    try {
+      const response = await axiosFetch("get", "/db/users");
+      setUsersToEdit(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function handleEditSubmit(data) {
+    const memberEditResponse = await axiosFetch("put", "/db/users", data);
+    console.log(memberEditResponse.data);
+  }
+
+  return [usersToEdit, handleEditSubmit];
 }

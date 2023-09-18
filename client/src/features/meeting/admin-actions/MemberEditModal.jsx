@@ -1,32 +1,13 @@
-import { useState, useEffect } from "react";
 //External
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-//Internal
-import { axiosFetch } from "../../../helpers";
+//hooks
+import useMemberEdits from "../../../hooks/useMemberEdits";
 //Components
 import Select from "../form/Select";
 
-export default function MemberEditModal({ handleMemberSubmit, handleClose }) {
-  const [usersToView, setUsersToView] = useState([]);
-
-  useEffect(() => {
-    fetchGuestUsers();
-  }, []);
-
-  async function fetchGuestUsers() {
-    try {
-      const response = await axiosFetch("get", "/db/users");
-      setUsersToView(response.data);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  async function handleEditSubmit(data) {
-    const memberEditResponse = await axiosFetch("put", "/db/users", data);
-    console.log(memberEditResponse.data);
-  }
+export default function MemberEditModal({ handleClose }) {
+  const [usersToEdit, handleEditSubmit] = useMemberEdits();
 
   return (
     <div className="modal-body">
@@ -58,7 +39,7 @@ export default function MemberEditModal({ handleMemberSubmit, handleClose }) {
               className="select"
             >
               <option value="">-- Select a Member --</option>
-              {usersToView.map((guest) => (
+              {usersToEdit.map((guest) => (
                 <option value={guest._id} key={guest._id}>
                   {guest.firstName} {guest.lastName}
                 </option>
