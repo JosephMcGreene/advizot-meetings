@@ -99,7 +99,7 @@ export default function AdminView({
           title="Edit Members"
           handleClose={() => setMemberEditModalShown(false)}
         >
-          <MemberEditModal />
+          <MemberEditModal handleClose={() => setMemberEditModalShown(false)} />
         </ModalTemplate>
       )}
     </article>

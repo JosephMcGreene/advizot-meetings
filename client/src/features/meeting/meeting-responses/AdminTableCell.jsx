@@ -8,7 +8,7 @@ import MeetingForm from "../form/MeetingForm";
 export default function AdminTableCell({
   responseBody,
   responseItem,
-  submitEdits,
+  handleSubmitEdits,
 }) {
   const [meetingFormShown, setMeetingFormShown] = useState(false);
 
@@ -28,7 +28,9 @@ export default function AdminTableCell({
           handleClose={() => setMeetingFormShown(false)}
         >
           <MeetingForm
-            handleSubmit={(responseToSubmit) => submitEdits(responseToSubmit)}
+            handleSubmit={(responseToSubmit) =>
+              handleSubmitEdits(responseToSubmit)
+            }
             handleClose={() => setMeetingFormShown(false)}
             existingResponse={responseBody}
           />

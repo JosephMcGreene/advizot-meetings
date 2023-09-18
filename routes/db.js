@@ -1,32 +1,21 @@
 const express = require("express");
 const Response = require("../models/Response");
+const User = require("../models/User");
 const dbRouter = express.Router();
-const { userRoles } = require("../utils/userRoles");
-const { determineDay } = require("../utils/helpers");
+const { groups } = require("../utils/userRoles");
 
 dbRouter
   .route("/responses")
   .get(async function (req, res) {
     try {
-      if (req.user.role === userRoles.ADMIN) {
-        const responses = await Response.find().or([
-          { group: determineDay() },
-          { group: "admin" },
-        ]);
-        //
-        // Also needs to filter out old responses, so only the current meeting's responses are displayed to user
-        //
-        return res.json(responses);
-      }
-
-      if (determineDay() !== req.user.group) {
-        return res.json([]);
-      }
-
       const responses = await Response.find().or([
         { group: req.user.group },
         { group: "admin" },
       ]);
+      //
+      // Also needs to filter out old responses, so only the current meeting's responses are displayed to user
+      //
+
       return res.json(responses);
     } catch (err) {
       throw new Error(err);
@@ -84,5 +73,28 @@ dbRouter.route("/responses/filters").post(async function (req, res) {
     throw new Error(err);
   }
 });
+
+dbRouter
+  .route("/users")
+  .get(async function (req, res) {
+    try {
+      const guestUsers = await User.find({ group: groups.GUEST });
+      res.json(guestUsers);
+    } catch (err) {
+      throw new Error(err);
+    }
+  })
+  .put(async function (req, res) {
+    try {
+      console.log(req.body);
+      const updatedUser = await User.findByIdAndUpdate(req.body.id, {
+        group: req.body.groupToPlace,
+      });
+
+      console.log(updatedUser);
+    } catch (err) {
+      throw new Error(err);
+    }
+  });
 
 module.exports = dbRouter;

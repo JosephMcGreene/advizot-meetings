@@ -33,7 +33,9 @@ export default function Meeting() {
       {user.role === "admin" && (
         <AdminView
           responses={responses}
-          submitEdits={(responseToSubmit) => submitResponse(responseToSubmit)}
+          handleSubmitEdits={(responseToSubmit) =>
+            submitResponse(responseToSubmit)
+          }
           handleDelete={(responseID) => deleteResponse(responseID)}
           handleNewResponseClick={() => setFormShown(!formShown)}
           handleFilterSubmit={(filtersToSubmit) =>

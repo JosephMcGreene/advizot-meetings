@@ -28,9 +28,7 @@ export default function useMeeting(method, url) {
 
       const existingResponses = await axiosFetch(method, url, data);
 
-      console.log("server response:", existingResponses.data);
-
-      // setResponses(existingResponses.data);
+      setResponses(existingResponses.data);
     } catch (err) {
       setError(err);
       throw new Error(err);
@@ -42,6 +40,7 @@ export default function useMeeting(method, url) {
   /**
    * Takes in user response from MeetingForm.js and adds it to the database or updates an existing user response. See /routes/db.js
    *
+   * @param {string} method           http verb used to subscribe to the database
    * @param {Object} responseToSubmit Body to be added or edited in the database and displayed to the users
    */
   async function submitResponse(responseToSubmit) {

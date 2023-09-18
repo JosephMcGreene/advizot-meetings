@@ -18,14 +18,14 @@ function generateRoomCode() {
  *
  * @returns {string} The name of the day of the week if it is Tuesday, Wednesday, or Thursday, or guest
  */
-function determineDay() {
+function determineGroup() {
   switch (new Date().getDay()) {
     case 2: //If today is Tuesday:
-      return groups.TUESDAY;
+      return groups.CE5660;
     case 3: //If today is Wednesday:
-      return groups.WEDNESDAY;
+      return groups.KEY9330;
     case 4: //If today is Thursday:
-      return groups.THURSDAY;
+      return groups.CE4659;
     default: //If today is any other day:
       return groups.GUEST;
   }
@@ -33,5 +33,5 @@ function determineDay() {
 
 module.exports = {
   generateRoomCode,
-  determineDay,
+  determineGroup,
 };

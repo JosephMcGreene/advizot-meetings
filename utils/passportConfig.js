@@ -4,8 +4,7 @@ const LinkedInStrategy = require("passport-linkedin-oauth2").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const { v4: uuidv4 } = require("uuid");
 const User = require("../models/User");
-const { userRoles } = require("./userRoles");
-const { determineDay } = require("./helpers");
+const { userRoles, groups } = require("./userRoles");
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -43,7 +42,7 @@ passport.use(
           photo: profile.photos[0].value,
           advizotID: uuidv4(),
           role: userRoles.MEMBER,
-          group: determineDay(),
+          group: groups.GUEST,
           hasMeetingCode: false,
         });
         await newUser.save();
@@ -83,7 +82,7 @@ passport.use(
           photo: profile.photos[0].value,
           advizotID: uuidv4(),
           role: userRoles.MEMBER,
-          group: determineDay(),
+          group: groups.GUEST,
           hasMeetingCode: false,
         });
         await newUser.save();
