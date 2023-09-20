@@ -1,9 +1,9 @@
 import { useState } from "react";
 //Assets
-import editPen from "../../../assets/img/pen-solid.svg";
+import editPen from "../../../../assets/img/pen-solid.svg";
 //Components
-import ModalTemplate from "../../../shared/modals/ModalTemplate";
-import MeetingForm from "../form/MeetingForm";
+import ModalTemplate from "../../../../shared/modals/ModalTemplate";
+import MeetingForm from "../../form/MeetingForm";
 
 export default function ResponseItem({
   title,

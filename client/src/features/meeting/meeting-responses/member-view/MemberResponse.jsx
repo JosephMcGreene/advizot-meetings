@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { UserContext } from "../../../App";
+import { UserContext } from "../../../../App";
 //Components
 import ResponseItem from "./ResponseItem";
-import DeleteButton from "./DeleteButton";
+import DeleteButton from "../DeleteButton";
 
 export default function MemberResponse({
   responseBody,

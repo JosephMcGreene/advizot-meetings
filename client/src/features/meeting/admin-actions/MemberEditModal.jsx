@@ -9,7 +9,7 @@ import Select from "../form/Select";
 import LoadingSpinner from "../../../shared/LoadingSpinner";
 
 export default function MemberEditModal({ handleClose }) {
-  const [usersToEdit, loading, error, handleEditSubmit] = useMemberEdits();
+  const [guestsToEdit, loading, error, handleEditSubmit] = useMemberEdits();
 
   if (error) return <ErrorPage error={error} />;
 
@@ -46,7 +46,7 @@ export default function MemberEditModal({ handleClose }) {
                 className="select"
               >
                 <option value="">-- Select a Member --</option>
-                {usersToEdit.map((guest) => (
+                {guestsToEdit.map((guest) => (
                   <option value={guest._id} key={guest._id}>
                     {guest.firstName} {guest.lastName}
                   </option>

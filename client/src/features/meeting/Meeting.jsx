@@ -7,8 +7,8 @@ import useMeeting from "../../hooks/useMeeting";
 //Components
 import LoadingSpinner from "../../shared/LoadingSpinner";
 import ErrorPage from "../../shared/ErrorPage";
-import AdminView from "./meeting-responses/AdminView";
-import MemberView from "./meeting-responses/MemberView";
+import AdminView from "./meeting-responses/admin-view/AdminView";
+import MemberView from "./meeting-responses/member-view/MemberView";
 import ModalTemplate from "../../shared/modals/ModalTemplate";
 import MeetingForm from "./form/MeetingForm";
 

@@ -1,19 +1,19 @@
 import { useState } from "react";
 //Assets
-import slidersIcon from "../../../assets/img/sliders-solid.svg";
+import slidersIcon from "../../../../assets/img/sliders-solid.svg";
 //External
 import { motion } from "framer-motion";
 //Internal
-import { currentDate } from "../../../helpers";
+import { currentDate } from "../../../../helpers";
 //Components
-import RoomCodeToggle from "../admin-actions/RoomCodeToggle";
-import RoomCodeDisplay from "../room-code/RoomCodeDisplay";
+import RoomCodeToggle from "../../admin-actions/RoomCodeToggle";
+import RoomCodeDisplay from "../../room-code/RoomCodeDisplay";
 import AdminResponse from "./AdminResponse";
-import ActionsBtn from "./ActionsBtn";
-import AdminActionList from "../admin-actions/AdminActionList";
-import ModalTemplate from "../../../shared/modals/ModalTemplate";
-import FilterModal from "../admin-actions/FilterModal";
-import MemberEditModal from "../admin-actions/MemberEditModal";
+import ActionsBtn from "../ActionsBtn";
+import AdminActionList from "../../admin-actions/AdminActionList";
+import ModalTemplate from "../../../../shared/modals/ModalTemplate";
+import FilterModal from "../../admin-actions/FilterModal";
+import MemberEditModal from "../../admin-actions/MemberEditModal";
 
 export default function AdminView({
   responses,

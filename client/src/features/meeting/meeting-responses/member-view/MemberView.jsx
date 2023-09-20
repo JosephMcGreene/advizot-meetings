@@ -1,12 +1,12 @@
 import { useContext } from "react";
-import { UserContext } from "../../../App";
+import { UserContext } from "../../../../App";
 //Assets
-import newResponse from "../../../assets/img/file-circle-plus-solid.svg";
+import newResponse from "../../../../assets/img/file-circle-plus-solid.svg";
 //Internal
-import { currentDate } from "../../../helpers";
+import { currentDate } from "../../../../helpers";
 //Components
 import MemberResponse from "./MemberResponse";
-import ActionsBtn from "./ActionsBtn";
+import ActionsBtn from "../ActionsBtn";
 
 export default function MemberView({
   responses,

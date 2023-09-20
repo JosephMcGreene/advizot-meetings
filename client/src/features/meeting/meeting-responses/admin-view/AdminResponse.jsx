@@ -3,7 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 //Components
 import AdminTableCell from "./AdminTableCell";
-import DeleteButton from "./DeleteButton";
+import DeleteButton from "../DeleteButton";
 
 export default function AdminResponse({
   responseBody,
