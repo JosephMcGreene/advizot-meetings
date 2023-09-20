@@ -11,10 +11,13 @@ export default function useMemberEdits() {
     fetchGuestUsers();
   }, []);
 
+  /**
+   * fetches data for all registered users who are currently assigned as a guest and updates state accordingly
+   */
   async function fetchGuestUsers() {
     try {
       setLoading(true);
-      const response = await axiosFetch("get", "/db/users");
+      const response = await axiosFetch("get", "/users/users");
       setUsersToEdit(response.data);
     } catch (err) {
       console.log(err);
@@ -23,11 +26,18 @@ export default function useMemberEdits() {
     }
   }
 
+  /**
+   * sends data used to update a guest user to place them into a group
+   *
+   * data.id === database ID of user to be updated()
+   * data.groupToPlace === name of the group to place the member in
+   *
+   * @param {object} data
+   */
   async function handleEditSubmit(data) {
     try {
       setLoading(true);
-      const memberEditResponse = await axiosFetch("put", "/db/users", data);
-      console.log(memberEditResponse.data);
+      await axiosFetch("put", "/users/users", data);
     } catch (err) {
       setError(err);
     } finally {

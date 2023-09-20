@@ -1,8 +1,6 @@
 const express = require("express");
-const Response = require("../models/Response");
-const User = require("../models/User");
 const dbRouter = express.Router();
-const { groups } = require("../utils/userRoles");
+const Response = require("../models/Response");
 
 dbRouter
   .route("/responses")
@@ -73,28 +71,5 @@ dbRouter.route("/responses/filters").post(async function (req, res) {
     throw new Error(err);
   }
 });
-
-dbRouter
-  .route("/users")
-  .get(async function (req, res) {
-    try {
-      const guestUsers = await User.find({ group: groups.GUEST });
-      res.json(guestUsers);
-    } catch (err) {
-      throw new Error(err);
-    }
-  })
-  .put(async function (req, res) {
-    try {
-      console.log(req.body);
-      const updatedUser = await User.findByIdAndUpdate(req.body.id, {
-        group: req.body.groupToPlace,
-      });
-
-      console.log(updatedUser);
-    } catch (err) {
-      throw new Error(err);
-    }
-  });
 
 module.exports = dbRouter;

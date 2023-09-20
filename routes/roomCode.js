@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
-const RoomCode = require("../models/RoomCode");
 const roomCodeRouter = express.Router();
+const RoomCode = require("../models/RoomCode");
 const { generateRoomCode } = require("../utils/helpers");
 
 roomCodeRouter.route("/submitRoomCode").post(async function (req, res) {
