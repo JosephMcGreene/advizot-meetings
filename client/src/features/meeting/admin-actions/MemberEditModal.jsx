@@ -4,10 +4,14 @@ import * as Yup from "yup";
 //hooks
 import useMemberEdits from "../../../hooks/useMemberEdits";
 //Components
+import ErrorPage from "../../../shared/ErrorPage";
 import Select from "../form/Select";
+import LoadingSpinner from "../../../shared/LoadingSpinner";
 
 export default function MemberEditModal({ handleClose }) {
-  const [usersToEdit, handleEditSubmit] = useMemberEdits();
+  const [usersToEdit, loading, error, handleEditSubmit] = useMemberEdits();
+
+  if (error) return <ErrorPage error={error} />;
 
   return (
     <div className="modal-body">
@@ -33,18 +37,22 @@ export default function MemberEditModal({ handleClose }) {
       >
         {() => (
           <Form className="form">
-            <Select
-              text="Member to Add to a Group"
-              name="id"
-              className="select"
-            >
-              <option value="">-- Select a Member --</option>
-              {usersToEdit.map((guest) => (
-                <option value={guest._id} key={guest._id}>
-                  {guest.firstName} {guest.lastName}
-                </option>
-              ))}
-            </Select>
+            {loading ? (
+              <LoadingSpinner />
+            ) : (
+              <Select
+                text="Member to Add to a Group"
+                name="id"
+                className="select"
+              >
+                <option value="">-- Select a Member --</option>
+                {usersToEdit.map((guest) => (
+                  <option value={guest._id} key={guest._id}>
+                    {guest.firstName} {guest.lastName}
+                  </option>
+                ))}
+              </Select>
+            )}
 
             <Select
               text="Group to Place Into"
