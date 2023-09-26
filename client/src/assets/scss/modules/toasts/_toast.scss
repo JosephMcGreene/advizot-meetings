@@ -5,6 +5,29 @@
   overflow: hidden auto;
 }
 
+.toast {
+  @include borderRadius();
+
+  display: flex;
+  justify-content: space-between;
+  max-width: 300px;
+  padding: 1rem;
+  padding-right: 0;
+
+  background-color: $advizot-light;
+  box-shadow: 0 0 20px black;
+
+  .toast-message {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    img {
+      height: 30px;
+    }
+  }
+}
+
 .top-left {
   top: 0;
   left: 0;

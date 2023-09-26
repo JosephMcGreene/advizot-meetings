@@ -36,21 +36,6 @@
 
         margin-left: calc($form-padding / 2);
       }
-
-      .close-x {
-        padding: 0 1rem;
-
-        font-size: 2.25rem;
-        background-color: transparent;
-        cursor: pointer;
-
-        &:hover {
-          @include transition(transform);
-
-          transform: rotate(90deg);
-          transition-duration: 100ms;
-        }
-      }
     }
 
     .modal-body {

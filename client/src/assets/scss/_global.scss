@@ -81,6 +81,21 @@ button {
   }
 }
 
+.close-x {
+  padding: 0 1rem;
+
+  font-size: 2.25rem;
+  background-color: transparent;
+  cursor: pointer;
+
+  &:hover {
+    @include transition(transform);
+
+    transform: rotate(90deg);
+    transition-duration: 100ms;
+  }
+}
+
 a {
   text-decoration: none;
   color: $text-primary;
