@@ -1,8 +1,13 @@
-@use "../../index" as *;
+@use "../index" as *;
 
 .toast-list {
+  @include borderRadius();
   position: fixed;
+  margin-top: calc($header-height + 1rem);
   overflow: hidden auto;
+  padding: 1rem;
+
+  background-color: transparent;
 }
 
 .toast {
@@ -11,11 +16,13 @@
   display: flex;
   justify-content: space-between;
   max-width: 300px;
-  padding: 1rem;
+  margin-bottom: 0.75rem;
+  padding-block: 0.5rem;
+  padding-left: 1rem;
   padding-right: 0;
 
   background-color: $advizot-light;
-  box-shadow: 0 0 20px black;
+  box-shadow: 0 0 5px black;
 
   .toast-message {
     display: flex;
@@ -23,7 +30,7 @@
     gap: 1rem;
 
     img {
-      height: 30px;
+      height: 20px;
     }
   }
 }

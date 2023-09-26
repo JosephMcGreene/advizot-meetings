@@ -30,13 +30,6 @@ export default function AdminView({
 
   return (
     <article>
-      <Toast
-        type="success"
-        altText="Test"
-        message="This is a test toast, a teost"
-        handleClose={() => console.log("I closed.")}
-      />
-
       <div className="heading-container">
         <h1 className="meeting-heading">Answers for {currentDate("month")}</h1>
         <RoomCodeToggle

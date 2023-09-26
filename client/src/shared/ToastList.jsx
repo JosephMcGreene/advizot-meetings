@@ -5,10 +5,6 @@ import Toast from "./Toast";
 export default function ToastList({ data, position, removeToast }) {
   const listRef = useRef(null);
 
-  const sortedData = position.includes("bottom")
-    ? [...data].reverse()
-    : [...data];
-
   useEffect(() => {
     handleScrolling(listRef.current);
   }, [position, data]);
@@ -24,9 +20,9 @@ export default function ToastList({ data, position, removeToast }) {
   }
 
   return (
-    sortedData.length > 0 && (
+    data.length > 0 && (
       <ul className={`toast-list ${position}`} aria-live="assertive">
-        {sortedData.map((toast) => (
+        {data.map((toast) => (
           <Toast
             altText={toast.altText}
             key={toast.id}

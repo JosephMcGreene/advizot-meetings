@@ -13,6 +13,7 @@ import Welcome from "./shared/Welcome";
 import UsersOnly from "./features/meeting/UsersOnly";
 import Meeting from "./features/meeting/Meeting";
 import Profile from "./features/profile/Profile";
+import ToastList from "./shared/ToastList";
 
 //Logged-in user data context:
 export const UserContext = createContext();
@@ -20,8 +21,6 @@ export const UserContext = createContext();
 export default function App() {
   const [toasts, setToasts] = useState([]);
   const [autoClose, setAutoClose] = useState(true);
-  const [autoCloseDuration, setAutoCloseDuration] = useState(5);
-  const [position, setPosition] = useState("top-right");
 
   const [user, fetchUser, loading, error] = useUser(
     "get",
@@ -37,9 +36,18 @@ export default function App() {
 
     setToasts((prevToasts) => [...prevToasts, toast]);
 
-    if (autoClose) {
-      setTimeout(() => {}, autoCloseDuration * 1000);
-    }
+    // setTimeout(() => {
+    //   removeToast(toast.id);
+    // }, 3000);
+  }
+
+  function removeToast(id) {
+    setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
+  }
+
+  function handleAutoCloseChange() {
+    setAutoClose((prevAutoClose) => !prevAutoClose);
+    setToasts([]);
   }
 
   if (loading) return <LoadingSpinner />;
@@ -49,6 +57,27 @@ export default function App() {
     <div className="App">
       <UserContext.Provider value={user}>
         <Header />
+
+        <button
+          style={{ marginTop: "6rem", marginRight: "1rem" }}
+          onClick={() => showToast("It worked!", "success")}
+        >
+          Success Toast
+        </button>
+        <button onClick={() => showToast("It didn't work!", "failure")}>
+          Failure Toast
+        </button>
+        <button onClick={() => showToast("Warning!", "warning")}>
+          Warning Toast
+        </button>
+
+        <button onClick={() => setToasts([])}>Remove Toasts</button>
+
+        <ToastList
+          data={toasts}
+          position="top-left"
+          removeToast={removeToast}
+        />
 
         <main className="main-content">
           <Routes>
