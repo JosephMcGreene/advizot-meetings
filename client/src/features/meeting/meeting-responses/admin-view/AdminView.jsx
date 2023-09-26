@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 //Internal
 import { currentDate } from "../../../../helpers";
 //Components
+import Toast from "../../../../shared/Toast";
 import RoomCodeToggle from "../../admin-actions/RoomCodeToggle";
 import RoomCodeDisplay from "../../room-code/RoomCodeDisplay";
 import AdminResponse from "./AdminResponse";
@@ -29,6 +30,13 @@ export default function AdminView({
 
   return (
     <article>
+      <Toast
+        type="success"
+        altText="Test"
+        message="This is a test toast, a teost"
+        handleClose={() => console.log("I closed.")}
+      />
+
       <div className="heading-container">
         <h1 className="meeting-heading">Answers for {currentDate("month")}</h1>
         <RoomCodeToggle

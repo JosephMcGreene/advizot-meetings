@@ -40,11 +40,7 @@ export default function MemberEditModal({ handleClose }) {
             {loading ? (
               <LoadingSpinner />
             ) : (
-              <Select
-                text="Member to Add to a Group"
-                name="id"
-                className="select"
-              >
+              <Select text="Member" name="id" className="select">
                 <option value="">-- Select a Member --</option>
                 {guestsToEdit.map((guest) => (
                   <option value={guest._id} key={guest._id}>
