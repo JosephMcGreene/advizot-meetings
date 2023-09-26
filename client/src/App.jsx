@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { useState, createContext } from "react";
 //Assets
 import "./assets/scss/App.scss";
 //External
@@ -18,10 +18,29 @@ import Profile from "./features/profile/Profile";
 export const UserContext = createContext();
 
 export default function App() {
+  const [toasts, setToasts] = useState([]);
+  const [autoClose, setAutoClose] = useState(true);
+  const [autoCloseDuration, setAutoCloseDuration] = useState(5);
+  const [position, setPosition] = useState("top-right");
+
   const [user, fetchUser, loading, error] = useUser(
     "get",
     "/auth/current_user"
   );
+
+  function showToast(message, type) {
+    const toast = {
+      id: Date.now(),
+      message,
+      type,
+    };
+
+    setToasts((prevToasts) => [...prevToasts, toast]);
+
+    if (autoClose) {
+      setTimeout(() => {}, autoCloseDuration * 1000);
+    }
+  }
 
   if (loading) return <LoadingSpinner />;
   if (error) return <ErrorPage error={error} />;
