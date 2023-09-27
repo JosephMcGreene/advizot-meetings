@@ -2,13 +2,13 @@
 
 .header {
   z-index: $header-z;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
 
   background-color: $light-bg;
-  box-shadow: 0 0.2vh 0.75vh 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
 
   .nav-bar {
     display: flex;
