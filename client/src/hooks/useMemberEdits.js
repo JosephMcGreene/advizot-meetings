@@ -37,7 +37,8 @@ export default function useMemberEdits() {
   async function handleEditSubmit(data) {
     try {
       setLoading(true);
-      await axiosFetch("put", "/users/users", data);
+      const response = await axiosFetch("put", "/users/users", data);
+      console.log(response);
     } catch (err) {
       setError(err);
     } finally {

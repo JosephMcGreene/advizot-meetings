@@ -52,9 +52,9 @@ export default function App() {
             Warning Toast
           </button>
 
-          <ToastList data={toasts.toasts} removeToast={toasts.removeToast} />
-
           <main className="main-content">
+            <ToastList data={toasts.toasts} removeToast={toasts.removeToast} />
+
             <Routes>
               <Route
                 path="/"
