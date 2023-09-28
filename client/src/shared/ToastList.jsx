@@ -2,30 +2,24 @@ import { useRef, useEffect } from "react";
 //Components
 import Toast from "./Toast";
 
-export default function ToastList({ data, position, removeToast }) {
+export default function ToastList({ data, removeToast }) {
   const listRef = useRef(null);
 
   useEffect(() => {
     handleScrolling(listRef.current);
-  }, [position, data]);
+  }, [data]);
 
   function handleScrolling(element) {
-    const isTopPosition = ["top-left", "top-right"].includes(position);
-
-    if (isTopPosition) {
-      element?.scrollTo(0, element.scrollHeight);
-    } else {
-      element?.scrollTo(0, 0);
-    }
+    element?.scrollTo(0, element.scrollHeight);
   }
 
   return (
     data.length > 0 && (
-      <ul className={`toast-list ${position}`} aria-live="assertive">
+      <ul className="toast-list top-left" aria-live="assertive">
         {data.map((toast) => (
           <Toast
-            altText={toast.altText}
             key={toast.id}
+            altText={toast.altText}
             message={toast.message}
             type={toast.type}
             handleClose={() => removeToast(toast.id)}
