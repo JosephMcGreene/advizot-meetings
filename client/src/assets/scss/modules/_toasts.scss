@@ -5,8 +5,8 @@
   z-index: $header-z;
   position: fixed;
   top: 0;
-  left: 0;
-  margin-top: calc($header-height + 2rem);
+  right: 0;
+  margin-top: calc($header-height);
   padding: 1rem;
 
   background-color: transparent;
@@ -19,12 +19,12 @@
   justify-content: space-between;
   max-width: 300px;
   margin-bottom: 0.75rem;
-  padding-block: 0.25rem;
+  padding-block: 0.5rem;
   padding-left: 1rem;
   padding-right: 0;
 
   background-color: $advizot-light;
-  box-shadow: 0 0 5px black;
+  box-shadow: 0 0 10px black;
 
   .toast-message {
     display: flex;

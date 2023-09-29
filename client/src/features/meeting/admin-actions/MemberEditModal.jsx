@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { ToastContext } from "../../../App";
 //External
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -9,6 +11,7 @@ import Select from "../form/Select";
 import LoadingSpinner from "../../../shared/LoadingSpinner";
 
 export default function MemberEditModal({ handleClose }) {
+  const toasts = useContext(ToastContext);
   const [guestsToEdit, loading, error, handleEditSubmit] = useMemberEdits();
 
   if (error) return <ErrorPage error={error} />;
@@ -21,12 +24,22 @@ export default function MemberEditModal({ handleClose }) {
           groupToPlace: "",
         }}
         validationSchema={Yup.object({
-          id: Yup.string(),
-          groupToPlace: Yup.string(),
+          id: Yup.string().required("Don't forget this one!"),
+          groupToPlace: Yup.string().required("Don't forget this one!"),
         })}
-        onSubmit={(values, actions) => {
+        onSubmit={async (values, actions) => {
           try {
-            handleEditSubmit(values);
+            const response = await handleEditSubmit(values);
+
+            const editedUser = guestsToEdit.find(
+              (guest) => guest._id === values.id
+            );
+
+            toasts.showToast(
+              "success",
+              `Added ${editedUser.firstName} to ${response.data.updatedGroup}`
+            );
+
             actions.setSubmitting(false);
           } catch (err) {
             console.error(err);

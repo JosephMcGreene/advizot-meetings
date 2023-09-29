@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 //Components
 import Toast from "./Toast";
 
-export default function ToastList({ data, removeToast }) {
+export default function Toasts({ data, removeToast }) {
   const listRef = useRef(null);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export default function ToastList({ data, removeToast }) {
 
   return (
     data.length > 0 && (
-      <ul className="toast-list top-left" aria-live="assertive">
+      <ul className="toast-list" aria-live="assertive">
         {data.map((toast) => (
           <Toast
             key={toast.id}

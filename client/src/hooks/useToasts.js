@@ -20,11 +20,12 @@ export default function useToasts() {
 
     setTimeout(() => {
       removeToast(toast.id);
-    }, 3000);
+    }, 4000);
   }
 
   /**
    * contains the logic for determining how to remove a toast from the DOM
+   *
    * @param {string} id ID used for determining which toast to remove if there are multiple mounted toast components
    */
   function removeToast(id) {

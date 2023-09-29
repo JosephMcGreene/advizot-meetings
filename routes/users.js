@@ -15,13 +15,14 @@ usersRouter
   })
   .put(async function (req, res) {
     try {
-      console.log(req.body);
-      const updatedUser = await User.findByIdAndUpdate(req.body.id, {
+      await User.findByIdAndUpdate(req.body.id, {
         group: req.body.groupToPlace,
       });
 
-      console.log(updatedUser);
+      res.json({ updatedGroup: req.body.groupToPlace });
     } catch (err) {
+      res.json(new Error(err));
+
       throw new Error(err);
     }
   });

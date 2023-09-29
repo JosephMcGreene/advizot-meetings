@@ -14,7 +14,7 @@ import Welcome from "./shared/Welcome";
 import UsersOnly from "./features/meeting/UsersOnly";
 import Meeting from "./features/meeting/Meeting";
 import Profile from "./features/profile/Profile";
-import ToastList from "./shared/ToastList";
+import Toasts from "./shared/Toasts";
 
 //Logged-in user data context:
 export const UserContext = createContext();
@@ -36,25 +36,7 @@ export default function App() {
         <ToastContext.Provider value={toasts}>
           <Header />
 
-          <button
-            style={{ marginTop: "6rem", marginRight: "1rem" }}
-            onClick={() => toasts.showToast("success", "It worked!")}
-          >
-            Success Toast
-          </button>
-          <button
-            style={{ marginTop: "6rem", marginRight: "1rem" }}
-            onClick={() => toasts.showToast("failure", "It didn't work!")}
-          >
-            Failure Toast
-          </button>
-          <button onClick={() => toasts.showToast("warning", "Warning!")}>
-            Warning Toast
-          </button>
-
           <main className="main-content">
-            <ToastList data={toasts.toasts} removeToast={toasts.removeToast} />
-
             <Routes>
               <Route
                 path="/"
@@ -86,6 +68,8 @@ export default function App() {
                 element={user.advizotID ? <Profile /> : <Navigate to="/" />}
               />
             </Routes>
+
+            <Toasts data={toasts.toasts} removeToast={toasts.removeToast} />
           </main>
         </ToastContext.Provider>
       </UserContext.Provider>
