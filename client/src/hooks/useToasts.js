@@ -4,7 +4,7 @@ export default function useToasts() {
   const [toasts, setToasts] = useState([]);
 
   /**
-   * contains the logic for when to mount a toast component to the DOM and remove it after
+   * contains the logic for mounting a toast component to the DOM and remove it after a delay
    *
    * @param {string} type    enum "success", "warning", or "failure" determines the icon to display
    * @param {string} message The message for the toast to display

@@ -78,7 +78,7 @@ export default function useMeeting(method, url) {
     try {
       setLoading(true);
 
-      const deletedResponse = await axiosFetch("delete", "/db/responses", {
+      await axiosFetch("delete", "/db/responses", {
         responseID,
       });
 
@@ -88,8 +88,6 @@ export default function useMeeting(method, url) {
           return response._id !== responseID;
         })
       );
-
-      return deletedResponse.data;
     } catch (err) {
       setError(err);
       throw new Error(err);

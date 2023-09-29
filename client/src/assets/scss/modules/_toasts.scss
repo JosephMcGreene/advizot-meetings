@@ -26,6 +26,10 @@
   background-color: $advizot-light;
   box-shadow: 0 0 10px black;
 
+  animation-name: in-from-right;
+  animation-duration: 4000ms;
+  animation-iteration-count: 1;
+
   .toast-message {
     display: flex;
     align-items: center;
@@ -37,19 +41,18 @@
   }
 }
 
-@keyframes in-from-left {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
 @keyframes in-from-right {
-  from {
-    transform: translateX(-100%);
+  0% {
+    transform: translateX(120%);
   }
-  to {
+  10% {
     transform: translateX(0);
+  }
+
+  95% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(120%);
   }
 }
