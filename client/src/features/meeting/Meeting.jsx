@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { UserContext } from "../../App";
+import { ToastContext, UserContext } from "../../App";
 //Helpers
 import { currentDate } from "../../helpers";
 //Hooks
@@ -14,6 +14,7 @@ import MeetingForm from "./form/MeetingForm";
 
 export default function Meeting() {
   const user = useContext(UserContext);
+  const toasts = useContext(ToastContext);
   const [formShown, setFormShown] = useState(false);
 
   const [
@@ -36,7 +37,10 @@ export default function Meeting() {
           handleSubmitEdits={(responseToSubmit) =>
             submitResponse(responseToSubmit)
           }
-          handleDelete={(responseID) => deleteResponse(responseID)}
+          handleDelete={async (responseID) => {
+            await deleteResponse(responseID);
+            await toasts.showToast("Success", "Response deleted");
+          }}
           handleNewResponseClick={() => setFormShown(!formShown)}
           handleFilterSubmit={(filtersToSubmit) =>
             getResponses("post", "/db/responses/filters", filtersToSubmit)
