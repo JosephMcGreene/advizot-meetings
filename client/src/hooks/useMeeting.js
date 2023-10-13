@@ -54,9 +54,9 @@ export default function useMeeting(method, url) {
       );
 
       const newResponses = [...responses, submitRes.data];
-      const filteredResponses = newResponses.filter((response) => {
-        return response._id !== responseToSubmit._id;
-      });
+      const filteredResponses = newResponses.filter(
+        (response) => response._id !== responseToSubmit._id
+      );
 
       setResponses(filteredResponses);
     } catch (err) {

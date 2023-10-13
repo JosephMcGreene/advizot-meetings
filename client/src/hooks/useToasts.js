@@ -12,7 +12,7 @@ export default function useToasts() {
   function showToast(type, message) {
     const toast = {
       id: Date.now(),
-      type,
+      type: type.toLowerCase(),
       message,
     };
 

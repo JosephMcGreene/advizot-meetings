@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { ToastContext } from "../../../App";
 //External
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -10,6 +12,8 @@ export default function MeetingForm({
   handleClose,
   existingResponse,
 }) {
+  const { showToast } = useContext(ToastContext);
+
   /**
    * Determines the percentage of an input slider's background that should be filled up based on where the user has dragged the thumb
    *

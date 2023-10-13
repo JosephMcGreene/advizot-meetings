@@ -14,7 +14,7 @@ import MeetingForm from "./form/MeetingForm";
 
 export default function Meeting() {
   const user = useContext(UserContext);
-  const toasts = useContext(ToastContext);
+  const { showToast } = useContext(ToastContext);
   const [formShown, setFormShown] = useState(false);
 
   const [
@@ -34,12 +34,13 @@ export default function Meeting() {
       {user.role === "admin" && (
         <AdminView
           responses={responses}
-          handleSubmitEdits={(responseToSubmit) =>
-            submitResponse(responseToSubmit)
-          }
+          handleSubmitEdits={async (responseToSubmit) => {
+            await submitResponse(responseToSubmit);
+            await showToast("success", "Edit Successful");
+          }}
           handleDelete={async (responseID) => {
             await deleteResponse(responseID);
-            await toasts.showToast("Success", "Response deleted");
+            await showToast("success", "Response deleted");
           }}
           handleNewResponseClick={() => setFormShown(!formShown)}
           handleFilterSubmit={(filtersToSubmit) =>
@@ -50,10 +51,14 @@ export default function Meeting() {
       {user.role === "member" && (
         <MemberView
           responses={responses}
-          handleDelete={(responseID) => deleteResponse(responseID)}
-          handleSubmitEdits={(responseToSubmit) =>
-            submitResponse(responseToSubmit)
-          }
+          handleDelete={async (responseID) => {
+            await deleteResponse(responseID);
+            await showToast("success", "Response Deleted");
+          }}
+          handleSubmitEdits={async (responseToSubmit) => {
+            await submitResponse(responseToSubmit);
+            await showToast("success", "Edit Successful");
+          }}
           handleSignInClick={() => setFormShown(!formShown)}
         />
       )}

@@ -11,7 +11,7 @@ import Select from "../form/Select";
 import LoadingSpinner from "../../../shared/LoadingSpinner";
 
 export default function MemberEditModal({ handleClose }) {
-  const toasts = useContext(ToastContext);
+  const { showToast } = useContext(ToastContext);
   const [guestsToEdit, loading, error, handleEditSubmit] = useMemberEdits();
 
   if (error) return <ErrorPage error={error} />;
@@ -29,15 +29,15 @@ export default function MemberEditModal({ handleClose }) {
         })}
         onSubmit={async (values, actions) => {
           try {
-            const response = await handleEditSubmit(values);
+            const { data } = await handleEditSubmit(values);
 
             const editedUser = guestsToEdit.find(
               (guest) => guest._id === values.id
             );
 
-            toasts.showToast(
+            showToast(
               "success",
-              `Added ${editedUser.firstName} to ${response.data.updatedGroup}`
+              `Added ${editedUser.firstName} to ${data.updatedGroup}`
             );
 
             actions.setSubmitting(false);
