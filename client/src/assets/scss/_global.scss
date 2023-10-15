@@ -55,9 +55,8 @@ body {
 .meeting-heading {
   @include advizotFont(2rem, 400, 0.5px);
 
-  // text-align: center;
-  // margin-left: auto;
-  // margin-block: 1.75rem;
+  text-align: center;
+  margin-block: 1.75rem;
   text-decoration: underline;
 }
 
