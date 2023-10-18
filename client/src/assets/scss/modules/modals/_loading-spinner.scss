@@ -2,18 +2,17 @@
 
 //parent .modal styles in ../modals/_modals.scss
 .loading-spinner {
-  $size: 75px;
+  $size: 70px;
 
-  position: relative;
-  display: flex;
-  place-items: center;
   margin: auto;
   width: $size;
   height: $size;
 
   border-radius: 50% 0 50% 0;
   background-color: transparent;
-  border: 15px solid $advizot-color;
+  border: 7px solid $advizot-color;
+  filter: drop-shadow(0 0 35px hsl(100, 0, 20%));
+
   animation: loading 2.5s ease-in-out infinite;
 }
 
@@ -23,16 +22,16 @@
     border-radius: 50% 0 50% 0;
   }
   25% {
-    border-width: 5px;
+    border-width: 35px;
     border-radius: 0 50% 0 50%;
   }
   50% {
     transform: rotate(90deg);
-    border-width: 15px;
+    border-width: 7px;
     border-radius: 50% 0 50% 0;
   }
   75% {
-    border-width: 5px;
+    border-width: 35px;
     border-radius: 0 50% 0 50%;
   }
   100% {

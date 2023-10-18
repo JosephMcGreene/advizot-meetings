@@ -36,8 +36,6 @@ export default function App() {
         <ToastContext.Provider value={toasts}>
           <Header />
 
-          <LoadingSpinner />
-
           <main className="main-content">
             <Routes>
               <Route
