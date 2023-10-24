@@ -25,13 +25,14 @@ export default function MemberView({
     responses.find((response) => response.userID === user.advizotID);
 
   return (
-    <article className="responses-section">
+    <section className="responses-section">
       <h1 className="meeting-heading">
-        {currentDate("month")} {user.group === "guest" ? "Guests" : user.group}
+        {user.group === "guest" ? "Guests" : user.group},{" "}
+        {`${currentDate("month")} ${currentDate("year")}`}
       </h1>
 
       {responses.length === 0 ? (
-        <h2>There are no responses right now.</h2>
+        <h2>There are no one signed in right now.</h2>
       ) : (
         <ul className="responses-ul">
           {responses.map((response, index) => {
@@ -54,6 +55,6 @@ export default function MemberView({
           <img src={newResponse} alt="Add Response" className="add-icon" />
         </ActionsBtn>
       )}
-    </article>
+    </section>
   );
 }

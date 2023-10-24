@@ -8,15 +8,14 @@ import useUser from "./hooks/useUser";
 import useToasts from "./hooks/useToasts";
 //Components
 import LoadingSpinner from "./shared/LoadingSpinner";
-import ErrorPage from "./shared/ErrorPage";
 import Header from "./shared/Header";
 import Welcome from "./shared/Welcome";
 import UsersOnly from "./features/meeting/UsersOnly";
 import Meeting from "./features/meeting/Meeting";
 import Profile from "./features/profile/Profile";
+import ErrorPage from "./shared/ErrorPage";
 import Toasts from "./shared/Toasts";
 
-//Logged-in user data context:
 export const UserContext = createContext();
 export const ToastContext = createContext();
 
@@ -28,7 +27,7 @@ export default function App() {
   const toasts = useToasts();
 
   if (loading) return <LoadingSpinner />;
-  if (error) return <ErrorPage error={error} />;
+  if (error) return <Navigate to="/error" />;
 
   return (
     <div className="App">
@@ -67,6 +66,8 @@ export default function App() {
                 path="/profile"
                 element={user.advizotID ? <Profile /> : <Navigate to="/" />}
               />
+
+              <Route path="/error" element={<ErrorPage error={error} />} />
             </Routes>
 
             <Toasts data={toasts.toasts} removeToast={toasts.removeToast} />

@@ -48,7 +48,7 @@ export default function useMeeting(method, url) {
       setLoading(true);
 
       const submitRes = await axiosFetch(
-        "post",
+        "put",
         "/db/responses",
         responseToSubmit
       );

@@ -7,10 +7,8 @@
   flex-direction: column;
   gap: 1.2rem;
 
-  .range-container {
-    .rangeValue {
-      font-size: 1.25rem;
-    }
+  .range-container .rangeValue {
+    font-size: 1.25rem;
   }
 
   .select {
@@ -44,8 +42,10 @@
 
 .rating-select,
 .text-input textarea {
+  @include borderSides();
   margin-top: 0.15rem;
   padding: $padding;
+  max-width: 100%;
 
   background-color: $light-bg;
   font-family: inherit;
@@ -58,12 +58,8 @@
   }
 }
 
-.rating-select {
-  @include borderSides();
-
-  option {
-    text-align: center;
-  }
+.rating-select option {
+  text-align: center;
 }
 
 .text-input {
@@ -71,12 +67,6 @@
   flex-direction: column;
   margin: 0.75rem auto 0;
   width: 100%;
-
-  textarea {
-    @include borderSides();
-
-    max-width: 100%;
-  }
 
   label {
     text-align: center;
@@ -90,7 +80,9 @@
     padding: $padding;
     text-align: center;
 
-    font-family: inherit;
+    font-family: $main-font;
+    font-size: 1.25rem;
+    background-color: $light-bg;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   }
 }

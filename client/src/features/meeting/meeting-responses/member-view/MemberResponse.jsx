@@ -12,9 +12,9 @@ export default function MemberResponse({
   const user = useContext(UserContext);
 
   /**
-   * A container function for an expression to trim down and simplify the JSX. Assesses whether the current user can in fact edit or delete the response they hover over
+   * Assesses whether the current user can in fact edit or delete the response they hover over
    *
-   * @returns {boolean} whether or not the user can edit or delete the response the response
+   * @returns {boolean} whether or not the user can edit or delete the response
    */
   function isCorrectUser() {
     if (user.advizotID === responseBody?.userID) return true;

@@ -28,7 +28,7 @@ export default function AdminView({
   const [memberEditModalShown, setMemberEditModalShown] = useState(false);
 
   return (
-    <article>
+    <section>
       <div className="heading-container">
         <h1 className="meeting-heading">Answers for {currentDate("month")}</h1>
         <RoomCodeToggle
@@ -39,7 +39,7 @@ export default function AdminView({
 
       {roomCodeShown && <RoomCodeDisplay />}
 
-      <motion.section
+      <motion.article
         layout
         transition={{ type: "tween", stiffness: 10, duration: 0.1 }}
         className="admin-responses"
@@ -68,7 +68,7 @@ export default function AdminView({
         <ActionsBtn handleClick={() => setActionsShown(!actionsShown)}>
           <img src={slidersIcon} alt="user actions" className="sliders-icon" />
         </ActionsBtn>
-      </motion.section>
+      </motion.article>
 
       {actionsShown && (
         <AdminActionList
@@ -102,6 +102,6 @@ export default function AdminView({
           <MemberEditModal handleClose={() => setMemberEditModalShown(false)} />
         </ModalTemplate>
       )}
-    </article>
+    </section>
   );
 }

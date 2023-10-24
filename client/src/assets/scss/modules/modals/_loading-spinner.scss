@@ -1,17 +1,19 @@
 @use "../../index" as *;
 
+$size: 70px;
+$border-width: 7px;
+$radius-forward: 50% 0 50% 0;
+$radius-reverse: 0 50% 0 50%;
+
 //parent .modal styles in ../modals/_modals.scss
 .loading-spinner {
-  $size: 70px;
-
   margin: auto;
   width: $size;
   height: $size;
 
-  border-radius: 50% 0 50% 0;
-  background-color: transparent;
-  border: 7px solid $advizot-color;
+  border: $border-width solid $advizot-color;
   filter: drop-shadow(0 0 35px hsl(100, 0, 20%));
+  // box-shadow: 0 0 8px 8px blue, 0 0 16px 16px aqua, 0 0 24px 24px red;
 
   animation: loading 2.5s ease-in-out infinite;
 }
@@ -19,23 +21,23 @@
 @keyframes loading {
   0% {
     transform: rotate(0);
-    border-radius: 50% 0 50% 0;
+    border-radius: $radius-forward;
   }
   25% {
-    border-width: 35px;
-    border-radius: 0 50% 0 50%;
+    border-width: calc($size / 4);
+    border-radius: $radius-reverse;
   }
   50% {
     transform: rotate(90deg);
-    border-width: 7px;
-    border-radius: 50% 0 50% 0;
+    border-width: $border-width;
+    border-radius: $radius-forward;
   }
   75% {
-    border-width: 35px;
-    border-radius: 0 50% 0 50%;
+    border-width: calc($size / 4);
+    border-radius: $radius-reverse;
   }
   100% {
     transform: rotate(180deg);
-    border-radius: 50% 0 50% 0;
+    border-radius: $radius-forward;
   }
 }

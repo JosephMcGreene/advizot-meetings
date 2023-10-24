@@ -6,10 +6,11 @@ dbRouter
   .route("/responses")
   .get(async function (req, res) {
     try {
-      const responses = await Response.find().or([
-        { group: req.user.group },
-        { group: "admin" },
-      ]);
+      const responses = await Response.find({});
+      // .or([
+      //   { group: req.user.group },
+      //   { group: "admin" },
+      // ]);
       //
       // Also needs to filter out old responses, so only the current meeting's responses are displayed to user
       //
@@ -19,7 +20,7 @@ dbRouter
       throw new Error(err);
     }
   })
-  .post(async function (req, res) {
+  .put(async function (req, res) {
     try {
       if (req.body?._id !== undefined) {
         await Response.deleteOne({ _id: req.body._id });
@@ -66,6 +67,31 @@ dbRouter.route("/responses/filters").post(async function (req, res) {
       { group: "admin" },
     ]);
 
+    return res.json(groupResponses);
+  } catch (err) {
+    throw new Error(err);
+  }
+});
+
+dbRouter.route("/responses/CE5660").get(async function (req, res) {
+  try {
+    const groupResponses = await Response.find({ group: "CE5660" });
+    return res.json(groupResponses);
+  } catch (err) {
+    throw new Error(err);
+  }
+});
+dbRouter.route("/responses/KEY9330").get(async function (req, res) {
+  try {
+    const groupResponses = await Response.find({ group: "KEY9330" });
+    return res.json(groupResponses);
+  } catch (err) {
+    throw new Error(err);
+  }
+});
+dbRouter.route("/responses/CE4659").get(async function (req, res) {
+  try {
+    const groupResponses = await Response.find({ group: "CE4659" });
     return res.json(groupResponses);
   } catch (err) {
     throw new Error(err);

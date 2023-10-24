@@ -1,12 +1,13 @@
 import { useState, useContext } from "react";
-import { ToastContext, UserContext } from "../../App";
+import { UserContext, ToastContext } from "../../App";
+//External
+import { Navigate } from "react-router-dom";
 //Helpers
 import { currentDate } from "../../helpers";
 //Hooks
 import useMeeting from "../../hooks/useMeeting";
 //Components
 import LoadingSpinner from "../../shared/LoadingSpinner";
-import ErrorPage from "../../shared/ErrorPage";
 import AdminView from "./meeting-responses/admin-view/AdminView";
 import MemberView from "./meeting-responses/member-view/MemberView";
 import ModalTemplate from "../../shared/modals/ModalTemplate";
@@ -24,10 +25,10 @@ export default function Meeting() {
     getResponses,
     submitResponse,
     deleteResponse,
-  ] = useMeeting("get", "/db/responses");
+  ] = useMeeting("get", `/db/responses/${user.group}`);
 
   if (loading) return <LoadingSpinner />;
-  if (error) return <ErrorPage error={error} />;
+  if (error) return <Navigate to="/error" />;
 
   return (
     <>

@@ -19,6 +19,7 @@ export default function NewRoomCode() {
         Hi {user.firstName}, would you like to create a new room code for this
         meeting?
       </h3>
+
       <button className="btn" onClick={() => setRoomCode(true)}>
         <Link to="/meeting" tabIndex="-1">
           Yes, make a new code
