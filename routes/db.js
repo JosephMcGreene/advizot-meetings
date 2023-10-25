@@ -73,25 +73,9 @@ dbRouter.route("/responses/filters").post(async function (req, res) {
   }
 });
 
-dbRouter.route("/responses/CE5660").get(async function (req, res) {
+dbRouter.route("/responses/:group").get(async function (req, res) {
   try {
-    const groupResponses = await Response.find({ group: "CE5660" });
-    return res.json(groupResponses);
-  } catch (err) {
-    throw new Error(err);
-  }
-});
-dbRouter.route("/responses/KEY9330").get(async function (req, res) {
-  try {
-    const groupResponses = await Response.find({ group: "KEY9330" });
-    return res.json(groupResponses);
-  } catch (err) {
-    throw new Error(err);
-  }
-});
-dbRouter.route("/responses/CE4659").get(async function (req, res) {
-  try {
-    const groupResponses = await Response.find({ group: "CE4659" });
+    const groupResponses = await Response.find({ group: req.user.group });
     return res.json(groupResponses);
   } catch (err) {
     throw new Error(err);
