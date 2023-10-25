@@ -1,18 +1,20 @@
-require("dotenv").config();
-const path = require("path");
-const express = require("express");
-const app = express();
-const mongoose = require("mongoose");
-const cookieSession = require("cookie-session");
-const { v4: uuidv4 } = require("uuid");
-const cors = require("cors");
-const passport = require("passport");
+import { config } from "dotenv";
+import path from "path";
+import express from "express";
+import mongoose from "mongoose";
+import cookieSession from "cookie-session";
+import { uuid } from "uuidv4";
+import cors from "cors";
+import passport from "passport";
 //Internal Modules
-const dbRouter = require("./routes/db");
-const authRouter = require("./routes/auth");
-const roomCodeRouter = require("./routes/roomCode");
-const usersRouter = require("./routes/users");
-require("./utils/passportConfig");
+import dbRouter from "./routes/db";
+import authRouter from "./routes/auth";
+import roomCodeRouter from "./routes/roomCode";
+import usersRouter from "./routes/users";
+import "./utils/passportConfig";
+
+config();
+const app = express();
 
 //=====CONNECT MONGODB=====
 mongoose
@@ -30,7 +32,7 @@ app.use(
 app.use(
   cookieSession({
     maxAge: 1000 * 60 * 60 * 24, // cookie expires in 1 day
-    keys: [uuidv4()],
+    keys: [uuid()],
   })
 );
 

@@ -1,8 +1,9 @@
-const express = require("express");
-const authRouter = express.Router();
-const passport = require("passport");
+import express from "express";
+import passport from "passport";
 //Internal Modules
-require("../utils/passportConfig");
+import "../utils/passportConfig";
+
+const authRouter = express.Router();
 
 //Passport Strategies
 authRouter.route("/linkedin").get(passport.authenticate("linkedin"));

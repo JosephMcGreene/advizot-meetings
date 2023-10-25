@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+import { Schema, model } from "mongoose";
 
 const responseSchema = new Schema({
   userName: { type: String, required: true },
@@ -13,4 +13,4 @@ const responseSchema = new Schema({
   userID: { type: String, required: true },
 });
 
-module.exports = model("Response", responseSchema);
+export default model("Response", responseSchema);

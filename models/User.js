@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+import { Schema, model } from "mongoose";
 
 const userSchema = new Schema({
   providerID: { type: String, required: true },
@@ -13,4 +13,4 @@ const userSchema = new Schema({
   hasMeetingCode: { type: Boolean, required: true },
 });
 
-module.exports = model("User", userSchema);
+export default model("User", userSchema);

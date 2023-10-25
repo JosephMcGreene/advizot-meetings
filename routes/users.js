@@ -1,7 +1,8 @@
-const express = require("express");
+import express from "express";
+import User from "../models/User";
+import { groups } from "../utils/userRoles";
+
 const usersRouter = express.Router();
-const User = require("../models/User");
-const { groups } = require("../utils/userRoles");
 
 usersRouter
   .route("/users")
@@ -27,4 +28,4 @@ usersRouter
     }
   });
 
-module.exports = usersRouter;
+export default usersRouter;

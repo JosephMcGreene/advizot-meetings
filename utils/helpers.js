@@ -1,11 +1,11 @@
-const { groups } = require("./userRoles");
+import { groups } from "./userRoles";
 
 /**
  * Generates a 6-digit random number to be used as the meeting's room code.
  *
  * @returns {string} The code for the meeting
  */
-function generateRoomCode() {
+export function generateRoomCode() {
   let roomCode = Math.floor(Math.random() * 1000000); // 1,000,000
 
   if (roomCode < 100000 || roomCode === 1000000) generateRoomCode();
@@ -18,7 +18,7 @@ function generateRoomCode() {
  *
  * @returns {string} The name of the day of the week if it is Tuesday, Wednesday, or Thursday, or guest
  */
-function determineGroup() {
+export function determineGroup() {
   switch (new Date().getDay()) {
     case 2: //If today is Tuesday:
       return groups.CE5660;
@@ -30,8 +30,3 @@ function determineGroup() {
       return groups.GUEST;
   }
 }
-
-module.exports = {
-  generateRoomCode,
-  determineGroup,
-};

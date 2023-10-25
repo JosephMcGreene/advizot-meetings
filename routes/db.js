@@ -1,6 +1,7 @@
-const express = require("express");
+import express from "express";
+import Response from "../models/Response";
+
 const dbRouter = express.Router();
-const Response = require("../models/Response");
 
 dbRouter
   .route("/responses")
@@ -82,4 +83,4 @@ dbRouter.route("/responses/:group").get(async function (req, res) {
   }
 });
 
-module.exports = dbRouter;
+export default dbRouter;

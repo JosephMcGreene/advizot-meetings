@@ -1,8 +1,10 @@
-require("dotenv").config();
-const express = require("express");
+import { config } from "dotenv";
+import express from "express";
+import RoomCode from "../models/RoomCode";
+import { generateRoomCode } from "../utils/helpers";
+
+config();
 const roomCodeRouter = express.Router();
-const RoomCode = require("../models/RoomCode");
-const { generateRoomCode } = require("../utils/helpers");
 
 roomCodeRouter.route("/submitRoomCode").post(async function (req, res) {
   try {
@@ -42,4 +44,4 @@ roomCodeRouter.route("/setRoomCode").post(async function (req, res) {
   }
 });
 
-module.exports = roomCodeRouter;
+export default roomCodeRouter;
