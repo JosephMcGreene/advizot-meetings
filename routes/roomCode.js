@@ -1,10 +1,10 @@
 import { config } from "dotenv";
-import express from "express";
-import RoomCode from "../models/RoomCode";
-import { generateRoomCode } from "../utils/helpers";
+import { Router } from "express";
+import RoomCode from "../models/RoomCode.js";
+import { generateRoomCode } from "../utils/helpers.js";
 
 config();
-const roomCodeRouter = express.Router();
+const roomCodeRouter = Router();
 
 roomCodeRouter.route("/submitRoomCode").post(async function (req, res) {
   try {

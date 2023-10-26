@@ -1,10 +1,13 @@
-require("dotenv").config();
-const passport = require("passport");
-const LinkedInStrategy = require("passport-linkedin-oauth2").Strategy;
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const { v4: uuidv4 } = require("uuid");
-const User = require("../models/User");
-const { userRoles, groups } = require("./userRoles");
+import { config } from "dotenv";
+import passport from "passport";
+import { Strategy as LinkedInStrategy } from "passport-linkedin-oauth2";
+import { Strategy as GoogleStrategy } from "passport-google-oauth20";
+import { uuid } from "uuidv4";
+//Internal Modules
+import User from "../models/User.js";
+import { userRoles, groups } from "./userRoles.js";
+
+config();
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -28,11 +31,7 @@ passport.use(
     async function (accessToken, refreshToken, profile, done) {
       try {
         const existingUser = await User.findOne({ providerID: profile.id });
-        console.log(profile);
-
-        if (existingUser) {
-          return done(null, existingUser);
-        }
+        if (existingUser) return done(null, existingUser);
 
         const newUser = await new User({
           providerID: profile.id,
@@ -40,12 +39,13 @@ passport.use(
           lastName: profile.name.familyName,
           linkedin_email: profile.emails[0].value,
           photo: profile.photos[0].value,
-          advizotID: uuidv4(),
+          advizotID: uuid(),
           role: userRoles.MEMBER,
           group: groups.GUEST,
           hasMeetingCode: false,
         });
         await newUser.save();
+
         return done(null, newUser);
       } catch (err) {
         done(err);
@@ -69,10 +69,7 @@ passport.use(
     async function (accessToken, refreshToken, profile, done) {
       try {
         const existingUser = await User.findOne({ providerID: profile.id });
-
-        if (existingUser) {
-          return done(null, existingUser);
-        }
+        if (existingUser) return done(null, existingUser);
 
         const newUser = await new User({
           providerID: profile.id,
@@ -86,6 +83,7 @@ passport.use(
           hasMeetingCode: false,
         });
         await newUser.save();
+
         return done(null, newUser);
       } catch (err) {
         done(err);

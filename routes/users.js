@@ -1,8 +1,9 @@
-import express from "express";
-import User from "../models/User";
-import { groups } from "../utils/userRoles";
+import { Router } from "express";
+//Internal Modules
+import User from "../models/User.js";
+import { groups } from "../utils/userRoles.js";
 
-const usersRouter = express.Router();
+const usersRouter = Router();
 
 usersRouter
   .route("/users")

@@ -1,4 +1,4 @@
-import { groups } from "./userRoles";
+import { groups } from "./userRoles.js";
 
 /**
  * Generates a 6-digit random number to be used as the meeting's room code.

@@ -1,7 +1,8 @@
-import express from "express";
-import Response from "../models/Response";
+import { Router } from "express";
+//Internal Modules
+import Response from "../models/Response.js";
 
-const dbRouter = express.Router();
+const dbRouter = Router();
 
 dbRouter
   .route("/responses")

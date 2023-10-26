@@ -1,9 +1,9 @@
-import express from "express";
+import { Router } from "express";
 import passport from "passport";
 //Internal Modules
-import "../utils/passportConfig";
+import "../utils/passportConfig.js";
 
-const authRouter = express.Router();
+const authRouter = Router();
 
 //Passport Strategies
 authRouter.route("/linkedin").get(passport.authenticate("linkedin"));
@@ -34,4 +34,4 @@ authRouter.route("/current_user").get((req, res) => {
   res.json(req.user);
 });
 
-module.exports = authRouter;
+export default authRouter;

@@ -7,11 +7,11 @@ import { uuid } from "uuidv4";
 import cors from "cors";
 import passport from "passport";
 //Internal Modules
-import dbRouter from "./routes/db";
-import authRouter from "./routes/auth";
-import roomCodeRouter from "./routes/roomCode";
-import usersRouter from "./routes/users";
-import "./utils/passportConfig";
+import dbRouter from "./routes/db.js";
+import authRouter from "./routes/auth.js";
+import roomCodeRouter from "./routes/roomCode.js";
+import usersRouter from "./routes/users.js";
+import "./utils/passportConfig.js";
 
 config();
 const app = express();
