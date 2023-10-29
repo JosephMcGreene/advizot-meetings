@@ -21,18 +21,20 @@ export default function MemberView({
    *
    * @returns {object} the user response containing the userID that matches the current user's advizotID, if it exists
    */
-  const responseUserID = () =>
+  const userResponse = () =>
     responses.find((response) => response.userID === user.advizotID);
 
   return (
     <section className="responses-section">
       <h1 className="meeting-heading">
-        {user.group === "guest" ? "Guests" : user.group},{" "}
+        {user.group === "guest" ? "Guests" : user.group} -{" "}
         {`${currentDate("month")} ${currentDate("year")}`}
       </h1>
 
       {responses.length === 0 ? (
-        <h2>There are no one signed in right now.</h2>
+        <h2 className="centered-heading">
+          There is no one signed in right now.
+        </h2>
       ) : (
         <ul className="responses-ul">
           {responses.map((response, index) => {
@@ -49,7 +51,7 @@ export default function MemberView({
       )}
 
       {/* Only allow user to add a sign-in response if they have not added one during this meeting */}
-      {responseUserID()?.userID !== user.advizotID && (
+      {userResponse()?.userID !== user.advizotID && (
         <ActionsBtn handleClick={handleSignInClick}>
           Sign In
           <img src={newResponse} alt="Add Response" className="add-icon" />

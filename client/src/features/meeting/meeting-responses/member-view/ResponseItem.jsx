@@ -11,7 +11,7 @@ export default function ResponseItem({
   className,
   handleSubmitEdits,
   responseBody,
-  isCorrectUser,
+  responseBelongsToUser,
 }) {
   const [meetingFormShown, setMeetingFormShown] = useState(false);
 
@@ -20,7 +20,7 @@ export default function ResponseItem({
       <article
         className={className}
         onClick={
-          isCorrectUser()
+          responseBelongsToUser()
             ? () => setMeetingFormShown(!meetingFormShown)
             : undefined
         }
@@ -32,7 +32,7 @@ export default function ResponseItem({
         <br />
 
         {text}
-        {isCorrectUser() && (
+        {responseBelongsToUser() && (
           <img src={editPen} alt="edit" className="edit-pen" />
         )}
       </article>
@@ -43,8 +43,8 @@ export default function ResponseItem({
           handleClose={() => setMeetingFormShown(false)}
         >
           <MeetingForm
-            handleSubmit={(responseToSubmit) =>
-              handleSubmitEdits(responseToSubmit)
+            handleSubmit={(responseToSubmit, existingResponse) =>
+              handleSubmitEdits(responseToSubmit, existingResponse)
             }
             handleClose={() => setMeetingFormShown(false)}
             existingResponse={responseBody}

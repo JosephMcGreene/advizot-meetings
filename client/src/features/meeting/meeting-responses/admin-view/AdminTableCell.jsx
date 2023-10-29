@@ -28,8 +28,8 @@ export default function AdminTableCell({
           handleClose={() => setMeetingFormShown(false)}
         >
           <MeetingForm
-            handleSubmit={(responseToSubmit) =>
-              handleSubmitEdits(responseToSubmit)
+            handleSubmit={(responseToSubmit, existingResponse) =>
+              handleSubmitEdits(responseToSubmit, existingResponse)
             }
             handleClose={() => setMeetingFormShown(false)}
             existingResponse={responseBody}

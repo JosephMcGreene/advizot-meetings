@@ -77,7 +77,7 @@ passport.use(
           lastName: profile.name.familyName,
           google_email: profile.emails[0].value,
           photo: profile.photos[0].value,
-          advizotID: uuidv4(),
+          advizotID: uuid(),
           role: userRoles.MEMBER,
           group: groups.GUEST,
           hasMeetingCode: false,

@@ -16,7 +16,7 @@ export default function MemberResponse({
    *
    * @returns {boolean} whether or not the user can edit or delete the response
    */
-  function isCorrectUser() {
+  function responseBelongsToUser() {
     if (user.advizotID === responseBody?.userID) return true;
     return false;
   }
@@ -31,10 +31,10 @@ export default function MemberResponse({
         className="response priority"
         handleSubmitEdits={handleSubmitEdits}
         responseBody={responseBody}
-        isCorrectUser={isCorrectUser}
+        responseBelongsToUser={responseBelongsToUser}
       />
 
-      {isCorrectUser() && (
+      {responseBelongsToUser() && (
         <DeleteButton
           responseID={responseBody._id}
           handleDelete={handleDelete}
@@ -47,7 +47,7 @@ export default function MemberResponse({
         className="response range-response business-rating"
         handleSubmitEdits={handleSubmitEdits}
         responseBody={responseBody}
-        isCorrectUser={isCorrectUser}
+        responseBelongsToUser={responseBelongsToUser}
       />
 
       <ResponseItem
@@ -56,7 +56,7 @@ export default function MemberResponse({
         className="response range-response personal-rating"
         handleSubmitEdits={handleSubmitEdits}
         responseBody={responseBody}
-        isCorrectUser={isCorrectUser}
+        responseBelongsToUser={responseBelongsToUser}
       />
 
       <ResponseItem
@@ -65,7 +65,7 @@ export default function MemberResponse({
         className="response range-response relationships-rating"
         handleSubmitEdits={handleSubmitEdits}
         responseBody={responseBody}
-        isCorrectUser={isCorrectUser}
+        responseBelongsToUser={responseBelongsToUser}
       />
 
       <ResponseItem
@@ -74,7 +74,7 @@ export default function MemberResponse({
         className="response issue"
         handleSubmitEdits={handleSubmitEdits}
         responseBody={responseBody}
-        isCorrectUser={isCorrectUser}
+        responseBelongsToUser={responseBelongsToUser}
       />
 
       <ResponseItem
@@ -83,7 +83,7 @@ export default function MemberResponse({
         className="response goal"
         handleSubmitEdits={handleSubmitEdits}
         responseBody={responseBody}
-        isCorrectUser={isCorrectUser}
+        responseBelongsToUser={responseBelongsToUser}
       />
     </li>
   );

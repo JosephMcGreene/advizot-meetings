@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { ToastContext } from "../../../App";
 //External
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -12,8 +10,6 @@ export default function MeetingForm({
   handleClose,
   existingResponse,
 }) {
-  const { showToast } = useContext(ToastContext);
-
   /**
    * Determines the percentage of an input slider's background that should be filled up based on where the user has dragged the thumb
    *
@@ -60,8 +56,7 @@ export default function MeetingForm({
         })}
         onSubmit={(values, actions) => {
           try {
-            values._id = existingResponse?._id;
-            handleSubmit(values);
+            handleSubmit(values, existingResponse);
             actions.setSubmitting(false);
           } catch (err) {
             console.error(err);
@@ -95,7 +90,6 @@ export default function MeetingForm({
               style={sliderSizeOf(props.values.personal)}
               spanText={props.values.personal}
             />
-
             <InputField
               text="How are your relationships?"
               name="relationships"
@@ -107,14 +101,12 @@ export default function MeetingForm({
               style={sliderSizeOf(props.values.relationships)}
               spanText={props.values.relationships}
             />
-
             <InputField
               text="Issue to process today"
               name="monthlyIssue"
               as="textarea"
               className="text-input"
             />
-
             <Select text="Priority" name="priority" className="select">
               <option value="">-- Select a Priority --</option>
               <option value="aA">A</option>
@@ -123,14 +115,12 @@ export default function MeetingForm({
               <option value="dLightning">Lightning</option>
               <option value="eC">C</option>
             </Select>
-
             <InputField
               text="Goal before next meeting"
               name="monthlyGoal"
               as="textarea"
               className="text-input"
             />
-
             <button type="submit" className="btn">
               Submit
             </button>

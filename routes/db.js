@@ -24,21 +24,24 @@ dbRouter
   })
   .put(async function (req, res) {
     try {
+      console.log(req.body);
+
       if (req.body?._id !== undefined) {
         await Response.deleteOne({ _id: req.body._id });
       }
 
       const newUserResponse = new Response({
-        userName: req.user.firstName + " " + req.user.lastName,
+        userName: req.body.userName,
         business: req.body.business,
         personal: req.body.personal,
         relationships: req.body.relationships,
         monthlyIssue: req.body.monthlyIssue,
         priority: req.body.priority,
         monthlyGoal: req.body.monthlyGoal,
-        date: Date.now(),
-        group: req.user.group,
-        userID: req.user.advizotID,
+        date: req.body.date,
+        group: req.body.group,
+        userID: req.body.userID,
+        _id: req.body._id,
       });
       await newUserResponse.save();
 

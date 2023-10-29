@@ -35,8 +35,8 @@ export default function Meeting() {
       {user.role === "admin" && (
         <AdminView
           responses={responses}
-          handleSubmitEdits={async (responseToSubmit) => {
-            await submitResponse(responseToSubmit);
+          handleSubmitEdits={async (responseToSubmit, existingResponse) => {
+            await submitResponse(responseToSubmit, existingResponse);
             await showToast("success", "Edit Successful");
           }}
           handleDelete={async (responseID) => {
@@ -56,8 +56,8 @@ export default function Meeting() {
             await deleteResponse(responseID);
             await showToast("success", "Response Deleted");
           }}
-          handleSubmitEdits={async (responseToSubmit) => {
-            await submitResponse(responseToSubmit);
+          handleSubmitEdits={async (responseToSubmit, existingResponse) => {
+            await submitResponse(responseToSubmit, existingResponse);
             await showToast("success", "Edit Successful");
           }}
           handleSignInClick={() => setFormShown(!formShown)}

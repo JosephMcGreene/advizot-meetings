@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../App";
 import { axiosFetch } from "../helpers";
 
 export default function useMeeting(method, url) {
+  const user = useContext(UserContext);
   const [responses, setResponses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -10,6 +12,23 @@ export default function useMeeting(method, url) {
     if (a.priority < b.priority) return -1;
     return 1;
   });
+
+  const userDataBody = (responseToSubmit, existingResponse = undefined) => {
+    return {
+      userName:
+        existingResponse?.userName || `${user.firstName} ${user.lastName}`,
+      business: responseToSubmit.business,
+      personal: responseToSubmit.personal,
+      relationships: responseToSubmit.relationships,
+      monthlyIssue: responseToSubmit.monthlyIssue,
+      priority: responseToSubmit.priority,
+      monthlyGoal: responseToSubmit.monthlyGoal,
+      date: Date.now(),
+      group: existingResponse?.group || user.group,
+      userID: existingResponse?.userID || user.advizotID,
+      _id: existingResponse?._id,
+    };
+  };
 
   useEffect(() => {
     getResponses(method, url);
@@ -38,19 +57,19 @@ export default function useMeeting(method, url) {
   }
 
   /**
-   * Takes in user response from MeetingForm.js and adds it to the database or updates an existing user response. See /routes/db.js
+   * Takes in user response from MeetingForm.jss and adds it to the database or updates an existing user response. See /routes/db.js
    *
    * @param {string} method           http verb used to subscribe to the database
    * @param {Object} responseToSubmit Body to be added or edited in the database and displayed to the users
    */
-  async function submitResponse(responseToSubmit) {
+  async function submitResponse(responseToSubmit, existingResponse) {
     try {
       setLoading(true);
 
       const submitRes = await axiosFetch(
         "put",
         "/db/responses",
-        responseToSubmit
+        userDataBody(responseToSubmit, existingResponse)
       );
 
       const newResponses = [...responses, submitRes.data];
