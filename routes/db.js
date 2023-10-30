@@ -1,27 +1,13 @@
 import { Router } from "express";
 //Internal Modules
 import Response from "../models/Response.js";
+import { groupForToday } from "../utils/helpers.js";
+import { userRoles } from "../utils/userRoles.js";
 
 const dbRouter = Router();
 
 dbRouter
   .route("/responses")
-  .get(async function (req, res) {
-    try {
-      const responses = await Response.find({});
-      // .or([
-      //   { group: req.user.group },
-      //   { group: "admin" },
-      // ]);
-      //
-      // Also needs to filter out old responses, so only the current meeting's responses are displayed to user
-      //
-
-      return res.json(responses);
-    } catch (err) {
-      throw new Error(err);
-    }
-  })
   .put(async function (req, res) {
     try {
       if (req.body?._id !== undefined) {
@@ -77,8 +63,18 @@ dbRouter.route("/responses/filters").post(async function (req, res) {
 
 dbRouter.route("/responses/:group").get(async function (req, res) {
   try {
-    const groupResponses = await Response.find({ group: req.user.group });
-    return res.json(groupResponses);
+    let groupResponses;
+
+    if (req.user.group === userRoles.ADMIN) {
+      groupResponses = await Response.find().or([
+        { group: req.user.group },
+        { group: groupForToday() },
+      ]);
+      return res.json(groupResponses);
+    } else {
+      groupResponses = await Response.find({ group: req.user.group });
+      return res.json(groupResponses);
+    }
   } catch (err) {
     throw new Error(err);
   }

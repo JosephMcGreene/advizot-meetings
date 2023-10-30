@@ -37,7 +37,7 @@ export default function useMeeting(method, url) {
   /**
    * Fetches existing user responses from MongoDB and updates state accordingly. See server/routes/db.js
    *
-   * @param {string} method HTTP verb, usually GET
+   * @param {string} method HTTP verb, usually GET, can be POST if request body is necessary
    * @param {string} url    Endpoint of the proxy server for the fetch call
    * @param {object} [data] The request body sent to the server, if applicable
    */

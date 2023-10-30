@@ -26,7 +26,7 @@ export default function useToasts() {
   /**
    * contains the logic for determining how to remove a toast from the DOM
    *
-   * @param {string} id ID used for determining which toast to remove if there are multiple mounted toast components
+   * @param {string} id Identifier used to determine which toast to remove
    */
   function removeToast(id) {
     setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));

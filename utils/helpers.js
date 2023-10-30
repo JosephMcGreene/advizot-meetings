@@ -18,15 +18,15 @@ export function generateRoomCode() {
  *
  * @returns {string} The name of the day of the week if it is Tuesday, Wednesday, or Thursday, or guest
  */
-export function determineGroup() {
+export const groupForToday = () => {
   switch (new Date().getDay()) {
-    case 2: //If today is Tuesday:
+    case 2: //If today is Tuesday
       return groups.CE5660;
-    case 3: //If today is Wednesday:
+    case 3: //If today is Wednesday
       return groups.KEY9330;
-    case 4: //If today is Thursday:
+    case 4: //If today is Thursday
       return groups.CE4659;
     default: //If today is any other day:
-      return groups.GUEST;
+      return null;
   }
-}
+};
