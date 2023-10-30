@@ -3,7 +3,7 @@ import path from "path";
 import express from "express";
 import mongoose from "mongoose";
 import cookieSession from "cookie-session";
-import { uuid } from "uuidv4";
+import { v4 as uuidv4 } from "uuid";
 import cors from "cors";
 import passport from "passport";
 //Internal Modules
@@ -32,7 +32,7 @@ app.use(
 app.use(
   cookieSession({
     maxAge: 1000 * 60 * 60 * 24, // cookie expires in 1 day
-    keys: [uuid()],
+    keys: [uuidv4()],
   })
 );
 

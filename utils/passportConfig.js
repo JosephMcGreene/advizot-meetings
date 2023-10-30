@@ -2,7 +2,7 @@ import { config } from "dotenv";
 import passport from "passport";
 import { Strategy as LinkedInStrategy } from "passport-linkedin-oauth2";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
-import { uuid } from "uuidv4";
+import { v4 as uuidv4 } from "uuid";
 //Internal Modules
 import User from "../models/User.js";
 import { userRoles, groups } from "./userRoles.js";
@@ -39,7 +39,7 @@ passport.use(
           lastName: profile.name.familyName,
           linkedin_email: profile.emails[0].value,
           photo: profile.photos[0].value,
-          advizotID: uuid(),
+          advizotID: uuidv4(),
           role: userRoles.MEMBER,
           group: groups.GUEST,
           hasMeetingCode: false,
@@ -77,7 +77,7 @@ passport.use(
           lastName: profile.name.familyName,
           google_email: profile.emails[0].value,
           photo: profile.photos[0].value,
-          advizotID: uuid(),
+          advizotID: uuidv4(),
           role: userRoles.MEMBER,
           group: groups.GUEST,
           hasMeetingCode: false,

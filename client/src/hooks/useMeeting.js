@@ -1,9 +1,10 @@
 import { useState, useEffect, useContext } from "react";
-import { UserContext } from "../App";
+import { UserContext, ToastContext } from "../App";
 import { axiosFetch } from "../helpers";
 
 export default function useMeeting(method, url) {
   const user = useContext(UserContext);
+  const { showToast } = useContext(ToastContext);
   const [responses, setResponses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -26,7 +27,6 @@ export default function useMeeting(method, url) {
       date: Date.now(),
       group: existingResponse?.group || user.group,
       userID: existingResponse?.userID || user.advizotID,
-      _id: existingResponse?._id,
     };
   };
 
@@ -74,10 +74,13 @@ export default function useMeeting(method, url) {
 
       const newResponses = [...responses, submitRes.data];
       const filteredResponses = newResponses.filter(
-        (response) => response._id !== responseToSubmit._id
+        (response) => response._id !== existingResponse?._id
       );
 
       setResponses(filteredResponses);
+
+      if (existingResponse?._id !== undefined)
+        await showToast("success", "Edit Successful");
     } catch (err) {
       setError(err);
       throw new Error(err);
@@ -107,6 +110,8 @@ export default function useMeeting(method, url) {
           return response._id !== responseID;
         })
       );
+
+      await showToast("success", "Response Deleted");
     } catch (err) {
       setError(err);
       throw new Error(err);

@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { UserContext, ToastContext } from "../../App";
+import { UserContext } from "../../App";
 //External
 import { Navigate } from "react-router-dom";
 //Helpers
@@ -15,7 +15,6 @@ import MeetingForm from "./form/MeetingForm";
 
 export default function Meeting() {
   const user = useContext(UserContext);
-  const { showToast } = useContext(ToastContext);
   const [formShown, setFormShown] = useState(false);
 
   const [
@@ -37,11 +36,9 @@ export default function Meeting() {
           responses={responses}
           handleSubmitEdits={async (responseToSubmit, existingResponse) => {
             await submitResponse(responseToSubmit, existingResponse);
-            await showToast("success", "Edit Successful");
           }}
           handleDelete={async (responseID) => {
             await deleteResponse(responseID);
-            await showToast("success", "Response deleted");
           }}
           handleNewResponseClick={() => setFormShown(!formShown)}
           handleFilterSubmit={(filtersToSubmit) =>
@@ -52,13 +49,11 @@ export default function Meeting() {
       {user.role === "member" && (
         <MemberView
           responses={responses}
-          handleDelete={async (responseID) => {
-            await deleteResponse(responseID);
-            await showToast("success", "Response Deleted");
-          }}
           handleSubmitEdits={async (responseToSubmit, existingResponse) => {
             await submitResponse(responseToSubmit, existingResponse);
-            await showToast("success", "Edit Successful");
+          }}
+          handleDelete={async (responseID) => {
+            await deleteResponse(responseID);
           }}
           handleSignInClick={() => setFormShown(!formShown)}
         />

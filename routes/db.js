@@ -24,8 +24,6 @@ dbRouter
   })
   .put(async function (req, res) {
     try {
-      console.log(req.body);
-
       if (req.body?._id !== undefined) {
         await Response.deleteOne({ _id: req.body._id });
       }
@@ -41,7 +39,6 @@ dbRouter
         date: req.body.date,
         group: req.body.group,
         userID: req.body.userID,
-        _id: req.body._id,
       });
       await newUserResponse.save();
 
