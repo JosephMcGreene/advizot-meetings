@@ -20,7 +20,7 @@ export default function useToasts() {
 
     setTimeout(() => {
       removeToast(toast.id);
-    }, 4000);
+    }, 3500);
   }
 
   /**

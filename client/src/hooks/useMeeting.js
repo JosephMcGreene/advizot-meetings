@@ -27,6 +27,7 @@ export default function useMeeting(method, url) {
       date: Date.now(),
       group: existingResponse?.group || user.group,
       userID: existingResponse?.userID || user.advizotID,
+      _id: existingResponse?._id,
     };
   };
 

@@ -10,7 +10,7 @@ dbRouter
   .route("/responses")
   .put(async function (req, res) {
     try {
-      if (req.body?._id !== undefined) {
+      if (req.body?._id) {
         await Response.deleteOne({ _id: req.body._id });
       }
 
@@ -33,6 +33,21 @@ dbRouter
       throw new Error(err);
     }
   })
+  .post(async function (req, res) {
+    try {
+      // Mongoose query for getting the right responses for:
+      // req.group
+      // req.viewAdminResponses
+      const groupResponses = await Response.find().or([
+        { group: req.group },
+        { group: "admin" },
+      ]);
+
+      return res.json(groupResponses);
+    } catch (err) {
+      throw new Error(err);
+    }
+  })
   .delete(async function (req, res) {
     try {
       const deletionRes = await Response.deleteOne({
@@ -45,36 +60,37 @@ dbRouter
     }
   });
 
-dbRouter.route("/responses/filters").post(async function (req, res) {
-  try {
-    // Mongoose query for getting the right responses for:
-    // req.group
-    // req.viewAdminResponses
-    const groupResponses = await Response.find().or([
-      { group: req.group },
-      { group: "admin" },
-    ]);
-
-    return res.json(groupResponses);
-  } catch (err) {
-    throw new Error(err);
-  }
-});
-
 dbRouter.route("/responses/:group").get(async function (req, res) {
   try {
-    let groupResponses;
+    let groupResponses = [];
 
+    // If user is an admin and requests to see a specific group
+    if (
+      req.user.group === userRoles.ADMIN &&
+      req.params.group !== userRoles.ADMIN
+    ) {
+      groupResponses = await Response.find().or([
+        { group: userRoles.ADMIN },
+        { group: req.params.group },
+      ]);
+      return res.json(groupResponses);
+    }
+
+    // Default behavior for admins on log-in: get responses for today's group
     if (req.user.group === userRoles.ADMIN) {
       groupResponses = await Response.find().or([
-        { group: req.user.group },
+        { group: userRoles.ADMIN },
         { group: groupForToday() },
       ]);
       return res.json(groupResponses);
-    } else {
-      groupResponses = await Response.find({ group: req.user.group });
-      return res.json(groupResponses);
     }
+
+    // Default behavior, used for members accessing their own group
+    groupResponses = await Response.find().or([
+      { group: req.user.group },
+      { group: userRoles.ADMIN },
+    ]);
+    return res.json(groupResponses);
   } catch (err) {
     throw new Error(err);
   }

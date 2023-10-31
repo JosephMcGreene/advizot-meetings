@@ -41,9 +41,9 @@ export default function Meeting() {
             await deleteResponse(responseID);
           }}
           handleNewResponseClick={() => setFormShown(!formShown)}
-          handleFilterSubmit={(filtersToSubmit) =>
-            getResponses("post", "/db/responses/filters", filtersToSubmit)
-          }
+          handleFilterSubmit={(filtersToSubmit) => {
+            getResponses("get", `/db/responses/${filtersToSubmit?.group}`);
+          }}
         />
       )}
       {user.role === "member" && (

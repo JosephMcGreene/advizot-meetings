@@ -31,7 +31,7 @@ export default function AdminActionList({
           id="filter"
         >
           <label htmlFor="filter" className="admin-actions-label">
-            Filter View
+            Change Group
           </label>
           <img src={filterIcon} alt="Filter" className="admin-actions-icon" />
         </button>
@@ -61,7 +61,7 @@ export default function AdminActionList({
           id="newResponse"
         >
           <label htmlFor="newResponse" className="admin-actions-label">
-            New Response
+            New Sign-In
           </label>
           <img
             src={addResponseIcon}
