@@ -20,7 +20,7 @@ export default function useToasts() {
 
     setTimeout(() => {
       removeToast(toast.id);
-    }, 3500);
+    }, 3500); //Linked to toast animation. If changed, be sure to change animation duration in _toasts.scss to match
   }
 
   /**

@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-block: 1.5rem;
+  margin-top: 1.5rem;
 
   .code-toggle {
     padding: 0.75rem;
@@ -16,6 +16,15 @@
 
     &:hover {
       @include btnHover();
+
+      &:after {
+        content: "Room Code";
+        font-family: $main-font;
+        font-size: 1.25rem;
+        font-weight: bold;
+        vertical-align: middle;
+        margin-left: 0.5rem;
+      }
     }
 
     .eye-icon {
@@ -35,19 +44,24 @@
   padding: 1rem;
   letter-spacing: 2px;
 
+  font-size: 1.5rem;
   background-color: $advizot-color;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .admin-responses {
   $border: 1px solid black;
 
-  margin: 0 auto;
+  margin: 0 auto 2rem;
   width: 90vw;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: $border-radius 0 0 0;
 
   .admin-head,
   .admin-response-row {
     display: grid;
-    grid-template-columns: 1.35fr repeat(3, 0.58fr) 0.8fr 1.5fr 1.5fr;
+    grid-template-columns: 1.33fr 0.68fr repeat(2, 0.58fr) 0.8fr 1.5fr 1.5fr;
+    min-height: 68px;
 
     border: $border;
   }
@@ -70,6 +84,12 @@
 
     &:first-child {
       border-radius: 12px 0 0 0;
+    }
+
+    .admin-heading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 

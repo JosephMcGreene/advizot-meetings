@@ -27,7 +27,7 @@
   box-shadow: 0 0 10px black;
 
   animation-name: in-from-right;
-  animation-duration: 4000ms;
+  animation-duration: 3500ms; //Linked to total display time. If changed, be sure to change the timeout duration in useToasts.js to match
   animation-iteration-count: 1;
 
   .toast-message {
