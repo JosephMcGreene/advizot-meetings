@@ -8,6 +8,7 @@ export default function useMeeting(method, url) {
   const [responses, setResponses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [currentGroup, setCurrentGroup] = useState("");
 
   const sortedResponses = responses.sort((a, b) => {
     if (a.priority < b.priority) return -1;
@@ -48,7 +49,8 @@ export default function useMeeting(method, url) {
 
       const existingResponses = await axiosFetch(method, url, data);
 
-      setResponses(existingResponses.data);
+      setResponses(existingResponses.data.groupResponses);
+      setCurrentGroup(existingResponses.data.group);
     } catch (err) {
       setError(err);
       throw new Error(err);
@@ -80,6 +82,7 @@ export default function useMeeting(method, url) {
 
       setResponses(filteredResponses);
 
+      // If it is an edit to an existing response
       if (existingResponse?._id !== undefined)
         await showToast("success", "Edit Successful");
     } catch (err) {
@@ -125,6 +128,7 @@ export default function useMeeting(method, url) {
     sortedResponses,
     loading,
     error,
+    currentGroup,
     getResponses,
     submitResponse,
     deleteResponse,

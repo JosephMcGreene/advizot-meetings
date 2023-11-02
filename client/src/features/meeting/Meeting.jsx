@@ -21,6 +21,7 @@ export default function Meeting() {
     responses,
     loading,
     error,
+    currentGroup,
     getResponses,
     submitResponse,
     deleteResponse,
@@ -34,6 +35,7 @@ export default function Meeting() {
       {user.role === "admin" && (
         <AdminView
           responses={responses}
+          currentGroup={currentGroup}
           handleSubmitEdits={async (responseToSubmit, existingResponse) => {
             await submitResponse(responseToSubmit, existingResponse);
           }}
@@ -41,9 +43,9 @@ export default function Meeting() {
             await deleteResponse(responseID);
           }}
           handleNewResponseClick={() => setFormShown(!formShown)}
-          handleFilterSubmit={(filtersToSubmit) => {
-            getResponses("get", `/db/responses/${filtersToSubmit?.group}`);
-          }}
+          handleFilterSubmit={async (filtersToSubmit) =>
+            await getResponses("get", `/db/responses/${filtersToSubmit?.group}`)
+          }
         />
       )}
       {user.role === "member" && (
