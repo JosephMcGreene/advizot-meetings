@@ -73,7 +73,7 @@ dbRouter.route("/responses/:group").get(async function (req, res) {
         { group: userRoles.ADMIN },
         { group: req.params.group },
       ]);
-      return res.json(groupResponses);
+      return res.json({ group: req.params.group, groupResponses });
     }
 
     // Default behavior for admins on log-in: get responses for today's group
@@ -82,7 +82,7 @@ dbRouter.route("/responses/:group").get(async function (req, res) {
         { group: userRoles.ADMIN },
         { group: groupForToday() },
       ]);
-      return res.json(groupResponses);
+      return res.json({ group: groupForToday(), groupResponses });
     }
 
     // Default behavior, used for members accessing their own group

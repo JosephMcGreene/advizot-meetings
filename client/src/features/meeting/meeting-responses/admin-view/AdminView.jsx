@@ -17,6 +17,7 @@ import MemberEditModal from "../../admin-actions/MemberEditModal";
 
 export default function AdminView({
   responses,
+  currentGroup,
   handleSubmitEdits,
   handleDelete,
   handleNewResponseClick,
@@ -30,7 +31,9 @@ export default function AdminView({
   return (
     <section>
       <div className="heading-container">
-        <h1 className="meeting-heading">Answers for {currentDate("month")}</h1>
+        <h1 className="meeting-heading">
+          {currentGroup} - {currentDate("month")} {currentDate("year")}
+        </h1>
         <RoomCodeToggle
           handleClick={() => setRoomCodeShown(!roomCodeShown)}
           roomCodeShown={roomCodeShown}

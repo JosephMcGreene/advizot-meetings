@@ -14,9 +14,9 @@ export function generateRoomCode() {
 }
 
 /**
- * Determines the day of the week in order to decide what group and role to place a user in, or place them in a guest group
+ * Determines the day of the week and then determines what group is meeting for the current day. Returns null if today is not a meeting day
  *
- * @returns {string} The name of the day of the week if it is Tuesday, Wednesday, or Thursday, or guest
+ * @returns {string} The group number that corresponds to the day of the week if today is Tuesday, Wednesday, or Thursday, or default null
  */
 export const groupForToday = () => {
   switch (new Date().getDay()) {
