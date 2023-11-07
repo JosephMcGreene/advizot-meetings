@@ -62,35 +62,34 @@ dbRouter
 
 dbRouter.route("/responses/:group").get(async function (req, res) {
   try {
-    let groupResponses = [];
+    const threeDaysAgo = Date.now() - 1000 * 60 * 60 * 24 * 3;
 
     // If user is an admin and requests to see a specific group
     if (
       req.user.group === userRoles.ADMIN &&
       req.params.group !== userRoles.ADMIN
     ) {
-      groupResponses = await Response.find().or([
-        { group: userRoles.ADMIN },
-        { group: req.params.group },
-      ]);
+      const groupResponses = await Response.find()
+        .or([{ group: userRoles.ADMIN }, { group: req.params.group }])
+        .gte("date", threeDaysAgo);
+
       return res.json({ group: req.params.group, groupResponses });
     }
 
     // Default behavior for admins on log-in: get responses for today's group
     if (req.user.group === userRoles.ADMIN) {
-      groupResponses = await Response.find().or([
-        { group: userRoles.ADMIN },
-        { group: groupForToday() },
-      ]);
-      return res.json({ group: groupForToday(), groupResponses });
+      const groupResponses = await Response.find()
+        .or([{ group: userRoles.ADMIN }, { group: groupForToday() }])
+        .gte("date", threeDaysAgo);
+
+      return res.json({ group: req.params.group, groupResponses });
     }
 
     // Default behavior, used for members accessing their own group
-    groupResponses = await Response.find().or([
-      { group: req.user.group },
-      { group: userRoles.ADMIN },
-    ]);
-    return res.json(groupResponses);
+    const groupResponses = await Response.find()
+      .or([{ group: req.user.group }, { group: userRoles.ADMIN }])
+      .gte("date", threeDaysAgo);
+    return res.json({ group: req.params.group, groupResponses });
   } catch (err) {
     throw new Error(err);
   }
