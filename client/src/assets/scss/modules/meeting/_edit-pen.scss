@@ -3,7 +3,7 @@
 $size: 20px;
 
 .admin-info-cell,
-.response {
+.sign-in {
   position: relative;
 
   &:hover {
@@ -21,6 +21,6 @@ $size: 20px;
   }
 }
 
-.response .edit-pen {
+.sign-in .edit-pen {
   top: 55%;
 }

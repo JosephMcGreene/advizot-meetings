@@ -6,8 +6,8 @@ import ModalTemplate from "../../../../shared/modals/ModalTemplate";
 import MeetingForm from "../../form/MeetingForm";
 
 export default function AdminTableCell({
-  responseBody,
-  responseItem,
+  signInBody,
+  signInItem,
   handleSubmitEdits,
 }) {
   const [meetingFormShown, setMeetingFormShown] = useState(false);
@@ -18,21 +18,21 @@ export default function AdminTableCell({
         onClick={() => setMeetingFormShown(!meetingFormShown)}
         className="admin-info-cell"
       >
-        {responseItem}
+        {signInItem}
         <img src={editPen} alt="edit" className="edit-pen" />
       </p>
 
       {meetingFormShown && (
         <ModalTemplate
-          title="Edit Response"
+          title="Edit Sign-in"
           handleClose={() => setMeetingFormShown(false)}
         >
           <MeetingForm
-            handleSubmit={(responseToSubmit, existingResponse) =>
-              handleSubmitEdits(responseToSubmit, existingResponse)
+            handleSubmit={(signInToSubmit, existingSignIn) =>
+              handleSubmitEdits(signInToSubmit, existingSignIn)
             }
             handleClose={() => setMeetingFormShown(false)}
-            existingResponse={responseBody}
+            existingSignIn={signInBody}
           />
         </ModalTemplate>
       )}

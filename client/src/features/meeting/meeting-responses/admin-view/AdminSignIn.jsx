@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import AdminTableCell from "./AdminTableCell";
 import DeleteButton from "../DeleteButton";
 
-export default function AdminResponse({
-  responseBody,
+export default function AdminSignIn({
+  signInBody,
   handleSubmitEdits,
   handleDelete,
 }) {
@@ -16,16 +16,13 @@ export default function AdminResponse({
     <motion.article
       layout
       transition={{ type: "tween", stiffness: 10, duration: 0.1 }}
-      className="admin-response-row"
+      className="admin-sign-in-row"
       onMouseEnter={() => setDeleteBtnShown(true)}
       onMouseLeave={() => setDeleteBtnShown(false)}
     >
       <span className="admin-info-cell">
         {deleteBtnShown && (
-          <DeleteButton
-            responseID={responseBody._id}
-            handleDelete={handleDelete}
-          />
+          <DeleteButton signInID={signInBody._id} handleDelete={handleDelete} />
         )}
 
         <motion.h4
@@ -33,38 +30,38 @@ export default function AdminResponse({
           transition={{ type: "tween", stiffness: 10, duration: 0.1 }}
           className="admin-row-name"
         >
-          {responseBody.userName}
+          {signInBody.userName}
         </motion.h4>
       </span>
 
       <AdminTableCell
-        responseBody={responseBody}
-        responseItem={responseBody.priority.substring(1)}
+        signInBody={signInBody}
+        signInItem={signInBody.priority.substring(1)}
         handleSubmitEdits={handleSubmitEdits}
       />
       <AdminTableCell
-        responseBody={responseBody}
-        responseItem={responseBody.business}
+        signInBody={signInBody}
+        signInItem={signInBody.business}
         handleSubmitEdits={handleSubmitEdits}
       />
       <AdminTableCell
-        responseBody={responseBody}
-        responseItem={responseBody.personal}
+        signInBody={signInBody}
+        signInItem={signInBody.personal}
         handleSubmitEdits={handleSubmitEdits}
       />
       <AdminTableCell
-        responseBody={responseBody}
-        responseItem={responseBody.relationships}
+        signInBody={signInBody}
+        signInItem={signInBody.relationships}
         handleSubmitEdits={handleSubmitEdits}
       />
       <AdminTableCell
-        responseBody={responseBody}
-        responseItem={responseBody.monthlyIssue}
+        signInBody={signInBody}
+        signInItem={signInBody.monthlyIssue}
         handleSubmitEdits={handleSubmitEdits}
       />
       <AdminTableCell
-        responseBody={responseBody}
-        responseItem={responseBody.monthlyGoal}
+        signInBody={signInBody}
+        signInItem={signInBody.monthlyGoal}
         handleSubmitEdits={handleSubmitEdits}
       />
     </motion.article>

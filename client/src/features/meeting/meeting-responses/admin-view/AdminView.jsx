@@ -8,7 +8,7 @@ import { currentDate } from "../../../../helpers";
 //Components
 import RoomCodeToggle from "../../admin-actions/RoomCodeToggle";
 import RoomCodeDisplay from "../../room-code/RoomCodeDisplay";
-import AdminResponse from "./AdminResponse";
+import AdminSignIn from "./AdminSignIn";
 import ActionsBtn from "../ActionsBtn";
 import AdminActionList from "../../admin-actions/AdminActionList";
 import ModalTemplate from "../../../../shared/modals/ModalTemplate";
@@ -16,11 +16,11 @@ import FilterModal from "../../admin-actions/FilterModal";
 import MemberEditModal from "../../admin-actions/MemberEditModal";
 
 export default function AdminView({
-  responses,
+  signIns,
   currentGroup,
   handleSubmitEdits,
   handleDelete,
-  handleNewResponseClick,
+  handleNewSignInClick,
   handleFilterSubmit,
 }) {
   const [actionsShown, setActionsShown] = useState(false);
@@ -45,7 +45,7 @@ export default function AdminView({
       <motion.article
         layout
         transition={{ type: "tween", stiffness: 10, duration: 0.1 }}
-        className="admin-responses"
+        className="admin-sign-ins"
       >
         <ul className="admin-head">
           <li className="admin-heading">Name</li>
@@ -57,11 +57,11 @@ export default function AdminView({
           <li className="admin-heading">Goal</li>
         </ul>
 
-        {responses.map((response, index) => {
+        {signIns.map((signIn, index) => {
           return (
-            <AdminResponse
-              key={`${response.date}${index}`}
-              responseBody={response}
+            <AdminSignIn
+              key={`${signIn.date}${index}`}
+              signInBody={signIn}
               handleSubmitEdits={handleSubmitEdits}
               handleDelete={handleDelete}
             />
@@ -77,7 +77,7 @@ export default function AdminView({
         <AdminActionList
           onFormSubmit={handleSubmitEdits}
           actionToggle={() => setActionsShown(!actionsShown)}
-          handleNewResponseClick={handleNewResponseClick}
+          handleNewSignInClick={handleNewSignInClick}
           handleFilterClick={() => setFilterModalShown(!filterModalShown)}
           handleMemberEditClick={() =>
             setMemberEditModalShown(!memberEditModalShown)
@@ -87,7 +87,7 @@ export default function AdminView({
 
       {filterModalShown && (
         <ModalTemplate
-          title="Filter Responses"
+          title="Filter Sign-Ins"
           handleClose={() => setFilterModalShown(false)}
         >
           <FilterModal

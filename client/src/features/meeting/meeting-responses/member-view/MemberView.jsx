@@ -1,15 +1,15 @@
 import { useContext } from "react";
 import { UserContext } from "../../../../App";
 //Assets
-import newResponse from "../../../../assets/img/file-circle-plus-solid.svg";
+import newSignIn from "../../../../assets/img/file-circle-plus-solid.svg";
 //Internal
 import { currentDate } from "../../../../helpers";
 //Components
-import MemberResponse from "./MemberResponse";
+import MemberSignIn from "./MemberSignIn";
 import ActionsBtn from "../ActionsBtn";
 
 export default function MemberView({
-  responses,
+  signIns,
   handleDelete,
   handleSubmitEdits,
   handleSignInClick,
@@ -17,31 +17,31 @@ export default function MemberView({
   const user = useContext(UserContext);
 
   /**
-   * Searches the responses array for a response that the current user has submitted and returns that response. If the response does not exist, returns undefined.
+   * Searches the sign-ins array for a sign-in that the user has submitted and returns that sign-in. If the sign-in does not exist, returns undefined.
    *
-   * @returns {object} the user response containing the userID that matches the current user's advizotID, if it exists
+   * @returns {object} the sign-in containing the userID that matches the current user's advizotID, if it exists
    */
-  const userResponse = () =>
-    responses.find((response) => response.userID === user.advizotID);
+  const signInOfUser = () =>
+    signIns.find((signIn) => signIn.userID === user.advizotID);
 
   return (
-    <section className="responses-section">
+    <section className="sign-ins-section">
       <h1 className="meeting-heading">
         {user.group === "guest" ? "Guests" : user.group} -{" "}
         {`${currentDate("month")} ${currentDate("year")}`}
       </h1>
 
-      {responses.length === 0 ? (
+      {signIns.length === 0 ? (
         <h2 className="centered-heading">
           There is no one signed in right now.
         </h2>
       ) : (
-        <ul className="responses-ul">
-          {responses.map((response, index) => {
+        <ul className="sign-ins-ul">
+          {signIns.map((signIn, index) => {
             return (
-              <MemberResponse
-                key={`${response.date}${index}`}
-                responseBody={response}
+              <MemberSignIn
+                key={`${signIn.date}${index}`}
+                signInBody={signIn}
                 handleDelete={handleDelete}
                 handleSubmitEdits={handleSubmitEdits}
               />
@@ -51,10 +51,10 @@ export default function MemberView({
       )}
 
       {/* Only allow user to add a sign-in response if they have not added one during this meeting */}
-      {userResponse()?.userID !== user.advizotID && (
+      {signInOfUser()?.userID !== user.advizotID && (
         <ActionsBtn handleClick={handleSignInClick}>
           Sign In
-          <img src={newResponse} alt="Add Response" className="add-icon" />
+          <img src={newSignIn} alt="Add Sign-In" className="add-icon" />
         </ActionsBtn>
       )}
     </section>

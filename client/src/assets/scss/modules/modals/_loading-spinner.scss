@@ -13,7 +13,6 @@ $radius-reverse: 0 50% 0 50%;
 
   border: $border-width solid $advizot-color;
   filter: drop-shadow(0 0 35px hsl(100, 0, 20%));
-  // box-shadow: 0 0 8px 8px blue, 0 0 16px 16px aqua, 0 0 24px 24px red;
 
   animation: loading 2.5s ease-in-out infinite;
 }

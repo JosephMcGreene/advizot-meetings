@@ -3,10 +3,10 @@
 @use "./modules/modals/form/range-slider";
 @use "./modules/modals/loading-spinner";
 @use "./modules/modals/modals";
-@use "./modules/meeting/admin-responses";
+@use "./modules/meeting/admin-sign-ins";
 @use "./modules/meeting/delete-btn";
 @use "./modules/meeting/edit-pen";
 @use "./modules/meeting/meeting-actions";
-@use "./modules/meeting/responses";
+@use "./modules/meeting/sign-ins";
 @use "./modules/header";
 @use "./modules/toasts";

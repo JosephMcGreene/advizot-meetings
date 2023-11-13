@@ -5,52 +5,52 @@ import { axiosFetch } from "../helpers";
 export default function useMeeting(method, url) {
   const user = useContext(UserContext);
   const { showToast } = useContext(ToastContext);
-  const [responses, setResponses] = useState([]);
+  const [signIns, setSignIns] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [currentGroup, setCurrentGroup] = useState("");
 
-  const sortedResponses = responses.sort((a, b) => {
+  const sortedSignIns = signIns.sort((a, b) => {
     if (a.priority < b.priority) return -1;
     return 1;
   });
 
-  const userDataBody = (responseToSubmit, existingResponse = undefined) => {
+  const signInBody = (signInToSubmit, existingsignIn = undefined) => {
     return {
       userName:
-        existingResponse?.userName || `${user.firstName} ${user.lastName}`,
-      business: responseToSubmit.business,
-      personal: responseToSubmit.personal,
-      relationships: responseToSubmit.relationships,
-      monthlyIssue: responseToSubmit.monthlyIssue,
-      priority: responseToSubmit.priority,
-      monthlyGoal: responseToSubmit.monthlyGoal,
+        existingsignIn?.userName || `${user.firstName} ${user.lastName}`,
+      business: signInToSubmit.business,
+      personal: signInToSubmit.personal,
+      relationships: signInToSubmit.relationships,
+      monthlyIssue: signInToSubmit.monthlyIssue,
+      priority: signInToSubmit.priority,
+      monthlyGoal: signInToSubmit.monthlyGoal,
       date: Date.now(),
-      group: existingResponse?.group || user.group,
-      userID: existingResponse?.userID || user.advizotID,
-      _id: existingResponse?._id,
+      group: existingsignIn?.group || user.group,
+      userID: existingsignIn?.userID || user.advizotID,
+      _id: existingsignIn?._id,
     };
   };
 
   useEffect(() => {
-    getResponses(method, url);
+    getSignIns(method, url);
   }, [method, url]);
 
   /**
-   * Fetches existing user responses from MongoDB and updates state accordingly. See server/routes/db.js
+   * Fetches existing user sign-ins from MongoDB and updates state accordingly. See server/routes/db.js
    *
    * @param {string} method HTTP verb, usually GET, can be POST if request body is necessary
    * @param {string} url    Endpoint of the proxy server for the fetch call
    * @param {object} [data] The request body sent to the server, if applicable
    */
-  async function getResponses(method, url, data = null) {
+  async function getSignIns(method, url, data = null) {
     try {
       setLoading(true);
 
-      const existingResponses = await axiosFetch(method, url, data);
+      const existingSignIns = await axiosFetch(method, url, data);
 
-      setResponses(existingResponses.data.groupResponses);
-      setCurrentGroup(existingResponses.data.group);
+      setSignIns(existingSignIns.data.groupSignIns);
+      setCurrentGroup(existingSignIns.data.group);
     } catch (err) {
       setError(err);
       throw new Error(err);
@@ -60,30 +60,30 @@ export default function useMeeting(method, url) {
   }
 
   /**
-   * Takes in user response from MeetingForm.jss and adds it to the database or updates an existing user response. See /routes/db.js
+   * Takes in user sign-in from MeetingForm.jss and adds it to the database or updates an existing user sign-in. See /routes/db.js
    *
    * @param {string} method           http verb used to subscribe to the database
-   * @param {Object} responseToSubmit Body to be added or edited in the database and displayed to the users
+   * @param {Object} signInToSubmit Body to be added or edited in the database and displayed to the users
    */
-  async function submitResponse(responseToSubmit, existingResponse) {
+  async function submitSignIn(signInToSubmit, existingSignIn) {
     try {
       setLoading(true);
 
-      const submitRes = await axiosFetch(
+      const response = await axiosFetch(
         "put",
-        "/db/responses",
-        userDataBody(responseToSubmit, existingResponse)
+        "/signIns",
+        signInBody(signInToSubmit, existingSignIn)
       );
 
-      const newResponses = [...responses, submitRes.data];
-      const filteredResponses = newResponses.filter(
-        (response) => response._id !== existingResponse?._id
+      const newSignIns = [...signIns, response.data];
+      const filteredSignIns = newSignIns.filter(
+        (signIn) => signIn._id !== existingSignIn?._id
       );
 
-      setResponses(filteredResponses);
+      setSignIns(filteredSignIns);
 
-      // If it is an edit to an existing response
-      if (existingResponse?._id !== undefined)
+      // If it is an edit to an existing sign-in
+      if (existingSignIn?._id !== undefined)
         await showToast("success", "Edit Successful");
     } catch (err) {
       setError(err);
@@ -96,26 +96,30 @@ export default function useMeeting(method, url) {
   /**
    * Deletes the specified form data from the UI as well as the db
    *
-   * @param {Object} responseID The ID of the user response to be deleted from db and UI
+   * @param {Object} signInID The ID of the user response to be deleted from db and UI
    *
    * @returns {Object} The response from the server
    */
-  async function deleteResponse(responseID) {
+  async function deleteResponse(signInID) {
     try {
       setLoading(true);
 
-      await axiosFetch("delete", "/db/responses", {
-        responseID,
+      const deletionRes = await axiosFetch("delete", "/signIns", {
+        signInID,
       });
 
       // Make a new array of all responses EXCEPT the one to be deleted
-      setResponses(
-        responses.filter((response) => {
-          return response._id !== responseID;
-        })
-      );
+      if (deletionRes.data.deletionRes.deletedCount === 1) {
+        setSignIns(
+          signIns.filter((signIn) => {
+            return signIn._id !== signInID;
+          })
+        );
+      } else {
+        return await showToast("failure", "That didn't work. Try again.");
+      }
 
-      await showToast("success", "Response Deleted");
+      await showToast("success", "Sign-In Deleted");
     } catch (err) {
       setError(err);
       throw new Error(err);
@@ -125,12 +129,12 @@ export default function useMeeting(method, url) {
   }
 
   return [
-    sortedResponses,
+    sortedSignIns,
     loading,
     error,
     currentGroup,
-    getResponses,
-    submitResponse,
+    getSignIns,
+    submitSignIn,
     deleteResponse,
   ];
 }

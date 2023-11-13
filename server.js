@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import cors from "cors";
 import passport from "passport";
 //Internal Modules
-import dbRouter from "./routes/db.js";
+import signInRouter from "./routes/signIns.js";
 import authRouter from "./routes/auth.js";
 import roomCodeRouter from "./routes/roomCode.js";
 import usersRouter from "./routes/users.js";
@@ -53,7 +53,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 //=====MOUNT ROUTES=====
-app.use("/db", dbRouter);
+app.use("/signIns", signInRouter);
 app.use("/auth", authRouter);
 app.use("/roomCode", roomCodeRouter);
 app.use("/users", usersRouter);

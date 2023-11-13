@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const { Schema, model } = mongoose;
 
-const responseSchema = new Schema({
+const signInSchema = new Schema({
   userName: { type: String, required: true },
   business: { type: Number, required: true },
   personal: { type: Number, required: true },
@@ -14,4 +14,4 @@ const responseSchema = new Schema({
   userID: { type: String, required: true },
 });
 
-export default model("Response", responseSchema);
+export default model("SignIn", signInSchema);

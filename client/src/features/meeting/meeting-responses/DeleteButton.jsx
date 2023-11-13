@@ -1,13 +1,13 @@
 import trashCan from "../../../assets/img/trash-can-solid.svg";
 
-export default function DeleteButton({ responseID, handleDelete }) {
+export default function DeleteButton({ signInID, handleDelete }) {
   return (
     <button
       className="delete-btn"
-      onClick={() => handleDelete(responseID)}
+      onClick={() => handleDelete(signInID)}
       tabIndex="0"
     >
-      <img src={trashCan} alt="Delete Response" className="delete-icon" />
+      <img src={trashCan} alt="Delete Sign-In" className="delete-icon" />
     </button>
   );
 }

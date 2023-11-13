@@ -1,12 +1,12 @@
 @use "../../index" as *;
 
-.response-li {
+.sign-in-li {
   display: grid;
   grid-template-rows: 4rem 3.5rem fit-content fit-content;
   grid-template-columns: repeat(3, 1fr);
   width: 360px;
 
-  .response-name {
+  .sign-in-name {
     grid-row: 1;
     justify-self: center;
     align-self: center;
@@ -24,7 +24,7 @@
     align-self: center;
   }
 
-  .range-response {
+  .range-sign-in {
     grid-row: 2;
   }
 

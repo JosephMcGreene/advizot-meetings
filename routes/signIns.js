@@ -1,20 +1,20 @@
 import { Router } from "express";
 //Internal Modules
-import Response from "../models/Response.js";
+import SignIn from "../models/SignIn.js";
 import { groupForToday } from "../utils/helpers.js";
 import { userRoles } from "../utils/userRoles.js";
 
-const dbRouter = Router();
+const signInRouter = Router();
 
-dbRouter
-  .route("/responses")
+signInRouter
+  .route("/")
   .put(async function (req, res) {
     try {
       if (req.body?._id) {
-        await Response.deleteOne({ _id: req.body._id });
+        await SignIn.deleteOne({ _id: req.body._id });
       }
 
-      const newUserResponse = new Response({
+      const newUserSignIn = new SignIn({
         userName: req.body.userName,
         business: req.body.business,
         personal: req.body.personal,
@@ -26,9 +26,9 @@ dbRouter
         group: req.body.group,
         userID: req.body.userID,
       });
-      await newUserResponse.save();
+      await newUserSignIn.save();
 
-      res.json(newUserResponse);
+      res.json(newUserSignIn);
     } catch (err) {
       throw new Error(err);
     }
@@ -38,29 +38,29 @@ dbRouter
       // Mongoose query for getting the right responses for:
       // req.group
       // req.viewAdminResponses
-      const groupResponses = await Response.find().or([
+      const groupSignIns = await SignIn.find().or([
         { group: req.group },
         { group: "admin" },
       ]);
 
-      return res.json(groupResponses);
+      return res.json(groupSignIns);
     } catch (err) {
       throw new Error(err);
     }
   })
   .delete(async function (req, res) {
     try {
-      const deletionRes = await Response.deleteOne({
-        _id: req.body.responseID,
+      const deletionRes = await SignIn.deleteOne({
+        _id: req.body.signInID,
       });
 
-      res.json({ deletionRes, responseID: req.body.responseID });
+      res.json({ deletionRes, signInID: req.body.signInID });
     } catch (err) {
       throw new Error(err);
     }
   });
 
-dbRouter.route("/responses/:group").get(async function (req, res) {
+signInRouter.route("/:group").get(async function (req, res) {
   try {
     const threeDaysAgo = Date.now() - 1000 * 60 * 60 * 24 * 3;
 
@@ -69,30 +69,30 @@ dbRouter.route("/responses/:group").get(async function (req, res) {
       req.user.group === userRoles.ADMIN &&
       req.params.group !== userRoles.ADMIN
     ) {
-      const groupResponses = await Response.find()
+      const groupSignIns = await SignIn.find()
         .or([{ group: userRoles.ADMIN }, { group: req.params.group }])
         .gte("date", threeDaysAgo);
 
-      return res.json({ group: req.params.group, groupResponses });
+      return res.json({ group: req.params.group, groupSignIns });
     }
 
     // Default behavior for admins on log-in: get responses for today's group
     if (req.user.group === userRoles.ADMIN) {
-      const groupResponses = await Response.find()
+      const groupSignIns = await SignIn.find()
         .or([{ group: userRoles.ADMIN }, { group: groupForToday() }])
         .gte("date", threeDaysAgo);
 
-      return res.json({ group: req.params.group, groupResponses });
+      return res.json({ group: req.params.group, groupSignIns });
     }
 
     // Default behavior, used for members accessing their own group
-    const groupResponses = await Response.find()
+    const groupSignIns = await SignIn.find()
       .or([{ group: req.user.group }, { group: userRoles.ADMIN }])
       .gte("date", threeDaysAgo);
-    return res.json({ group: req.params.group, groupResponses });
+    return res.json({ group: req.params.group, groupSignIns });
   } catch (err) {
     throw new Error(err);
   }
 });
 
-export default dbRouter;
+export default signInRouter;

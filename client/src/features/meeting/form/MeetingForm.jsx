@@ -8,7 +8,7 @@ import Select from "./Select";
 export default function MeetingForm({
   handleSubmit,
   handleClose,
-  existingResponse,
+  existingSignIn,
 }) {
   /**
    * Determines the percentage of an input slider's background that should be filled up based on where the user has dragged the thumb
@@ -27,12 +27,12 @@ export default function MeetingForm({
     <div className="modal-body">
       <Formik
         initialValues={{
-          business: existingResponse?.business || 0,
-          personal: existingResponse?.personal || 0,
-          relationships: existingResponse?.relationships || 0,
-          monthlyIssue: existingResponse?.monthlyIssue || "",
-          priority: existingResponse?.priority || "",
-          monthlyGoal: existingResponse?.monthlyGoal || "",
+          business: existingSignIn?.business || 0,
+          personal: existingSignIn?.personal || 0,
+          relationships: existingSignIn?.relationships || 0,
+          monthlyIssue: existingSignIn?.monthlyIssue || "",
+          priority: existingSignIn?.priority || "",
+          monthlyGoal: existingSignIn?.monthlyGoal || "",
         }}
         validationSchema={Yup.object({
           business: Yup.number().test(
@@ -56,7 +56,7 @@ export default function MeetingForm({
         })}
         onSubmit={(values, actions) => {
           try {
-            handleSubmit(values, existingResponse);
+            handleSubmit(values, existingSignIn);
             actions.setSubmitting(false);
           } catch (err) {
             console.error(err);

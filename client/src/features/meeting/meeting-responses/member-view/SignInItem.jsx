@@ -5,13 +5,13 @@ import editPen from "../../../../assets/img/pen-solid.svg";
 import ModalTemplate from "../../../../shared/modals/ModalTemplate";
 import MeetingForm from "../../form/MeetingForm";
 
-export default function ResponseItem({
+export default function SignInItem({
   title,
   text,
   className,
   handleSubmitEdits,
-  responseBody,
-  responseBelongsToUser,
+  signInBody,
+  signInBelongsToUser,
 }) {
   const [meetingFormShown, setMeetingFormShown] = useState(false);
 
@@ -20,7 +20,7 @@ export default function ResponseItem({
       <article
         className={className}
         onClick={
-          responseBelongsToUser()
+          signInBelongsToUser()
             ? () => setMeetingFormShown(!meetingFormShown)
             : undefined
         }
@@ -32,22 +32,22 @@ export default function ResponseItem({
         <br />
 
         {text}
-        {responseBelongsToUser() && (
+        {signInBelongsToUser() && (
           <img src={editPen} alt="edit" className="edit-pen" />
         )}
       </article>
 
       {meetingFormShown && (
         <ModalTemplate
-          title="Edit Response"
+          title="Edit Sign-In"
           handleClose={() => setMeetingFormShown(false)}
         >
           <MeetingForm
-            handleSubmit={(responseToSubmit, existingResponse) =>
-              handleSubmitEdits(responseToSubmit, existingResponse)
+            handleSubmit={(signInToSubmit, existingSignIn) =>
+              handleSubmitEdits(signInToSubmit, existingSignIn)
             }
             handleClose={() => setMeetingFormShown(false)}
-            existingResponse={responseBody}
+            existingSignIn={signInBody}
           />
         </ModalTemplate>
       )}

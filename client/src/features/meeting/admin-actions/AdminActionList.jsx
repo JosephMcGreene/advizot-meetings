@@ -12,7 +12,7 @@ export default function AdminActionList({
   actionToggle,
   handleFilterClick,
   handleMemberEditClick,
-  handleNewResponseClick,
+  handleNewSignInClick,
 }) {
   const actionsRef = useRef();
   useOutsideClick(actionsRef, () => actionToggle());
@@ -57,10 +57,10 @@ export default function AdminActionList({
       <li className="admin-actions-item">
         <button
           className="admin-actions-btn"
-          onClick={() => handleNewResponseClick()}
-          id="newResponse"
+          onClick={() => handleNewSignInClick()}
+          id="newSignIn"
         >
-          <label htmlFor="newResponse" className="admin-actions-label">
+          <label htmlFor="newSignIn" className="admin-actions-label">
             New Sign-In
           </label>
           <img

@@ -18,14 +18,14 @@ export default function Meeting() {
   const [formShown, setFormShown] = useState(false);
 
   const [
-    responses,
+    signIns,
     loading,
     error,
     currentGroup,
-    getResponses,
-    submitResponse,
-    deleteResponse,
-  ] = useMeeting("get", `/db/responses/${user.group}`);
+    getSignIns,
+    submitSignIn,
+    deleteSignIn,
+  ] = useMeeting("get", `/signIns/${user.group}`);
 
   if (loading) return <LoadingSpinner />;
   if (error) return <Navigate to="/error" />;
@@ -34,28 +34,28 @@ export default function Meeting() {
     <>
       {user.role === "admin" && (
         <AdminView
-          responses={responses}
+          signIns={signIns}
           currentGroup={currentGroup}
-          handleSubmitEdits={async (responseToSubmit, existingResponse) => {
-            await submitResponse(responseToSubmit, existingResponse);
+          handleSubmitEdits={async (signInToSubmit, existingSignIn) => {
+            await submitSignIn(signInToSubmit, existingSignIn);
           }}
-          handleDelete={async (responseID) => {
-            await deleteResponse(responseID);
+          handleDelete={async (signInID) => {
+            await deleteSignIn(signInID);
           }}
-          handleNewResponseClick={() => setFormShown(!formShown)}
+          handleNewSignInClick={() => setFormShown(!formShown)}
           handleFilterSubmit={async (filtersToSubmit) =>
-            await getResponses("get", `/db/responses/${filtersToSubmit?.group}`)
+            await getSignIns("get", `/signIns/${filtersToSubmit?.group}`)
           }
         />
       )}
       {user.role === "member" && (
         <MemberView
-          responses={responses}
-          handleSubmitEdits={async (responseToSubmit, existingResponse) => {
-            await submitResponse(responseToSubmit, existingResponse);
+          signIns={signIns}
+          handleSubmitEdits={async (signInToSubmit, existingSignIn) => {
+            await submitSignIn(signInToSubmit, existingSignIn);
           }}
-          handleDelete={async (responseID) => {
-            await deleteResponse(responseID);
+          handleDelete={async (signInID) => {
+            await deleteSignIn(signInID);
           }}
           handleSignInClick={() => setFormShown(!formShown)}
         />
@@ -67,9 +67,7 @@ export default function Meeting() {
           handleClose={() => setFormShown(false)}
         >
           <MeetingForm
-            handleSubmit={(responseToSubmit) =>
-              submitResponse(responseToSubmit)
-            }
+            handleSubmit={(signInToSubmit) => submitSignIn(signInToSubmit)}
             handleClose={() => setFormShown(false)}
           />
         </ModalTemplate>
