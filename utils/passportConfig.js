@@ -30,14 +30,25 @@ passport.use(
     },
     async function (accessToken, refreshToken, profile, done) {
       try {
-        const existingUser = await User.findOne({ providerID: profile.id });
-        if (existingUser) return done(null, existingUser);
+        const existingUser = await User.findOne({
+          email: profile.emails[0].value,
+        });
+
+        if (existingUser?.googleID && !existingUser?.linkedinID) {
+          const updatedUser = await User.findOneAndUpdate(
+            { email: existingUser.email },
+            { linkedinID: profile.id }
+          );
+          return done(null, updatedUser);
+        }
+
+        if (existingUser?.linkedinID) return done(null, existingUser);
 
         const newUser = await new User({
-          providerID: profile.id,
           firstName: profile.name.givenName,
           lastName: profile.name.familyName,
-          linkedin_email: profile.emails[0].value,
+          linkedinID: profile.id,
+          email: profile.emails[0].value,
           photo: profile.photos[0].value,
           advizotID: uuidv4(),
           role: userRoles.MEMBER,
@@ -68,14 +79,25 @@ passport.use(
     },
     async function (accessToken, refreshToken, profile, done) {
       try {
-        const existingUser = await User.findOne({ providerID: profile.id });
-        if (existingUser) return done(null, existingUser);
+        const existingUser = await User.findOne({
+          email: profile.emails[0].value,
+        });
+
+        if (existingUser?.linkedinID && !existingUser?.googleID) {
+          const updatedUser = await User.findOneAndUpdate(
+            { email: existingUser.email },
+            { googleID: profile.id }
+          );
+          return done(null, updatedUser);
+        }
+
+        if (existingUser?.googleID) return done(null, existingUser);
 
         const newUser = await new User({
-          providerID: profile.id,
           firstName: profile.name.givenName,
           lastName: profile.name.familyName,
-          google_email: profile.emails[0].value,
+          googleID: profile.id,
+          email: profile.emails[0].value,
           photo: profile.photos[0].value,
           advizotID: uuidv4(),
           role: userRoles.MEMBER,
