@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 //Assets
 import slidersIcon from "../../../../assets/img/sliders-solid.svg";
 //External
@@ -14,6 +14,7 @@ import AdminActionList from "../../admin-actions/AdminActionList";
 import ModalTemplate from "../../../../shared/modals/ModalTemplate";
 import FilterModal from "../../admin-actions/FilterModal";
 import MemberEditModal from "../../admin-actions/MemberEditModal";
+import { ThemeContext } from "../../../../App";
 
 export default function AdminView({
   signIns,
@@ -23,6 +24,7 @@ export default function AdminView({
   handleNewSignInClick,
   handleFilterSubmit,
 }) {
+  const isDark = useContext(ThemeContext);
   const [actionsShown, setActionsShown] = useState(false);
   const [roomCodeShown, setRoomCodeShown] = useState(false);
   const [filterModalShown, setFilterModalShown] = useState(false);
@@ -46,17 +48,19 @@ export default function AdminView({
       <motion.article
         layout
         transition={{ type: "tween", stiffness: 10, duration: 0.1 }}
-        className="admin-sign-ins"
+        className={isDark ? "admin-sign-ins dark" : "admin-sign-ins"}
       >
-        <ul className="admin-head">
-          <li className="admin-heading">Name</li>
-          <li className="admin-heading">Priority</li>
-          <li className="admin-heading">Business</li>
-          <li className="admin-heading">Personal</li>
-          <li className="admin-heading">Relationships</li>
-          <li className="admin-heading">Issue</li>
-          <li className="admin-heading">Goal</li>
-        </ul>
+        {signIns.length > 0 && (
+          <ul className={isDark ? "admin-head dark" : "admin-head"}>
+            <li className="admin-heading">Name</li>
+            <li className="admin-heading">Priority</li>
+            <li className="admin-heading">Business</li>
+            <li className="admin-heading">Personal</li>
+            <li className="admin-heading">Relationships</li>
+            <li className="admin-heading">Issue</li>
+            <li className="admin-heading">Goal</li>
+          </ul>
+        )}
 
         {signIns.map((signIn, index) => {
           return (
@@ -68,7 +72,6 @@ export default function AdminView({
             />
           );
         })}
-
         <ActionsBtn handleClick={() => setActionsShown(!actionsShown)}>
           <img src={slidersIcon} alt="user actions" className="sliders-icon" />
         </ActionsBtn>

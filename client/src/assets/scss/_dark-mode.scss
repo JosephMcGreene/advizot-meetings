@@ -1,0 +1,24 @@
+@use "./index" as *;
+
+.App.dark {
+  background-color: hsl(0, 0%, 25%);
+  color: white;
+}
+
+.header.dark {
+  background-color: hsl(0, 0%, 18%);
+  color: white;
+  box-shadow: none;
+}
+
+.room-code-display.dark {
+  color: black;
+}
+.admin-sign-ins.dark {
+  box-shadow: none;
+  background-color: hsl(0, 0%, 25%);
+  color: white;
+}
+.admin-head.dark {
+  color: black;
+}
