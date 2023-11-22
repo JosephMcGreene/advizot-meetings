@@ -11,7 +11,8 @@ $text-dark: black;
 
 //==Buttons
 .btn.dark,
-.actions-btn.dark {
+.actions-btn.dark,
+.form.dark .btn {
   border: none;
   box-shadow: none;
 }
@@ -23,7 +24,7 @@ $text-dark: black;
   box-shadow: none;
 }
 
-//Admin View
+//==Admin View
 .room-code-display.dark {
   color: $text-dark;
   box-shadow: none;
@@ -50,9 +51,28 @@ $text-dark: black;
   background-color: $dark-bg;
   box-shadow: none;
 
-  .admin-actions-item {
-    .admin-actions-btn.dark {
-      border: none;
+  .admin-actions-item .admin-actions-btn.dark {
+    border: none;
+  }
+}
+
+//==Modals
+.modal.dark {
+  .modal-content {
+    background-color: $darker-bg;
+    box-shadow: 0px 0px 10px $advizot-color;
+
+    .modal-header {
+      color: $text-dark;
     }
+  }
+}
+
+//==Forms
+.form.dark {
+  .text-input textarea,
+  .rating-select {
+    background-color: $dark-bg;
+    color: $advizot-grey;
   }
 }
