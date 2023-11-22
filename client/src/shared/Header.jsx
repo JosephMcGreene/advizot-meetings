@@ -10,7 +10,6 @@ import Login from "./modals/Login";
 
 export default function Header({ toggleDarkMode }) {
   const isDark = useContext(ThemeContext);
-
   const user = useContext(UserContext);
   const [loginShown, setLoginShown] = useState(false);
 
@@ -39,7 +38,7 @@ export default function Header({ toggleDarkMode }) {
           <li className="nav-item">
             {user ? (
               <a href="/auth/logout">
-                <button className="btn">Log out</button>
+                <button className={isDark ? "btn dark" : "btn"}>Log out</button>
               </a>
             ) : (
               <button

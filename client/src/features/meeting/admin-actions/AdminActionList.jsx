@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { useRef, useContext } from "react";
+import { ThemeContext } from "../../../App";
 //Assets
 import filterIcon from "../../../assets/img/filter-solid.svg";
 import memberEditIcon from "../../../assets/img/users-gear-solid.svg";
@@ -14,6 +15,7 @@ export default function AdminActionList({
   handleMemberEditClick,
   handleNewSignInClick,
 }) {
+  const isDark = useContext(ThemeContext);
   const actionsRef = useRef();
   useOutsideClick(actionsRef, () => actionToggle());
 
@@ -22,11 +24,11 @@ export default function AdminActionList({
       initial={{ opacity: 0, x: 100 }}
       animate={{ opacity: 1, x: 0 }}
       ref={actionsRef}
-      className="admin-actions-list"
+      className={isDark ? "admin-actions-list dark" : "admin-actions-list"}
     >
       <li className="admin-actions-item">
         <button
-          className="admin-actions-btn"
+          className={isDark ? "admin-actions-btn dark" : "admin-actions-btn"}
           onClick={() => handleFilterClick()}
           id="filter"
         >
@@ -39,7 +41,7 @@ export default function AdminActionList({
 
       <li className="admin-actions-item">
         <button
-          className="admin-actions-btn"
+          className={isDark ? "admin-actions-btn dark" : "admin-actions-btn"}
           onClick={() => handleMemberEditClick()}
           id="members"
         >
@@ -56,7 +58,7 @@ export default function AdminActionList({
 
       <li className="admin-actions-item">
         <button
-          className="admin-actions-btn"
+          className={isDark ? "admin-actions-btn dark" : "admin-actions-btn"}
           onClick={() => handleNewSignInClick()}
           id="newSignIn"
         >

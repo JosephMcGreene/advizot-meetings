@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { motion } from "framer-motion";
 import { ThemeContext } from "../../../App";
+//External
+import { motion } from "framer-motion";
 
 export default function RoomCodeDisplay() {
   const isDark = useContext(ThemeContext);

@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { ThemeContext } from "../../../../App";
 //Assets
 import slidersIcon from "../../../../assets/img/sliders-solid.svg";
 //External
@@ -14,7 +15,6 @@ import AdminActionList from "../../admin-actions/AdminActionList";
 import ModalTemplate from "../../../../shared/modals/ModalTemplate";
 import FilterModal from "../../admin-actions/FilterModal";
 import MemberEditModal from "../../admin-actions/MemberEditModal";
-import { ThemeContext } from "../../../../App";
 
 export default function AdminView({
   signIns,
@@ -51,7 +51,7 @@ export default function AdminView({
         className={isDark ? "admin-sign-ins dark" : "admin-sign-ins"}
       >
         {signIns.length > 0 && (
-          <ul className={isDark ? "admin-head dark" : "admin-head"}>
+          <ul className="admin-head">
             <li className="admin-heading">Name</li>
             <li className="admin-heading">Priority</li>
             <li className="admin-heading">Business</li>
