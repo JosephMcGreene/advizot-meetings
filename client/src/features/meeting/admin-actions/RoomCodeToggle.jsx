@@ -9,6 +9,7 @@ export default function RoomCodeToggle({ handleClick, roomCodeShown }) {
 
   if (user.role === "admin") {
     return (
+      // Styles in _admin-sign-ins.scss contains an ::after that displays the "Room Code" content on hover
       <button className="code-toggle" onClick={() => handleClick()}>
         {roomCodeShown ? (
           <img src={eyeHidden} alt="Hide room code" className="eye-icon" />

@@ -15,12 +15,8 @@ $size: 20px;
   .edit-pen {
     position: absolute;
     top: calc(50% - ($size / 2));
-    right: 5%;
+    right: 4%;
     display: none;
     max-width: $size;
   }
-}
-
-.sign-in .edit-pen {
-  top: 55%;
 }

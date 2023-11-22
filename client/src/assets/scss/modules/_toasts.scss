@@ -4,8 +4,8 @@
   @include borderRadius();
   z-index: $header-z;
   position: fixed;
-  top: 0;
-  right: 0;
+  top: 0px;
+  right: 0px;
   margin-top: calc($header-height);
   padding: 1rem;
 
@@ -21,10 +21,10 @@
   margin-bottom: 0.75rem;
   padding-block: 0.5rem;
   padding-left: 1rem;
-  padding-right: 0;
+  padding-right: 0rem;
 
-  background-color: $advizot-light;
-  box-shadow: 0 0 10px black;
+  background-color: $advizot-color;
+  box-shadow: $box-shadow;
 
   animation-name: in-from-right;
   animation-duration: 3500ms; //Linked to total display time. If changed, be sure to change the timeout duration in useToasts.js to match
@@ -46,11 +46,11 @@
     transform: translateX(120%);
   }
   10% {
-    transform: translateX(0);
+    transform: translateX(0%);
   }
 
   95% {
-    transform: translateX(0);
+    transform: translateX(0%);
   }
   100% {
     transform: translateX(120%);

@@ -3,12 +3,12 @@
 .header {
   z-index: $header-z;
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0px;
+  left: 0px;
+  right: 0px;
 
   background-color: $light-bg;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.75);
 
   .nav-bar {
     display: flex;

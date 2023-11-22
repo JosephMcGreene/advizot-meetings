@@ -2,8 +2,8 @@
 
 $size: 70px;
 $border-width: 7px;
-$radius-forward: 50% 0 50% 0;
-$radius-reverse: 0 50% 0 50%;
+$radius-forward: 50% 0% 50% 0%;
+$radius-reverse: 0% 50% 0% 50%;
 
 //parent .modal styles in ../modals/_modals.scss
 .loading-spinner {
@@ -12,14 +12,14 @@ $radius-reverse: 0 50% 0 50%;
   height: $size;
 
   border: $border-width solid $advizot-color;
-  filter: drop-shadow(0 0 35px hsl(100, 0, 20%));
+  filter: drop-shadow($box-shadow);
 
   animation: loading 2.5s ease-in-out infinite;
 }
 
 @keyframes loading {
   0% {
-    transform: rotate(0);
+    transform: rotate(0deg);
     border-radius: $radius-forward;
   }
   25% {

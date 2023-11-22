@@ -2,8 +2,8 @@
 
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
 
   &::selection {
     background-color: $advizot-light;
@@ -23,10 +23,7 @@
   min-height: 100vh;
 
   .main-content {
-    padding-top: $footer-height;
-  }
-  .main-small-padding {
-    padding-top: 0;
+    padding-top: $header-height;
   }
 }
 
@@ -67,7 +64,8 @@ button {
 .btn {
   @include advizotFont(1.1rem, bold, 0.5px);
   @include borderRadius();
-  @include transition(box-shadow);
+  @include transition(box-shadow transform);
+  @include borderSides();
 
   display: block;
   padding: 1ch 3ch; //Will sometimes be overridden in specific instances
@@ -82,7 +80,7 @@ button {
 }
 
 .close-x {
-  padding: 0 1rem;
+  padding: 0rem 1rem;
 
   font-size: 2.25rem;
   background-color: transparent;

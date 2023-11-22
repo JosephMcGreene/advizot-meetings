@@ -3,8 +3,8 @@
 .modal {
   z-index: $modal-z;
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0px;
+  left: 0px;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -18,7 +18,7 @@
     top: 3vh;
     width: min(340px, 92%);
 
-    border-radius: 14px 0 13px 0;
+    border-radius: 14px 0px 13px 0px;
     background-color: $light-bg;
 
     .modal-header {
@@ -29,10 +29,10 @@
       align-items: center;
 
       background-color: $advizot-color;
-      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+      box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
 
       .modal-heading {
-        @include advizotFont(1.25rem, 400, 0);
+        @include advizotFont(1.25rem, 400, 0px);
 
         margin-left: calc($form-padding / 2);
       }
@@ -47,7 +47,7 @@
   }
 
   .btn {
-    margin: 1rem auto 0;
+    margin: 1rem auto 0rem;
     width: 100%;
   }
 }
@@ -70,10 +70,10 @@
 
   .logo {
     width: 30px;
-    margin: 0 7px;
+    margin: 0px 7px;
   }
   label {
-    margin: 0 auto;
+    margin: 0px auto;
   }
 }
 

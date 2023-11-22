@@ -7,15 +7,15 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 3rem;
-  margin: 0 auto 25vh;
 
   .sign-in-li {
     @include borderSides();
     @include borderRadius();
+    @include transition(box-shadow transform);
 
     padding: 1rem;
 
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
+    box-shadow: $box-shadow;
 
     &:hover {
       @include btnHover();
@@ -36,10 +36,6 @@
       padding: 7px 1ch;
 
       background-color: $advizot-light;
-
-      &:hover {
-        @include btnHover();
-      }
     }
 
     .priority,

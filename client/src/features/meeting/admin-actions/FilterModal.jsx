@@ -38,9 +38,6 @@ export default function FilterModal({ handleFilterSubmit, handleClose }) {
             <button type="submit" className="btn">
               Submit
             </button>
-            <button type="reset" className="btn">
-              Reset Filters
-            </button>
           </Form>
         )}
       </Formik>

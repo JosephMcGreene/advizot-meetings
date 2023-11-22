@@ -32,7 +32,8 @@ export default function AdminView({
     <section>
       <div className="heading-container">
         <h1 className="meeting-heading">
-          {currentGroup} - {currentDate("month")} {currentDate("year")}
+          {currentGroup === "admin" ? "Admins" : currentGroup} -{" "}
+          {currentDate("month")} {currentDate("year")}
         </h1>
         <RoomCodeToggle
           handleClick={() => setRoomCodeShown(!roomCodeShown)}

@@ -1,9 +1,11 @@
 //Basic Colors
 $advizot-color: hsl(30, 91%, 57%);
-$advizot-light: hsl(30, 91%, 77%);
+$advizot-light: hwb(30 56% 2%);
+$advizot-grey: hsl(0, 0%, 72%);
 $light-bg: hsl(0, 0%, 90%);
 $text-primary: black;
 
 //Shadows
-$header-shadow: 0 0.2vh 0.5vh rgba(0, 0, 0, 0.75);
-$form-shadow: 0 2px 5px rgba(0, 0, 0, 1);
+$box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.75);
+$btn-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+$form-shadow: 0px 2px 5px rgba(0, 0, 0, 1);

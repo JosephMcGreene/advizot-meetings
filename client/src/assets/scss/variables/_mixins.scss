@@ -29,14 +29,15 @@
 }
 
 @mixin onFocus() {
-  box-shadow: 0 0 15px colors.$advizot-color,
-    inset 0 0 9px colors.$advizot-color;
+  box-shadow: 0px 0px 15px colors.$advizot-color,
+    inset 0px 0px 9px colors.$advizot-color;
   outline: 2px solid colors.$text-primary;
 }
 
 @mixin btnHover() {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  transition-duration: 130ms;
+  box-shadow: colors.$btn-shadow;
+  transform: translateY(-3px) scale(1.03);
+  transition-duration: 100ms;
 }
 
 @mixin specialBoxShadow() {
@@ -52,5 +53,6 @@
   background-color: colors.$light-bg;
   outline: 2px solid $color;
   border-radius: 30px;
+  border: 0px;
   color: $color;
 }

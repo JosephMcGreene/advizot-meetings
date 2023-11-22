@@ -2,6 +2,9 @@
 @use "../../index" as *;
 
 .actions-btn {
+  @include borderSides();
+  @include transition(box-shadow transform);
+
   position: fixed;
   bottom: 1.75rem;
   right: 1.75rem;
@@ -10,9 +13,9 @@
   align-items: center;
   padding: 1.25rem;
 
-  border-radius: 30px 0 30px 0;
+  border-radius: 30px 0px 30px 0px;
   background-color: $advizot-color;
-  box-shadow: $header-shadow;
+  box-shadow: $box-shadow;
   cursor: pointer;
   font-family: inherit;
   font-size: 1.75rem;
@@ -45,18 +48,21 @@
 
   list-style: none;
   background-color: $light-bg;
+  box-shadow: $box-shadow;
 
   .admin-actions-item {
     width: 230px;
     margin-bottom: 1rem;
 
     &:last-child {
-      margin-bottom: 0;
+      margin-bottom: 0px;
     }
 
     .admin-actions-btn {
       @include advizotFont(1.25rem, bold, 0.5px);
       @include borderRadius();
+      @include borderSides();
+      @include transition(box-shadow transform);
 
       display: flex;
       justify-content: space-between;

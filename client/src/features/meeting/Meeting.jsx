@@ -22,7 +22,7 @@ export default function Meeting() {
     loading,
     error,
     currentGroup,
-    getSignIns,
+    getSignIns, 
     submitSignIn,
     deleteSignIn,
   ] = useMeeting("get", `/signIns/${user.group}`);
@@ -31,7 +31,7 @@ export default function Meeting() {
   if (error) return <Navigate to="/error" />;
 
   return (
-    <>
+    <main>
       {user.role === "admin" && (
         <AdminView
           signIns={signIns}
@@ -72,6 +72,6 @@ export default function Meeting() {
           />
         </ModalTemplate>
       )}
-    </>
+    </main>
   );
 }

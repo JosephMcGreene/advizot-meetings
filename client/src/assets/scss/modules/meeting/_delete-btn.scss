@@ -4,11 +4,12 @@
   $size: 2.5rem;
 
   @include borderRadius();
+  @include transition(box-shadow transform);
 
   width: $size;
   height: $size;
 
-  background-color: $advizot-light;
+  background-color: $advizot-color;
   cursor: pointer;
 
   &:hover {

@@ -11,25 +11,26 @@
     margin-left: 1.5rem;
 
     border-radius: 100vw;
-    background-color: $advizot-light;
+    background-color: $advizot-color;
     cursor: pointer;
 
     &:hover {
       @include btnHover();
 
       &:after {
+        @include advizotFont(1.25rem, bold, 0px);
+
         content: "Room Code";
-        font-family: $main-font;
-        font-size: 1.25rem;
-        font-weight: bold;
         vertical-align: middle;
         margin-left: 0.5rem;
       }
     }
 
     .eye-icon {
-      width: 29px;
-      height: 29px;
+      $size: 29px;
+
+      width: $size;
+      height: $size;
       vertical-align: middle;
     }
   }
@@ -40,21 +41,21 @@
 
   display: block;
   width: fit-content;
-  margin: 0 auto 1.5rem;
+  margin: 0rem auto 1.5rem;
   padding: 1rem;
   letter-spacing: 2px;
 
   font-size: 1.5rem;
   background-color: $advizot-color;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: $box-shadow;
 }
 
 .admin-sign-ins {
   $border: 1px solid black;
 
-  margin: 0 auto 2rem;
+  margin: 0rem auto 2rem;
   width: 90vw;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: $box-shadow;
   border-radius: $border-radius 0 0 0;
 
   .admin-head,
@@ -83,7 +84,7 @@
     background-color: $advizot-color;
 
     &:first-child {
-      border-radius: 12px 0 0 0;
+      border-radius: 12px 0px 0px 0px;
     }
 
     .admin-heading {
@@ -137,7 +138,7 @@
 
     &:last-child {
       border-bottom: $border;
-      border-radius: 0 0 12px 0;
+      border-radius: 0px 0px 12px 0px;
     }
   }
 }
