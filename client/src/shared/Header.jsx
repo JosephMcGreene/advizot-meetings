@@ -38,7 +38,7 @@ export default function Header({ toggleDarkMode }) {
           <li className="nav-item">
             {user ? (
               <a href="/auth/logout">
-                <button className={isDark ? "btn dark" : "btn"}>Log out</button>
+                <button className="btn">Log out</button>
               </a>
             ) : (
               <button

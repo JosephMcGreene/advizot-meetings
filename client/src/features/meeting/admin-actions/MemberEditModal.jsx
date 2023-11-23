@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ToastContext } from "../../../App";
+import { ThemeContext, ToastContext } from "../../../App";
 //External
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -11,6 +11,7 @@ import Select from "../form/Select";
 import LoadingSpinner from "../../../shared/LoadingSpinner";
 
 export default function MemberEditModal({ handleClose }) {
+  const isDark = useContext(ThemeContext);
   const { showToast } = useContext(ToastContext);
   const [guestsToEdit, loading, error, handleEditSubmit] = useMemberEdits();
 
@@ -49,7 +50,7 @@ export default function MemberEditModal({ handleClose }) {
         }}
       >
         {() => (
-          <Form className="form">
+          <Form className={isDark ? "form dark" : "form"}>
             {loading ? (
               <LoadingSpinner />
             ) : (

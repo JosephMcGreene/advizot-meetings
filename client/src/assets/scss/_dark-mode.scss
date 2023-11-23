@@ -11,6 +11,7 @@ $text-dark: black;
 
 //==Buttons
 .btn.dark,
+.header.dark .btn,
 .actions-btn.dark,
 .form.dark .btn {
   border: none;
@@ -56,6 +57,17 @@ $text-dark: black;
   }
 }
 
+//==Member view
+.sign-in-li.dark {
+  background-color: $darker-bg;
+  border: none;
+  box-shadow: none;
+
+  .sign-in-name {
+    color: $text-dark;
+  }
+}
+
 //==Modals
 .modal.dark {
   .modal-content {
@@ -74,5 +86,14 @@ $text-dark: black;
   .rating-select {
     background-color: $dark-bg;
     color: $advizot-grey;
+    border: none;
   }
+  .text-input input {
+    background-color: $darker-bg;
+    color: $advizot-grey;
+  }
+}
+
+.range-container.dark input[type="range"] {
+  background-color: $dark-bg;
 }
