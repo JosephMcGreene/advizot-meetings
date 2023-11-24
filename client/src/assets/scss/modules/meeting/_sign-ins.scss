@@ -11,15 +11,10 @@
   .sign-in-li {
     @include borderSides();
     @include borderRadius();
-    @include transition(box-shadow transform);
 
     padding: 1rem;
 
     box-shadow: $box-shadow;
-
-    &:hover {
-      @include btnHover();
-    }
 
     .sign-in {
       margin-top: 0.5rem;
