@@ -19,7 +19,11 @@ export default function Header({ toggleDarkMode }) {
         <img src={advizotLogo} alt="Advizot logo" className="logo" />
         <ul className="nav-ul">
           <li className="nav-item">
-            <button type="button" onClick={() => toggleDarkMode()}>
+            <button
+              type="button"
+              className="btn"
+              onClick={() => toggleDarkMode()}
+            >
               Dark Mode Toggle
             </button>
           </li>
