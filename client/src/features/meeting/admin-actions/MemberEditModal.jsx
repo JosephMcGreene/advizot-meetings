@@ -29,16 +29,23 @@ export default function MemberEditModal({ handleClose }) {
         })}
         onSubmit={async (values, actions) => {
           try {
-            const { data } = await handleEditSubmit(values);
-
             const editedUser = guestsToEdit.find(
               (guest) => guest._id === values.id
             );
+            values.oldGroup = editedUser.group;
+
+            const { data } = await handleEditSubmit(values);
 
             showToast(
               "success",
               `Added ${editedUser.firstName} to ${data.updatedGroup}`
             );
+            if (data.numOfSignInUpdates > 0) {
+              showToast(
+                "success",
+                `Updated ${data.numOfSignInUpdates} of ${editedUser.firstName}'s sign-ins.`
+              );
+            }
 
             actions.setSubmitting(false);
           } catch (err) {

@@ -1,12 +1,13 @@
 import { Router } from "express";
 //Internal Modules
 import User from "../models/User.js";
+import SignIn from "../models/SignIn.js";
 import { groups } from "../utils/userRoles.js";
 
 const usersRouter = Router();
 
 usersRouter
-  .route("/users")
+  .route("/")
   .get(async function (req, res) {
     try {
       const guestUsers = await User.find({ group: groups.GUEST });
@@ -21,7 +22,17 @@ usersRouter
         group: req.body.groupToPlace,
       });
 
-      res.json({ updatedGroup: req.body.groupToPlace });
+      const updatedSignIns = await SignIn.updateMany(
+        { group: req.body.oldGroup },
+        { group: req.body.groupToPlace }
+      );
+
+      console.log(updatedSignIns);
+
+      res.json({
+        updatedGroup: req.body.groupToPlace,
+        numOfSignInUpdates: updatedSignIns.modifiedCount,
+      });
     } catch (err) {
       res.json(new Error(err));
 

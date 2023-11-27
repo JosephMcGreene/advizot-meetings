@@ -17,7 +17,7 @@ export default function useMemberEdits() {
   async function fetchGuestUsers() {
     try {
       setLoading(true);
-      const response = await axiosFetch("get", "/users/users");
+      const response = await axiosFetch("get", "/users");
       setUsersToEdit(response.data);
     } catch (err) {
       console.log(err);
@@ -37,7 +37,7 @@ export default function useMemberEdits() {
   async function handleEditSubmit(data) {
     try {
       setLoading(true);
-      const updatedGroup = await axiosFetch("put", "/users/users", data);
+      const updatedGroup = await axiosFetch("put", "/users", data);
 
       return updatedGroup;
     } catch (err) {
