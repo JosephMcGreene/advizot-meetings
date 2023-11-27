@@ -1,4 +1,4 @@
-import { useState, createContext, useEffect } from "react";
+import { useState, createContext } from "react";
 //Assets
 import "./assets/scss/App.scss";
 //External
@@ -21,7 +21,7 @@ export const ToastContext = createContext();
 export const ThemeContext = createContext();
 
 export default function App() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(localStorage.getItem("isDark"));
 
   const [user, fetchUser, loading, error] = useUser(
     "get",
@@ -29,17 +29,10 @@ export default function App() {
   );
   const toasts = useToasts();
 
-  localStorage.setItem("isDark", false);
-
-  async function setDarkMode(dark) {
-    await setIsDark(dark);
-    await localStorage.setItem("isDark", false);
+  function setDarkMode(darkOrLight) {
+    setIsDark(darkOrLight);
+    localStorage.setItem("isDark", darkOrLight);
   }
-
-  useEffect(() => {
-    localStorage.setItem("isDark", false);
-    setDarkMode(localStorage.getItem("isDark"));
-  }, []);
 
   if (loading) return <LoadingSpinner />;
   if (error) return <Navigate to="/error" />;
@@ -51,6 +44,7 @@ export default function App() {
           <ToastContext.Provider value={toasts}>
             <Header toggleDarkMode={() => setDarkMode(!isDark)} />
             <main className="main-content">
+              {console.log(isDark)}
               <Routes>
                 <Route
                   path="/"
