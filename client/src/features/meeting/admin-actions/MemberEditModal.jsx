@@ -6,15 +6,12 @@ import * as Yup from "yup";
 //hooks
 import useMemberEdits from "../../../hooks/useMemberEdits";
 //Components
-import ErrorPage from "../../../shared/ErrorPage";
 import Select from "../form/Select";
 import LoadingSpinner from "../../../shared/LoadingSpinner";
 
-export default function MemberEditModal({ handleClose }) {
+export default function MemberEditModal({ handleClose, currentGroup }) {
   const { showToast } = useContext(ToastContext);
-  const [guestsToEdit, loading, error, handleEditSubmit] = useMemberEdits();
-
-  if (error) return <ErrorPage error={error} />;
+  const [usersToEdit, loading, handleEditSubmit] = useMemberEdits(currentGroup);
 
   return (
     <div className="modal-body">
@@ -29,8 +26,8 @@ export default function MemberEditModal({ handleClose }) {
         })}
         onSubmit={async (values, actions) => {
           try {
-            const editedUser = guestsToEdit.find(
-              (guest) => guest._id === values.id
+            const editedUser = usersToEdit.find(
+              (user) => user._id === values.id
             );
             values.oldGroup = editedUser.group;
 
@@ -62,9 +59,9 @@ export default function MemberEditModal({ handleClose }) {
             ) : (
               <Select text="Member" name="id" className="select">
                 <option value="">-- Select a Member --</option>
-                {guestsToEdit.map((guest) => (
-                  <option value={guest._id} key={guest._id}>
-                    {guest.firstName} {guest.lastName}
+                {usersToEdit.map((user, index) => (
+                  <option value={user._id} key={user._id + index}>
+                    {user.firstName} {user.lastName}
                   </option>
                 ))}
               </Select>

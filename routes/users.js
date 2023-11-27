@@ -8,10 +8,10 @@ const usersRouter = Router();
 
 usersRouter
   .route("/")
-  .get(async function (req, res) {
+  .post(async function (req, res) {
     try {
-      const guestUsers = await User.find({ group: groups.GUEST });
-      res.json(guestUsers);
+      const usersToEdit = await User.find({ group: req.body.group });
+      res.json(usersToEdit);
     } catch (err) {
       throw new Error(err);
     }
@@ -26,8 +26,6 @@ usersRouter
         { group: req.body.oldGroup },
         { group: req.body.groupToPlace }
       );
-
-      console.log(updatedSignIns);
 
       res.json({
         updatedGroup: req.body.groupToPlace,

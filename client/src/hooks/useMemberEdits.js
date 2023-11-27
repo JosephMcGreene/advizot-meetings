@@ -2,22 +2,22 @@ import { useState, useEffect } from "react";
 //Internal
 import { axiosFetch } from "../helpers";
 
-export default function useMemberEdits() {
+export default function useMemberEdits(currentGroup) {
   const [usersToEdit, setUsersToEdit] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchGuestUsers();
+    fetchUsers(currentGroup);
   }, []);
 
   /**
    * fetches data for all registered users who are currently assigned as a guest and updates state accordingly
    */
-  async function fetchGuestUsers() {
+  async function fetchUsers(group) {
     try {
       setLoading(true);
-      const response = await axiosFetch("get", "/users");
+      const response = await axiosFetch("post", "/users", { group: group });
       setUsersToEdit(response.data);
     } catch (err) {
       console.log(err);
@@ -47,5 +47,5 @@ export default function useMemberEdits() {
     }
   }
 
-  return [usersToEdit, loading, error, handleEditSubmit];
+  return [usersToEdit, loading, handleEditSubmit];
 }
