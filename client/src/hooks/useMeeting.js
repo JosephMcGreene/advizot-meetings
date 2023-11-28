@@ -16,7 +16,7 @@ export default function useMeeting(method, url) {
   });
 
   const signInBody = (signInToSubmit, existingsignIn = undefined) => {
-    return {
+    const signInBody = {
       userName:
         existingsignIn?.userName || `${user.firstName} ${user.lastName}`,
       business: signInToSubmit.business,
@@ -30,6 +30,15 @@ export default function useMeeting(method, url) {
       userID: existingsignIn?.userID || user.advizotID,
       _id: existingsignIn?._id,
     };
+
+    if (signInBody.group === "admin") {
+      signInBody.priority = signInBody.priority.replace(
+        signInBody.priority.charAt(0),
+        "z"
+      );
+    }
+
+    return signInBody;
   };
 
   useEffect(() => {
@@ -108,7 +117,7 @@ export default function useMeeting(method, url) {
         signInID,
       });
 
-      // Make a new array of all responses EXCEPT the one to be deleted
+      // Make a new array of all sign-ins EXCEPT the one to be deleted
       if (deletionRes.data.deletionRes.deletedCount === 1) {
         setSignIns(
           signIns.filter((signIn) => {
