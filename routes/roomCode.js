@@ -15,7 +15,8 @@ roomCodeRouter.route("/submitRoomCode").post(async function (req, res) {
 
       res.json(req.user);
     } else {
-      console.log("wrong code!");
+      req.user.hasMeetingCode = false;
+      res.json(req.user);
     }
   } catch (err) {
     throw err;

@@ -58,7 +58,6 @@ export default function useMeeting(method, url) {
       setLoading(true);
 
       const existingSignIns = await axiosFetch(method, url, data);
-      console.log(existingSignIns);
 
       setSignIns(existingSignIns.data.groupSignIns);
       setCurrentGroup(existingSignIns.data.group);

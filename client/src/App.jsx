@@ -49,9 +49,14 @@ export default function App() {
                 element={
                   <UsersOnly
                     handleSubmitCode={async (enteredCode) => {
-                      await fetchUser("post", "/roomCode/submitRoomCode", {
-                        enteredCode,
-                      });
+                      const response = await fetchUser(
+                        "post",
+                        "/roomCode/submitRoomCode",
+                        {
+                          enteredCode,
+                        }
+                      );
+                      console.log(response);
                     }}
                   />
                 }
