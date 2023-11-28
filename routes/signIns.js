@@ -10,11 +10,7 @@ signInRouter
   .route("/")
   .put(async function (req, res) {
     try {
-      if (req.body?._id) {
-        await SignIn.deleteOne({ _id: req.body._id });
-      }
-
-      const newUserSignIn = new SignIn({
+      const newSignIn = new SignIn({
         userName: req.body.userName,
         business: req.body.business,
         personal: req.body.personal,
@@ -26,25 +22,19 @@ signInRouter
         group: req.body.group,
         userID: req.body.userID,
       });
-      await newUserSignIn.save();
+      await newSignIn.save();
 
-      res.json(newUserSignIn);
+      if (req.body?._id) {
+        await SignIn.deleteOne({ _id: req.body._id });
+        res.statusCode = 200;
+        res.statusMessage = "Sign-in updated";
+      } else {
+        res.statusCode = 201;
+        res.statusMessage = "Sign-in created";
+      }
+      res.json(newSignIn);
     } catch (err) {
-      throw new Error(err);
-    }
-  })
-  .post(async function (req, res) {
-    try {
-      // Mongoose query for getting the right responses for:
-      // req.group
-      // req.viewAdminResponses
-      const groupSignIns = await SignIn.find().or([
-        { group: req.group },
-        { group: "admin" },
-      ]);
-
-      return res.json(groupSignIns);
-    } catch (err) {
+      res.json(new Error(err));
       throw new Error(err);
     }
   })
@@ -54,15 +44,18 @@ signInRouter
         _id: req.body.signInID,
       });
 
+      res.statusCode = 200;
+      res.statusMessage = "Sign-in deleted";
       res.json({ deletionRes, signInID: req.body.signInID });
     } catch (err) {
+      res.json(new Error(err));
       throw new Error(err);
     }
   });
 
 signInRouter.route("/:group").get(async function (req, res) {
   try {
-    const threeDaysAgo = Date.now() - 1000 * 60 * 60 * 24 * 3;
+    const oneWeekAgo = Date.now() - 1000 * 60 * 60 * 24 * 7;
 
     // If user is an admin and requests to see a specific group
     if (
@@ -71,8 +64,10 @@ signInRouter.route("/:group").get(async function (req, res) {
     ) {
       const groupSignIns = await SignIn.find()
         .or([{ group: userRoles.ADMIN }, { group: req.params.group }])
-        .gte("date", threeDaysAgo);
+        .gte("date", oneWeekAgo);
 
+      res.statusCode = 200;
+      res.statusMessage = "Sign-ins found";
       return res.json({ group: req.params.group, groupSignIns });
     }
 
@@ -80,17 +75,23 @@ signInRouter.route("/:group").get(async function (req, res) {
     if (req.user.group === userRoles.ADMIN) {
       const groupSignIns = await SignIn.find()
         .or([{ group: userRoles.ADMIN }, { group: groupForToday() }])
-        .gte("date", threeDaysAgo);
+        .gte("date", oneWeekAgo);
 
-      return res.json({ group: req.params.group, groupSignIns });
+      res.statusCode = 200;
+      res.statusMessage = "Sign-ins found";
+      return res.json({ group: groupForToday(), groupSignIns });
     }
 
     // Default behavior, used for members accessing their own group
     const groupSignIns = await SignIn.find()
       .or([{ group: req.user.group }, { group: userRoles.ADMIN }])
-      .gte("date", threeDaysAgo);
+      .gte("date", oneWeekAgo);
+
+    res.statusCode = 200;
+    res.statusMessage = "Sign-ins found";
     return res.json({ group: req.params.group, groupSignIns });
   } catch (err) {
+    res.json(new Error(err));
     throw new Error(err);
   }
 });

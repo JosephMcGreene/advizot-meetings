@@ -2,7 +2,6 @@ import { Router } from "express";
 //Internal Modules
 import User from "../models/User.js";
 import SignIn from "../models/SignIn.js";
-import { groups } from "../utils/userRoles.js";
 
 const usersRouter = Router();
 
@@ -11,8 +10,12 @@ usersRouter
   .post(async function (req, res) {
     try {
       const usersToEdit = await User.find({ group: req.body.group });
+
+      res.statusCode = 200;
+      res.statusMessage = "Found users to edit";
       res.json(usersToEdit);
     } catch (err) {
+      res.json(new Error(err));
       throw new Error(err);
     }
   })
@@ -27,13 +30,14 @@ usersRouter
         { group: req.body.groupToPlace }
       );
 
+      res.statusCode = 200;
+      res.statusMessage = "Updated a user and their sign-ins";
       res.json({
         updatedGroup: req.body.groupToPlace,
         numOfSignInUpdates: updatedSignIns.modifiedCount,
       });
     } catch (err) {
       res.json(new Error(err));
-
       throw new Error(err);
     }
   });

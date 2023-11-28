@@ -5,6 +5,7 @@ import { axiosFetch } from "../helpers";
 export default function useMeeting(method, url) {
   const user = useContext(UserContext);
   const { showToast } = useContext(ToastContext);
+
   const [signIns, setSignIns] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -57,6 +58,7 @@ export default function useMeeting(method, url) {
       setLoading(true);
 
       const existingSignIns = await axiosFetch(method, url, data);
+      console.log(existingSignIns);
 
       setSignIns(existingSignIns.data.groupSignIns);
       setCurrentGroup(existingSignIns.data.group);
@@ -109,7 +111,7 @@ export default function useMeeting(method, url) {
    *
    * @returns {Object} The response from the server
    */
-  async function deleteResponse(signInID) {
+  async function deleteSignIn(signInID) {
     try {
       setLoading(true);
 
@@ -144,6 +146,6 @@ export default function useMeeting(method, url) {
     currentGroup,
     getSignIns,
     submitSignIn,
-    deleteResponse,
+    deleteSignIn,
   ];
 }
