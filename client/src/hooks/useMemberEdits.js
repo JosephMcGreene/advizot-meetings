@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { ToastContext } from "../App";
 //Internal
 import { axiosFetch } from "../helpers";
 
 export default function useMemberEdits(currentGroup) {
+  const { showToast } = useContext(ToastContext);
   const [usersToEdit, setUsersToEdit] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchUsers(currentGroup);
@@ -13,14 +14,21 @@ export default function useMemberEdits(currentGroup) {
 
   /**
    * fetches data for all registered users who are currently assigned as a guest and updates state accordingly
+
+   * @param {string} group the name of the group whose members' sign-ins are to be fetched 
    */
   async function fetchUsers(group) {
     try {
       setLoading(true);
-      const response = await axiosFetch("post", "/users", { group: group });
-      setUsersToEdit(response.data);
+      const response = await axiosFetch("post", "/users", { group });
+      await setUsersToEdit(response.data);
+      await showToast("success", `Now showing sign-ins from ${group}`);
     } catch (err) {
-      console.log(err);
+      await showToast(
+        "failure",
+        `Something went wrong, unable to view ${group}`
+      );
+      throw new Error(err);
     } finally {
       setLoading(false);
     }
@@ -41,7 +49,8 @@ export default function useMemberEdits(currentGroup) {
 
       return updatedGroup;
     } catch (err) {
-      setError(err);
+      showToast("failure", "Something went wrong, unable to edit member group");
+      throw new Error(err);
     } finally {
       setLoading(false);
     }

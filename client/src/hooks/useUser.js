@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
+import useToasts from "./useToasts";
 import { axiosFetch } from "../helpers";
 
 export default function useUser(method, url) {
+  const { showToast } = useToasts();
   const [fetchedData, setFetchedData] = useState({});
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchUser(method, url);
@@ -22,12 +23,12 @@ export default function useUser(method, url) {
       const response = await axiosFetch(method, url, data);
       setFetchedData(response.data);
     } catch (err) {
-      setError(err);
+      showToast("failure", "Something went wrong, unable fetch your data.");
       throw new Error(err);
     } finally {
       setLoading(false);
     }
   }
 
-  return [fetchedData, fetchUser, loading, error];
+  return [fetchedData, fetchUser, loading];
 }

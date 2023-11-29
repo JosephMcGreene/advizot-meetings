@@ -8,7 +8,6 @@ export default function useMeeting(method, url) {
 
   const [signIns, setSignIns] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [currentGroup, setCurrentGroup] = useState("");
 
   const sortedSignIns = signIns.sort((a, b) => {
@@ -62,7 +61,7 @@ export default function useMeeting(method, url) {
       setSignIns(existingSignIns.data.groupSignIns);
       setCurrentGroup(existingSignIns.data.group);
     } catch (err) {
-      setError(err);
+      await showToast("failure", "Something went wrong, unable to fetch data.");
       throw new Error(err);
     } finally {
       setLoading(false);
@@ -96,7 +95,7 @@ export default function useMeeting(method, url) {
       if (existingSignIn?._id !== undefined)
         await showToast("success", "Edit Successful");
     } catch (err) {
-      setError(err);
+      await showToast("failure", "Something went wrong, unable to edit.");
       throw new Error(err);
     } finally {
       setLoading(false);
@@ -131,7 +130,7 @@ export default function useMeeting(method, url) {
 
       await showToast("success", "Sign-In Deleted");
     } catch (err) {
-      setError(err);
+      await showToast("failure", "Something went wrong, unable to delete.");
       throw new Error(err);
     } finally {
       setLoading(false);
@@ -141,7 +140,6 @@ export default function useMeeting(method, url) {
   return [
     sortedSignIns,
     loading,
-    error,
     currentGroup,
     getSignIns,
     submitSignIn,

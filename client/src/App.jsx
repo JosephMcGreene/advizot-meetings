@@ -13,21 +13,16 @@ import Welcome from "./shared/Welcome";
 import UsersOnly from "./features/meeting/UsersOnly";
 import Meeting from "./features/meeting/Meeting";
 import Profile from "./features/profile/Profile";
-import ErrorPage from "./shared/ErrorPage";
 import Toasts from "./shared/Toasts";
 
 export const UserContext = createContext();
 export const ToastContext = createContext();
 
 export default function App() {
-  const [user, fetchUser, loading, error] = useUser(
-    "get",
-    "/auth/current_user"
-  );
+  const [user, fetchUser, loading] = useUser("get", "/auth/current_user");
   const toasts = useToasts();
 
   if (loading) return <LoadingSpinner />;
-  if (error) return <Navigate to="/error" />;
 
   return (
     <div className="App">
@@ -49,14 +44,9 @@ export default function App() {
                 element={
                   <UsersOnly
                     handleSubmitCode={async (enteredCode) => {
-                      const response = await fetchUser(
-                        "post",
-                        "/roomCode/submitRoomCode",
-                        {
-                          enteredCode,
-                        }
-                      );
-                      console.log(response);
+                      await fetchUser("post", "/roomCode/submitRoomCode", {
+                        enteredCode,
+                      });
                     }}
                   />
                 }
@@ -71,8 +61,6 @@ export default function App() {
                 path="/profile"
                 element={user.advizotID ? <Profile /> : <Navigate to="/" />}
               />
-
-              <Route path="/error" element={<ErrorPage error={error} />} />
             </Routes>
 
             <Toasts data={toasts.toasts} removeToast={toasts.removeToast} />
