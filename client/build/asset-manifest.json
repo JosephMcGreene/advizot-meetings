@@ -1,22 +1,28 @@
 {
   "files": {
-    "main.css": "/static/css/main.80c08f6b.css",
-    "main.js": "/static/js/main.8aa527b2.js",
+    "main.css": "/static/css/main.a2255036.css",
+    "main.js": "/static/js/main.412a7ca4.js",
     "static/media/google-G.png": "/static/media/google-G.19665ff37f8e5a19b2f0.png",
     "static/media/original-on-transparent.png": "/static/media/original-on-transparent.0264d1ef0f52ddbeba38.png",
     "static/media/audiowide-regular-webfont.woff2": "/static/media/audiowide-regular-webfont.58471b7f58fcf66d8667.woff2",
     "static/media/Sansation-Regular-webfont.woff": "/static/media/Sansation-Regular-webfont.18a2f25d3a6f2f6077e0.woff",
+    "static/media/users-gear-solid.svg": "/static/media/users-gear-solid.6e6893e94cca77175a9de9b4286b0f14.svg",
+    "static/media/users-viewfinder-solid.svg": "/static/media/users-viewfinder-solid.88bb34530ed0f44b3669c44563b458f1.svg",
+    "static/media/eye-slash-solid.svg": "/static/media/eye-slash-solid.e5ecf5721d4ed1f595b6d18a7a165654.svg",
+    "static/media/sliders-solid.svg": "/static/media/sliders-solid.d91f023d1c5cba41b8e07081b49f72f4.svg",
+    "static/media/eye-solid.svg": "/static/media/eye-solid.609bc5341edea5d70735c954126d45c1.svg",
     "static/media/trash-can-solid.svg": "/static/media/trash-can-solid.940f2754b6cc078901bdf1f87308209e.svg",
     "static/media/file-circle-plus-solid.svg": "/static/media/file-circle-plus-solid.2ba8c70bdf7cf014e90706039407ace8.svg",
     "index.html": "/index.html",
+    "static/media/skull-solid.svg": "/static/media/skull-solid.dcd535119781e2985ca6b0055514ef00.svg",
     "static/media/pen-solid.svg": "/static/media/pen-solid.d56bf1faddf487292f26d562ebe24ae7.svg",
-    "static/media/lock-solid.svg": "/static/media/lock-solid.458a297c54567e26784f7145cba0e06e.svg",
-    "static/media/ellipsis-vertical-solid.svg": "/static/media/ellipsis-vertical-solid.74a0022250cb3f558c1969d3d27ad871.svg",
-    "main.80c08f6b.css.map": "/static/css/main.80c08f6b.css.map",
-    "main.8aa527b2.js.map": "/static/js/main.8aa527b2.js.map"
+    "static/media/check-solid.svg": "/static/media/check-solid.bf308da78287c2375b56a31475f40ec9.svg",
+    "static/media/exclamation-solid.svg": "/static/media/exclamation-solid.328ecb02e83976e6a06e9d3a2c53817b.svg",
+    "main.a2255036.css.map": "/static/css/main.a2255036.css.map",
+    "main.412a7ca4.js.map": "/static/js/main.412a7ca4.js.map"
   },
   "entrypoints": [
-    "static/css/main.80c08f6b.css",
-    "static/js/main.8aa527b2.js"
+    "static/css/main.a2255036.css",
+    "static/js/main.412a7ca4.js"
   ]
 }

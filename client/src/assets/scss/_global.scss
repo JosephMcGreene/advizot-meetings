@@ -50,7 +50,7 @@ body {
 }
 
 .meeting-heading {
-  @include advizotFont(2rem, 400, 0.5px);
+  @include advizotFont(2rem, 400, 1px);
 
   text-align: center;
   margin-block: 1.75rem;
