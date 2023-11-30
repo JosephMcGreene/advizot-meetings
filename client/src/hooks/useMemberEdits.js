@@ -9,6 +9,7 @@ export default function useMemberEdits(currentGroup) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line
     fetchUsers(currentGroup);
   }, []);
 
@@ -22,7 +23,6 @@ export default function useMemberEdits(currentGroup) {
       setLoading(true);
       const response = await axiosFetch("post", "/users", { group });
       await setUsersToEdit(response.data);
-      await showToast("success", `Now showing sign-ins from ${group}`);
     } catch (err) {
       await showToast(
         "failure",
@@ -37,19 +37,36 @@ export default function useMemberEdits(currentGroup) {
   /**
    * sends data used to update a guest user to place them into a group
    *
-   * data.id === database ID of user to be updated()
-   * data.groupToPlace === name of the group to place the member in
+   * data.advizotID == associated user's advizot ID
    *
-   * @param {object} data
+   * data.groupToPlace == name of the group to place the member in
+   *
+   * @param {object} formValues
    */
-  async function handleEditSubmit(data) {
+  async function handleEditSubmit(formValues) {
     try {
       setLoading(true);
-      const updatedGroup = await axiosFetch("put", "/users", data);
 
-      return updatedGroup;
+      const editedUser = usersToEdit.find(
+        (user) => user.advizotID === formValues.advizotID
+      );
+      formValues.oldGroup = editedUser.group;
+      formValues.id = editedUser._id;
+
+      const { data } = await axiosFetch("put", "/users", formValues);
+
+      await showToast(
+        "success",
+        `Added ${editedUser.firstName} to ${data.updatedGroup}`
+      );
+      if (data.numOfSignInUpdates > 0) {
+        await showToast(
+          "success",
+          `Updated ${data.numOfSignInUpdates} of ${editedUser.firstName}'s sign-ins.`
+        );
+      }
     } catch (err) {
-      showToast("failure", "Something went wrong, unable to edit member group");
+      await showToast("failure", "Something went wrong, unable to make edits");
       throw new Error(err);
     } finally {
       setLoading(false);

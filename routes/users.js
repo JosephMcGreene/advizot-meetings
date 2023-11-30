@@ -25,7 +25,7 @@ usersRouter
       });
 
       const updatedSignIns = await SignIn.updateMany(
-        { group: req.body.oldGroup },
+        { userID: req.body.advizotID },
         { group: req.body.groupToPlace }
       );
 

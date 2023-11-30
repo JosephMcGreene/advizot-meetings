@@ -23,7 +23,10 @@ export default function useUser(method, url) {
       const response = await axiosFetch(method, url, data);
       setFetchedData(response.data);
     } catch (err) {
-      showToast("failure", "Something went wrong, unable fetch your data.");
+      await showToast(
+        "failure",
+        "Something went wrong, unable fetch your data."
+      );
       throw new Error(err);
     } finally {
       setLoading(false);

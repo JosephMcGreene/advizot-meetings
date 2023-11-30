@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { ToastContext } from "../../../App";
 //External
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -10,40 +8,22 @@ import Select from "../form/Select";
 import LoadingSpinner from "../../../shared/LoadingSpinner";
 
 export default function MemberEditModal({ handleClose, currentGroup }) {
-  const { showToast } = useContext(ToastContext);
   const [usersToEdit, loading, handleEditSubmit] = useMemberEdits(currentGroup);
 
   return (
     <div className="modal-body">
       <Formik
         initialValues={{
-          id: "",
+          advizotID: "",
           groupToPlace: "",
         }}
         validationSchema={Yup.object({
-          id: Yup.string().required("Don't forget this one!"),
+          advizotID: Yup.string().required("Don't forget this one!"),
           groupToPlace: Yup.string().required("Don't forget this one!"),
         })}
         onSubmit={async (values, actions) => {
           try {
-            const editedUser = usersToEdit.find(
-              (user) => user._id === values.id
-            );
-            values.oldGroup = editedUser.group;
-
-            const { data } = await handleEditSubmit(values);
-
-            showToast(
-              "success",
-              `Added ${editedUser.firstName} to ${data.updatedGroup}`
-            );
-            if (data.numOfSignInUpdates > 0) {
-              showToast(
-                "success",
-                `Updated ${data.numOfSignInUpdates} of ${editedUser.firstName}'s sign-ins.`
-              );
-            }
-
+            await handleEditSubmit(values);
             actions.setSubmitting(false);
           } catch (err) {
             console.error(err);
@@ -57,10 +37,10 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
             {loading ? (
               <LoadingSpinner />
             ) : (
-              <Select text="Member" name="id" className="select">
+              <Select text="Member" name="advizotID" className="select">
                 <option value="">-- Select a Member --</option>
                 {usersToEdit.map((user, index) => (
-                  <option value={user._id} key={user._id + index}>
+                  <option value={user.advizotID} key={user.advizotID + index}>
                     {user.firstName} {user.lastName}
                   </option>
                 ))}

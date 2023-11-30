@@ -6,43 +6,50 @@ import { generateRoomCode } from "../utils/helpers.js";
 config();
 const roomCodeRouter = Router();
 
-roomCodeRouter.route("/submitRoomCode").post(async function (req, res) {
-  try {
-    const roomCodeDB = await RoomCode.findById(process.env.ROOMCODE_ID);
+roomCodeRouter
+  .route("/")
+  .post(async function (req, res) {
+    try {
+      const { currentRoomCode } = await RoomCode.findById(
+        process.env.ROOMCODE_ID
+      );
 
-    if (req.body.enteredCode === roomCodeDB.currentRoomCode) {
-      req.user.hasMeetingCode = true;
+      if (req.body.enteredCode === currentRoomCode) {
+        req.user.hasMeetingCode = true;
 
-      res.json(req.user);
-    } else {
-      req.user.hasMeetingCode = false;
-      res.json(req.user);
+        res.json(req.user);
+      } else {
+        req.user.hasMeetingCode = false;
+        res.json(req.user);
+      }
+    } catch (err) {
+      res.json(new Error(err));
+      throw new Error(err);
     }
-  } catch (err) {
-    throw err;
-  }
-});
+  })
+  .put(async function (req, res) {
+    try {
+      const roomCodeDB = await RoomCode.findById(process.env.ROOMCODE_ID);
 
-roomCodeRouter.route("/setRoomCode").post(async function (req, res) {
-  try {
-    const roomCodeDB = await RoomCode.findById(process.env.ROOMCODE_ID);
+      if (roomCodeDB && req.body.needNewCode) {
+        roomCodeDB.currentRoomCode = generateRoomCode();
+        await roomCodeDB.save();
+        res.statusCode = 200;
+      }
 
-    if (roomCodeDB && req.body.needNewCode) {
-      roomCodeDB.currentRoomCode = generateRoomCode();
-      await roomCodeDB.save();
+      if (!roomCodeDB) {
+        const newRoomCode = new RoomCode({
+          currentRoomCode: generateRoomCode(),
+        });
+        await newRoomCode.save();
+        res.statusCode = 201;
+      }
+
+      res.json({ roomCodeDB });
+    } catch (err) {
+      res.json(new Error(err));
+      throw new Error(err);
     }
-
-    if (!roomCodeDB) {
-      const newRoomCode = new RoomCode({
-        currentRoomCode: generateRoomCode(),
-      });
-      await newRoomCode.save();
-    }
-
-    res.json({ roomCodeDB });
-  } catch (err) {
-    throw err;
-  }
-});
+  });
 
 export default roomCodeRouter;

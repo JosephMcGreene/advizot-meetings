@@ -1,6 +1,6 @@
 import { useRef } from "react";
 //Assets
-import filterIcon from "../../../assets/img/filter-solid.svg";
+import groupViewIcon from "../../../assets/img/users-viewfinder-solid.svg";
 import memberEditIcon from "../../../assets/img/users-gear-solid.svg";
 import addResponseIcon from "../../../assets/img/file-circle-plus-solid.svg";
 //External
@@ -31,9 +31,13 @@ export default function AdminActionList({
           id="filter"
         >
           <label htmlFor="filter" className="admin-actions-label">
-            Change Group
+            Group View
           </label>
-          <img src={filterIcon} alt="Filter" className="admin-actions-icon" />
+          <img
+            src={groupViewIcon}
+            alt="Filter"
+            className="admin-actions-icon"
+          />
         </button>
       </li>
 
@@ -61,7 +65,7 @@ export default function AdminActionList({
           id="newSignIn"
         >
           <label htmlFor="newSignIn" className="admin-actions-label">
-            New Sign-In
+            Add a Sign-In
           </label>
           <img
             src={addResponseIcon}
