@@ -26,7 +26,6 @@ signInRouter
 
       if (req.body?._id) {
         await SignIn.deleteOne({ _id: req.body._id });
-        res.statusCode = 200;
         res.statusMessage = "Sign-in updated";
       } else {
         res.statusCode = 201;
@@ -44,7 +43,6 @@ signInRouter
         _id: req.body.signInID,
       });
 
-      res.statusCode = 200;
       res.statusMessage = "Sign-in deleted";
       res.json({ deletionRes, signInID: req.body.signInID });
     } catch (err) {
@@ -66,7 +64,6 @@ signInRouter.route("/:group").get(async function (req, res) {
         .or([{ group: userRoles.ADMIN }, { group: req.params.group }])
         .gte("date", oneWeekAgo);
 
-      res.statusCode = 200;
       res.statusMessage = "Sign-ins found";
       return res.json({ group: req.params.group, groupSignIns });
     }
@@ -77,7 +74,6 @@ signInRouter.route("/:group").get(async function (req, res) {
         .or([{ group: userRoles.ADMIN }, { group: groupForToday() }])
         .gte("date", oneWeekAgo);
 
-      res.statusCode = 200;
       res.statusMessage = "Sign-ins found";
       return res.json({ group: groupForToday(), groupSignIns });
     }
@@ -87,7 +83,6 @@ signInRouter.route("/:group").get(async function (req, res) {
       .or([{ group: req.user.group }, { group: userRoles.ADMIN }])
       .gte("date", oneWeekAgo);
 
-    res.statusCode = 200;
     res.statusMessage = "Sign-ins found";
     return res.json({ group: req.params.group, groupSignIns });
   } catch (err) {

@@ -11,7 +11,6 @@ usersRouter
     try {
       const usersToEdit = await User.find({ group: req.body.group });
 
-      res.statusCode = 200;
       res.statusMessage = "Found users to edit";
       res.json(usersToEdit);
     } catch (err) {
@@ -26,11 +25,10 @@ usersRouter
       });
 
       const updatedSignIns = await SignIn.updateMany(
-        { group: req.body.oldGroup },
+        { userID: req.body.advizotID },
         { group: req.body.groupToPlace }
       );
 
-      res.statusCode = 200;
       res.statusMessage = "Updated a user and their sign-ins";
       res.json({
         updatedGroup: req.body.groupToPlace,

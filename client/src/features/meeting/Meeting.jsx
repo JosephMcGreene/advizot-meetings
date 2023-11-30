@@ -20,15 +20,13 @@ export default function Meeting() {
   const [
     signIns,
     loading,
-    error,
     currentGroup,
-    getSignIns, 
+    getSignIns,
     submitSignIn,
     deleteSignIn,
   ] = useMeeting("get", `/signIns/${user.group}`);
 
   if (loading) return <LoadingSpinner />;
-  if (error) return <Navigate to="/error" />;
 
   return (
     <main>

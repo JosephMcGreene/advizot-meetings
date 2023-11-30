@@ -15,7 +15,7 @@ export default function useRoomCode() {
     try {
       setLoading(true);
 
-      const response = await axiosFetch("post", "/roomCode/setRoomCode", {
+      const response = await axiosFetch("put", "/roomCode", {
         needNewCode,
       });
       const newRoomCode = response.data.roomCodeDB.currentRoomCode.toString();
@@ -26,6 +26,10 @@ export default function useRoomCode() {
         await showToast("success", `Room Code changed to ${newRoomCode}`);
       }
     } catch (err) {
+      await showToast(
+        "failure",
+        "Something went wrong, unable to set Room Code"
+      );
       throw new Error(err);
     } finally {
       setLoading(false);
