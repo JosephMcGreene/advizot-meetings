@@ -1,5 +1,6 @@
 import { config } from "dotenv";
 import path from "path";
+import { fileURLToPath } from "url";
 import express from "express";
 import mongoose from "mongoose";
 import cookieSession from "cookie-session";
@@ -48,6 +49,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //=====IN PROD=====
+const __dirname = fileURLToPath(import.meta.url);
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build")));
 }
