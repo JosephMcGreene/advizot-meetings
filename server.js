@@ -49,8 +49,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //=====IN PROD=====
-// const __dirname = fileURLToPath(import.meta.url);
-// const __filename =
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build")));
