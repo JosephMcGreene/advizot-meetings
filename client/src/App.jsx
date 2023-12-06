@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { useState, createContext } from "react";
 //Assets
 import "./assets/scss/App.scss";
 //External
@@ -17,6 +17,7 @@ import Toasts from "./shared/Toasts";
 
 export const UserContext = createContext();
 export const ToastContext = createContext();
+export const ThemeContext = createContext();
 
 export default function App() {
   const [user, fetchUser, loading] = useUser("get", "/auth/current_user");
@@ -29,13 +30,25 @@ export default function App() {
       <UserContext.Provider value={user}>
         <ToastContext.Provider value={toasts}>
           <Header />
-
           <main className="main-content">
             <Routes>
               <Route
                 path="/"
                 element={
                   user.advizotID ? <Navigate to="/meeting" /> : <Welcome />
+                }
+              />
+
+              <Route
+                path="/handleRoomCode"
+                element={
+                  <UsersOnly
+                    handleSubmitCode={async (enteredCode) => {
+                      await fetchUser("post", "/roomCode/submitRoomCode", {
+                        enteredCode,
+                      });
+                    }}
+                  />
                 }
               />
 
@@ -53,8 +66,8 @@ export default function App() {
               />
 
               <Route
-                path="/meeting"
-                element={user.advizotID ? <Meeting /> : <Navigate to="/" />}
+                path="/profile"
+                element={user.advizotID ? <Profile /> : <Navigate to="/" />}
               />
 
               <Route
