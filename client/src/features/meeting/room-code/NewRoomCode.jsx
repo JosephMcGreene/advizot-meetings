@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { UserContext } from "../../../App";
+import { ThemeContext, UserContext } from "../../../App";
 //External
 import { Link } from "react-router-dom";
 //Hooks
@@ -8,6 +8,7 @@ import useRoomCode from "../../../hooks/useRoomCode";
 import LoadingSpinner from "../../../shared/LoadingSpinner";
 
 export default function NewRoomCode() {
+  const isDark = useContext(ThemeContext);
   const user = useContext(UserContext);
   const [setRoomCode, loading] = useRoomCode();
 
@@ -20,12 +21,18 @@ export default function NewRoomCode() {
         meeting?
       </h3>
 
-      <button className="btn" onClick={() => setRoomCode(true)}>
+      <button
+        className={isDark ? "btn dark" : "btn"}
+        onClick={() => setRoomCode(true)}
+      >
         <Link to="/meeting" tabIndex="-1">
           Yes, make a new code
         </Link>
       </button>
-      <button className="btn" onClick={() => setRoomCode(false)}>
+      <button
+        className={isDark ? "btn dark" : "btn"}
+        onClick={() => setRoomCode(false)}
+      >
         <Link to="/meeting" tabIndex="-1">
           No, keep the old code
         </Link>

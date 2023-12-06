@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { ThemeContext } from "../../../App";
 //External
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -5,6 +7,8 @@ import * as Yup from "yup";
 import Select from "../form/Select";
 
 export default function FilterModal({ handleFilterSubmit, handleClose }) {
+  const isDark = useContext(ThemeContext);
+
   return (
     <div className="modal-body">
       <Formik
@@ -26,7 +30,7 @@ export default function FilterModal({ handleFilterSubmit, handleClose }) {
         }}
       >
         {() => (
-          <Form className="form">
+          <Form className={isDark ? "form dark" : "form"}>
             <Select text="Group to View" name="group" className="select">
               <option value="">-- Select a Group --</option>
               <option value="CE5660">CE5660</option>

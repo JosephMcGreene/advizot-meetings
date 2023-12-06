@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { UserContext } from "../../../../App";
+import { ThemeContext, UserContext } from "../../../../App";
 //Components
 import SignInItem from "./SignInItem";
 import DeleteButton from "../DeleteButton";
@@ -9,6 +9,7 @@ export default function MemberSignIn({
   handleDelete,
   handleSubmitEdits,
 }) {
+  const isDark = useContext(ThemeContext);
   const user = useContext(UserContext);
 
   /**
@@ -22,7 +23,7 @@ export default function MemberSignIn({
   }
 
   return (
-    <li className="sign-in-li" tabIndex="0">
+    <li className={isDark ? "sign-in-li dark" : "sign-in-li"} tabIndex="0">
       <label className="sign-in-name">{signInBody.userName}</label>
 
       <SignInItem
