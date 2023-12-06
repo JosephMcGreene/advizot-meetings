@@ -3,7 +3,6 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 //Components
 import InputField from "../form/InputField";
-import LoadingSpinner from "../../../shared/LoadingSpinner";
 
 export default function RoomCodeEntry({ handleSubmit, incorrectCode }) {
   return (
