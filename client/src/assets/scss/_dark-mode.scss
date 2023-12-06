@@ -1,7 +1,7 @@
 @use "./index" as *;
 
-$dark-bg: hsl(0, 0%, 20%);
-$darker-bg: hsl(0, 0%, 10%);
+$dark-bg: hsl(0, 0%, 18%);
+$darker-bg: hsl(0, 0%, 9%);
 $text-dark: black;
 
 .App.dark {
@@ -49,7 +49,8 @@ $text-dark: black;
 }
 
 .admin-actions-list.dark {
-  background-color: $dark-bg;
+  background-color: $darker-bg;
+  border: none;
   box-shadow: none;
 
   .admin-actions-item .admin-actions-btn.dark {

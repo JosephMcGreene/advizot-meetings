@@ -29,13 +29,14 @@
 }
 
 body {
+  min-width: 320px;
+
   font-family: $main-font;
   font-weight: 600;
   font-size: 1.1rem;
   background-color: $light-bg;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-width: 320px;
 }
 
 .welcome {

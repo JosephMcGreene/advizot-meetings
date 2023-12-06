@@ -1,4 +1,4 @@
-import { useState, createContext } from "react";
+import { createContext } from "react";
 //Assets
 import "./assets/scss/App.scss";
 //External
@@ -11,7 +11,6 @@ import LoadingSpinner from "./shared/LoadingSpinner";
 import Header from "./shared/Header";
 import Welcome from "./shared/Welcome";
 import UsersOnly from "./features/meeting/UsersOnly";
-import Meeting from "./features/meeting/Meeting";
 import Profile from "./features/profile/Profile";
 import Toasts from "./shared/Toasts";
 
@@ -63,11 +62,6 @@ export default function App() {
                     }}
                   />
                 }
-              />
-
-              <Route
-                path="/profile"
-                element={user.advizotID ? <Profile /> : <Navigate to="/" />}
               />
 
               <Route
