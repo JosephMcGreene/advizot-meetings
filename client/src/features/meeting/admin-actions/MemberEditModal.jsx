@@ -1,14 +1,14 @@
+import { useContext } from "react";
+import { ThemeContext } from "../../../App";
 //External
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-//hooks
-import useMemberEdits from "../../../hooks/useMemberEdits";
 //Components
 import Select from "../form/Select";
 import LoadingSpinner from "../../../shared/LoadingSpinner";
 
-export default function MemberEditModal({ handleClose, currentGroup }) {
-  const [usersToEdit, loading, handleEditSubmit] = useMemberEdits(currentGroup);
+export default function MemberEditModal({ handleClose }) {
+  const isDark = useContext(ThemeContext);
 
   return (
     <div className="modal-body">
@@ -23,7 +23,7 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
         })}
         onSubmit={async (values, actions) => {
           try {
-            await handleEditSubmit(values);
+            // await handleEditSubmit(values);
             actions.setSubmitting(false);
           } catch (err) {
             console.error(err);
@@ -33,7 +33,7 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
         }}
       >
         {() => (
-          <Form className="form">
+          <Form className={isDark ? "form dark" : "form"}>
             {loading ? (
               <LoadingSpinner />
             ) : (

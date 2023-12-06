@@ -6,7 +6,9 @@ import * as Yup from "yup";
 //Components
 import InputField from "../form/InputField";
 
-export default function RoomCodeEntry({ handleSubmit, incorrectCode }) {
+export default function RoomCodeEntry({ handleSubmit }) {
+  const isDark = useContext(ThemeContext);
+
   return (
     <Formik
       initialValues={{
@@ -25,7 +27,7 @@ export default function RoomCodeEntry({ handleSubmit, incorrectCode }) {
       }}
     >
       {({ isSubmitting, ...props }) => (
-        <Form className="form">
+        <Form className={isDark ? "form dark" : "form"}>
           <InputField
             text="Please enter today's code:"
             name="roomCode"
