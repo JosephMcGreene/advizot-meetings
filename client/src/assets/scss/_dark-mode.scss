@@ -1,0 +1,24 @@
+@use "./index" as *;
+
+.App.dark {
+  background-color: hsl(0, 0%, 20%);
+  color: $advizot-grey;
+}
+
+.header.dark {
+  background-color: hsl(0, 0%, 13%);
+  color: $advizot-grey;
+  box-shadow: none;
+}
+
+.room-code-display.dark {
+  color: black;
+}
+.admin-sign-ins.dark {
+  box-shadow: none;
+  background-color: hsl(0, 0%, 13%);
+  color: $advizot-grey;
+}
+.admin-head.dark {
+  color: black;
+}
