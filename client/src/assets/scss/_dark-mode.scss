@@ -1,24 +1,58 @@
 @use "./index" as *;
 
+$dark-bg: hsl(0, 0%, 20%);
+$darker-bg: hsl(0, 0%, 10%);
+$text-dark: black;
+
 .App.dark {
-  background-color: hsl(0, 0%, 20%);
+  background-color: $dark-bg;
   color: $advizot-grey;
 }
 
+//==Buttons
+.btn.dark,
+.actions-btn.dark {
+  border: none;
+  box-shadow: none;
+}
+
+//==Header
 .header.dark {
-  background-color: hsl(0, 0%, 13%);
+  background-color: hsl(0, 0%, 12%);
   color: $advizot-grey;
   box-shadow: none;
 }
 
+//Admin View
 .room-code-display.dark {
-  color: black;
+  color: $text-dark;
+  box-shadow: none;
 }
+
 .admin-sign-ins.dark {
   box-shadow: none;
-  background-color: hsl(0, 0%, 13%);
+  background-color: hsl(0, 0%, 12%);
   color: $advizot-grey;
+
+  .admin-head {
+    color: $text-dark;
+  }
+  .admin-sign-in-row,
+  .admin-sign-in-row .admin-info-cell {
+    border-color: $advizot-grey;
+  }
+  .admin-sign-in-row {
+    border-top: 1px solid $advizot-grey;
+  }
 }
-.admin-head.dark {
-  color: black;
+
+.admin-actions-list.dark {
+  background-color: $dark-bg;
+  box-shadow: none;
+
+  .admin-actions-item {
+    .admin-actions-btn.dark {
+      border: none;
+    }
+  }
 }
