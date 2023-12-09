@@ -1,16 +1,15 @@
 //External
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+//Hooks
+import useMemberEdits from "../../../hooks/useMemberEdits";
 //Components
 import Select from "../form/Select";
 import LoadingSpinner from "../../../shared/LoadingSpinner";
 
-export default function MemberEditModal({
-  handleEditSubmit,
-  handleClose,
-  loading,
-  usersToEdit,
-}) {
+export default function MemberEditModal({ handleClose, currentGroup }) {
+  const [usersToEdit, loading, handleEditSubmit] = useMemberEdits(currentGroup);
+
   return (
     <div className="modal-body">
       <Formik

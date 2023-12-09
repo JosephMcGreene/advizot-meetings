@@ -14,7 +14,7 @@ export default function InputField({
   return (
     <div className={className}>
       <label htmlFor={props.id || props.name}>{text}</label>
-      <Field {...field} {...props} as={as} type={type} />
+      <Field {...field} {...props} as={as} type={type} className="form-input" />
 
       {/* If InputField is a range-slider: */}
       <span className="rangeValue">{spanText}</span>
