@@ -1,100 +1,73 @@
 @use "./index" as *;
 
-$dark-bg: hsl(0, 0%, 18%);
+$dark-bg: hsl(0, 0%, 16%);
 $darker-bg: hsl(0, 0%, 9%);
 $text-dark: black;
 
 .App.dark {
   background-color: $dark-bg;
   color: $advizot-grey;
-}
-
-//==Buttons
-.btn.dark,
-.header.dark .btn,
-.actions-btn.dark,
-.form.dark .btn {
   border: none;
-  box-shadow: none;
-}
 
-//==Header
-.header.dark {
-  background-color: hsl(0, 0%, 12%);
-  color: $advizot-grey;
-  box-shadow: none;
-}
-
-//==Admin View
-.room-code-display.dark {
-  color: $text-dark;
-  box-shadow: none;
-}
-
-.admin-sign-ins.dark {
-  box-shadow: none;
-  background-color: hsl(0, 0%, 12%);
-  color: $advizot-grey;
-
-  .admin-head {
-    color: $text-dark;
-  }
-  .admin-sign-in-row,
-  .admin-sign-in-row .admin-info-cell {
-    border-color: $advizot-grey;
-  }
-  .admin-sign-in-row {
-    border-top: 1px solid $advizot-grey;
-  }
-}
-
-.admin-actions-list.dark {
-  background-color: $darker-bg;
-  border: none;
-  box-shadow: none;
-
-  .admin-actions-item .admin-actions-btn.dark {
+  .btn {
     border: none;
   }
-}
 
-//==Member view
-.sign-in-li.dark {
-  background-color: $darker-bg;
-  border: none;
-  box-shadow: none;
-
-  .sign-in-name {
-    color: $text-dark;
-  }
-}
-
-//==Modals
-.modal.dark {
   .modal-content {
-    background-color: $darker-bg;
-    box-shadow: 0px 0px 10px $advizot-color;
-
     .modal-header {
       color: $text-dark;
     }
-  }
-}
+    .modal-body {
+      background-color: $dark-bg;
 
-//==Forms
-.form.dark {
-  .text-input textarea,
-  .rating-select {
-    background-color: $dark-bg;
-    color: $advizot-grey;
+      .google-hover:hover,
+      .linkedin-hover:hover {
+        background-color: $dark-bg;
+      }
+
+      .form {
+        .range-container input[type="range"] {
+          background-color: $darker-bg;
+        }
+        .text-input textarea,
+        .select .rating-select {
+          background-color: $darker-bg;
+          color: $advizot-grey;
+          border: none;
+        }
+      }
+    }
+  }
+
+  .header,
+  .admin-actions-list {
+    background-color: $darker-bg;
+    box-shadow: none;
     border: none;
   }
-  .text-input input {
-    background-color: $darker-bg;
-    color: $advizot-grey;
-  }
-}
 
-.range-container.dark input[type="range"] {
-  background-color: $dark-bg;
+  .room-code-display {
+    color: $text-dark;
+  }
+
+  .admin-sign-ins {
+    background-color: $darker-bg;
+    box-shadow: none;
+
+    .admin-head .admin-heading {
+      color: $text-dark;
+    }
+    .admin-sign-in-row,
+    .admin-info-cell {
+      border-color: $advizot-grey;
+    }
+  }
+
+  .actions-btn {
+    border: none;
+  }
+
+  .admin-actions-list .admin-actions-btn {
+    border: none;
+  }
 }

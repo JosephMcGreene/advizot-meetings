@@ -1,5 +1,4 @@
-import { useState, useContext } from "react";
-import { ThemeContext } from "../../../../App";
+import { useState } from "react";
 //Assets
 import slidersIcon from "../../../../assets/img/sliders-solid.svg";
 //External
@@ -24,7 +23,6 @@ export default function AdminView({
   handleNewSignInClick,
   handleFilterSubmit,
 }) {
-  const isDark = useContext(ThemeContext);
   const [actionsShown, setActionsShown] = useState(false);
   const [roomCodeShown, setRoomCodeShown] = useState(false);
   const [filterModalShown, setFilterModalShown] = useState(false);
@@ -48,7 +46,7 @@ export default function AdminView({
       <motion.article
         layout
         transition={{ type: "tween", stiffness: 10, duration: 0.1 }}
-        className={isDark ? "admin-sign-ins dark" : "admin-sign-ins"}
+        className="admin-sign-ins"
       >
         {signIns.length > 0 && (
           <ul className="admin-head">

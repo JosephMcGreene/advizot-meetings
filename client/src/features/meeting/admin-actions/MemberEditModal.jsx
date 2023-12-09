@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { ThemeContext } from "../../../App";
 //External
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -7,9 +5,12 @@ import * as Yup from "yup";
 import Select from "../form/Select";
 import LoadingSpinner from "../../../shared/LoadingSpinner";
 
-export default function MemberEditModal({ handleClose }) {
-  const isDark = useContext(ThemeContext);
-
+export default function MemberEditModal({
+  handleEditSubmit,
+  handleClose,
+  loading,
+  usersToEdit,
+}) {
   return (
     <div className="modal-body">
       <Formik
@@ -23,7 +24,7 @@ export default function MemberEditModal({ handleClose }) {
         })}
         onSubmit={async (values, actions) => {
           try {
-            // await handleEditSubmit(values);
+            await handleEditSubmit(values);
             actions.setSubmitting(false);
           } catch (err) {
             console.error(err);
@@ -33,7 +34,7 @@ export default function MemberEditModal({ handleClose }) {
         }}
       >
         {() => (
-          <Form className={isDark ? "form dark" : "form"}>
+          <Form className="form">
             {loading ? (
               <LoadingSpinner />
             ) : (

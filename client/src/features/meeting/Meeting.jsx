@@ -27,7 +27,7 @@ export default function Meeting() {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <main>
+    <>
       {user.role === "admin" && (
         <AdminView
           signIns={signIns}
@@ -44,6 +44,7 @@ export default function Meeting() {
           }
         />
       )}
+
       {user.role === "member" && (
         <MemberView
           signIns={signIns}
@@ -68,6 +69,6 @@ export default function Meeting() {
           />
         </ModalTemplate>
       )}
-    </main>
+    </>
   );
 }

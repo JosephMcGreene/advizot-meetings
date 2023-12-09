@@ -6,7 +6,7 @@ import * as Yup from "yup";
 //Components
 import InputField from "../form/InputField";
 
-export default function RoomCodeEntry({ handleSubmit }) {
+export default function RoomCodeEntry({ handleSubmit, incorrectCode }) {
   const isDark = useContext(ThemeContext);
 
   return (

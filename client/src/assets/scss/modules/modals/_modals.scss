@@ -22,14 +22,13 @@
     background-color: $light-bg;
 
     .modal-header {
-      @include borderRadius();
-
       display: flex;
       justify-content: space-between;
       align-items: center;
 
       background-color: $advizot-color;
       box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
+      border-radius: $border-radius 0px 0px 0px;
 
       .modal-heading {
         @include advizotFont(1.25rem, 400, 0px);
@@ -43,6 +42,8 @@
       flex-direction: column;
       gap: 1rem;
       padding: $form-padding;
+
+      border-radius: 0px 0px 12px 0px;
     }
   }
 

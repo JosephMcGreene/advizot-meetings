@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { ThemeContext, UserContext } from "../App";
+import { UserContext } from "../App";
 //Assets
 import advizotLogo from "../assets/img/original-on-transparent.png";
 //External
@@ -9,12 +9,11 @@ import ModalTemplate from "./modals/ModalTemplate";
 import Login from "./modals/Login";
 
 export default function Header({ toggleDarkMode }) {
-  const isDark = useContext(ThemeContext);
   const user = useContext(UserContext);
   const [loginShown, setLoginShown] = useState(false);
 
   return (
-    <header className={isDark ? "header dark" : "header"}>
+    <header className="header">
       <nav className="nav-bar">
         <img src={advizotLogo} alt="Advizot logo" className="logo" />
         <ul className="nav-ul">

@@ -20,7 +20,8 @@ export const ToastContext = createContext();
 export const ThemeContext = createContext();
 
 export default function App() {
-  const [isDark, setIsDark] = useState(localStorage.getItem("isDark"));
+  const darkMode = JSON.parse(localStorage.getItem("isDark"));
+  const [isDark, setIsDark] = useState(darkMode);
 
   const [user, fetchUser, loading, error] = useUser(
     "get",
@@ -30,56 +31,54 @@ export default function App() {
 
   function setDarkMode(darkOrLight) {
     setIsDark(darkOrLight);
-    localStorage.setItem("isDark", darkOrLight);
+    localStorage.setItem("isDark", JSON.stringify(darkOrLight));
   }
 
   if (loading) return <LoadingSpinner />;
 
   return (
     <div className={isDark ? "App dark" : "App"}>
-      <ThemeContext.Provider value={isDark}>
-        <UserContext.Provider value={user}>
-          <ToastContext.Provider value={toasts}>
-            <Header toggleDarkMode={() => setDarkMode(!isDark)} />
-            <main className="main-content">
-              {console.log(isDark)}
-              <Routes>
-                <Route
-                  path="/"
-                  element={
-                    user.advizotID ? <Navigate to="/meeting" /> : <Welcome />
-                  }
-                />
+      <UserContext.Provider value={user}>
+        <ToastContext.Provider value={toasts}>
+          <Header toggleDarkMode={() => setDarkMode(!isDark)} />
 
-                <Route
-                  path="/handleRoomCode"
-                  element={
-                    <UsersOnly
-                      handleSubmitCode={async (enteredCode) => {
-                        await fetchUser("post", "/roomCode/submitRoomCode", {
-                          enteredCode,
-                        });
-                      }}
-                    />
-                  }
-                />
+          <main className="main-content">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  user.advizotID ? <Navigate to="/meeting" /> : <Welcome />
+                }
+              />
 
-                <Route
-                  path="/meeting"
-                  element={user.advizotID ? <Meeting /> : <Navigate to="/" />}
-                />
+              <Route
+                path="/handleRoomCode"
+                element={
+                  <UsersOnly
+                    handleSubmitCode={async (enteredCode) => {
+                      await fetchUser("post", "/roomCode/submitRoomCode", {
+                        enteredCode,
+                      });
+                    }}
+                  />
+                }
+              />
 
-                <Route
-                  path="/profile"
-                  element={user.advizotID ? <Profile /> : <Navigate to="/" />}
-                />
-              </Routes>
+              <Route
+                path="/meeting"
+                element={user.advizotID ? <Meeting /> : <Navigate to="/" />}
+              />
 
-              <Toasts data={toasts.toasts} removeToast={toasts.removeToast} />
-            </main>
-          </ToastContext.Provider>
-        </UserContext.Provider>
-      </ThemeContext.Provider>
+              <Route
+                path="/profile"
+                element={user.advizotID ? <Profile /> : <Navigate to="/" />}
+              />
+            </Routes>
+
+            <Toasts data={toasts.toasts} removeToast={toasts.removeToast} />
+          </main>
+        </ToastContext.Provider>
+      </UserContext.Provider>
     </div>
   );
 }
