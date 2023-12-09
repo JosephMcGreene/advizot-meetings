@@ -53,7 +53,7 @@ export default function MemberView({
       {/* Only allow user to add a sign-in response if they have not added one during this meeting */}
       {signInOfUser()?.userID !== user.advizotID && (
         <ActionsBtn handleClick={handleSignInClick}>
-          Sign In
+          Check In to Meeting
           <img src={newSignIn} alt="Add Sign-In" className="add-icon" />
         </ActionsBtn>
       )}

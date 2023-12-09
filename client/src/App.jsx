@@ -11,6 +11,7 @@ import LoadingSpinner from "./shared/LoadingSpinner";
 import Header from "./shared/Header";
 import Welcome from "./shared/Welcome";
 import UsersOnly from "./features/meeting/UsersOnly";
+import Meeting from "./features/meeting/Meeting";
 import Profile from "./features/profile/Profile";
 import Toasts from "./shared/Toasts";
 
@@ -72,8 +73,6 @@ export default function App() {
                   path="/profile"
                   element={user.advizotID ? <Profile /> : <Navigate to="/" />}
                 />
-
-                <Route path="/error" element={<ErrorPage error={error} />} />
               </Routes>
 
               <Toasts data={toasts.toasts} removeToast={toasts.removeToast} />

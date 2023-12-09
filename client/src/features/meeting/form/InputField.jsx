@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { ThemeContext } from "../../../App";
 //External
 import { Field, useField } from "formik";
 
@@ -11,11 +9,10 @@ export default function InputField({
   spanText,
   ...props
 }) {
-  const isDark = useContext(ThemeContext);
   const [field, meta] = useField(props);
 
   return (
-    <div className={isDark ? `${className} dark` : className}>
+    <div className={className}>
       <label htmlFor={props.id || props.name}>{text}</label>
       <Field {...field} {...props} as={as} type={type} />
 
@@ -24,10 +21,13 @@ export default function InputField({
 
       {/* Error Message: */}
       {meta.touched && meta.error ? (
-        <span className={type === "range" ? "range-error" : "error"}>
+        <p className={type === "range" ? "range-error" : "error"}>
           {meta.error}
-        </span>
+        </p>
       ) : null}
+      {props.incorrectCode && (
+        <p className="error">Please enter the correct code.</p>
+      )}
     </div>
   );
 }
