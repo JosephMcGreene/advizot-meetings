@@ -27,7 +27,7 @@
   box-shadow: $box-shadow;
 
   animation-name: in-from-right;
-  animation-duration: 3500ms; //Linked to total display time. If changed, be sure to change the timeout duration in useToasts.js to match
+  animation-duration: 4000ms; //Linked to total display time. If changed, be sure to change the timeout duration in useToasts.js to match
   animation-iteration-count: 1;
 
   .toast-message {

@@ -4,13 +4,17 @@ $dark-bg: hsl(0, 0%, 16%);
 $darker-bg: hsl(0, 0%, 9%);
 $text-dark: black;
 
-.App.dark {
+.dark {
   background-color: $dark-bg;
   color: $advizot-grey;
   border: none;
 
   .btn {
     border: none;
+  }
+
+  .toast {
+    color: $text-dark;
   }
 
   .modal-content {
@@ -39,6 +43,10 @@ $text-dark: black;
     }
   }
 
+  .edit-pen {
+    fill: $advizot-grey;
+  }
+
   .header,
   .admin-actions-list {
     background-color: $darker-bg;
@@ -60,7 +68,14 @@ $text-dark: black;
     }
     .admin-sign-in-row,
     .admin-info-cell {
-      border-color: $advizot-grey;
+      border: 1px solid $advizot-grey;
+      border-top: none;
+    }
+    .admin-sign-in-row {
+      border-left: none;
+    }
+    .admin-info-cell {
+      border-bottom: none;
     }
   }
 
@@ -70,5 +85,17 @@ $text-dark: black;
 
   .admin-actions-list .admin-actions-btn {
     border: none;
+  }
+
+  .sign-ins-section .sign-ins-ul {
+    .sign-in-li {
+      background-color: $darker-bg;
+      box-shadow: none;
+      border: none;
+
+      .sign-in-name {
+        color: $text-dark;
+      }
+    }
   }
 }
