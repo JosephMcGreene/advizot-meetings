@@ -1,10 +1,11 @@
-import { useState, createContext } from "react";
+import { createContext } from "react";
 //Assets
 import "./assets/scss/App.scss";
 //External
 import { Routes, Route, Navigate } from "react-router-dom";
 //Hooks
 import useUser from "./hooks/useUser";
+import useDarkMode from "./hooks/useDarkMode";
 import useToasts from "./hooks/useToasts";
 //Components
 import LoadingSpinner from "./shared/LoadingSpinner";
@@ -20,19 +21,12 @@ export const ToastContext = createContext();
 export const ThemeContext = createContext();
 
 export default function App() {
-  const darkMode = JSON.parse(localStorage.getItem("isDark"));
-  const [isDark, setIsDark] = useState(darkMode);
-
   const [user, fetchUser, loading, error] = useUser(
     "get",
     "/auth/current_user"
   );
+  const [isDark, setDarkMode] = useDarkMode();
   const toasts = useToasts();
-
-  function setDarkMode(darkOrLight) {
-    setIsDark(darkOrLight);
-    localStorage.setItem("isDark", JSON.stringify(darkOrLight));
-  }
 
   if (loading) return <LoadingSpinner />;
 
@@ -41,7 +35,7 @@ export default function App() {
       <UserContext.Provider value={user}>
         <ToastContext.Provider value={toasts}>
           <Header
-            darkMode={darkMode}
+            darkMode={isDark}
             toggleDarkMode={() => setDarkMode(!isDark)}
           />
 
