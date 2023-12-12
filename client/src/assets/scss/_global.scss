@@ -113,13 +113,10 @@ a {
 
 //Scrollbar
 ::-webkit-scrollbar {
-  width: 0.7em;
+  width: 0.75em;
 }
 ::-webkit-scrollbar-track {
-  @include borderRadius();
-
   background-color: $advizot-light;
-  margin-block: 0.25em;
 }
 ::-webkit-scrollbar-thumb {
   @include borderRadius();

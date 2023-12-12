@@ -40,7 +40,10 @@ export default function App() {
     <div className={isDark ? "App dark" : "App"}>
       <UserContext.Provider value={user}>
         <ToastContext.Provider value={toasts}>
-          <Header toggleDarkMode={() => setDarkMode(!isDark)} />
+          <Header
+            darkMode={darkMode}
+            toggleDarkMode={() => setDarkMode(!isDark)}
+          />
 
           <main className="main-content">
             <Routes>
