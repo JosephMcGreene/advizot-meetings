@@ -54,6 +54,24 @@ $text-dark: black;
     border: none;
   }
 
+  .header {
+    .profile-link {
+      label {
+        color: $advizot-grey;
+      }
+    }
+
+    .nav {
+      background-color: $darker-bg;
+      border: none;
+      box-shadow: none;
+
+      a {
+        color: $advizot-grey;
+      }
+    }
+  }
+
   .room-code-display {
     color: $text-dark;
     border: none;
@@ -83,7 +101,7 @@ $text-dark: black;
     border: none;
   }
 
-  .admin-actions-list .admin-actions-btn {
+  .admin-actions-list .admin-actions-item .admin-actions-btn {
     border: none;
   }
 

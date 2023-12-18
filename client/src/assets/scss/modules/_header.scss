@@ -6,42 +6,72 @@
   top: 0px;
   left: 0px;
   right: 0px;
+  display: flex;
+  justify-content: space-between;
+  height: $header-height;
 
   background-color: $light-bg;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.75);
 
-  .nav-bar {
+  .logo {
+    width: 190px;
+    height: calc(190px * 0.3262919);
+  }
+
+  .switch-container {
     display: flex;
-    justify-content: space-between;
-    height: $header-height;
+    place-items: center;
+    margin-right: 1rem;
+  }
 
-    .logo {
-      width: 190px;
-      height: calc(190px * 0.3262919);
+  .profile-photo {
+    @include borderRadius();
+
+    max-width: 3.25rem;
+    max-height: 3.25rem;
+    margin-right: 1rem;
+    display: flex;
+    place-items: center;
+    align-self: center;
+
+    border: 3px solid $advizot-color;
+    cursor: pointer;
+
+    &:focus,
+    &:focus-visible {
+      @include onFocus();
+    }
+  }
+
+  .nav {
+    @include borderRadius();
+    @include borderSides();
+
+    z-index: $nav-z;
+    position: fixed;
+    right: 1rem;
+    top: calc($header-height + 0.5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+
+    background-color: $light-bg;
+    box-shadow: $box-shadow;
+
+    a {
+      font-size: 1.25rem;
+      padding: 0.25rem 0.75rem;
+
+      &:hover {
+        color: $advizot-color;
+      }
     }
 
-    .switch-container {
-      display: flex;
-      place-items: center;
-      margin-right: 1rem;
-    }
-
-    .profile-link {
-      display: flex;
-      place-items: center;
-      margin-right: 1rem;
-
-      img {
-        max-width: 55px;
-
-        border: 3px solid $advizot-color;
-        border-radius: 100vw;
-      }
-
-      &:focus,
-      &:focus-visible {
-        @include onFocus();
-      }
+    hr {
+      width: 85%;
+      border-color: $advizot-color;
     }
   }
 }
