@@ -20,35 +20,27 @@
       height: calc(190px * 0.3262919);
     }
 
-    .nav-ul {
+    .switch-container {
       display: flex;
-      align-items: center;
+      place-items: center;
+      margin-right: 1rem;
+    }
 
-      list-style: none;
+    .profile-link {
+      display: flex;
+      place-items: center;
+      margin-right: 1rem;
 
-      .nav-item {
-        margin-right: 1rem;
+      img {
+        max-width: 55px;
 
-        cursor: pointer;
+        border: 3px solid $advizot-color;
+        border-radius: 100vw;
+      }
 
-        .profile-link {
-          .profile-img {
-            vertical-align: middle;
-            max-width: 55px;
-
-            border: 3px solid $advizot-color;
-            border-radius: 100vw;
-          }
-
-          &:focus,
-          &:focus-visible {
-            @include onFocus();
-          }
-        }
-
-        .btn {
-          padding: 1ch 1.75ch;
-        }
+      &:focus,
+      &:focus-visible {
+        @include onFocus();
       }
     }
   }

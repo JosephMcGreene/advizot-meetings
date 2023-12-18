@@ -1,26 +1,24 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { UserContext } from "../App";
 //Assets
-import darkIcon from "../assets/img/moon-solid.svg";
-import lightIcon from "../assets/img/sun-solid.svg";
 import advizotLogo from "../assets/img/original-on-transparent.png";
 //External
 import { Link } from "react-router-dom";
-//Components
 import ReactSwitch from "react-switch";
-import ModalTemplate from "./modals/ModalTemplate";
-import Login from "./modals/Login";
 
 export default function Header({ darkMode, toggleDarkMode }) {
   const user = useContext(UserContext);
-  const [loginShown, setLoginShown] = useState(false);
 
   return (
     <header className="header">
       <nav className="nav-bar">
         <img src={advizotLogo} alt="Advizot logo" className="logo" />
-        <ul className="nav-ul">
-          <li className="nav-item">
+        {user ? (
+          <Link to="/profile" className="profile-link">
+            <img src={user.photo} alt={`${user.firstName} ${user.lastName}`} />
+          </Link>
+        ) : (
+          <div className="switch-container">
             <ReactSwitch
               checked={darkMode}
               onChange={() => toggleDarkMode()}
@@ -59,41 +57,14 @@ export default function Header({ darkMode, toggleDarkMode }) {
               offColor="#b8b8b8"
               offHandleColor="#f5912e"
             />
-          </li>
-          <li className="nav-item">
-            {user.photo && (
-              <Link to="/profile" className="profile-link">
-                <img
-                  src={user.photo}
-                  alt="profile"
-                  className="profile-img"
-                  tabIndex="-1"
-                />
-              </Link>
-            )}
-          </li>
-          <li className="nav-item">
-            {user ? (
-              <a href="/auth/logout">
-                <button className="btn">Log out</button>
-              </a>
-            ) : (
-              <button
-                className="btn"
-                onClick={() => setLoginShown(!loginShown)}
-              >
-                Log in
-              </button>
-            )}
-          </li>
-        </ul>
+          </div>
+        )}
+        {/* <li className="nav-item">
+            <a href="/auth/logout">
+              <button className="btn">Log out</button>
+            </a>
+          </li> */}
       </nav>
-
-      {loginShown && (
-        <ModalTemplate title="Log In" handleClose={() => setLoginShown(false)}>
-          <Login />
-        </ModalTemplate>
-      )}
     </header>
   );
 }
