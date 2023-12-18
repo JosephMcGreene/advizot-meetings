@@ -1,8 +1,8 @@
 import { useRef } from "react";
 //Assets
-import groupViewIcon from "../../../assets/img/users-viewfinder-solid.svg";
-import memberEditIcon from "../../../assets/img/users-gear-solid.svg";
-import addResponseIcon from "../../../assets/img/file-circle-plus-solid.svg";
+import { ReactComponent as GroupViewIcon } from "../../../assets/img/users-viewfinder-solid.svg";
+import { ReactComponent as MemberEditIcon } from "../../../assets/img/users-gear-solid.svg";
+import { ReactComponent as AddResponseIcon } from "../../../assets/img/file-circle-plus-solid.svg";
 //External
 import { motion } from "framer-motion";
 //Hooks
@@ -31,13 +31,9 @@ export default function AdminActionList({
           id="filter"
         >
           <label htmlFor="filter" className="admin-actions-label">
-            Group View
+            Change Group
           </label>
-          <img
-            src={groupViewIcon}
-            alt="Filter"
-            className="admin-actions-icon"
-          />
+          <GroupViewIcon className="icon" />
         </button>
       </li>
 
@@ -50,11 +46,7 @@ export default function AdminActionList({
           <label htmlFor="members" className="admin-actions-label">
             Edit Members
           </label>
-          <img
-            src={memberEditIcon}
-            alt="Edit Members"
-            className="admin-actions-icon"
-          />
+          <MemberEditIcon className="icon" />
         </button>
       </li>
 
@@ -67,11 +59,7 @@ export default function AdminActionList({
           <label htmlFor="newSignIn" className="admin-actions-label">
             Add a Sign-In
           </label>
-          <img
-            src={addResponseIcon}
-            alt="Form"
-            className="admin-actions-icon"
-          />
+          <AddResponseIcon className="icon" />
         </button>
       </li>
     </motion.ul>

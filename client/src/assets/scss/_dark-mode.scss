@@ -55,7 +55,7 @@ $text-dark: black;
   }
 
   .header {
-    .profile-link {
+    .profile-photo {
       label {
         color: $advizot-grey;
       }
@@ -65,6 +65,10 @@ $text-dark: black;
       background-color: $darker-bg;
       border: none;
       box-shadow: none;
+
+      .nav-list .nav-item .icon path {
+        fill: $advizot-grey;
+      }
 
       a {
         color: $advizot-grey;

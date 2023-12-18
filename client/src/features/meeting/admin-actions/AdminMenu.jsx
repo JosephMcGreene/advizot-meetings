@@ -1,4 +1,4 @@
-import slidersIcon from "../../../assets/img/ellipsis-vertical-solid.svg";
+import { ReactComponent as SlidersIcon } from "../../../assets/img/ellipsis-vertical-solid.svg";
 
 export default function AdminMenu({ children, actionToggle, className }) {
   return (
@@ -10,7 +10,7 @@ export default function AdminMenu({ children, actionToggle, className }) {
         className="user-action-btn"
         onClick={() => actionToggle()}
       >
-        <img src={slidersIcon} alt="user actions" className="dots-icon" />
+        <SlidersIcon className="sliders-icon" />
       </button>
     </nav>
   );

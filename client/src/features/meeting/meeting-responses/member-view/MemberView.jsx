@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { UserContext } from "../../../../App";
 //Assets
-import newSignIn from "../../../../assets/img/file-circle-plus-solid.svg";
+import { ReactComponent as NewSignInIcon } from "../../../../assets/img/file-circle-plus-solid.svg";
 //Internal
 import { currentDate } from "../../../../helpers";
 //Components
@@ -54,7 +54,7 @@ export default function MemberView({
       {signInOfUser()?.userID !== user.advizotID && (
         <ActionsBtn handleClick={handleSignInClick}>
           Check In
-          <img src={newSignIn} alt="Add Sign-In" className="add-icon" />
+          <NewSignInIcon className="add-icon" />
         </ActionsBtn>
       )}
     </section>
