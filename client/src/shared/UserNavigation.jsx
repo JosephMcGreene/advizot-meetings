@@ -1,28 +1,44 @@
-import { useState, useContext } from "react";
-import { UserContext } from "../App";
+import { useRef } from "react";
 //Assets
-import advizotLogo from "../assets/img/original-on-transparent.png";
+import { ReactComponent as ProfileIcon } from "../assets/img/user-solid.svg";
+import { ReactComponent as CheckInIcon } from "../assets/img/handshake-solid.svg";
+import { ReactComponent as LogOutIcon } from "../assets/img/right-from-bracket-solid.svg";
 //External
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import ReactSwitch from "react-switch";
-//Internal
-import UserNavigation from "./UserNavigation";
+//Hooks
+import useOutsideClick from "../hooks/useOutsideClick";
 
-export default function Header({ darkMode, toggleDarkMode }) {
-  const user = useContext(UserContext);
-  const [userNavShown, setUserNavShown] = useState(false);
+export default function UserNavigation({ darkMode, toggleDarkMode, showNav }) {
+  const navRef = useRef();
+  useOutsideClick(navRef, () => showNav(false));
 
   return (
-    <header className="header">
-      <img src={advizotLogo} alt="Advizot logo" className="logo" />
-      {user.photo ? (
-        <img
-          src={user.photo}
-          alt={`${user.firstName} ${user.lastName}`}
-          className="profile-photo"
-          onClick={() => setUserNavShown(true)}
-        />
-      ) : (
-        <div className="switch-container">
+    <motion.nav
+      initial={{ opacity: 0, x: 100 }}
+      animate={{ opacity: 1, x: 0 }}
+      ref={navRef}
+      className="nav"
+    >
+      <ul className="nav-list">
+        <li className="nav-item">
+          <ProfileIcon className="icon" />
+          <Link to="/profile" onClick={() => showNav(false)}>
+            [Profile]
+          </Link>
+        </li>
+
+        <li className="nav-item">
+          <CheckInIcon className="icon" />
+          <Link to="/profile" onClick={() => showNav(false)}>
+            [1:1 Check-In]
+          </Link>
+        </li>
+
+        <hr />
+
+        <li className="nav-item">
           <ReactSwitch
             checked={darkMode}
             onChange={() => toggleDarkMode()}
@@ -61,16 +77,13 @@ export default function Header({ darkMode, toggleDarkMode }) {
             offColor="#b8b8b8"
             offHandleColor="#f5912e"
           />
-        </div>
-      )}
+        </li>
 
-      {userNavShown && (
-        <UserNavigation
-          darkMode={darkMode}
-          toggleDarkMode={toggleDarkMode}
-          showNav={setUserNavShown}
-        />
-      )}
-    </header>
+        <li className="nav-item">
+          <LogOutIcon className="icon" />
+          <a href="/auth/logout">Log Out</a>
+        </li>
+      </ul>
+    </motion.nav>
   );
 }

@@ -78,7 +78,7 @@
         }
 
         .icon {
-          width: 25px;
+          width: 20px;
         }
 
         a {
@@ -86,15 +86,15 @@
           padding: 0.25rem 0.75rem;
         }
 
-        &:first-child {
+        &:nth-child(4) {
           justify-content: center;
-          margin-bottom: 1rem;
         }
       }
 
       hr {
         width: 85%;
         border-color: $advizot-color;
+        margin-block: 1rem;
       }
     }
   }
