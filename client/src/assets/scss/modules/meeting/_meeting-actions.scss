@@ -45,45 +45,36 @@
   bottom: 120px;
   right: 1.75rem;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 1rem;
 
   list-style: none;
   background-color: $light-bg;
   box-shadow: $box-shadow;
 
   .admin-actions-item {
-    width: 240px;
-    margin-bottom: 1rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 0.25rem;
+    font-size: 1.5rem;
 
-    &:last-child {
-      margin-bottom: 0px;
+    cursor: pointer;
+
+    &:hover {
+      color: $advizot-color;
+
+      .icon path {
+        fill: $advizot-color;
+      }
     }
 
-    .admin-actions-btn {
-      @include advizotFont(1.25rem, bold, 0.5px);
-      @include borderRadius();
-      @include borderSides();
-      @include transition(box-shadow transform);
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      padding: 0.5rem 0.75rem;
-
-      background-color: $advizot-color;
-      cursor: pointer;
-
-      &:hover {
-        @include btnHover();
-      }
-
-      .admin-actions-label {
-        cursor: pointer;
-      }
-
-      .icon {
-        width: 30px;
-      }
+    .icon {
+      width: 30px;
+      margin-right: 0.75rem;
     }
   }
 }

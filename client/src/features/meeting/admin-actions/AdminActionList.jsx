@@ -24,43 +24,22 @@ export default function AdminActionList({
       ref={actionsRef}
       className="admin-actions-list"
     >
-      <li className="admin-actions-item">
-        <button
-          className="admin-actions-btn"
-          onClick={() => handleFilterClick()}
-          id="filter"
-        >
-          <label htmlFor="filter" className="admin-actions-label">
-            Change Group
-          </label>
-          <GroupViewIcon className="icon" />
-        </button>
+      <li className="admin-actions-item" onClick={() => handleFilterClick()}>
+        <GroupViewIcon className="icon" />
+        Change Group
       </li>
 
-      <li className="admin-actions-item">
-        <button
-          className="admin-actions-btn"
-          onClick={() => handleMemberEditClick()}
-          id="members"
-        >
-          <label htmlFor="members" className="admin-actions-label">
-            Edit Members
-          </label>
-          <MemberEditIcon className="icon" />
-        </button>
+      <li
+        className="admin-actions-item"
+        onClick={() => handleMemberEditClick()}
+      >
+        <MemberEditIcon className="icon" />
+        Edit Members
       </li>
 
-      <li className="admin-actions-item">
-        <button
-          className="admin-actions-btn"
-          onClick={() => handleNewSignInClick()}
-          id="newSignIn"
-        >
-          <label htmlFor="newSignIn" className="admin-actions-label">
-            Add a Sign-In
-          </label>
-          <AddResponseIcon className="icon" />
-        </button>
+      <li className="admin-actions-item" onClick={() => handleNewSignInClick()}>
+        <AddResponseIcon className="icon" />
+        Add a Sign-In
       </li>
     </motion.ul>
   );
