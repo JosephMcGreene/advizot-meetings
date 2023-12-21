@@ -24,15 +24,15 @@ export default function NavMenu({ darkMode, toggleDarkMode, showNav }) {
     >
       <ul className="nav-list">
         <li className="nav-item">
-          <ProfileIcon className="icon" />
           <Link to="/profile" onClick={() => showNav(false)}>
+            <ProfileIcon className="icon" />
             [Profile]
           </Link>
         </li>
 
         <li className="nav-item">
-          <CheckInIcon className="icon" />
           <Link to="/profile" onClick={() => showNav(false)}>
+            <CheckInIcon className="icon" />
             [1:1 Check-In]
           </Link>
         </li>
@@ -44,8 +44,10 @@ export default function NavMenu({ darkMode, toggleDarkMode, showNav }) {
         </li>
 
         <li className="nav-item">
-          <LogOutIcon className="icon" />
-          <a href="/auth/logout">Log Out</a>
+          <a href="/auth/logout">
+            <LogOutIcon className="icon" />
+            Log Out
+          </a>
         </li>
       </ul>
     </motion.nav>
