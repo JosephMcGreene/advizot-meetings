@@ -8,6 +8,7 @@ import { currentDate } from "../../../../helpers";
 //Components
 import RoomCodeToggle from "../../admin-actions/RoomCodeToggle";
 import RoomCodeDisplay from "../../room-code/RoomCodeDisplay";
+import MemberView from "../member-view/MemberView";
 import AdminSignIn from "./AdminSignIn";
 import ActionsBtn from "../ActionsBtn";
 import AdminActionList from "../../admin-actions/AdminActionList";
@@ -45,35 +46,8 @@ export default function AdminView({
       {roomCodeShown && <RoomCodeDisplay />}
 
       {viewAsMember ? (
-        "I'm a member!"
-      ) : (
-        <motion.article
-          layout
-          transition={{ type: "tween", stiffness: 10, duration: 0.1 }}
-          className="admin-sign-ins"
-        >
-          {signIns.length > 0 && (
-            <ul className="admin-head">
-              <li className="admin-heading">Name</li>
-              <li className="admin-heading">Priority</li>
-              <li className="admin-heading">Business</li>
-              <li className="admin-heading">Personal</li>
-              <li className="admin-heading">Relationships</li>
-              <li className="admin-heading">Issue</li>
-              <li className="admin-heading">Goal</li>
-            </ul>
-          )}
-
-          {signIns.map((signIn, index) => {
-            return (
-              <AdminSignIn
-                key={`${signIn.date}${index}`}
-                signInBody={signIn}
-                handleSubmitEdits={handleSubmitEdits}
-                handleDelete={handleDelete}
-              />
-            );
-          })}
+        <>
+          I'm a member!
           <ActionsBtn handleClick={() => setActionsShown(!actionsShown)}>
             <img
               src={slidersIcon}
@@ -81,7 +55,62 @@ export default function AdminView({
               className="sliders-icon"
             />
           </ActionsBtn>
-        </motion.article>
+        </>
+      ) : (
+        /* <MemberView
+                  signIns={signIns}
+                  handleDelete={handleDelete}
+                  handleSubmitEdits={handleSubmitEdits}
+                  handleSignInClick={handleNewSignInClick}
+                />
+                <AdminActionList
+                  onFormSubmit={handleSubmitEdits}
+                  actionToggle={() => setActionsShown(!actionsShown)}
+                  handleNewSignInClick={handleNewSignInClick}
+                  handleFilterClick={() => setFilterModalShown(!filterModalShown)}
+                  handleViewAsMemberClick={() => setViewAsMember(!viewAsMember)}
+                  viewAsMember={viewAsMember}
+                  handleMemberEditClick={() =>
+                    setMemberEditModalShown(!memberEditModalShown)
+                  }
+                /> */
+        <>
+          <motion.article
+            layout
+            transition={{ type: "tween", stiffness: 10, duration: 0.1 }}
+            className="admin-sign-ins"
+          >
+            {signIns.length > 0 && (
+              <ul className="admin-head">
+                <li className="admin-heading">Name</li>
+                <li className="admin-heading">Priority</li>
+                <li className="admin-heading">Business</li>
+                <li className="admin-heading">Personal</li>
+                <li className="admin-heading">Relationships</li>
+                <li className="admin-heading">Issue</li>
+                <li className="admin-heading">Goal</li>
+              </ul>
+            )}
+
+            {signIns.map((signIn, index) => {
+              return (
+                <AdminSignIn
+                  key={`${signIn.date}${index}`}
+                  signInBody={signIn}
+                  handleSubmitEdits={handleSubmitEdits}
+                  handleDelete={handleDelete}
+                />
+              );
+            })}
+            <ActionsBtn handleClick={() => setActionsShown(!actionsShown)}>
+              <img
+                src={slidersIcon}
+                alt="user actions"
+                className="sliders-icon"
+              />
+            </ActionsBtn>
+          </motion.article>
+        </>
       )}
 
       {actionsShown && (
