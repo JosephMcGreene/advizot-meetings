@@ -3,10 +3,11 @@ import { ThemeContext } from "../../../App";
 //External
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import { redirect } from "react-router-dom";
 //Components
 import Select from "../form/Select";
 
-export default function FilterModal({ handleFilterSubmit, handleClose }) {
+export default function GroupModal({ handleGroupChangeSubmit, handleClose }) {
   const isDark = useContext(ThemeContext);
 
   return (
@@ -18,9 +19,10 @@ export default function FilterModal({ handleFilterSubmit, handleClose }) {
         validationSchema={Yup.object({
           group: Yup.string(),
         })}
-        onSubmit={(values, actions) => {
+        onSubmit={({ group }, actions) => {
           try {
-            handleFilterSubmit(values);
+            // handleGroupChangeSubmit(values);
+            redirect(`/meeting/${group}`);
             actions.setSubmitting(false);
           } catch (err) {
             console.error(err);
