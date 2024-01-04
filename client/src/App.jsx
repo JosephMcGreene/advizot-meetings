@@ -7,6 +7,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import useUser from "./hooks/useUser";
 import useDarkMode from "./hooks/useDarkMode";
 import useToasts from "./hooks/useToasts";
+import useMeeting from "./hooks/useMeeting";
 //Components
 import LoadingSpinner from "./shared/LoadingSpinner";
 import Header from "./shared/Header";
@@ -28,8 +29,16 @@ export default function App() {
   );
   const [isDark, setDarkMode] = useDarkMode();
   const toasts = useToasts();
+  const [
+    signIns,
+    meetingLoading,
+    currentGroup,
+    getSignIns,
+    submitSignIn,
+    deleteSignIn,
+  ] = useMeeting("get", `/signIns/${user.group}`);
 
-  if (loading) return <LoadingSpinner />;
+  if (loading || meetingLoading) return <LoadingSpinner />;
 
   return (
     <div className={isDark ? "App dark" : "App"}>
@@ -54,7 +63,7 @@ export default function App() {
               />
 
               <Route
-                path="/handleRoomCode"
+                path="handleRoomCode"
                 element={
                   <UsersOnly
                     handleSubmitCode={async (enteredCode) => {
@@ -77,7 +86,7 @@ export default function App() {
               </Route>
 
               <Route
-                path="/profile"
+                path="profile"
                 element={user.advizotID ? <Profile /> : <Navigate to="/" />}
               />
             </Routes>

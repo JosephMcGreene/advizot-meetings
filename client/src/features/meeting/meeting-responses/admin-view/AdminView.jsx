@@ -9,7 +9,7 @@ import AdminSignIn from "./AdminSignIn";
 import ActionsBtn from "../ActionsBtn";
 import AdminActionList from "../../admin-actions/AdminActionList";
 import ModalTemplate from "../../../../shared/modals/ModalTemplate";
-import FilterModal from "../../admin-actions/FilterModal";
+import GroupModal from "../../admin-actions/GroupModal";
 import MemberEditModal from "../../admin-actions/MemberEditModal";
 
 export default function AdminView({
@@ -18,10 +18,10 @@ export default function AdminView({
   handleSubmitEdits,
   handleDelete,
   handleNewSignInClick,
-  handleFilterSubmit,
+  handleGroupChangeSubmit,
 }) {
   const [actionsShown, setActionsShown] = useState(false);
-  const [filterModalShown, setFilterModalShown] = useState(false);
+  const [groupModalShown, setGroupModalShown] = useState(false);
   const [viewAsMember, setViewAsMember] = useState(false);
   const [memberEditModalShown, setMemberEditModalShown] = useState(false);
 
@@ -87,7 +87,7 @@ export default function AdminView({
             <ActionsBtn handleClick={() => setActionsShown(!actionsShown)}>
               <img
                 src={slidersIcon}
-                alt="user actions"
+                alt="actions slider"
                 className="sliders-icon"
               />
             </ActionsBtn>
@@ -100,7 +100,7 @@ export default function AdminView({
           onFormSubmit={handleSubmitEdits}
           actionToggle={() => setActionsShown(!actionsShown)}
           handleNewSignInClick={handleNewSignInClick}
-          handleFilterClick={() => setFilterModalShown(!filterModalShown)}
+          handleFilterClick={() => setGroupModalShown(!groupModalShown)}
           handleViewAsMemberClick={() => setViewAsMember(!viewAsMember)}
           viewAsMember={viewAsMember}
           handleMemberEditClick={() =>
@@ -109,14 +109,14 @@ export default function AdminView({
         />
       )}
 
-      {filterModalShown && (
+      {groupModalShown && (
         <ModalTemplate
           title="Filter Sign-Ins"
-          handleClose={() => setFilterModalShown(false)}
+          handleClose={() => setGroupModalShown(false)}
         >
-          <FilterModal
-            handleFilterSubmit={handleFilterSubmit}
-            handleClose={() => setFilterModalShown(false)}
+          <GroupModal
+            handleGroupChangeSubmit={handleGroupChangeSubmit}
+            handleClose={() => setGroupModalShown(false)}
           />
         </ModalTemplate>
       )}
