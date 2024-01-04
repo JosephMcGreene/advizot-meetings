@@ -3,11 +3,7 @@ import { useState } from "react";
 import slidersIcon from "../../../../assets/img/sliders-solid.svg";
 //External
 import { motion } from "framer-motion";
-//Internal
-import { currentDate } from "../../../../helpers";
 //Components
-import RoomCodeToggle from "../../admin-actions/RoomCodeToggle";
-import RoomCodeDisplay from "../../room-code/RoomCodeDisplay";
 import MemberView from "../member-view/MemberView";
 import AdminSignIn from "./AdminSignIn";
 import ActionsBtn from "../ActionsBtn";
@@ -25,26 +21,12 @@ export default function AdminView({
   handleFilterSubmit,
 }) {
   const [actionsShown, setActionsShown] = useState(false);
-  const [roomCodeShown, setRoomCodeShown] = useState(false);
   const [filterModalShown, setFilterModalShown] = useState(false);
   const [viewAsMember, setViewAsMember] = useState(false);
   const [memberEditModalShown, setMemberEditModalShown] = useState(false);
 
   return (
     <>
-      <div className="heading-container">
-        <h1 className="meeting-heading">
-          {currentGroup === "admin" ? "Admins" : currentGroup} -{" "}
-          {currentDate("month")} {currentDate("year")}
-        </h1>
-        <RoomCodeToggle
-          handleClick={() => setRoomCodeShown(!roomCodeShown)}
-          roomCodeShown={roomCodeShown}
-        />
-      </div>
-
-      {roomCodeShown && <RoomCodeDisplay />}
-
       {viewAsMember ? (
         <>
           I'm a member!

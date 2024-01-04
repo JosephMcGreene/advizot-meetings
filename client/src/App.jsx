@@ -13,6 +13,7 @@ import Header from "./shared/Header";
 import Welcome from "./shared/Welcome";
 import UsersOnly from "./features/meeting/UsersOnly";
 import Meeting from "./features/meeting/Meeting";
+import MeetingHeading from "./features/meeting/MeetingHeading";
 import Profile from "./features/profile/Profile";
 import Toasts from "./shared/Toasts";
 
@@ -44,7 +45,11 @@ export default function App() {
               <Route
                 path="/"
                 element={
-                  user.advizotID ? <Navigate to="/meeting" /> : <Welcome />
+                  user.advizotID ? (
+                    <Navigate to={`/meeting/${user.group}`} />
+                  ) : (
+                    <Welcome />
+                  )
                 }
               />
 
@@ -63,8 +68,13 @@ export default function App() {
 
               <Route
                 path="/meeting"
-                element={user.advizotID ? <Meeting /> : <Navigate to="/" />}
-              />
+                element={<MeetingHeading currentGroup={user.group} />}
+              >
+                <Route
+                  path=":group"
+                  element={user.advizotID ? <Meeting /> : <Navigate to="/" />}
+                />
+              </Route>
 
               <Route
                 path="/profile"
