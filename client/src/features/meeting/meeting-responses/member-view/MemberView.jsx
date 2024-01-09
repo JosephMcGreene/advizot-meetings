@@ -2,8 +2,6 @@ import { useContext } from "react";
 import { UserContext } from "../../../../App";
 //Assets
 import { ReactComponent as NewSignInIcon } from "../../../../assets/img/file-circle-plus-solid.svg";
-//Internal
-import { currentDate } from "../../../../helpers";
 //Components
 import MemberSignIn from "./MemberSignIn";
 import ActionsBtn from "../ActionsBtn";
@@ -26,11 +24,6 @@ export default function MemberView({
 
   return (
     <section className="sign-ins-section">
-      <h1 className="meeting-heading">
-        {user.group === "guest" ? "Guests" : user.group} -{" "}
-        {`${currentDate("month")} ${currentDate("year")}`}
-      </h1>
-
       {signIns.length === 0 ? (
         <h2 className="centered-heading">
           There is no one signed in right now.
