@@ -68,11 +68,12 @@ signInRouter.route("/:group").get(async function (req, res) {
       return res.json({ group: req.params.group, groupSignIns });
     }
 
-    // Default behavior for admins on log-in: get responses for today's group
+    // Default behavior for admins on log-in: get responses for admins only
     if (req.user.group === userRoles.ADMIN) {
-      const groupSignIns = await SignIn.find()
-        .or([{ group: userRoles.ADMIN }, { group: groupForToday() }])
-        .gte("date", oneWeekAgo);
+      const groupSignIns = await SignIn.find({ group: userRoles.ADMIN }).gte(
+        "date",
+        oneWeekAgo
+      );
 
       res.statusMessage = "Sign-ins found";
       return res.json({ group: groupForToday(), groupSignIns });

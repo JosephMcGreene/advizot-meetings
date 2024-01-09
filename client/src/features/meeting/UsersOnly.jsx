@@ -15,7 +15,7 @@ export default function UsersOnly({ handleSubmitCode }) {
 
   return (
     <RoomCodePrompt handleSubmitCode={handleSubmitCode}>
-      <Navigate to="/meeting" />
+      <Navigate to={`/meeting/${user.group}`} />
     </RoomCodePrompt>
   );
 }

@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { useState, createContext } from "react";
 //Assets
 import "./assets/scss/App.scss";
 //External
@@ -71,22 +71,11 @@ export default function App() {
                     />
 
                     <Route
-                      path="meeting"
+                      path="meeting/:group"
                       element={
-                        user.advizotID ? (
-                          <MeetingHeading currentGroup={user.group} /> //Except we really want the url parameter of the child
-                        ) : (
-                          <Navigate to="/" />
-                        )
+                        user.advizotID ? <Meeting /> : <Navigate to="/" />
                       }
-                    >
-                      <Route
-                        path=":group"
-                        element={
-                          user.advizotID ? <Meeting /> : <Navigate to="/" />
-                        }
-                      />
-                    </Route>
+                    />
 
                     <Route
                       path="profile"

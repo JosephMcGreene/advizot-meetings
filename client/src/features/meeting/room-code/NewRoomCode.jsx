@@ -25,7 +25,7 @@ export default function NewRoomCode() {
         className={isDark ? "btn dark" : "btn"}
         onClick={() => setRoomCode(true)}
       >
-        <Link to="/meeting" tabIndex="-1">
+        <Link to={`/meeting/${user.group}`} tabIndex="-1">
           Yes, make a new code
         </Link>
       </button>
@@ -33,7 +33,7 @@ export default function NewRoomCode() {
         className={isDark ? "btn dark" : "btn"}
         onClick={() => setRoomCode(false)}
       >
-        <Link to="/meeting" tabIndex="-1">
+        <Link to={`/meeting/${user.group}`} tabIndex="-1">
           No, keep the old code
         </Link>
       </button>

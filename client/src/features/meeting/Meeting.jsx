@@ -8,6 +8,7 @@ import { currentDate } from "../../helpers";
 import useMeeting from "../../hooks/useMeeting";
 //Components
 import LoadingSpinner from "../../shared/LoadingSpinner";
+import MeetingHeading from "./MeetingHeading";
 import AdminView from "./meeting-responses/admin-view/AdminView";
 import MemberView from "./meeting-responses/member-view/MemberView";
 import ModalTemplate from "../../shared/modals/ModalTemplate";
@@ -31,6 +32,8 @@ export default function Meeting() {
 
   return (
     <>
+      <MeetingHeading currentGroup={group} />
+
       {user.role === "admin" && (
         <AdminView
           signIns={signIns}
@@ -47,7 +50,6 @@ export default function Meeting() {
           }
         />
       )}
-
       {user.role === "member" && (
         <MemberView
           signIns={signIns}
@@ -60,7 +62,6 @@ export default function Meeting() {
           handleSignInClick={() => setFormShown(!formShown)}
         />
       )}
-
       {formShown && (
         <ModalTemplate
           title={`${currentDate("month")}, ${currentDate("year")}`}
