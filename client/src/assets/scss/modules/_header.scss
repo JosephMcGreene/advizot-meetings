@@ -51,7 +51,7 @@
     position: fixed;
     right: 1rem;
     top: calc($header-height + 0.5rem);
-    padding: 0.5rem;
+    padding: 0.75rem;
 
     background-color: $light-bg;
     box-shadow: $box-shadow;
@@ -59,12 +59,13 @@
     .nav-list {
       display: flex;
       flex-direction: column;
+      gap: 0.25rem;
       list-style: none;
 
       .nav-item {
         display: flex;
         font-size: 1.5rem;
-        padding: 0.25rem;
+        padding: 0.5rem;
 
         cursor: pointer;
 
@@ -86,10 +87,6 @@
         a {
           font-size: 1.25rem;
           padding: 0.25rem 0.75rem;
-        }
-
-        hr {
-          margin: 0.5rem auto;
         }
 
         &:nth-child(4) {
