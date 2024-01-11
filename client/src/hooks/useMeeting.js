@@ -138,12 +138,5 @@ export default function useMeeting(method, url) {
     }
   }
 
-  return [
-    sortedSignIns,
-    loading,
-    currentGroup,
-    getSignIns,
-    submitSignIn,
-    deleteSignIn,
-  ];
+  return [sortedSignIns, loading, currentGroup, submitSignIn, deleteSignIn];
 }

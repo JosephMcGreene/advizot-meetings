@@ -19,14 +19,8 @@ export default function Meeting() {
   const [formShown, setFormShown] = useState(false);
   const { group } = useParams();
 
-  const [
-    signIns,
-    loading,
-    currentGroup,
-    getSignIns,
-    submitSignIn,
-    deleteSignIn,
-  ] = useMeeting("get", `/signIns/${group}`);
+  const [signIns, loading, currentGroup, submitSignIn, deleteSignIn] =
+    useMeeting("get", `/signIns/${group}`);
 
   if (loading) return <LoadingSpinner />;
 
@@ -45,11 +39,9 @@ export default function Meeting() {
             await deleteSignIn(signInID);
           }}
           handleNewSignInClick={() => setFormShown(!formShown)}
-          handleGroupChangeSubmit={async (groupToChange) =>
-            await getSignIns("get", `/signIns/${groupToChange?.group}`)
-          }
         />
       )}
+
       {user.role === "member" && (
         <MemberView
           signIns={signIns}
@@ -62,6 +54,7 @@ export default function Meeting() {
           handleSignInClick={() => setFormShown(!formShown)}
         />
       )}
+
       {formShown && (
         <ModalTemplate
           title={`${currentDate("month")}, ${currentDate("year")}`}

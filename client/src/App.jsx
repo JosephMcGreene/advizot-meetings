@@ -70,19 +70,9 @@ export default function App() {
                       }
                     />
 
-                    <Route
-                      path="meeting/:group"
-                      element={
-                        user.advizotID ? <Meeting /> : <Navigate to="/" />
-                      }
-                    />
+                    <Route path="meeting/:group" element={<Meeting />} />
 
-                    <Route
-                      path="profile"
-                      element={
-                        user.advizotID ? <Profile /> : <Navigate to="/" />
-                      }
-                    />
+                    <Route path="profile" element={<Profile />} />
                   </Route>
                 )
               )}

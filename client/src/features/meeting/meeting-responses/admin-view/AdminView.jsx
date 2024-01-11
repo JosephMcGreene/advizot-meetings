@@ -9,7 +9,6 @@ import AdminSignIn from "./AdminSignIn";
 import ActionsBtn from "../ActionsBtn";
 import AdminActionList from "../../admin-actions/AdminActionList";
 import ModalTemplate from "../../../../shared/modals/ModalTemplate";
-import GroupModal from "../../admin-actions/GroupModal";
 import MemberEditModal from "../../admin-actions/MemberEditModal";
 
 export default function AdminView({
@@ -18,10 +17,8 @@ export default function AdminView({
   handleSubmitEdits,
   handleDelete,
   handleNewSignInClick,
-  handleGroupChangeSubmit,
 }) {
   const [actionsShown, setActionsShown] = useState(false);
-  const [groupModalShown, setGroupModalShown] = useState(false);
   const [viewAsMember, setViewAsMember] = useState(false);
   const [memberEditModalShown, setMemberEditModalShown] = useState(false);
 
@@ -100,25 +97,12 @@ export default function AdminView({
           onFormSubmit={handleSubmitEdits}
           actionToggle={() => setActionsShown(!actionsShown)}
           handleNewSignInClick={handleNewSignInClick}
-          handleFilterClick={() => setGroupModalShown(!groupModalShown)}
           handleViewAsMemberClick={() => setViewAsMember(!viewAsMember)}
           viewAsMember={viewAsMember}
           handleMemberEditClick={() =>
             setMemberEditModalShown(!memberEditModalShown)
           }
         />
-      )}
-
-      {groupModalShown && (
-        <ModalTemplate
-          title="Filter Sign-Ins"
-          handleClose={() => setGroupModalShown(false)}
-        >
-          <GroupModal
-            handleGroupChangeSubmit={handleGroupChangeSubmit}
-            handleClose={() => setGroupModalShown(false)}
-          />
-        </ModalTemplate>
       )}
 
       {memberEditModalShown && (

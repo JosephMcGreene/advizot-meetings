@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../../App";
 //External
-import { Outlet } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 //Internal
 import { currentDate } from "../../helpers";
 //Components
@@ -8,14 +9,23 @@ import RoomCodeToggle from "./admin-actions/RoomCodeToggle";
 import RoomCodeDisplay from "./room-code/RoomCodeDisplay";
 
 export default function MeetingHeading({ currentGroup }) {
+  const user = useContext(UserContext);
   const [roomCodeShown, setRoomCodeShown] = useState(false);
+  const [selectedGroup, setSelectedGroup] = useState("");
+  const navigate = useNavigate();
+
+  async function handleChange(e) {
+    await setSelectedGroup(e.target.value);
+    await navigate(`/meeting/${e.target.value}`);
+  }
 
   return (
     <>
       <div className="heading-container">
         <h1 className="meeting-heading">
-          {currentGroup === "admin" ? (
-            <select>
+          {user.role === "admin" ? (
+            <select value={selectedGroup} onChange={(e) => handleChange(e)}>
+              <option>-- {currentGroup} --</option>
               <option value="admin">Admins</option>
               <option value="CE5660">CE5660</option>
               <option value="KEY9330">KEY9330</option>
@@ -25,8 +35,9 @@ export default function MeetingHeading({ currentGroup }) {
           ) : (
             currentGroup
           )}{" "}
-          - {currentDate("month")} {currentDate("year")}
+          {currentDate("month")} {currentDate("year")}
         </h1>
+
         <RoomCodeToggle
           handleClick={() => setRoomCodeShown(!roomCodeShown)}
           roomCodeShown={roomCodeShown}

@@ -1,6 +1,5 @@
 import { useRef } from "react";
 //Assets
-import { ReactComponent as GroupViewIcon } from "../../../assets/img/users-viewfinder-solid.svg";
 import { ReactComponent as MemberEditIcon } from "../../../assets/img/users-gear-solid.svg";
 import { ReactComponent as ViewAsMemberIcon } from "../../../assets/img/address-card-solid.svg";
 import { ReactComponent as ViewAsAdminIcon } from "../../../assets/img/key-solid.svg";
@@ -12,7 +11,6 @@ import useOutsideClick from "../../../hooks/useOutsideClick";
 
 export default function AdminActionList({
   actionToggle,
-  handleFilterClick,
   handleMemberEditClick,
   handleViewAsMemberClick,
   viewAsMember,
@@ -28,11 +26,6 @@ export default function AdminActionList({
       ref={actionsRef}
       className="admin-actions-list"
     >
-      <li className="admin-actions-item" onClick={() => handleFilterClick()}>
-        <GroupViewIcon className="icon" />
-        Change Group
-      </li>
-
       <li
         className="admin-actions-item"
         onClick={() => handleMemberEditClick()}
