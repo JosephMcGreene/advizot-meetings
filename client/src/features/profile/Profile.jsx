@@ -20,7 +20,7 @@ export default function Profile() {
         Oh, sorry for the confusion, but the profile page isn't actually a
         feature yet. Check back soon though!
       </h2>
-      <Link to="/meeting" style={style}>
+      <Link to="../" style={style}>
         Back to the Meeting
       </Link>
     </article>

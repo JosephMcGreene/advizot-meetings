@@ -1,4 +1,4 @@
-import { useState, createContext } from "react";
+import { createContext } from "react";
 //Assets
 import "./assets/scss/App.scss";
 //External
@@ -7,7 +7,6 @@ import {
   createRoutesFromElements,
   RouterProvider,
   Route,
-  Navigate,
 } from "react-router-dom";
 //Hooks
 import useUser from "./hooks/useUser";
@@ -17,7 +16,6 @@ import useToasts from "./hooks/useToasts";
 import LoadingSpinner from "./shared/LoadingSpinner";
 import Welcome from "./shared/Welcome";
 import UsersOnly from "./features/meeting/UsersOnly";
-import MeetingHeading from "./features/meeting/MeetingHeading";
 import Meeting from "./features/meeting/Meeting";
 import Profile from "./features/profile/Profile";
 import Header from "./shared/Header";
