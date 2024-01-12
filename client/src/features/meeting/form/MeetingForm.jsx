@@ -115,9 +115,8 @@ export default function MeetingForm({
               <option value="">-- Select a Priority --</option>
               <option value="aA">A</option>
               <option value="bB">B</option>
-              <option value="cQuestion">Question</option>
-              <option value="dLightning">Lightning</option>
-              <option value="eC">C</option>
+              <option value="cQ">Question</option>
+              <option value="dL">Lightning</option>
             </Select>
             <InputField
               text="Goal before next meeting"
