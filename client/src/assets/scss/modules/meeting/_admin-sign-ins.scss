@@ -4,18 +4,19 @@
   $border: 1px solid black;
 
   margin: 0rem auto 2rem;
-  width: 97%;
+  width: 96%;
   overflow-x: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
 
   box-shadow: $box-shadow;
   border-radius: $border-radius 0px 0px 0px;
+  mask-image: linear-gradient(to left, transparent, $light-bg 15%);
 
   .admin-head,
   .admin-sign-in-row {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: 1.7fr repeat(4, 1fr) repeat(2, 1.1fr);
     width: 135%;
 
     border: $border;
@@ -57,11 +58,10 @@
     }
 
     .admin-info-cell {
+      position: relative;
       display: flex;
-      justify-content: space-evenly;
+      justify-content: center;
       align-items: center;
-      gap: 0.5rem;
-
       font-size: 1.2rem;
       cursor: pointer;
 
@@ -72,6 +72,9 @@
       .delete-btn {
         $size: 40px;
 
+        position: absolute;
+        top: calc(50% - $size / 2);
+        left: 5px;
         width: $size;
         height: $size;
 
