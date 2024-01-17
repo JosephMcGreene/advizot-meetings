@@ -1,76 +1,34 @@
 @use "../../index" as *;
 
-.heading-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1.5rem;
-
-  .code-toggle {
-    padding: 0.75rem;
-    margin-left: 1.5rem;
-
-    border-radius: 100vw;
-    background-color: $advizot-color;
-    cursor: pointer;
-
-    &:hover {
-      @include btnHover();
-
-      &:after {
-        @include advizotFont(1.25rem, bold, 0px);
-
-        content: "Room Code";
-        vertical-align: middle;
-        margin-left: 0.5rem;
-      }
-    }
-
-    .icon {
-      $size: 29px;
-
-      width: $size;
-      height: $size;
-      vertical-align: middle;
-    }
-  }
-}
-
-.room-code-display {
-  @include borderRadius();
-
-  display: block;
-  width: fit-content;
-  margin: 0rem auto 1.5rem;
-  padding: 1rem;
-  letter-spacing: 2px;
-
-  font-size: 1.5rem;
-  background-color: $advizot-color;
-  box-shadow: $box-shadow;
-}
-
 .admin-sign-ins {
   $border: 1px solid black;
 
   margin: 0rem auto 2rem;
-  width: 97vw;
+  width: 97%;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
   box-shadow: $box-shadow;
   border-radius: $border-radius 0px 0px 0px;
 
   .admin-head,
   .admin-sign-in-row {
     display: grid;
-    grid-template-columns: 1.2fr 0.45fr 0.59fr 0.59fr 0.76fr 0.45fr 0.45fr;
-    min-height: 68px;
+    grid-template-columns: repeat(7, 1fr);
+    width: 135%;
 
     border: $border;
   }
 
-  .admin-head .admin-heading,
-  .admin-sign-in-row .admin-info-cell {
+  .admin-heading,
+  .admin-info-cell,
+  .admin-row-name {
     border-right: $border;
-    padding: 0.875ch;
+    padding: 0.5ch;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   .admin-heading:last-child,
   .admin-info-cell:last-child {
@@ -85,12 +43,6 @@
 
     &:first-child {
       border-radius: 12px 0px 0px 0px;
-    }
-
-    .admin-heading {
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
   }
 
@@ -117,11 +69,6 @@
         width: 18px;
       }
 
-      .admin-row-name {
-        align-self: center;
-        text-align: center;
-      }
-
       .delete-btn {
         $size: 40px;
 
@@ -132,12 +79,6 @@
           width: 18px;
         }
       }
-
-      &:nth-child(6),
-      &:nth-child(7) {
-        display: inline;
-        text-align: left;
-      }
     }
 
     &:last-child {
@@ -145,4 +86,8 @@
       border-radius: 0px 0px 12px 0px;
     }
   }
+}
+
+.admin-sign-ins::-webkit-scrollbar {
+  display: none;
 }

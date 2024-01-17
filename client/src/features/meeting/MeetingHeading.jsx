@@ -38,13 +38,15 @@ export default function MeetingHeading({ currentGroup }) {
           {currentDate("month")} {currentDate("year")}
         </h1>
 
-        <RoomCodeToggle
-          handleClick={() => setRoomCodeShown(!roomCodeShown)}
-          roomCodeShown={roomCodeShown}
-        />
-      </div>
+        <div className="room-code-container">
+          <RoomCodeToggle
+            handleClick={() => setRoomCodeShown(!roomCodeShown)}
+            roomCodeShown={roomCodeShown}
+          />
 
-      {roomCodeShown && <RoomCodeDisplay />}
+          {roomCodeShown && <RoomCodeDisplay />}
+        </div>
+      </div>
 
       <Outlet />
     </>
