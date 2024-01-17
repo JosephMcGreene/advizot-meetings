@@ -35,7 +35,7 @@ export default function useMeeting(method, url) {
     if (signInBody.group === "admin") {
       signInBody.priority = signInBody.priority.replace(
         signInBody.priority.charAt(0),
-        "z"
+        "y"
       );
     }
 

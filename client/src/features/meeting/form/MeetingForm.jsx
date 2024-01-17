@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ThemeContext } from "../../../App";
+import { UserContext } from "../../../App";
 //External
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -12,7 +12,7 @@ export default function MeetingForm({
   handleClose,
   existingSignIn,
 }) {
-  const isDark = useContext(ThemeContext);
+  const user = useContext(UserContext);
 
   /**
    * Determines the percentage of an input slider's background that should be filled up based on where the user has dragged the thumb
@@ -70,7 +70,7 @@ export default function MeetingForm({
         }}
       >
         {({ isSubmitting, submitCount, ...props }) => (
-          <Form className={isDark ? "form dark" : "form"}>
+          <Form className="form">
             <InputField
               text="How is your business?"
               name="business"
@@ -117,11 +117,15 @@ export default function MeetingForm({
               <option value="bB">B</option>
               <option value="cQ">Question</option>
               <option value="dL">Lightning</option>
+              {user.role === "admin" && existingSignIn && (
+                <option value="zP">Processed</option>
+              )}
             </Select>
             <InputField
               text="Goal before next meeting"
               name="monthlyGoal"
               as="textarea"
+              wwwww
               className="text-input"
             />
             <button type="submit" className="btn">

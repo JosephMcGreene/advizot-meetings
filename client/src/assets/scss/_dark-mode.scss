@@ -106,6 +106,13 @@ $text-dark: black;
     }
     .admin-info-cell {
       border-bottom: none;
+
+      svg path {
+        fill: $advizot-grey;
+      }
+      .delete-btn svg path {
+        fill: black;
+      }
     }
   }
 

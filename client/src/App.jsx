@@ -26,11 +26,7 @@ export const ToastContext = createContext();
 export const ThemeContext = createContext();
 
 export default function App() {
-  // eslint-disable-next-line
-  const [user, fetchUser, loading, error] = useUser(
-    "get",
-    "/auth/current_user"
-  );
+  const [user, fetchUser, loading] = useUser("get", "/auth/current_user");
   const [isDark, setDarkMode] = useDarkMode();
   const toasts = useToasts();
 
