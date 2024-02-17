@@ -1,18 +1,17 @@
-import { useRef, useContext } from "react";
+import { useRef } from "react";
 import { createPortal } from "react-dom";
-import { ThemeContext } from "../../App";
 //External
 import { motion } from "framer-motion";
 //Hooks
 import useOutsideClick from "../../hooks/useOutsideClick";
 
 export default function ModalTemplate({ children, title, handleClose }) {
-  const isDark = useContext(ThemeContext);
   const modalRef = useRef();
+
   useOutsideClick(modalRef, () => handleClose());
 
   return createPortal(
-    <div className={isDark ? "modal dark" : "modal"}>
+    <div className="modal">
       <motion.div
         initial={{ opacity: 0, y: 70 }}
         animate={{ opacity: 1, y: 0 }}
