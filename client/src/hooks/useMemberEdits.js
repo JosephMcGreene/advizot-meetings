@@ -73,5 +73,21 @@ export default function useMemberEdits(currentGroup) {
     }
   }
 
-  return [usersToEdit, loading, handleEditSubmit];
+  /**
+   * Makes a DELETE request to the database to remove data trributed to the user that corresponds to the advizaotID passed as an argument
+   * @param {string} advizotID the advizotID of the user whose data is to be deleted
+   */
+  async function deleteMember(advizotID) {
+    try {
+      setLoading(true);
+
+      //TODO Add functionality to delete user, see also MemberEditsModal
+    } catch (err) {
+      await showToast("failure", "Something went wrong, unable to delete");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return [usersToEdit, loading, handleEditSubmit, deleteMember];
 }

@@ -1,3 +1,4 @@
+import { useState } from "react";
 //External
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -8,7 +9,10 @@ import Select from "../form/Select";
 import LoadingSpinner from "../../../shared/LoadingSpinner";
 
 export default function MemberEditModal({ handleClose, currentGroup }) {
-  const [usersToEdit, loading, handleEditSubmit] = useMemberEdits(currentGroup);
+  const [selectedMemberID, setSelectedMemberID] = useState("");
+  const [userNotSelected, setUserNotSelected] = useState(true);
+  const [usersToEdit, loading, handleEditSubmit, deleteMember] =
+    useMemberEdits(currentGroup);
 
   return (
     <div className="modal-body">
@@ -46,9 +50,8 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
                 ))}
               </Select>
             )}
-
             <Select
-              text="Group to Place Into"
+              text="Place Into Group"
               name="groupToPlace"
               className="select"
             >
@@ -58,6 +61,18 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
               <option value="CE4659">CE4659</option>
             </Select>
 
+            {/* //TODO Add functionality to allow admins to delete members using this button */}
+            {usersToEdit.length > 0 && (
+              <button
+                type="button"
+                className="delete-member-btn"
+                disabled={userNotSelected}
+                //TODO Get access to member's advizotID from the Select component above
+                onClick={() => deleteMember()}
+              >
+                Delete Member
+              </button>
+            )}
             <button type="submit" className="btn">
               Submit
             </button>
