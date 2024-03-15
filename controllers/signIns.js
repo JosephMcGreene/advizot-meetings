@@ -2,7 +2,7 @@ import SignIn from "../models/SignIn.js";
 import { groupForToday } from "../lib/helpers.js";
 import { userRoles } from "../lib/userRoles.js";
 
-export async function putToSignIns(req, res) {
+async function putToSignIns(req, res) {
   try {
     const newSignIn = new SignIn({
       userName: req.body.userName,
@@ -32,7 +32,7 @@ export async function putToSignIns(req, res) {
   }
 }
 
-export async function deleteToSignIns(req, res) {
+async function deleteToSignIns(req, res) {
   try {
     const deletionRes = await SignIn.deleteOne({
       _id: req.body.signInID,
@@ -46,7 +46,7 @@ export async function deleteToSignIns(req, res) {
   }
 }
 
-export async function getToGroup(req, res) {
+async function getToGroup(req, res) {
   try {
     const oneWeekAgo = Date.now() - 1000 * 60 * 60 * 24 * 7;
 
@@ -86,3 +86,11 @@ export async function getToGroup(req, res) {
     throw new Error(err);
   }
 }
+
+const signInsController = {
+  putToSignIns,
+  deleteToSignIns,
+  getToGroup,
+};
+
+export default signInsController;

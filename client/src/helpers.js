@@ -33,7 +33,7 @@ export async function axiosFetch(method, url, data = null) {
  * @param {string}      monthOrYear "month" or "year" to be returned
  * @param {Date | null} dateToParse Date to parse, default is current date
  *
- * @returns {string | undefined} A string representing the current month or year
+ * @returns {string} A string representing the current month or year
  */
 export const currentDate = (monthOrYear, dateToParse = null) => {
   let date = dateToParse || new Date();
@@ -67,7 +67,7 @@ export const currentDate = (monthOrYear, dateToParse = null) => {
       case 11:
         return "December";
       default:
-        return undefined;
+        return "??";
     }
   }
 };

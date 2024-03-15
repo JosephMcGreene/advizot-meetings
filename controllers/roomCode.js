@@ -4,7 +4,7 @@ import { generateRoomCode } from "../lib/helpers.js";
 
 config();
 
-export async function postToRoomCode(req, res) {
+async function post(req, res) {
   try {
     const { currentRoomCode } = await RoomCode.findById(
       process.env.ROOMCODE_ID
@@ -24,7 +24,7 @@ export async function postToRoomCode(req, res) {
   }
 }
 
-export async function putToRoomCode(req, res) {
+async function put(req, res) {
   try {
     const roomCodeDB = await RoomCode.findById(process.env.ROOMCODE_ID);
 
@@ -48,3 +48,7 @@ export async function putToRoomCode(req, res) {
     throw new Error(err);
   }
 }
+
+const roomCodeController = { post, put };
+
+export default roomCodeController;

@@ -1,7 +1,7 @@
 import User from "../models/User.js";
 import SignIn from "../models/SignIn.js";
 
-export async function postToUsers(req, res) {
+export async function post(req, res) {
   try {
     const usersToEdit = await User.find({ group: req.body.group });
 
@@ -13,7 +13,7 @@ export async function postToUsers(req, res) {
   }
 }
 
-export async function putToUsers(req, res) {
+export async function put(req, res) {
   try {
     await User.findByIdAndUpdate(req.body.id, {
       group: req.body.groupToPlace,
@@ -34,3 +34,7 @@ export async function putToUsers(req, res) {
     throw new Error(err);
   }
 }
+
+const usersController = { post, put };
+
+export default usersController;
