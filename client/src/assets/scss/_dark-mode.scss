@@ -34,7 +34,8 @@ $text-dark: black;
           background-color: $darker-bg;
         }
         .text-input textarea,
-        .select .rating-select {
+        .select .rating-select,
+        .rating-select {
           background-color: $darker-bg;
           color: $advizot-grey;
           border: none;
