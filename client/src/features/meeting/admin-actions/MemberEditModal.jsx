@@ -6,8 +6,9 @@ import LoadingSpinner from "../../../shared/LoadingSpinner";
 
 export default function MemberEditModal({ handleClose, currentGroup }) {
   const [selectedUser, setSelectedUser] = useState("");
-  const [memberEditsDisabled, setMemberEditsDisabled] = useState(true);
-  const [usersToEdit, loading, handleEditSubmit, deleteMember] =
+  const [userEditsDisabled, setUserEditsDisabled] = useState(true);
+  const [groupPlacementDisabled, setGroupPlacementDisabled] = useState(true);
+  const [usersToEdit, loading, confirmGroupChange, deleteMember] =
     useMemberEdits(currentGroup);
 
   function selectMember(eventTargetVal) {
@@ -15,7 +16,19 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
       usersToEdit.find((user) => user.advizotID === eventTargetVal)
     );
 
-    setMemberEditsDisabled(false);
+    setUserEditsDisabled(false);
+  }
+
+  function handleSelectedEdit(e) {
+    switch (e.target.value) {
+      case "move":
+        return setGroupPlacementDisabled(false);
+      case "edit":
+        //TODO Redirect to the user's profile once that feature is ready
+        return;
+      default:
+        return;
+    }
   }
 
   return (
@@ -41,22 +54,31 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
           </label>
         )}
 
-        {!memberEditsDisabled && (
+        {!userEditsDisabled && (
           <label htmlFor="howToEdit">
             How to Edit
-            <select name="howToEdit" id="howToEdit" className="rating-select">
+            <select
+              onChange={(e) => handleSelectedEdit(e)}
+              id="howToEdit"
+              className="rating-select"
+            >
               <option value="">-- Select One --</option>
-              <option value="move">Move to New Group</option>
+              <option value="move">Move to Another Group</option>
               <option value="edit">Edit Profile</option>
             </select>
           </label>
         )}
 
-        {!memberEditsDisabled && (
+        {!groupPlacementDisabled && (
           <label htmlFor="groupToPlace">
-            Place Into Group
+            Move Into Group
             <select
-              name="groupToPlace"
+              onChange={(e) =>
+                confirmGroupChange({
+                  selectedUser,
+                  groupToPlace: e.target.value,
+                })
+              }
               id="groupToPlace"
               className="rating-select"
             >
@@ -69,7 +91,7 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
         )}
 
         {/* //TODO Add functionality to allow admins to delete members using this button */}
-        {!memberEditsDisabled && (
+        {!userEditsDisabled && (
           <button
             type="button"
             className="delete-member-btn"
@@ -80,8 +102,8 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
           </button>
         )}
 
-        <button type="submit" className="btn">
-          Submit
+        <button onClick={() => handleClose()} className="btn">
+          Done
         </button>
       </form>
     </div>

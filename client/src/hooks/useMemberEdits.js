@@ -35,38 +35,51 @@ export default function useMemberEdits(currentGroup) {
   }
 
   /**
-   * sends data used to update a guest user to place them into a group
+   * confirms with the iser that they would like to move the user they have selected into a new group. If confirmed, calls changeGroup() to initiate the move
    *
-   * data.advizotID == associated user's advizot ID
+   * userInfo.selectedUser === the user to move
+   * userInfo.groupToPlace === name of the group to place the member in
    *
-   * data.groupToPlace == name of the group to place the member in
-   *
-   * @param {object} formValues
+   * @param {object} userInfo information about the userand what group to move them to
    */
-  async function handleEditSubmit(formValues) {
+  function confirmGroupChange(userInfo) {
+    if (window.confirm(`Move ${userInfo.name} to ${userInfo.groupToPlace}?`)) {
+      changeGroup({
+        advizotID: userInfo.selectedUser.advizotID,
+        _id: userInfo.selectedUser._id,
+        groupToPlace: userInfo.groupToPlace,
+      });
+    } else {
+      return;
+    }
+  }
+
+  /**
+   * sends data used to update a guest user to move them into a new group
+   *
+   * userInfo.selectedUser === the user to move
+   * userInfo.groupToPlace === name of the group to place the member in
+   *
+   * @param {object} userInfo information about the userand what group to move them to
+   */
+  async function changeGroup(userInfo) {
     try {
       setLoading(true);
 
-      const editedUser = usersToEdit.find(
-        (user) => user.advizotID === formValues.advizotID
-      );
-      formValues.oldGroup = editedUser.group;
-      formValues.id = editedUser._id;
-
-      const { data } = await axiosFetch("put", "/users", formValues);
+      const { data } = await axiosFetch("put", "/users", userInfo);
 
       await showToast(
         "success",
-        `Added ${editedUser.firstName} to ${data.updatedGroup}`
+        `Added ${userInfo.selectedUser.firstName} to ${data.updatedGroup}`
       );
       if (data.numOfSignInUpdates > 0) {
         await showToast(
           "success",
-          `Updated ${data.numOfSignInUpdates} of ${editedUser.firstName}'s sign-ins.`
+          `Also moved ${data.numOfSignInUpdates} of ${userInfo.selectedUser.firstName}'s sign-ins.`
         );
       }
     } catch (err) {
-      await showToast("failure", "Something went wrong, unable to make edits");
+      await showToast("failure", "Something went wrong, unable to move member");
       throw new Error(err);
     } finally {
       setLoading(false);
@@ -89,5 +102,5 @@ export default function useMemberEdits(currentGroup) {
     }
   }
 
-  return [usersToEdit, loading, handleEditSubmit, deleteMember];
+  return [usersToEdit, loading, confirmGroupChange, deleteMember];
 }

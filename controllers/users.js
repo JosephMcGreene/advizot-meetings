@@ -15,7 +15,7 @@ export async function post(req, res) {
 
 export async function put(req, res) {
   try {
-    await User.findByIdAndUpdate(req.body.id, {
+    await User.findByIdAndUpdate(req.body._id, {
       group: req.body.groupToPlace,
     });
 
