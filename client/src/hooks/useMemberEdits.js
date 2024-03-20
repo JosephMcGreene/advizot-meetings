@@ -43,8 +43,13 @@ export default function useMemberEdits(currentGroup) {
    * @param {object} userInfo information about the userand what group to move them to
    */
   function confirmGroupChange(userInfo) {
-    if (window.confirm(`Move ${userInfo.name} to ${userInfo.groupToPlace}?`)) {
+    if (
+      window.confirm(
+        `Move ${userInfo.selectedUser.firstName} ${userInfo.selectedUser.lastName} to ${userInfo.groupToPlace}?`
+      )
+    ) {
       changeGroup({
+        firstName: userInfo.selectedUser.firstName,
         advizotID: userInfo.selectedUser.advizotID,
         _id: userInfo.selectedUser._id,
         groupToPlace: userInfo.groupToPlace,
@@ -60,22 +65,22 @@ export default function useMemberEdits(currentGroup) {
    * userInfo.selectedUser === the user to move
    * userInfo.groupToPlace === name of the group to place the member in
    *
-   * @param {object} userInfo information about the userand what group to move them to
+   * @param {object} dataForGroupChange information about the userand what group to move them to
    */
-  async function changeGroup(userInfo) {
+  async function changeGroup(dataForGroupChange) {
     try {
       setLoading(true);
 
-      const { data } = await axiosFetch("put", "/users", userInfo);
+      const { data } = await axiosFetch("put", "/users", dataForGroupChange);
 
       await showToast(
         "success",
-        `Added ${userInfo.selectedUser.firstName} to ${data.updatedGroup}`
+        `Moved ${dataForGroupChange.firstName} to ${data.updatedGroup}`
       );
       if (data.numOfSignInUpdates > 0) {
         await showToast(
           "success",
-          `Also moved ${data.numOfSignInUpdates} of ${userInfo.selectedUser.firstName}'s sign-ins.`
+          `Also moved ${data.numOfSignInUpdates} of ${dataForGroupChange.firstName}'s sign-ins.`
         );
       }
     } catch (err) {
