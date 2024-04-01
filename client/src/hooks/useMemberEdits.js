@@ -80,7 +80,7 @@ export default function useMemberEdits(currentGroup) {
       if (data.numOfSignInUpdates > 0) {
         await showToast(
           "success",
-          `Also moved ${data.numOfSignInUpdates} of ${dataForGroupChange.firstName}'s sign-ins.`
+          `Also moved all (${data.numOfSignInUpdates}) of ${dataForGroupChange.firstName}'s sign-ins.`
         );
       }
     } catch (err) {
@@ -93,13 +93,14 @@ export default function useMemberEdits(currentGroup) {
 
   /**
    * Makes a DELETE request to the database to remove data trributed to the user that corresponds to the advizaotID passed as an argument
-   * @param {string} advizotID the advizotID of the user whose data is to be deleted
+   * @param {string} userID the advizotID of the user whose data is to be deleted
    */
-  async function deleteMember(advizotID) {
+  async function deleteMember(userID) {
     try {
       setLoading(true);
 
       //TODO Add functionality to delete user, see also MemberEditsModal
+      const { data } = await axiosFetch("delete", "/users", { userID });
     } catch (err) {
       await showToast("failure", "Something went wrong, unable to delete");
     } finally {

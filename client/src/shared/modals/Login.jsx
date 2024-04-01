@@ -3,7 +3,7 @@ import googleLogo from "../../assets/img/google-G.png";
 
 export default function Login() {
   return (
-    <div className="modal-body">
+    <>
       <a
         href="/auth/linkedin"
         className="login-btn linkedin-hover"
@@ -21,6 +21,6 @@ export default function Login() {
         <img src={googleLogo} alt="Google Logo" className="logo" />
         <label htmlFor="google-button">Log in with Google</label>
       </a>
-    </div>
+    </>
   );
 }

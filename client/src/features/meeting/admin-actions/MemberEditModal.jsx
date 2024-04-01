@@ -15,22 +15,24 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
   function selectMember(eventTargetVal) {
     if (eventTargetVal === "select") {
       setUserEditsEnabled(false);
-      return setSelectedUser(eventTargetVal);
+      setSelectedUser(eventTargetVal);
+    } else {
+      setSelectedUser(
+        usersToEdit.find((user) => user.advizotID === eventTargetVal)
+      );
+      setUserEditsEnabled(true);
     }
-
-    setSelectedUser(
-      usersToEdit.find((user) => user.advizotID === eventTargetVal)
-    );
-    setUserEditsEnabled(true);
   }
 
-  function handleSelectedEdit(e) {
-    switch (e.target.value) {
+  function handleSelectedEdit(eventTargetVal) {
+    switch (eventTargetVal) {
       case "move":
         return setGroupPlacementEnabled(true);
       case "edit":
         //TODO Redirect to the user's profile once that feature is ready
-        return;
+        return alert(
+          "This feature isn't ready yet. Thanks for the interest though!"
+        );
       default:
         setUserEditsEnabled(false);
         setGroupPlacementEnabled(false);
@@ -40,7 +42,6 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
 
   return (
     <form className="form">
-      {console.log(selectedUser)}
       {loading ? (
         <LoadingSpinner />
       ) : (
@@ -65,7 +66,7 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
         <label htmlFor="howToEdit">
           How to Edit
           <select
-            onChange={(e) => handleSelectedEdit(e)}
+            onChange={(e) => handleSelectedEdit(e.target.value)}
             id="howToEdit"
             className="rating-select"
           >
@@ -115,8 +116,7 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
         <button
           type="button"
           className="delete-member-btn"
-          //TODO Get access to member's advizotID from the Select component above
-          onClick={deleteMember}
+          onClick={() => deleteMember(selectedUser._id)}
         >
           Delete Member
         </button>
