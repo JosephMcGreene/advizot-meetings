@@ -1,16 +1,32 @@
 import { useState, useEffect, useContext } from "react";
 import { ToastContext } from "../App";
-//Internal
+// Internal
 import { axiosFetch } from "../helpers";
 
 export default function useMemberEdits(currentGroup) {
   const { showToast } = useContext(ToastContext);
-  const [usersToEdit, setUsersToEdit] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [usersToEdit, setUsersToEdit] = useState([]);
+  const [selectedUser, setSelectedUser] = useState("none");
+  const [userEditsEnabled, setUserEditsEnabled] = useState(false);
+  const [deleteMemberValue, setDeleteMemberValue] = useState("");
+  const [deleteMemberDisabled, setDeleteMemberDisabled] = useState(true);
+  const [groupPlacementEnabled, setGroupPlacementEnabled] = useState(false);
 
   useEffect(() => {
+    const selectedUserFullName =
+      selectedUser.firstName + " " + selectedUser.lastName;
+    if (deleteMemberValue === selectedUserFullName) {
+      setDeleteMemberDisabled(false);
+    } else {
+      setDeleteMemberDisabled(true);
+    }
     // eslint-disable-next-line
+  }, [deleteMemberValue]);
+
+  useEffect(() => {
     fetchUsers(currentGroup);
+    // eslint-disable-next-line
   }, []);
 
   /**
@@ -21,8 +37,8 @@ export default function useMemberEdits(currentGroup) {
   async function fetchUsers(group) {
     try {
       setLoading(true);
-      const response = await axiosFetch("post", "/users", { group });
-      await setUsersToEdit(response.data);
+      const { data } = await axiosFetch("post", "/users", { group });
+      await setUsersToEdit(data);
     } catch (err) {
       await showToast(
         "failure",
@@ -105,5 +121,58 @@ export default function useMemberEdits(currentGroup) {
     }
   }
 
-  return [usersToEdit, loading, confirmGroupChange, deleteMember];
+  /**
+   * takes a user's advizotID gleaned from a form value, finds the user object associated with that ID, and assigns that user object to state as the currently selected user to edit
+   *
+   * @param {string} advizotID the ID of the selected user
+   */
+  function selectMember(advizotID) {
+    if (advizotID === "none") {
+      setUserEditsEnabled(false);
+      setSelectedUser("none");
+    } else {
+      setSelectedUser(usersToEdit.find((user) => user.advizotID === advizotID));
+      setUserEditsEnabled(true);
+    }
+  }
+
+  /**
+   * Switches through the selected edit type the user wants to do and forwards control to the corresponding edit type's function(s)
+   *
+   * @param {string} editType a label for the type of edit the user wants to do
+   * @returns {function | null}
+   */
+  function handleEditType(editType) {
+    switch (editType) {
+      case "none":
+        setGroupPlacementEnabled(false);
+        return selectMember("none");
+      case "move":
+        return setGroupPlacementEnabled(true);
+      case "edit":
+        //TODO Redirect to the user's profile once that feature is ready
+        return alert(
+          "This feature isn't ready yet. Thanks for the interest though!"
+        );
+      default:
+        setGroupPlacementEnabled(false);
+        selectMember("none");
+    }
+  }
+
+  return [
+    usersToEdit,
+    loading,
+    selectedUser,
+    deleteMemberValue,
+    deleteMemberDisabled,
+    userEditsEnabled,
+    groupPlacementEnabled,
+    confirmGroupChange,
+    selectMember,
+    deleteMember,
+    handleEditType,
+    setDeleteMemberValue,
+    setGroupPlacementEnabled,
+  ];
 }

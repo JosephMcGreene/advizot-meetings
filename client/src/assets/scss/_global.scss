@@ -116,6 +116,15 @@ button {
   &:hover {
     background-color: hsl(0, 100%, 80%);
   }
+  &[disabled] {
+    @include transition(color);
+    color: grey;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
 }
 
 .close-x {
