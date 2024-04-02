@@ -28,7 +28,6 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
 
   return (
     <form className="form">
-      {console.log(currentGroup)}
       {loading ? (
         <LoadingSpinner />
       ) : (
@@ -48,6 +47,7 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
           </select>
         </label>
       )}
+
       {userEditsEnabled && (
         <label htmlFor="howToEdit">
           How to Edit
@@ -62,6 +62,7 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
           </select>
         </label>
       )}
+
       {groupPlacementEnabled && (
         <ModalTemplate
           title="Select a Group"
@@ -100,6 +101,7 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
           </button>
         </ModalTemplate>
       )}
+
       {userEditsEnabled && (
         <button
           type="button"
@@ -109,6 +111,7 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
           Delete Member
         </button>
       )}
+
       {confirmUserDeleteShown && (
         <ModalTemplate
           title="Are you sure?"
@@ -133,7 +136,7 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
           </label>
 
           <button
-            onClick={() => deleteMember(selectedUser._id)}
+            onClick={(e) => deleteMember(e, selectedUser._id)}
             className="delete-member-btn"
             disabled={deleteMemberDisabled}
           >
@@ -141,6 +144,7 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
           </button>
         </ModalTemplate>
       )}
+
       {userEditsEnabled && (
         <button onClick={handleClose} className="btn">
           Done

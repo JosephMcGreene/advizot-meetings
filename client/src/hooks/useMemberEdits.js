@@ -106,13 +106,15 @@ export default function useMemberEdits(currentGroup) {
 
   /**
    * Makes a DELETE request to the database to remove data trributed to the user that corresponds to the advizaotID passed as an argument
-   * @param {string} userID the advizotID of the user whose data is to be deleted
+   * @param {Object} e      the event object of the clicked button
+   * @param {string} userID the MondoDB _id of the user whose data is to be deleted
    */
-  async function deleteMember(userID) {
+  async function deleteMember(e, userID) {
     try {
       setLoading(true);
+      e.preventDefault();
 
-      const { data } = await axiosFetch("delete", "/users", { userID });
+      const { data } = await axiosFetch("delete", "/users", { _id: userID });
       console.log(data);
     } catch (err) {
       await showToast("failure", "Something went wrong, unable to delete");
