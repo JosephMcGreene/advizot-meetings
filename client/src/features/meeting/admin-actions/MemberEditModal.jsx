@@ -9,6 +9,9 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
   const [selectedUser, setSelectedUser] = useState("select");
   const [userEditsEnabled, setUserEditsEnabled] = useState(false);
   const [groupPlacementEnabled, setGroupPlacementEnabled] = useState(false);
+  const [confirmUserDelete, setConfirmUserDelete] = useState(false);
+  const [deleteMemberValue, setDeleteMemberValue] = useState("");
+  const [deleteMemberDisabled, setDeleteMemberDisabled] = useState(true);
   const [usersToEdit, loading, confirmGroupChange, deleteMember] =
     useMemberEdits(currentGroup);
 
@@ -40,8 +43,22 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
     }
   }
 
+  function checkDeleteMemberInputValue(eventTargetVal) {
+    const selectedUserFullName = `${selectedUser.firstName} ${selectedUser.lastName}`;
+    if (deleteMemberValue === selectedUserFullName) {
+      setDeleteMemberDisabled((prev) => false);
+    } else {
+      setDeleteMemberDisabled((prev) => true);
+    }
+
+    setDeleteMemberValue((prev) => eventTargetVal);
+  }
+
   return (
     <form className="form">
+      {console.log(deleteMemberValue)}
+      {console.log("delete disabled:", deleteMemberDisabled)}
+
       {loading ? (
         <LoadingSpinner />
       ) : (
@@ -116,10 +133,43 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
         <button
           type="button"
           className="delete-member-btn"
-          onClick={() => deleteMember(selectedUser._id)}
+          onClick={() => setConfirmUserDelete(true)}
         >
           Delete Member
         </button>
+      )}
+
+      {confirmUserDelete && (
+        <ModalTemplate
+          title="Are you sure?"
+          handleClose={() => setConfirmUserDelete(false)}
+        >
+          <label htmlFor="user-name">
+            First of all, this cannot be undone. Furthermore, this will also
+            permanently delete all of the member's hard-earned data, and it will
+            be irretrievably lost. Still, if you know you don't need this
+            information anymore, type{" "}
+            <em>
+              {selectedUser.firstName} {selectedUser.lastName}
+            </em>{" "}
+            and press confirm.
+            <br />
+            <input
+              type="text"
+              className="rating-select"
+              value={deleteMemberValue}
+              onChange={(e) => checkDeleteMemberInputValue(e.target.value)}
+            />
+          </label>
+
+          <button
+            onClick={() => deleteMember(selectedUser._id)}
+            className="delete-member-btn"
+            disabled={deleteMemberDisabled}
+          >
+            Confirm and Delete {selectedUser.firstName} {selectedUser.lastName}
+          </button>
+        </ModalTemplate>
       )}
 
       {userEditsEnabled && (

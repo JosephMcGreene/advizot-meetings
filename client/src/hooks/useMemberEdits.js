@@ -60,12 +60,9 @@ export default function useMemberEdits(currentGroup) {
   }
 
   /**
-   * sends data used to update a guest user to move them into a new group
+   * sends data used to move a user into a new group
    *
-   * userInfo.selectedUser === the user to move
-   * userInfo.groupToPlace === name of the group to place the member in
-   *
-   * @param {object} dataForGroupChange information about the userand what group to move them to
+   * @param {object} dataForGroupChange information about the user and what group to move them to
    */
   async function changeGroup(dataForGroupChange) {
     try {
@@ -99,8 +96,8 @@ export default function useMemberEdits(currentGroup) {
     try {
       setLoading(true);
 
-      //TODO Add functionality to delete user, see also MemberEditsModal
       const { data } = await axiosFetch("delete", "/users", { userID });
+      console.log(data);
     } catch (err) {
       await showToast("failure", "Something went wrong, unable to delete");
     } finally {

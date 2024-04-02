@@ -38,6 +38,7 @@ async function put(req, res) {
 async function deleteUser(req, res) {
   try {
     console.log(req.body.userID);
+    res.json(req.body.userID);
   } catch (err) {
     res.json(new Error(err));
     throw new Error(err);
