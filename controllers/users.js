@@ -37,8 +37,13 @@ async function put(req, res) {
 
 async function deleteUser(req, res) {
   try {
-    const { deletedCount } = await User.deleteOne({ _id: req.body._id });
+    await User.deleteOne({ _id: req.body._id });
 
+    const { deletedCount } = await SignIn.deleteMany({
+      userID: req.body.advizotID,
+    });
+
+    res.statusMessage = "Deleted a user and their sign-ins";
     res.json({ deletedCount });
   } catch (err) {
     res.json(new Error(err));

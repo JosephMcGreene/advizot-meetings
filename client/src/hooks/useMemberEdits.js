@@ -110,13 +110,17 @@ export default function useMemberEdits(currentGroup) {
    * @param {string} _id       the MondoDB _id of the user whose data is to be deleted
    * @param {string} firstName The first name of the member to be deleted
    */
-  async function deleteMember(e, _id, firstName) {
+  async function deleteMember(e, _id, advizotID, firstName) {
     try {
       setLoading(true);
       e.preventDefault();
 
-      await axiosFetch("delete", "/users", { _id });
+      const { data } = await axiosFetch("delete", "/users", { _id, advizotID });
       await showToast("success", `User Deleted, say goodbye to ${firstName}.`);
+      await showToast(
+        "success",
+        `Also deleted all (${data.deletedCount}) of ${firstName}'s sign-ins`
+      );
     } catch (err) {
       await showToast("failure", "Something went wrong, unable to delete");
     } finally {

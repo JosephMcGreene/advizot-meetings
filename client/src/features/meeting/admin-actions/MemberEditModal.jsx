@@ -147,7 +147,12 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
 
           <button
             onClick={(e) =>
-              deleteMember(e, selectedUser._id, selectedUser.firstName)
+              deleteMember(
+                e,
+                selectedUser._id,
+                selectedUser.advizotID,
+                selectedUser.firstName
+              )
             }
             className="delete-member-btn"
             disabled={deleteMemberDisabled}
