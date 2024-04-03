@@ -37,9 +37,9 @@ async function put(req, res) {
 
 async function deleteUser(req, res) {
   try {
-    const deleteInfo = await User.deleteOne({ _id: req.body._id });
+    const { deletedCount } = await User.deleteOne({ _id: req.body._id });
 
-    res.json({ deletedCount: deleteInfo.deletedCount, _id: req.body._id });
+    res.json({ deletedCount });
   } catch (err) {
     res.json(new Error(err));
     throw new Error(err);

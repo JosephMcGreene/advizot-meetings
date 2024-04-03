@@ -50,7 +50,7 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
 
       {userEditsEnabled && (
         <label htmlFor="howToEdit">
-          How to Edit
+          What do you want to do?
           <select
             onChange={(e) => handleEditType(e.target.value)}
             id="howToEdit"
@@ -66,7 +66,10 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
       {groupPlacementEnabled && (
         <ModalTemplate
           title="Select a Group"
-          handleClose={() => setGroupPlacementEnabled(false)}
+          handleClose={() => {
+            setGroupPlacementEnabled(false);
+            selectMember("none");
+          }}
         >
           <label htmlFor="groupToPlace">
             Move Into Group
@@ -118,14 +121,21 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
           handleClose={() => setConfirmUserDeleteShown(false)}
         >
           <label htmlFor="user-name">
-            First of all, this cannot be undone. Furthermore, this will also
-            permanently delete all of the member's hard-earned data, and it will
-            be irretrievably lost. Still, if you know you don't need this
-            information anymore, type{" "}
-            <em>
-              {selectedUser.firstName} {selectedUser.lastName}
-            </em>{" "}
-            and press delete.
+            <p style={{ textAlign: "left" }}>
+              First, this cannot be undone.
+              <br />
+              <br />
+              Furthermore, this will also permanently delete all of the member's
+              hard-earned data, and it will be irretrievably lost.
+              <br />
+              <br />
+              If you know you will never need this member's information again,
+              type{" "}
+              <em>
+                {selectedUser.firstName} {selectedUser.lastName}
+              </em>{" "}
+              and press delete.
+            </p>
             <br />
             <input
               type="text"
@@ -136,7 +146,9 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
           </label>
 
           <button
-            onClick={(e) => deleteMember(e, selectedUser._id)}
+            onClick={(e) =>
+              deleteMember(e, selectedUser._id, selectedUser.firstName)
+            }
             className="delete-member-btn"
             disabled={deleteMemberDisabled}
           >
