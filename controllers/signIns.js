@@ -46,6 +46,12 @@ async function deleteToSignIns(req, res) {
   }
 }
 
+/**
+ * Actually handles GET requests for sign-ins as well as groups, since as of 4/3/24 the app only cares about retrieving sign-ins for an entire group
+ * @param {Object} req request object from the client
+ * @param {Object} res response object to the client
+ * @returns
+ */
 async function getToGroup(req, res) {
   try {
     const oneWeekAgo = Date.now() - 1000 * 60 * 60 * 24 * 7;
