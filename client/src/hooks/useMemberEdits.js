@@ -32,7 +32,7 @@ export default function useMemberEdits(currentGroup) {
   /**
    * fetches data for all registered users who are currently assigned as a guest and updates state accordingly
 
-   * @param {string} group the name of the group whose members' sign-ins are to be fetched 
+   * @param {string} group the group whose members' sign-ins are to be fetched 
    */
   async function fetchUsers(group) {
     try {
@@ -53,22 +53,19 @@ export default function useMemberEdits(currentGroup) {
   /**
    * confirms with the iser that they would like to move the user they have selected into a new group. If confirmed, calls changeGroup() to initiate the move
    *
-   * userInfo.selectedUser === the user to move
-   * userInfo.groupToPlace === name of the group to place the member in
-   *
-   * @param {object} userInfo information about the userand what group to move them to
+   * @param {string} groupToPlace the group to place the user into
+   * @param {object} userInfo     information about the user to be moved
    */
-  function confirmGroupChange(userInfo) {
-    if (
-      window.confirm(
-        `Move ${userInfo.selectedUser.firstName} ${userInfo.selectedUser.lastName} to ${userInfo.groupToPlace}?`
-      )
-    ) {
+  function confirmGroupChange(
+    groupToPlace,
+    { firstName, lastName, advizotID, _id }
+  ) {
+    if (window.confirm(`Move ${firstName} ${lastName} to ${groupToPlace}?`)) {
       changeGroup({
-        firstName: userInfo.selectedUser.firstName,
-        advizotID: userInfo.selectedUser.advizotID,
-        _id: userInfo.selectedUser._id,
-        groupToPlace: userInfo.groupToPlace,
+        firstName,
+        advizotID,
+        _id,
+        groupToPlace,
       });
     } else {
       return;
@@ -108,9 +105,10 @@ export default function useMemberEdits(currentGroup) {
    * Makes a DELETE request to the database to remove data trributed to the user that corresponds to the advizaotID passed as an argument
    * @param {Object} e         the event object of the clicked button
    * @param {string} _id       the MondoDB _id of the user whose data is to be deleted
+   * @param {string} advizotID The advizotID of the member to be deleted
    * @param {string} firstName The first name of the member to be deleted
    */
-  async function deleteMember(e, _id, advizotID, firstName) {
+  async function deleteMember(e, { _id, advizotID, firstName }) {
     try {
       setLoading(true);
       e.preventDefault();

@@ -74,12 +74,7 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
           <label htmlFor="groupToPlace">
             Move Into Group
             <select
-              onChange={(e) =>
-                confirmGroupChange({
-                  selectedUser,
-                  groupToPlace: e.target.value,
-                })
-              }
+              onChange={(e) => confirmGroupChange(e.target.value, selectedUser)}
               id="groupToPlace"
               className="rating-select"
             >
@@ -146,14 +141,7 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
           </label>
 
           <button
-            onClick={(e) =>
-              deleteMember(
-                e,
-                selectedUser._id,
-                selectedUser.advizotID,
-                selectedUser.firstName
-              )
-            }
+            onClick={(e) => deleteMember(e, selectedUser)}
             className="delete-member-btn"
             disabled={deleteMemberDisabled}
           >
