@@ -25,7 +25,7 @@ export default function ModalTemplate({ children, title, handleClose }) {
           </button>
         </header>
 
-        {children}
+        <div className="modal-body">{children}</div>
       </motion.div>
     </div>,
     document.querySelector(".App")

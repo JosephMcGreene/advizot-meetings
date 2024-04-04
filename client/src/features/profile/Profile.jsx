@@ -17,8 +17,8 @@ export default function Profile() {
   return (
     <article>
       <h2>
-        Oh, sorry for the confusion, but the profile page isn't actually a
-        feature yet. Check back soon though!
+        Oh, sorry for the confusion, but the this page isn't actually a feature
+        yet. Check back soon though!
       </h2>
       <Link to="../" style={style}>
         Back to the Meeting

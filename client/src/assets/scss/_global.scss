@@ -98,6 +98,34 @@ button {
     @include btnHover();
   }
 }
+.delete-member-btn {
+  @include borderRadius();
+  @include transition(box-shadow background-color);
+
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1ch 3ch;
+
+  font-family: $main-font;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: hsl(0, 100%, 50%);
+  background-color: transparent;
+  cursor: pointer;
+
+  &:hover {
+    background-color: hsl(0, 100%, 80%);
+  }
+  &[disabled] {
+    @include transition(color);
+    color: grey;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
 
 .close-x {
   padding: 0rem 1rem;

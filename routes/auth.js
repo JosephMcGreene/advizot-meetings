@@ -1,11 +1,11 @@
 import { Router } from "express";
 import passport from "passport";
 //Internal Modules
-import "../utils/passportConfig.js";
+import "../lib/passportConfig.js";
 
 const authRouter = Router();
 
-//Passport Strategies
+//Passport Strategies, since passport.js is the controller
 authRouter.route("/linkedin").get(passport.authenticate("linkedin"));
 authRouter.route("/linkedin/callback").get(
   passport.authenticate("linkedin", {

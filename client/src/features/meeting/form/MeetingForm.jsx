@@ -28,112 +28,110 @@ export default function MeetingForm({
   }
 
   return (
-    <div className="modal-body">
-      <Formik
-        initialValues={{
-          business: existingSignIn?.business || 0,
-          personal: existingSignIn?.personal || 0,
-          relationships: existingSignIn?.relationships || 0,
-          monthlyIssue: existingSignIn?.monthlyIssue || "",
-          priority: existingSignIn?.priority || "",
-          monthlyGoal: existingSignIn?.monthlyGoal || "",
-        }}
-        validationSchema={Yup.object({
-          business: Yup.number().test(
-            "atLeast",
-            "This should be at least 1",
-            (val) => val > 0
-          ),
-          personal: Yup.number().test(
-            "atLeast",
-            "This should be at least 1",
-            (val) => val > 0
-          ),
-          relationships: Yup.number().test(
-            "atLeast",
-            "This should be at least 1",
-            (val) => val > 0
-          ),
-          monthlyIssue: Yup.string().required("Don't forget this one!"),
-          priority: Yup.string().required("Don't forget this one!"),
-          monthlyGoal: Yup.string().required("Don't forget this one!"),
-        })}
-        onSubmit={(values, actions) => {
-          try {
-            handleSubmit(values, existingSignIn);
-            actions.setSubmitting(false);
-          } catch (err) {
-            console.error(err);
-          } finally {
-            handleClose();
-          }
-        }}
-      >
-        {({ isSubmitting, submitCount, ...props }) => (
-          <Form className="form">
-            <InputField
-              text="How is your business?"
-              name="business"
-              as="input"
-              type="range"
-              min={0}
-              max={10}
-              className="range-container"
-              style={sliderSizeOf(props.values.business)}
-              spanText={props.values.business}
-            />
+    <Formik
+      initialValues={{
+        business: existingSignIn?.business || 0,
+        personal: existingSignIn?.personal || 0,
+        relationships: existingSignIn?.relationships || 0,
+        monthlyIssue: existingSignIn?.monthlyIssue || "",
+        priority: existingSignIn?.priority || "",
+        monthlyGoal: existingSignIn?.monthlyGoal || "",
+      }}
+      validationSchema={Yup.object({
+        business: Yup.number().test(
+          "atLeast",
+          "This should be at least 1",
+          (val) => val > 0
+        ),
+        personal: Yup.number().test(
+          "atLeast",
+          "This should be at least 1",
+          (val) => val > 0
+        ),
+        relationships: Yup.number().test(
+          "atLeast",
+          "This should be at least 1",
+          (val) => val > 0
+        ),
+        monthlyIssue: Yup.string().required("Don't forget this one!"),
+        priority: Yup.string().required("Don't forget this one!"),
+        monthlyGoal: Yup.string().required("Don't forget this one!"),
+      })}
+      onSubmit={(values, actions) => {
+        try {
+          handleSubmit(values, existingSignIn);
+          actions.setSubmitting(false);
+        } catch (err) {
+          console.error(err);
+        } finally {
+          handleClose();
+        }
+      }}
+    >
+      {({ isSubmitting, submitCount, ...props }) => (
+        <Form className="form">
+          <InputField
+            text="How is your business?"
+            name="business"
+            as="input"
+            type="range"
+            min={0}
+            max={10}
+            className="range-container"
+            style={sliderSizeOf(props.values.business)}
+            spanText={props.values.business}
+          />
 
-            <InputField
-              text="How is your health?"
-              name="personal"
-              as="input"
-              type="range"
-              min={0}
-              max={10}
-              className="range-container"
-              style={sliderSizeOf(props.values.personal)}
-              spanText={props.values.personal}
-            />
-            <InputField
-              text="How are your relationships?"
-              name="relationships"
-              as="input"
-              type="range"
-              min={0}
-              max={10}
-              className="range-container"
-              style={sliderSizeOf(props.values.relationships)}
-              spanText={props.values.relationships}
-            />
-            <InputField
-              text="Issue to process today"
-              name="monthlyIssue"
-              as="textarea"
-              className="text-input"
-            />
-            <Select text="Priority" name="priority" className="select">
-              <option value="">-- Select a Priority --</option>
-              <option value="aA">A</option>
-              <option value="bB">B</option>
-              <option value="cQ">Question</option>
-              <option value="dL">Lightning</option>
-              {user.role === "admin" && existingSignIn && (
-                <option value="zP">Processed</option>
-              )}
-            </Select>
-            <InputField
-              text="Goal before next meeting"
-              name="monthlyGoal"
-              as="textarea"
-              wwwww
-              className="text-input"
-            />
-            <button type="submit" className="btn">
-              Submit
-            </button>
-          </Form>
-        )}
-      </Formik>
-    </div>
+          <InputField
+            text="How is your health?"
+            name="personal"
+            as="input"
+            type="range"
+            min={0}
+            max={10}
+            className="range-container"
+            style={sliderSizeOf(props.values.personal)}
+            spanText={props.values.personal}
+          />
+          <InputField
+            text="How are your relationships?"
+            name="relationships"
+            as="input"
+            type="range"
+            min={0}
+            max={10}
+            className="range-container"
+            style={sliderSizeOf(props.values.relationships)}
+            spanText={props.values.relationships}
+          />
+          <InputField
+            text="Issue to process today"
+            name="monthlyIssue"
+            as="textarea"
+            className="text-input"
+          />
+          <Select text="Priority" name="priority" className="select">
+            <option value="">-- Select a Priority --</option>
+            <option value="aA">A</option>
+            <option value="bB">B</option>
+            <option value="cQ">Question</option>
+            <option value="dL">Lightning</option>
+            {user.role === "admin" && existingSignIn && (
+              <option value="zP">Processed</option>
+            )}
+          </Select>
+          <InputField
+            text="Goal before next meeting"
+            name="monthlyGoal"
+            as="textarea"
+            wwwww
+            className="text-input"
+          />
+          <button type="submit" className="btn">
+            Submit
+          </button>
+        </Form>
+      )}
+    </Formik>
   );
 }

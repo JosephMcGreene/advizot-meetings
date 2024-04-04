@@ -12,7 +12,7 @@ import signInRouter from "./routes/signIns.js";
 import authRouter from "./routes/auth.js";
 import roomCodeRouter from "./routes/roomCode.js";
 import usersRouter from "./routes/users.js";
-import "./utils/passportConfig.js";
+import "./lib/passportConfig.js";
 
 config();
 const app = express();
