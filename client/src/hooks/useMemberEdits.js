@@ -13,6 +13,9 @@ export default function useMemberEdits(currentGroup) {
   const [deleteMemberDisabled, setDeleteMemberDisabled] = useState(true);
   const [groupPlacementEnabled, setGroupPlacementEnabled] = useState(false);
 
+  /**
+   * Whenever the user changes the input to type in a user's name who is being confirmed to be deleted, this Effect checks to see if what is now in the input field matches the user's name. If it does, then it enables the button to delete them
+   */
   useEffect(() => {
     const selectedUserFullName =
       selectedUser.firstName + " " + selectedUser.lastName;
