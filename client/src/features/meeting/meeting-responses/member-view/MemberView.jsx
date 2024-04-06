@@ -37,16 +37,14 @@ export default function MemberView({
         </h2>
       ) : (
         <ul className="sign-ins-ul">
-          {signIns.map((signIn, index) => {
-            return (
-              <MemberSignIn
-                key={`${signIn.date}${index}`}
-                signInBody={signIn}
-                handleDelete={handleDelete}
-                handleSubmitEdits={handleSubmitEdits}
-              />
-            );
-          })}
+          {signIns.map((signIn, index) => (
+            <MemberSignIn
+              key={`${signIn.date}${index}`}
+              signInBody={signIn}
+              handleDelete={handleDelete}
+              handleSubmitEdits={handleSubmitEdits}
+            />
+          ))}
         </ul>
       )}
 

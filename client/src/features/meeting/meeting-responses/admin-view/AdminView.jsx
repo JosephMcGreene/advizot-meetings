@@ -92,16 +92,14 @@ export default function AdminView({
               </ul>
             )}
 
-            {signIns.map((signIn, index) => {
-              return (
-                <AdminSignIn
-                  key={`${signIn.date}${index}`}
-                  signInBody={signIn}
-                  handleSubmitEdits={handleSubmitEdits}
-                  handleDelete={handleDelete}
-                />
-              );
-            })}
+            {signIns.map((signIn, index) => (
+              <AdminSignIn
+                key={`${signIn.date}${index}`}
+                signInBody={signIn}
+                handleSubmitEdits={handleSubmitEdits}
+                handleDelete={handleDelete}
+              />
+            ))}
             <ActionsBtn handleClick={() => setActionsShown(!actionsShown)}>
               <img
                 src={slidersIcon}
