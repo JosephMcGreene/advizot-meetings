@@ -3,7 +3,7 @@ import { UserContext } from "../../../../App";
 //Assets
 import { ReactComponent as NewSignInIcon } from "../../../../assets/img/file-circle-plus-solid.svg";
 //Components
-import MemberSignIn from "./MemberSignIn";
+import MemberSignIns from "./MemberSignIns";
 import ActionsBtn from "../ActionsBtn";
 
 export default function MemberView({
@@ -12,6 +12,21 @@ export default function MemberView({
   handleSubmitEdits,
   handleSignInClick,
 }) {
+  return (
+    <>
+      <MemberSignIns
+        signIns={signIns}
+        handleDelete={handleDelete}
+        handleSubmitEdits={handleSubmitEdits}
+        handleSignInClick={handleSignInClick}
+      />
+
+      <CheckInBtn signIns={signIns} />
+    </>
+  );
+}
+
+function CheckInBtn({ signIns, handleSignInClick }) {
   const user = useContext(UserContext);
 
   /**
@@ -23,24 +38,7 @@ export default function MemberView({
     signIns.find((signIn) => signIn.userID === user.advizotID);
 
   return (
-    <section className="sign-ins-section">
-      {signIns.length === 0 ? (
-        <h2 className="centered-heading">
-          There is no one signed in right now.
-        </h2>
-      ) : (
-        <ul className="sign-ins-ul">
-          {signIns.map((signIn, index) => (
-            <MemberSignIn
-              key={`${signIn.date}${index}`}
-              signInBody={signIn}
-              handleDelete={handleDelete}
-              handleSubmitEdits={handleSubmitEdits}
-            />
-          ))}
-        </ul>
-      )}
-
+    <>
       {/* Only allow user to add a sign-in response if they have not added one during this meeting */}
       {signInOfUser()?.userID !== user.advizotID && (
         <ActionsBtn handleClick={handleSignInClick}>
@@ -48,6 +46,6 @@ export default function MemberView({
           <NewSignInIcon className="add-icon" />
         </ActionsBtn>
       )}
-    </section>
+    </>
   );
 }
