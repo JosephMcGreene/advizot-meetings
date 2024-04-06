@@ -24,7 +24,7 @@ export default function AdminActions({
   const [memberEditModalShown, setMemberEditModalShown] = useState(false);
 
   const actionsRef = useRef();
-  useOutsideClick(actionsRef, () => setActionsShown(!actionsShown));
+  useOutsideClick(actionsRef, () => setActionsShown(false));
 
   return (
     <>

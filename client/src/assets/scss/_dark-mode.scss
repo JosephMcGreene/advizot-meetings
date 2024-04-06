@@ -77,12 +77,8 @@ $text-dark: black;
     }
   }
 
-  .meeting-heading select {
-    background-color: $darker-bg;
-
-    option {
-      background-color: $dark-bg;
-    }
+  .meeting-heading select option {
+    background-color: $dark-bg;
   }
 
   .room-code-display {

@@ -25,7 +25,7 @@ export default function MeetingHeading({ currentGroup }) {
         <h1 className="meeting-heading">
           {user.role === "admin" ? (
             <select value={selectedGroup} onChange={(e) => handleChange(e)}>
-              <option>-- {currentGroup} --</option>
+              <option>{currentGroup}</option>
               <option value="admin">Admins</option>
               <option value="CE5660">CE5660</option>
               <option value="KEY9330">KEY9330</option>
@@ -35,7 +35,7 @@ export default function MeetingHeading({ currentGroup }) {
           ) : (
             currentGroup
           )}{" "}
-          {currentDate("month")} {currentDate("year")}
+          {currentDate("month")}, {currentDate("year")}
         </h1>
 
         <RoomCodeToggle

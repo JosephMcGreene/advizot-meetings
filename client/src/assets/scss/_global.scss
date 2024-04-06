@@ -52,30 +52,7 @@ body {
   @include advizotFont(2rem, 400, 1px);
 
   text-align: center;
-  margin-block: 1.75rem;
-
-  select {
-    @include advizotFont(inherit, 400, 1px);
-    @include borderRadius();
-    @include transition(box-shadow transform);
-
-    padding: 0.5rem 0.5rem;
-
-    color: inherit;
-    background-color: $advizot-grey;
-    border: none;
-    text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-
-    &:hover {
-      @include btnHover();
-    }
-    option {
-      background-color: $advizot-grey;
-      color: inherit;
-    }
-  }
+  // margin-top: 1.75rem;
 }
 
 button {
