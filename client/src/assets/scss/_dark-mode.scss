@@ -34,7 +34,8 @@ $text-dark: black;
           background-color: $darker-bg;
         }
         .text-input textarea,
-        .select .rating-select {
+        .select .rating-select,
+        .rating-select {
           background-color: $darker-bg;
           color: $advizot-grey;
           border: none;
@@ -76,6 +77,14 @@ $text-dark: black;
     }
   }
 
+  .meeting-heading select {
+    background-color: $darker-bg;
+
+    option {
+      background-color: $dark-bg;
+    }
+  }
+
   .room-code-display {
     color: $text-dark;
     border: none;
@@ -98,6 +107,13 @@ $text-dark: black;
     }
     .admin-info-cell {
       border-bottom: none;
+
+      svg path {
+        fill: $advizot-grey;
+      }
+      .delete-btn svg path {
+        fill: black;
+      }
     }
   }
 

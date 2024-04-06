@@ -12,7 +12,7 @@ import signInRouter from "./routes/signIns.js";
 import authRouter from "./routes/auth.js";
 import roomCodeRouter from "./routes/roomCode.js";
 import usersRouter from "./routes/users.js";
-import "./utils/passportConfig.js";
+import "./lib/passportConfig.js";
 
 config();
 const app = express();
@@ -62,8 +62,10 @@ app.use("/auth", authRouter);
 app.use("/roomCode", roomCodeRouter);
 app.use("/users", usersRouter);
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "/client/build/index.html"));
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/client/build/index.html"), (err) => {
+    if (err) res.status(500).send(err);
+  });
 });
 
 //=====SERVER START=====

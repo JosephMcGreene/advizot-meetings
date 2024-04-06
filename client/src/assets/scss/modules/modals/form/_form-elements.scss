@@ -14,10 +14,10 @@
   .select {
     display: flex;
     flex-direction: column;
-
-    label {
-      text-align: center;
-    }
+  }
+  label {
+    text-align: center;
+    width: 100%;
   }
 
   .checkbox {
@@ -45,7 +45,7 @@
   @include borderSides();
   margin-top: 0.15rem;
   padding: $padding;
-  max-width: 100%;
+  width: 100%;
 
   background-color: $light-bg;
   font-family: inherit;

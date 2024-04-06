@@ -1,6 +1,10 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../App";
+import { Link, Navigate } from "react-router-dom";
 
 export default function Profile() {
+  const user = useContext(UserContext);
+
   const style = {
     backgroundColor: "orange",
     maxWidth: "fitContent",
@@ -9,13 +13,14 @@ export default function Profile() {
     borderRadius: "12px",
   };
 
+  if (!user.advizotID) return <Navigate to="/" />;
   return (
     <article>
       <h2>
-        Oh, sorry for the confusion, but the profile page isn't actually a
-        feature yet. Check back soon though!
+        Oh, sorry for the confusion, but the this page isn't actually a feature
+        yet. Check back soon though!
       </h2>
-      <Link to="/meeting" style={style}>
+      <Link to="../" style={style}>
         Back to the Meeting
       </Link>
     </article>

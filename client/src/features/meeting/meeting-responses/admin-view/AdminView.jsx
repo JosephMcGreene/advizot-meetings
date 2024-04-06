@@ -3,17 +3,12 @@ import { useState } from "react";
 import slidersIcon from "../../../../assets/img/sliders-solid.svg";
 //External
 import { motion } from "framer-motion";
-//Internal
-import { currentDate } from "../../../../helpers";
 //Components
-import RoomCodeToggle from "../../admin-actions/RoomCodeToggle";
-import RoomCodeDisplay from "../../room-code/RoomCodeDisplay";
 import MemberView from "../member-view/MemberView";
 import AdminSignIn from "./AdminSignIn";
 import ActionsBtn from "../ActionsBtn";
 import AdminActionList from "../../admin-actions/AdminActionList";
 import ModalTemplate from "../../../../shared/modals/ModalTemplate";
-import FilterModal from "../../admin-actions/FilterModal";
 import MemberEditModal from "../../admin-actions/MemberEditModal";
 
 export default function AdminView({
@@ -22,29 +17,13 @@ export default function AdminView({
   handleSubmitEdits,
   handleDelete,
   handleNewSignInClick,
-  handleFilterSubmit,
 }) {
   const [actionsShown, setActionsShown] = useState(false);
-  const [roomCodeShown, setRoomCodeShown] = useState(false);
-  const [filterModalShown, setFilterModalShown] = useState(false);
   const [viewAsMember, setViewAsMember] = useState(false);
   const [memberEditModalShown, setMemberEditModalShown] = useState(false);
 
   return (
     <>
-      <div className="heading-container">
-        <h1 className="meeting-heading">
-          {currentGroup === "admin" ? "Admins" : currentGroup} -{" "}
-          {currentDate("month")} {currentDate("year")}
-        </h1>
-        <RoomCodeToggle
-          handleClick={() => setRoomCodeShown(!roomCodeShown)}
-          roomCodeShown={roomCodeShown}
-        />
-      </div>
-
-      {roomCodeShown && <RoomCodeDisplay />}
-
       {viewAsMember ? (
         <>
           I'm a member!
@@ -103,7 +82,7 @@ export default function AdminView({
             <ActionsBtn handleClick={() => setActionsShown(!actionsShown)}>
               <img
                 src={slidersIcon}
-                alt="user actions"
+                alt="actions slider"
                 className="sliders-icon"
               />
             </ActionsBtn>
@@ -116,25 +95,12 @@ export default function AdminView({
           onFormSubmit={handleSubmitEdits}
           actionToggle={() => setActionsShown(!actionsShown)}
           handleNewSignInClick={handleNewSignInClick}
-          handleFilterClick={() => setFilterModalShown(!filterModalShown)}
           handleViewAsMemberClick={() => setViewAsMember(!viewAsMember)}
           viewAsMember={viewAsMember}
           handleMemberEditClick={() =>
             setMemberEditModalShown(!memberEditModalShown)
           }
         />
-      )}
-
-      {filterModalShown && (
-        <ModalTemplate
-          title="Filter Sign-Ins"
-          handleClose={() => setFilterModalShown(false)}
-        >
-          <FilterModal
-            handleFilterSubmit={handleFilterSubmit}
-            handleClose={() => setFilterModalShown(false)}
-          />
-        </ModalTemplate>
       )}
 
       {memberEditModalShown && (

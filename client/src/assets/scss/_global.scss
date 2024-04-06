@@ -54,7 +54,28 @@ body {
   text-align: center;
   margin-block: 1.75rem;
 
-  text-decoration: underline;
+  select {
+    @include advizotFont(inherit, 400, 1px);
+    @include borderRadius();
+    @include transition(box-shadow transform);
+
+    padding: 0.5rem 0.5rem;
+
+    color: inherit;
+    background-color: $advizot-grey;
+    border: none;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+
+    &:hover {
+      @include btnHover();
+    }
+    option {
+      background-color: $advizot-grey;
+      color: inherit;
+    }
+  }
 }
 
 button {
@@ -75,6 +96,34 @@ button {
 
   &:hover {
     @include btnHover();
+  }
+}
+.delete-member-btn {
+  @include borderRadius();
+  @include transition(box-shadow background-color);
+
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1ch 3ch;
+
+  font-family: $main-font;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: hsl(0, 100%, 50%);
+  background-color: transparent;
+  cursor: pointer;
+
+  &:hover {
+    background-color: hsl(0, 100%, 80%);
+  }
+  &[disabled] {
+    @include transition(color);
+    color: grey;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: transparent;
+    }
   }
 }
 

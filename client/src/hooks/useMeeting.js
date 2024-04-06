@@ -1,10 +1,11 @@
 import { useState, useEffect, useContext } from "react";
-import { UserContext, ToastContext } from "../App";
+import { UserContext } from "../App";
+import useToasts from "./useToasts";
 import { axiosFetch } from "../helpers";
 
 export default function useMeeting(method, url) {
   const user = useContext(UserContext);
-  const { showToast } = useContext(ToastContext);
+  const { showToast } = useToasts();
 
   const [signIns, setSignIns] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -34,7 +35,7 @@ export default function useMeeting(method, url) {
     if (signInBody.group === "admin") {
       signInBody.priority = signInBody.priority.replace(
         signInBody.priority.charAt(0),
-        "z"
+        "y"
       );
     }
 
@@ -137,12 +138,5 @@ export default function useMeeting(method, url) {
     }
   }
 
-  return [
-    sortedSignIns,
-    loading,
-    currentGroup,
-    getSignIns,
-    submitSignIn,
-    deleteSignIn,
-  ];
+  return [sortedSignIns, loading, currentGroup, submitSignIn, deleteSignIn];
 }

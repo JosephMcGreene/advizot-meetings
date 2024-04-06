@@ -1,6 +1,7 @@
 import { useState } from "react";
 //Assets
 import { ReactComponent as EditPen } from "../../../../assets/img/pen-solid.svg";
+import { ReactComponent as Lightning } from "../../../../assets/img/bolt-lightning-solid.svg";
 //Components
 import ModalTemplate from "../../../../shared/modals/ModalTemplate";
 import MeetingForm from "../../form/MeetingForm";
@@ -18,7 +19,7 @@ export default function AdminTableCell({
         onClick={() => setMeetingFormShown(!meetingFormShown)}
         className="admin-info-cell"
       >
-        {signInItem}
+        {signInItem === "L" ? <Lightning className="icon" /> : signInItem}
         <EditPen className="edit-pen" />
       </p>
 
