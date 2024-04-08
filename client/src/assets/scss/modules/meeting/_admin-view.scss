@@ -86,21 +86,25 @@
 
   box-shadow: $box-shadow;
   border-radius: $border-radius 0px 0px 0px;
+  // mask-image: linear-gradient(to left, transparent, $light-bg 15%);
 
   .admin-head,
   .admin-sign-in-row {
     display: grid;
-    grid-template-columns: 1.2fr 0.45fr 0.59fr 0.59fr 0.76fr 0.45fr 0.45fr;
-    grid-template-columns: repeat(7, 1fr);
-    min-height: 68px;
+    grid-template-columns: 1.7fr repeat(4, 1fr) repeat(2, 1.1fr);
+    width: 100vw;
 
     border: $border;
   }
 
-  .admin-head .admin-heading,
-  .admin-sign-in-row .admin-info-cell {
+  .admin-heading,
+  .admin-info-cell,
+  .admin-row-name {
     border-right: $border;
-    padding: 0.875ch;
+    padding: 0.5ch;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   .admin-heading:last-child,
@@ -146,10 +150,10 @@
     }
 
     .admin-info-cell {
+      position: relative;
       display: flex;
-      justify-content: space-evenly;
+      justify-content: center;
       align-items: center;
-
       font-size: 1.2rem;
       cursor: pointer;
 
@@ -157,26 +161,18 @@
         width: 18px;
       }
 
-      .admin-row-name {
-        align-self: center;
-        text-align: center;
-      }
-
       .delete-btn {
         $size: 40px;
 
+        position: absolute;
+        top: calc(50% - $size / 2);
+        left: 5px;
         width: $size;
         height: $size;
 
         .delete-icon {
           width: 18px;
         }
-      }
-
-      &:nth-child(6),
-      &:nth-child(7) {
-        display: inline;
-        text-align: left;
       }
     }
   }
@@ -188,4 +184,8 @@
     justify-content: center;
     gap: 2rem;
   }
+}
+
+.admin-sign-ins::-webkit-scrollbar {
+  display: none;
 }
