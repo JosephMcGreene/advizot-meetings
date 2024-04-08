@@ -15,13 +15,13 @@ export default function AdminTableCell({
 
   return (
     <>
-      <p
+      <td
         onClick={() => setMeetingFormShown(!meetingFormShown)}
         className="admin-info-cell"
       >
         {signInItem === "L" ? <Lightning className="icon" /> : signInItem}
         <EditPen className="edit-pen" />
-      </p>
+      </td>
 
       {meetingFormShown && (
         <ModalTemplate

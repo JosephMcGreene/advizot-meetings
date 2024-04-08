@@ -13,14 +13,14 @@ export default function AdminSignIn({
   const [deleteBtnShown, setDeleteBtnShown] = useState(false);
 
   return (
-    <motion.article
+    <motion.tr
       layout
       transition={{ type: "tween", stiffness: 10, duration: 0.1 }}
       className="admin-sign-in-row"
       onMouseEnter={() => setDeleteBtnShown(true)}
       onMouseLeave={() => setDeleteBtnShown(false)}
     >
-      <span className="admin-info-cell">
+      <th className="admin-info-cell">
         {deleteBtnShown && (
           <DeleteButton signInID={signInBody._id} handleDelete={handleDelete} />
         )}
@@ -32,7 +32,7 @@ export default function AdminSignIn({
         >
           {signInBody.userName}
         </motion.h4>
-      </span>
+      </th>
 
       <AdminTableCell
         signInBody={signInBody}
@@ -64,6 +64,6 @@ export default function AdminSignIn({
         signInItem={signInBody.monthlyGoal}
         handleSubmitEdits={handleSubmitEdits}
       />
-    </motion.article>
+    </motion.tr>
   );
 }

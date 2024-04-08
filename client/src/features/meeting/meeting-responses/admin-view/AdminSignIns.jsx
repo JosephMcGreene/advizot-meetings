@@ -9,30 +9,32 @@ export default function AdminSignIns({
   handleDelete,
 }) {
   return (
-    <motion.section
+    <motion.table
       layout
       transition={{ type: "tween", stiffness: 10, duration: 0.1 }}
       className="admin-sign-ins"
     >
       {signIns.length > 0 && (
-        <ul className="admin-head">
-          <li className="admin-heading">Name</li>
-          <li className="admin-heading">Priority</li>
-          <li className="admin-heading">Business</li>
-          <li className="admin-heading">Personal</li>
-          <li className="admin-heading">Relationships</li>
-          <li className="admin-heading">Issue</li>
-          <li className="admin-heading">Goal</li>
-        </ul>
+        <thead className="admin-head">
+          <th className="admin-heading">Name</th>
+          <th className="admin-heading">Priority</th>
+          <th className="admin-heading">Business</th>
+          <th className="admin-heading">Personal</th>
+          <th className="admin-heading">Relationships</th>
+          <th className="admin-heading">Issue</th>
+          <th className="admin-heading">Goal</th>
+        </thead>
       )}
-      {signIns.map((signIn, index) => (
-        <AdminSignIn
-          key={`${signIn.date}${index}`}
-          signInBody={signIn}
-          handleSubmitEdits={handleSubmitEdits}
-          handleDelete={handleDelete}
-        />
-      ))}
-    </motion.section>
+      <tbody>
+        {signIns.map((signIn, index) => (
+          <AdminSignIn
+            key={`${signIn.date}${index}`}
+            signInBody={signIn}
+            handleSubmitEdits={handleSubmitEdits}
+            handleDelete={handleDelete}
+          />
+        ))}
+      </tbody>
+    </motion.table>
   );
 }
