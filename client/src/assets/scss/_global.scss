@@ -18,7 +18,7 @@
 .App {
   position: relative;
   min-height: 100vh;
-  padding-bottom: 5rem;
+  padding: 0 3vw 5rem;
 
   .main-content {
     padding-top: $header-height;
@@ -52,7 +52,6 @@ body {
   @include advizotFont(2rem, 400, 1px);
 
   text-align: center;
-  // margin-top: 1.75rem;
 }
 
 button {

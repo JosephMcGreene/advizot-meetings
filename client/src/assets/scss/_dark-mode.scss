@@ -81,9 +81,10 @@ $text-dark: black;
     background-color: $dark-bg;
   }
 
-  .room-code-display {
+  .room-code-container .room-code-display {
     color: $text-dark;
     border: none;
+    box-shadow: none;
   }
 
   .admin-sign-ins {

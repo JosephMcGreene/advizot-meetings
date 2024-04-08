@@ -34,17 +34,20 @@ export default function MeetingHeading({ currentGroup }) {
             </select>
           ) : (
             currentGroup
-          )}{" "}
-          {currentDate("month")}, {currentDate("year")}
+          )}
+          {""}
+          {currentDate("month")} {currentDate("year")}
         </h1>
-
-        <RoomCodeToggle
-          handleClick={() => setRoomCodeShown(!roomCodeShown)}
-          roomCodeShown={roomCodeShown}
-        />
       </div>
 
-      {roomCodeShown && <RoomCodeDisplay />}
+      <div className="room-code-container">
+        <RoomCodeToggle
+          setRoomCodeShown={setRoomCodeShown}
+          roomCodeShown={roomCodeShown}
+        />
+
+        {roomCodeShown && <RoomCodeDisplay />}
+      </div>
 
       <Outlet />
     </>
