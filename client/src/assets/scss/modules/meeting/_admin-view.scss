@@ -1,6 +1,6 @@
 @use "../../index" as *;
 
-.admin-sign-ins {
+.admin-sign-ins-table {
   $border: 1px solid black;
 
   margin: 0 auto;
@@ -8,17 +8,8 @@
   box-shadow: $box-shadow;
   border-radius: $border-radius 0px 0px 0px;
 
-  .admin-head,
-  .admin-sign-in-row {
-    display: grid;
-    grid-template-columns: 1.7fr repeat(4, 1fr) repeat(2, 1.1fr);
-
-    border: $border;
-  }
-
-  .admin-heading,
-  .admin-info-cell,
-  .admin-row-name {
+  .table-heading,
+  .tbody-th {
     border-right: $border;
     padding: 0.5ch;
     overflow: hidden;
@@ -26,12 +17,12 @@
     text-overflow: ellipsis;
   }
 
-  .admin-heading:last-child,
-  .admin-info-cell:last-child {
+  .table-heading:last-child,
+  .tbody-th:last-child {
     border-right: none;
   }
 
-  .admin-head {
+  .thead {
     text-align: center;
 
     list-style: none;
@@ -41,16 +32,15 @@
       border-radius: 12px 0px 0px 0px;
     }
 
-    .admin-heading {
-      display: grid;
-      place-items: center;
+    .table-heading {
+      color: $text-primary;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
     }
   }
 
-  .admin-sign-in-row {
+  .tbody-row {
     border-top: none;
     overflow: hidden;
     white-space: nowrap;
@@ -63,10 +53,7 @@
       }
     }
 
-    .admin-info-cell {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .tbody-th {
       font-size: 1.2rem;
       cursor: pointer;
 
@@ -87,10 +74,10 @@
           width: 18px;
         }
       }
+
+      .admin-row-name {
+        padding: 0.5ch;
+      }
     }
   }
-}
-
-.admin-sign-ins::-webkit-scrollbar {
-  display: none;
 }

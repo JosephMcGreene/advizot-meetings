@@ -17,7 +17,7 @@ export default function AdminTableCell({
     <>
       <td
         onClick={() => setMeetingFormShown(!meetingFormShown)}
-        className="admin-info-cell"
+        className="tbody-th"
       >
         {signInItem === "L" ? <Lightning className="icon" /> : signInItem}
         <EditPen className="edit-pen" />

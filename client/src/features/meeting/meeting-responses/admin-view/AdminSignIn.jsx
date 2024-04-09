@@ -12,11 +12,11 @@ export default function AdminSignIn({
 
   return (
     <tr
-      className="admin-sign-in-row"
+      className="tbody-row"
       onMouseEnter={() => setDeleteBtnShown(true)}
       onMouseLeave={() => setDeleteBtnShown(false)}
     >
-      <th className="admin-info-cell">
+      <th className="tbody-th">
         {deleteBtnShown && (
           <DeleteButton signInID={signInBody._id} handleDelete={handleDelete} />
         )}

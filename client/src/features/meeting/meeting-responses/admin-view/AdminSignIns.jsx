@@ -12,20 +12,20 @@ export default function AdminSignIns({
     <motion.table
       layout
       transition={{ type: "tween", stiffness: 10, duration: 0.1 }}
-      className="admin-sign-ins"
+      className="admin-sign-ins-table"
     >
       {signIns.length > 0 && (
-        <thead className="admin-head">
-          <th className="admin-heading">Name</th>
-          <th className="admin-heading">Priority</th>
-          <th className="admin-heading">Business</th>
-          <th className="admin-heading">Personal</th>
-          <th className="admin-heading">Relationships</th>
-          <th className="admin-heading">Issue</th>
-          <th className="admin-heading">Goal</th>
+        <thead className="thead">
+          <th className="table-heading">Name</th>
+          <th className="table-heading">Priority</th>
+          <th className="table-heading">Business</th>
+          <th className="table-heading">Personal</th>
+          <th className="table-heading">Relationships</th>
+          <th className="table-heading">Issue</th>
+          <th className="table-heading">Goal</th>
         </thead>
       )}
-      <tbody>
+      <tbody className="tbody">
         {signIns.map((signIn, index) => (
           <AdminSignIn
             key={`${signIn.date}${index}`}
