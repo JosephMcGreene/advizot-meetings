@@ -1,6 +1,4 @@
 import { useState } from "react";
-//External
-import { motion } from "framer-motion";
 //Components
 import AdminTableCell from "./AdminTableCell";
 import DeleteButton from "../DeleteButton";
@@ -13,9 +11,7 @@ export default function AdminSignIn({
   const [deleteBtnShown, setDeleteBtnShown] = useState(false);
 
   return (
-    <motion.tr
-      layout
-      transition={{ type: "tween", stiffness: 10, duration: 0.1 }}
+    <tr
       className="admin-sign-in-row"
       onMouseEnter={() => setDeleteBtnShown(true)}
       onMouseLeave={() => setDeleteBtnShown(false)}
@@ -25,13 +21,7 @@ export default function AdminSignIn({
           <DeleteButton signInID={signInBody._id} handleDelete={handleDelete} />
         )}
 
-        <motion.h4
-          layout
-          transition={{ type: "tween", stiffness: 10, duration: 0.1 }}
-          className="admin-row-name"
-        >
-          {signInBody.userName}
-        </motion.h4>
+        <h4 className="admin-row-name">{signInBody.userName}</h4>
       </th>
 
       <AdminTableCell
@@ -64,6 +54,6 @@ export default function AdminSignIn({
         signInItem={signInBody.monthlyGoal}
         handleSubmitEdits={handleSubmitEdits}
       />
-    </motion.tr>
+    </tr>
   );
 }

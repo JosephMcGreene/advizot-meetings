@@ -1,64 +1,90 @@
 @use "../../index" as *;
 
-.heading-container {
+.meeting-heading {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 
-  .meeting-heading {
-    margin-top: 0rem;
-    margin-bottom: 2rem;
+  select {
+    @include advizotFont(inherit, 400, 1px);
+    @include borderRadius();
+    @include transition(box-shadow transform);
+
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+
+    padding: 0.5rem 2rem;
+    padding-right: 0rem;
+
+    background-color: transparent;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='40' viewBox='0 0 24 24' width='40' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 0%;
+    background-position-y: 50%;
+
+    color: inherit;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      @include btnHover();
+    }
+
+    option {
+      color: inherit;
+    }
+  }
+}
+
+.room-code-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+
+  .code-toggle {
+    padding: 0.75rem;
+
+    border-radius: 100vw;
+    background-color: $advizot-color;
+    cursor: pointer;
+
+    &:hover {
+      @include btnHover();
+    }
+
+    .icon {
+      $size: 29px;
+
+      width: $size;
+      height: $size;
+      vertical-align: middle;
+    }
   }
 
+  .room-code-display {
+    @include borderRadius();
+    @include borderSides();
+
+    width: fit-content;
+    padding: 1rem;
+    letter-spacing: 2px;
+
+    font-size: 1.5rem;
+    background-color: $advizot-color;
+    box-shadow: $box-shadow;
+  }
+}
+
+@media screen and (min-width: 455px) {
   .room-code-container {
-    width: 100%;
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-
-    .code-toggle {
-      padding: 0.75rem;
-
-      border-radius: 100vw;
-      background-color: $advizot-color;
-      cursor: pointer;
-
-      &:hover {
-        @include btnHover();
-
-        &:after {
-          @include advizotFont(1.25rem, bold, 0px);
-
-          content: "Room Code";
-          vertical-align: middle;
-          margin-left: 0.5rem;
-        }
-      }
-
-      .icon {
-        $size: 29px;
-
-        width: $size;
-        height: $size;
-        vertical-align: middle;
-      }
-    }
-
-    .room-code-display {
-      @include borderRadius();
-
-      // display: block;
-      width: fit-content;
-      padding: 1rem;
-      letter-spacing: 2px;
-
-      font-size: 1.5rem;
-      background-color: $advizot-color;
-      box-shadow: $box-shadow;
-    }
+    justify-content: center;
+    gap: 2rem;
   }
 }
