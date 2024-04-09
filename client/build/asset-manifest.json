@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.78a3ca65.css",
-    "main.js": "/static/js/main.b1f10a6c.js",
+    "main.css": "/static/css/main.8f81350e.css",
+    "main.js": "/static/js/main.53614b37.js",
     "static/media/google-G.png": "/static/media/google-G.19665ff37f8e5a19b2f0.png",
     "static/media/original-on-transparent.png": "/static/media/original-on-transparent.0264d1ef0f52ddbeba38.png",
     "static/media/audiowide-regular-webfont.woff2": "/static/media/audiowide-regular-webfont.58471b7f58fcf66d8667.woff2",
@@ -23,11 +23,11 @@
     "static/media/pen-solid.svg": "/static/media/pen-solid.d87ec1ede375c39b10308a4de8b827ed.svg",
     "static/media/check-solid.svg": "/static/media/check-solid.722038a0c0783d1804723d8ae65cbf86.svg",
     "static/media/exclamation-solid.svg": "/static/media/exclamation-solid.9fceb3b75c21664c3df46275c61c6684.svg",
-    "main.78a3ca65.css.map": "/static/css/main.78a3ca65.css.map",
-    "main.b1f10a6c.js.map": "/static/js/main.b1f10a6c.js.map"
+    "main.8f81350e.css.map": "/static/css/main.8f81350e.css.map",
+    "main.53614b37.js.map": "/static/js/main.53614b37.js.map"
   },
   "entrypoints": [
-    "static/css/main.78a3ca65.css",
-    "static/js/main.b1f10a6c.js"
+    "static/css/main.8f81350e.css",
+    "static/js/main.53614b37.js"
   ]
 }
