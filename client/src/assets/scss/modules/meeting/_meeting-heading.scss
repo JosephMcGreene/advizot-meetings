@@ -5,8 +5,8 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 
   select {
     @include advizotFont(inherit, 400, 1px);
@@ -45,7 +45,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 
   .code-toggle {
     padding: 0.75rem;
