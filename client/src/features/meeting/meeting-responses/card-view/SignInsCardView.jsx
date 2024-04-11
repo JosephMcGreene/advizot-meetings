@@ -1,9 +1,10 @@
-import MemberSignIn from "./MemberSignIn";
+import SignInCard from "./SignInCard";
 
-export default function MemberSignIns({
+export default function SignInsCardView({
   signIns,
   handleSubmitEdits,
   handleDelete,
+  signInBelongsToUser,
 }) {
   return (
     <section className="sign-ins-section">
@@ -14,11 +15,12 @@ export default function MemberSignIns({
       ) : (
         <ul className="sign-ins-ul">
           {signIns.map((signIn, index) => (
-            <MemberSignIn
+            <SignInCard
               key={`${signIn.date}${index}`}
               signInBody={signIn}
               handleDelete={handleDelete}
               handleSubmitEdits={handleSubmitEdits}
+              signInBelongsToUser={signInBelongsToUser}
             />
           ))}
         </ul>

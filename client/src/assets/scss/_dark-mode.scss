@@ -87,22 +87,25 @@ $text-dark: black;
     box-shadow: none;
   }
 
-  .admin-sign-ins {
+  .admin-sign-ins-table {
+    $border: 1px solid $advizot-grey;
+
     background-color: $darker-bg;
     box-shadow: none;
 
-    .admin-head .admin-heading {
+    .thead .table-heading {
       color: $text-dark;
     }
-    .admin-sign-in-row,
-    .admin-info-cell {
-      border: 1px solid $advizot-grey;
+
+    .tbody-row,
+    .tbody-th {
+      border: $border;
       border-top: none;
     }
-    .admin-sign-in-row {
+    .tbody-row {
       border-left: none;
     }
-    .admin-info-cell {
+    .tbody-th {
       border-bottom: none;
 
       svg path {

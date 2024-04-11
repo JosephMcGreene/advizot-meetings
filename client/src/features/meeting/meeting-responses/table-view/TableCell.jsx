@@ -6,9 +6,10 @@ import { ReactComponent as Lightning } from "../../../../assets/img/bolt-lightni
 import ModalTemplate from "../../../../shared/modals/ModalTemplate";
 import MeetingForm from "../../form/MeetingForm";
 
-export default function AdminTableCell({
+export default function TableCell({
   signInBody,
   signInItem,
+  canEdit,
   handleSubmitEdits,
 }) {
   const [meetingFormShown, setMeetingFormShown] = useState(false);
@@ -16,11 +17,11 @@ export default function AdminTableCell({
   return (
     <>
       <td
-        onClick={() => setMeetingFormShown(!meetingFormShown)}
+        onClick={() => canEdit() && setMeetingFormShown(!meetingFormShown)}
         className="tbody-th"
       >
         {signInItem === "L" ? <Lightning className="icon" /> : signInItem}
-        <EditPen className="edit-pen" />
+        {canEdit() && <EditPen className="edit-pen" />}
       </td>
 
       {meetingFormShown && (

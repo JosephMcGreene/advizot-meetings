@@ -1,11 +1,12 @@
 //External
 import { motion } from "framer-motion";
 //Internal
-import AdminSignIn from "./AdminSignIn";
+import SignInTableRow from "./SignInTableRow";
 
-export default function AdminSignIns({
+export default function SignInsTableView({
   signIns,
   handleSubmitEdits,
+  signInBelongsToUser,
   handleDelete,
 }) {
   return (
@@ -27,10 +28,11 @@ export default function AdminSignIns({
       )}
       <tbody className="tbody">
         {signIns.map((signIn, index) => (
-          <AdminSignIn
+          <SignInTableRow
             key={`${signIn.date}${index}`}
             signInBody={signIn}
             handleSubmitEdits={handleSubmitEdits}
+            signInBelongsToUser={signInBelongsToUser}
             handleDelete={handleDelete}
           />
         ))}

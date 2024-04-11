@@ -25,7 +25,7 @@ export default function InputField({
           {meta.error}
         </p>
       ) : null}
-      {props.incorrectCode && (
+      {props.incorrectcode && (
         <p className="error">Please enter the correct code.</p>
       )}
     </div>

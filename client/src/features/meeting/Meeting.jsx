@@ -9,18 +9,31 @@ import useMeeting from "../../hooks/useMeeting";
 //Components
 import LoadingSpinner from "../../shared/LoadingSpinner";
 import MeetingHeading from "./MeetingHeading";
-import AdminView from "./meeting-responses/admin-view/AdminView";
-import MemberView from "./meeting-responses/member-view/MemberView";
+import SignInsCardView from "./meeting-responses/card-view/SignInsCardView";
+import SignInsTableView from "./meeting-responses/table-view/SignInsTableView";
 import ModalTemplate from "../../shared/modals/ModalTemplate";
 import MeetingForm from "./form/MeetingForm";
+import ActionsMenu from "./ActionsMenu";
 
 export default function Meeting() {
   const user = useContext(UserContext);
   const [formShown, setFormShown] = useState(false);
+  const [cardView, setCardView] = useState(false);
+
   const { group } = useParams();
 
   const [signIns, loading, currentGroup, submitSignIn, deleteSignIn] =
     useMeeting("get", `/signIns/${group}`);
+
+  /**
+   * Assesses whether the current user can in fact edit or delete the sign-in they hover over
+   *
+   * @returns {boolean} whether or not the user can edit or delete the sign-in
+   */
+  function signInBelongsToUser(signInBody) {
+    if (user.advizotID === signInBody?.userID) return true;
+    return false;
+  }
 
   if (loading) return <LoadingSpinner />;
 
@@ -28,32 +41,37 @@ export default function Meeting() {
     <>
       <MeetingHeading currentGroup={group} />
 
-      {user.role === "admin" && (
-        <AdminView
+      {cardView ? (
+        <SignInsCardView
           signIns={signIns}
-          currentGroup={currentGroup}
           handleSubmitEdits={async (signInToSubmit, existingSignIn) => {
             await submitSignIn(signInToSubmit, existingSignIn);
           }}
           handleDelete={async (signInID) => {
             await deleteSignIn(signInID);
           }}
-          handleNewSignInClick={() => setFormShown(!formShown)}
+          signInBelongsToUser={signInBelongsToUser}
+        />
+      ) : (
+        <SignInsTableView
+          signIns={signIns}
+          handleSubmitEdits={async (signInToSubmit, existingSignIn) => {
+            await submitSignIn(signInToSubmit, existingSignIn);
+          }}
+          handleDelete={async (signInID) => {
+            await deleteSignIn(signInID);
+          }}
+          signInBelongsToUser={signInBelongsToUser}
         />
       )}
 
-      {user.role === "member" && (
-        <MemberView
-          signIns={signIns}
-          handleSubmitEdits={async (signInToSubmit, existingSignIn) => {
-            await submitSignIn(signInToSubmit, existingSignIn);
-          }}
-          handleDelete={async (signInID) => {
-            await deleteSignIn(signInID);
-          }}
-          handleSignInClick={() => setFormShown(!formShown)}
-        />
-      )}
+      <ActionsMenu
+        currentGroup={currentGroup}
+        signIns={signIns}
+        handleNewSignInClick={() => setFormShown(!formShown)}
+        cardView={cardView}
+        handleViewAsMemberClick={() => setCardView(!cardView)}
+      />
 
       {formShown && (
         <ModalTemplate

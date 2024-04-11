@@ -20,7 +20,7 @@ export default function SignInItem({
       <article
         className={className}
         onClick={
-          signInBelongsToUser()
+          signInBelongsToUser(signInBody)
             ? () => setMeetingFormShown(!meetingFormShown)
             : undefined
         }
@@ -32,7 +32,7 @@ export default function SignInItem({
         <br />
 
         {text}
-        {signInBelongsToUser() && <EditPen className="edit-pen" />}
+        {signInBelongsToUser(signInBody) && <EditPen className="edit-pen" />}
       </article>
 
       {meetingFormShown && (

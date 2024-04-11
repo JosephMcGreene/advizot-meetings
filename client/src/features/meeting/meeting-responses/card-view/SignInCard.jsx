@@ -4,23 +4,12 @@ import { UserContext } from "../../../../App";
 import SignInItem from "./SignInItem";
 import DeleteButton from "../DeleteButton";
 
-export default function MemberSignIn({
+export default function SignIncard({
   signInBody,
   handleDelete,
   handleSubmitEdits,
+  signInBelongsToUser,
 }) {
-  const user = useContext(UserContext);
-
-  /**
-   * Assesses whether the current user can in fact edit or delete the sign-in they hover over
-   *
-   * @returns {boolean} whether or not the user can edit or delete the sign-in
-   */
-  function signInBelongsToUser() {
-    if (user.advizotID === signInBody?.userID) return true;
-    return false;
-  }
-
   return (
     <li className="sign-in-li" tabIndex="0">
       <label className="sign-in-name">{signInBody.userName}</label>
@@ -34,7 +23,7 @@ export default function MemberSignIn({
         signInBelongsToUser={signInBelongsToUser}
       />
 
-      {signInBelongsToUser() && (
+      {signInBelongsToUser(signInBody) && (
         <DeleteButton signInID={signInBody._id} handleDelete={handleDelete} />
       )}
 
