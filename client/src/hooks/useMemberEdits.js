@@ -12,6 +12,7 @@ export default function useMemberEdits(currentGroup) {
   const [deleteMemberValue, setDeleteMemberValue] = useState("");
   const [deleteMemberDisabled, setDeleteMemberDisabled] = useState(true);
   const [groupPlacementEnabled, setGroupPlacementEnabled] = useState(false);
+  const [confirmUserDeleteShown, setConfirmUserDeleteShown] = useState(false);
 
   /**
    * Whenever the user changes the input to type in a user's name who is being confirmed to be deleted, this Effect checks to see if what is now in the input field matches the user's name. If it does, then it enables the button to delete them
@@ -154,14 +155,21 @@ export default function useMemberEdits(currentGroup) {
     switch (editType) {
       case "none":
         setGroupPlacementEnabled(false);
+        setConfirmUserDeleteShown(false);
         return selectMember("none");
       case "move":
+        setConfirmUserDeleteShown(false);
         return setGroupPlacementEnabled(true);
       case "edit":
+        setGroupPlacementEnabled(false);
+        setConfirmUserDeleteShown(false);
         //TODO Redirect to the user's profile once that feature is ready
         return alert(
           "This feature isn't ready yet. Thanks for the interest though!"
         );
+      case "delete":
+        setGroupPlacementEnabled(false);
+        return setConfirmUserDeleteShown(true);
       default:
         setGroupPlacementEnabled(false);
         selectMember("none");
@@ -176,11 +184,12 @@ export default function useMemberEdits(currentGroup) {
     deleteMemberDisabled,
     userEditsEnabled,
     groupPlacementEnabled,
+    confirmUserDeleteShown,
     confirmGroupChange,
     selectMember,
     deleteMember,
     handleEditType,
     setDeleteMemberValue,
-    setGroupPlacementEnabled,
+    setConfirmUserDeleteShown,
   ];
 }

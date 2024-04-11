@@ -1,12 +1,9 @@
-import { useState } from "react";
 //Hooks
 import useMemberEdits from "../../../hooks/useMemberEdits";
 //Components
 import LoadingSpinner from "../../../shared/LoadingSpinner";
-import ModalTemplate from "../../../shared/modals/ModalTemplate";
 
 export default function MemberEditModal({ handleClose, currentGroup }) {
-  const [confirmUserDeleteShown, setConfirmUserDeleteShown] = useState(false);
   const [
     usersToEdit,
     loading,
@@ -15,12 +12,13 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
     deleteMemberDisabled,
     userEditsEnabled,
     groupPlacementEnabled,
+    confirmUserDeleteShown,
     confirmGroupChange,
     selectMember,
     deleteMember,
     handleEditType,
     setDeleteMemberValue,
-    setGroupPlacementEnabled,
+    setConfirmUserDeleteShown,
   ] = useMemberEdits(currentGroup);
 
   const groups = ["CE5660", "KEY9330", "CE4659", "Guest"];
@@ -59,69 +57,41 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
             <option value="none">-- Select One --</option>
             <option value="move">Move to Another Group</option>
             <option value="edit">Edit Profile</option>
+            <option value="delete" style={{ color: "red" }}>
+              Delete Member
+            </option>
           </select>
         </label>
       )}
 
       {groupPlacementEnabled && (
-        <ModalTemplate
-          title="Select a Group"
-          handleClose={() => {
-            setGroupPlacementEnabled(false);
-            selectMember("none");
-          }}
-        >
-          <label htmlFor="groupToPlace">
-            Move Into Group
-            <select
-              onChange={(e) => confirmGroupChange(e.target.value, selectedUser)}
-              id="groupToPlace"
-              className="rating-select"
-            >
-              <option value="select">-- Group --</option>
-              {allButThisGroup.map((group) => (
-                <option value={group} key={group}>
-                  {group}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <button
-            onClick={() => {
-              setGroupPlacementEnabled(false);
-              selectMember("none");
-            }}
-            type="button"
-            className="btn"
+        <label htmlFor="groupToPlace">
+          Move Into Group
+          <select
+            onChange={(e) => confirmGroupChange(e.target.value, selectedUser)}
+            id="groupToPlace"
+            className="rating-select"
           >
-            Done
-          </button>
-        </ModalTemplate>
-      )}
-
-      {userEditsEnabled && (
-        <button
-          type="button"
-          className="delete-member-btn"
-          onClick={() => setConfirmUserDeleteShown(true)}
-        >
-          Delete Member
-        </button>
+            <option value="select">-- Group --</option>
+            {allButThisGroup.map((group) => (
+              <option value={group} key={group}>
+                {group}
+              </option>
+            ))}
+          </select>
+        </label>
       )}
 
       {confirmUserDeleteShown && (
-        <ModalTemplate
-          title="Are you sure?"
-          handleClose={() => setConfirmUserDeleteShown(false)}
-        >
+        <>
           <label htmlFor="user-name">
             <p style={{ textAlign: "left" }}>
               First, this cannot be undone.
               <br />
               <br />
-              Furthermore, this will also permanently delete all of the member's
-              hard-earned data, and it will be irretrievably lost.
+              Furthermore, this will also permanently delete all of{" "}
+              {selectedUser.firstName}'s hard-earned data, and it will be
+              irretrievably lost.
               <br />
               <br />
               If you know you will never need this member's information again,
@@ -147,7 +117,15 @@ export default function MemberEditModal({ handleClose, currentGroup }) {
           >
             Delete {selectedUser.firstName} {selectedUser.lastName}
           </button>
-        </ModalTemplate>
+
+          <button
+            onClick={() => setConfirmUserDeleteShown(false)}
+            className="btn"
+            type="button"
+          >
+            Cancel, Keep {selectedUser.firstName}
+          </button>
+        </>
       )}
 
       {userEditsEnabled && (

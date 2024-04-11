@@ -33,8 +33,7 @@ export default function MeetingHeading({ currentGroup }) {
           </select>
         ) : (
           currentGroup
-        )}
-        {""}
+        )}{" "}
         {currentDate("month")} {currentDate("year")}
       </h1>
 

@@ -20,16 +20,16 @@ export default function NewRoomCode() {
         meeting?
       </h3>
 
-      <button className="btn" onClick={() => setRoomCode(true)}>
-        <Link to={`/meeting/${user.group}`} tabIndex="-1">
+      <Link to={`/meeting/${user.group}`} tabIndex="-1">
+        <button className="btn" onClick={() => setRoomCode(true)}>
           Yes, make a new code
-        </Link>
-      </button>
-      <button className="btn" onClick={() => setRoomCode(false)}>
-        <Link to={`/meeting/${user.group}`} tabIndex="-1">
+        </button>
+      </Link>
+      <Link to={`/meeting/${user.group}`} tabIndex="-1">
+        <button className="btn" onClick={() => setRoomCode(false)}>
           No, keep the old code
-        </Link>
-      </button>
+        </button>
+      </Link>
     </div>
   );
 }

@@ -26,7 +26,7 @@ export default function Meeting() {
     useMeeting("get", `/signIns/${group}`);
 
   /**
-   * Assesses whether the current user can in fact edit or delete the sign-in they hover over
+   * Assesses whether the current user has permissions to edit or delete the sign-in they hover over
    *
    * @returns {boolean} whether or not the user can edit or delete the sign-in
    */

@@ -24,16 +24,24 @@ export default function NavMenu({ darkMode, toggleDarkMode, showNav }) {
     >
       <ul className="nav-list">
         <li className="nav-item">
-          <Link to="/profile" onClick={() => showNav(false)}>
+          <Link
+            to="/profile"
+            onClick={() => showNav(false)}
+            style={{ textDecorationLine: "line-through" }}
+          >
             <ProfileIcon className="icon" />
-            [Profile]
+            Profile
           </Link>
         </li>
 
         <li className="nav-item">
-          <Link to="/profile" onClick={() => showNav(false)}>
+          <Link
+            to="/profile"
+            onClick={() => showNav(false)}
+            style={{ textDecorationLine: "line-through" }}
+          >
             <CheckInIcon className="icon" />
-            [1:1 Check-In]
+            1:1 Check-In
           </Link>
         </li>
 

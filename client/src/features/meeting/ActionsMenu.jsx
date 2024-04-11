@@ -2,13 +2,12 @@ import { useState, useRef, useContext } from "react";
 import { UserContext } from "../../App";
 //Assets
 import { ReactComponent as MemberEditIcon } from "../../assets/img/users-gear-solid.svg";
-import { ReactComponent as TableViewIcon } from "../../assets/img/table-solid.svg";
-import { ReactComponent as CardViewIcon } from "../../assets/img/address-card-solid.svg";
 import { ReactComponent as AddResponseIcon } from "../../assets/img/file-circle-plus-solid.svg";
 import { ReactComponent as SlidersIcon } from "../../assets/img/sliders-solid.svg";
 //External
 import { motion } from "framer-motion";
 //Internal
+import ViewSwitch from "../meeting/ViewSwitch";
 import ActionsBtn from "./meeting-responses/ActionsBtn";
 import ModalTemplate from "../../shared/modals/ModalTemplate";
 import MemberEditModal from "./admin-actions/MemberEditModal";
@@ -37,7 +36,18 @@ export default function ActionsMenu({
     const signInOfUser = signIns.find(
       (signIn) => signIn.userID === user.advizotID
     );
-    return signInOfUser ? false : true;
+    return signInOfUser ? true : false;
+  }
+
+  /**
+   * Assesses whether or not the button to add a new sign-in should be visible to the user
+   *
+   * @returns {boolean} whether or not the button to add a new sign-in should be visible
+   */
+  function addBtnIsVisible() {
+    if (user.role === "admin") return true;
+    if (user.role === "member" && !userHasSignedIn()) return true;
+    return false;
   }
 
   return (
@@ -59,24 +69,18 @@ export default function ActionsMenu({
               </li>
             )}
 
-            <li
-              className="admin-actions-item"
-              onClick={() => handleViewAsMemberClick()}
-            >
-              {cardView ? (
-                <>
-                  <TableViewIcon className="icon" />
-                  Table View
-                </>
-              ) : (
-                <>
-                  <CardViewIcon className="icon" />
-                  Card View
-                </>
-              )}
+            <li className="admin-actions-item">
+              <ViewSwitch
+                cardView={cardView}
+                toggleCardView={handleViewAsMemberClick}
+                id="viewSwitch"
+              />
+              <label htmlFor="viewSwitch">
+                View {cardView ? "Table" : "Cards"}
+              </label>
             </li>
 
-            {userHasSignedIn() && (
+            {addBtnIsVisible() && (
               <>
                 <hr />
 
