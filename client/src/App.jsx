@@ -17,7 +17,7 @@ import LoadingSpinner from "./shared/LoadingSpinner";
 import Welcome from "./shared/Welcome";
 import UsersOnly from "./features/meeting/UsersOnly";
 import Meeting from "./features/meeting/Meeting";
-import Profile from "./features/profile/Profile";
+import ProfilePlaceholder from "./features/profile/ProfilePlaceholder";
 import Header from "./shared/Header";
 import Toasts from "./shared/Toasts";
 
@@ -66,7 +66,10 @@ export default function App() {
 
                     <Route path="meeting/:group" element={<Meeting />} />
 
-                    <Route path="profile" element={<Profile />} />
+                    <Route
+                      path="profile/:id"
+                      element={<ProfilePlaceholder />}
+                    />
                   </Route>
                 )
               )}
