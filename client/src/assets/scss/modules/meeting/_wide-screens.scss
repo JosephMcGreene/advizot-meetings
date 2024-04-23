@@ -1,18 +1,18 @@
 @use "../../index" as *;
 
 @media screen and (min-width: 900px) {
-  .response-li {
+  .sign-in-li {
     display: grid;
     grid-template-columns: 0.25fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 1fr 1fr;
     width: 100%;
-    margin: 0 3rem;
+    margin: 0rem 3rem;
 
     .delete-btn {
       grid-row: 1;
       grid-column: 1;
     }
 
-    .response-name {
+    .sign-in-name {
       grid-row: 1;
       grid-column: 2;
     }
@@ -23,7 +23,7 @@
       align-self: center;
     }
 
-    .range-response {
+    .range-sign-in {
       grid-row: 1;
       align-self: center;
     }
@@ -55,3 +55,9 @@
     }
   }
 }
+
+// @media screen and (min-width: 1270px) {
+//   .admin-sign-ins {
+//     width: 90vw;
+//   }
+// }

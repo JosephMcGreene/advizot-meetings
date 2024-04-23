@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { ToastContext } from "../App";
 import { axiosFetch } from "../helpers";
 
 export default function useRoomCode() {
+  const { showToast } = useContext(ToastContext);
   const [loading, setLoading] = useState(false);
 
   /**
@@ -13,17 +15,21 @@ export default function useRoomCode() {
     try {
       setLoading(true);
 
-      const roomCodeResponse = await axiosFetch(
-        "post",
-        "/roomCode/setRoomCode",
-        { needNewCode }
-      );
+      const response = await axiosFetch("put", "/roomCode", {
+        needNewCode,
+      });
+      const newRoomCode = response.data.roomCodeDB.currentRoomCode.toString();
 
-      localStorage.setItem(
-        "roomCode",
-        roomCodeResponse.data.roomCodeDB.currentRoomCode.toString()
-      );
+      localStorage.setItem("roomCode", newRoomCode);
+
+      if (needNewCode) {
+        await showToast("success", `Room Code changed to ${newRoomCode}`);
+      }
     } catch (err) {
+      await showToast(
+        "failure",
+        "Something went wrong, unable to set Room Code"
+      );
       throw new Error(err);
     } finally {
       setLoading(false);

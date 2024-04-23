@@ -1,5 +1,6 @@
 import { config } from "dotenv";
 import path from "path";
+import { fileURLToPath } from "url";
 import express from "express";
 import mongoose from "mongoose";
 import cookieSession from "cookie-session";
@@ -7,11 +8,11 @@ import { v4 as uuidv4 } from "uuid";
 import cors from "cors";
 import passport from "passport";
 //Internal Modules
-import dbRouter from "./routes/db.js";
+import signInRouter from "./routes/signIns.js";
 import authRouter from "./routes/auth.js";
 import roomCodeRouter from "./routes/roomCode.js";
 import usersRouter from "./routes/users.js";
-import "./utils/passportConfig.js";
+import "./lib/passportConfig.js";
 
 config();
 const app = express();
@@ -48,18 +49,23 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //=====IN PROD=====
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build")));
 }
 
 //=====MOUNT ROUTES=====
-app.use("/db", dbRouter);
+app.use("/signIns", signInRouter);
 app.use("/auth", authRouter);
 app.use("/roomCode", roomCodeRouter);
 app.use("/users", usersRouter);
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "/client/build/index.html"));
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/client/build/index.html"), (err) => {
+    if (err) res.status(500).send(err);
+  });
 });
 
 //=====SERVER START=====

@@ -2,11 +2,12 @@
 
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
 
   &::selection {
     background-color: $advizot-light;
+    color: black;
   }
   &:focus,
   &:focus-visible {
@@ -14,19 +15,14 @@
   }
 }
 
-:root {
-  font-size: 16px;
-}
-
 .App {
   position: relative;
+  min-width: 320px;
   min-height: 100vh;
+  padding: 0 3vw 5rem;
 
   .main-content {
-    padding-top: $footer-height;
-  }
-  .main-small-padding {
-    padding-top: 0;
+    padding-top: $header-height;
   }
 }
 
@@ -37,7 +33,6 @@ body {
   background-color: $light-bg;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-width: 320px;
 }
 
 .welcome {
@@ -53,12 +48,9 @@ body {
 }
 
 .meeting-heading {
-  @include advizotFont(2rem, 400, 0.5px);
+  @include advizotFont(2rem, 400, 1px);
 
   text-align: center;
-  margin-block: 1.75rem;
-
-  text-decoration: underline;
 }
 
 button {
@@ -67,7 +59,8 @@ button {
 .btn {
   @include advizotFont(1.1rem, bold, 0.5px);
   @include borderRadius();
-  @include transition(box-shadow);
+  @include transition(box-shadow transform);
+  @include borderSides();
 
   display: block;
   padding: 1ch 3ch; //Will sometimes be overridden in specific instances
@@ -80,9 +73,37 @@ button {
     @include btnHover();
   }
 }
+.delete-member-btn {
+  @include borderRadius();
+  @include transition(box-shadow background-color);
+
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1ch 3ch;
+
+  font-family: $main-font;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: hsl(0, 100%, 50%);
+  background-color: transparent;
+  cursor: pointer;
+
+  &:hover {
+    background-color: hsl(0, 100%, 80%);
+  }
+  &[disabled] {
+    @include transition(color);
+    color: grey;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
 
 .close-x {
-  padding: 0 1rem;
+  padding: 0rem 1rem;
 
   font-size: 2.25rem;
   background-color: transparent;
@@ -100,6 +121,10 @@ a {
   text-decoration: none;
   color: $text-primary;
 
+  &:hover {
+    text-decoration: underline;
+  }
+
   &:visited {
     color: $text-primary;
   }
@@ -114,15 +139,18 @@ a {
   font-weight: 400;
 }
 
+hr {
+  width: 100%;
+  border-color: $advizot-color;
+  margin-block: 0.5rem;
+}
+
 //Scrollbar
 ::-webkit-scrollbar {
-  width: 0.7em;
+  width: 0.75em;
 }
 ::-webkit-scrollbar-track {
-  @include borderRadius();
-
   background-color: $advizot-light;
-  margin-block: 0.25em;
 }
 ::-webkit-scrollbar-thumb {
   @include borderRadius();

@@ -1,0 +1,139 @@
+@use "./index" as *;
+
+$dark-bg: hsl(0, 0%, 16%);
+$darker-bg: hsl(0, 0%, 9%);
+$text-dark: black;
+
+.dark {
+  background-color: $dark-bg;
+  color: $advizot-grey;
+  border: none;
+
+  .btn {
+    border: none;
+  }
+
+  .toast {
+    color: $text-dark;
+  }
+
+  .modal-content {
+    .modal-header {
+      color: $text-dark;
+    }
+    .modal-body {
+      background-color: $dark-bg;
+
+      .google-hover:hover,
+      .linkedin-hover:hover {
+        background-color: $dark-bg;
+      }
+
+      .form {
+        .range-container input[type="range"] {
+          background-color: $darker-bg;
+        }
+        .text-input textarea,
+        .select .rating-select,
+        .rating-select {
+          background-color: $darker-bg;
+          color: $advizot-grey;
+          border: none;
+        }
+      }
+    }
+  }
+
+  .edit-pen {
+    fill: $advizot-grey;
+  }
+
+  .header,
+  .admin-actions-list {
+    background-color: $darker-bg;
+    box-shadow: none;
+    border: none;
+  }
+
+  .header {
+    .profile-photo {
+      label {
+        color: $advizot-grey;
+      }
+    }
+
+    .nav {
+      background-color: $darker-bg;
+      border: none;
+      box-shadow: none;
+
+      .nav-list .nav-item .icon path {
+        fill: $advizot-grey;
+      }
+
+      a {
+        color: $advizot-grey;
+      }
+    }
+  }
+
+  .meeting-heading select option {
+    background-color: $dark-bg;
+  }
+
+  .room-code-container .room-code-display {
+    color: $text-dark;
+    border: none;
+    box-shadow: none;
+  }
+
+  .admin-sign-ins-table {
+    $border: 1px solid $advizot-grey;
+
+    background-color: $darker-bg;
+    box-shadow: none;
+
+    .thead .table-heading {
+      color: $text-dark;
+    }
+
+    .tbody-row,
+    .tbody-th {
+      border: $border;
+      border-top: none;
+    }
+    .tbody-row {
+      border-left: none;
+    }
+    .tbody-th {
+      border-bottom: none;
+
+      svg path {
+        fill: $advizot-grey;
+      }
+      .delete-btn svg path {
+        fill: black;
+      }
+    }
+  }
+
+  .actions-btn {
+    border: none;
+  }
+
+  .admin-actions-list .admin-actions-item .icon path {
+    fill: $advizot-grey;
+  }
+
+  .sign-ins-section .sign-ins-ul {
+    .sign-in-li {
+      background-color: $darker-bg;
+      box-shadow: none;
+      border: none;
+
+      .sign-in-name {
+        color: $text-dark;
+      }
+    }
+  }
+}

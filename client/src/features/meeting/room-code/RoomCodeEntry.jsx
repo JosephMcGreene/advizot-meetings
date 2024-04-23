@@ -3,9 +3,8 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 //Components
 import InputField from "../form/InputField";
-import LoadingSpinner from "../../../shared/LoadingSpinner";
 
-export default function RoomCodeEntry({ handleSubmit }) {
+export default function RoomCodeEntry({ handleSubmit, incorrectCode }) {
   return (
     <Formik
       initialValues={{
@@ -31,10 +30,11 @@ export default function RoomCodeEntry({ handleSubmit }) {
             as="input"
             type="text"
             className="text-input"
+            incorrectCode={incorrectCode}
           />
 
           <button type="submit" className="btn">
-            {isSubmitting ? <LoadingSpinner color="black" /> : "Enter Meeting"}
+            Enter Meeting
           </button>
         </Form>
       )}

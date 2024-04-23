@@ -2,8 +2,8 @@
 
 $size: 20px;
 
-.admin-info-cell,
-.response {
+.tbody-th,
+.sign-in {
   position: relative;
 
   &:hover {
@@ -15,12 +15,8 @@ $size: 20px;
   .edit-pen {
     position: absolute;
     top: calc(50% - ($size / 2));
-    right: 5%;
+    right: 4%;
     display: none;
     max-width: $size;
   }
-}
-
-.response .edit-pen {
-  top: 55%;
 }

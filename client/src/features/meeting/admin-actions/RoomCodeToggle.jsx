@@ -1,19 +1,23 @@
 import { useContext } from "react";
 import { UserContext } from "../../../App";
 //Assets
-import eyeVisible from "../../../assets/img/eye-solid.svg";
-import eyeHidden from "../../../assets/img/eye-slash-solid.svg";
+import { ReactComponent as EyeVisible } from "../../../assets/img/eye-solid.svg";
+import { ReactComponent as EyeHidden } from "../../../assets/img/eye-slash-solid.svg";
 
-export default function RoomCodeToggle({ handleClick, roomCodeShown }) {
+export default function RoomCodeToggle({ setRoomCodeShown, roomCodeShown }) {
   const user = useContext(UserContext);
 
   if (user.role === "admin") {
     return (
-      <button className="code-toggle" onClick={() => handleClick()}>
+      // Styles in _admin-sign-ins.scss contains an ::after that displays the "Room Code" content on hover
+      <button
+        className="code-toggle"
+        onClick={() => setRoomCodeShown(!roomCodeShown)}
+      >
         {roomCodeShown ? (
-          <img src={eyeHidden} alt="Hide room code" className="eye-icon" />
+          <EyeHidden className="icon" />
         ) : (
-          <img src={eyeVisible} alt="Show room code" className="eye-icon" />
+          <EyeVisible className="icon" />
         )}
       </button>
     );

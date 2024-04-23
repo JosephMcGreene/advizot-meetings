@@ -1,13 +1,13 @@
-import trashCan from "../../../assets/img/trash-can-solid.svg";
+import { ReactComponent as TrashCan } from "../../../assets/img/trash-can-solid.svg";
 
-export default function DeleteButton({ responseID, handleDelete }) {
+export default function DeleteButton({ signInID, handleDelete }) {
   return (
     <button
       className="delete-btn"
-      onClick={() => handleDelete(responseID)}
+      onClick={() => handleDelete(signInID)}
       tabIndex="0"
     >
-      <img src={trashCan} alt="Delete Response" className="delete-icon" />
+      <TrashCan className="delete-icon" />
     </button>
   );
 }

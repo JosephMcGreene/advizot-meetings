@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { createPortal } from "react-dom";
 //External
 import { motion } from "framer-motion";
 //Hooks
@@ -6,9 +7,10 @@ import useOutsideClick from "../../hooks/useOutsideClick";
 
 export default function ModalTemplate({ children, title, handleClose }) {
   const modalRef = useRef();
+
   useOutsideClick(modalRef, () => handleClose());
 
-  return (
+  return createPortal(
     <div className="modal">
       <motion.div
         initial={{ opacity: 0, y: 70 }}
@@ -23,8 +25,9 @@ export default function ModalTemplate({ children, title, handleClose }) {
           </button>
         </header>
 
-        {children}
+        <div className="modal-body">{children}</div>
       </motion.div>
-    </div>
+    </div>,
+    document.querySelector(".App")
   );
 }

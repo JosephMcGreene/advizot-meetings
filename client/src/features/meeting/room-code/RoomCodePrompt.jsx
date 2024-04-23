@@ -7,8 +7,8 @@ export default function RoomCodePrompt({ handleSubmitCode, children }) {
   const user = useContext(UserContext);
 
   if (!user.hasMeetingCode) {
-    return <RoomCodeEntry handleSubmit={handleSubmitCode} />;
+    return <RoomCodeEntry handleSubmit={handleSubmitCode} incorrectCode />;
   }
-  // child is <Meeting />
+  // child is <Navigate to="/meeting" />
   return children;
 }

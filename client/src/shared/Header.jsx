@@ -3,54 +3,46 @@ import { UserContext } from "../App";
 //Assets
 import advizotLogo from "../assets/img/original-on-transparent.png";
 //External
-import { Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 //Components
-import ModalTemplate from "./modals/ModalTemplate";
-import Login from "./modals/Login";
+import DarkModeSwitch from "./DarkModeSwitch";
+import NavMenu from "./NavMenu";
 
-export default function Header() {
+export default function Header({ darkMode, toggleDarkMode }) {
   const user = useContext(UserContext);
-  const [loginShown, setLoginShown] = useState(false);
+  const [userNavShown, setUserNavShown] = useState(false);
 
   return (
-    <header className="header">
-      <nav className="nav-bar">
+    <>
+      <header className="header">
         <img src={advizotLogo} alt="Advizot logo" className="logo" />
-        <ul className="nav-ul">
-          <li className="nav-item">
-            {user.photo && (
-              <Link to="/profile" className="profile-link">
-                <img
-                  src={user.photo}
-                  alt="profile"
-                  className="profile-img"
-                  tabIndex="-1"
-                />
-              </Link>
-            )}
-          </li>
-          <li className="nav-item">
-            {user ? (
-              <a href="/auth/logout">
-                <button className="btn">Log out</button>
-              </a>
-            ) : (
-              <button
-                className="btn"
-                onClick={() => setLoginShown(!loginShown)}
-              >
-                Log in
-              </button>
-            )}
-          </li>
-        </ul>
-      </nav>
 
-      {loginShown && (
-        <ModalTemplate title="Log In" handleClose={() => setLoginShown(false)}>
-          <Login />
-        </ModalTemplate>
-      )}
-    </header>
+        {user.photo ? (
+          <img
+            src={user.photo}
+            alt={`${user.firstName} ${user.lastName}`}
+            className="profile-photo"
+            onClick={() => setUserNavShown(true)}
+          />
+        ) : (
+          <div className="switch-container">
+            <DarkModeSwitch
+              darkMode={darkMode}
+              toggleDarkMode={toggleDarkMode}
+            />
+          </div>
+        )}
+
+        {userNavShown && (
+          <NavMenu
+            darkMode={darkMode}
+            toggleDarkMode={toggleDarkMode}
+            showNav={setUserNavShown}
+          />
+        )}
+      </header>
+
+      <Outlet />
+    </>
   );
 }

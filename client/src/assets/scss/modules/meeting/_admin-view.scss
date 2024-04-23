@@ -1,0 +1,104 @@
+@use "../../index" as *;
+
+.admin-sign-ins-table {
+  $border: 1px solid black;
+
+  margin: 0 auto;
+
+  box-shadow: $box-shadow;
+  border-collapse: collapse;
+
+  .table-heading,
+  .tbody-th {
+    border-right: $border;
+    border-bottom: $border;
+    padding: 0.75ch;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .table-heading:last-child,
+  .tbody-th:last-child {
+    border-right: none;
+  }
+
+  .thead {
+    text-align: center;
+
+    list-style: none;
+    background-color: $advizot-color;
+    border: 1px solid $advizot-color;
+
+    .table-heading {
+      color: $text-primary;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .tbody-row {
+    .tbody-th {
+      font-size: 1.2rem;
+      cursor: pointer;
+      text-align: center;
+      max-width: 250px;
+
+      .tbody-row-name {
+        padding: 0.5ch;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .delete-btn {
+        $size: 40px;
+
+        position: absolute;
+        top: calc(50% - $size / 2);
+        left: 5px;
+        width: $size;
+        height: $size;
+
+        .delete-icon {
+          width: 18px;
+        }
+      }
+
+      svg {
+        width: 18px;
+      }
+
+      &:nth-child(6),
+      &:nth-child(7) {
+        text-align: left;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1145px) {
+  .admin-sign-ins-table {
+    .thead .table-heading,
+    .tbody-row .tbody-th {
+      max-width: 100px;
+    }
+  }
+}
+@media screen and (max-width: 732px) {
+  .admin-sign-ins-table {
+    .thead .table-heading,
+    .tbody-row .tbody-th {
+      max-width: 75px;
+    }
+  }
+}
+@media screen and (max-width: 560px) {
+  .admin-sign-ins-table {
+    .thead .table-heading,
+    .tbody-row .tbody-th {
+      max-width: 50px;
+    }
+  }
+}
