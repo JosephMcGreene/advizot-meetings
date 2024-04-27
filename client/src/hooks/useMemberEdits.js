@@ -1,6 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { ToastContext } from "../App";
-// Internal
+//External
+import { redirect } from "react-router-dom";
+//Internal
 import { axiosFetch } from "../helpers";
 
 export default function useMemberEdits(currentGroup) {
@@ -163,7 +165,7 @@ export default function useMemberEdits(currentGroup) {
       case "edit":
         setGroupPlacementEnabled(false);
         setConfirmUserDeleteShown(false);
-        //TODO Redirect to the user's profile once that feature is ready
+        redirect(`/profile/${selectedUser.advizotID}`);
         return alert(
           "This feature isn't ready yet. Thanks for the interest though!"
         );

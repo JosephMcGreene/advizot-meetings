@@ -1,30 +1,36 @@
-import { useContext } from "react";
-import { UserContext } from "../../App";
 //Assets
 import { ReactComponent as EditPen } from "../../../../assets/img/pen-solid.svg";
+//External
+import { useParams } from "react-router-dom";
+//Internal
+import { axiosFetch } from "../../helpers";
 
 export default function Profile() {
-  const user = useContext(UserContext);
+  const { id } = useParams();
+
+  //TODO Add a function for fetching specific user info using the param id
+  const { data } = axiosFetch("post", "/profile", { id });
 
   return (
     <section className="profile">
       <article className="basic-info">
         <img
           className="profile-photo"
-          src={user.photo}
-          alt={`${user.firstName} ${user.lastName}`}
+          src={data.photo}
+          alt={`${data.firstName} ${data.lastName}`}
         />
         <h1>
-          {user.firstName} {user.lastName}
+          {data.firstName} {data.lastName}
         </h1>
 
-        <h3>{user.role === "admin" ? "Chair" : `Member, ${user.group}`}</h3>
-        <h3>{user.email}</h3>
+        <h3>{data.role === "admin" ? "Chair" : `Member, ${data.group}`}</h3>
+        <h3>{data.email}</h3>
         <EditPen className="edit-pen" />
       </article>
 
       <article className="profile-sign-ins">
         <h2>Sign-In History</h2>
+
         <ul className="sign-in-history">
           {
             // TODO Add a query for member's sign-in history
