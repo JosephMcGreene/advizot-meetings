@@ -7,6 +7,8 @@ usersRouter
   .route("/")
   .post(usersController.post)
   .put(usersController.put)
-  .delete(usersController.deleteUser);
+  .delete(usersController.deleteUser)
+  .route("/profile")
+  .post(usersController.postProfile);
 
 export default usersRouter;

@@ -1,30 +1,59 @@
+import { useState, useEffect } from "react";
 //Assets
 import { ReactComponent as EditPen } from "../../../../assets/img/pen-solid.svg";
 //External
 import { useParams } from "react-router-dom";
 //Internal
 import { axiosFetch } from "../../helpers";
+import useToasts from "../../hooks/useToasts";
+//Components
+import LoadingSpinner from "../../shared/LoadingSpinner";
 
 export default function Profile() {
+  const [profileData, setProfileData] = useState("");
+  const [loading, setLoading] = useState(false);
   const { id } = useParams();
+  const { showToast } = useToasts();
 
-  //TODO Add a function for fetching specific user info using the param id
-  const { data } = axiosFetch("post", "/profile", { id });
+  useEffect(() => {
+    getProfileData();
+  }, []);
+
+  async function getProfileData() {
+    try {
+      setLoading(true);
+
+      const { data } = await axiosFetch("post", "/users/profile", { id });
+
+      setProfileData(data);
+    } catch (err) {
+      await showToast("failure", "Something went wrong, unable to fetch data.");
+      throw new Error(err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  if (loading) return <LoadingSpinner />;
 
   return (
     <section className="profile">
       <article className="basic-info">
         <img
           className="profile-photo"
-          src={data.photo}
-          alt={`${data.firstName} ${data.lastName}`}
+          src={profileData.photo}
+          alt={`${profileData.firstName} ${profileData.lastName}`}
         />
         <h1>
-          {data.firstName} {data.lastName}
+          {profileData.firstName} {profileData.lastName}
         </h1>
 
-        <h3>{data.role === "admin" ? "Chair" : `Member, ${data.group}`}</h3>
-        <h3>{data.email}</h3>
+        <h3>
+          {profileData.role === "admin"
+            ? "Chair"
+            : `Member, ${profileData.group}`}
+        </h3>
+        <h3>{profileData.email}</h3>
         <EditPen className="edit-pen" />
       </article>
 
