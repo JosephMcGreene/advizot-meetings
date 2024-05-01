@@ -12,6 +12,7 @@ import authRouter from "./routes/auth.js";
 import roomCodeRouter from "./routes/roomCode.js";
 import signInRouter from "./routes/signIns.js";
 import usersRouter from "./routes/users.js";
+import profileRouter from "./routes/profile.js";
 import "./lib/passportConfig.js";
 
 config();
@@ -24,11 +25,7 @@ mongoose
   .catch((error) => console.error(error));
 
 //=====MIDDLEWARE=====
-app.use(
-  express.urlencoded({
-    extended: true,
-  })
-);
+app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cookieSession({
@@ -61,6 +58,7 @@ app.use("/auth", authRouter);
 app.use("/roomCode", roomCodeRouter);
 app.use("/signIns", signInRouter);
 app.use("/users", usersRouter);
+app.use("/profile", profileRouter);
 
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "/client/build/index.html"), (err) => {
@@ -70,6 +68,4 @@ app.get("/*", (req, res) => {
 
 //=====SERVER START=====
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  console.log(`Server is listening at http://localhost:${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server started: http://localhost:${PORT}`));
