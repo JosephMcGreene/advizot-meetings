@@ -1,6 +1,6 @@
 import { createContext } from "react";
 //Assets
-import "./assets/scss/App.scss";
+import "./css/App.scss";
 //External
 import {
   createBrowserRouter,
