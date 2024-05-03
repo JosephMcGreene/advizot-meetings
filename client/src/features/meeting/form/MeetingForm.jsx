@@ -21,10 +21,8 @@ export default function MeetingForm({
    *
    * @returns {Object} A styles object specifying the percentage of the background that should be filled in.
    */
-  function sliderSizeOf(value) {
-    return {
-      backgroundSize: `${(value * 100) / 10}% 100%`,
-    };
+  function sliderFill(value) {
+    return { backgroundSize: `${(value * 100) / 10}% 100%` };
   }
 
   return (
@@ -78,7 +76,7 @@ export default function MeetingForm({
             min={0}
             max={10}
             className="range-container"
-            style={sliderSizeOf(props.values.business)}
+            style={sliderFill(props.values.business)}
             spanText={props.values.business}
           />
 
@@ -90,7 +88,7 @@ export default function MeetingForm({
             min={0}
             max={10}
             className="range-container"
-            style={sliderSizeOf(props.values.personal)}
+            style={sliderFill(props.values.personal)}
             spanText={props.values.personal}
           />
           <InputField
@@ -101,7 +99,7 @@ export default function MeetingForm({
             min={0}
             max={10}
             className="range-container"
-            style={sliderSizeOf(props.values.relationships)}
+            style={sliderFill(props.values.relationships)}
             spanText={props.values.relationships}
           />
           <InputField
@@ -124,11 +122,10 @@ export default function MeetingForm({
             text="Goal before next meeting"
             name="monthlyGoal"
             as="textarea"
-            wwwww
             className="text-input"
           />
           <button type="submit" className="btn">
-            Submit
+            {existingSignIn ? "Finish Edits" : "Submit"}
           </button>
         </Form>
       )}

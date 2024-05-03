@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import SignIn from "../models/SignIn.js";
 
 async function post(req, res) {
   try {
@@ -18,6 +19,17 @@ async function post(req, res) {
   }
 }
 
-const profileController = { post };
+async function postForSignIns(req, res) {
+  try {
+    const signIns = await SignIn.find({ userID: req.body.id });
+
+    res.json(signIns);
+  } catch (err) {
+    res.json(new Error(err));
+    throw new Error(err);
+  }
+}
+
+const profileController = { post, postForSignIns };
 
 export default profileController;

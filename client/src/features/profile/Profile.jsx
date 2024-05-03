@@ -8,24 +8,27 @@ import { axiosFetch } from "../../helpers";
 import useToasts from "../../hooks/useToasts";
 //Components
 import LoadingSpinner from "../../shared/LoadingSpinner";
+import SignIn from "./SignIn";
 
 export default function Profile() {
-  const [profileData, setProfileData] = useState("");
+  const [personalInfo, setPersonalInfo] = useState("");
+  const [signIns, setSignIns] = useState([]);
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
   const { showToast } = useToasts();
 
   useEffect(() => {
-    getProfileData();
+    fetchProfileData("post", "/profile", setPersonalInfo);
+    fetchProfileData("post", "/profile/signIns", setSignIns);
   }, []);
 
-  async function getProfileData() {
+  async function fetchProfileData(method, url, setState) {
     try {
       setLoading(true);
 
-      const { data } = await axiosFetch("post", "/profile", { id });
+      const { data } = await axiosFetch(method, url, { id });
 
-      setProfileData(data);
+      setState(data);
     } catch (err) {
       await showToast("failure", "Something went wrong, unable to fetch data.");
       throw new Error(err);
@@ -38,18 +41,19 @@ export default function Profile() {
 
   return (
     <section className="profile">
+      {console.log(signIns)}
       <article className="basic-info" id="basicInfo">
         <img
           className="profile-photo"
-          src={profileData.photo}
-          alt={`${profileData.firstName} ${profileData.lastName}`}
+          src={personalInfo.photo}
+          alt={`${personalInfo.firstName} ${personalInfo.lastName}`}
         />
         <label htmlFor="basicInfo">
           <h1>
-            {profileData.firstName} {profileData.lastName}
+            {personalInfo.firstName} {personalInfo.lastName}
           </h1>
           <h3>
-            {profileData.role === "admin" ? "Chair" : `${profileData.group}`}
+            {personalInfo.role === "admin" ? "Chair" : `${personalInfo.group}`}
           </h3>
         </label>
         {/* <EditPen className="edit-pen" /> */}
@@ -59,7 +63,9 @@ export default function Profile() {
         <h2>Sign-In History</h2>
 
         <ul className="sign-in-history">
-          {/* TODO Add a query for member's sign-in history */}
+          {signIns.map((signIn, index) => (
+            <SignIn signIn={signIn} key={signIn.date + index} />
+          ))}
           {/* TODO Implement Pagination here? */}
         </ul>
       </article>
