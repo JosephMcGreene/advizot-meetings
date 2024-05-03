@@ -1,0 +1,37 @@
+@use "../index" as *;
+
+$size: 20px;
+
+.tbody-th,
+.sign-in {
+  position: relative;
+
+  &:hover .edit-pen {
+    display: block;
+  }
+
+  .edit-pen {
+    position: absolute;
+    top: calc(50% - ($size / 2));
+    right: 4%;
+    display: none;
+    max-width: $size;
+  }
+}
+
+.profile-sign-in {
+  position: relative;
+
+  &:hover .edit-pen {
+    display: block;
+  }
+
+  .edit-pen {
+    position: absolute;
+    // matches padding: 1rem applied to .profile-sign-in in _profile.scss
+    right: 1rem;
+
+    display: none;
+    width: $size;
+  }
+}

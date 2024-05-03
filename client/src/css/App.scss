@@ -6,10 +6,10 @@
 @use "./modules/modals/modals";
 @use "./modules/meeting/admin-view";
 @use "./modules/meeting/delete-btn";
-@use "./modules/meeting/edit-pen";
 @use "./modules/meeting/meeting-actions";
 @use "./modules/meeting/meeting-heading";
 @use "./modules/meeting/sign-ins";
+@use "./modules/edit-pen";
 @use "./modules/header";
 @use "./modules/profile";
 @use "./modules/toasts";
