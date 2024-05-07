@@ -15,7 +15,6 @@ export default function Profile() {
   if (loading) return <LoadingSpinner />;
   return (
     <section className="profile">
-      {console.log(signIns)}
       <article className="basic-info" id="basicInfo">
         <img
           className="profile-photo"
@@ -29,6 +28,7 @@ export default function Profile() {
           <h3>
             {personalInfo.role === "admin" ? "Chair" : `${personalInfo.group}`}
           </h3>
+          <h3>{personalInfo.email}</h3>
         </label>
         {/* <EditPen className="edit-pen" /> */}
       </article>

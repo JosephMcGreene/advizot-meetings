@@ -3,7 +3,7 @@ import SignIn from "../models/SignIn.js";
 
 async function post(req, res) {
   try {
-    const userInfo = await User.findOne({ advizotID: req.body.id });
+    const userInfo = await User.findOne({ advizotID: req.body.userID });
 
     //TODO rework this. Need to look up what Mongoose will return if it cannot find the user ID (above)
     if (userInfo) {

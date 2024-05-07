@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 //Internal
-import { axiosFetch } from "../../helpers";
-import useToasts from "../../hooks/useToasts";
+import { axiosFetch } from "../helpers";
+import useToasts from "./useToasts";
 
 export default function useProfile(userID) {
   const { showToast } = useToasts();
@@ -15,7 +15,7 @@ export default function useProfile(userID) {
   }, []);
 
   /**
-   * Fetches various data from the server regarding user profile information and sets the appropriate state that corresponds to the data that was fetched
+   * Fetches user profile data from the server and sets the appropriate state that corresponds to the data that was fetched
    *
    * @param {String}   method   HTTP method being used to fetch data
    * @param {String}   url		Back end route to make request to

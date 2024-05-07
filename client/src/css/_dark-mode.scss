@@ -136,4 +136,11 @@ $text-dark: black;
       }
     }
   }
+
+  .profile {
+    .profile-sign-ins {
+      background-color: $darker-bg;
+      border: 1px solid $advizot-grey;
+    }
+  }
 }
