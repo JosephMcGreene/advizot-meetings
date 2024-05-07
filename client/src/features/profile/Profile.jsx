@@ -33,7 +33,7 @@ export default function Profile() {
         {/* <EditPen className="edit-pen" /> */}
       </article>
 
-      <article className="profile-sign-ins">
+      <article className="secondary-data">
         <h2>Sign-In History</h2>
 
         <ul className="sign-in-history">
