@@ -10,25 +10,20 @@ import SignIn from "./SignIn";
 
 export default function Profile() {
   const { id } = useParams();
-  const [personalInfo, signIns, loading] = useProfile(id);
+  const [profileInfo, signIns, loading] = useProfile(id);
+  const fullName = `${profileInfo.firstName} ${profileInfo.lastName}`;
 
   if (loading) return <LoadingSpinner />;
   return (
     <section className="profile">
       <article className="basic-info" id="basicInfo">
-        <img
-          className="profile-photo"
-          src={personalInfo.photo}
-          alt={`${personalInfo.firstName} ${personalInfo.lastName}`}
-        />
+        <img className="profile-photo" src={profileInfo.photo} alt={fullName} />
         <label htmlFor="basicInfo">
-          <h1>
-            {personalInfo.firstName} {personalInfo.lastName}
-          </h1>
+          <h1>{fullName}</h1>
           <h3>
-            {personalInfo.role === "admin" ? "Chair" : `${personalInfo.group}`}
+            {profileInfo.role === "admin" ? "Chair" : `${profileInfo.group}`}
           </h3>
-          <h3>{personalInfo.email}</h3>
+          <h3>{profileInfo.email}</h3>
         </label>
         {/* <EditPen className="edit-pen" /> */}
       </article>
@@ -38,7 +33,11 @@ export default function Profile() {
 
         <ul className="sign-in-history">
           {signIns.map((signIn, index) => (
-            <SignIn signIn={signIn} key={signIn.date + index} />
+            <SignIn
+              date={signIn.date}
+              monthlyGoal={signIn.monthlyGoal}
+              key={signIn.date + index}
+            />
           ))}
           {/* TODO Implement Pagination here? */}
         </ul>

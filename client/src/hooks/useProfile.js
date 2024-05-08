@@ -5,12 +5,12 @@ import useToasts from "./useToasts";
 
 export default function useProfile(userID) {
   const { showToast } = useToasts();
-  const [personalInfo, setPersonalInfo] = useState("");
+  const [profileInfo, setProfileInfo] = useState("");
   const [signIns, setSignIns] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetchProfileData("post", "/profile", setPersonalInfo);
+    fetchProfileData("post", "/profile", setProfileInfo);
     fetchProfileData("post", "/profile/signIns", setSignIns);
   }, []);
 
@@ -36,5 +36,5 @@ export default function useProfile(userID) {
     }
   }
 
-  return [personalInfo, signIns, loading];
+  return [profileInfo, signIns, loading];
 }

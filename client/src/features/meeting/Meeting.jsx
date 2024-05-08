@@ -3,7 +3,7 @@ import { UserContext } from "../../App";
 //External
 import { useParams } from "react-router-dom";
 //Internal
-import { currentDate } from "../../helpers";
+import { parseDate } from "../../helpers";
 //Hooks
 import useMeeting from "../../hooks/useMeeting";
 //Components
@@ -75,7 +75,7 @@ export default function Meeting() {
 
       {formShown && (
         <ModalTemplate
-          title={`${currentDate("month")}, ${currentDate("year")}`}
+          title={`${parseDate("month")}, ${parseDate("year")}`}
           handleClose={() => setFormShown(false)}
         >
           <MeetingForm

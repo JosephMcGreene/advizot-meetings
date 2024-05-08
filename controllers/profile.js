@@ -10,7 +10,7 @@ async function post(req, res) {
       res.statusMessage = "User found";
       res.json(userInfo);
     } else {
-      res.statusMessage = `No user found with user ID ${res.body.id}`;
+      res.statusMessage = `No user found with user ID ${req.body.userID}`;
       res.json({ message: res.statusMessage });
     }
   } catch (err) {
@@ -21,7 +21,7 @@ async function post(req, res) {
 
 async function postForSignIns(req, res) {
   try {
-    const signIns = await SignIn.find({ userID: req.body.id });
+    const signIns = await SignIn.find({ userID: req.body.userID });
 
     res.json(signIns);
   } catch (err) {

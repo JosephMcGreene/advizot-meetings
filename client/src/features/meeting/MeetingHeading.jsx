@@ -3,7 +3,7 @@ import { UserContext } from "../../App";
 //External
 import { useNavigate, Outlet } from "react-router-dom";
 //Internal
-import { currentDate } from "../../helpers";
+import { parseDate } from "../../helpers";
 //Components
 import RoomCodeToggle from "./admin-actions/RoomCodeToggle";
 import RoomCodeDisplay from "./room-code/RoomCodeDisplay";
@@ -34,7 +34,7 @@ export default function MeetingHeading({ currentGroup }) {
         ) : (
           currentGroup
         )}{" "}
-        {currentDate("month")} {currentDate("year")}
+        {parseDate("month")} {parseDate("year")}
       </h1>
 
       <div className="room-code-container">

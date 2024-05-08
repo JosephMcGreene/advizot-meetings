@@ -28,19 +28,19 @@ export async function axiosFetch(method, url, data = null) {
 }
 
 /**
- * Parses Date object into a string representing the current month of the year
+ * Takes a date-type argument and returns a string representing the date's day, month name, or year
  *
- * @param {string}      monthOrYear "month" or "year" to be returned
- * @param {Date | null} dateToParse Date to parse, default is current date
+ * @param {string}                 monthOrYear "day" or "month" or "year" to be returned
+ * @param {sString | Object | null} dateToParse Date to parse, default is current date
  *
- * @returns {string} A string representing the current month or year
+ * @returns {string} The provided date's parsed day, month name, or year
  */
-export const currentDate = (monthOrYear, dateToParse = null) => {
+export const parseDate = (partOfDate, dateToParse = null) => {
   let date = dateToParse || new Date();
 
-  if (monthOrYear === "year") return date.getFullYear();
+  if (partOfDate === "day") return date.getDate();
 
-  if (monthOrYear === "month") {
+  if (partOfDate === "month") {
     switch (date.getMonth()) {
       case 0:
         return "January";
@@ -70,4 +70,6 @@ export const currentDate = (monthOrYear, dateToParse = null) => {
         return "??";
     }
   }
+
+  if (partOfDate === "year") return date.getFullYear();
 };
