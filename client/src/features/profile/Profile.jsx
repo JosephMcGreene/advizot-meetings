@@ -1,5 +1,5 @@
 //Assets
-import { ReactComponent as EditPen } from "../../assets/img/pen-solid.svg";
+// import { ReactComponent as EditPen } from "../../assets/img/pen-solid.svg";
 //External
 import { useParams } from "react-router-dom";
 //Hooks
@@ -32,12 +32,8 @@ export default function Profile() {
         <h2>Sign-In History</h2>
 
         <ul className="sign-in-history">
-          {signIns.map((signIn, index) => (
-            <SignIn
-              date={signIn.date}
-              monthlyGoal={signIn.monthlyGoal}
-              key={signIn.date + index}
-            />
+          {signIns.map((signIn) => (
+            <SignIn signIn={signIn} key={signIn._id} />
           ))}
           {/* TODO Implement Pagination here? */}
         </ul>

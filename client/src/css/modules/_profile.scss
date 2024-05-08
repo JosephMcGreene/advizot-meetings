@@ -45,14 +45,13 @@
       margin-top: 1rem;
 
       .profile-sign-in {
-        $padding: 1rem;
-
         @include borderRadius();
 
-        padding: $padding;
+        padding: 1rem;
 
         &:hover {
           background-color: $advizot-light;
+          color: black;
         }
 
         h3 {
@@ -60,6 +59,7 @@
         }
 
         p {
+          font-size: 1rem;
           letter-spacing: 0px;
           font-family: $main-font;
         }

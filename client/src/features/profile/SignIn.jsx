@@ -1,20 +1,34 @@
-import { ReactComponent as EditPen } from "../../assets/img/pen-solid.svg";
+import { useState } from "react";
 //Helpers
 import { parseDate } from "../../helpers";
+//Components
+import ModalTemplate from "../../shared/modals/ModalTemplate";
 
-export default function SignIn({ date, monthlyGoal }) {
-  // TODO Figure Out exactly what needs to be displayed in this component
+export default function SignIn({ signIn }) {
+  const [detailsShown, setDetailsShown] = useState(false);
+  const signInDate = `${parseDate("month", new Date(signIn.date))} ${parseDate(
+    "day",
+    new Date(signIn.date)
+  )}, ${parseDate("year", new Date(signIn.date))}`;
+
   return (
-    <li className="profile-sign-in">
-      <EditPen className="edit-pen" />
-      <h3>
-        {parseDate("month", new Date(date))} {parseDate("day", new Date(date))},{" "}
-        {parseDate("year", new Date(date))}
-      </h3>
+    <>
+      <li className="profile-sign-in" onClick={() => setDetailsShown(true)}>
+        <h3>{signInDate}</h3>
 
-      <p>
-        <u>Goal:</u> {monthlyGoal}
-      </p>
-    </li>
+        <p>
+          <u>Goal:</u> {signIn.monthlyGoal}
+        </p>
+      </li>
+
+      {detailsShown && (
+        <ModalTemplate
+          title={`${signInDate}`}
+          handleClose={() => setDetailsShown(false)}
+        >
+          {signIn._id}
+        </ModalTemplate>
+      )}
+    </>
   );
 }
