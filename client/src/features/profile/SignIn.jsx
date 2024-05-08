@@ -7,7 +7,6 @@ export default function SignIn({ date, monthlyGoal }) {
   return (
     <li className="profile-sign-in">
       <EditPen className="edit-pen" />
-      {console.log(typeof new Date(date))}
       <h3>
         {parseDate("month", new Date(date))} {parseDate("day", new Date(date))},{" "}
         {parseDate("year", new Date(date))}
