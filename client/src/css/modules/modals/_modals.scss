@@ -44,6 +44,14 @@
       padding: $form-padding;
 
       border-radius: 0px 0px 12px 0px;
+
+      ul {
+        list-style: none;
+
+        li {
+          padding-bottom: 1rem;
+        }
+      }
     }
   }
 

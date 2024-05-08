@@ -23,13 +23,12 @@ export default function Profile() {
           <h3>
             {profileInfo.role === "admin" ? "Chair" : `${profileInfo.group}`}
           </h3>
-          <h3>{profileInfo.email}</h3>
         </label>
         {/* <EditPen className="edit-pen" /> */}
       </article>
 
       <article className="secondary-data">
-        <h2>Sign-In History</h2>
+        <h2>History</h2>
 
         <ul className="sign-in-history">
           {signIns.map((signIn) => (
