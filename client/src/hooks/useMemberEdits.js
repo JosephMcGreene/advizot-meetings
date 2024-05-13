@@ -1,12 +1,13 @@
 import { useState, useEffect, useContext } from "react";
 import { ToastContext } from "../App";
 //External
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 //Internal
 import { axiosFetch } from "../helpers";
 
 export default function useMemberEdits(currentGroup) {
   const { showToast } = useContext(ToastContext);
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [usersToEdit, setUsersToEdit] = useState([]);
   const [selectedUser, setSelectedUser] = useState("none");
@@ -57,7 +58,7 @@ export default function useMemberEdits(currentGroup) {
   }
 
   /**
-   * confirms with the iser that they would like to move the user they have selected into a new group. If confirmed, calls changeGroup() to initiate the move
+   * confirms with the user that they would like to move the user they have selected into a new group. If confirmed, calls changeGroup() to initiate the move
    *
    * @param {string} groupToPlace the group to place the user into
    * @param {object} userInfo     information about the user to be moved
@@ -165,10 +166,7 @@ export default function useMemberEdits(currentGroup) {
       case "edit":
         setGroupPlacementEnabled(false);
         setConfirmUserDeleteShown(false);
-        redirect(`/profile/${selectedUser.advizotID}`);
-        return alert(
-          "This feature isn't ready yet. Thanks for the interest though!"
-        );
+        return navigate(`/profile/${selectedUser.advizotID}`);
       case "delete":
         setGroupPlacementEnabled(false);
         return setConfirmUserDeleteShown(true);
