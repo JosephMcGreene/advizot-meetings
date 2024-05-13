@@ -7,11 +7,11 @@ import { parseDate } from "../../helpers";
 //Hooks
 import useMeeting from "../../hooks/useMeeting";
 //Components
-import LoadingSpinner from "../../shared/LoadingSpinner";
+import LoadingSpinner from "../../features/shared/LoadingSpinner";
 import MeetingHeading from "./MeetingHeading";
-import SignInsCardView from "./meeting-responses/card-view/SignInsCardView";
-import SignInsTableView from "./meeting-responses/table-view/SignInsTableView";
-import ModalTemplate from "../../shared/modals/ModalTemplate";
+import SignInsCardView from "./sign-in-views/card-view/SignInsCardView";
+import SignInsTableView from "./sign-in-views/table-view/SignInsTableView";
+import ModalTemplate from "../../features/shared/modals/ModalTemplate";
 import MeetingForm from "./form/MeetingForm";
 import ActionsMenu from "./ActionsMenu";
 

@@ -49,7 +49,7 @@ $text-dark: black;
   }
 
   .header,
-  .admin-actions-list {
+  .meeting-actions-list {
     background-color: $darker-bg;
     box-shadow: none;
     border: none;
@@ -87,7 +87,7 @@ $text-dark: black;
     box-shadow: none;
   }
 
-  .admin-sign-ins-table {
+  .sign-ins-table {
     $border: 1px solid $advizot-grey;
 
     background-color: $darker-bg;
@@ -121,7 +121,7 @@ $text-dark: black;
     border: none;
   }
 
-  .admin-actions-list .admin-actions-item .icon path {
+  .meeting-actions-list .meeting-actions-item .icon path {
     fill: $advizot-grey;
   }
 

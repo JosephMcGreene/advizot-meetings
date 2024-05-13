@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 //Hooks
 import useProfile from "../../hooks/useProfile";
 //Components
-import LoadingSpinner from "../../shared/LoadingSpinner";
+import LoadingSpinner from "../../features/shared/LoadingSpinner";
 import SignIn from "./SignIn";
 
 export default function Profile() {

@@ -13,14 +13,14 @@ import useUser from "./hooks/useUser";
 import useDarkMode from "./hooks/useDarkMode";
 import useToasts from "./hooks/useToasts";
 //Components
-import LoadingSpinner from "./shared/LoadingSpinner";
-import Welcome from "./shared/Welcome";
+import LoadingSpinner from "./features/shared/LoadingSpinner";
+import Welcome from "./features/shared/Welcome";
 import UsersOnly from "./features/meeting/UsersOnly";
 import Meeting from "./features/meeting/Meeting";
 // import ProfilePlaceholder from "./features/profile/ProfilePlaceholder";
 import Profile from "./features/profile/Profile";
-import Header from "./shared/Header";
-import Toasts from "./shared/Toasts";
+import Header from "./features/shared/Header";
+import Toasts from "./features/shared/Toasts";
 
 export const UserContext = createContext();
 export const ToastContext = createContext();

@@ -8,8 +8,8 @@ import { ReactComponent as SlidersIcon } from "../../assets/img/sliders-solid.sv
 import { motion } from "framer-motion";
 //Internal
 import ViewSwitch from "../meeting/ViewSwitch";
-import ActionsBtn from "./meeting-responses/ActionsBtn";
-import ModalTemplate from "../../shared/modals/ModalTemplate";
+import ActionsBtn from "./sign-in-views/ActionsBtn";
+import ModalTemplate from "../../features/shared/modals/ModalTemplate";
 import MemberEditModal from "./admin-actions/MemberEditModal";
 //Hooks
 import useOutsideClick from "../../hooks/useOutsideClick";
@@ -57,11 +57,11 @@ export default function ActionsMenu({
           <motion.ul
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
-            className="admin-actions-list"
+            className="meeting-actions-list"
           >
             {user.role === "admin" && (
               <li
-                className="admin-actions-item"
+                className="meeting-actions-item"
                 onClick={() => setMemberEditModalShown(!memberEditModalShown)}
               >
                 <MemberEditIcon className="icon" />
@@ -69,7 +69,7 @@ export default function ActionsMenu({
               </li>
             )}
 
-            <li className="admin-actions-item">
+            <li className="meeting-actions-item">
               <ViewSwitch
                 cardView={cardView}
                 toggleCardView={handleViewAsMemberClick}
@@ -85,7 +85,7 @@ export default function ActionsMenu({
                 <hr />
 
                 <li
-                  className="admin-actions-item"
+                  className="meeting-actions-item"
                   onClick={() => handleNewSignInClick()}
                 >
                   <AddResponseIcon className="icon" />

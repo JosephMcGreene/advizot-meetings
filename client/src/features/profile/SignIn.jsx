@@ -2,7 +2,7 @@ import { useState } from "react";
 //Helpers
 import { parseDate } from "../../helpers";
 //Components
-import ModalTemplate from "../../shared/modals/ModalTemplate";
+import ModalTemplate from "../../features/shared/modals/ModalTemplate";
 
 export default function SignIn({ signIn }) {
   const [detailsShown, setDetailsShown] = useState(false);

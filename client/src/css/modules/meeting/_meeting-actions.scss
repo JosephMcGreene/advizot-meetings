@@ -37,7 +37,7 @@
   }
 }
 
-.admin-actions-list {
+.meeting-actions-list {
   @include borderRadius();
   @include borderSides();
 
@@ -54,7 +54,7 @@
   background-color: $light-bg;
   box-shadow: $box-shadow;
 
-  .admin-actions-item {
+  .meeting-actions-item {
     display: flex;
     justify-content: space-between;
     gap: 0.5rem;

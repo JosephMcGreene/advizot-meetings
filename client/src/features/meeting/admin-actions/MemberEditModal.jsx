@@ -1,9 +1,7 @@
-//Internal
-import { Link } from "react-router-dom";
 //Hooks
 import useMemberEdits from "../../../hooks/useMemberEdits";
 //Components
-import LoadingSpinner from "../../../shared/LoadingSpinner";
+import LoadingSpinner from "../../../features/shared/LoadingSpinner";
 
 export default function MemberEditModal({ handleClose, currentGroup }) {
   const [

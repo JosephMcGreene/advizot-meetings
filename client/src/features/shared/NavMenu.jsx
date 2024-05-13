@@ -1,15 +1,15 @@
 import { useContext, useRef } from "react";
-import { UserContext } from "../App";
+import { UserContext } from "../../App";
 //Assets
-import { ReactComponent as ProfileIcon } from "../assets/img/user-tie-solid.svg";
-import { ReactComponent as MeetingIcon } from "../assets/img/users-solid.svg";
+import { ReactComponent as ProfileIcon } from "../../assets/img/user-tie-solid.svg";
+import { ReactComponent as MeetingIcon } from "../../assets/img/users-solid.svg";
 // import { ReactComponent as CheckInIcon } from "../assets/img/handshake-solid.svg";
-import { ReactComponent as LogOutIcon } from "../assets/img/right-from-bracket-solid.svg";
+import { ReactComponent as LogOutIcon } from "../../assets/img/right-from-bracket-solid.svg";
 //External
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 //Hooks
-import useOutsideClick from "../hooks/useOutsideClick";
+import useOutsideClick from "../../hooks/useOutsideClick";
 //Components
 import DarkModeSwitch from "./DarkModeSwitch";
 

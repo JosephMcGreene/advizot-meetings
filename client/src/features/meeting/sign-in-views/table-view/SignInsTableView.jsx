@@ -13,7 +13,7 @@ export default function SignInsTableView({
     <motion.table
       layout
       transition={{ type: "tween", stiffness: 10, duration: 0.1 }}
-      className="admin-sign-ins-table"
+      className="sign-ins-table"
     >
       {signIns.length > 0 && (
         <thead className="thead">

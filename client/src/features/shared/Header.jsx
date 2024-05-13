@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
-import { UserContext } from "../App";
+import { UserContext } from "../../App";
 //Assets
-import advizotLogo from "../assets/img/original-on-transparent.png";
+import advizotLogo from "../../assets/img/original-on-transparent.png";
 //External
 import { Outlet } from "react-router-dom";
 //Components

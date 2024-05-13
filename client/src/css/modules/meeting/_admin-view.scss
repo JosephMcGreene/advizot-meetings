@@ -1,6 +1,6 @@
 @use "../../index" as *;
 
-.admin-sign-ins-table {
+.sign-ins-table {
   $border: 1px solid black;
 
   margin: 0 auto;
@@ -79,7 +79,7 @@
 }
 
 @media screen and (max-width: 1145px) {
-  .admin-sign-ins-table {
+  .sign-ins-table {
     .thead .table-heading,
     .tbody-row .tbody-th {
       max-width: 100px;
@@ -87,7 +87,7 @@
   }
 }
 @media screen and (max-width: 732px) {
-  .admin-sign-ins-table {
+  .sign-ins-table {
     .thead .table-heading,
     .tbody-row .tbody-th {
       max-width: 75px;
@@ -95,7 +95,7 @@
   }
 }
 @media screen and (max-width: 560px) {
-  .admin-sign-ins-table {
+  .sign-ins-table {
     .thead .table-heading,
     .tbody-row .tbody-th {
       max-width: 50px;
