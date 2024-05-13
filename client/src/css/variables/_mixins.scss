@@ -37,7 +37,7 @@
 @mixin btnHover() {
   box-shadow: colors.$btn-shadow;
   transform: translateY(-3px) scale(1.03);
-  transition-duration: 100ms;
+  transition-duration: 150ms;
 }
 
 @mixin specialBoxShadow() {

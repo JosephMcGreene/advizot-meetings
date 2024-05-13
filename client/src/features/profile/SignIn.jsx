@@ -20,8 +20,6 @@ export default function SignIn({ signIn }) {
         </p>
       </li>
 
-      <hr />
-
       {detailsShown && (
         <ModalTemplate
           title={`${signInDate}`}
@@ -37,7 +35,9 @@ export default function SignIn({ signIn }) {
 function SignInDetails({ signIn, setDetailsShown }) {
   return (
     <ul>
-      <li>Status: {signIn.priority.substring(1)}</li>
+      <li>
+        Status: {signIn.priority === "zP" ? "Processed" : "Not Processed"}
+      </li>
       <li>Personal: {signIn.personal}</li>
       <li>Relationships: {signIn.relationships}</li>
       <li>Business: {signIn.business}</li>

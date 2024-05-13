@@ -137,10 +137,16 @@ $text-dark: black;
     }
   }
 
-  .profile {
-    .secondary-data {
-      background-color: $darker-bg;
-      border: 1px solid $advizot-grey;
+  .profile .secondary-data {
+    background-color: $darker-bg;
+    border: 1px solid $advizot-grey;
+
+    .sign-in-history .profile-sign-in {
+      border-bottom: 1px solid $advizot-color;
+
+      &:hover {
+        color: black;
+      }
     }
   }
 }

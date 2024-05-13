@@ -1,7 +1,8 @@
 @use "../index" as *;
 
 .profile {
-  height: 200vh;
+  display: flex;
+  flex-direction: column;
 
   .basic-info {
     display: flex;
@@ -28,7 +29,8 @@
   .secondary-data {
     @include advizotFont(1.1rem, 600, 1px);
 
-    align-self: center;
+    margin: 0 auto;
+    width: min(93%, 400px);
 
     padding: 1rem;
     border-radius: 20px 0px 20px 0px;
@@ -46,12 +48,18 @@
 
       .profile-sign-in {
         @include borderRadius();
+        @include transition(box-shadow transform);
 
-        padding: 1rem;
+        margin-bottom: 1rem;
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid black;
+        cursor: pointer;
 
         &:hover {
-          background-color: $advizot-light;
-          color: black;
+          @include btnHover();
+
+          background-color: $advizot-color;
+          border-bottom: none;
         }
 
         h3 {
