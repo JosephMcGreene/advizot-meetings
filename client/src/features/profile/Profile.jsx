@@ -2,7 +2,7 @@
 // import { ReactComponent as EditPen } from "../../assets/img/pen-solid.svg";
 import { ReactComponent as ChartIcon } from "../../assets/img/chart-line-solid.svg";
 //External
-import { useParams } from "react-router-dom";
+import { useParams, useLocation, Link, Outlet } from "react-router-dom";
 //Hooks
 import useProfile from "../../hooks/useProfile";
 //Components
@@ -11,6 +11,7 @@ import SignIn from "./SignIn";
 
 export default function Profile() {
   const { id } = useParams();
+  const location = useLocation();
   const [profileInfo, signIns, loading] = useProfile(id);
   const fullName = `${profileInfo.firstName} ${profileInfo.lastName}`;
 
@@ -30,14 +31,20 @@ export default function Profile() {
 
       <article className="secondary-data">
         <h2>History</h2>
-        <ChartIcon className="chart" />
+        <Link to={`/profile/${id}/trends`}>
+          <ChartIcon className="chart" />
+        </Link>
 
-        <ul className="sign-in-history">
-          {signIns.map((signIn) => (
-            <SignIn signIn={signIn} key={signIn._id} />
-          ))}
-          {/* TODO Implement Pagination here? */}
-        </ul>
+        <Outlet />
+
+        {!location.pathname.includes("/trends") && (
+          <ul className="sign-in-history">
+            {signIns.map((signIn) => (
+              <SignIn signIn={signIn} key={signIn._id} />
+            ))}
+            {/* TODO Implement Pagination here? */}
+          </ul>
+        )}
       </article>
     </section>
   );

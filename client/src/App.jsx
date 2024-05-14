@@ -67,7 +67,9 @@ export default function App() {
 
                     <Route path="meeting/:group" element={<Meeting />} />
 
-                    <Route path="profile/:id" element={<Profile />} />
+                    <Route path="profile/:id" element={<Profile />}>
+                      <Route path="trends" element={<h1>Hello Trends!</h1>} />
+                    </Route>
                   </Route>
                 )
               )}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-//assets
+//Assets
 import { ReactComponent as ExpandIcon } from "../../assets/img/expand-solid.svg";
 import { ReactComponent as Checkmark } from "../../assets/img/check-solid.svg";
 //Helpers
