@@ -27,12 +27,15 @@
   }
 
   .secondary-data {
+    $padding: 1rem;
+
     @include advizotFont(1.1rem, 600, 1px);
 
+    position: relative;
     margin: 0 auto;
     width: min(93%, 400px);
 
-    padding: 1rem;
+    padding: $padding;
     border-radius: 20px 0px 20px 0px;
     background-color: $advizot-grey;
     font-family: $advizot-font;
@@ -40,6 +43,21 @@
     h2 {
       width: 100%;
       text-align: center;
+    }
+
+    .chart {
+      @include borderRadius();
+
+      position: absolute;
+      top: $padding;
+      right: $padding;
+      width: 40px;
+      padding: calc($padding / 2);
+      cursor: pointer;
+
+      &:hover {
+        background-color: $advizot-color;
+      }
     }
 
     .sign-in-history {

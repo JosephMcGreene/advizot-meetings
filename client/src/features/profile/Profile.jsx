@@ -1,5 +1,6 @@
 //Assets
 // import { ReactComponent as EditPen } from "../../assets/img/pen-solid.svg";
+import { ReactComponent as ChartIcon } from "../../assets/img/chart-line-solid.svg";
 //External
 import { useParams } from "react-router-dom";
 //Hooks
@@ -29,6 +30,7 @@ export default function Profile() {
 
       <article className="secondary-data">
         <h2>History</h2>
+        <ChartIcon className="chart" />
 
         <ul className="sign-in-history">
           {signIns.map((signIn) => (

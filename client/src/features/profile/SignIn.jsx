@@ -1,6 +1,6 @@
 import { useState } from "react";
 //assets
-import { ReactComponent as ExpandArrows } from "../../assets/img/expand-solid.svg";
+import { ReactComponent as ExpandIcon } from "../../assets/img/expand-solid.svg";
 import { ReactComponent as Checkmark } from "../../assets/img/check-solid.svg";
 //Helpers
 import { parseDate } from "../../helpers";
@@ -24,7 +24,8 @@ export default function SignIn({ signIn }) {
             <u>Goal:</u> {signIn.monthlyGoal}
           </p>
         </div>
-        <ExpandArrows className="icon" />
+
+        <ExpandIcon className="icon" />
       </li>
 
       {detailsShown && (

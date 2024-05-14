@@ -141,6 +141,16 @@ $text-dark: black;
     background-color: $darker-bg;
     border: 1px solid $advizot-grey;
 
+    .chart {
+      path {
+        fill: $advizot-color;
+      }
+
+      &:hover path {
+        fill: black;
+      }
+    }
+
     .sign-in-history .profile-sign-in {
       border-bottom: 1px solid $advizot-color;
 
