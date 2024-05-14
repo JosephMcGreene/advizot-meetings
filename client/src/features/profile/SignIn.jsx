@@ -1,4 +1,7 @@
 import { useState } from "react";
+//assets
+import { ReactComponent as ExpandArrows } from "../../assets/img/expand-solid.svg";
+import { ReactComponent as Checkmark } from "../../assets/img/check-solid.svg";
 //Helpers
 import { parseDate } from "../../helpers";
 //Components
@@ -14,10 +17,14 @@ export default function SignIn({ signIn }) {
   return (
     <>
       <li className="profile-sign-in" onClick={() => setDetailsShown(true)}>
-        <h3>{signInDate}</h3>
-        <p>
-          <u>Goal:</u> {signIn.monthlyGoal}
-        </p>
+        <div>
+          <h3>{signInDate}</h3>
+          {signIn.priority === "zP" && <Checkmark className="check" />}
+          <p>
+            <u>Goal:</u> {signIn.monthlyGoal}
+          </p>
+        </div>
+        <ExpandArrows className="icon" />
       </li>
 
       {detailsShown && (

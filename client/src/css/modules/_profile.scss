@@ -50,6 +50,8 @@
         @include borderRadius();
         @include transition(box-shadow transform);
 
+        display: flex;
+        justify-content: space-between;
         margin-bottom: 1rem;
         padding: 1rem 1.5rem;
         border-bottom: 1px solid black;
@@ -60,16 +62,48 @@
 
           background-color: $advizot-color;
           border-bottom: none;
+
+          div .check path {
+            fill: black;
+          }
+
+          .icon {
+            display: block;
+          }
         }
 
-        h3 {
-          font-size: 1.25rem;
+        div {
+          max-width: 88%;
+
+          .check {
+            display: inline;
+            width: 17px;
+            vertical-align: middle;
+            margin-left: 0.25rem;
+            margin-bottom: 3%;
+
+            path {
+              fill: $advizot-color;
+            }
+          }
+          h3 {
+            display: inline;
+            font-size: 1.25rem;
+          }
+          p {
+            font-size: 1rem;
+            letter-spacing: 0px;
+            font-family: $main-font;
+          }
         }
 
-        p {
-          font-size: 1rem;
-          letter-spacing: 0px;
-          font-family: $main-font;
+        .icon {
+          display: none;
+          width: 7%;
+
+          path {
+            fill: black;
+          }
         }
       }
     }
