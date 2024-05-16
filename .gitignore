@@ -5,6 +5,7 @@ client/.pnp
 client/.pnp.js
 .env
 project-notes.txt
+.prettierrc
 
 #testing
 client/coverage
