@@ -1,11 +1,11 @@
 import { useState } from "react";
 //Assets
-import { ReactComponent as ExpandIcon } from "../../assets/img/expand-solid.svg";
-import { ReactComponent as Checkmark } from "../../assets/img/check-solid.svg";
+import { ReactComponent as ExpandIcon } from "../../../assets/img/expand-solid.svg";
+import { ReactComponent as Checkmark } from "../../../assets/img/check-solid.svg";
 //Helpers
-import { parseDate } from "../../helpers";
+import { parseDate } from "../../../helpers";
 //Components
-import ModalTemplate from "../../features/shared/modals/ModalTemplate";
+import ModalTemplate from "../../shared/modals/ModalTemplate";
 
 export default function SignIn({ signIn }) {
   const [detailsShown, setDetailsShown] = useState(false);

@@ -166,7 +166,7 @@ export default function useMemberEdits(currentGroup) {
       case "edit":
         setGroupPlacementEnabled(false);
         setConfirmUserDeleteShown(false);
-        return navigate(`/profile/${selectedUser.advizotID}`);
+        return navigate(`/profile/${selectedUser.advizotID}/info`);
       case "delete":
         setGroupPlacementEnabled(false);
         return setConfirmUserDeleteShown(true);

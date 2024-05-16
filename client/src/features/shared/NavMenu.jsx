@@ -30,7 +30,7 @@ export default function NavMenu({ darkMode, toggleDarkMode, showNav }) {
         {!pathname.includes("/profile") && (
           <li className="nav-item">
             <Link
-              to={`/profile/${user.advizotID}`}
+              to={`/profile/${user.advizotID}/info`}
               onClick={() => showNav(false)}
             >
               <ProfileIcon className="icon" />
