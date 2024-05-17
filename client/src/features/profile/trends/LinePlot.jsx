@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 
 export default function LinePlot({ signIns }) {
-  const simplerData = signIns => {
+  const personalData = signIns => {
     let array = [];
     for (let i = 0; i < signIns.length; i++) {
       array.push(signIns[i].personal);
@@ -18,11 +18,11 @@ export default function LinePlot({ signIns }) {
   const marginLeft = 20;
 
   // D3
-  const x = d3.scaleLinear(
+  const x = d3.scaleTime(
     [0, signIns.length - 1],
     [marginLeft, width - marginRight],
   );
-  const y = d3.scaleLinear(d3.extent(simplerData(signIns)), [
+  const y = d3.scaleLinear(d3.extent(personalData(signIns)), [
     height - marginBottom,
     marginTop,
   ]);
@@ -34,10 +34,10 @@ export default function LinePlot({ signIns }) {
         fill="none"
         stroke="black"
         strokeWidth="1.5"
-        d={line(simplerData(signIns))}
+        d={line(personalData(signIns))}
       />
       <g fill="black" stroke="black" strokeWidth="1.5">
-        {simplerData(signIns).map((d, i) => (
+        {personalData(signIns).map((d, i) => (
           <circle key={i} cx={x(i)} cy={y(d)} r="2.5" />
         ))}
       </g>
