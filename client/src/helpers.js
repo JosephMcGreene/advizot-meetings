@@ -71,3 +71,41 @@ export const currentDate = (monthOrYear, dateToParse = null) => {
     }
   }
 };
+
+/**
+ * Constructs an object containing all the necessary data for a user's sign-in survey response
+ *
+ * @param {Object} user             the currently logged in user
+ * @param {Object} signInToSubmit   data containing preliminary information gleaned from the user, before any manipulation occurs
+ * @param {Object} [existingsignIn] If the user has already entered data this month or for this check-in, the object populates with it ready to be edited
+ *
+ * @returns {Object} the constructed sign-in to be submitted or further manipulated
+ */
+export const signInBody = (
+  user,
+  signInToSubmit,
+  existingsignIn = undefined
+) => {
+  const signInBody = {
+    userName: existingsignIn?.userName || `${user.firstName} ${user.lastName}`,
+    business: signInToSubmit.business,
+    personal: signInToSubmit.personal,
+    relationships: signInToSubmit.relationships,
+    monthlyIssue: signInToSubmit.monthlyIssue,
+    priority: signInToSubmit.priority,
+    monthlyGoal: signInToSubmit.monthlyGoal,
+    date: Date.now(),
+    group: existingsignIn?.group || user.group,
+    userID: existingsignIn?.userID || user.advizotID,
+    _id: existingsignIn?._id,
+  };
+
+  if (signInBody.group === "admin") {
+    signInBody.priority = signInBody.priority.replace(
+      signInBody.priority.charAt(0),
+      "y"
+    );
+  }
+
+  return signInBody;
+};

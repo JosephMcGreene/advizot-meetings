@@ -73,7 +73,8 @@
           .icon path {
             fill: $advizot-color;
           }
-          a {
+          a,
+          button {
             color: $advizot-color;
           }
         }
@@ -84,7 +85,8 @@
           margin-right: 0.75rem;
         }
 
-        a {
+        a,
+        button {
           font-size: 1.25rem;
           padding: 0.25rem 0.75rem;
         }

@@ -15,6 +15,7 @@ async function putToSignIns(req, res) {
       date: req.body.date,
       group: req.body.group,
       userID: req.body.userID,
+      isCheckIn: req.body.isCheckIn || false,
     });
     await newSignIn.save();
 

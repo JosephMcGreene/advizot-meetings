@@ -1,7 +1,9 @@
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../App";
 import useToasts from "./useToasts";
-import { axiosFetch } from "../helpers";
+import { axiosFetch, signInBody } from "../helpers";
+
+// TODO Rename this "useSignIns", so that it makes sense to use it in other app features, namely the check-ins feature
 
 export default function useMeeting(method, url) {
   const user = useContext(UserContext);
@@ -15,32 +17,6 @@ export default function useMeeting(method, url) {
     if (a.priority < b.priority) return -1;
     return 1;
   });
-
-  const signInBody = (signInToSubmit, existingsignIn = undefined) => {
-    const signInBody = {
-      userName:
-        existingsignIn?.userName || `${user.firstName} ${user.lastName}`,
-      business: signInToSubmit.business,
-      personal: signInToSubmit.personal,
-      relationships: signInToSubmit.relationships,
-      monthlyIssue: signInToSubmit.monthlyIssue,
-      priority: signInToSubmit.priority,
-      monthlyGoal: signInToSubmit.monthlyGoal,
-      date: Date.now(),
-      group: existingsignIn?.group || user.group,
-      userID: existingsignIn?.userID || user.advizotID,
-      _id: existingsignIn?._id,
-    };
-
-    if (signInBody.group === "admin") {
-      signInBody.priority = signInBody.priority.replace(
-        signInBody.priority.charAt(0),
-        "y"
-      );
-    }
-
-    return signInBody;
-  };
 
   useEffect(() => {
     getSignIns(method, url);
@@ -70,7 +46,7 @@ export default function useMeeting(method, url) {
   }
 
   /**
-   * Takes in user sign-in from MeetingForm.jss and adds it to the database or updates an existing user sign-in. See /routes/db.js
+   * Takes in user sign-in information and adds it to the database or updates an existing user sign-in.
    *
    * @param {string} method           http verb used to subscribe to the database
    * @param {Object} signInToSubmit Body to be added or edited in the database and displayed to the users
@@ -82,7 +58,7 @@ export default function useMeeting(method, url) {
       const response = await axiosFetch(
         "put",
         "/signIns",
-        signInBody(signInToSubmit, existingSignIn)
+        signInBody(user, signInToSubmit, existingSignIn)
       );
 
       const newSignIns = [...signIns, response.data];
