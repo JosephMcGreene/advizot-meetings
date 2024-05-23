@@ -9,7 +9,7 @@ const signInSchema = new Schema({
   monthlyIssue: { type: String, required: true },
   priority: { type: String, required: true },
   monthlyGoal: { type: String, required: true },
-  date: { type: Date, required: true },
+  date: { type: Date, required: true, default: Date.now() },
   group: { type: String, required: true },
   userID: { type: String, required: true },
   isCheckIn: { type: Boolean, required: true, default: false },

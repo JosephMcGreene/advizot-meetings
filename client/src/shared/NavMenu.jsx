@@ -9,17 +9,21 @@ import { motion } from "framer-motion";
 //Internal
 import { currentDate } from "../helpers";
 //Hooks
+import useCheckIns from "../hooks/useCheckIns";
 import useOutsideClick from "../hooks/useOutsideClick";
 //Components
 import DarkModeSwitch from "./DarkModeSwitch";
 import ModalTemplate from "./modals/ModalTemplate";
 import MeetingForm from "../features/meeting/form/MeetingForm";
+import LoadingSpinner from "./LoadingSpinner";
 
 export default function NavMenu({ darkMode, toggleDarkMode, showNav }) {
   const [checkinFormShown, setCheckinFormShown] = useState(false);
   const navRef = useRef();
+  const [loading, submitCheckIn] = useCheckIns();
   useOutsideClick(navRef, () => showNav(false));
 
+  if (loading) return <LoadingSpinner />;
   return (
     <>
       <motion.nav
@@ -67,8 +71,7 @@ export default function NavMenu({ darkMode, toggleDarkMode, showNav }) {
           handleClose={() => setCheckinFormShown(false)}
         >
           <MeetingForm
-            // TODO Add submission behavior here
-            // handleSubmit={(signInToSubmit) => submitSignIn(signInToSubmit)}
+            handleSubmit={(checkInToSubmit) => submitCheckIn(checkInToSubmit)}
             handleClose={() => setCheckinFormShown(false)}
           ></MeetingForm>
         </ModalTemplate>
