@@ -1,4 +1,5 @@
-import { useState, useRef } from "react";
+import { useState, useContext, useRef } from "react";
+import { UserContext } from "../App";
 //Assets
 import { ReactComponent as ProfileIcon } from "../assets/img/user-tie-solid.svg";
 import { ReactComponent as CheckInIcon } from "../assets/img/handshake-solid.svg";
@@ -17,62 +18,69 @@ import ModalTemplate from "./modals/ModalTemplate";
 import MeetingForm from "../features/meeting/form/MeetingForm";
 import LoadingSpinner from "./LoadingSpinner";
 
-export default function NavMenu({ darkMode, toggleDarkMode, showNav }) {
+export default function NavMenu({
+  darkMode,
+  toggleDarkMode,
+  userNavShown,
+  setUserNavShown,
+}) {
+  const user = useContext(UserContext);
   const [checkinFormShown, setCheckinFormShown] = useState(false);
   const navRef = useRef();
   const [loading, submitCheckIn] = useCheckIns();
-  useOutsideClick(navRef, () => showNav(false));
+  useOutsideClick(navRef, () => setUserNavShown(false));
 
   if (loading) return <LoadingSpinner />;
   return (
     <>
-      <motion.nav
-        initial={{ opacity: 0, x: 100 }}
-        animate={{ opacity: 1, x: 0 }}
-        ref={navRef}
-        className="nav"
-      >
-        <ul className="nav-list">
-          <li className="nav-item">
-            <Link to="/profile" onClick={() => showNav(false)}>
-              <ProfileIcon className="icon" />
-              Profile
-            </Link>
-          </li>
+      {userNavShown && (
+        <motion.nav
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="nav"
+        >
+          <ul ref={navRef} className="nav-list">
+            <li className="nav-item">
+              <Link to="/profile" onClick={() => setUserNavShown(false)}>
+                <ProfileIcon className="icon" />
+                Profile
+              </Link>
+            </li>
 
-          <li className="nav-item">
-            <button onClick={() => setCheckinFormShown(!checkinFormShown)}>
-              <CheckInIcon className="icon" />
-              1:1 Check-In
-            </button>
-          </li>
+            <li className="nav-item" onClick={() => setCheckinFormShown(true)}>
+              <button>
+                <CheckInIcon className="icon" />
+                1:1 Check-In
+              </button>
+            </li>
 
-          <hr />
+            <hr />
 
-          <li className="nav-item">
-            <DarkModeSwitch
-              darkMode={darkMode}
-              toggleDarkMode={toggleDarkMode}
-            />
-          </li>
+            <li className="nav-item">
+              <DarkModeSwitch
+                darkMode={darkMode}
+                toggleDarkMode={toggleDarkMode}
+              />
+            </li>
 
-          <li className="nav-item">
-            <a href="/auth/logout">
-              <LogOutIcon className="icon" />
-              Log Out
-            </a>
-          </li>
-        </ul>
-      </motion.nav>
+            <li className="nav-item">
+              <a href="/auth/logout">
+                <LogOutIcon className="icon" />
+                Log Out
+              </a>
+            </li>
+          </ul>
+        </motion.nav>
+      )}
 
       {checkinFormShown && (
         <ModalTemplate
-          title={`${currentDate("month")} Check-In`}
+          title={`${currentDate("month")} Check-In: ${user.firstName}`}
           handleClose={() => setCheckinFormShown(false)}
         >
           <MeetingForm
             handleSubmit={(checkInToSubmit) => submitCheckIn(checkInToSubmit)}
-            handleClose={() => setCheckinFormShown(false)}
+            handleClose={setCheckinFormShown}
           ></MeetingForm>
         </ModalTemplate>
       )}

@@ -107,7 +107,7 @@ export default function ActionsMenu({
           handleClose={() => setMemberEditModalShown(false)}
         >
           <MemberEditModal
-            handleClose={() => setMemberEditModalShown(false)}
+            handleClose={setMemberEditModalShown}
             currentGroup={currentGroup}
           />
         </ModalTemplate>

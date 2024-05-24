@@ -22,7 +22,7 @@ export default function Header({ darkMode, toggleDarkMode }) {
             src={user.photo}
             alt={`${user.firstName} ${user.lastName}`}
             className="profile-photo"
-            onClick={() => setUserNavShown(true)}
+            onClick={() => setUserNavShown(!userNavShown)}
           />
         ) : (
           <div className="switch-container">
@@ -33,13 +33,12 @@ export default function Header({ darkMode, toggleDarkMode }) {
           </div>
         )}
 
-        {userNavShown && (
-          <NavMenu
-            darkMode={darkMode}
-            toggleDarkMode={toggleDarkMode}
-            showNav={setUserNavShown}
-          />
-        )}
+        <NavMenu
+          darkMode={darkMode}
+          toggleDarkMode={toggleDarkMode}
+          userNavShown={userNavShown}
+          setUserNavShown={setUserNavShown}
+        />
       </header>
 
       <Outlet />

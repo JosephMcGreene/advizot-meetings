@@ -87,8 +87,13 @@
 
         a,
         button {
+          background-color: inherit;
+          font-family: inherit;
+          font-weight: inherit;
+          color: inherit;
           font-size: 1.25rem;
           padding: 0.25rem 0.75rem;
+          cursor: pointer;
         }
 
         &:nth-child(4) {
