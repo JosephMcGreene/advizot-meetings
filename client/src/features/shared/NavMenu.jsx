@@ -3,7 +3,6 @@ import { UserContext } from "../../App";
 //Assets
 import { ReactComponent as ProfileIcon } from "../../assets/img/user-tie-solid.svg";
 import { ReactComponent as MeetingIcon } from "../../assets/img/users-solid.svg";
-// import { ReactComponent as CheckInIcon } from "../assets/img/handshake-solid.svg";
 import { ReactComponent as LogOutIcon } from "../../assets/img/right-from-bracket-solid.svg";
 //External
 import { Link, useLocation } from "react-router-dom";
@@ -47,16 +46,6 @@ export default function NavMenu({ darkMode, toggleDarkMode, showNav }) {
             </Link>
           </li>
         )}
-
-        {/* <li className="nav-item">
-          <Link
-            to={`/profile/${user.advizotID}`}
-            onClick={() => showNav(false)}
-          >
-            <CheckInIcon className="icon" />
-            1:1 Check-In
-          </Link>
-        </li> */}
 
         <hr />
 
