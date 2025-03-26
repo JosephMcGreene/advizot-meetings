@@ -14,7 +14,14 @@ export default function Profile() {
   return (
     <main className="profile">
       <section className="basic-info" id="basicInfo">
-        <img className="profile-photo" src={profileInfo.photo} alt={fullName} />
+        <div className="profile-img-container">
+          <img
+            className="profile-photo"
+            src={profileInfo.photo}
+            alt={fullName}
+          />
+          {/* TODO Add an edit pen so users can click to edit their profile. */}
+        </div>
         <label htmlFor="basicInfo">
           <h1>{fullName}</h1>
           <h3>
