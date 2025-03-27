@@ -54,7 +54,7 @@ async function deleteToSignIns(req, res) {
  */
 async function getToGroup(req, res) {
   try {
-    const oneWeekAgo = Date.now() - 1000 * 60 * 60 * 24 * 7;
+    const twoWeeksAgo = Date.now() - 1000 * 60 * 60 * 24 * 7 * 2;
 
     // If user is an admin and requests to see a specific group
     if (
@@ -63,7 +63,7 @@ async function getToGroup(req, res) {
     ) {
       const groupSignIns = await SignIn.find()
         .or([{ group: userRoles.ADMIN }, { group: req.params.group }])
-        .gte("date", oneWeekAgo);
+        .gte("date", twoWeeksAgo);
 
       res.statusMessage = "Sign-ins found";
       return res.json({ group: req.params.group, groupSignIns });
@@ -73,7 +73,7 @@ async function getToGroup(req, res) {
     if (req.user.group === userRoles.ADMIN) {
       const groupSignIns = await SignIn.find({ group: userRoles.ADMIN }).gte(
         "date",
-        oneWeekAgo
+        twoWeeksAgo
       );
 
       res.statusMessage = "Sign-ins found";
@@ -83,7 +83,7 @@ async function getToGroup(req, res) {
     // Default behavior, used for members accessing their own group
     const groupSignIns = await SignIn.find()
       .or([{ group: req.user.group }, { group: userRoles.ADMIN }])
-      .gte("date", oneWeekAgo);
+      .gte("date", twoWeeksAgo);
 
     res.statusMessage = "Sign-ins found";
     return res.json({ group: req.params.group, groupSignIns });
