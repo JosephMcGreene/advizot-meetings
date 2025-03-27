@@ -54,7 +54,7 @@ async function deleteToSignIns(req, res) {
  */
 async function getToGroup(req, res) {
   try {
-    const twoWeeksAgo = Date.now() - 1000 * 60 * 60 * 24 * 7 * 2;
+    const twoWeeksAgo = Date.now() - 1000 * 60 * 60 * 24 * 14; // 1000ms * 60 seconds * 60 minutes * 24 hours * 14 days = 2 weeks
 
     // If user is an admin and requests to see a specific group
     if (
