@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cookieSession({
-    maxAge: 1000 * 60 * 60 * 24, // cookie expires in 1 day
+    maxAge: 1000 * 60 * 60 * 24, // Cookie expires in 1 day
     keys: [uuidv4()],
   })
 );
