@@ -21,8 +21,8 @@ export default function Meeting() {
 
   const user = useContext(UserContext);
   const [formShown, setFormShown] = useState(false);
-  const [signIns, loading, currentGroup, submitSignIn, deleteSignIn] =
-    useMeeting("get", `/signIns/${group}`);
+  // prettier-ignore
+  const [signIns, loading, submitSignIn, deleteSignIn] = useMeeting("get", `/signIns/${group}`);
 
   /**
    * Searches the sign-ins array for a sign-in that the user has submitted and uses that information to return true if the user has signed in, or false if they have not.
@@ -67,7 +67,7 @@ export default function Meeting() {
       )}
 
       <ActionsMenu
-        currentGroup={currentGroup}
+        currentGroup={group}
         handleNewSignInClick={() => setFormShown(true)}
         signIns={signIns}
       />

@@ -9,7 +9,6 @@ export default function useMeeting(method, url) {
 
   const [signIns, setSignIns] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [currentGroup, setCurrentGroup] = useState("");
 
   /**
    * Sorts an array of sign-in objects in order of their priority property
@@ -77,7 +76,6 @@ export default function useMeeting(method, url) {
       const existingSignIns = await axiosFetch(method, url, data);
 
       setSignIns(sortedSignIns(existingSignIns.data.groupSignIns));
-      setCurrentGroup(existingSignIns.data.group);
     } catch (err) {
       await showToast("failure", "Something went wrong, unable to fetch data.");
       throw new Error(err);
@@ -157,5 +155,5 @@ export default function useMeeting(method, url) {
     }
   }
 
-  return [signIns, loading, currentGroup, submitSignIn, deleteSignIn];
+  return [signIns, loading, submitSignIn, deleteSignIn];
 }
