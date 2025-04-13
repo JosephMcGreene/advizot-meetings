@@ -1,5 +1,7 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../App";
+// Assets
+import { ReactComponent as AddIcon } from "../../assets/img/file-circle-plus-solid.svg";
 //External
 import { useParams } from "react-router-dom";
 //Internal
@@ -9,29 +11,39 @@ import useMeeting from "../../hooks/useMeeting";
 //Components
 import LoadingSpinner from "../../shared/LoadingSpinner";
 import MeetingHeading from "./MeetingHeading";
-import SignInsCardView from "./meeting-responses/card-view/SignInsCardView";
-import SignInsTableView from "./meeting-responses/table-view/SignInsTableView";
+import SignInList from "./sign-ins/SignInList";
 import ModalTemplate from "../../shared/modals/ModalTemplate";
 import MeetingForm from "./form/MeetingForm";
 import ActionsMenu from "./ActionsMenu";
 
 export default function Meeting() {
-  const user = useContext(UserContext);
-  const [formShown, setFormShown] = useState(false);
-  const [cardView, setCardView] = useState(false);
-
   const { group } = useParams();
 
+  const user = useContext(UserContext);
+  const [formShown, setFormShown] = useState(false);
   const [signIns, loading, currentGroup, submitSignIn, deleteSignIn] =
     useMeeting("get", `/signIns/${group}`);
 
   /**
-   * Assesses whether the current user has permissions to edit or delete the sign-in they hover over
+   * Searches the sign-ins array for a sign-in that the user has submitted and uses that information to return true if the user has signed in, or false if they have not.
    *
-   * @returns {boolean} whether or not the user can edit or delete the sign-in
+   * @returns {boolean} whether or not the user has signed into this meeting
    */
-  function signInBelongsToUser(signInBody) {
-    if (user.advizotID === signInBody?.userID) return true;
+  function userHasSignedIn() {
+    const signInOfUser = signIns.find(
+      (signIn) => signIn.userID === user.advizotID
+    );
+    return signInOfUser ? true : false;
+  }
+
+  /**
+   * Assesses whether or not to display the sign-in list, nothing, or the "Add sign-in" button for the meeting
+   *
+   * @returns {boolean} whether or not to display the sign-in list
+   */
+  function showSignInList() {
+    if (user.role === "admin" || userHasSignedIn()) return false;
+    if (signIns.length === 0 && user.role === "member") return true;
     return false;
   }
 
@@ -41,46 +53,33 @@ export default function Meeting() {
     <>
       <MeetingHeading currentGroup={group} />
 
-      {cardView ? (
-        <SignInsCardView
-          signIns={signIns}
-          handleSubmitEdits={async (signInToSubmit, existingSignIn) => {
-            await submitSignIn(signInToSubmit, existingSignIn);
-          }}
-          handleDelete={async (signInID) => {
-            await deleteSignIn(signInID);
-          }}
-          signInBelongsToUser={signInBelongsToUser}
-        />
+      {showSignInList() ? (
+        <button className="btn" onClick={() => setFormShown(true)}>
+          <AddIcon className="icon" />
+          Sign in to the Meeting
+        </button>
       ) : (
-        <SignInsTableView
+        <SignInList
+          deleteSignIn={deleteSignIn}
           signIns={signIns}
-          handleSubmitEdits={async (signInToSubmit, existingSignIn) => {
-            await submitSignIn(signInToSubmit, existingSignIn);
-          }}
-          handleDelete={async (signInID) => {
-            await deleteSignIn(signInID);
-          }}
-          signInBelongsToUser={signInBelongsToUser}
+          submitSignIn={submitSignIn}
         />
       )}
 
       <ActionsMenu
         currentGroup={currentGroup}
+        handleNewSignInClick={() => setFormShown(true)}
         signIns={signIns}
-        handleNewSignInClick={() => setFormShown(!formShown)}
-        cardView={cardView}
-        handleViewAsMemberClick={() => setCardView(!cardView)}
       />
 
       {formShown && (
         <ModalTemplate
-          title={`${currentDate("month")}, ${currentDate("year")}`}
           handleClose={() => setFormShown(false)}
+          title={`${currentDate("month")}, ${currentDate("year")}`}
         >
           <MeetingForm
-            handleSubmit={(signInToSubmit) => submitSignIn(signInToSubmit)}
             handleClose={() => setFormShown(false)}
+            handleSubmit={(signInToSubmit) => submitSignIn(signInToSubmit)}
           />
         </ModalTemplate>
       )}

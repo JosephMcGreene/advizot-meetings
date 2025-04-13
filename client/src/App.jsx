@@ -2,12 +2,8 @@ import { createContext } from "react";
 //Assets
 import "./assets/scss/App.scss";
 //External
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  RouterProvider,
-  Route,
-} from "react-router-dom";
+// prettier-ignore
+import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } from "react-router-dom";
 //Hooks
 import useUser from "./hooks/useUser";
 import useDarkMode from "./hooks/useDarkMode";
@@ -42,23 +38,18 @@ export default function App() {
                 createRoutesFromElements(
                   <Route
                     path="/"
-                    element={
-                      <Header
-                        darkMode={isDark}
-                        toggleDarkMode={() => setDarkMode(!isDark)}
-                      />
-                    }
+                    // prettier-ignore
+                    element={<Header darkMode={isDark} toggleDarkMode={() => setDarkMode(!isDark)} />}
                   >
                     <Route index element={<Welcome />} />
 
                     <Route
                       path="handleRoomCode"
                       element={
+                        // prettier-ignore
                         <UsersOnly
                           handleSubmitCode={async (enteredCode) => {
-                            await fetchUser("post", "/roomCode", {
-                              enteredCode,
-                            });
+                            await fetchUser("post", "/roomCode", { enteredCode })
                           }}
                         />
                       }

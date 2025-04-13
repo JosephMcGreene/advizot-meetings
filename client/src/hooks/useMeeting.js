@@ -11,11 +11,28 @@ export default function useMeeting(method, url) {
   const [loading, setLoading] = useState(false);
   const [currentGroup, setCurrentGroup] = useState("");
 
-  const sortedSignIns = signIns.sort((a, b) => {
-    if (a.priority < b.priority) return -1;
-    return 1;
-  });
+  /**
+   * Sorts an array of sign-in objects in order of their priority property
+   *
+   * @param {object[]} signIns The array of sign-in objects to sort
+   *
+   * @returns {object[]} a sorted array of sign-in objects
+   */
+  const sortedSignIns = (signIns) => {
+    return signIns.sort((a, b) => {
+      if (a.priority < b.priority) return -1;
+      return 1;
+    });
+  };
 
+  /**
+   * Constructs and returns a sign-in object.
+   *
+   * @param {object}             signInToSubmit A sign-in object to be formatted.
+   * @param {object | undefined} existingSignIn If present, a sign-in object that has been formatted in the past.
+   *
+   * @returns {object} A formatted sign-in object
+   */
   const signInBody = (signInToSubmit, existingsignIn = undefined) => {
     const signInBody = {
       userName:
@@ -59,7 +76,7 @@ export default function useMeeting(method, url) {
 
       const existingSignIns = await axiosFetch(method, url, data);
 
-      setSignIns(existingSignIns.data.groupSignIns);
+      setSignIns(sortedSignIns(existingSignIns.data.groupSignIns));
       setCurrentGroup(existingSignIns.data.group);
     } catch (err) {
       await showToast("failure", "Something went wrong, unable to fetch data.");
@@ -70,10 +87,10 @@ export default function useMeeting(method, url) {
   }
 
   /**
-   * Takes in user sign-in from MeetingForm.jss and adds it to the database or updates an existing user sign-in. See /routes/db.js
+   * Takes in user sign-in from MeetingForm.js and adds it to the database or updates an existing user sign-in. See /routes/db.js
    *
-   * @param {string} method           http verb used to subscribe to the database
-   * @param {Object} signInToSubmit Body to be added or edited in the database and displayed to the users
+   * @param {string} method         http verb used to subscribe to the database
+   * @param {object} signInToSubmit Body to be added or edited in the database and displayed to the users
    */
   async function submitSignIn(signInToSubmit, existingSignIn) {
     try {
@@ -90,7 +107,7 @@ export default function useMeeting(method, url) {
         (signIn) => signIn._id !== existingSignIn?._id
       );
 
-      setSignIns(filteredSignIns);
+      setSignIns(sortedSignIns(filteredSignIns));
 
       // If it is an edit to an existing sign-in
       if (existingSignIn?._id !== undefined)
@@ -106,9 +123,9 @@ export default function useMeeting(method, url) {
   /**
    * Deletes the specified form data from the UI as well as the db
    *
-   * @param {Object} signInID The ID of the user response to be deleted from db and UI
+   * @param {object} signInID The ID of the user sign-in to be deleted from db and UI
    *
-   * @returns {Object} The response from the server
+   * @returns {object} The response from the server
    */
   async function deleteSignIn(signInID) {
     try {
@@ -121,9 +138,11 @@ export default function useMeeting(method, url) {
       // Make a new array of all sign-ins EXCEPT the one to be deleted
       if (deletionRes.data.deletionRes.deletedCount === 1) {
         setSignIns(
-          signIns.filter((signIn) => {
-            return signIn._id !== signInID;
-          })
+          sortedSignIns(
+            signIns.filter((signIn) => {
+              return signIn._id !== signInID;
+            })
+          )
         );
       } else {
         return await showToast("failure", "That didn't work. Try again.");
@@ -138,5 +157,5 @@ export default function useMeeting(method, url) {
     }
   }
 
-  return [sortedSignIns, loading, currentGroup, submitSignIn, deleteSignIn];
+  return [signIns, loading, currentGroup, submitSignIn, deleteSignIn];
 }
