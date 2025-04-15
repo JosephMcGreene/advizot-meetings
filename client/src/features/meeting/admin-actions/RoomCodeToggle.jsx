@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "../../../App";
-//Assets
+// Assets
 import { ReactComponent as EyeVisible } from "../../../assets/img/eye-solid.svg";
 import { ReactComponent as EyeHidden } from "../../../assets/img/eye-slash-solid.svg";
 

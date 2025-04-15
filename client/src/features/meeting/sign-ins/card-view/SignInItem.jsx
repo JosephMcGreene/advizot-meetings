@@ -1,7 +1,7 @@
 import { useState } from "react";
-//Assets
+// Assets
 import { ReactComponent as EditPen } from "../../../../assets/img/pen-solid.svg";
-//Components
+// Components
 import ModalTemplate from "../../../../shared/modals/ModalTemplate";
 import MeetingForm from "../../form/MeetingForm";
 

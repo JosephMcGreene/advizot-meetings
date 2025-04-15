@@ -1,4 +1,3 @@
-//Assets
 import successIcon from "../assets/img/check-solid.svg";
 import failIcon from "../assets/img/skull-solid.svg";
 import warningIcon from "../assets/img/exclamation-solid.svg";

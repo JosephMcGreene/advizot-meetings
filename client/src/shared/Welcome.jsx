@@ -1,10 +1,10 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../App";
-//External
-import { Navigate } from "react-router-dom";
-//Components
+// Components
 import ModalTemplate from "./modals/ModalTemplate";
 import Login from "./modals/Login";
+// External
+import { Navigate } from "react-router-dom";
 
 export default function Welcome() {
   const user = useContext(UserContext);

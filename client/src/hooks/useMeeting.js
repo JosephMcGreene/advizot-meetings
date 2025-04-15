@@ -6,9 +6,12 @@ import { axiosFetch } from "../helpers";
 export default function useMeeting(method, url) {
   const user = useContext(UserContext);
   const { showToast } = useToasts();
-
   const [signIns, setSignIns] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    getSignIns(method, url);
+  }, [method, url]);
 
   /**
    * Sorts an array of sign-in objects in order of their priority property
@@ -57,10 +60,6 @@ export default function useMeeting(method, url) {
 
     return signInBody;
   };
-
-  useEffect(() => {
-    getSignIns(method, url);
-  }, [method, url]);
 
   /**
    * Fetches existing user sign-ins from MongoDB and updates state accordingly. See server/routes/db.js

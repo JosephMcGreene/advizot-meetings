@@ -1,6 +1,6 @@
-//External
+// External
 import { motion } from "framer-motion";
-//Internal
+// Internal
 import SignInTableRow from "./SignInTableRow";
 
 export default function SignInsTableView({

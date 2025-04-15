@@ -1,14 +1,7 @@
 import { createContext } from "react";
-//Assets
+// Assets
 import "./assets/scss/App.scss";
-//External
-// prettier-ignore
-import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } from "react-router-dom";
-//Hooks
-import useUser from "./hooks/useUser";
-import useDarkMode from "./hooks/useDarkMode";
-import useToasts from "./hooks/useToasts";
-//Components
+// Components
 import LoadingSpinner from "./shared/LoadingSpinner";
 import Welcome from "./shared/Welcome";
 import UsersOnly from "./features/meeting/UsersOnly";
@@ -16,6 +9,13 @@ import Meeting from "./features/meeting/Meeting";
 import Profile from "./features/profile/Profile";
 import Header from "./shared/Header";
 import Toasts from "./shared/Toasts";
+// External
+// prettier-ignore
+import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } from "react-router-dom";
+// Hooks
+import useUser from "./hooks/useUser";
+import useDarkMode from "./hooks/useDarkMode";
+import useToasts from "./hooks/useToasts";
 
 export const UserContext = createContext();
 export const ToastContext = createContext();

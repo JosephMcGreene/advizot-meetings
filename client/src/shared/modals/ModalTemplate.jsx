@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import { createPortal } from "react-dom";
-//External
+// External
 import { motion } from "framer-motion";
-//Hooks
+// Hooks
 import useOutsideClick from "../../hooks/useOutsideClick";
 
 export default function ModalTemplate({ children, title, handleClose }) {

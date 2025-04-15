@@ -1,12 +1,12 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../App";
-//Assets
+// Assets
 import advizotLogo from "../assets/img/original-on-transparent.png";
-//External
-import { Outlet } from "react-router-dom";
-//Components
+// Components
 import DarkModeSwitch from "./DarkModeSwitch";
 import NavMenu from "./NavMenu";
+// External
+import { Outlet } from "react-router-dom";
 
 export default function Header({ darkMode, toggleDarkMode }) {
   const user = useContext(UserContext);

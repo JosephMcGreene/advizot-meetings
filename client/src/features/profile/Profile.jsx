@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "../../App";
+// External
 import { Link, Navigate } from "react-router-dom";
 
 export default function Profile() {

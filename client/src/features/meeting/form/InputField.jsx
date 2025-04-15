@@ -1,4 +1,3 @@
-//External
 import { Field, useField } from "formik";
 
 export default function InputField({

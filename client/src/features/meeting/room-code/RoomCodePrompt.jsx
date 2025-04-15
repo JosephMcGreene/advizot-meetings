@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "../../../App";
-//Components
+// Components
 import RoomCodeEntry from "./RoomCodeEntry";
 
 export default function RoomCodePrompt({ handleSubmitCode, children }) {

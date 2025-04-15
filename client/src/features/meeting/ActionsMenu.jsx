@@ -1,17 +1,17 @@
 import { useState, useRef, useContext } from "react";
 import { UserContext } from "../../App";
-//Assets
+// Assets
 import { ReactComponent as MemberEditIcon } from "../../assets/img/users-gear-solid.svg";
 import { ReactComponent as SlidersIcon } from "../../assets/img/sliders-solid.svg";
 import { ReactComponent as AddSignInIcon } from "../../assets/img/file-circle-plus-solid.svg";
-//External
+// External
 import { motion } from "framer-motion";
-//Internal
+// Hooks
+import useOutsideClick from "../../hooks/useOutsideClick";
+// Internal
 import ActionsBtn from "./sign-ins/ActionsBtn";
 import ModalTemplate from "../../shared/modals/ModalTemplate";
 import MemberEditModal from "./admin-actions/MemberEditModal";
-//Hooks
-import useOutsideClick from "../../hooks/useOutsideClick";
 
 export default function ActionsMenu({
   currentGroup,

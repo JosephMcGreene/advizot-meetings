@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../../../App";
-//Components
+// Components
 import TableCell from "./TableCell";
 import DeleteButton from "../DeleteButton";
 

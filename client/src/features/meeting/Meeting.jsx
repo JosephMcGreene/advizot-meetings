@@ -2,27 +2,29 @@ import { useState, useContext } from "react";
 import { UserContext } from "../../App";
 // Assets
 import { ReactComponent as AddIcon } from "../../assets/img/file-circle-plus-solid.svg";
-//External
-import { useParams } from "react-router-dom";
-//Internal
-import { currentDate } from "../../helpers";
-//Hooks
-import useMeeting from "../../hooks/useMeeting";
-//Components
+// Components
 import LoadingSpinner from "../../shared/LoadingSpinner";
 import MeetingHeading from "./MeetingHeading";
 import SignInList from "./sign-ins/SignInList";
 import ModalTemplate from "../../shared/modals/ModalTemplate";
 import MeetingForm from "./form/MeetingForm";
 import ActionsMenu from "./ActionsMenu";
+// External
+import { useParams } from "react-router-dom";
+// Hooks
+import useMeeting from "../../hooks/useMeeting";
+// Internal
+import { currentDate } from "../../helpers";
 
 export default function Meeting() {
   const { group } = useParams();
 
   const user = useContext(UserContext);
   const [formShown, setFormShown] = useState(false);
-  // prettier-ignore
-  const [signIns, loading, submitSignIn, deleteSignIn] = useMeeting("get", `/signIns/${group}`);
+  const [signIns, loading, submitSignIn, deleteSignIn] = useMeeting(
+    "get",
+    `/signIns/${group}`
+  );
 
   /**
    * Searches the sign-ins array for a sign-in that the user has submitted and uses that information to return true if the user has signed in, or false if they have not.

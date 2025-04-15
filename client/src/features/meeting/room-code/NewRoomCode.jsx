@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { UserContext } from "../../../App";
-//External
-import { Link } from "react-router-dom";
-//Hooks
-import useRoomCode from "../../../hooks/useRoomCode";
-//Components
+// Components
 import LoadingSpinner from "../../../shared/LoadingSpinner";
+// External
+import { Link } from "react-router-dom";
+// Hooks
+import useRoomCode from "../../../hooks/useRoomCode";
 
 export default function NewRoomCode() {
   const user = useContext(UserContext);

@@ -1,12 +1,12 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../App";
-//External
-import { useNavigate, Outlet } from "react-router-dom";
-//Internal
-import { currentDate } from "../../helpers";
-//Components
+// Components
 import RoomCodeToggle from "./admin-actions/RoomCodeToggle";
 import RoomCodeDisplay from "./room-code/RoomCodeDisplay";
+// External
+import { useNavigate, Outlet } from "react-router-dom";
+// Internal
+import { currentDate } from "../../helpers";
 
 export default function MeetingHeading({ currentGroup }) {
   const user = useContext(UserContext);

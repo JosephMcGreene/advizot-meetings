@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { UserContext } from "../../../App";
-//External
-import { Formik, Form } from "formik";
-import * as Yup from "yup";
-//Components
+// Components
 import InputField from "./InputField";
 import Select from "./Select";
+// External
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
 
 export default function MeetingForm({
   handleSubmit,

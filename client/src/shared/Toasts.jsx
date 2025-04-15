@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-//Components
+// Components
 import Toast from "./Toast";
 
 export default function Toasts({ data, removeToast }) {

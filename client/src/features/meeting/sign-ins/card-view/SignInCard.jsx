@@ -1,4 +1,3 @@
-//Components
 import SignInItem from "./SignInItem";
 import DeleteButton from "../DeleteButton";
 

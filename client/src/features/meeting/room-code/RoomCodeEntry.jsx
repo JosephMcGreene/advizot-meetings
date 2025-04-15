@@ -1,8 +1,8 @@
-//External
+// Components
+import InputField from "../form/InputField";
+// External
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-//Components
-import InputField from "../form/InputField";
 
 export default function RoomCodeEntry({ handleSubmit, incorrectCode }) {
   return (

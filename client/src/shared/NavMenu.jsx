@@ -1,15 +1,15 @@
 import { useRef } from "react";
-//Assets
+// Assets
 import { ReactComponent as ProfileIcon } from "../assets/img/user-tie-solid.svg";
 import { ReactComponent as CheckInIcon } from "../assets/img/handshake-solid.svg";
 import { ReactComponent as LogOutIcon } from "../assets/img/right-from-bracket-solid.svg";
-//External
+// Components
+import DarkModeSwitch from "./DarkModeSwitch";
+// External
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-//Hooks
+// Hooks
 import useOutsideClick from "../hooks/useOutsideClick";
-//Components
-import DarkModeSwitch from "./DarkModeSwitch";
 
 export default function NavMenu({ darkMode, toggleDarkMode, showNav }) {
   const navRef = useRef();
