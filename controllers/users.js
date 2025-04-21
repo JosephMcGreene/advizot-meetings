@@ -1,10 +1,9 @@
-import User from "../models/User.js";
-import SignIn from "../models/SignIn.js";
+import { deleteUserDB, getUsersInGroup, moveUser } from "./users.queries.js";
+import { deleteSignIns, moveSignIns } from "./signIns.queries.js";
 
 async function post(req, res) {
   try {
-    const usersToEdit = await User.find({ group: req.body.group });
-
+    const usersToEdit = await getUsersInGroup(req.body.group);
     res.statusMessage = "Found users to edit";
     res.json(usersToEdit);
   } catch (err) {
@@ -15,13 +14,11 @@ async function post(req, res) {
 
 async function put(req, res) {
   try {
-    await User.findByIdAndUpdate(req.body._id, {
-      group: req.body.groupToPlace,
-    });
+    await moveUser(req.body._id, req.body.groupToPlace);
 
-    const updatedSignIns = await SignIn.updateMany(
-      { userID: req.body.advizotID },
-      { group: req.body.groupToPlace }
+    const updatedSignIns = await moveSignIns(
+      req.body.advizotID,
+      req.body.groupToPlace
     );
 
     res.statusMessage = "Updated a user and their sign-ins";
@@ -37,11 +34,9 @@ async function put(req, res) {
 
 async function deleteUser(req, res) {
   try {
-    await User.deleteOne({ _id: req.body._id });
+    await deleteUserDB(req.body._id);
 
-    const { deletedCount } = await SignIn.deleteMany({
-      userID: req.body.advizotID,
-    });
+    const { deletedCount } = await deleteSignIns(req.body.advizotID);
 
     res.statusMessage = "Deleted a user and their sign-ins";
     res.json({ deletedCount });

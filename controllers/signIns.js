@@ -5,12 +5,12 @@ import {
   getAdminSignIns,
   getGroupSignInsForAdmins,
   getGroupSignInsForMembers,
-  signInDB,
+  newSignInDB,
 } from "./signIns.queries.js";
 
 async function putToSignIns(req, res) {
   try {
-    const newSignIn = signInDB(req);
+    const newSignIn = newSignInDB(req);
     await newSignIn.save();
 
     if (req.body?._id) {
