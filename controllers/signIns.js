@@ -1,4 +1,3 @@
-import SignIn from "../models/SignIn.js";
 import { groupForToday } from "../lib/helpers.js";
 import { userRoles } from "../lib/userRoles.js";
 import {
@@ -6,22 +5,12 @@ import {
   getAdminSignIns,
   getGroupSignInsForAdmins,
   getGroupSignInsForMembers,
+  signInDB,
 } from "./signIns.queries.js";
 
 async function putToSignIns(req, res) {
   try {
-    const newSignIn = new SignIn({
-      userName: req.body.userName,
-      business: req.body.business,
-      personal: req.body.personal,
-      relationships: req.body.relationships,
-      monthlyIssue: req.body.monthlyIssue,
-      priority: req.body.priority,
-      monthlyGoal: req.body.monthlyGoal,
-      date: req.body.date,
-      group: req.body.group,
-      userID: req.body.userID,
-    });
+    const newSignIn = signInDB(req);
     await newSignIn.save();
 
     if (req.body?._id) {
@@ -61,26 +50,23 @@ async function getToGroup(req, res) {
   try {
     // If user is an admin and requests to see a specific group:
     if (
-      req.user.group === userRoles.ADMIN &&
+      req.user.role === userRoles.ADMIN &&
       req.params.group !== userRoles.ADMIN
     ) {
       const groupSignIns = await getGroupSignInsForAdmins(req.params.group);
-
       res.statusMessage = "Sign-ins found";
       return res.json({ group: req.params.group, groupSignIns });
     }
 
     // Default behavior for admins on log-in: get responses for admins only
-    if (req.user.group === userRoles.ADMIN) {
+    if (req.user.role === userRoles.ADMIN) {
       const groupSignIns = await getAdminSignIns();
-
       res.statusMessage = "Sign-ins found";
       return res.json({ group: groupForToday(), groupSignIns });
     }
 
     // Default behavior, used for members accessing their own group
     const groupSignIns = await getGroupSignInsForMembers(req.user.group);
-
     res.statusMessage = "Sign-ins found";
     return res.json({ group: req.params.group, groupSignIns });
   } catch (err) {
