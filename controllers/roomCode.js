@@ -1,23 +1,23 @@
 import { config } from "dotenv";
-import RoomCode from "../models/RoomCode.js";
-import { generateRoomCode } from "../lib/helpers.js";
+import {
+  getRoomCode,
+  saveNewRoomCode,
+  updateRoomCode,
+} from "./roomCode.queries.js";
 
 config();
 
 async function post(req, res) {
   try {
-    const { currentRoomCode } = await RoomCode.findById(
-      process.env.ROOMCODE_ID
-    );
+    const { currentRoomCode } = await getRoomCode(process.env.ROOMCODE_ID);
 
     if (req.body.enteredCode === currentRoomCode) {
       req.user.hasMeetingCode = true;
-
-      res.json(req.user);
-    } else {
-      req.user.hasMeetingCode = false;
-      res.json(req.user);
+      return res.json(req.user);
     }
+
+    req.user.hasMeetingCode = false;
+    return res.json(req.user);
   } catch (err) {
     res.json(new Error(err));
     throw new Error(err);
@@ -26,19 +26,15 @@ async function post(req, res) {
 
 async function put(req, res) {
   try {
-    const roomCodeDB = await RoomCode.findById(process.env.ROOMCODE_ID);
+    const roomCodeDB = await getRoomCode(process.env.ROOMCODE_ID);
 
     if (roomCodeDB && req.body.needNewCode) {
-      roomCodeDB.currentRoomCode = generateRoomCode();
-      await roomCodeDB.save();
+      updateRoomCode(roomCodeDB);
       res.statusCode = 200;
     }
 
     if (!roomCodeDB) {
-      const newRoomCode = new RoomCode({
-        currentRoomCode: generateRoomCode(),
-      });
-      await newRoomCode.save();
+      saveNewRoomCode();
       res.statusCode = 201;
     }
 
