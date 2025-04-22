@@ -32,8 +32,8 @@ export function moveSignIns(advizotID, groupToPlace) {
   return SignIn.updateMany({ userID: advizotID }, { group: groupToPlace });
 }
 
-export const newSignInDB = (req) => {
-  return new SignIn({
+export async function saveNewSignIn(req) {
+  const newSignIn = new SignIn({
     userName: req.body.userName,
     business: req.body.business,
     personal: req.body.personal,
@@ -45,4 +45,5 @@ export const newSignInDB = (req) => {
     group: req.body.group,
     userID: req.body.userID,
   });
-};
+  await newSignIn.save();
+}
