@@ -3,8 +3,7 @@ import { userRoles } from "../lib/userRoles.js";
 import {
   deleteOneSignIn,
   getAdminSignIns,
-  getGroupSignInsForAdmins,
-  getGroupSignInsForMembers,
+  getGroupSignIns,
   saveNewSignIn,
 } from "./signIns.queries.js";
 
@@ -48,14 +47,14 @@ async function deleteToSignIns(req, res) {
 async function getToGroup(req, res) {
   try {
     // If user is an admin and requests to see a specific group:
-    if (
-      req.user.role === userRoles.ADMIN &&
-      req.params.group !== userRoles.ADMIN
-    ) {
-      const groupSignIns = await getGroupSignInsForAdmins(req.params.group);
-      res.statusMessage = "Sign-ins found";
-      return res.json({ group: req.params.group, groupSignIns });
-    }
+    // if (
+    //   req.user.role === userRoles.ADMIN &&
+    //   req.params.group !== userRoles.ADMIN
+    // ) {
+    //   const groupSignIns = await getGroupSignIns(req.params.group);
+    //   res.statusMessage = "Sign-ins found";
+    //   return res.json({ group: req.params.group, groupSignIns });
+    // }
 
     // Default behavior for admins on log-in: get responses for admins only
     if (req.user.role === userRoles.ADMIN) {
@@ -64,8 +63,7 @@ async function getToGroup(req, res) {
       return res.json({ group: groupForToday(), groupSignIns });
     }
 
-    // Default behavior, used for members accessing their own group
-    const groupSignIns = await getGroupSignInsForMembers(req.user.group);
+    const groupSignIns = await getGroupSignIns(req.params.group);
     res.statusMessage = "Sign-ins found";
     return res.json({ group: req.params.group, groupSignIns });
   } catch (err) {

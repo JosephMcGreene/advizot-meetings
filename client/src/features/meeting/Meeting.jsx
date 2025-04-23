@@ -53,7 +53,7 @@ export default function Meeting() {
 
   return (
     <>
-      <MeetingHeading currentGroup={group} />
+      <MeetingHeading group={group} />
 
       {showSignInList() ? (
         <button className="btn" onClick={() => setFormShown(true)}>
