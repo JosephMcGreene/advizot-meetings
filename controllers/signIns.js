@@ -8,7 +8,7 @@ import signInQueries from "./signIns.queries.js";
  */
 async function modifySignIn(req, res) {
   try {
-    signInQueries.saveNewSignIn(req);
+    const newSignIn = signInQueries.saveNewSignIn(req);
 
     if (req.body?._id) {
       await signInQueries.deleteOneSignIn(req.body._id);

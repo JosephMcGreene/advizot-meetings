@@ -133,7 +133,7 @@ export default function useMeeting(method, url) {
       });
 
       // Make a new array of all sign-ins EXCEPT the one to be deleted
-      if (deletionRes.data.deletionRes.deletedCount === 1) {
+      if (deletionRes.data.signInID) {
         setSignIns(
           sortedSignIns(
             signIns.filter((signIn) => {
