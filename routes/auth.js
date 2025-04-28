@@ -1,6 +1,5 @@
 import { Router } from "express";
 import passport from "passport";
-//Internal Modules
 import "../lib/passportConfig.js";
 
 const authRouter = Router();

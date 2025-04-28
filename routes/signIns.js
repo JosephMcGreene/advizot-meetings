@@ -5,9 +5,9 @@ const signInRouter = Router();
 
 signInRouter
   .route("/")
-  .put(signInsController.putToSignIns)
-  .delete(signInsController.deleteToSignIns);
+  .put(signInsController.modifySignIn)
+  .delete(signInsController.deleteSignIn);
 
-signInRouter.route("/:group").get(signInsController.getToGroup);
+signInRouter.route("/:group").get(signInsController.getGroupSignIns);
 
 export default signInRouter;

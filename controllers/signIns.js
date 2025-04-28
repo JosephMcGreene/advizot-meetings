@@ -1,18 +1,17 @@
-import { groupForToday } from "../lib/helpers.js";
-import { userRoles } from "../lib/userRoles.js";
-import {
-  deleteOneSignIn,
-  getAdminSignIns,
-  getGroupSignIns,
-  saveNewSignIn,
-} from "./signIns.queries.js";
+import signInQueries from "./signIns.queries.js";
 
-async function putToSignIns(req, res) {
+/**
+ * Enters a new sign-in object into the database, or updates an existing sign-in object in the database
+ *
+ * @param {object} req The HTTP request object.
+ * @param {object} res The HTTP response object.
+ */
+async function modifySignIn(req, res) {
   try {
-    saveNewSignIn(req);
+    signInQueries.saveNewSignIn(req);
 
     if (req.body?._id) {
-      await deleteOneSignIn(req.body._id);
+      await signInQueries.deleteOneSignIn(req.body._id);
 
       res.statusMessage = "Sign-in updated";
     } else {
@@ -26,9 +25,15 @@ async function putToSignIns(req, res) {
   }
 }
 
-async function deleteToSignIns(req, res) {
+/**
+ * Deletes a single sign-in object from the database
+ *
+ * @param {object} req The HTTP request object.
+ * @param {object} res The HTTP response object.
+ */
+async function deleteSignIn(req, res) {
   try {
-    const deletionRes = await deleteOneSignIn(req.body.signInID);
+    const deletionRes = await signInQueries.deleteOneSignIn(req.body.signInID);
 
     res.statusMessage = "Sign-in deleted";
     res.json({ deletionRes, signInID: req.body.signInID });
@@ -40,30 +45,15 @@ async function deleteToSignIns(req, res) {
 
 /**
  * Handles GET requests for sign-ins as well as groups, since as of 4/3/24 the app only cares about retrieving sign-ins for an entire group
+ *
  * @param {Object} req request object from the client
  * @param {Object} res response object to the client
  * @returns
  */
-async function getToGroup(req, res) {
+async function getGroupSignIns(req, res) {
   try {
-    // If user is an admin and requests to see a specific group:
-    // if (
-    //   req.user.role === userRoles.ADMIN &&
-    //   req.params.group !== userRoles.ADMIN
-    // ) {
-    //   const groupSignIns = await getGroupSignIns(req.params.group);
-    //   res.statusMessage = "Sign-ins found";
-    //   return res.json({ group: req.params.group, groupSignIns });
-    // }
+    const groupSignIns = await signInQueries.getGroupSignIns(req.params.group);
 
-    // Default behavior for admins on log-in: get responses for admins only
-    if (req.user.role === userRoles.ADMIN) {
-      const groupSignIns = await getAdminSignIns();
-      res.statusMessage = "Sign-ins found";
-      return res.json({ group: groupForToday(), groupSignIns });
-    }
-
-    const groupSignIns = await getGroupSignIns(req.params.group);
     res.statusMessage = "Sign-ins found";
     return res.json({ group: req.params.group, groupSignIns });
   } catch (err) {
@@ -73,9 +63,9 @@ async function getToGroup(req, res) {
 }
 
 const signInsController = {
-  putToSignIns,
-  deleteToSignIns,
-  getToGroup,
+  modifySignIn,
+  deleteSignIn,
+  getGroupSignIns,
 };
 
 export default signInsController;

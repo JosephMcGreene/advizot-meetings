@@ -6,7 +6,7 @@ import { userRoles } from "../lib/userRoles.js";
  *
  * @param {string} id The database _id of the sign-in to be deleted.
  */
-export function deleteOneSignIn(id) {
+function deleteOneSignIn(id) {
   SignIn.deleteOne({ _id: id });
 }
 
@@ -17,21 +17,12 @@ export function deleteOneSignIn(id) {
  *
  * @returns {object} Mongoose's default response when deleting a group of documents, needed for its "deletedCount" property
  */
-export function deleteSignIns(advizotID) {
+function deleteSignIns(advizotID) {
   return SignIn.deleteMany({ userID: advizotID });
 }
 
-// 2 weeks = 1000ms/second, 60s/minute, 60min/hour, 24h/day, 7days/week (x2)
+// 2 weeks = 1000ms * 60s * 60min * 24h * 7days (x2)
 const twoWeeksAgo = Date.now() - 1000 * 60 * 60 * 24 * 14;
-
-/**
- * Finds and returns sign-ins for the admin group.
- *
- * @returns {object[]} A list of sign-ins from the admin group.
- */
-export function getAdminSignIns() {
-  return SignIn.find({ group: userRoles.ADMIN }).gte("date", twoWeeksAgo);
-}
 
 /**
  * Finds and retrieves a group of sign-ins corresponding to a single group.
@@ -40,7 +31,7 @@ export function getAdminSignIns() {
  *
  * @returns {object[]} A list of sign-ins found that correspond to the given group.
  */
-export function getGroupSignIns(group) {
+function getGroupSignIns(group) {
   return SignIn.find()
     .or([{ group: userRoles.ADMIN }, { group: group }])
     .gte("date", twoWeeksAgo);
@@ -54,7 +45,7 @@ export function getGroupSignIns(group) {
  *
  * @returns {object[]} A list containing the sign-ins that were updated.
  */
-export function moveSignIns(advizotID, groupToPlace) {
+function moveSignIns(advizotID, groupToPlace) {
   return SignIn.updateMany({ userID: advizotID }, { group: groupToPlace });
 }
 
@@ -63,7 +54,7 @@ export function moveSignIns(advizotID, groupToPlace) {
  *
  * @param {object} req the HTTP request object sent to the server, whose properties correspond to a new sign-in object
  */
-export async function saveNewSignIn(req) {
+async function saveNewSignIn(req) {
   const newSignIn = new SignIn({
     userName: req.body.userName,
     business: req.body.business,
@@ -78,3 +69,13 @@ export async function saveNewSignIn(req) {
   });
   await newSignIn.save();
 }
+
+const signInQueries = {
+  deleteOneSignIn,
+  deleteSignIns,
+  getGroupSignIns,
+  moveSignIns,
+  saveNewSignIn,
+};
+
+export default signInQueries;

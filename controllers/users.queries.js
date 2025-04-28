@@ -1,6 +1,6 @@
-import User from "../models/User.js";
 import { v4 as uuidv4 } from "uuid";
-import { userRoles, groups } from "./userRoles.js";
+import User from "../models/User.js";
+import { userRoles, groups } from "../lib/userRoles.js";
 
 /**
  * Adds a new property to a user in the database corresponding to their LinkedIn client ID if it is missing, or their Google client ID if it is missing.
@@ -11,7 +11,7 @@ import { userRoles, groups } from "./userRoles.js";
  *
  * @returns {object} The user, now updated in the database
  */
-export function addProviderID(email, provider, id) {
+function addProviderID(email, provider, id) {
   return User.findOneAndUpdate({ email: email }, { [provider]: id });
 }
 
@@ -20,7 +20,7 @@ export function addProviderID(email, provider, id) {
  *
  * @param {string} id The database _id of the user to be deleted.
  */
-export function deleteUserDB(id) {
+function deleteUser(id) {
   User.deleteOne(id);
 }
 
@@ -31,7 +31,7 @@ export function deleteUserDB(id) {
  *
  * @returns {object | null} The user in the database, or null if they could not be found.
  */
-export function getOneUser(profileEmail) {
+function getOneUser(profileEmail) {
   return User.findOne({ email: profileEmail });
 }
 
@@ -42,7 +42,7 @@ export function getOneUser(profileEmail) {
  *
  * @returns {object | null} The user in the database, or null if they could not be found.
  */
-export function getOneUserByID(id) {
+function getOneUserByID(id) {
   return User.findById(id);
 }
 
@@ -53,7 +53,7 @@ export function getOneUserByID(id) {
  *
  * @returns {object[]} A list of users that belong to the group.
  */
-export function getUsersInGroup(group) {
+function getUsersInGroup(group) {
   return User.find({ group: group });
 }
 
@@ -63,7 +63,7 @@ export function getUsersInGroup(group) {
  * @param {string} id           The database _id of the user to be moved.
  * @param {string} groupToPlace The name of the group the user is being placed into.
  */
-export function moveUser(id, groupToPlace) {
+function moveUser(id, groupToPlace) {
   User.findByIdAndUpdate(id, { group: groupToPlace });
 }
 
@@ -75,7 +75,7 @@ export function moveUser(id, groupToPlace) {
  *
  * @returns {object} The new user who was added to the database.
  */
-export async function saveNewUser(profile, provider) {
+async function saveNewUser(profile, provider) {
   const newUser = await new User({
     firstName: profile.name.givenName,
     lastName: profile.name.familyName,
@@ -91,3 +91,15 @@ export async function saveNewUser(profile, provider) {
 
   return newUser;
 }
+
+const userQueries = {
+  addProviderID,
+  deleteUser,
+  getOneUser,
+  getOneUserByID,
+  getUsersInGroup,
+  moveUser,
+  saveNewUser,
+};
+
+export default userQueries;

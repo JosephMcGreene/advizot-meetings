@@ -5,7 +5,7 @@ const roomCodeRouter = Router();
 
 roomCodeRouter
   .route("/")
-  .post(roomCodeController.post)
-  .put(roomCodeController.put);
+  .post(roomCodeController.checkRoomCode)
+  .put(roomCodeController.updateRoomCode);
 
 export default roomCodeRouter;

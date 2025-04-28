@@ -5,8 +5,8 @@ const usersRouter = Router();
 
 usersRouter
   .route("/")
-  .post(usersController.post)
-  .put(usersController.put)
+  .post(usersController.getUsersInGroup)
+  .put(usersController.moveUser)
   .delete(usersController.deleteUser);
 
 export default usersRouter;
