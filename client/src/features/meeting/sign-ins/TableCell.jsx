@@ -1,10 +1,10 @@
 import { useState } from "react";
 // Assets
-import { ReactComponent as EditPen } from "../../../../assets/img/pen-solid.svg";
-import { ReactComponent as Lightning } from "../../../../assets/img/bolt-lightning-solid.svg";
+import { ReactComponent as EditPen } from "../../../assets/img/pen-solid.svg";
+import { ReactComponent as Lightning } from "../../../assets/img/bolt-lightning-solid.svg";
 // Components
-import ModalTemplate from "../../../../shared/modals/ModalTemplate";
-import MeetingForm from "../../form/MeetingForm";
+import ModalTemplate from "../../../shared/modals/ModalTemplate";
+import MeetingForm from "../form/MeetingForm";
 
 export default function TableCell({
   signInBody,

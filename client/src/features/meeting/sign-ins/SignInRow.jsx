@@ -1,10 +1,10 @@
 import { useState, useContext } from "react";
-import { UserContext } from "../../../../App";
+import { UserContext } from "../../../App";
 // Components
 import TableCell from "./TableCell";
-import DeleteButton from "../DeleteButton";
+import DeleteButton from "./DeleteButton";
 
-export default function SignInTableRow({
+export default function SignInRow({
   signInBody,
   handleSubmitEdits,
   handleDelete,
@@ -15,7 +15,6 @@ export default function SignInTableRow({
   const [deleteBtnShown, setDeleteBtnShown] = useState(false);
 
   /**
-   *
    * @returns {boolean} whether or not the user is allowed to edit the sign-in
    */
   function canEdit() {

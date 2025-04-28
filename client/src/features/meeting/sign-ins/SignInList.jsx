@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { UserContext } from "../../../App";
+// External
+import { motion } from "framer-motion";
 // Internal
-import SignInsCardView from "../sign-ins/card-view/SignInsCardView";
-import SignInsTableView from "../sign-ins/table-view/SignInsTableView";
+import SignInRow from "./SignInRow";
 
 export default function SignInList({ deleteSignIn, signIns, submitSignIn }) {
   const user = useContext(UserContext);
@@ -18,30 +19,37 @@ export default function SignInList({ deleteSignIn, signIns, submitSignIn }) {
   }
 
   return (
-    <div>
-      {window.innerWidth < 768 ? (
-        <SignInsCardView
-          signIns={signIns}
-          handleSubmitEdits={async (signInToSubmit, existingSignIn) => {
-            await submitSignIn(signInToSubmit, existingSignIn);
-          }}
-          handleDelete={async (signInID) => {
-            await deleteSignIn(signInID);
-          }}
-          signInBelongsToUser={signInBelongsToUser}
-        />
-      ) : (
-        <SignInsTableView
-          signIns={signIns}
-          handleSubmitEdits={async (signInToSubmit, existingSignIn) => {
-            await submitSignIn(signInToSubmit, existingSignIn);
-          }}
-          handleDelete={async (signInID) => {
-            await deleteSignIn(signInID);
-          }}
-          signInBelongsToUser={signInBelongsToUser}
-        />
+    <motion.table
+      layout
+      transition={{ type: "tween", stiffness: 10, duration: 0.1 }}
+      className="admin-sign-ins-table"
+    >
+      {signIns.length > 0 && (
+        <thead className="thead">
+          <th className="table-heading">Name</th>
+          <th className="table-heading">Priority</th>
+          <th className="table-heading">Business</th>
+          <th className="table-heading">Personal</th>
+          <th className="table-heading">Relationships</th>
+          <th className="table-heading">Issue</th>
+          <th className="table-heading">Goal</th>
+        </thead>
       )}
-    </div>
+      <tbody className="tbody">
+        {signIns.map((signIn, index) => (
+          <SignInRow
+            key={`${signIn.date}${index}`}
+            signInBody={signIn}
+            handleSubmitEdits={async (signInToSubmit, existingSignIn) => {
+              await submitSignIn(signInToSubmit, existingSignIn);
+            }}
+            signInBelongsToUser={signInBelongsToUser}
+            handleDelete={async (signInID) => {
+              await deleteSignIn(signInID);
+            }}
+          />
+        ))}
+      </tbody>
+    </motion.table>
   );
 }
