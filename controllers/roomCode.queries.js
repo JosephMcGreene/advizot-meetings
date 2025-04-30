@@ -7,8 +7,8 @@ import RoomCode from "../models/RoomCode.js";
  *
  * @returns {object} a roomCode object containing the current roomcode
  */
-function getRoomCode(id) {
-  return RoomCode.findById(id);
+async function getRoomCode(id) {
+  return await RoomCode.findById(id);
 }
 
 /**

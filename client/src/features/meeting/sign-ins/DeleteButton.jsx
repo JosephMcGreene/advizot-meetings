@@ -6,6 +6,7 @@ export default function DeleteButton({ signInID, handleDelete }) {
       className="delete-btn"
       onClick={() => handleDelete(signInID)}
       tabIndex="0"
+      type="button"
     >
       <TrashCan className="delete-icon" />
     </button>

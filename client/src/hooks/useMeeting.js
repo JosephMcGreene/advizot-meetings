@@ -20,12 +20,12 @@ export default function useMeeting(method, url) {
    *
    * @returns {object[]} a sorted array of sign-in objects
    */
-  const sortedSignIns = (signIns) => {
+  function sortSignIns(signIns) {
     return signIns.sort((a, b) => {
       if (a.priority < b.priority) return -1;
       return 1;
     });
-  };
+  }
 
   /**
    * Constructs and returns a sign-in object.
@@ -74,7 +74,7 @@ export default function useMeeting(method, url) {
 
       const existingSignIns = await axiosFetch(method, url, data);
 
-      setSignIns(sortedSignIns(existingSignIns.data.groupSignIns));
+      setSignIns(sortSignIns(existingSignIns.data.groupSignIns));
     } catch (err) {
       await showToast("failure", "Something went wrong, unable to fetch data.");
       throw new Error(err);
@@ -104,7 +104,7 @@ export default function useMeeting(method, url) {
         (signIn) => signIn._id !== existingSignIn?._id
       );
 
-      setSignIns(sortedSignIns(filteredSignIns));
+      setSignIns(sortSignIns(filteredSignIns));
 
       // If it is an edit to an existing sign-in
       if (existingSignIn?._id !== undefined)
@@ -128,19 +128,12 @@ export default function useMeeting(method, url) {
     try {
       setLoading(true);
 
-      const deletionRes = await axiosFetch("delete", "/signIns", {
-        signInID,
-      });
+      const deletionRes = await axiosFetch("delete", "/signIns", { signInID });
 
-      // Make a new array of all sign-ins EXCEPT the one to be deleted
       if (deletionRes.data.signInID) {
-        setSignIns(
-          sortedSignIns(
-            signIns.filter((signIn) => {
-              return signIn._id !== signInID;
-            })
-          )
-        );
+        // prettier-ignore
+        const filteredSignIns = signIns.filter((signIn) => signIn._id !== signInID);
+        setSignIns(sortSignIns(filteredSignIns));
       } else {
         return await showToast("failure", "That didn't work. Try again.");
       }

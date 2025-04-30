@@ -11,8 +11,8 @@ import { userRoles, groups } from "../lib/userRoles.js";
  *
  * @returns {object} The user, now updated in the database
  */
-function addProviderID(email, provider, id) {
-  return User.findOneAndUpdate({ email: email }, { [provider]: id });
+async function addProviderID(email, provider, id) {
+  return await User.findOneAndUpdate({ email: email }, { [provider]: id });
 }
 
 /**
@@ -20,8 +20,8 @@ function addProviderID(email, provider, id) {
  *
  * @param {string} id The database _id of the user to be deleted.
  */
-function deleteUser(id) {
-  User.deleteOne(id);
+async function deleteUser(id) {
+  await User.deleteOne(id);
 }
 
 /**
@@ -31,8 +31,8 @@ function deleteUser(id) {
  *
  * @returns {object | null} The user in the database, or null if they could not be found.
  */
-function getOneUser(profileEmail) {
-  return User.findOne({ email: profileEmail });
+async function getOneUser(profileEmail) {
+  return await User.findOne({ email: profileEmail });
 }
 
 /**
@@ -42,8 +42,8 @@ function getOneUser(profileEmail) {
  *
  * @returns {object | null} The user in the database, or null if they could not be found.
  */
-function getOneUserByID(id) {
-  return User.findById(id);
+async function getOneUserByID(id) {
+  return await User.findById(id);
 }
 
 /**
@@ -53,8 +53,8 @@ function getOneUserByID(id) {
  *
  * @returns {object[]} A list of users that belong to the group.
  */
-function getUsersInGroup(group) {
-  return User.find({ group: group });
+async function getUsersInGroup(group) {
+  return await User.find({ group: group });
 }
 
 /**
@@ -63,8 +63,8 @@ function getUsersInGroup(group) {
  * @param {string} id           The database _id of the user to be moved.
  * @param {string} groupToPlace The name of the group the user is being placed into.
  */
-function moveUser(id, groupToPlace) {
-  User.findByIdAndUpdate(id, { group: groupToPlace });
+async function moveUser(id, groupToPlace) {
+  await User.findByIdAndUpdate(id, { group: groupToPlace });
 }
 
 /**

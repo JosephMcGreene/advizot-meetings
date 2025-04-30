@@ -5,9 +5,11 @@ import { userRoles } from "../lib/userRoles.js";
  * Deletes a single signIn object from the database.
  *
  * @param {string} id The database _id of the sign-in to be deleted.
+ *
+ * @returns {object} The default Mongoose response from deleting a document
  */
-function deleteOneSignIn(id) {
-  SignIn.deleteOne({ _id: id });
+async function deleteOneSignIn(id) {
+  return await SignIn.deleteOne({ _id: id });
 }
 
 /**
@@ -52,7 +54,9 @@ function moveSignIns(advizotID, groupToPlace) {
 /**
  * Creates a new SignIn model from the SignIn schema, populates it with data from the client, and saves it to the database.
  *
- * @param {object} req the HTTP request object sent to the server, whose properties correspond to a new sign-in object
+ * @param {object} req the HTTP request object sent to the server, whose properties correspond to a new sign-in object.
+ *
+ * @returns {object} the new sign-in object that was created and saved.
  */
 async function saveNewSignIn(req) {
   const newSignIn = new SignIn({
@@ -68,6 +72,8 @@ async function saveNewSignIn(req) {
     userID: req.body.userID,
   });
   await newSignIn.save();
+
+  return newSignIn;
 }
 
 const signInQueries = {

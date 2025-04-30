@@ -8,7 +8,7 @@ import signInQueries from "./signIns.queries.js";
  */
 async function modifySignIn(req, res) {
   try {
-    const newSignIn = signInQueries.saveNewSignIn(req);
+    const newSignIn = await signInQueries.saveNewSignIn(req);
 
     if (req.body?._id) {
       await signInQueries.deleteOneSignIn(req.body._id);
@@ -18,6 +18,7 @@ async function modifySignIn(req, res) {
       res.statusCode = 201;
       res.statusMessage = "Sign-in created";
     }
+
     res.json(newSignIn);
   } catch (err) {
     res.json(new Error(err));
