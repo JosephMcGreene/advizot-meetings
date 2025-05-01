@@ -1,7 +1,7 @@
 // Components
 import LoadingSpinner from "../../../shared/LoadingSpinner";
 // Hooks
-import useMemberEdits from "../../../hooks/useMemberEdits";
+import useMemberEdits from "./useMemberEdits";
 
 export default function MemberEditModal({ handleClose, currentGroup }) {
   const [

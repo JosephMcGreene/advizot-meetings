@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
-import { UserContext } from "../App";
-import useToasts from "./useToasts";
-import { axiosFetch } from "../helpers";
+import { UserContext } from "../../App";
+import useToasts from "../../hooks/useToasts";
+import { axiosFetch } from "../../helpers";
 
 export default function useMeeting(method, url) {
   const user = useContext(UserContext);

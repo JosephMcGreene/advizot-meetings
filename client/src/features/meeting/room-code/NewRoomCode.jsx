@@ -5,7 +5,7 @@ import LoadingSpinner from "../../../shared/LoadingSpinner";
 // External
 import { Link } from "react-router-dom";
 // Hooks
-import useRoomCode from "../../../hooks/useRoomCode";
+import useRoomCode from "./useRoomCode";
 
 export default function NewRoomCode() {
   const user = useContext(UserContext);

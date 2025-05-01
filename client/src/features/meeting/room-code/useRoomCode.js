@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
-import { ToastContext } from "../App";
-import { axiosFetch } from "../helpers";
+import { ToastContext } from "../../../App";
+import { axiosFetch } from "../../../helpers";
 
 export default function useRoomCode() {
   const { showToast } = useContext(ToastContext);

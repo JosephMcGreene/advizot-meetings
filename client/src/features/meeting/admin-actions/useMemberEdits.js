@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
-import { ToastContext } from "../App";
+import { ToastContext } from "../../../App";
 // Internal
-import { axiosFetch } from "../helpers";
+import { axiosFetch } from "../../../helpers";
 
 export default function useMemberEdits(currentGroup) {
   const { showToast } = useContext(ToastContext);

@@ -23,8 +23,7 @@ function deleteSignIns(advizotID) {
   return SignIn.deleteMany({ userID: advizotID });
 }
 
-// 2 weeks = 1000ms * 60s * 60min * 24h * 7days (x2)
-const twoWeeksAgo = Date.now() - 1000 * 60 * 60 * 24 * 14;
+const twoWeeksAgo = Date.now() - 1000 * 60 * 60 * 24 * 14; // 2 weeks = 1000ms * 60s * 60min * 24h * 7days (x2)
 
 /**
  * Finds and retrieves a group of sign-ins corresponding to a single group.
