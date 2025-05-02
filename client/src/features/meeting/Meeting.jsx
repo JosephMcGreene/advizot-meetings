@@ -1,5 +1,7 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { UserContext } from "../../App";
+// Assets
+import { ReactComponent as AddSignInIcon } from "../../assets/img/file-circle-plus-solid.svg";
 // Components
 import LoadingSpinner from "../../shared/LoadingSpinner";
 import MeetingHeading from "./MeetingHeading";
@@ -24,19 +26,27 @@ export default function Meeting() {
     `/signIns/${group}`
   );
 
-  useEffect(() => {
-    if (!userHasSignedIn()) setFormShown(true);
-  }, []);
+  /**
+   * determines if a user has entered a sign-in to this meeting by searching through the current list of sign-ins for one with a userID property that matches the user's advizotID.
+   *
+   * @returns {boolean} Whether the user has submitted a sign-in (true) or not (false).
+   */
+  function userHasSubmitted() {
+    // prettier-ignore
+    const signInOfUser = signIns.find(signIn => signIn.userID === user.advizotID);
+    if (signInOfUser) return true;
+    return false;
+  }
 
   /**
-   * Searches the sign-ins array for a sign-in that the user has submitted and uses that information to return true if the user has signed in, or false if they have not.
+   * Determines whether or not to display the list of sign-ins for the current group and meeting.
    *
-   * @returns {boolean} whether or not the user has signed into this meeting.
+   * @returns {boolean} whether or not to display the sign-in list.
    */
-  function userHasSignedIn() {
-    // TODO Rebuild this function!!!
-
-    return true | false;
+  function signInListShown() {
+    if (user.role === "admin") return true;
+    if (userHasSubmitted()) return true;
+    return false;
   }
 
   if (loading) return <LoadingSpinner />;
@@ -44,28 +54,25 @@ export default function Meeting() {
   return (
     <>
       <MeetingHeading group={group} />
-
-      {/* If the user has not entered a sign-in, automatically prompt it. */}
-      {!userHasSignedIn() ?? setFormShown(true)}
-
-      {/* Show the list of sign-ins for the group if there are sign-ins to show. */}
-      {signIns.length > 0 ? (
+      {/* Show the list of sign-ins for the group, or a button to add a new sign-in. */}
+      {signInListShown() ? (
         <SignInList
           deleteSignIn={deleteSignIn}
           signIns={signIns}
           submitSignIn={submitSignIn}
         />
       ) : (
-        <p>No one has signed in to this meeting yet.</p>
+        <button className="btn" onClick={() => setFormShown(true)}>
+          <AddSignInIcon className="icon" />
+          Add a Sign In
+        </button>
       )}
 
       {/* Display the actions button at the bottom-right of the screen. */}
       <ActionsMenu
         currentGroup={group}
         handleNewSignInClick={() => setFormShown(true)}
-        signIns={signIns}
       />
-
       {/* Display the sign-in form when necessary. */}
       {formShown && (
         <ModalTemplate

@@ -124,7 +124,6 @@ export default function MeetingForm({
             text="Goal before next meeting"
             name="monthlyGoal"
             as="textarea"
-            wwwww
             className="text-input"
           />
           <button type="submit" className="btn">

@@ -26,15 +26,17 @@
     margin-left: 1rem;
   }
 
-  .sliders-icon {
+  .bars-icon {
     width: 35px;
-    vertical-align: middle;
-    transform: rotate(90deg);
   }
 
   &:hover {
     @include btnHover();
   }
+}
+
+.hide {
+  display: none;
 }
 
 .admin-actions-list {
