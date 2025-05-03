@@ -1,9 +1,11 @@
 @use "../../index" as *;
 
-.admin-sign-ins-table {
+.meeting-table {
   $border: 1px solid black;
+  $orange-border: 1px solid $advizot-color;
 
   margin: 0 auto;
+  width: 100%;
 
   box-shadow: $box-shadow;
   border-collapse: collapse;
@@ -13,9 +15,6 @@
     border-right: $border;
     border-bottom: $border;
     padding: 0.75ch;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
   }
 
   .table-heading:last-child,
@@ -32,9 +31,6 @@
 
     .table-heading {
       color: $text-primary;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
     }
   }
 
@@ -42,14 +38,12 @@
     .tbody-th {
       font-size: 1.2rem;
       cursor: pointer;
-      text-align: center;
-      max-width: 250px;
+      padding: 0;
+      border: $orange-border;
 
       .tbody-row-name {
-        padding: 0.5ch;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        padding: 1ch;
+        width: min-content;
       }
 
       .delete-btn {
@@ -74,31 +68,39 @@
       &:nth-child(7) {
         text-align: left;
       }
-    }
-  }
-}
 
-@media screen and (max-width: 1145px) {
-  .admin-sign-ins-table {
-    .thead .table-heading,
-    .tbody-row .tbody-th {
-      max-width: 100px;
-    }
-  }
-}
-@media screen and (max-width: 732px) {
-  .admin-sign-ins-table {
-    .thead .table-heading,
-    .tbody-row .tbody-th {
-      max-width: 75px;
-    }
-  }
-}
-@media screen and (max-width: 560px) {
-  .admin-sign-ins-table {
-    .thead .table-heading,
-    .tbody-row .tbody-th {
-      max-width: 50px;
+      .inner-table-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+
+        padding: 0;
+
+        p {
+          border-top: $orange-border;
+          border-left: $orange-border;
+          padding: 1ch;
+          text-align: center;
+        }
+        p:first-child {
+          border-left: none;
+        }
+        p:last-child {
+          border-right: $orange-border;
+        }
+      }
+
+      .lower-row {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        padding: 1ch;
+        border-top: $orange-border;
+
+        h4 {
+          align-self: center;
+        }
+      }
     }
   }
 }

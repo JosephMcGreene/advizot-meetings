@@ -22,17 +22,12 @@ export default function SignInList({ deleteSignIn, signIns, submitSignIn }) {
     <motion.table
       layout
       transition={{ type: "tween", stiffness: 10, duration: 0.1 }}
-      className="admin-sign-ins-table"
+      className="meeting-table"
     >
       {signIns.length > 0 && (
         <thead className="thead">
           <th className="table-heading">Name</th>
-          <th className="table-heading">Priority</th>
-          <th className="table-heading">Business</th>
-          <th className="table-heading">Personal</th>
-          <th className="table-heading">Relationships</th>
-          <th className="table-heading">Issue</th>
-          <th className="table-heading">Goal</th>
+          <th className="table-heading">Sign-In</th>
         </thead>
       )}
       <tbody className="tbody">

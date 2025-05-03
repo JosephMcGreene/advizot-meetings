@@ -34,41 +34,11 @@ export default function SignInRow({
         )}
 
         <h4 className="tbody-row-name">{signInBody.userName}</h4>
+        <h5>Priority: {signInBody.priority.substring(1)}</h5>
       </th>
 
       <TableCell
         signInBody={signInBody}
-        signInItem={signInBody.priority.substring(1)}
-        canEdit={canEdit}
-        handleSubmitEdits={handleSubmitEdits}
-      />
-      <TableCell
-        signInBody={signInBody}
-        signInItem={signInBody.business}
-        canEdit={canEdit}
-        handleSubmitEdits={handleSubmitEdits}
-      />
-      <TableCell
-        signInBody={signInBody}
-        signInItem={signInBody.personal}
-        canEdit={canEdit}
-        handleSubmitEdits={handleSubmitEdits}
-      />
-      <TableCell
-        signInBody={signInBody}
-        signInItem={signInBody.relationships}
-        canEdit={canEdit}
-        handleSubmitEdits={handleSubmitEdits}
-      />
-      <TableCell
-        signInBody={signInBody}
-        signInItem={signInBody.monthlyIssue}
-        canEdit={canEdit}
-        handleSubmitEdits={handleSubmitEdits}
-      />
-      <TableCell
-        signInBody={signInBody}
-        signInItem={signInBody.monthlyGoal}
         canEdit={canEdit}
         handleSubmitEdits={handleSubmitEdits}
       />
