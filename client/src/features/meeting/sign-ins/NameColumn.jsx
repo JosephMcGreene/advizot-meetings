@@ -32,9 +32,9 @@ export default function NameColumn({
         {canEdit() && (
           <div className="icon-container">
             {/* prettier-ignore */}
-            <EditBtn onClick={() => canEdit() && setMeetingFormShown(!meetingFormShown)} />
+            <EditBtn className="edit-icon" onClick={() => canEdit() && setMeetingFormShown(!meetingFormShown)} />
             {/* prettier-ignore */}
-            <DeleteBtn onClick={() => handleDelete(signInBody._id)} />
+            <DeleteBtn className="edit-icon" onClick={() => handleDelete(signInBody._id)} />
           </div>
         )}
       </th>
