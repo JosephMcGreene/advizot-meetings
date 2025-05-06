@@ -54,7 +54,7 @@
 }
 
 .login-btn {
-  @include borderRadius();
+  @include borderRadius(12px);
   @include transition(all);
 
   display: flex;

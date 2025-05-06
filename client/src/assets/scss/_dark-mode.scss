@@ -21,6 +21,7 @@ $text-dark: black;
     .modal-header {
       color: $text-dark;
     }
+
     .modal-body {
       background-color: $dark-bg;
 
@@ -33,6 +34,7 @@ $text-dark: black;
         .range-container input[type="range"] {
           background-color: $darker-bg;
         }
+
         .text-input textarea,
         .select .rating-select,
         .rating-select {
@@ -44,10 +46,6 @@ $text-dark: black;
     }
   }
 
-  .edit-pen {
-    fill: $advizot-grey;
-  }
-
   .header,
   .admin-actions-list {
     background-color: $darker-bg;
@@ -56,10 +54,8 @@ $text-dark: black;
   }
 
   .header {
-    .profile-photo {
-      label {
-        color: $advizot-grey;
-      }
+    .profile-photo label {
+      color: $advizot-grey;
     }
 
     .nav {
@@ -87,7 +83,7 @@ $text-dark: black;
     box-shadow: none;
   }
 
-  .admin-sign-ins-table {
+  .meeting-table {
     $border: 1px solid $advizot-grey;
 
     background-color: $darker-bg;
@@ -97,23 +93,8 @@ $text-dark: black;
       color: $text-dark;
     }
 
-    .tbody-row,
-    .tbody-th {
-      border: $border;
-      border-top: none;
-    }
-    .tbody-row {
-      border-left: none;
-    }
-    .tbody-th {
-      border-bottom: none;
-
-      svg path {
-        fill: $advizot-grey;
-      }
-      .delete-btn svg path {
-        fill: black;
-      }
+    .meeting-table-row svg path {
+      fill: $advizot-grey;
     }
   }
 
@@ -123,17 +104,5 @@ $text-dark: black;
 
   .admin-actions-list .admin-actions-item .icon path {
     fill: $advizot-grey;
-  }
-
-  .sign-ins-section .sign-ins-ul {
-    .sign-in-li {
-      background-color: $darker-bg;
-      box-shadow: none;
-      border: none;
-
-      .sign-in-name {
-        color: $text-dark;
-      }
-    }
   }
 }

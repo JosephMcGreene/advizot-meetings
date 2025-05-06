@@ -25,7 +25,7 @@
     -moz-appearance: none;
     appearance: none;
 
-    @include borderRadius();
+    @include borderRadius(12px);
 
     width: 30px;
     height: 30px;
@@ -46,6 +46,7 @@
   margin-top: 0.15rem;
   padding: $padding;
   width: 100%;
+  max-width: 100%;
 
   background-color: $light-bg;
   font-family: inherit;

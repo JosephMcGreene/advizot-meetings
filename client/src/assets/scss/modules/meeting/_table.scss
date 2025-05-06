@@ -1,8 +1,8 @@
 @use "../../index" as *;
 
 .meeting-table {
-  $border: 1px solid black;
-  $orange-border: 1px solid $advizot-color;
+  $thin-border: 1px solid $advizot-color;
+  $thick-border: 3px solid $advizot-color;
 
   margin: 0 auto;
   width: 100%;
@@ -24,13 +24,14 @@
   }
 
   .meeting-table-row {
-    border: $orange-border;
+    border: $thin-border;
+    border-bottom: $thick-border;
 
     .meeting-table-column1 {
       width: 27%;
       min-width: min-content;
 
-      border: $orange-border;
+      border: $thin-border;
 
       .user-name {
         width: min-content;
@@ -78,7 +79,7 @@
         gap: 10px;
 
         padding: 1ch;
-        border-top: $orange-border;
+        border-top: $thin-border;
 
         h4 {
           align-self: center;
