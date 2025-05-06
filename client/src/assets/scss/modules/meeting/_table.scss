@@ -6,90 +6,73 @@
 
   margin: 0 auto;
   width: 100%;
+  max-width: 1200px;
 
   box-shadow: $box-shadow;
   border-collapse: collapse;
 
-  .table-heading,
-  .tbody-th {
-    border-right: $border;
-    border-bottom: $border;
+  .table-heading {
     padding: 0.75ch;
   }
 
-  .table-heading:last-child,
   .tbody-th:last-child {
     border-right: none;
   }
 
   .thead {
-    text-align: center;
-
-    list-style: none;
     background-color: $advizot-color;
-    border: 1px solid $advizot-color;
-
-    .table-heading {
-      color: $text-primary;
-    }
   }
 
-  .tbody-row {
-    .tbody-th {
-      font-size: 1.2rem;
-      cursor: pointer;
-      padding: 0;
+  .meeting-table-row {
+    border: $orange-border;
+
+    .meeting-table-column1 {
+      width: 27%;
+      min-width: min-content;
+
       border: $orange-border;
 
-      .tbody-row-name {
-        padding: 1ch;
+      .user-name {
         width: min-content;
+        margin: 0 auto;
+
+        padding: 1ch;
+        font-size: 1.2rem;
       }
 
-      .delete-btn {
-        $size: 40px;
+      .priority {
+        font-size: 1rem;
+      }
 
-        position: absolute;
-        top: calc(50% - $size / 2);
-        left: 5px;
-        width: $size;
-        height: $size;
+      .icon-container {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 1rem;
 
-        .delete-icon {
-          width: 18px;
+        svg {
+          width: 20px;
+          cursor: pointer;
         }
       }
+    }
 
-      svg {
-        width: 18px;
-      }
+    .meeting-table-column2 {
+      font-size: 1.2rem;
 
-      &:nth-child(6),
-      &:nth-child(7) {
-        text-align: left;
-      }
-
-      .inner-table-row {
+      .inner-table-row1 {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
 
         padding: 0;
 
         p {
-          border-top: $orange-border;
-          border-left: $orange-border;
           padding: 1ch;
           text-align: center;
         }
-        p:first-child {
-          border-left: none;
-        }
-        p:last-child {
-          border-right: $orange-border;
-        }
       }
 
-      .lower-row {
+      .issue-goal {
         display: flex;
         flex-direction: column;
         gap: 10px;

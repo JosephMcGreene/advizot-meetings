@@ -1,23 +1,9 @@
-import { useContext } from "react";
-import { UserContext } from "../../../App";
 // External
 import { motion } from "framer-motion";
 // Internal
 import SignInRow from "./SignInRow";
 
 export default function SignInList({ deleteSignIn, signIns, submitSignIn }) {
-  const user = useContext(UserContext);
-
-  /**
-   * Assesses whether the current user has permissions to edit or delete the sign-in they hover over
-   *
-   * @returns {boolean} whether or not the user can edit or delete the sign-in
-   */
-  function signInBelongsToUser(signInBody) {
-    if (user.advizotID === signInBody?.userID) return true;
-    return false;
-  }
-
   return (
     <motion.table
       layout
@@ -38,7 +24,6 @@ export default function SignInList({ deleteSignIn, signIns, submitSignIn }) {
             handleSubmitEdits={async (signInToSubmit, existingSignIn) => {
               await submitSignIn(signInToSubmit, existingSignIn);
             }}
-            signInBelongsToUser={signInBelongsToUser}
             handleDelete={async (signInID) => {
               await deleteSignIn(signInID);
             }}
