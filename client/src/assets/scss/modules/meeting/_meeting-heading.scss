@@ -10,7 +10,7 @@
 
   select {
     @include advizotFont(inherit, 400, 1px);
-    @include borderRadius();
+    @include borderRadius(8px);
     @include transition(box-shadow transform);
 
     -moz-appearance: none;
@@ -68,7 +68,7 @@
   }
 
   .room-code-display {
-    @include borderRadius();
+    @include borderRadius(12px);
     @include borderSides();
 
     width: fit-content;

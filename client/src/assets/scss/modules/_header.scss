@@ -25,7 +25,7 @@
   }
 
   .profile-photo {
-    @include borderRadius();
+    @include borderRadius(10px);
 
     max-width: 3.25rem;
     max-height: 3.25rem;
@@ -44,7 +44,7 @@
   }
 
   .nav {
-    @include borderRadius();
+    @include borderRadius(12px);
     @include borderSides();
 
     z-index: $nav-z;

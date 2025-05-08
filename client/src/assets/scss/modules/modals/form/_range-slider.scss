@@ -1,7 +1,7 @@
 @use "../../../index" as *;
 
 input[type="range"] {
-  @include borderRadius();
+  @include borderRadius(10px);
 
   -webkit-appearance: none;
 

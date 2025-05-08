@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { UserContext } from "../../App";
+import { UserContext } from "../App";
 // Components
-import NewRoomCode from "./room-code/NewRoomCode";
-import RoomCodePrompt from "./room-code/RoomCodePrompt";
+import NewRoomCode from "../features/meeting/room-code/NewRoomCode";
+import RoomCodePrompt from "../features/meeting/room-code/RoomCodePrompt";
 // External
 import { Navigate } from "react-router-dom";
 

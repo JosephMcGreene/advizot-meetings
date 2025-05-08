@@ -1,21 +1,29 @@
 export default function DataColumn({ signInBody }) {
   return (
-    <>
-      <td className="meeting-table-column2">
-        <div className="inner-table-row1">
-          <p>Business: {signInBody.business}</p>
-          <p>Personal: {signInBody.personal}</p>
-          <p>Relationships: {signInBody.relationships}</p>
+    <article className="sign-in-data-col">
+      <div className="number-row">
+        <div className="number-container">
+          <h3 className="label">Business:</h3>
+          <p>{signInBody.business}</p>
         </div>
-        <div className="issue-goal">
-          <h4>Issue</h4>
-          <p>{signInBody.monthlyIssue}</p>
+        <div className="number-container">
+          <h3 className="label">Personal:</h3>
+          <p>{signInBody.personal}</p>
         </div>
-        <div className="issue-goal">
-          <h4>Goal</h4>
-          <p>{signInBody.monthlyGoal}</p>
+        <div className="number-container">
+          <h3 className="label">Relationships:</h3>
+          <p>{signInBody.relationships}</p>
         </div>
-      </td>
-    </>
+      </div>
+
+      <div className="issue-goal-row">
+        <h3>Issue</h3>
+        <p>{signInBody.monthlyIssue}</p>
+      </div>
+      <div className="issue-goal-row">
+        <h3>Goal</h3>
+        <p>{signInBody.monthlyGoal}</p>
+      </div>
+    </article>
   );
 }
