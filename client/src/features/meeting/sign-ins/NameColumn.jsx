@@ -17,17 +17,17 @@ export default function NameColumn({
 
   return (
     <>
-      <th className="meeting-table-column1">
-        <h4 className="user-name">{signInBody.userName}</h4>
+      <article className="sign-in-name-col">
+        <h2 className="user-name">{signInBody.userName}</h2>
 
-        <h5 className="priority">
+        <h3 className="priority">
           Priority:{" "}
           {signInBody.priority.substring(1) === "L" ? (
             <Lightning width="12px" />
           ) : (
             signInBody.priority.substring(1)
           )}
-        </h5>
+        </h3>
 
         {canEdit() && (
           <div className="icon-container">
@@ -37,7 +37,7 @@ export default function NameColumn({
             <DeleteBtn className="edit-icon" onClick={() => handleDelete(signInBody._id)} />
           </div>
         )}
-      </th>
+      </article>
 
       {meetingFormShown && (
         <ModalTemplate

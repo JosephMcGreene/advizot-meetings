@@ -33,17 +33,15 @@ export default function SignInRow({
   }
 
   return (
-    <>
-      <tr className="meeting-table-row">
-        <NameColumn
-          canEdit={canEdit}
-          handleDelete={handleDelete}
-          handleSubmitEdits={handleSubmitEdits}
-          signInBody={signInBody}
-        />
+    <li className="sign-in-item">
+      <NameColumn
+        canEdit={canEdit}
+        handleDelete={handleDelete}
+        handleSubmitEdits={handleSubmitEdits}
+        signInBody={signInBody}
+      />
 
-        <DataColumn signInBody={signInBody} />
-      </tr>
-    </>
+      <DataColumn signInBody={signInBody} />
+    </li>
   );
 }

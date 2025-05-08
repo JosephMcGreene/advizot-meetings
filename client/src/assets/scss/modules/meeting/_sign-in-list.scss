@@ -1,0 +1,99 @@
+@use "../../index" as *;
+
+.sign-in-list {
+  $border: 2px solid $advizot-color;
+
+  margin: 0 auto;
+  // width: fit-content;
+  max-width: 1000px;
+
+  list-style: none;
+  background-color: transparent;
+
+  .sign-in-item {
+    @include borderRadius(25px);
+
+    display: flex;
+    margin-bottom: 2rem;
+
+    box-shadow: $box-shadow;
+    border: $border;
+
+    .sign-in-name-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-width: min-content;
+      width: 30%;
+
+      padding-inline: 1rem;
+      border-right: $border;
+
+      .user-name {
+        font-size: 1.4rem;
+        text-align: center;
+      }
+
+      .priority {
+        font-size: 1.1rem;
+      }
+
+      .icon-container {
+        margin-top: 0.5rem;
+
+        .edit-icon {
+          width: 20px;
+          cursor: pointer;
+
+          &:first-child {
+            margin-right: 1.5rem;
+          }
+        }
+      }
+    }
+
+    .sign-in-data-col {
+      font-size: 1.2rem;
+      width: 70%;
+
+      .number-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+
+        .number-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+
+          padding: 1.25rem;
+
+          label {
+            font-weight: 400;
+          }
+          p {
+            font-size: 1.3rem;
+          }
+        }
+      }
+
+      .issue-goal-row {
+        padding: 1.25rem;
+        border-top: $border;
+
+        h4 {
+          font-weight: 400;
+          text-align: center;
+          margin-bottom: 0.5rem;
+        }
+        p {
+          font-size: 1.3rem;
+          max-width: 90%;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+}

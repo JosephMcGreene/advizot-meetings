@@ -83,18 +83,15 @@ $text-dark: black;
     box-shadow: none;
   }
 
-  .meeting-table {
-    $border: 1px solid $advizot-grey;
-
-    background-color: $darker-bg;
+  .sign-in-list {
     box-shadow: none;
 
-    .thead .table-heading {
-      color: $text-dark;
-    }
+    .sign-in-item {
+      background-color: $darker-bg;
 
-    .meeting-table-row svg path {
-      fill: $advizot-grey;
+      svg path {
+        fill: $advizot-grey;
+      }
     }
   }
 
