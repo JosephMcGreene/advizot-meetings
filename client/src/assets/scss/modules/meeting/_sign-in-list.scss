@@ -4,11 +4,9 @@
   $border: 2px solid $advizot-color;
 
   margin: 0 auto;
-  // width: fit-content;
   max-width: 1000px;
 
   list-style: none;
-  background-color: transparent;
 
   .sign-in-item {
     @include borderRadius(25px);
@@ -92,6 +90,21 @@
           font-size: 1.3rem;
           max-width: 90%;
           margin: 0 auto;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .sign-in-list {
+    .sign-in-item {
+      .sign-in-name-col {
+        .icon-container {
+          .edit-icon {
+            width: 27px;
+            margin-top: 0.5rem;
+          }
         }
       }
     }
