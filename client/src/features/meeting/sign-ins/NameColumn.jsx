@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../../../App";
 // Assets
 import { ReactComponent as DeleteBtn } from "../../../assets/img/trash-can-solid.svg";
 import { ReactComponent as EditBtn } from "../../../assets/img/pen-solid.svg";
@@ -8,12 +9,33 @@ import ModalTemplate from "../../../shared/modals/ModalTemplate";
 import MeetingForm from "../form/MeetingForm";
 
 export default function NameColumn({
-  canEdit,
   handleDelete,
   handleSubmitEdits,
   signInBody,
 }) {
+  const user = useContext(UserContext);
   const [meetingFormShown, setMeetingFormShown] = useState(false);
+
+  /**
+   * Assesses whether the current user has permissions to edit or delete the sign-in they hover over
+   *
+   * @returns {boolean} whether or not the user can edit or delete the sign-in
+   */
+  function signInBelongsToUser(signInID) {
+    if (user.advizotID === signInID) return true;
+    return false;
+  }
+
+  /**
+   * @returns {boolean} whether or not the user is authorized to edit the sign-in.
+   */
+  function canEdit() {
+    if (signInBelongsToUser(signInBody?.userID) || user.role === "admin") {
+      return true;
+    }
+
+    return false;
+  }
 
   return (
     <>

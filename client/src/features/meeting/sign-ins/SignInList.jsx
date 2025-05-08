@@ -1,7 +1,7 @@
 // External
 import { motion } from "framer-motion";
 // Internal
-import SignInRow from "./SignInRow";
+import SignIn from "./SignIn";
 
 export default function SignInList({ deleteSignIn, signIns, submitSignIn }) {
   return (
@@ -11,7 +11,7 @@ export default function SignInList({ deleteSignIn, signIns, submitSignIn }) {
       className="sign-in-list"
     >
       {signIns.map((signIn, index) => (
-        <SignInRow
+        <SignIn
           key={`${signIn.date}${index}`}
           signInBody={signIn}
           handleSubmitEdits={async (signInToSubmit, existingSignIn) => {
