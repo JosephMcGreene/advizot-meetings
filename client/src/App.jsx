@@ -4,7 +4,7 @@ import "./assets/scss/App.scss";
 // Components
 import LoadingSpinner from "./shared/LoadingSpinner";
 import Welcome from "./shared/Welcome";
-import UsersOnly from "./features/meeting/UsersOnly";
+import UsersOnly from "./shared/UsersOnly";
 import Meeting from "./features/meeting/Meeting";
 import Profile from "./features/profile/Profile";
 import Header from "./shared/Header";
