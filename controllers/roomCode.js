@@ -42,7 +42,7 @@ async function updateRoomCode(req, res) {
       process.env.ROOMCODE_ID
     );
 
-    if (roomCodeDB && req.body.needNewCode) {
+    if (roomCodeDB) {
       roomCodeQueries.updateRoomCode(roomCodeDB);
       res.statusCode = 200;
     }

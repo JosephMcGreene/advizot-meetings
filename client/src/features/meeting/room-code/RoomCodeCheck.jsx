@@ -6,7 +6,7 @@ import RoomCodeEntry from "./RoomCodeEntry";
 export default function RoomCodeCheck({ children, handleSubmitCode }) {
   const user = useContext(UserContext);
 
-  if (!user.hasMeetingCode) {
+  if (!user.hasMeetingCode && user.role !== "admin") {
     return <RoomCodeEntry handleSubmit={handleSubmitCode} incorrectcode />;
   }
 

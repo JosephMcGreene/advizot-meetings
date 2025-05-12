@@ -78,6 +78,11 @@
     font-size: 1.5rem;
     background-color: $advizot-color;
     box-shadow: $box-shadow;
+    cursor: pointer;
+
+    &:hover {
+      @include btnHover();
+    }
   }
 }
 

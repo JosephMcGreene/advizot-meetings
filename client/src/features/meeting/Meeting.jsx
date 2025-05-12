@@ -21,10 +21,8 @@ export default function Meeting() {
 
   const user = useContext(UserContext);
   const [formShown, setFormShown] = useState(false);
-  const [signIns, loading, submitSignIn, deleteSignIn] = useMeeting(
-    "get",
-    `/signIns/${group}`
-  );
+  const [signIns, loading, submitSignIn, deleteSignIn, getNewRoomCode] =
+    useMeeting("get", `/signIns/${group}`);
 
   /**
    * determines if a user has entered a sign-in to this meeting by searching through the current list of sign-ins for one with a userID property that matches the user's advizotID.
@@ -53,7 +51,7 @@ export default function Meeting() {
 
   return (
     <>
-      <MeetingHeading group={group} />
+      <MeetingHeading getNewRoomCode={getNewRoomCode} group={group} />
       {/* Show the list of sign-ins for the group, or a button to add a new sign-in. */}
       {signInListShown() ? (
         <SignInList

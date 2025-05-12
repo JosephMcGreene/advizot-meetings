@@ -14,6 +14,32 @@ export default function useMeeting(method, url) {
   }, [method, url]);
 
   /**
+   * Calls the server to update the room code and send it back to the user, or only send the existing room code, then updates the user's local storage with the new room code
+   *
+   * @param {boolean} needNewCode Whether or not the user has decided to create a new room code
+   */
+  async function getNewRoomCode() {
+    try {
+      setLoading(true);
+
+      const response = await axiosFetch("get", "/roomCode");
+      const newRoomCode = response.data.roomCodeDB.currentRoomCode.toString();
+
+      localStorage.setItem("roomCode", newRoomCode);
+
+      await showToast("success", `Room Code changed to ${newRoomCode}`);
+    } catch (err) {
+      await showToast(
+        "failure",
+        "Something went wrong, unable to set Room Code"
+      );
+      throw new Error(err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  /**
    * Sorts an array of sign-in objects in order of their priority property
    *
    * @param {object[]} signIns The array of sign-in objects to sort
@@ -147,5 +173,5 @@ export default function useMeeting(method, url) {
     }
   }
 
-  return [signIns, loading, submitSignIn, deleteSignIn];
+  return [signIns, loading, submitSignIn, deleteSignIn, getNewRoomCode];
 }

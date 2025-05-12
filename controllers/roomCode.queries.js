@@ -19,7 +19,9 @@ async function getRoomCode(id) {
 function generateRoomCode() {
   let roomCode = Math.floor(Math.random() * 1000000); // 1,000,000
 
-  if (roomCode < 100000 || roomCode === 1000000) generateRoomCode(); // Ensure 6 digits
+  if (roomCode < 100000 || roomCode === 1000000) {
+    roomCode = Math.floor(Math.random() * 1000000);
+  } // Ensure 6 digits
 
   return roomCode.toString();
 }

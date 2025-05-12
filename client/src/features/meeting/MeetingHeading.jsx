@@ -8,7 +8,7 @@ import { useNavigate, Outlet } from "react-router-dom";
 // Internal
 import { currentDate } from "../../helpers";
 
-export default function MeetingHeading({ group }) {
+export default function MeetingHeading({ getNewRoomCode, group }) {
   const user = useContext(UserContext);
   const [roomCodeShown, setRoomCodeShown] = useState(false);
   const [selectedGroup, setSelectedGroup] = useState("");
@@ -43,7 +43,7 @@ export default function MeetingHeading({ group }) {
           roomCodeShown={roomCodeShown}
         />
 
-        {roomCodeShown && <RoomCodeDisplay />}
+        {roomCodeShown && <RoomCodeDisplay getNewRoomCode={getNewRoomCode} />}
       </div>
 
       <Outlet />
