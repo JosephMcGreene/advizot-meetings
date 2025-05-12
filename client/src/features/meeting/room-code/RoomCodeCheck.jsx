@@ -1,14 +1,14 @@
 import { useContext } from "react";
 import { UserContext } from "../../../App";
-// Components
+// Internal
 import RoomCodeEntry from "./RoomCodeEntry";
 
-export default function RoomCodePrompt({ handleSubmitCode, children }) {
+export default function RoomCodeCheck({ children, handleSubmitCode }) {
   const user = useContext(UserContext);
 
   if (!user.hasMeetingCode) {
     return <RoomCodeEntry handleSubmit={handleSubmitCode} incorrectcode />;
   }
-  // child is <Navigate to="/meeting" />
+
   return children;
 }
