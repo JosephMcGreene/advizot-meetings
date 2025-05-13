@@ -15,8 +15,8 @@ export default function ModalTemplate({ children, handleClose, title }) {
       <motion.div
         initial={{ opacity: 0, y: 70 }}
         animate={{ opacity: 1, y: 0 }}
-        ref={modalRef}
         className="modal-content"
+        ref={modalRef}
       >
         <header className="modal-header">
           <span className="modal-heading">{title}</span>

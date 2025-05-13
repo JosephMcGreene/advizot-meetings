@@ -5,8 +5,8 @@ import { ReactComponent as DeleteBtn } from "../../../assets/img/trash-can-solid
 import { ReactComponent as EditBtn } from "../../../assets/img/pen-solid.svg";
 import { ReactComponent as Lightning } from "../../../assets/img/bolt-lightning-solid.svg";
 // Components
-import ModalTemplate from "../../../shared/modals/ModalTemplate";
 import MeetingForm from "../form/MeetingForm";
+import ModalTemplate from "../../../shared/modals/ModalTemplate";
 
 export default function NameColumn({
   handleDelete,
@@ -63,15 +63,15 @@ export default function NameColumn({
 
       {meetingFormShown && (
         <ModalTemplate
-          title="Edit Sign-in"
           handleClose={() => setMeetingFormShown(false)}
+          title="Edit Sign-in"
         >
           <MeetingForm
+            existingSignIn={signInBody}
+            handleClose={() => setMeetingFormShown(false)}
             handleSubmit={(signInToSubmit, existingSignIn) =>
               handleSubmitEdits(signInToSubmit, existingSignIn)
             }
-            handleClose={() => setMeetingFormShown(false)}
-            existingSignIn={signInBody}
           />
         </ModalTemplate>
       )}

@@ -18,11 +18,11 @@ export default function Toasts({ data, removeToast }) {
       <ul className="toast-list" aria-live="assertive">
         {data.map((toast) => (
           <Toast
-            key={toast.id}
             altText={toast.altText}
+            handleClose={() => removeToast(toast.id)}
+            key={toast.id}
             message={toast.message}
             type={toast.type}
-            handleClose={() => removeToast(toast.id)}
           />
         ))}
       </ul>

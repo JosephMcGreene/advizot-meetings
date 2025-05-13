@@ -1,11 +1,11 @@
 import { Field, useField } from "formik";
 
 export default function InputField({
-  text,
   as,
-  type,
   className,
   spanText,
+  text,
+  type,
   ...props
 }) {
   const [field, meta] = useField(props);
@@ -13,7 +13,7 @@ export default function InputField({
   return (
     <div className={className}>
       <label htmlFor={props.id || props.name}>{text}</label>
-      <Field {...field} {...props} as={as} type={type} className="form-input" />
+      <Field as={as} className="form-input" {...field} {...props} type={type} />
 
       {/* If InputField is a range-slider: */}
       <span className="rangeValue">{spanText}</span>

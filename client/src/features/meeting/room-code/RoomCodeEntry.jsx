@@ -25,15 +25,15 @@ export default function RoomCodeEntry({ handleSubmit, incorrectCode }) {
       {({ isSubmitting, ...props }) => (
         <Form className="form">
           <InputField
-            text="Please enter today's code:"
-            name="roomCode"
             as="input"
-            type="text"
             className="text-input"
             incorrectCode={incorrectCode}
+            name="roomCode"
+            text="Please enter today's code:"
+            type="text"
           />
 
-          <button type="submit" className="btn">
+          <button className="btn" type="submit">
             Enter Meeting
           </button>
         </Form>

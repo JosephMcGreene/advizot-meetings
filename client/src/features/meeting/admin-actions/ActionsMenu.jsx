@@ -1,17 +1,16 @@
 import { useState, useRef, useContext } from "react";
 import { UserContext } from "../../../App";
 // Assets
-import { ReactComponent as MemberEditIcon } from "../../../assets/img/users-gear-solid.svg";
-import { ReactComponent as BarsIcon } from "../../../assets/img/bars-solid.svg";
 import { ReactComponent as AddSignInIcon } from "../../../assets/img/file-circle-plus-solid.svg";
+import { ReactComponent as BarsIcon } from "../../../assets/img/bars-solid.svg";
+import { ReactComponent as MemberEditIcon } from "../../../assets/img/users-gear-solid.svg";
 // External
 import { motion } from "framer-motion";
 // Hooks
 import useOutsideClick from "../../../hooks/useOutsideClick";
 // Internal
-import ActionsBtn from "./ActionsBtn";
-import ModalTemplate from "../../../shared/modals/ModalTemplate";
 import MemberEditModal from "./MemberEditModal";
+import ModalTemplate from "../../../shared/modals/ModalTemplate";
 
 export default function ActionsMenu({ currentGroup, handleNewSignInClick }) {
   const user = useContext(UserContext);
@@ -50,20 +49,24 @@ export default function ActionsMenu({ currentGroup, handleNewSignInClick }) {
         )}
 
         {user.role === "admin" && (
-          <ActionsBtn handleClick={() => setActionsShown(!actionsShown)}>
+          <button
+            className="actions-btn"
+            onClick={() => setActionsShown(!actionsShown)}
+            type="button"
+          >
             <BarsIcon className="bars-icon" />
-          </ActionsBtn>
+          </button>
         )}
       </nav>
 
       {memberEditModalShown && (
         <ModalTemplate
-          title="Edit Members"
           handleClose={() => setMemberEditModalShown(false)}
+          title="Edit Members"
         >
           <MemberEditModal
-            handleClose={() => setMemberEditModalShown(false)}
             currentGroup={currentGroup}
+            handleClose={() => setMemberEditModalShown(false)}
           />
         </ModalTemplate>
       )}

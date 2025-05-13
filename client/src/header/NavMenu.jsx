@@ -1,9 +1,9 @@
 import { useContext, useRef } from "react";
 import { UserContext } from "../App";
 // Assets
-import { ReactComponent as ProfileIcon } from "../assets/img/user-tie-solid.svg";
 import { ReactComponent as CheckInIcon } from "../assets/img/handshake-solid.svg";
 import { ReactComponent as LogOutIcon } from "../assets/img/right-from-bracket-solid.svg";
+import { ReactComponent as ProfileIcon } from "../assets/img/user-tie-solid.svg";
 // Components
 import DarkModeSwitch from "./DarkModeSwitch";
 // External
@@ -21,8 +21,8 @@ export default function NavMenu({ darkMode, toggleDarkMode, showNav }) {
     <motion.nav
       initial={{ opacity: 0, x: 100 }}
       animate={{ opacity: 1, x: 0 }}
-      ref={navRef}
       className="nav"
+      ref={navRef}
     >
       <ul className="nav-list">
         <li className="nav-item">

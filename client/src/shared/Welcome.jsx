@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../App";
 // Components
-import ModalTemplate from "./modals/ModalTemplate";
 import Login from "./modals/Login";
+import ModalTemplate from "./modals/ModalTemplate";
 // External
 import { Navigate } from "react-router-dom";
 
@@ -25,7 +25,7 @@ export default function Welcome() {
       </button>
 
       {loginShown && (
-        <ModalTemplate title="Log In" handleClose={() => setLoginShown(false)}>
+        <ModalTemplate handleClose={() => setLoginShown(false)} title="Log In">
           <Login />
         </ModalTemplate>
       )}

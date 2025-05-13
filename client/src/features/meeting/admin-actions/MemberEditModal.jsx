@@ -3,22 +3,22 @@ import LoadingSpinner from "../../../shared/LoadingSpinner";
 // Hooks
 import useMemberEdits from "./useMemberEdits";
 
-export default function MemberEditModal({ handleClose, currentGroup }) {
+export default function MemberEditModal({ currentGroup, handleClose }) {
   const [
-    usersToEdit,
+    deleteMemberDisabled,
+    deleteMemberValue,
+    confirmUserDeleteShown,
+    groupPlacementEnabled,
     loading,
     selectedUser,
-    deleteMemberValue,
-    deleteMemberDisabled,
     userEditsEnabled,
-    groupPlacementEnabled,
-    confirmUserDeleteShown,
+    usersToEdit,
     confirmGroupChange,
-    selectMember,
     deleteMember,
     handleEditType,
-    setDeleteMemberValue,
+    selectMember,
     setConfirmUserDeleteShown,
+    setDeleteMemberValue,
   ] = useMemberEdits(currentGroup);
 
   const groups = ["CE5660", "KEY9330", "CE4659", "Guest"];

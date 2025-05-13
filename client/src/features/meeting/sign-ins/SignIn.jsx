@@ -3,9 +3,9 @@ import DataColumn from "./DataColumn";
 import NameColumn from "./NameColumn";
 
 export default function SignIn({
-  signInBody,
-  handleSubmitEdits,
   handleDelete,
+  handleSubmitEdits,
+  signInBody,
 }) {
   return (
     <li className="sign-in-item">

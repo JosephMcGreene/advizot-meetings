@@ -4,15 +4,15 @@ import { ToastContext } from "../../../App";
 import { axiosFetch } from "../../../helpers";
 
 export default function useMemberEdits(currentGroup) {
-  const { showToast } = useContext(ToastContext);
-  const [loading, setLoading] = useState(false);
-  const [usersToEdit, setUsersToEdit] = useState([]);
-  const [selectedUser, setSelectedUser] = useState("none");
-  const [userEditsEnabled, setUserEditsEnabled] = useState(false);
-  const [deleteMemberValue, setDeleteMemberValue] = useState("");
   const [deleteMemberDisabled, setDeleteMemberDisabled] = useState(true);
-  const [groupPlacementEnabled, setGroupPlacementEnabled] = useState(false);
+  const [deleteMemberValue, setDeleteMemberValue] = useState("");
   const [confirmUserDeleteShown, setConfirmUserDeleteShown] = useState(false);
+  const [groupPlacementEnabled, setGroupPlacementEnabled] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [selectedUser, setSelectedUser] = useState("none");
+  const { showToast } = useContext(ToastContext);
+  const [userEditsEnabled, setUserEditsEnabled] = useState(false);
+  const [usersToEdit, setUsersToEdit] = useState([]);
 
   /**
    * Whenever the user changes the input to type in a user's name who is being confirmed to be deleted, this Effect checks to see if what is now in the input field matches the user's name. If it does, then it enables the button to delete them
@@ -177,19 +177,19 @@ export default function useMemberEdits(currentGroup) {
   }
 
   return [
-    usersToEdit,
+    deleteMemberDisabled,
+    deleteMemberValue,
+    confirmUserDeleteShown,
+    groupPlacementEnabled,
     loading,
     selectedUser,
-    deleteMemberValue,
-    deleteMemberDisabled,
     userEditsEnabled,
-    groupPlacementEnabled,
-    confirmUserDeleteShown,
+    usersToEdit,
     confirmGroupChange,
-    selectMember,
     deleteMember,
     handleEditType,
-    setDeleteMemberValue,
+    selectMember,
     setConfirmUserDeleteShown,
+    setDeleteMemberValue,
   ];
 }

@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../App";
 // Components
-import RoomCodeToggle from "./admin-actions/RoomCodeToggle";
 import RoomCodeDisplay from "./room-code/RoomCodeDisplay";
+import RoomCodeToggle from "./admin-actions/RoomCodeToggle";
 // External
 import { useNavigate, Outlet } from "react-router-dom";
 // Internal
@@ -40,8 +40,8 @@ export default function MeetingHeading({ getNewRoomCode, group }) {
       <div className="room-code-container">
         {user.role === "admin" && (
           <RoomCodeToggle
-            setRoomCodeShown={setRoomCodeShown}
             roomCodeShown={roomCodeShown}
+            setRoomCodeShown={setRoomCodeShown}
           />
         )}
 

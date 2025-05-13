@@ -6,10 +6,12 @@ export default function DataColumn({ signInBody }) {
           <h3 className="label">Business:</h3>
           <p>{signInBody.business}</p>
         </div>
+
         <div className="number-container">
           <h3 className="label">Personal:</h3>
           <p>{signInBody.personal}</p>
         </div>
+
         <div className="number-container">
           <h3 className="label">Relationships:</h3>
           <p>{signInBody.relationships}</p>
@@ -20,6 +22,7 @@ export default function DataColumn({ signInBody }) {
         <h3>Issue</h3>
         <p>{signInBody.monthlyIssue}</p>
       </div>
+
       <div className="issue-goal-row">
         <h3>Goal</h3>
         <p>{signInBody.monthlyGoal}</p>

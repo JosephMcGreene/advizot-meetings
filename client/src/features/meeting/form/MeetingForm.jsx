@@ -8,9 +8,9 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
 export default function MeetingForm({
-  handleSubmit,
-  handleClose,
   existingSignIn,
+  handleClose,
+  handleSubmit,
 }) {
   const user = useContext(UserContext);
 
@@ -71,46 +71,46 @@ export default function MeetingForm({
       {({ isSubmitting, submitCount, ...props }) => (
         <Form className="form">
           <InputField
-            text="How is your business?"
-            name="business"
             as="input"
-            type="range"
-            min={0}
-            max={10}
             className="range-container"
-            style={sliderSizeOf(props.values.business)}
+            max={10}
+            min={0}
+            name="business"
             spanText={props.values.business}
+            style={sliderSizeOf(props.values.business)}
+            text="How is your business?"
+            type="range"
           />
 
           <InputField
-            text="How is your health?"
+            as="input"
+            className="range-container"
+            max={10}
+            min={0}
             name="personal"
-            as="input"
-            type="range"
-            min={0}
-            max={10}
-            className="range-container"
-            style={sliderSizeOf(props.values.personal)}
             spanText={props.values.personal}
-          />
-          <InputField
-            text="How are your relationships?"
-            name="relationships"
-            as="input"
+            style={sliderSizeOf(props.values.personal)}
+            text="How is your health?"
             type="range"
-            min={0}
-            max={10}
-            className="range-container"
-            style={sliderSizeOf(props.values.relationships)}
-            spanText={props.values.relationships}
           />
           <InputField
-            text="Issue to process today"
-            name="monthlyIssue"
+            as="input"
+            className="range-container"
+            max={10}
+            min={0}
+            name="relationships"
+            spanText={props.values.relationships}
+            style={sliderSizeOf(props.values.relationships)}
+            text="How are your relationships?"
+            type="range"
+          />
+          <InputField
             as="textarea"
             className="text-input"
+            name="monthlyIssue"
+            text="Issue to process today"
           />
-          <Select text="Priority" name="priority" className="select">
+          <Select className="select" name="priority" text="Priority">
             <option value="">-- Select a Priority --</option>
             <option value="aA">A</option>
             <option value="bB">B</option>
@@ -121,10 +121,10 @@ export default function MeetingForm({
             )}
           </Select>
           <InputField
-            text="Goal before next meeting"
-            name="monthlyGoal"
             as="textarea"
             className="text-input"
+            name="monthlyGoal"
+            text="Goal before next meeting"
           />
           <button type="submit" className="btn">
             Submit

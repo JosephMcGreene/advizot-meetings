@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export default function useOutsideClick(elementRef, callback) {
+export default function useOutsideClick(callback, elementRef) {
   const callbackRef = useRef();
   callbackRef.current = callback;
 
