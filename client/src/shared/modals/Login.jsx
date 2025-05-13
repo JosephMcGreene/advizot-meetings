@@ -10,7 +10,7 @@ export default function Login() {
         name="linkedin-button"
       >
         <img src={linkedInLogo} alt="LinkedIn Logo" className="logo"></img>
-        <label htmlFor="linkedin-button">Log in with LinkedIn</label>
+        <p htmlFor="linkedin-button">Log in with LinkedIn</p>
       </a>
 
       <a
@@ -19,7 +19,7 @@ export default function Login() {
         name="google-button"
       >
         <img src={googleLogo} alt="Google Logo" className="logo" />
-        <label htmlFor="google-button">Log in with Google</label>
+        <p htmlFor="google-button">Log in with Google</p>
       </a>
     </>
   );
