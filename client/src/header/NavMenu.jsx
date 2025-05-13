@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
+import { UserContext } from "../App";
 // Assets
 import { ReactComponent as ProfileIcon } from "../assets/img/user-tie-solid.svg";
 import { ReactComponent as CheckInIcon } from "../assets/img/handshake-solid.svg";
@@ -12,6 +13,7 @@ import { motion } from "framer-motion";
 import useOutsideClick from "../hooks/useOutsideClick";
 
 export default function NavMenu({ darkMode, toggleDarkMode, showNav }) {
+  const user = useContext(UserContext);
   const navRef = useRef();
   useOutsideClick(navRef, () => showNav(false));
 
@@ -25,9 +27,8 @@ export default function NavMenu({ darkMode, toggleDarkMode, showNav }) {
       <ul className="nav-list">
         <li className="nav-item">
           <Link
-            to="/profile"
+            to={`/profile/${user.advizotID}`}
             onClick={() => showNav(false)}
-            style={{ textDecorationLine: "line-through" }}
           >
             <ProfileIcon className="icon" />
             Profile
@@ -36,9 +37,8 @@ export default function NavMenu({ darkMode, toggleDarkMode, showNav }) {
 
         <li className="nav-item">
           <Link
-            to="/profile"
+            to={`/check-in/${user.advizotID}`}
             onClick={() => showNav(false)}
-            style={{ textDecorationLine: "line-through" }}
           >
             <CheckInIcon className="icon" />
             1:1 Check-In

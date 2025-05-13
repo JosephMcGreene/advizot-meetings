@@ -2,7 +2,8 @@ import { createContext } from "react";
 // Assets
 import "./assets/scss/App.scss";
 // Components
-import Header from "./shared/Header";
+import CheckIn from "./features/check-in/CheckIn";
+import Header from "./header/Header";
 import LoadingSpinner from "./shared/LoadingSpinner";
 import Meeting from "./features/meeting/Meeting";
 import RoomCodeCheck from "./features/meeting/room-code/RoomCodeCheck";
@@ -72,7 +73,23 @@ export default function App() {
                       }
                     />
 
-                    <Route path="profile" element={<Profile />} />
+                    <Route
+                      path="profile/:advizotID"
+                      element={
+                        <UsersOnly>
+                          <Profile />
+                        </UsersOnly>
+                      }
+                    />
+
+                    <Route
+                      path="check-in/:advizotID"
+                      element={
+                        <UsersOnly>
+                          <CheckIn />
+                        </UsersOnly>
+                      }
+                    />
                   </Route>
                 )
               )}

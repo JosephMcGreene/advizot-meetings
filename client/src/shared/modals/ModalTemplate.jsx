@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 // Hooks
 import useOutsideClick from "../../hooks/useOutsideClick";
 
-export default function ModalTemplate({ children, title, handleClose }) {
+export default function ModalTemplate({ children, handleClose, title }) {
   const modalRef = useRef();
 
   useOutsideClick(modalRef, () => handleClose());
