@@ -5,7 +5,7 @@ import { ReactComponent as AddSignInIcon } from "../../assets/img/file-circle-pl
 // Components
 import ActionsMenu from "./admin-actions/ActionsMenu";
 import LoadingSpinner from "../../shared/LoadingSpinner";
-import MeetingForm from "./form/MeetingForm";
+import MainForm from "../../shared/form/MainForm";
 import MeetingHeading from "./MeetingHeading";
 import ModalTemplate from "../../shared/modals/ModalTemplate";
 import SignInList from "./sign-ins/SignInList";
@@ -77,7 +77,7 @@ export default function Meeting() {
           handleClose={() => setFormShown(false)}
           title={`${currentDate("month")}, ${currentDate("year")}`}
         >
-          <MeetingForm
+          <MainForm
             handleClose={() => setFormShown(false)}
             handleSubmit={(signInToSubmit) => submitSignIn(signInToSubmit)}
           />

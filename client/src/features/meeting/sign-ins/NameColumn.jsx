@@ -5,7 +5,7 @@ import { ReactComponent as DeleteBtn } from "../../../assets/img/trash-can-solid
 import { ReactComponent as EditBtn } from "../../../assets/img/pen-solid.svg";
 import { ReactComponent as Lightning } from "../../../assets/img/bolt-lightning-solid.svg";
 // Components
-import MeetingForm from "../form/MeetingForm";
+import MainForm from "../../../shared/form/MainForm";
 import ModalTemplate from "../../../shared/modals/ModalTemplate";
 
 export default function NameColumn({
@@ -66,7 +66,7 @@ export default function NameColumn({
           handleClose={() => setMeetingFormShown(false)}
           title="Edit Sign-in"
         >
-          <MeetingForm
+          <MainForm
             existingSignIn={signInBody}
             handleClose={() => setMeetingFormShown(false)}
             handleSubmit={(signInToSubmit, existingSignIn) =>

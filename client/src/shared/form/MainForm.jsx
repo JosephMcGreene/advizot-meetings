@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { UserContext } from "../../../App";
+import { UserContext } from "../../App";
 // Components
 import InputField from "./InputField";
 import Select from "./Select";
@@ -7,7 +7,7 @@ import Select from "./Select";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
-export default function MeetingForm({
+export default function MainForm({
   existingSignIn,
   handleClose,
   handleSubmit,
