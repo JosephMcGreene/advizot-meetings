@@ -38,10 +38,12 @@ export default function MeetingHeading({ getNewRoomCode, group }) {
       </h1>
 
       <div className="room-code-container">
-        <RoomCodeToggle
-          setRoomCodeShown={setRoomCodeShown}
-          roomCodeShown={roomCodeShown}
-        />
+        {user.role === "admin" && (
+          <RoomCodeToggle
+            setRoomCodeShown={setRoomCodeShown}
+            roomCodeShown={roomCodeShown}
+          />
+        )}
 
         {roomCodeShown && <RoomCodeDisplay getNewRoomCode={getNewRoomCode} />}
       </div>

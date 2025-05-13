@@ -7,21 +7,16 @@ import { ReactComponent as EyeHidden } from "../../../assets/img/eye-slash-solid
 export default function RoomCodeToggle({ setRoomCodeShown, roomCodeShown }) {
   const user = useContext(UserContext);
 
-  if (user.role === "admin") {
-    return (
-      // Styles in _admin-sign-ins.scss contains an ::after that displays the "Room Code" content on hover
-      <button
-        className="code-toggle"
-        onClick={() => setRoomCodeShown(!roomCodeShown)}
-      >
-        {roomCodeShown ? (
-          <EyeHidden className="icon" />
-        ) : (
-          <EyeVisible className="icon" />
-        )}
-      </button>
-    );
-  }
-
-  return;
+  return (
+    <button
+      className="code-toggle"
+      onClick={() => setRoomCodeShown(!roomCodeShown)}
+    >
+      {roomCodeShown ? (
+        <EyeHidden className="icon" />
+      ) : (
+        <EyeVisible className="icon" />
+      )}
+    </button>
+  );
 }

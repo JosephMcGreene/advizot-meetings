@@ -8,7 +8,7 @@ import MeetingHeading from "./MeetingHeading";
 import SignInList from "./sign-ins/SignInList";
 import ModalTemplate from "../../shared/modals/ModalTemplate";
 import MeetingForm from "./form/MeetingForm";
-import ActionsMenu from "./ActionsMenu";
+import ActionsMenu from "./admin-actions/ActionsMenu";
 // External
 import { useParams } from "react-router-dom";
 // Hooks

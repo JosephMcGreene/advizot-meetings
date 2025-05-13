@@ -1,17 +1,17 @@
 import { useState, useRef, useContext } from "react";
-import { UserContext } from "../../App";
+import { UserContext } from "../../../App";
 // Assets
-import { ReactComponent as MemberEditIcon } from "../../assets/img/users-gear-solid.svg";
-import { ReactComponent as BarsIcon } from "../../assets/img/bars-solid.svg";
-import { ReactComponent as AddSignInIcon } from "../../assets/img/file-circle-plus-solid.svg";
+import { ReactComponent as MemberEditIcon } from "../../../assets/img/users-gear-solid.svg";
+import { ReactComponent as BarsIcon } from "../../../assets/img/bars-solid.svg";
+import { ReactComponent as AddSignInIcon } from "../../../assets/img/file-circle-plus-solid.svg";
 // External
 import { motion } from "framer-motion";
 // Hooks
-import useOutsideClick from "../../hooks/useOutsideClick";
+import useOutsideClick from "../../../hooks/useOutsideClick";
 // Internal
-import ActionsBtn from "./sign-ins/ActionsBtn";
-import ModalTemplate from "../../shared/modals/ModalTemplate";
-import MemberEditModal from "./admin-actions/MemberEditModal";
+import ActionsBtn from "./ActionsBtn";
+import ModalTemplate from "../../../shared/modals/ModalTemplate";
+import MemberEditModal from "./MemberEditModal";
 
 export default function ActionsMenu({ currentGroup, handleNewSignInClick }) {
   const user = useContext(UserContext);
@@ -49,9 +49,11 @@ export default function ActionsMenu({ currentGroup, handleNewSignInClick }) {
           </motion.ul>
         )}
 
-        <ActionsBtn handleClick={() => setActionsShown(!actionsShown)}>
-          <BarsIcon className="bars-icon" />
-        </ActionsBtn>
+        {user.role === "admin" && (
+          <ActionsBtn handleClick={() => setActionsShown(!actionsShown)}>
+            <BarsIcon className="bars-icon" />
+          </ActionsBtn>
+        )}
       </nav>
 
       {memberEditModalShown && (
