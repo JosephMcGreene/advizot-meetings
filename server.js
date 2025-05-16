@@ -10,6 +10,7 @@ import passport from "passport";
 // Internal Modules
 import authRouter from "./routes/auth.js";
 import signInRouter from "./routes/signIns.js";
+import profileRouter from "./routes/profile.js";
 import roomCodeRouter from "./routes/roomCode.js";
 import usersRouter from "./routes/users.js";
 import "./lib/passportConfig.js";
@@ -57,9 +58,10 @@ if (process.env.NODE_ENV === "production") {
 }
 
 //=====MOUNT ROUTES=====
-app.use("/signIns", signInRouter);
 app.use("/auth", authRouter);
 app.use("/roomCode", roomCodeRouter);
+app.use("/profile", profileRouter);
+app.use("/signIns", signInRouter);
 app.use("/users", usersRouter);
 
 app.get("/*", (req, res) => {
