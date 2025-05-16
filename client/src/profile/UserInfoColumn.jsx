@@ -10,8 +10,6 @@ export default function UserInfoColumn() {
       <h1 className="centered-heading">
         {user.firstName} {user.lastName}
       </h1>
-
-      <h3>{user.email}</h3>
     </article>
   );
 }

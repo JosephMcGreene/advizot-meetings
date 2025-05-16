@@ -9,8 +9,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 
-    .profile-photo {
-    }
+    background-color: black;
+    border-radius: 20px 0 0 0;
+    padding: 1rem;
   }
 }
