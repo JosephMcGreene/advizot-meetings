@@ -4,9 +4,9 @@ import { ToastContext } from "../../../App";
 import { axiosFetch } from "../../../helpers";
 
 export default function useMemberEdits(currentGroup) {
+  const [confirmUserDeleteShown, setConfirmUserDeleteShown] = useState(false);
   const [deleteMemberDisabled, setDeleteMemberDisabled] = useState(true);
   const [deleteMemberValue, setDeleteMemberValue] = useState("");
-  const [confirmUserDeleteShown, setConfirmUserDeleteShown] = useState(false);
   const [groupPlacementEnabled, setGroupPlacementEnabled] = useState(false);
   const [loading, setLoading] = useState(false);
   const [selectedUser, setSelectedUser] = useState("none");
@@ -15,11 +15,10 @@ export default function useMemberEdits(currentGroup) {
   const [usersToEdit, setUsersToEdit] = useState([]);
 
   /**
-   * Whenever the user changes the input to type in a user's name who is being confirmed to be deleted, this Effect checks to see if what is now in the input field matches the user's name. If it does, then it enables the button to delete them
+   * Whenever the user changes the input to type in a user's name who is being confirmed to be deleted, this Effect checks to see if what is now in the input field matches the user's name. If it does, then it enables the button to delete them.
    */
   useEffect(() => {
-    const selectedUserFullName =
-      selectedUser.firstName + " " + selectedUser.lastName;
+    const selectedUserFullName = `${selectedUser.firstName} ${selectedUser.lastName}`;
     if (deleteMemberValue === selectedUserFullName) {
       setDeleteMemberDisabled(false);
     } else {
@@ -34,9 +33,8 @@ export default function useMemberEdits(currentGroup) {
   }, []);
 
   /**
-   * fetches data for all registered users who are currently assigned as a guest and updates state accordingly
-
-   * @param {string} group the group whose members' sign-ins are to be fetched 
+   * Fetches data for all registered users who are currently assigned as a guest and updates state accordingly.
+   * @param {string} group The group whose members' sign-ins are to be fetched.
    */
   async function fetchUsers(group) {
     try {
@@ -55,19 +53,18 @@ export default function useMemberEdits(currentGroup) {
   }
 
   /**
-   * confirms with the iser that they would like to move the user they have selected into a new group. If confirmed, calls changeGroup() to initiate the move
-   *
-   * @param {string} groupToPlace the group to place the user into
-   * @param {object} userInfo     information about the user to be moved
+   * Confirms with the user that they would like to move the user they have selected into a new group. If confirmed, calls changeGroup() to initiate the move.
+   * @param {string} groupToPlace The group to place the user into.
+   * @param {object} userInfo     Information about the user to be moved.
    */
   function confirmGroupChange(
     groupToPlace,
-    { firstName, lastName, advizotID, _id }
+    { advizotID, firstName, lastName, _id }
   ) {
     if (window.confirm(`Move ${firstName} ${lastName} to ${groupToPlace}?`)) {
       changeGroup({
-        firstName,
         advizotID,
+        firstName,
         _id,
         groupToPlace,
       });
@@ -77,9 +74,8 @@ export default function useMemberEdits(currentGroup) {
   }
 
   /**
-   * sends data used to move a user into a new group
-   *
-   * @param {object} dataForGroupChange information about the user and what group to move them to
+   * Sends data used to move a user into a new group.
+   * @param {object} dataForGroupChange Information about the user and what group to move them to.
    */
   async function changeGroup(dataForGroupChange) {
     try {
@@ -106,11 +102,11 @@ export default function useMemberEdits(currentGroup) {
   }
 
   /**
-   * Makes a DELETE request to the database to remove data trributed to the user that corresponds to the advizaotID passed as an argument
-   * @param {Object} e         the event object of the clicked button
-   * @param {string} _id       the MondoDB _id of the user whose data is to be deleted
-   * @param {string} advizotID The advizotID of the member to be deleted
-   * @param {string} firstName The first name of the member to be deleted
+   * Makes a DELETE request to the database to remove data trributed to the user that corresponds to the advizaotID passed as an argument.
+   * @param {Object} e         The event object of the clicked button.
+   * @param {string} _id       The MondoDB _id of the user whose data is to be deleted.
+   * @param {string} advizotID The advizotID of the member to be deleted.
+   * @param {string} firstName The first name of the member to be deleted.
    */
   async function deleteMember(e, { _id, advizotID, firstName }) {
     try {
@@ -131,9 +127,8 @@ export default function useMemberEdits(currentGroup) {
   }
 
   /**
-   * takes a user's advizotID gleaned from a form value, finds the user object associated with that ID, and assigns that user object to state as the currently selected user to edit
-   *
-   * @param {string} advizotID the ID of the selected user
+   * Takes a user's advizotID gleaned from a form value, finds the user object associated with that ID, and assigns that user object to state as the currently selected user to edit
+   * @param {string} advizotID The ID of the selected user.
    */
   function selectMember(advizotID) {
     if (advizotID === "none") {
@@ -146,10 +141,9 @@ export default function useMemberEdits(currentGroup) {
   }
 
   /**
-   * Switches through the selected edit type the user wants to do and forwards control to the corresponding edit type's function(s)
-   *
-   * @param {string} editType a label for the type of edit the user wants to do
-   * @returns {function | null}
+   * Switches through the selected edit type the user wants to do and forwards control to the corresponding edit type's function(s).
+   * @param   {string} editType Label for the type of edit the user wants to do.
+   * @returns {function | null} The function or set of functions that will handle the edit.
    */
   function handleEditType(editType) {
     switch (editType) {
@@ -177,9 +171,9 @@ export default function useMemberEdits(currentGroup) {
   }
 
   return [
+    confirmUserDeleteShown,
     deleteMemberDisabled,
     deleteMemberValue,
-    confirmUserDeleteShown,
     groupPlacementEnabled,
     loading,
     selectedUser,

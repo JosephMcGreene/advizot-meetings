@@ -1,13 +1,13 @@
 import axios from "axios";
 
 /**
- * Calls to server throughout the application
+ * Calls to server throughout the application.
  *
- * @param {string} method HTTP method used to fetch data
- * @param {string} url    Endpoint to call server data from
- * @param {Object} [data] Body of data to send to server with POST requests
+ * @param   {string} method HTTP method used to fetch data.
+ * @param   {string} url    Endpoint to call server data.
+ * @param   {object} [data] Body of data to send to server.
  *
- * @returns {Object} Axios response from the server
+ * @returns {object}        Axios response from the server.
  */
 export async function axiosFetch(method, url, data = null) {
   try {
@@ -28,20 +28,18 @@ export async function axiosFetch(method, url, data = null) {
 }
 
 /**
- * Parses Date object into a string representing the current month of the year
+ * Parses Date object into a string representing the current month or year.
  *
- * @param {string}      monthOrYear "month" or "year" to be returned
- * @param {Date | null} dateToParse Date to parse, default is current date
+ * @param   {string} monthOrYear   "month" or "year" to be returned.
+ * @param   {Date}   [dateToParse] Date to parse, default is current date.
  *
- * @returns {string} A string representing the current month or year
+ * @returns {string}               A string representing the current month or year.
  */
-export const currentDate = (monthOrYear, dateToParse = null) => {
-  let date = dateToParse || new Date();
-
-  if (monthOrYear === "year") return date.getFullYear();
+export const currentDate = (monthOrYear, dateToParse = new Date()) => {
+  if (monthOrYear === "year") return dateToParse.getFullYear();
 
   if (monthOrYear === "month") {
-    switch (date.getMonth()) {
+    switch (dateToParse.getMonth()) {
       case 0:
         return "January";
       case 1:

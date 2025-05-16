@@ -5,9 +5,9 @@ import useMemberEdits from "./useMemberEdits";
 
 export default function MemberEditModal({ currentGroup, handleClose }) {
   const [
+    confirmUserDeleteShown,
     deleteMemberDisabled,
     deleteMemberValue,
-    confirmUserDeleteShown,
     groupPlacementEnabled,
     loading,
     selectedUser,

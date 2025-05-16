@@ -26,7 +26,6 @@ export default function Meeting() {
 
   /**
    * determines if a user has entered a sign-in to this meeting by searching through the current list of sign-ins for one with a userID property that matches the user's advizotID.
-   *
    * @returns {boolean} Whether the user has submitted a sign-in (true) or not (false).
    */
   function userHasSubmitted() {
@@ -38,8 +37,7 @@ export default function Meeting() {
 
   /**
    * Determines whether or not to display the list of sign-ins for the current group and meeting.
-   *
-   * @returns {boolean} whether or not to display the sign-in list.
+   * @returns {boolean} Wether or not to display the sign-in list.
    */
   function signInListShown() {
     if (user.role === "admin") return true;
@@ -75,6 +73,7 @@ export default function Meeting() {
         currentGroup={group}
         handleNewSignInClick={() => setFormShown(true)}
       />
+
       {/* Display the sign-in form when necessary. */}
       {formShown && (
         <ModalTemplate

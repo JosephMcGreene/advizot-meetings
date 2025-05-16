@@ -17,9 +17,8 @@ export default function NameColumn({
   const [meetingFormShown, setMeetingFormShown] = useState(false);
 
   /**
-   * Assesses whether the current user has permissions to edit or delete the sign-in they hover over
-   *
-   * @returns {boolean} whether or not the user can edit or delete the sign-in
+   * Assesses whether the current user has permissions to edit or delete a sign-in.
+   * @returns {boolean} whether or not the user can edit or delete the sign-in.
    */
   function signInBelongsToUser(signInID) {
     if (user.advizotID === signInID) return true;
@@ -27,7 +26,7 @@ export default function NameColumn({
   }
 
   /**
-   * @returns {boolean} whether or not the user is authorized to edit the sign-in.
+   * @returns {boolean} Whether or not the user is authorized to edit the sign-in.
    */
   function canEdit() {
     if (signInBelongsToUser(signInBody?.userID) || user.role === "admin") {

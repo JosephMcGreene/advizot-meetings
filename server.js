@@ -8,8 +8,8 @@ import { v4 as uuidv4 } from "uuid";
 import cors from "cors";
 import passport from "passport";
 // Internal Modules
-import signInRouter from "./routes/signIns.js";
 import authRouter from "./routes/auth.js";
+import signInRouter from "./routes/signIns.js";
 import roomCodeRouter from "./routes/roomCode.js";
 import usersRouter from "./routes/users.js";
 import "./lib/passportConfig.js";

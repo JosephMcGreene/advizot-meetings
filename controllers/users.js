@@ -2,6 +2,28 @@ import userQueries from "./users.queries.js";
 import signInQueries from "./signIns.queries.js";
 
 /**
+ * Removes a user object from the database, as well as all sign-in objects with the user's advizotID
+ *
+ * @param {object} req The HTTP request object.
+ * @param {object} res The HTTP response object.
+ */
+async function deleteUser(req, res) {
+  try {
+    await userQueries.deleteUser(req.body._id);
+
+    const { deletedCount } = await signInQueries.deleteSignIns(
+      req.body.advizotID
+    );
+
+    res.statusMessage = "Deleted a user and their sign-ins";
+    res.json({ deletedCount });
+  } catch (err) {
+    res.json(new Error(err));
+    throw new Error(err);
+  }
+}
+
+/**
  * Queries the database for all users that belong to a single group, queried by finding the users' whose group property matches the group in the request body.
  *
  * @param {object} req The HTTP request object.
@@ -44,28 +66,6 @@ async function moveUser(req, res) {
   }
 }
 
-/**
- * Removes a user object from the database, as well as all sign-in objects with the user's advizotID
- *
- * @param {object} req The HTTP request object.
- * @param {object} res The HTTP response object.
- */
-async function deleteUser(req, res) {
-  try {
-    await userQueries.deleteUser(req.body._id);
-
-    const { deletedCount } = await signInQueries.deleteSignIns(
-      req.body.advizotID
-    );
-
-    res.statusMessage = "Deleted a user and their sign-ins";
-    res.json({ deletedCount });
-  } catch (err) {
-    res.json(new Error(err));
-    throw new Error(err);
-  }
-}
-
-const usersController = { getUsersInGroup, moveUser, deleteUser };
+const usersController = { deleteUser, getUsersInGroup, moveUser };
 
 export default usersController;

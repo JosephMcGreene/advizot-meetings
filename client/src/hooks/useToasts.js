@@ -4,10 +4,19 @@ export default function useToasts() {
   const [toasts, setToasts] = useState([]);
 
   /**
-   * contains the logic for mounting a toast component to the DOM and remove it after a delay
+   * contains the logic for determining how to remove a toast from the DOM.
    *
-   * @param {string} type    enum "success", "warning", or "failure" determines the icon to display
-   * @param {string} message The message for the toast to display
+   * @param {string} id Identifier used to determine which toast to remove.
+   */
+  function removeToast(id) {
+    setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
+  }
+
+  /**
+   * contains the logic for mounting a toast component to the DOM and remove it after a delay.
+   *
+   * @param {string} type    Enum "success", "warning", or "failure" determines the icon to display.
+   * @param {string} message The message for the toast to display.
    */
   function showToast(type, message) {
     const toast = {
@@ -20,16 +29,7 @@ export default function useToasts() {
 
     setTimeout(() => {
       removeToast(toast.id);
-    }, 4000); //Linked to toast animation. If changed, be sure to change animation duration in _toasts.scss to match
-  }
-
-  /**
-   * contains the logic for determining how to remove a toast from the DOM
-   *
-   * @param {string} id Identifier used to determine which toast to remove
-   */
-  function removeToast(id) {
-    setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
+    }, 4000); // Linked to toast animation. If changed, be sure to change animation duration in _toasts.scss to match
   }
 
   return { toasts, showToast, removeToast };

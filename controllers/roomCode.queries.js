@@ -1,33 +1,34 @@
 import RoomCode from "../models/RoomCode.js";
 
 /**
- * Retrieves The value of the roomCode from the database
+ * Generates a 6-digit random number to be used as the meeting's room code.
  *
- * @param {string} id The _id property of the room code
+ * @returns {string} The code for the meeting.
+ */
+function generateRoomCode() {
+  let roomCode = Math.floor(Math.random() * 1000000); // 1,000,000
+
+  // Ensure 6 digits
+  if (roomCode < 100000 || roomCode === 1000000) {
+    roomCode = Math.floor(Math.random() * 1000000);
+  }
+
+  return roomCode.toString();
+}
+
+/**
+ * Retrieves The value of the roomCode from the database.
  *
- * @returns {object} a roomCode object containing the current roomcode
+ * @param   {string} id The _id property of the room code.
+ *
+ * @returns {object}    A roomCode object containing the current roomcode.
  */
 async function getRoomCode(id) {
   return await RoomCode.findById(id);
 }
 
 /**
- * Generates a 6-digit random number to be used as the meeting's room code.
- *
- * @returns {string} The code for the meeting
- */
-function generateRoomCode() {
-  let roomCode = Math.floor(Math.random() * 1000000); // 1,000,000
-
-  if (roomCode < 100000 || roomCode === 1000000) {
-    roomCode = Math.floor(Math.random() * 1000000);
-  } // Ensure 6 digits
-
-  return roomCode.toString();
-}
-
-/**
- * Generates a new room code and saves it in the database
+ * Generates a new room code and saves it in the database.
  */
 async function saveNewRoomCode() {
   const newRoomCode = new RoomCode({

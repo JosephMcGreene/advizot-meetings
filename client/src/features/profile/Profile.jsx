@@ -8,10 +8,10 @@ export default function Profile() {
 
   const style = {
     backgroundColor: "orange",
+    borderRadius: "12px",
     maxWidth: "fitContent",
     marginLeft: "30%",
     padding: "0.25rem",
-    borderRadius: "12px",
   };
 
   if (!user.advizotID) return <Navigate to="/" />;

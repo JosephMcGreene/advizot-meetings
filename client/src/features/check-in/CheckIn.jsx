@@ -19,7 +19,10 @@ export default function CheckIn() {
 
   return (
     <>
-      <h1>Check in for your {currentDate("month")} one-to-one:</h1>
+      <h1>
+        Hi, {user.firstName}. Check in for {currentDate("month")}'s one-to-one
+        with Kevin:
+      </h1>
 
       <MainForm
         handleClose={() => navigate(`/meeting/${user.group}`)}

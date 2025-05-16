@@ -1,32 +1,6 @@
 import signInQueries from "./signIns.queries.js";
 
 /**
- * Enters a new sign-in object into the database, or updates an existing sign-in object in the database
- *
- * @param {object} req The HTTP request object.
- * @param {object} res The HTTP response object.
- */
-async function modifySignIn(req, res) {
-  try {
-    const newSignIn = await signInQueries.saveNewSignIn(req);
-
-    if (req.body?._id) {
-      await signInQueries.deleteOneSignIn(req.body._id);
-
-      res.statusMessage = "Sign-in updated";
-    } else {
-      res.statusCode = 201;
-      res.statusMessage = "Sign-in created";
-    }
-
-    res.json(newSignIn);
-  } catch (err) {
-    res.json(new Error(err));
-    throw new Error(err);
-  }
-}
-
-/**
  * Deletes a single sign-in object from the database
  *
  * @param {object} req The HTTP request object.
@@ -64,10 +38,36 @@ async function getGroupSignIns(req, res) {
   }
 }
 
+/**
+ * Enters a new sign-in object into the database, or updates an existing sign-in object in the database
+ *
+ * @param {object} req The HTTP request object.
+ * @param {object} res The HTTP response object.
+ */
+async function modifySignIn(req, res) {
+  try {
+    const newSignIn = await signInQueries.saveNewSignIn(req);
+
+    if (req.body?._id) {
+      await signInQueries.deleteOneSignIn(req.body._id);
+
+      res.statusMessage = "Sign-in updated";
+    } else {
+      res.statusCode = 201;
+      res.statusMessage = "Sign-in created";
+    }
+
+    res.json(newSignIn);
+  } catch (err) {
+    res.json(new Error(err));
+    throw new Error(err);
+  }
+}
+
 const signInsController = {
-  modifySignIn,
   deleteSignIn,
   getGroupSignIns,
+  modifySignIn,
 };
 
 export default signInsController;
