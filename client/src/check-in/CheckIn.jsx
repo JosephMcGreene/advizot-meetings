@@ -1,12 +1,12 @@
 import { useContext } from "react";
-import { UserContext } from "../../App";
+import { UserContext } from "../App";
 // Components
-import LoadingSpinner from "../../shared/LoadingSpinner";
-import MainForm from "../../shared/form/MainForm";
+import LoadingSpinner from "../shared/LoadingSpinner";
+import MainForm from "../shared/form/MainForm";
 // External
 import { useNavigate } from "react-router-dom";
 // Internal
-import { currentDate } from "../../helpers";
+import { currentDate } from "../helpers";
 // Hooks
 import useMeeting from "../meeting/useMeeting";
 

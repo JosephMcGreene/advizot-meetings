@@ -35,8 +35,8 @@ async function saveNewRoomCode() {
 }
 
 /**
- * Generates a new room code and replaces the old room code with the newly generated room code.
- * @param {string} roomCodeDB The current roomCode to changes.
+ * Replaces the old room code with a newly generated room code.
+ * @param {string} roomCodeDB The current roomCode to change.
  */
 async function updateRoomCode(roomCodeDB) {
   roomCodeDB.currentRoomCode = generateRoomCode();

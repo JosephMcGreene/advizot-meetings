@@ -1,5 +1,5 @@
 // Components
-import InputField from "../../../shared/form/InputField";
+import InputField from "../../shared/form/InputField";
 // External
 import { Formik, Form } from "formik";
 import * as Yup from "yup";

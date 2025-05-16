@@ -1,5 +1,5 @@
 // Components
-import LoadingSpinner from "../../../shared/LoadingSpinner";
+import LoadingSpinner from "../../shared/LoadingSpinner";
 // Hooks
 import useMemberEdits from "./useMemberEdits";
 

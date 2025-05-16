@@ -2,12 +2,12 @@ import { createContext } from "react";
 // Assets
 import "./assets/scss/App.scss";
 // Components
-import CheckIn from "./features/check-in/CheckIn";
+import CheckIn from "./check-in/CheckIn";
 import Header from "./header/Header";
 import LoadingSpinner from "./shared/LoadingSpinner";
-import Meeting from "./features/meeting/Meeting";
-import Profile from "./features/profile/Profile";
-import RoomCodeCheck from "./features/meeting/room-code/RoomCodeCheck";
+import Meeting from "./meeting/Meeting";
+import Profile from "./profile/Profile";
+import RoomCodeCheck from "./meeting/room-code/RoomCodeCheck";
 import Toasts from "./shared/Toasts";
 import UsersOnly from "./shared/UsersOnly";
 import Welcome from "./shared/Welcome";

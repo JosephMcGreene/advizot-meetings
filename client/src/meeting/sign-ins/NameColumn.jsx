@@ -1,12 +1,12 @@
 import { useState, useContext } from "react";
-import { UserContext } from "../../../App";
+import { UserContext } from "../../App";
 // Assets
-import { ReactComponent as DeleteBtn } from "../../../assets/img/trash-can-solid.svg";
-import { ReactComponent as EditBtn } from "../../../assets/img/pen-solid.svg";
-import { ReactComponent as Lightning } from "../../../assets/img/bolt-lightning-solid.svg";
+import { ReactComponent as DeleteBtn } from "../../assets/img/trash-can-solid.svg";
+import { ReactComponent as EditBtn } from "../../assets/img/pen-solid.svg";
+import { ReactComponent as Lightning } from "../../assets/img/bolt-lightning-solid.svg";
 // Components
-import MainForm from "../../../shared/form/MainForm";
-import ModalTemplate from "../../../shared/modals/ModalTemplate";
+import MainForm from "../../shared/form/MainForm";
+import ModalTemplate from "../../shared/modals/ModalTemplate";
 
 export default function NameColumn({
   handleDelete,

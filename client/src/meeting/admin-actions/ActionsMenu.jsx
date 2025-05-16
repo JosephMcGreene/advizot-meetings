@@ -1,16 +1,16 @@
 import { useState, useRef, useContext } from "react";
-import { UserContext } from "../../../App";
+import { UserContext } from "../../App";
 // Assets
-import { ReactComponent as AddSignInIcon } from "../../../assets/img/file-circle-plus-solid.svg";
-import { ReactComponent as BarsIcon } from "../../../assets/img/bars-solid.svg";
-import { ReactComponent as MemberEditIcon } from "../../../assets/img/users-gear-solid.svg";
+import { ReactComponent as AddSignInIcon } from "../../assets/img/file-circle-plus-solid.svg";
+import { ReactComponent as BarsIcon } from "../../assets/img/bars-solid.svg";
+import { ReactComponent as MemberEditIcon } from "../../assets/img/users-gear-solid.svg";
 // External
 import { motion } from "framer-motion";
 // Hooks
-import useOutsideClick from "../../../hooks/useOutsideClick";
+import useOutsideClick from "../../hooks/useOutsideClick";
 // Internal
 import MemberEditModal from "./MemberEditModal";
-import ModalTemplate from "../../../shared/modals/ModalTemplate";
+import ModalTemplate from "../../shared/modals/ModalTemplate";
 
 export default function ActionsMenu({ currentGroup, handleNewSignInClick }) {
   const user = useContext(UserContext);

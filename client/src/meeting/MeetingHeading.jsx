@@ -1,12 +1,12 @@
 import { useState, useContext } from "react";
-import { UserContext } from "../../App";
+import { UserContext } from "../App";
 // Components
 import RoomCodeDisplay from "./room-code/RoomCodeDisplay";
 import RoomCodeToggle from "./admin-actions/RoomCodeToggle";
 // External
 import { useNavigate, Outlet } from "react-router-dom";
 // Internal
-import { currentDate } from "../../helpers";
+import { currentDate } from "../helpers";
 
 export default function MeetingHeading({ getNewRoomCode, group }) {
   const user = useContext(UserContext);

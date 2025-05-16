@@ -1,20 +1,20 @@
 import { useState, useContext } from "react";
-import { UserContext } from "../../App";
+import { UserContext } from "../App";
 // Assets
-import { ReactComponent as AddSignInIcon } from "../../assets/img/file-circle-plus-solid.svg";
+import { ReactComponent as AddSignInIcon } from "../assets/img/file-circle-plus-solid.svg";
 // Components
 import ActionsMenu from "./admin-actions/ActionsMenu";
-import LoadingSpinner from "../../shared/LoadingSpinner";
-import MainForm from "../../shared/form/MainForm";
+import LoadingSpinner from "../shared/LoadingSpinner";
+import MainForm from "../shared/form/MainForm";
 import MeetingHeading from "./MeetingHeading";
-import ModalTemplate from "../../shared/modals/ModalTemplate";
+import ModalTemplate from "../shared/modals/ModalTemplate";
 import SignInList from "./sign-ins/SignInList";
 // External
 import { useParams } from "react-router-dom";
 // Hooks
 import useMeeting from "./useMeeting";
 // Internal
-import { currentDate } from "../../helpers";
+import { currentDate } from "../helpers";
 
 export default function Meeting() {
   const { group } = useParams();

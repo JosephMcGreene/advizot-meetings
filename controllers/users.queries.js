@@ -23,8 +23,8 @@ async function deleteUser(id) {
 
 /**
  * Finds and returns a single user document from the database based on the user's email address.
- * @param   {string} profileEmail The user's email address who is to be retrieved from the database.
- * @returns {object | null}       The user in the database, or null if they could not be found.
+ * @param   {string}        profileEmail The user's email address who is to be retrieved from the database.
+ * @returns {object | null}              The user in the database, or null if they could not be found.
  */
 async function getOneUser(profileEmail) {
   return await User.findOne({ email: profileEmail });
@@ -32,8 +32,8 @@ async function getOneUser(profileEmail) {
 
 /**
  * Finds a returns a single user document from the database based on the user's database _id
- * @param   {string} id     The user's database _id.
- * @returns {object | null} The user in the database, or null if they could not be found.
+ * @param   {string}        id The user's database _id.
+ * @returns {object | null}    The user in the database, or null if they could not be found.
  */
 async function getOneUserByID(id) {
   return await User.findById(id);
@@ -41,8 +41,8 @@ async function getOneUserByID(id) {
 
 /**
  * Find and retieves all users belonging to one group from the database.
- * @param   {string} group The name of the group whose users are to be retrieved.
- * @returns {object[]}     A list of users that belong to the group.
+ * @param   {string}   group The name of the group whose users are to be retrieved.
+ * @returns {object[]}       A list of users that belong to the group.
  */
 async function getUsersInGroup(group) {
   return await User.find({ group: group });
