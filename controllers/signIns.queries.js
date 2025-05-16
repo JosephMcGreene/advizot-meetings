@@ -19,25 +19,26 @@ function deleteSignIns(advizotID) {
   return SignIn.deleteMany({ userID: advizotID });
 }
 
-// 2 weeks = 1000ms * 60s * 60min * 24h * 14days = 1,209,600,000 milliseconds
+// 2 weeks = 14days * 24h * 60min * 60s * 1000ms = 1,209,600,000 milliseconds
 const twoWeeksAgo = Date.now() - 1209600000;
 
 /**
  * Finds and retrieves a group of sign-ins which were submitted less than two weeks ago and which belong to a single group.
- * @param   {string} group The name of the group whose sign-ins are to be retrieved.
- * @returns {object[]}     A list of sign-ins found that correspond to the given group.
+ * @param   {string}   group The name of the group whose sign-ins are to be retrieved.
+ * @returns {object[]}       A list of sign-ins found that correspond to the given group.
  */
 function getGroupSignIns(group) {
   return SignIn.find()
     .or([{ group: userRoles.ADMIN }, { group: group }])
+    .and([{ forOneToOne: false }])
     .gte("date", twoWeeksAgo);
 }
 
 /**
  * "Moves" sign-ins that correspond to a single user to another group by changing each sign-in's group property.
- * @param   {string} advizotID    The advizotID associated with the user whose sign-ins are to be changed.
- * @param   {string} groupToPlace The new value to the change the sign-in's group property to.
- * @returns {object[]}            A list containing the sign-ins that were updated.
+ * @param   {string}   advizotID    The advizotID associated with the user whose sign-ins are to be changed.
+ * @param   {string}   groupToPlace The new value to the change the sign-in's group property to.
+ * @returns {object[]}              A list containing the sign-ins that were updated.
  */
 function moveSignIns(advizotID, groupToPlace) {
   return SignIn.updateMany({ userID: advizotID }, { group: groupToPlace });
