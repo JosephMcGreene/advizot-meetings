@@ -55,9 +55,13 @@ export default function Meeting() {
       {/* Show the list of sign-ins for the group, or a button to add a new sign-in. */}
       {signInListShown() ? (
         <SignInList
-          deleteSignIn={deleteSignIn}
+          deleteSignIn={(signInID) => {
+            deleteSignIn(signInID);
+          }}
           signIns={signIns}
-          submitSignIn={submitSignIn}
+          submitSignIn={(signInToSubmit, existingSignIn) => {
+            submitSignIn(false, signInToSubmit, existingSignIn);
+          }}
         />
       ) : (
         <button className="btn" onClick={() => setFormShown(true)}>
@@ -79,7 +83,9 @@ export default function Meeting() {
         >
           <MainForm
             handleClose={() => setFormShown(false)}
-            handleSubmit={(signInToSubmit) => submitSignIn(signInToSubmit)}
+            handleSubmit={(signInToSubmit) =>
+              submitSignIn(false, signInToSubmit)
+            }
           />
         </ModalTemplate>
       )}

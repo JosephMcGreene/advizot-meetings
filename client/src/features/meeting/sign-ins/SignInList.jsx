@@ -12,12 +12,8 @@ export default function SignInList({ deleteSignIn, signIns, submitSignIn }) {
     >
       {signIns.map((signIn, index) => (
         <SignIn
-          handleDelete={async (signInID) => {
-            await deleteSignIn(signInID);
-          }}
-          handleSubmitEdits={async (signInToSubmit, existingSignIn) => {
-            await submitSignIn(signInToSubmit, existingSignIn);
-          }}
+          handleDelete={deleteSignIn}
+          handleSubmitEdits={submitSignIn}
           key={`${signIn.date}${index}`}
           signInBody={signIn}
         />

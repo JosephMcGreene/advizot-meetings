@@ -1,22 +1,32 @@
 import { useContext } from "react";
 import { UserContext } from "../../App";
 // Components
+import LoadingSpinner from "../../shared/LoadingSpinner";
 import MainForm from "../../shared/form/MainForm";
-import ModalTemplate from "../../shared/modals/ModalTemplate";
 // External
 import { useNavigate } from "react-router-dom";
 // Internal
 import { currentDate } from "../../helpers";
+// Hooks
+import useMeeting from "../meeting/useMeeting";
 
 export default function CheckIn() {
   const user = useContext(UserContext);
   const navigate = useNavigate();
+  const [signIns, loading, submitSignIns] = useMeeting();
+
+  if (loading) return <LoadingSpinner />;
+
   return (
-    <ModalTemplate
-      handleClose={() => navigate(`/meeting/${user.group}`)}
-      title={`${currentDate("month")} Check-In`}
-    >
-      <MainForm />
-    </ModalTemplate>
+    <>
+      <h1>Check in for your {currentDate("month")} one-to-one:</h1>
+
+      <MainForm
+        handleClose={() => navigate(`/meeting/${user.group}`)}
+        handleSubmit={async (checkIn, existingCheckIn) =>
+          await submitSignIns(true, checkIn, existingCheckIn)
+        }
+      />
+    </>
   );
 }

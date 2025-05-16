@@ -23,10 +23,11 @@ function deleteSignIns(advizotID) {
   return SignIn.deleteMany({ userID: advizotID });
 }
 
-const twoWeeksAgo = Date.now() - 1000 * 60 * 60 * 24 * 14; // 2 weeks = 1000ms * 60s * 60min * 24h * 7days (x2)
+// 2 weeks = 1000ms * 60s * 60min * 24h * 14days = 1,209,600,000 milliseconds
+const twoWeeksAgo = Date.now() - 1209600000;
 
 /**
- * Finds and retrieves a group of sign-ins corresponding to a single group.
+ * Finds and retrieves a group of sign-ins which were submitted less than two weeks ago and which belong to a single group.
  *
  * @param {string} group The name of the group whose sign-ins are to be retrieved.
  *
@@ -53,7 +54,7 @@ function moveSignIns(advizotID, groupToPlace) {
 /**
  * Creates a new SignIn model from the SignIn schema, populates it with data from the client, and saves it to the database.
  *
- * @param {object} req the HTTP request object sent to the server, whose properties correspond to a new sign-in object.
+ * @param {object} req the HTTP request object, whose properties match a new sign-in object.
  *
  * @returns {object} the new sign-in object that was created and saved.
  */
@@ -69,7 +70,11 @@ async function saveNewSignIn(req) {
     date: req.body.date,
     group: req.body.group,
     userID: req.body.userID,
+    forOneToOne: req.body.forOneToOne,
   });
+
+  console.log(newSignIn);
+
   await newSignIn.save();
 
   return newSignIn;

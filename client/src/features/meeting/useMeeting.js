@@ -58,12 +58,17 @@ export default function useMeeting(method, url) {
   /**
    * Constructs and returns a sign-in object.
    *
+   * @param {boolean}            forOneToOne    Whether or not this sign-in is actually a monthly "check-in", used for different purposes.
    * @param {object}             signInToSubmit A sign-in object to be formatted.
    * @param {object | undefined} existingSignIn If present, a sign-in object that has been formatted in the past.
    *
    * @returns {object} A formatted sign-in object
    */
-  const signInBody = (signInToSubmit, existingsignIn = undefined) => {
+  const signInBody = (
+    forOneToOne,
+    signInToSubmit,
+    existingsignIn = undefined
+  ) => {
     const signInBody = {
       userName:
         existingsignIn?.userName || `${user.firstName} ${user.lastName}`,
@@ -76,6 +81,7 @@ export default function useMeeting(method, url) {
       date: Date.now(),
       group: existingsignIn?.group || user.group,
       userID: existingsignIn?.userID || user.advizotID,
+      forOneToOne: forOneToOne,
       _id: existingsignIn?._id,
     };
 
@@ -117,14 +123,14 @@ export default function useMeeting(method, url) {
    * @param {string} method         http verb used to subscribe to the database
    * @param {object} signInToSubmit Body to be added or edited in the database and displayed to the users
    */
-  async function submitSignIn(signInToSubmit, existingSignIn) {
+  async function submitSignIn(forOneToOne, signInToSubmit, existingSignIn) {
     try {
       setLoading(true);
 
       const response = await axiosFetch(
         "put",
         "/signIns",
-        signInBody(signInToSubmit, existingSignIn)
+        signInBody(forOneToOne, signInToSubmit, existingSignIn)
       );
 
       const newSignIns = [...signIns, response.data];

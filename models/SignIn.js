@@ -12,6 +12,7 @@ const signInSchema = new Schema({
   date: { type: Date, required: true },
   group: { type: String, required: true },
   userID: { type: String, required: true },
+  forOneToOne: { type: Boolean, required: true },
 });
 
 export default model("SignIn", signInSchema);
