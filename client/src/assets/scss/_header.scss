@@ -1,4 +1,4 @@
-@use "../index" as *;
+@use "./index" as *;
 
 .header {
   z-index: $header-z;
@@ -25,22 +25,7 @@
   }
 
   .profile-photo {
-    @include borderRadius(10px);
-
-    max-width: 3.25rem;
-    max-height: 3.25rem;
     margin-right: 1rem;
-    display: flex;
-    place-items: center;
-    align-self: center;
-
-    border: 3px solid $advizot-color;
-    cursor: pointer;
-
-    &:focus,
-    &:focus-visible {
-      @include onFocus();
-    }
   }
 
   .nav {

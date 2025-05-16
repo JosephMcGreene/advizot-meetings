@@ -1,29 +1,20 @@
-import { useContext } from "react";
-import { UserContext } from "../App";
 // External
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+// Internal
+import SignInsColumn from "./SignInsColumn";
+import UserInfoColumn from "./UserInfoColumn";
 
 export default function Profile() {
-  const user = useContext(UserContext);
-
-  const style = {
-    backgroundColor: "orange",
-    borderRadius: "12px",
-    maxWidth: "fitContent",
-    marginLeft: "30%",
-    padding: "0.25rem",
-  };
-
-  if (!user.advizotID) return <Navigate to="/" />;
   return (
-    <article>
-      <h2>
-        Oh, sorry for the confusion, but the this page isn't actually a feature
-        yet. Check back soon though!
-      </h2>
-      <Link to="../" style={style}>
-        Back to the Meeting
+    <>
+      <Link to="../">
+        <button className="btn">Back to Meeting</button>
       </Link>
-    </article>
+
+      <div className="profile">
+        <UserInfoColumn />
+        <SignInsColumn />
+      </div>
+    </>
   );
 }

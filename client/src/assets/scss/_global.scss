@@ -102,6 +102,24 @@ button {
   }
 }
 
+.profile-photo {
+  @include borderRadius(10px);
+
+  max-width: 3.25rem;
+  max-height: 3.25rem;
+  display: flex;
+  place-items: center;
+  align-self: center;
+
+  border: 3px solid $advizot-color;
+  cursor: pointer;
+
+  &:focus,
+  &:focus-visible {
+    @include onFocus();
+  }
+}
+
 .close-x {
   padding: 0rem 1rem;
 

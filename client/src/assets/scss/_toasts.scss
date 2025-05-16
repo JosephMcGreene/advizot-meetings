@@ -1,4 +1,4 @@
-@use "../index" as *;
+@use "./index" as *;
 
 .toast-list {
   @include borderRadius(12px);

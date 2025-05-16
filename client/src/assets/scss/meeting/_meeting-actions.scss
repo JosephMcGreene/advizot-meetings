@@ -1,5 +1,5 @@
 //Internal
-@use "../../index" as *;
+@use "../index" as *;
 
 .actions-btn {
   @include borderSides();
