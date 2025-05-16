@@ -13,7 +13,6 @@ export default function useUser(method, url) {
 
   /**
    * Makes an HTTP request to the server asking for user authentication and information.
-   *
    * @param {string} method HTTP verb GET.
    * @param {string} url    Endpoint of the proxy server used to fetch user data.
    */

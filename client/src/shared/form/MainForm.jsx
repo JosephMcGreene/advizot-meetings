@@ -16,9 +16,7 @@ export default function MainForm({
 
   /**
    * Determines the percentage of an input slider's background that should be filled up based on where the user has dragged the thumb.
-   *
    * @param   {number} value The current value of the range-slider, used as a basis to calculate how much of the background of the slider needs to be filled.
-   *
    * @returns {object}       A styles object specifying the percentage of the background that should be filled in.
    */
   function sliderSizeOf(value) {

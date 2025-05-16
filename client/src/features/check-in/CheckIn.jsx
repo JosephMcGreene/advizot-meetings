@@ -19,7 +19,7 @@ export default function CheckIn() {
 
   return (
     <>
-      <h1>
+      <h1 className="centered-heading">
         Hi, {user.firstName}. Check in for {currentDate("month")}'s one-to-one
         with Kevin:
       </h1>

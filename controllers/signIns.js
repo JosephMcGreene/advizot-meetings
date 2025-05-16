@@ -1,8 +1,7 @@
 import signInQueries from "./signIns.queries.js";
 
 /**
- * Deletes a single sign-in object from the database
- *
+ * Deletes a single sign-in object from the database.
  * @param {object} req The HTTP request object.
  * @param {object} res The HTTP response object.
  */
@@ -19,11 +18,9 @@ async function deleteSignIn(req, res) {
 }
 
 /**
- * Handles GET requests for sign-ins as well as groups, since as of 4/3/24 the app only cares about retrieving sign-ins for an entire group
- *
- * @param {object} req The HTTP request object
- * @param {object} res The HTTP response object
- *
+ * Handles GET requests for sign-ins as well as groups, since as of 4/3/24 the app only cares about retrieving sign-ins for an entire group.
+ * @param {object} req The HTTP request object.
+ * @param {object} res The HTTP response object.
  * @returns {object}
  */
 async function getGroupSignIns(req, res) {
@@ -39,8 +36,7 @@ async function getGroupSignIns(req, res) {
 }
 
 /**
- * Enters a new sign-in object into the database, or updates an existing sign-in object in the database
- *
+ * Enters a new sign-in object into the database, or updates an existing sign-in object in the database.
  * @param {object} req The HTTP request object.
  * @param {object} res The HTTP response object.
  */

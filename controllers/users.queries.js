@@ -4,11 +4,9 @@ import { userRoles, groups } from "../lib/userRoles.js";
 
 /**
  * Adds a new property to a user in the database corresponding to their LinkedIn client ID if missing, or their Google client ID if missing.
- *
  * @param   {string} email    The user's email addressed so they can be found in the the database.
  * @param   {string} provider Either "linkedinID" or "googleID".
  * @param   {string} id       The value of the user's LinkedIn ID or Google ID.
- *
  * @returns {object}          The user, now updated in the database.
  */
 async function addProviderID(email, provider, id) {
@@ -17,7 +15,6 @@ async function addProviderID(email, provider, id) {
 
 /**
  * Deletes a user document from the database.
- *
  * @param {string} id The database _id of the user to be deleted.
  */
 async function deleteUser(id) {
@@ -26,9 +23,7 @@ async function deleteUser(id) {
 
 /**
  * Finds and returns a single user document from the database based on the user's email address.
- *
  * @param   {string} profileEmail The user's email address who is to be retrieved from the database.
- *
  * @returns {object | null}       The user in the database, or null if they could not be found.
  */
 async function getOneUser(profileEmail) {
@@ -37,9 +32,7 @@ async function getOneUser(profileEmail) {
 
 /**
  * Finds a returns a single user document from the database based on the user's database _id
- *
  * @param   {string} id     The user's database _id.
- *
  * @returns {object | null} The user in the database, or null if they could not be found.
  */
 async function getOneUserByID(id) {
@@ -48,9 +41,7 @@ async function getOneUserByID(id) {
 
 /**
  * Find and retieves all users belonging to one group from the database.
- *
  * @param   {string} group The name of the group whose users are to be retrieved.
- *
  * @returns {object[]}     A list of users that belong to the group.
  */
 async function getUsersInGroup(group) {
@@ -59,7 +50,6 @@ async function getUsersInGroup(group) {
 
 /**
  * "Moves" a user from one group to another by changing the user's group property in the database.
- *
  * @param {string} id           The database _id of the user to be moved.
  * @param {string} groupToPlace The name of the group the user is being placed into.
  */
@@ -69,10 +59,8 @@ async function moveUser(id, groupToPlace) {
 
 /**
  * Creates a new User model based on the User schema, populates it with data, and saves it to the database.
- *
  * @param   {object} profile  The provider profile of the user to be added to the database.
  * @param   {string} provider Either "linkedinID" or "googleID", depending on if the OAuth provider is LinkedIn or Google. This becomes the initial provider ID property of the new user.
- *
  * @returns {object}          The new user who was added to the database.
  */
 async function saveNewUser(profile, provider) {

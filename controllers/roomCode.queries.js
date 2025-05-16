@@ -2,7 +2,6 @@ import RoomCode from "../models/RoomCode.js";
 
 /**
  * Generates a 6-digit random number to be used as the meeting's room code.
- *
  * @returns {string} The code for the meeting.
  */
 function generateRoomCode() {
@@ -18,9 +17,7 @@ function generateRoomCode() {
 
 /**
  * Retrieves The value of the roomCode from the database.
- *
  * @param   {string} id The _id property of the room code.
- *
  * @returns {object}    A roomCode object containing the current roomcode.
  */
 async function getRoomCode(id) {
@@ -38,9 +35,8 @@ async function saveNewRoomCode() {
 }
 
 /**
- * Generates a new room code and replaces the old room code with the newly generated room code
- *
- * @param {string} roomCodeDB The current roomCode to changes
+ * Generates a new room code and replaces the old room code with the newly generated room code.
+ * @param {string} roomCodeDB The current roomCode to changes.
  */
 async function updateRoomCode(roomCodeDB) {
   roomCodeDB.currentRoomCode = generateRoomCode();

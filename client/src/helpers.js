@@ -2,11 +2,9 @@ import axios from "axios";
 
 /**
  * Calls to server throughout the application.
- *
  * @param   {string} method HTTP method used to fetch data.
  * @param   {string} url    Endpoint to call server data.
  * @param   {object} [data] Body of data to send to server.
- *
  * @returns {object}        Axios response from the server.
  */
 export async function axiosFetch(method, url, data = null) {
@@ -29,10 +27,8 @@ export async function axiosFetch(method, url, data = null) {
 
 /**
  * Parses Date object into a string representing the current month or year.
- *
  * @param   {string} monthOrYear   "month" or "year" to be returned.
  * @param   {Date}   [dateToParse] Date to parse, default is current date.
- *
  * @returns {string}               A string representing the current month or year.
  */
 export const currentDate = (monthOrYear, dateToParse = new Date()) => {

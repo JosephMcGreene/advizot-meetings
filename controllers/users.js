@@ -2,8 +2,7 @@ import userQueries from "./users.queries.js";
 import signInQueries from "./signIns.queries.js";
 
 /**
- * Removes a user object from the database, as well as all sign-in objects with the user's advizotID
- *
+ * Removes a user object from the database, as well as all sign-in objects with the user's advizotID.
  * @param {object} req The HTTP request object.
  * @param {object} res The HTTP response object.
  */
@@ -25,7 +24,6 @@ async function deleteUser(req, res) {
 
 /**
  * Queries the database for all users that belong to a single group, queried by finding the users' whose group property matches the group in the request body.
- *
  * @param {object} req The HTTP request object.
  * @param {object} res The HTTP response object.
  */
@@ -42,7 +40,6 @@ async function getUsersInGroup(req, res) {
 
 /**
  * Moves a user to a new group by modifying the value of the user's group property, then does the same for the user's past sign-in objects.
- *
  * @param {object} req The HTTP request object.
  * @param {object} res The HTTP response object.
  */

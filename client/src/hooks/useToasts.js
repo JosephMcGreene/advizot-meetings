@@ -5,7 +5,6 @@ export default function useToasts() {
 
   /**
    * contains the logic for determining how to remove a toast from the DOM.
-   *
    * @param {string} id Identifier used to determine which toast to remove.
    */
   function removeToast(id) {
@@ -14,7 +13,6 @@ export default function useToasts() {
 
   /**
    * contains the logic for mounting a toast component to the DOM and remove it after a delay.
-   *
    * @param {string} type    Enum "success", "warning", or "failure" determines the icon to display.
    * @param {string} message The message for the toast to display.
    */

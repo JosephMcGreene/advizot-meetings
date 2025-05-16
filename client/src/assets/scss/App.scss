@@ -1,6 +1,7 @@
 @use "./dark-mode";
 @use "./global";
 @use "./modules/header";
+@use "./modules/check-in/check-in";
 @use "./modules/meeting/meeting-actions";
 @use "./modules/meeting/meeting-heading";
 @use "./modules/meeting/sign-in-list";

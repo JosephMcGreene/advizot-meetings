@@ -5,11 +5,9 @@ config();
 
 /**
  * Checks to see if the current user has entered the correct room code to access their group meeting and updates the user's boolean hasMeetingCode property accordingly.
- *
- * @param   {object} req The HTTP request object
- * @param   {object} res The HTTP response object
- *
- * @returns {object}     A user object with an updated hasMeetingCode
+ * @param   {object} req The HTTP request object.
+ * @param   {object} res The HTTP response object.
+ * @returns {object}     A user object with an updated hasMeetingCode property.
  */
 async function checkRoomCode(req, res) {
   try {
@@ -32,7 +30,6 @@ async function checkRoomCode(req, res) {
 
 /**
  * Adds a new room code if there is not one in the database, or updates the existing room code in the database.
- *
  * @param {object} req The HTTP request object.
  * @param {object} res The HTTP response object.
  */
