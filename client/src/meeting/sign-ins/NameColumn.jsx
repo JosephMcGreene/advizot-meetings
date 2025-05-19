@@ -42,6 +42,13 @@ export default function NameColumn({
     return false;
   }
 
+  /**
+   * @returns {boolean} Whether or not the current page is the user's profile page.
+   */
+  function isProfilePage() {
+    return location.pathname.includes("/profile");
+  }
+
   return (
     <>
       {console.log(location)}
@@ -50,8 +57,8 @@ export default function NameColumn({
 
         <h2 className="user-name">{signInBody.userName}</h2>
 
-        {location.pathname.includes("/profile") && (
-          <h3>
+        {isProfilePage() && (
+          <h3 className="date">
             {currentDate("month", new Date(signInBody.date))},{" "}
             {currentDate("year", new Date(signInBody.date))}
           </h3>

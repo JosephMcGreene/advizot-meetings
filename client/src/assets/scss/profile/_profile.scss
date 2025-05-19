@@ -27,6 +27,18 @@
           left: 1.25rem;
           width: 25px;
         }
+
+        .date {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          padding: 0.5rem 0;
+
+          color: $text-primary;
+          background-color: $advizot-color;
+          text-align: center;
+        }
       }
     }
   }
