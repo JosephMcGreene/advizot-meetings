@@ -1,5 +1,5 @@
-import { useRef } from "react";
 import { createPortal } from "react-dom";
+import { useRef } from "react";
 // External
 import { motion } from "framer-motion";
 // Hooks

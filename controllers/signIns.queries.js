@@ -1,5 +1,5 @@
-import SignIn from "../models/SignIn.js";
 import { userRoles } from "../lib/userRoles.js";
+import SignIn from "../models/SignIn.js";
 
 /**
  * Deletes a single signIn object from the database.

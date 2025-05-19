@@ -1,5 +1,5 @@
-import userQueries from "./users.queries.js";
 import signInQueries from "./signIns.queries.js";
+import userQueries from "./users.queries.js";
 
 /**
  * Removes a user object from the database, as well as all sign-in objects with the user's advizotID.

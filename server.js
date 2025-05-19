@@ -1,17 +1,17 @@
 import { config } from "dotenv";
-import path from "path";
 import { fileURLToPath } from "url";
+import { v4 as uuidv4 } from "uuid";
+import cookieSession from "cookie-session";
+import cors from "cors";
 import express from "express";
 import mongoose from "mongoose";
-import cookieSession from "cookie-session";
-import { v4 as uuidv4 } from "uuid";
-import cors from "cors";
 import passport from "passport";
+import path from "path";
 // Internal Modules
 import authRouter from "./routes/auth.js";
-import signInRouter from "./routes/signIns.js";
 import profileRouter from "./routes/profile.js";
 import roomCodeRouter from "./routes/roomCode.js";
+import signInRouter from "./routes/signIns.js";
 import usersRouter from "./routes/users.js";
 import "./lib/passportConfig.js";
 
@@ -59,8 +59,8 @@ if (process.env.NODE_ENV === "production") {
 
 //=====MOUNT ROUTES=====
 app.use("/auth", authRouter);
-app.use("/roomCode", roomCodeRouter);
 app.use("/profile", profileRouter);
+app.use("/roomCode", roomCodeRouter);
 app.use("/signIns", signInRouter);
 app.use("/users", usersRouter);
 

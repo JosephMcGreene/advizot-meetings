@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
-import User from "../models/User.js";
 import { userRoles, groups } from "../lib/userRoles.js";
+import User from "../models/User.js";
 
 /**
  * Adds a new property to a user in the database corresponding to their LinkedIn client ID if missing, or their Google client ID if missing.

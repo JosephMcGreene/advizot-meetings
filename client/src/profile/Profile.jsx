@@ -1,12 +1,10 @@
 // External
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 // Internal
-import SignInsColumn from "./SignInsColumn";
+import CheckInsColumn from "./CheckInsColumn";
 import UserInfoColumn from "./UserInfoColumn";
 
 export default function Profile() {
-  const { advizotID } = useParams();
-
   return (
     <>
       <Link to="../">
@@ -15,7 +13,7 @@ export default function Profile() {
 
       <div className="profile">
         <UserInfoColumn />
-        <SignInsColumn userID={advizotID} />
+        <CheckInsColumn />
       </div>
     </>
   );

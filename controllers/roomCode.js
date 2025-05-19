@@ -1,5 +1,5 @@
-import { config } from "dotenv";
 import roomCodeQueries from "./roomCode.queries.js";
+import { config } from "dotenv";
 
 config();
 

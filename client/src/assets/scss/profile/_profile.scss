@@ -15,4 +15,19 @@
     border-radius: 20px 0 0 0;
     padding: 1rem;
   }
+
+  .sign-in-list {
+    .sign-in-item {
+      .sign-in-name-col {
+        position: relative;
+
+        .check-in-icon {
+          position: absolute;
+          top: 1.25rem;
+          left: 1.25rem;
+          width: 25px;
+        }
+      }
+    }
+  }
 }

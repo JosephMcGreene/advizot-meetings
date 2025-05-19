@@ -6,7 +6,6 @@ export default function UserInfoColumn() {
 
   return (
     <article className="user-info-column">
-      {console.log(user)}
       <h1 className="centered-heading">
         {user.firstName} {user.lastName}
       </h1>

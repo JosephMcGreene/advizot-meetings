@@ -1,9 +1,14 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../App";
 // Assets
+import { ReactComponent as CheckInIcon } from "../../assets/img/handshake-solid.svg";
 import { ReactComponent as DeleteBtn } from "../../assets/img/trash-can-solid.svg";
 import { ReactComponent as EditBtn } from "../../assets/img/pen-solid.svg";
 import { ReactComponent as Lightning } from "../../assets/img/bolt-lightning-solid.svg";
+// External
+import { useLocation } from "react-router-dom";
+// Internal
+import { currentDate } from "../../helpers";
 // Components
 import MainForm from "../../shared/form/MainForm";
 import ModalTemplate from "../../shared/modals/ModalTemplate";
@@ -13,6 +18,7 @@ export default function NameColumn({
   handleSubmitEdits,
   signInBody,
 }) {
+  const location = useLocation();
   const user = useContext(UserContext);
   const [meetingFormShown, setMeetingFormShown] = useState(false);
 
@@ -38,8 +44,18 @@ export default function NameColumn({
 
   return (
     <>
+      {console.log(location)}
       <article className="sign-in-name-col">
+        {signInBody.forOneToOne && <CheckInIcon className="check-in-icon" />}
+
         <h2 className="user-name">{signInBody.userName}</h2>
+
+        {location.pathname.includes("/profile") && (
+          <h3>
+            {currentDate("month", new Date(signInBody.date))},{" "}
+            {currentDate("year", new Date(signInBody.date))}
+          </h3>
+        )}
 
         <h3 className="priority">
           Priority:{" "}

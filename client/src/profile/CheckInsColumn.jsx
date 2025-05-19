@@ -1,26 +1,27 @@
 import { useState, useEffect } from "react";
 // Components
 import LoadingSpinner from "../shared/LoadingSpinner";
+import CheckInList from "../meeting/sign-ins/SignInList";
 // Internal
 import { axiosFetch } from "../helpers";
 import useToasts from "../hooks/useToasts";
 
-export default function SignInsColumn({ userID }) {
+export default function SignInsColumn() {
   const [loading, setLoading] = useState(false);
-  const [signInHistory, setSignInHistory] = useState([]);
+  const [checkInHistory, setCheckInHistory] = useState([]);
   const { showToast } = useToasts();
 
   useEffect(() => {
-    getUserSignIns();
+    getUserCheckIns();
   }, []);
 
-  async function getUserSignIns() {
+  async function getUserCheckIns() {
     try {
       setLoading(true);
 
-      const existingSignIns = await axiosFetch("get", "/profile");
+      const existingCheckIns = await axiosFetch("get", "/profile");
 
-      setSignInHistory(existingSignIns.data);
+      setCheckInHistory(existingCheckIns.data);
     } catch (err) {
       await showToast("failure", "Something went wrong, unable to fetch data.");
       throw new Error(err);
@@ -31,5 +32,11 @@ export default function SignInsColumn({ userID }) {
 
   if (loading) return <LoadingSpinner />;
 
-  return <article>{signInHistory}</article>;
+  return (
+    <CheckInList
+      deleteSignIn={() => console.log("Delete!")}
+      signIns={checkInHistory}
+      submitSignIn={() => console.log("Submit!")}
+    />
+  );
 }
