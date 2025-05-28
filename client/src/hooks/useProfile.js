@@ -18,15 +18,15 @@ export default function useProfile() {
    * @param   {object[]} checkIns The array of check-in objects to sort.
    * @returns {object[]}          A sorted array of check-in objects from the server, from newest to oldest.
    */
-  function sortCheckIns(checkIns) {
-    return checkIns.sort((a, b) => {
-      const dateA = Date.parse(a.date);
-      const dateB = Date.parse(b.date);
+  // function sortCheckIns(checkIns) {
+  //   return checkIns.sort((a, b) => {
+  //     const dateA = Date.parse(a.date);
+  //     const dateB = Date.parse(b.date);
 
-      if (dateA > dateB) return -1;
-      return 1;
-    });
-  }
+  //     if (dateA > dateB) return -1;
+  //     return 1;
+  //   });
+  // }
 
   /**
    * Fetches all check-in objects that belong to the user and sets state to display them.
@@ -37,7 +37,7 @@ export default function useProfile() {
 
       const existingCheckIns = await axiosFetch("get", "/profile");
 
-      setCheckInHistory(sortCheckIns(existingCheckIns.data));
+      setCheckInHistory(existingCheckIns.data.reverse()); // Display newest to oldest
     } catch (err) {
       await showToast("failure", "Something went wrong, unable to fetch data.");
       throw new Error(err);
