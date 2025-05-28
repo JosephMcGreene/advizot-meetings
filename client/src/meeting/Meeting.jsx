@@ -12,7 +12,7 @@ import SignInList from "./sign-ins/SignInList";
 // External
 import { useParams } from "react-router-dom";
 // Hooks
-import useMeeting from "./useMeeting";
+import useMeeting from "../hooks/useMeeting";
 // Internal
 import { currentDate } from "../helpers";
 

@@ -1,12 +1,10 @@
-import { useState, useEffect } from "react";
-// Components
-import LoadingSpinner from "../shared/LoadingSpinner";
-import CheckInList from "../meeting/sign-ins/SignInList";
+import { useEffect, useState } from "react";
+// Hooks
+import useToasts from "./useToasts";
 // Internal
 import { axiosFetch } from "../helpers";
-import useToasts from "../hooks/useToasts";
 
-export default function SignInsColumn() {
+export default function useProfile() {
   const [loading, setLoading] = useState(false);
   const [checkInHistory, setCheckInHistory] = useState([]);
   const { showToast } = useToasts();
@@ -30,13 +28,5 @@ export default function SignInsColumn() {
     }
   }
 
-  if (loading) return <LoadingSpinner />;
-
-  return (
-    <CheckInList
-      deleteSignIn={() => console.log("Delete!")}
-      signIns={checkInHistory}
-      submitSignIn={() => console.log("Submit!")}
-    />
-  );
+  return [checkInHistory, loading];
 }

@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
-import { ToastContext } from "../../../App";
+import { ToastContext } from "../App";
 // Internal
-import { axiosFetch } from "../../../helpers";
+import { axiosFetch } from "../helpers";
 
 export default function useRoomCode() {
   const { showToast } = useContext(ToastContext);
@@ -9,7 +9,6 @@ export default function useRoomCode() {
 
   /**
    * Calls the server to update the room code and send it back to the user, or only send the existing room code, then updates the user's local storage with the new room code.
-   * @param {boolean} needNewCode Whether or not the user has decided to create a new room code.
    */
   async function setRoomCode() {
     try {

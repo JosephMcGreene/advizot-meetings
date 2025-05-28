@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 // Internal
 import { currentDate } from "../helpers";
 // Hooks
-import useMeeting from "../meeting/useMeeting";
+import useMeeting from "../hooks/useMeeting";
 
 export default function CheckIn() {
   const user = useContext(UserContext);
