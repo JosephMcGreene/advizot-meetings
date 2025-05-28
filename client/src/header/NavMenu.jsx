@@ -3,16 +3,18 @@ import { UserContext } from "../App";
 // Assets
 import { ReactComponent as CheckInIcon } from "../assets/img/handshake-solid.svg";
 import { ReactComponent as LogOutIcon } from "../assets/img/right-from-bracket-solid.svg";
+import { ReactComponent as MeetingIcon } from "../assets/img/people-group-solid.svg";
 import { ReactComponent as ProfileIcon } from "../assets/img/user-tie-solid.svg";
 // Components
 import DarkModeSwitch from "./DarkModeSwitch";
 // External
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 // Hooks
 import useOutsideClick from "../hooks/useOutsideClick";
 
 export default function NavMenu({ darkMode, toggleDarkMode, showNav }) {
+  const { pathname } = useLocation();
   const user = useContext(UserContext);
   const navRef = useRef();
   useOutsideClick(navRef, () => showNav(false));
@@ -25,15 +27,28 @@ export default function NavMenu({ darkMode, toggleDarkMode, showNav }) {
       ref={navRef}
     >
       <ul className="nav-list">
-        <li className="nav-item">
-          <Link
-            to={`/profile/${user.advizotID}`}
-            onClick={() => showNav(false)}
-          >
-            <ProfileIcon className="icon" />
-            Profile
-          </Link>
-        </li>
+        {pathname.includes("meeting") || pathname.includes("handleRoomCode") ? (
+          <li className="nav-item">
+            <Link
+              to={`/profile/${user.advizotID}`}
+              onClick={() => showNav(false)}
+            >
+              <ProfileIcon className="icon" />
+              Profile
+            </Link>
+          </li>
+        ) : (
+          ""
+        )}
+
+        {pathname.includes("profile") && (
+          <li className="nav-item">
+            <Link to={`/meeting/${user.group}`} onClick={() => showNav(false)}>
+              <MeetingIcon className="icon" />
+              Meeting
+            </Link>
+          </li>
+        )}
 
         <li className="nav-item">
           <Link

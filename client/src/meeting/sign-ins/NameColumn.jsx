@@ -46,7 +46,6 @@ export default function NameColumn({
 
   return (
     <>
-      {console.log(location)}
       <article className="sign-in-name-col">
         {signInBody.forOneToOne && <CheckInIcon className="check-in-icon" />}
 

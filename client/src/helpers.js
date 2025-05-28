@@ -62,7 +62,7 @@ export const currentDate = (monthOrYear, dateToParse = new Date()) => {
       case 11:
         return "December";
       default:
-        return "??";
+        return null;
     }
   }
 };

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 // Hooks
 import useProfile from "../hooks/useProfile";
 // Internal
-import CheckInList from "../meeting/sign-ins/SignInList";
+import CheckInList from "../meeting/sign-ins/SignInList"; // Rename SignInList
 import LoadingSpinner from "../shared/LoadingSpinner";
 import UserInfo from "./UserInfo";
 
