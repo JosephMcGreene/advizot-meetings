@@ -13,22 +13,16 @@ export default function Profile() {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <>
-      <Link to="../">
-        <button className="btn">Back to Meeting</button>
-      </Link>
+    <div className="profile">
+      <UserInfo />
 
-      <div className="profile">
-        <UserInfo />
-
-        <div className="check-in-col">
-          <CheckInList
-            deleteSignIn={() => console.log("Deleted!")}
-            signIns={checkInHistory}
-            submitSignIn={() => console.log("Submitted!")}
-          />
-        </div>
+      <div className="check-in-col">
+        <CheckInList
+          deleteSignIn={() => console.log("Deleted!")}
+          signIns={checkInHistory}
+          submitSignIn={() => console.log("Submitted!")}
+        />
       </div>
-    </>
+    </div>
   );
 }
