@@ -1,11 +1,9 @@
-// External
-import { Link } from "react-router-dom";
-// Hooks
-import useProfile from "../hooks/useProfile";
-// Internal
+// Components
 import CheckInList from "../meeting/sign-ins/SignInList"; // Rename SignInList
 import LoadingSpinner from "../shared/LoadingSpinner";
 import UserInfo from "./UserInfo";
+// Hooks
+import useProfile from "../hooks/useProfile";
 
 export default function Profile() {
   const [checkInHistory, loading] = useProfile();
