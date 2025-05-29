@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import { UserContext } from "../App";
+// Types
+import { User } from "../types/user";
 
 export default function UserInfo() {
-  const user = useContext(UserContext);
+  const user: User = useContext(UserContext);
 
   return (
     <article className="user-info-column">

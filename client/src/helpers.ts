@@ -1,14 +1,17 @@
-import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 /**
  * Calls to server throughout the application.
- * @param   {string} method HTTP method used to fetch data.
- * @param   {string} url    Endpoint to call server data.
- * @param   {object} [data] Body of data to send to server.
- * @returns {object}        Axios response from the server.
+ * @param   {string} method              HTTP method used to fetch data.
+ * @param   {string} url                 Endpoint to call server data.
+ * @param   {object || undefined} [data] Body of data to send to server.
+ * @returns {object}                     Axios response from the server.
  */
-export async function axiosFetch(method, url, data = null) {
+export async function axiosFetch(
+  method: string,
+  url: string,
+  data: object | null = null
+) {
   try {
     const response = await axios({
       method,
@@ -30,9 +33,12 @@ export async function axiosFetch(method, url, data = null) {
  * Parses Date object into a string representing the current month or year.
  * @param   {string} monthOrYear   "month" or "year" to be returned.
  * @param   {Date}   [dateToParse] Date to parse, default is current date.
- * @returns {string}               A string representing the current month or year.
+ * @returns {string | number}      Represents the current month (string) or year (number).
  */
-export const currentDate = (monthOrYear, dateToParse = new Date()) => {
+export const currentDate = (
+  monthOrYear: string,
+  dateToParse: Date = new Date()
+): string | number | null => {
   if (monthOrYear === "year") return dateToParse.getFullYear();
 
   if (monthOrYear === "month") {
@@ -65,4 +71,6 @@ export const currentDate = (monthOrYear, dateToParse = new Date()) => {
         return null;
     }
   }
+
+  return null;
 };

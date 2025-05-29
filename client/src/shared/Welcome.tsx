@@ -5,9 +5,10 @@ import Login from "./modals/Login";
 import ModalTemplate from "./modals/ModalTemplate";
 // External
 import { Navigate } from "react-router-dom";
+import { User } from "../types/user";
 
 export default function Welcome() {
-  const user = useContext(UserContext);
+  const user: User = useContext(UserContext);
   const [loginShown, setLoginShown] = useState(false);
 
   if (user.advizotID) return <Navigate to={`/meeting/${user.group}`} />;

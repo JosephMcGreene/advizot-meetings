@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../App";
 // Hooks
-import useToasts from "../hooks/useToasts";
+import useToasts from "./useToasts";
 // Internal
 import { axiosFetch } from "../helpers";
 

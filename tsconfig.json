@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "declaration": false,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "preserve",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "paths": {},
+    "preserveConstEnums": true,
+    "skipLibCheck": false,
+    "strict": true,
+    "sourceMap": false,
+    "target": "es5"
+  },
+  "exclude": ["node_modules", "client/build", "client/node_modules"]
+}
