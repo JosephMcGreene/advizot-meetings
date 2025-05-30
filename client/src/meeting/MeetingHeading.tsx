@@ -7,9 +7,16 @@ import RoomCodeToggle from "./admin-actions/RoomCodeToggle";
 import { useNavigate, Outlet } from "react-router-dom";
 // Internal
 import { currentDate } from "../helpers";
+// Types
+import type { User } from "../types/user";
 
-export default function MeetingHeading({ getNewRoomCode, group }) {
-  const user = useContext(UserContext);
+type Props = {
+  getNewRoomCode: () => void;
+  group: string;
+};
+
+export default function MeetingHeading({ getNewRoomCode, group }: Props) {
+  const user: User = useContext(UserContext);
   const [roomCodeShown, setRoomCodeShown] = useState(false);
   const [selectedGroup, setSelectedGroup] = useState("");
   const navigate = useNavigate();

@@ -5,7 +5,7 @@ import Login from "./modals/Login";
 import ModalTemplate from "./modals/ModalTemplate";
 // External
 import { Navigate } from "react-router-dom";
-import { User } from "../types/user";
+import type { User } from "../types/user.d.ts";
 
 export default function Welcome() {
   const user: User = useContext(UserContext);
