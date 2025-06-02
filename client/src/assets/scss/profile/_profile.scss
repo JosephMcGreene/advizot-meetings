@@ -5,16 +5,12 @@
   flex-wrap: wrap;
   gap: 3rem;
 
-  .user-info-column {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+  .user-info {
     width: 100%;
     max-width: 450px;
 
     background-color: black;
-    border-radius: 20px 0 0 0;
+    border-radius: 20px 0 20px 0;
     padding: 1rem;
   }
 

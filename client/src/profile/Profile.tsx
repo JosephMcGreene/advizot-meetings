@@ -1,5 +1,5 @@
 // Components
-import CheckInList from "../meeting/sign-ins/SignInList"; // Rename SignInList
+import ProfileSignIns from "../meeting/sign-ins/SignInList"; // Rename SignInList
 import LoadingSpinner from "../shared/LoadingSpinner";
 import UserInfo from "./UserInfo";
 // Hooks
@@ -14,13 +14,11 @@ export default function Profile() {
     <div className="profile">
       <UserInfo />
 
-      <div className="check-in-col">
-        <CheckInList
-          deleteSignIn={() => console.log("Deleted!")}
-          signIns={checkInHistory}
-          submitSignIn={() => console.log("Submitted!")}
-        />
-      </div>
+      <ProfileSignIns
+        deleteSignIn={() => console.log("Deleted!")}
+        signIns={checkInHistory}
+        submitSignIn={() => console.log("Submitted!")}
+      />
     </div>
   );
 }

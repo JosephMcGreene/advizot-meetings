@@ -7,7 +7,7 @@ export default function UserInfo() {
   const user: User = useContext(UserContext);
 
   return (
-    <article className="user-info-column">
+    <article className="user-info">
       <h1 className="centered-heading">
         {user.firstName} {user.lastName}
       </h1>
