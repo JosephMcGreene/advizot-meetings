@@ -8,7 +8,12 @@ import NavMenu from "./NavMenu";
 // External
 import { Outlet } from "react-router-dom";
 
-export default function Header({ darkMode, toggleDarkMode }) {
+type Props = {
+  darkMode: boolean;
+  toggleDarkMode: () => void;
+};
+
+export default function Header({ darkMode, toggleDarkMode }: Props) {
   const user = useContext(UserContext);
   const [userNavShown, setUserNavShown] = useState(false);
 

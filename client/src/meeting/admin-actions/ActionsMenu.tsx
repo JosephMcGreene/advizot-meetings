@@ -12,7 +12,15 @@ import useOutsideClick from "../../hooks/useOutsideClick";
 import MemberEditModal from "./MemberEditModal";
 import ModalTemplate from "../../shared/modals/ModalTemplate";
 
-export default function ActionsMenu({ currentGroup, handleNewSignInClick }) {
+type Props = {
+  currentGroup: string;
+  handleNewSignInClick: () => void;
+};
+
+export default function ActionsMenu({
+  currentGroup,
+  handleNewSignInClick,
+}: Props) {
   const user = useContext(UserContext);
   const [actionsShown, setActionsShown] = useState(false);
   const [memberEditModalShown, setMemberEditModalShown] = useState(false);

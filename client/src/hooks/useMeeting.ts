@@ -4,8 +4,13 @@ import { UserContext } from "../App";
 import useToasts from "./useToasts";
 // Internal
 import { axiosFetch } from "../helpers";
+// Types
+import type { SignIn } from "../types/signIn.d.ts";
 
-export default function useMeeting(method, url) {
+export default function useMeeting(
+  method?: string | null,
+  url?: string | null
+) {
   const user = useContext(UserContext);
   const { showToast } = useToasts();
   const [signIns, setSignIns] = useState([]);
@@ -23,9 +28,9 @@ export default function useMeeting(method, url) {
    * @returns {object}                            A formatted sign-in object.
    */
   const signInBody = (
-    forOneToOne,
-    signInToSubmit,
-    existingsignIn = undefined
+    forOneToOne: boolean,
+    signInToSubmit: SignIn,
+    existingsignIn: SignIn | undefined = undefined
   ) => {
     const signInBody = {
       business: signInToSubmit.business,

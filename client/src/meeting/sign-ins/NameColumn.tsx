@@ -5,19 +5,27 @@ import { ReactComponent as CheckInIcon } from "../../assets/img/handshake-solid.
 import { ReactComponent as DeleteBtn } from "../../assets/img/trash-can-solid.svg";
 import { ReactComponent as EditBtn } from "../../assets/img/pen-solid.svg";
 import { ReactComponent as Lightning } from "../../assets/img/bolt-lightning-solid.svg";
+// Components
+import MainForm from "../../shared/form/MainForm";
+import ModalTemplate from "../../shared/modals/ModalTemplate";
 // External
 import { useLocation } from "react-router-dom";
 // Internal
 import { currentDate } from "../../helpers";
-// Components
-import MainForm from "../../shared/form/MainForm";
-import ModalTemplate from "../../shared/modals/ModalTemplate";
+// Types
+import type { SignIn } from "../../types/signIn.d.ts";
+
+type Props = {
+  handleDelete: () => void;
+  handleSubmitEdits: () => void;
+  signInBody: SignIn;
+};
 
 export default function NameColumn({
   handleDelete,
   handleSubmitEdits,
   signInBody,
-}) {
+}: Props) {
   const location = useLocation();
   const user = useContext(UserContext);
   const [meetingFormShown, setMeetingFormShown] = useState(false);

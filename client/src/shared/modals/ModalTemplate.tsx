@@ -1,11 +1,17 @@
-import { createPortal } from "react-dom";
+import { createPortal, ReactNode } from "react-dom";
 import { useRef } from "react";
 // External
 import { motion } from "framer-motion";
 // Hooks
 import useOutsideClick from "../../hooks/useOutsideClick";
 
-export default function ModalTemplate({ children, handleClose, title }) {
+type Props = {
+  children: ReactNode;
+  handleClose: () => void;
+  title: string;
+};
+
+export default function ModalTemplate({ children, handleClose, title }: Props) {
   const modalRef = useRef();
 
   useOutsideClick(modalRef, () => handleClose());

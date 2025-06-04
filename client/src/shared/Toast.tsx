@@ -2,14 +2,21 @@ import failIcon from "../assets/img/skull-solid.svg";
 import successIcon from "../assets/img/check-solid.svg";
 import warningIcon from "../assets/img/exclamation-solid.svg";
 
-export default function Toast({ altText, message, type, handleClose }) {
-  const iconMap = {
+type Props = {
+  altText: string;
+  message: string;
+  type: string;
+  handleClose: () => void;
+};
+
+export default function Toast({ altText, message, type, handleClose }: Props) {
+  const iconMap: object = {
     success: successIcon,
     failure: failIcon,
     warning: warningIcon,
   };
 
-  const icon = iconMap[type] || null;
+  const icon: object | null = iconMap[type] || null;
 
   return (
     <aside className="toast" role="alert">

@@ -3,7 +3,7 @@ import { ToastContext } from "../App";
 // Internal
 import { axiosFetch } from "../helpers";
 
-export default function useMemberEdits(currentGroup) {
+export default function useMemberEdits(currentGroup: string) {
   const [confirmUserDeleteShown, setConfirmUserDeleteShown] = useState(false);
   const [deleteMemberDisabled, setDeleteMemberDisabled] = useState(true);
   const [deleteMemberValue, setDeleteMemberValue] = useState("");

@@ -1,7 +1,15 @@
 import { ReactComponent as EyeHidden } from "../../assets/img/eye-slash-solid.svg";
 import { ReactComponent as EyeVisible } from "../../assets/img/eye-solid.svg";
 
-export default function RoomCodeToggle({ roomCodeShown, setRoomCodeShown }) {
+type Props = {
+  roomCodeShown: boolean;
+  setRoomCodeShown: (roomCodeShown: boolean) => void;
+};
+
+export default function RoomCodeToggle({
+  roomCodeShown,
+  setRoomCodeShown,
+}: Props) {
   return (
     <button
       className="code-toggle"

@@ -1,4 +1,10 @@
-export default function DataColumn({ signInBody }) {
+import type { SignIn } from "../../types/signIn.d.ts";
+
+type Props = {
+  signInBody: SignIn;
+};
+
+export default function DataColumn({ signInBody }: Props) {
   return (
     <article className="sign-in-data-col">
       <div className="number-row">

@@ -1,5 +1,13 @@
 import { Field, useField } from "formik";
 
+type Props = {
+  as: string;
+  className: string;
+  spanText: string;
+  text: string;
+  type: string;
+};
+
 export default function InputField({
   as,
   className,
@@ -7,7 +15,7 @@ export default function InputField({
   text,
   type,
   ...props
-}) {
+}: Props) {
   const [field, meta] = useField(props);
 
   return (

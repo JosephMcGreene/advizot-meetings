@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
 
-export default function RoomCodeDisplay({ getNewRoomCode }) {
+type Props = {
+  getNewRoomCode: () => void;
+};
+
+export default function RoomCodeDisplay({ getNewRoomCode }: Props) {
   const roomCode = localStorage.getItem("roomCode");
 
   return (

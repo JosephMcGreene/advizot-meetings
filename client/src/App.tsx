@@ -18,17 +18,20 @@ import { createBrowserRouter, createRoutesFromElements, Navigate, RouterProvider
 import useDarkMode from "./hooks/useDarkMode";
 import useToasts from "./hooks/useToasts";
 import useUser from "./hooks/useUser";
+// Types
+import type { User } from "./types/user.d.ts";
+import type { Toast } from "./types/toast.d.ts";
 
-export const UserContext = createContext();
-export const ToastContext = createContext();
-export const ThemeContext = createContext();
+export const UserContext = createContext<User | null>(null);
+export const ToastContext = createContext<Toast | null>(null);
+export const ThemeContext = createContext(null);
 
 export default function App() {
   const [user, fetchUser, loading] = useUser("get", "/auth/current_user");
   const [isDark, setDarkMode] = useDarkMode();
   const toasts = useToasts();
 
-  async function submitCode(enteredCode) {
+  async function submitCode(enteredCode: string) {
     await fetchUser("post", "/roomCode", { enteredCode });
   }
 
@@ -54,8 +57,8 @@ export default function App() {
                       element={
                         <UsersOnly>
                           {/* prettier-ignore */}
-                          <RoomCodeCheck handleSubmitCode={(enteredCode) => submitCode(enteredCode)}>
-                            <Navigate to={`/meeting/${user.group}`} />
+                          <RoomCodeCheck handleSubmitCode={(enteredCode: string) => submitCode(enteredCode)}>
+                            <Navigate to={`/meeting/${user?.group}`} />
                           </RoomCodeCheck>
                         </UsersOnly>
                       }

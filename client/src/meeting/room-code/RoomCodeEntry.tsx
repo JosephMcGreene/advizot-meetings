@@ -4,7 +4,12 @@ import InputField from "../../shared/form/InputField";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
-export default function RoomCodeEntry({ handleSubmit, incorrectCode }) {
+type Props = {
+  handleSubmit: () => void;
+  incorrectCode: string;
+};
+
+export default function RoomCodeEntry({ handleSubmit, incorrectCode }: Props) {
   return (
     <Formik
       initialValues={{

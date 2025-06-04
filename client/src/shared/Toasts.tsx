@@ -2,14 +2,19 @@ import { useRef, useEffect } from "react";
 // Components
 import Toast from "./Toast";
 
-export default function Toasts({ data, removeToast }) {
+type Props = {
+  data: object[];
+  removeToast: (id: number) => void;
+};
+
+export default function Toasts({ data, removeToast }: Props) {
   const listRef = useRef(null);
 
   useEffect(() => {
     handleScrolling(listRef.current);
   }, [data]);
 
-  function handleScrolling(element) {
+  function handleScrolling(element: HTMLElement) {
     element?.scrollTo(0, element.scrollHeight);
   }
 

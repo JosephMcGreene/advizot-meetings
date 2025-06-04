@@ -1,9 +1,13 @@
-import { useContext } from "react";
+import { useContext, ReactNode } from "react";
 import { UserContext } from "../App";
 // External
 import { Navigate } from "react-router-dom";
 
-export default function UsersOnly({ children }) {
+type Props = {
+  children: ReactNode;
+};
+
+export default function UsersOnly({ children }: Props): ReactNode {
   const user = useContext(UserContext);
 
   if (!user) return <Navigate to="/" />;

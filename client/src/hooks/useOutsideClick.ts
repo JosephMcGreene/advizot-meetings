@@ -1,11 +1,14 @@
-import { useEffect, useRef } from "react";
+import { ChangeEvent, ReactNode, useEffect, useRef } from "react";
 
-export default function useOutsideClick(callback, elementRef) {
+export default function useOutsideClick(
+  callback: () => Function,
+  elementRef: ReactNode
+) {
   const callbackRef = useRef();
   callbackRef.current = callback;
 
   useEffect(() => {
-    function handleOutsideClick(event) {
+    function handleOutsideClick(event: ChangeEvent<HTMLInputElement>) {
       if (!elementRef?.current?.contains(event.target)) {
         callbackRef.current(event);
       }

@@ -6,12 +6,20 @@ import Select from "./Select";
 // External
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+// Types
+import type { SignIn } from "../../types/signIn.d.ts";
+
+type Props = {
+  existingSignIn: SignIn;
+  handleClose: () => void;
+  handleSubmit: () => void;
+};
 
 export default function MainForm({
   existingSignIn,
   handleClose,
   handleSubmit,
-}) {
+}: Props) {
   const user = useContext(UserContext);
 
   /**

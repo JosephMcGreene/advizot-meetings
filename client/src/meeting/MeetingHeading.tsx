@@ -8,7 +8,7 @@ import { useNavigate, Outlet } from "react-router-dom";
 // Internal
 import { currentDate } from "../helpers";
 // Types
-import type { User } from "../types/user";
+import type { User } from "../types/user.d.ts";
 
 type Props = {
   getNewRoomCode: () => void;
@@ -16,7 +16,7 @@ type Props = {
 };
 
 export default function MeetingHeading({ getNewRoomCode, group }: Props) {
-  const user: User = useContext(UserContext);
+  const user: User | null = useContext(UserContext);
   const [roomCodeShown, setRoomCodeShown] = useState(false);
   const [selectedGroup, setSelectedGroup] = useState("");
   const navigate = useNavigate();

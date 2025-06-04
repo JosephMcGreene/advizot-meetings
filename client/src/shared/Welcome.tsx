@@ -8,10 +8,10 @@ import { Navigate } from "react-router-dom";
 import type { User } from "../types/user.d.ts";
 
 export default function Welcome() {
-  const user: User = useContext(UserContext);
+  const user: User | null = useContext(UserContext);
   const [loginShown, setLoginShown] = useState(false);
 
-  if (user.advizotID) return <Navigate to={`/meeting/${user.group}`} />;
+  if (user?.advizotID) return <Navigate to={`/meeting/${user?.group}`} />;
 
   return (
     <section>

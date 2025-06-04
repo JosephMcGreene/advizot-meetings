@@ -2,8 +2,20 @@
 import { motion } from "framer-motion";
 // Internal
 import SignIn from "./SignIn";
+// Types
+import type { SignIn as signInType } from "../../types/signIn.d.ts";
 
-export default function SignInList({ deleteSignIn, signIns, submitSignIn }) {
+type Props = {
+  deleteSignIn: () => void;
+  signIns: signInType[];
+  submitSignIn: () => void;
+};
+
+export default function SignInList({
+  deleteSignIn,
+  signIns,
+  submitSignIn,
+}: Props) {
   return (
     <motion.ul
       className="sign-in-list"

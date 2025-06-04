@@ -13,7 +13,13 @@ import { motion } from "framer-motion";
 // Hooks
 import useOutsideClick from "../hooks/useOutsideClick";
 
-export default function NavMenu({ darkMode, toggleDarkMode, showNav }) {
+type Props = {
+  darkMode: boolean;
+  toggleDarkMode: () => void;
+  showNav: boolean;
+};
+
+export default function NavMenu({ darkMode, toggleDarkMode, showNav }: Props) {
   const { pathname } = useLocation();
   const user = useContext(UserContext);
   const navRef = useRef();

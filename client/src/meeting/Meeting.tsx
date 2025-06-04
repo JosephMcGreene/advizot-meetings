@@ -15,11 +15,13 @@ import { useParams } from "react-router-dom";
 import useMeeting from "../hooks/useMeeting";
 // Internal
 import { currentDate } from "../helpers";
+// Types
+import type { User } from "../types/user";
 
 export default function Meeting() {
   const { group } = useParams();
 
-  const user = useContext(UserContext);
+  const user: User | null = useContext(UserContext);
   const [formShown, setFormShown] = useState(false);
   const [signIns, loading, submitSignIn, deleteSignIn, getNewRoomCode] =
     useMeeting("get", `/signIns/${group}`);

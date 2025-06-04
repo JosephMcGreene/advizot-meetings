@@ -1,4 +1,4 @@
-type signIn = {
+export type SignIn = {
   business: number;
   date: Date;
   forOneToOne: boolean;

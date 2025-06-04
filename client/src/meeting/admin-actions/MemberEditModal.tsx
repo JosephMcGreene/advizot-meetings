@@ -3,7 +3,12 @@ import LoadingSpinner from "../../shared/LoadingSpinner";
 // Hooks
 import useMemberEdits from "../../hooks/useMemberEdits";
 
-export default function MemberEditModal({ currentGroup, handleClose }) {
+type Props = {
+  currentGroup: string;
+  handleClose: () => void;
+};
+
+export default function MemberEditModal({ currentGroup, handleClose }: Props) {
   const [
     confirmUserDeleteShown,
     deleteMemberDisabled,

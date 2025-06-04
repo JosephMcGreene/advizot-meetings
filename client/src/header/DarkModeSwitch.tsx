@@ -1,6 +1,11 @@
 import ReactSwitch from "react-switch";
 
-export default function DarkModeSwitch({ darkMode, toggleDarkMode }) {
+type Props = {
+  darkMode: boolean;
+  toggleDarkMode: () => void;
+};
+
+export default function DarkModeSwitch({ darkMode, toggleDarkMode }: Props) {
   return (
     <ReactSwitch
       checked={darkMode}

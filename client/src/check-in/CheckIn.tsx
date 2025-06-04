@@ -9,9 +9,12 @@ import { useNavigate } from "react-router-dom";
 import { currentDate } from "../helpers";
 // Hooks
 import useMeeting from "../hooks/useMeeting";
+// Types
+import type { SignIn } from "../types/signIn.d.ts";
+import type { User } from "../types/user.d.ts";
 
 export default function CheckIn() {
-  const user = useContext(UserContext);
+  const user: User | null = useContext(UserContext);
   const navigate = useNavigate();
   const [signIns, loading, submitSignIns] = useMeeting();
 
@@ -20,13 +23,13 @@ export default function CheckIn() {
   return (
     <>
       <h1 className="centered-heading">
-        Hi, {user.firstName}. Check in for {currentDate("month")}'s one-to-one
+        Hi, {user?.firstName}. Check in for {currentDate("month")}'s one-to-one
         with Kevin:
       </h1>
 
       <MainForm
-        handleClose={() => navigate(`/meeting/${user.group}`)}
-        handleSubmit={async (checkIn, existingCheckIn) =>
+        handleClose={() => navigate(`/meeting/${user?.group}`)}
+        handleSubmit={async (checkIn: SignIn, existingCheckIn: SignIn) =>
           await submitSignIns(true, checkIn, existingCheckIn)
         }
       />

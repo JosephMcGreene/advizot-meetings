@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import useToasts from "./useToasts";
 import { axiosFetch } from "../helpers";
 
-export default function useUser(method, url) {
+export default function useUser(method: string, url: string) {
   const { showToast } = useToasts();
-  const [fetchedData, setFetchedData] = useState({});
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -16,12 +16,16 @@ export default function useUser(method, url) {
    * @param {string} method HTTP verb GET.
    * @param {string} url    Endpoint of the proxy server used to fetch user data.
    */
-  async function fetchUser(method, url, data = null) {
+  async function fetchUser(
+    method: string,
+    url: string,
+    data: object | null = null
+  ) {
     try {
       setLoading(true);
 
       const response = await axiosFetch(method, url, data);
-      setFetchedData(response.data);
+      setUser(response.data);
     } catch (err) {
       await showToast(
         "failure",
@@ -33,5 +37,5 @@ export default function useUser(method, url) {
     }
   }
 
-  return [fetchedData, fetchUser, loading];
+  return [user, fetchUser, loading];
 }
