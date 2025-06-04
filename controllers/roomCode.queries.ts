@@ -20,7 +20,7 @@ function generateRoomCode() {
  * @param   {string} id The _id property of the room code.
  * @returns {object}    A roomCode object containing the current roomcode.
  */
-async function getRoomCode(id) {
+async function getRoomCode(id: string) {
   return await RoomCode.findById(id);
 }
 

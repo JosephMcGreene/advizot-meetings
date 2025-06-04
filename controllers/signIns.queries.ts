@@ -1,12 +1,13 @@
 import { userRoles } from "../lib/userRoles.js";
 import SignIn from "../models/SignIn.js";
+import type { Request } from "express";
 
 /**
  * Deletes a single signIn object from the database.
  * @param   {string} id The database _id of the sign-in to be deleted.
  * @returns {object}    The default Mongoose response from deleting a document.
  */
-async function deleteOneSignIn(id) {
+async function deleteOneSignIn(id: string) {
   return await SignIn.deleteOne({ _id: id });
 }
 
@@ -15,7 +16,7 @@ async function deleteOneSignIn(id) {
  * @param   {string} advizotID The advizotID corresponding to the user whose sign-ins are to be deleted. Is the "userID" on the(se) document(s).
  * @returns {object}           Mongoose's default response when deleting a group of documents, needed for its "deletedCount" property.
  */
-function deleteSignIns(advizotID) {
+function deleteSignIns(advizotID: string) {
   return SignIn.deleteMany({ userID: advizotID });
 }
 
@@ -27,7 +28,7 @@ const twoWeeksAgo = Date.now() - 1209600000;
  * @param   {string}   group The name of the group whose sign-ins are to be retrieved.
  * @returns {object[]}       A list of sign-ins found that correspond to the given group.
  */
-function getGroupSignIns(group) {
+function getGroupSignIns(group: string) {
   return SignIn.find()
     .or([{ group: userRoles.ADMIN }, { group: group }])
     .and([{ forOneToOne: false }])
@@ -40,7 +41,7 @@ function getGroupSignIns(group) {
  * @param   {string}   groupToPlace The new value to the change the sign-in's group property to.
  * @returns {object[]}              A list containing the sign-ins that were updated.
  */
-function moveSignIns(advizotID, groupToPlace) {
+function moveSignIns(advizotID: string, groupToPlace: string) {
   return SignIn.updateMany({ userID: advizotID }, { group: groupToPlace });
 }
 
@@ -49,7 +50,7 @@ function moveSignIns(advizotID, groupToPlace) {
  * @param   {object} req The HTTP request object, whose properties match a new sign-in object.
  * @returns {object}     The new sign-in object that was created and saved.
  */
-async function saveNewSignIn(req) {
+async function saveNewSignIn(req: Request) {
   const newSignIn = new SignIn({
     business: req.body.business,
     date: req.body.date,

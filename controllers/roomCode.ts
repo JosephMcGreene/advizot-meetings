@@ -1,5 +1,6 @@
 import roomCodeQueries from "./roomCode.queries.js";
 import { config } from "dotenv";
+import type { Request, Response } from "express";
 
 config();
 
@@ -9,7 +10,7 @@ config();
  * @param   {object} res The HTTP response object.
  * @returns {object}     A user object with an updated hasMeetingCode property.
  */
-async function checkRoomCode(req, res) {
+async function checkRoomCode(req: Request, res: Response) {
   try {
     const { currentRoomCode } = await roomCodeQueries.getRoomCode(
       process.env.ROOMCODE_ID
@@ -30,10 +31,9 @@ async function checkRoomCode(req, res) {
 
 /**
  * Adds a new room code if there is not one in the database, or updates the existing room code in the database.
- * @param {object} req The HTTP request object.
  * @param {object} res The HTTP response object.
  */
-async function updateRoomCode(req, res) {
+async function updateRoomCode(res: Response) {
   try {
     const roomCodeDB = await roomCodeQueries.getRoomCode(
       process.env.ROOMCODE_ID

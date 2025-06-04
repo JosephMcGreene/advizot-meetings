@@ -1,11 +1,12 @@
 import signInQueries from "./signIns.queries.js";
+import type { Request, Response } from "express";
 
 /**
  * Deletes a single sign-in object from the database.
  * @param {object} req The HTTP request object.
  * @param {object} res The HTTP response object.
  */
-async function deleteSignIn(req, res) {
+async function deleteSignIn(req: Request, res: Response) {
   try {
     const deletionRes = await signInQueries.deleteOneSignIn(req.body.signInID);
 
@@ -23,7 +24,7 @@ async function deleteSignIn(req, res) {
  * @param {object} res The HTTP response object.
  * @returns {object}
  */
-async function getGroupSignIns(req, res) {
+async function getGroupSignIns(req: Request, res: Response) {
   try {
     const groupSignIns = await signInQueries.getGroupSignIns(req.params.group);
 
@@ -40,7 +41,7 @@ async function getGroupSignIns(req, res) {
  * @param {object} req The HTTP request object.
  * @param {object} res The HTTP response object.
  */
-async function modifySignIn(req, res) {
+async function modifySignIn(req: Request, res: Response) {
   try {
     const newSignIn = await signInQueries.saveNewSignIn(req);
 

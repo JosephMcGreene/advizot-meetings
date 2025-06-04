@@ -4,7 +4,7 @@ import { groups } from "./userRoles.js";
  * Determines the day of the week and then determines what group is meeting for the current day. Returns admin if today is not a meeting day.
  * @returns {string} The group number that corresponds to the day of the week if today is Tuesday, Wednesday, or Thursday, or default admin.
  */
-export const groupForToday = () => {
+export const groupForToday = (): string => {
   switch (new Date().getDay()) {
     case 2: //If today is Tuesday
       return groups.CE5660;

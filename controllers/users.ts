@@ -1,12 +1,13 @@
 import signInQueries from "./signIns.queries.js";
 import userQueries from "./users.queries.js";
+import type { Request, Response } from "express";
 
 /**
  * Removes a user object from the database, as well as all sign-in objects with the user's advizotID.
  * @param {object} req The HTTP request object.
  * @param {object} res The HTTP response object.
  */
-async function deleteUser(req, res) {
+async function deleteUser(req: Request, res: Response) {
   try {
     await userQueries.deleteUser(req.body._id);
 
@@ -27,7 +28,7 @@ async function deleteUser(req, res) {
  * @param {object} req The HTTP request object.
  * @param {object} res The HTTP response object.
  */
-async function getUsersInGroup(req, res) {
+async function getUsersInGroup(req: Request, res: Response) {
   try {
     const usersToEdit = await userQueries.getUsersInGroup(req.body.group);
     res.statusMessage = "Found users to edit";
@@ -43,7 +44,7 @@ async function getUsersInGroup(req, res) {
  * @param {object} req The HTTP request object.
  * @param {object} res The HTTP response object.
  */
-async function moveUser(req, res) {
+async function moveUser(req: Request, res: Response) {
   try {
     await userQueries.moveUser(req.body._id, req.body.groupToPlace);
 

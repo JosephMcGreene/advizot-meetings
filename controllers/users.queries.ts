@@ -9,7 +9,7 @@ import User from "../models/User.js";
  * @param   {string} id       The value of the user's LinkedIn ID or Google ID.
  * @returns {object}          The user, now updated in the database.
  */
-async function addProviderID(email, provider, id) {
+async function addProviderID(email: string, provider: string, id: string) {
   return await User.findOneAndUpdate({ email: email }, { [provider]: id });
 }
 
@@ -17,7 +17,7 @@ async function addProviderID(email, provider, id) {
  * Deletes a user document from the database.
  * @param {string} id The database _id of the user to be deleted.
  */
-async function deleteUser(id) {
+async function deleteUser(id: string) {
   await User.deleteOne(id);
 }
 
@@ -26,7 +26,7 @@ async function deleteUser(id) {
  * @param   {string}        profileEmail The user's email address who is to be retrieved from the database.
  * @returns {object | null}              The user in the database, or null if they could not be found.
  */
-async function getOneUser(profileEmail) {
+async function getOneUser(profileEmail: string) {
   return await User.findOne({ email: profileEmail });
 }
 
@@ -35,7 +35,7 @@ async function getOneUser(profileEmail) {
  * @param   {string}        id The user's database _id.
  * @returns {object | null}    The user in the database, or null if they could not be found.
  */
-async function getOneUserByID(id) {
+async function getOneUserByID(id: string) {
   return await User.findById(id);
 }
 
@@ -44,7 +44,7 @@ async function getOneUserByID(id) {
  * @param   {string}   group The name of the group whose users are to be retrieved.
  * @returns {object[]}       A list of users that belong to the group.
  */
-async function getUsersInGroup(group) {
+async function getUsersInGroup(group: string) {
   return await User.find({ group: group });
 }
 
@@ -53,7 +53,7 @@ async function getUsersInGroup(group) {
  * @param {string} id           The database _id of the user to be moved.
  * @param {string} groupToPlace The name of the group the user is being placed into.
  */
-async function moveUser(id, groupToPlace) {
+async function moveUser(id: string, groupToPlace: string) {
   await User.findByIdAndUpdate(id, { group: groupToPlace });
 }
 
@@ -63,17 +63,17 @@ async function moveUser(id, groupToPlace) {
  * @param   {string} provider Either "linkedinID" or "googleID", depending on if the OAuth provider is LinkedIn or Google. This becomes the initial provider ID property of the new user.
  * @returns {object}          The new user who was added to the database.
  */
-async function saveNewUser(profile, provider) {
+async function saveNewUser(profile: object | null, provider: string) {
   const newUser = await new User({
     advizotID: uuidv4(),
-    email: profile.emails[0].value,
-    firstName: profile.name.givenName,
+    email: profile?.emails[0].value,
+    firstName: profile?.name.givenName,
     group: groups.GUEST,
     hasMeetingCode: false,
-    lastName: profile.name.familyName,
-    photo: profile.photos[0].value,
+    lastName: profile?.name.familyName,
+    photo: profile?.photos[0].value,
     role: userRoles.MEMBER,
-    [provider]: profile.id,
+    [provider]: profile?.id,
   });
   await newUser.save();
 
