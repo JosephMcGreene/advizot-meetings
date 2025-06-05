@@ -1,6 +1,4 @@
 import { createContext } from "react";
-// Assets
-import "./assets/scss/App.scss";
 // Components
 import CheckIn from "./check-in/CheckIn";
 import Header from "./header/Header";
@@ -18,6 +16,8 @@ import { createBrowserRouter, createRoutesFromElements, Navigate, RouterProvider
 import useDarkMode from "./hooks/useDarkMode";
 import useToasts from "./hooks/useToasts";
 import useUser from "./hooks/useUser";
+// Styles
+import "./styles/App.scss";
 
 export const UserContext = createContext();
 export const ToastContext = createContext();

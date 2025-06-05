@@ -31,7 +31,7 @@ export default function UserInfo() {
           onClick={() => setEditProfileShown(true)}
           type="button"
         >
-          <EditPen />
+          <EditPen width="24" />
           Edit Profile
         </button>
       </article>

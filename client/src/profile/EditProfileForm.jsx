@@ -34,9 +34,8 @@ export default function EditProfileForm({ handleClose, userInfoToEdit }) {
       )}
 
       <h3>Email:</h3>
-      <input placeholder={`${userInfoToEdit.lastName}`} type="text" />
       {emailEditable ? (
-        <input type="text" placeholder={`${userInfoToEdit.email}`} />
+        <input placeholder={`${userInfoToEdit.email}`} type="text" />
       ) : (
         <p onClick={() => setEmailNameEditable(true)}>{userInfoToEdit.email}</p>
       )}
