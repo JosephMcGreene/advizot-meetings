@@ -22,16 +22,19 @@ export default function Header({ darkMode, toggleDarkMode }) {
         <div className="header-menu">
           <DarkModeSwitch darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
-          {location.pathname.includes("profile") ? (
-            <EditPen width="28" />
-          ) : (
+          <div className="profile-photo-ctnr">
             <img
               alt={`${user.firstName} ${user.lastName}`}
               className="profile-photo"
               onClick={() => setUserNavShown(true)}
               src={user.photo}
             />
-          )}
+            {location.pathname.includes("profile") && (
+              <div className="pen-ctnr">
+                <EditPen width="28" className="icon" />
+              </div>
+            )}
+          </div>
         </div>
 
         {userNavShown && (

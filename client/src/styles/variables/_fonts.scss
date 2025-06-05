@@ -1,11 +1,11 @@
 @font-face {
   font-family: "Audiowide";
-  src: url("../../fonts/audiowide-regular-webfont.woff2") format("woff2");
+  src: url("../../assets/fonts/audiowide-regular-webfont.woff2") format("woff2");
 }
 $advizot-font: "Audiowide", cursive;
 
 @font-face {
   font-family: "sansationregular";
-  src: url("../../fonts/Sansation-Regular-webfont.woff") format("woff");
+  src: url("../../assets/fonts/Sansation-Regular-webfont.woff") format("woff");
 }
 $main-font: "sansationregular";

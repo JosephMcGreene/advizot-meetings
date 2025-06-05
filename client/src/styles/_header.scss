@@ -18,14 +18,65 @@
     height: calc(190px * 0.3262919);
   }
 
-  .switch-container {
+  .header-menu {
     display: flex;
-    place-items: center;
-    margin-right: 1rem;
-  }
+    align-items: center;
 
-  .profile-photo {
-    margin-right: 1rem;
+    .switch-container {
+      display: flex;
+      place-items: center;
+      margin-right: 1rem;
+    }
+
+    .profile-photo-ctnr {
+      @include borderRadius(15px);
+
+      margin: 0 1rem 0 0;
+      position: relative;
+      width: 10vw;
+      height: 10vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border: 2px solid $advizot-color;
+
+      .profile-photo {
+        @include borderRadius(10px);
+
+        max-width: 3.25rem;
+        max-height: 3.25rem;
+        display: flex;
+        place-items: center;
+        align-self: center;
+
+        cursor: pointer;
+
+        &:focus,
+        &:focus-visible {
+          @include onFocus();
+        }
+      }
+
+      .pen-ctnr {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        // prettier-ignore
+        background-color: hsla(30, 91%, 57%, 0.5); /* $advizot-color at 50% opacity */
+        border-radius: 10px 0 10px 0;
+
+        .icon {
+          width: 22px;
+        }
+      }
+    }
   }
 
   .nav {
