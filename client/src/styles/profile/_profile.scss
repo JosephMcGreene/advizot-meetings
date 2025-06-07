@@ -12,6 +12,49 @@
     background-color: black;
     border-radius: 20px 0 20px 0;
     padding: 1rem;
+
+    .profile-photo-ctnr {
+      @include borderRadius(15px);
+
+      margin: 0 1rem 0 0;
+      position: relative;
+      width: fit-content;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border: 3px solid $advizot-color;
+
+      .profile-photo {
+        @include borderRadius(11px);
+      }
+
+      .pen-ctnr {
+        display: none;
+      }
+
+      &:hover .pen-ctnr {
+        @include borderRadius(10px);
+
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        // prettier-ignore
+        background-color: hsla(30, 91%, 57%, 0.5); /* $advizot-color at 50% opacity */
+        box-shadow: 0 0 7px 1px inset $advizot-color;
+        cursor: pointer;
+
+        .icon {
+          width: 22px;
+        }
+      }
+    }
   }
 
   .sign-in-list {

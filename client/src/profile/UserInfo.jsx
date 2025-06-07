@@ -22,18 +22,20 @@ export default function UserInfo() {
   return (
     <>
       <article className="user-info">
-        <img src={user.photo} alt={`${userFullName}`} />
+        <div className="profile-photo-ctnr">
+          <img
+            src={user.photo}
+            alt={`${userFullName}`}
+            className="profile-photo"
+          />
+          {/* Hover overlay: */}
+          <div className="pen-ctnr" onClick={() => setEditProfileShown(true)}>
+            <EditPen width="28" className="icon" />
+          </div>
+        </div>
+
         <h1 className="centered-heading">{userFullName}</h1>
         <h3>{user.email}</h3>
-
-        <button
-          className="btn"
-          onClick={() => setEditProfileShown(true)}
-          type="button"
-        >
-          <EditPen width="24" />
-          Edit Profile
-        </button>
       </article>
 
       {editProfileShown && (

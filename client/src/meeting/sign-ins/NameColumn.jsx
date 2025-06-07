@@ -47,7 +47,9 @@ export default function NameColumn({
   return (
     <>
       <article className="sign-in-name-col">
-        {signInBody.forOneToOne && <CheckInIcon className="check-in-icon" />}
+        {signInBody.forOneToOne && (
+          <CheckInIcon className="check-in-icon tooltip-parent" />
+        )}
 
         <h2 className="user-name">{signInBody.userName}</h2>
 

@@ -1,17 +1,14 @@
-import { useState, useContext } from "react";
-import { UserContext } from "../App";
+import { useState } from "react";
 // Assets
 import advizotLogo from "../assets/img/original-on-transparent.png";
-import { ReactComponent as EditPen } from "../assets/img/pen-solid.svg";
+import { ReactComponent as MenuBars } from "../assets/img/bars-solid.svg";
 // Components
 import DarkModeSwitch from "./DarkModeSwitch";
 import NavMenu from "./NavMenu";
 // External
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 export default function Header({ darkMode, toggleDarkMode }) {
-  const location = useLocation();
-  const user = useContext(UserContext);
   const [userNavShown, setUserNavShown] = useState(false);
 
   return (
@@ -21,20 +18,12 @@ export default function Header({ darkMode, toggleDarkMode }) {
 
         <div className="header-menu">
           <DarkModeSwitch darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-
-          <div className="profile-photo-ctnr">
-            <img
-              alt={`${user.firstName} ${user.lastName}`}
-              className="profile-photo"
-              onClick={() => setUserNavShown(true)}
-              src={user.photo}
-            />
-            {location.pathname.includes("profile") && (
-              <div className="pen-ctnr">
-                <EditPen width="28" className="icon" />
-              </div>
-            )}
-          </div>
+          <button
+            className="btn"
+            onClick={() => setUserNavShown(!userNavShown)}
+          >
+            <MenuBars className="icon" width="30" />
+          </button>
         </div>
 
         {userNavShown && (

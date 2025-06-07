@@ -141,6 +141,15 @@ hr {
   margin-block: 0.5rem;
 }
 
+.tooltip-parent {
+  position: relative;
+
+  .tooltip {
+    width: fit-content;
+    background-color: $advizot-color;
+  }
+}
+
 //Scrollbar
 ::-webkit-scrollbar {
   width: 0.75em;
