@@ -2,8 +2,6 @@ import { useState, useRef, useContext } from "react";
 import { UserContext } from "../../App";
 // Assets
 import { ReactComponent as AddSignInIcon } from "../../assets/img/file-circle-plus-solid.svg";
-import { ReactComponent as BarsIcon } from "../../assets/img/bars-solid.svg";
-import { ReactComponent as MemberEditIcon } from "../../assets/img/users-gear-solid.svg";
 // External
 import { motion } from "framer-motion";
 // Hooks
@@ -21,23 +19,13 @@ export default function ActionsMenu({ currentGroup, handleNewSignInClick }) {
 
   return (
     <>
-      <nav ref={actionsRef}>
+      <div ref={actionsRef}>
         {actionsShown && (
           <motion.ul
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
             className="admin-actions-list"
           >
-            <li
-              className="admin-actions-item"
-              onClick={() => setMemberEditModalShown(!memberEditModalShown)}
-            >
-              <MemberEditIcon className="icon" />
-              Edit Members
-            </li>
-
-            <hr />
-
             <li
               className="admin-actions-item"
               onClick={() => handleNewSignInClick()}
@@ -51,13 +39,11 @@ export default function ActionsMenu({ currentGroup, handleNewSignInClick }) {
         {user.role === "admin" && (
           <button
             className="actions-btn"
-            onClick={() => setActionsShown(!actionsShown)}
+            onClick={() => setMemberEditModalShown(true)}
             type="button"
-          >
-            <BarsIcon className="bars-icon" />
-          </button>
+          ></button>
         )}
-      </nav>
+      </div>
 
       {memberEditModalShown && (
         <ModalTemplate

@@ -69,8 +69,14 @@ $text-dark: black;
     }
   }
 
-  .meeting-heading select option {
-    background-color: $dark-bg;
+  .meeting-heading {
+    .edit-group-btn {
+      border: none;
+    }
+
+    select option {
+      background-color: $dark-bg;
+    }
   }
 
   .room-code-container .room-code-display {
@@ -89,13 +95,5 @@ $text-dark: black;
         fill: $advizot-grey;
       }
     }
-  }
-
-  .actions-btn {
-    border: none;
-  }
-
-  .admin-actions-list .admin-actions-item .icon path {
-    fill: $advizot-grey;
   }
 }

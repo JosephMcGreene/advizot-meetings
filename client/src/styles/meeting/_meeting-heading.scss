@@ -4,21 +4,49 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 1.5rem;
   flex-wrap: wrap;
   margin-top: 2rem;
   margin-bottom: 1rem;
 
+  .edit-group-btn {
+    @include borderSides();
+    @include transition(box-shadow transform);
+
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: $advizot-color;
+    box-shadow: $box-shadow;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1.75rem;
+    font-weight: inherit;
+
+    .icon {
+      width: 35px;
+    }
+
+    &:hover {
+      @include btnHover();
+    }
+  }
+
   select {
     @include advizotFont(inherit, 400, 1px);
-    @include borderRadius(8px);
+    @include borderRadius(18px);
     @include transition(box-shadow transform);
 
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
 
-    padding: 0.5rem 2rem;
-    padding-right: 0rem;
+    padding: 0.5rem 0;
+    padding-left: 2.5rem;
+    padding-right: 1rem;
 
     background-color: transparent;
     background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='40' viewBox='0 0 24 24' width='40' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
@@ -28,16 +56,21 @@
 
     color: inherit;
     border: none;
-    text-align: center;
+    text-align: left;
     cursor: pointer;
 
     &:hover {
-      @include btnHover();
+      box-shadow: 0 0 13px 1px inset black;
     }
 
     option {
       color: inherit;
     }
+  }
+
+  h1 {
+    font-size: inherit;
+    font-weight: inherit;
   }
 }
 

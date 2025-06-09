@@ -1,44 +1,6 @@
 //Internal
 @use "../index" as *;
 
-.actions-btn {
-  @include borderSides();
-  @include transition(box-shadow transform);
-
-  position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1.25rem;
-
-  border-radius: 25px 0px 25px 0px;
-  background-color: $advizot-color;
-  box-shadow: $box-shadow;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 1.75rem;
-  font-weight: inherit;
-
-  .add-icon {
-    width: 40px;
-    margin-left: 1rem;
-  }
-
-  .bars-icon {
-    width: 35px;
-  }
-
-  &:hover {
-    @include btnHover();
-  }
-}
-
-.hide {
-  display: none;
-}
-
 .admin-actions-list {
   @include borderRadius(13px);
   @include borderSides();

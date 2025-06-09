@@ -40,7 +40,6 @@ export default function Meeting() {
    * @returns {boolean} Wether or not to display the sign-in list.
    */
   function signInListShown() {
-    if (user.role === "admin") return true;
     if (userHasSubmitted()) return true;
     return false;
   }
@@ -67,12 +66,6 @@ export default function Meeting() {
           Add a Sign In
         </button>
       )}
-
-      {/* Display the actions button at the bottom-right of the screen. */}
-      <ActionsMenu
-        currentGroup={group}
-        handleNewSignInClick={() => setFormShown(true)}
-      />
 
       {/* Display the sign-in form when necessary. */}
       {formShown && (
