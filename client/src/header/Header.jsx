@@ -18,12 +18,10 @@ export default function Header({ darkMode, toggleDarkMode }) {
 
         <div className="header-menu">
           <DarkModeSwitch darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-          <button
-            className="btn"
+          <MenuBars
+            className="icon"
             onClick={() => setUserNavShown(!userNavShown)}
-          >
-            <MenuBars className="icon" width="30" />
-          </button>
+          />
         </div>
 
         {userNavShown && (

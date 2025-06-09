@@ -12,7 +12,7 @@
 @mixin transition($properties) {
   transition-property: $properties;
   transition-timing-function: linear;
-  transition-duration: 200ms;
+  transition-duration: 250ms;
 }
 
 @mixin borderRadius($radius) {
@@ -36,7 +36,7 @@
 
 @mixin btnHover() {
   box-shadow: colors.$btn-shadow;
-  transform: translateY(-3px) scale(1.03);
+  transform: scale(1.02);
   transition-duration: 100ms;
 }
 

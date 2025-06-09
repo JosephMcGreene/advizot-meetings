@@ -54,21 +54,17 @@ $text-dark: black;
   }
 
   .header {
-    .profile-photo label {
-      color: $advizot-grey;
-    }
-
     .nav {
       background-color: $darker-bg;
       border: none;
       box-shadow: none;
 
-      .nav-list .nav-item .icon path {
-        fill: $advizot-grey;
-      }
-
-      a {
+      .nav-item {
         color: $advizot-grey;
+
+        .icon path {
+          fill: $advizot-grey;
+        }
       }
     }
   }

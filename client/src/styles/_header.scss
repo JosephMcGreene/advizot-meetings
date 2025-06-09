@@ -14,52 +14,35 @@
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.75);
 
   .logo {
-    width: 190px;
-    height: calc(190px * 0.3262919);
+    $width: 190px;
+
+    width: $width;
+    height: calc($width * 0.3262919);
   }
 
   .header-menu {
     display: flex;
     align-items: center;
+    gap: 1.25rem;
+    margin-right: 1rem;
 
     .switch-container {
       display: flex;
       place-items: center;
-      margin-right: 1rem;
     }
 
-    .profile-photo-ctnr {
+    .icon {
       @include borderRadius(15px);
+      @include transition(all);
 
-      margin: 0 1rem 0 0;
-      position: relative;
-      width: 10vw;
-      height: 10vw;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      width: 55px;
+      padding: 0.8rem;
 
-      border: 3px solid $advizot-color;
+      background-color: $advizot-color;
+      cursor: pointer;
 
-      .profile-photo {
-        display: none;
-      }
-
-      &:hover .profile-photo {
-        @include borderRadius(13px);
-
-        width: 100%;
-        display: flex;
-        place-items: center;
-        align-self: center;
-
-        border: none;
-        cursor: pointer;
-
-        &:focus,
-        &:focus-visible {
-          @include onFocus();
-        }
+      &:hover {
+        @include btnHover();
       }
     }
   }
@@ -72,48 +55,47 @@
     position: fixed;
     right: 1rem;
     top: calc($header-height + 0.5rem);
-    padding: 0.75rem;
 
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    padding: 0.75rem;
     background-color: $light-bg;
     box-shadow: $box-shadow;
 
-    .nav-list {
+    .nav-item {
       display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      list-style: none;
+      font-size: 1.5rem;
+      padding: 0.5rem;
 
-      .nav-item {
-        display: flex;
-        font-size: 1.5rem;
-        padding: 0.5rem;
+      cursor: pointer;
 
-        cursor: pointer;
+      &:hover {
+        color: $advizot-color;
 
-        &:hover {
-          .icon path {
-            fill: $advizot-color;
-          }
-          a {
-            color: $advizot-color;
-          }
-        }
-
-        .icon {
-          width: 22px;
-          vertical-align: middle;
-          margin-right: 0.75rem;
-        }
-
-        a {
-          font-size: 1.25rem;
-          padding: 0.25rem 0.75rem;
-        }
-
-        &:nth-child(4) {
-          justify-content: center;
+        .icon path {
+          fill: $advizot-color;
         }
       }
+
+      .icon {
+        width: 22px;
+        vertical-align: middle;
+        margin-right: 0.75rem;
+
+        path {
+          fill: black;
+        }
+      }
+
+      &:nth-child(4) {
+        justify-content: center;
+      }
+    }
+
+    hr {
+      margin: 1rem 0;
     }
   }
 }
