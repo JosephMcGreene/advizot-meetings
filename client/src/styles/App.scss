@@ -1,8 +1,7 @@
 @use "./dark-mode";
 @use "./global";
 @use "./header";
-@use "./meeting/meeting-actions";
-@use "./meeting/meeting-heading";
+@use "./meeting/meeting";
 @use "./modals/form/form-elements";
 @use "./modals/form/range-slider";
 @use "./modals/loading-spinner";

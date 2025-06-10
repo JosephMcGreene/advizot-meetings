@@ -119,6 +119,27 @@
   }
 }
 
+.add-sign-in-btn {
+  @include borderRadius(20px);
+
+  min-width: min-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 auto;
+
+  padding: 1.25rem;
+  font-family: inherit;
+  font-size: 2rem;
+  font-weight: bold;
+  background-color: $advizot-color;
+
+  .icon {
+    width: 60px;
+  }
+}
+
 @media screen and (min-width: 455px) {
   .room-code-container {
     display: flex;

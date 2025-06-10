@@ -3,7 +3,6 @@ import { UserContext } from "../App";
 // Assets
 import { ReactComponent as AddSignInIcon } from "../assets/img/file-circle-plus-solid.svg";
 // Components
-import ActionsMenu from "./admin-actions/ActionsMenu";
 import LoadingSpinner from "../shared/LoadingSpinner";
 import MainForm from "../shared/form/MainForm";
 import MeetingHeading from "./MeetingHeading";
@@ -61,9 +60,9 @@ export default function Meeting() {
           }}
         />
       ) : (
-        <button className="btn" onClick={() => setFormShown(true)}>
+        <button className="add-sign-in-btn" onClick={() => setFormShown(true)}>
           <AddSignInIcon className="icon" />
-          Add a Sign In
+          Add a Sign-in
         </button>
       )}
 

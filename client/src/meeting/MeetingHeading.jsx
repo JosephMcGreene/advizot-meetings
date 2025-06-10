@@ -3,10 +3,10 @@ import { UserContext } from "../App";
 // Assets
 import { ReactComponent as MemberEditIcon } from "../assets/img/users-gear-solid.svg";
 // Components
-import MemberEditModal from "./admin-actions/MemberEditModal";
+import MemberEditModal from "./MemberEditModal";
 import ModalTemplate from "../shared/modals/ModalTemplate";
 import RoomCodeDisplay from "./room-code/RoomCodeDisplay";
-import RoomCodeToggle from "./admin-actions/RoomCodeToggle";
+import RoomCodeToggle from "./room-code/RoomCodeToggle";
 // External
 import { useNavigate, Outlet } from "react-router-dom";
 // Internal
