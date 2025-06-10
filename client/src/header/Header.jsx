@@ -11,7 +11,7 @@ import { Outlet } from "react-router-dom";
 
 export default function Header({ darkMode, toggleDarkMode }) {
   const user = useContext(UserContext);
-  const [userNavShown, setUserNavShown] = useState(false);
+  const [navShown, setNavShown] = useState(false);
 
   return (
     <>
@@ -22,20 +22,11 @@ export default function Header({ darkMode, toggleDarkMode }) {
           <DarkModeSwitch darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
           {user.advizotID && (
-            <MenuBars
-              className="icon"
-              onClick={() => setUserNavShown(!userNavShown)}
-            />
+            <MenuBars className="icon" onClick={() => setNavShown(true)} />
           )}
         </div>
 
-        {userNavShown && (
-          <NavMenu
-            darkMode={darkMode}
-            showNav={setUserNavShown}
-            toggleDarkMode={toggleDarkMode}
-          />
-        )}
+        {navShown && <NavMenu navShown={navShown} setNavShown={setNavShown} />}
       </header>
 
       <Outlet />

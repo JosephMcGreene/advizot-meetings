@@ -6,15 +6,16 @@ export default function useOutsideClick(callback, elementRef) {
 
   useEffect(() => {
     function handleOutsideClick(event) {
-      if (!elementRef?.current?.contains(event.target)) {
+      if (elementRef.current && !elementRef?.current?.contains(event.target)) {
+        // console.log("I heard it!");
         callbackRef.current(event);
       }
     }
 
-    document.addEventListener("mousedown", handleOutsideClick, true);
+    document.addEventListener("mousedown", handleOutsideClick);
 
     return () => {
-      document.removeEventListener("mousedown", handleOutsideClick, true);
+      document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, [callbackRef, elementRef]);
 }

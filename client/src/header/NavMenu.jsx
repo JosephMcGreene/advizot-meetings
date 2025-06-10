@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { UserContext } from "../App";
 // Assets
 import { ReactComponent as CheckInIcon } from "../assets/img/handshake-solid.svg";
@@ -11,11 +11,27 @@ import { motion } from "framer-motion";
 // Hooks
 import useOutsideClick from "../hooks/useOutsideClick";
 
-export default function NavMenu({ showNav }) {
+export default function NavMenu({ navShown, setNavShown }) {
   const { pathname } = useLocation();
   const user = useContext(UserContext);
-  const navRef = useRef();
-  useOutsideClick(navRef, () => showNav(false));
+  const navRef = useRef(null);
+  // useOutsideClick(navRef, () => setNavShown(false));
+
+  useEffect(() => {
+    function handleOutsideClick(event) {
+      if (!navRef.current.contains(event.target)) {
+        console.log("I heard it!");
+        // callbackRef.current(event);
+        setNavShown(!navShown);
+      }
+    }
+
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, [navRef]);
 
   return (
     <motion.nav
@@ -28,7 +44,7 @@ export default function NavMenu({ showNav }) {
         <Link
           className="nav-item"
           to={`/profile/${user.advizotID}`}
-          onClick={() => showNav(false)}
+          onClick={() => setNavShown(false)}
         >
           <ProfileIcon className="icon" />
           Profile
@@ -41,7 +57,7 @@ export default function NavMenu({ showNav }) {
         <Link
           className="nav-item"
           to={`/meeting/${user.group}`}
-          onClick={() => showNav(false)}
+          onClick={() => setNavShown(false)}
         >
           <MeetingIcon className="icon" />
           Meeting
@@ -51,7 +67,7 @@ export default function NavMenu({ showNav }) {
       <Link
         className="nav-item"
         to={`/check-in/${user.advizotID}`}
-        onClick={() => showNav(false)}
+        onClick={() => setNavShown(false)}
       >
         <CheckInIcon className="icon" />
         1:1 Check-In
