@@ -121,6 +121,7 @@
 
 .add-sign-in-btn {
   @include borderRadius(20px);
+  @include transition(box-shadow transform);
 
   min-width: min-content;
   display: flex;
@@ -134,6 +135,11 @@
   font-size: 2rem;
   font-weight: bold;
   background-color: $advizot-color;
+  cursor: pointer;
+
+  &:hover {
+    @include btnHover();
+  }
 
   .icon {
     width: 60px;

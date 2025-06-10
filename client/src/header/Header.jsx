@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../App";
 // Assets
 import advizotLogo from "../assets/img/original-on-transparent.png";
 import { ReactComponent as MenuBars } from "../assets/img/bars-solid.svg";
@@ -9,6 +10,7 @@ import NavMenu from "./NavMenu";
 import { Outlet } from "react-router-dom";
 
 export default function Header({ darkMode, toggleDarkMode }) {
+  const user = useContext(UserContext);
   const [userNavShown, setUserNavShown] = useState(false);
 
   return (
@@ -18,10 +20,13 @@ export default function Header({ darkMode, toggleDarkMode }) {
 
         <div className="header-menu">
           <DarkModeSwitch darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-          <MenuBars
-            className="icon"
-            onClick={() => setUserNavShown(!userNavShown)}
-          />
+
+          {user.advizotID && (
+            <MenuBars
+              className="icon"
+              onClick={() => setUserNavShown(!userNavShown)}
+            />
+          )}
         </div>
 
         {userNavShown && (
