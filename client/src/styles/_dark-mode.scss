@@ -83,6 +83,10 @@ $text-dark: black;
     color: $text-dark;
     border: none;
     box-shadow: none;
+
+    .edit-icon path {
+      fill: $advizot-color;
+    }
   }
 
   .sign-in-list {

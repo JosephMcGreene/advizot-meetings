@@ -7,7 +7,7 @@ export default function useOutsideClick(callback, elementRef) {
   useEffect(() => {
     function handleOutsideClick(event) {
       if (elementRef.current && !elementRef?.current?.contains(event.target)) {
-        // console.log("I heard it!");
+        console.log("I heard it!");
         callbackRef.current(event);
       }
     }

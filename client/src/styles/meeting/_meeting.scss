@@ -103,6 +103,9 @@
   .room-code-display {
     @include borderRadius(12px);
     @include borderSides();
+    @include transition(box-shadow);
+
+    position: relative;
 
     width: fit-content;
     padding: 1rem;
@@ -115,6 +118,19 @@
 
     &:hover {
       @include btnHover();
+
+      .edit-icon {
+        display: block;
+
+        position: absolute;
+        top: 20px;
+        right: -30%;
+        width: 30px;
+      }
+    }
+
+    .edit-icon {
+      display: none;
     }
   }
 }

@@ -1,3 +1,6 @@
+// Components
+import { ReactComponent as EditPen } from "../../assets/img/pen-solid.svg";
+// External
 import { motion } from "framer-motion";
 
 export default function RoomCodeDisplay({ getNewRoomCode }) {
@@ -11,6 +14,8 @@ export default function RoomCodeDisplay({ getNewRoomCode }) {
       onClick={() => getNewRoomCode()}
     >
       <h2>{roomCode}</h2>
+
+      <EditPen className="edit-icon" />
     </motion.aside>
   );
 }
