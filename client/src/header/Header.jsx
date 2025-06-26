@@ -22,7 +22,7 @@ export default function Header({ darkMode, toggleDarkMode }) {
           <DarkModeSwitch darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
           {user.advizotID && (
-            <MenuBars className="icon" onClick={() => setNavShown(true)} />
+            <MenuBars className="icon" onClick={() => setNavShown(!navShown)} />
           )}
         </div>
 

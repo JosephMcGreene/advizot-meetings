@@ -7,8 +7,7 @@ import useOutsideClick from "../../hooks/useOutsideClick";
 
 export default function ModalTemplate({ children, handleClose, title }) {
   const modalRef = useRef();
-
-  useOutsideClick(modalRef, () => handleClose());
+  useOutsideClick(() => handleClose(), modalRef);
 
   return createPortal(
     <div className="modal">

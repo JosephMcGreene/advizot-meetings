@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useRef } from "react";
 import { UserContext } from "../App";
 // Assets
 import { ReactComponent as CheckInIcon } from "../assets/img/handshake-solid.svg";
@@ -11,27 +11,11 @@ import { motion } from "framer-motion";
 // Hooks
 import useOutsideClick from "../hooks/useOutsideClick";
 
-export default function NavMenu({ navShown, setNavShown }) {
+export default function NavMenu({ setNavShown }) {
   const { pathname } = useLocation();
   const user = useContext(UserContext);
-  const navRef = useRef(null);
-  // useOutsideClick(navRef, () => setNavShown(false));
-
-  useEffect(() => {
-    function handleOutsideClick(event) {
-      if (!navRef.current.contains(event.target)) {
-        console.log("I heard it!");
-        // callbackRef.current(event);
-        setNavShown(!navShown);
-      }
-    }
-
-    document.addEventListener("click", handleOutsideClick);
-
-    return () => {
-      document.removeEventListener("click", handleOutsideClick);
-    };
-  }, [navRef]);
+  const navRef = useRef();
+  useOutsideClick(() => setNavShown(false), navRef);
 
   return (
     <motion.nav
