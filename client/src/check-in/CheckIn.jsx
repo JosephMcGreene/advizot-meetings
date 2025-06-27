@@ -24,12 +24,14 @@ export default function CheckIn() {
         with Kevin:
       </h1>
 
-      <MainForm
-        handleClose={() => navigate(`/meeting/${user.group}`)}
-        handleSubmit={async (checkIn, existingCheckIn) =>
-          await submitSignIns(true, checkIn, existingCheckIn)
-        }
-      />
+      <article className="check-in-form-ctnr">
+        <MainForm
+          handleClose={() => navigate(`/meeting/${user.group}`)}
+          handleSubmit={async (checkIn, existingCheckIn) =>
+            await submitSignIns(true, checkIn, existingCheckIn)
+          }
+        />
+      </article>
     </>
   );
 }

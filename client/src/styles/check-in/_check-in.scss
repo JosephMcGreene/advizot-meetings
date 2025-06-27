@@ -1,0 +1,10 @@
+@use "../index" as *;
+
+.check-in-form-ctnr {
+  @include borderRadius(20px);
+
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  box-shadow: 0 0 5px black;
+}
