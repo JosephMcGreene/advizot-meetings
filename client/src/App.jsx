@@ -38,64 +38,62 @@ export default function App() {
     <div className={isDark ? "App dark" : "App"}>
       <UserContext.Provider value={user}>
         <ToastContext.Provider value={toasts}>
-          <main className="main-content">
-            <RouterProvider
-              router={createBrowserRouter(
-                createRoutesFromElements(
-                  <Route
-                    path="/"
-                    // prettier-ignore
-                    element={<RootLayout darkMode={isDark} toggleDarkMode={() => setDarkMode(!isDark)} />}
-                  >
-                    <Route index element={<Welcome />} />
+          <RouterProvider
+            router={createBrowserRouter(
+              createRoutesFromElements(
+                <Route
+                  path="/"
+                  // prettier-ignore
+                  element={<RootLayout darkMode={isDark} toggleDarkMode={() => setDarkMode(!isDark)} />}
+                >
+                  <Route index element={<Welcome />} />
 
-                    <Route
-                      path="handleRoomCode"
-                      element={
-                        <UsersOnly>
-                          {/* prettier-ignore */}
-                          <RoomCodeCheck handleSubmitCode={(enteredCode) => submitCode(enteredCode)}>
+                  <Route
+                    path="handleRoomCode"
+                    element={
+                      <UsersOnly>
+                        {/* prettier-ignore */}
+                        <RoomCodeCheck handleSubmitCode={(enteredCode) => submitCode(enteredCode)}>
                             <Navigate to={`/meeting/${user.group}`} />
                           </RoomCodeCheck>
-                        </UsersOnly>
-                      }
-                    />
+                      </UsersOnly>
+                    }
+                  />
 
-                    <Route
-                      path="meeting/:group"
-                      element={
-                        <UsersOnly>
-                          {/* prettier-ignore */}
-                          <RoomCodeCheck handleSubmitCode={(enteredCode) => submitCode(enteredCode)}>
+                  <Route
+                    path="meeting/:group"
+                    element={
+                      <UsersOnly>
+                        {/* prettier-ignore */}
+                        <RoomCodeCheck handleSubmitCode={(enteredCode) => submitCode(enteredCode)}>
                             <Meeting />
                           </RoomCodeCheck>
-                        </UsersOnly>
-                      }
-                    />
+                      </UsersOnly>
+                    }
+                  />
 
-                    <Route
-                      path="profile/:advizotID"
-                      element={
-                        <UsersOnly>
-                          <Profile />
-                        </UsersOnly>
-                      }
-                    />
+                  <Route
+                    path="profile/:advizotID"
+                    element={
+                      <UsersOnly>
+                        <Profile />
+                      </UsersOnly>
+                    }
+                  />
 
-                    <Route
-                      path="check-in/:advizotID"
-                      element={
-                        <UsersOnly>
-                          <CheckIn />
-                        </UsersOnly>
-                      }
-                    />
-                  </Route>
-                )
-              )}
-            />
-            <Toasts data={toasts.toasts} removeToast={toasts.removeToast} />
-          </main>
+                  <Route
+                    path="check-in/:advizotID"
+                    element={
+                      <UsersOnly>
+                        <CheckIn />
+                      </UsersOnly>
+                    }
+                  />
+                </Route>
+              )
+            )}
+          />
+          <Toasts data={toasts.toasts} removeToast={toasts.removeToast} />
         </ToastContext.Provider>
       </UserContext.Provider>
     </div>

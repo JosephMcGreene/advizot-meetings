@@ -8,7 +8,9 @@ export default function RootLayout({ darkMode, toggleDarkMode }) {
     <>
       <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
-      <Outlet />
+      <main className="main-content">
+        <Outlet />
+      </main>
     </>
   );
 }
