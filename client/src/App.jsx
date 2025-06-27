@@ -1,10 +1,10 @@
 import { createContext } from "react";
 // Components
 import CheckIn from "./check-in/CheckIn";
-import Header from "./header/Header";
 import LoadingSpinner from "./shared/LoadingSpinner";
 import Meeting from "./meeting/Meeting";
 import Profile from "./profile/Profile";
+import RootLayout from "./RootLayout";
 import RoomCodeCheck from "./meeting/room-code/RoomCodeCheck";
 import Toasts from "./shared/Toasts";
 import UsersOnly from "./shared/UsersOnly";
@@ -45,7 +45,7 @@ export default function App() {
                   <Route
                     path="/"
                     // prettier-ignore
-                    element={<Header darkMode={isDark} toggleDarkMode={() => setDarkMode(!isDark)} />}
+                    element={<RootLayout darkMode={isDark} toggleDarkMode={() => setDarkMode(!isDark)} />}
                   >
                     <Route index element={<Welcome />} />
 
