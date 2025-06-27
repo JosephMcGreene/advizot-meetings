@@ -24,29 +24,23 @@ export default function NavMenu({ setNavShown }) {
       className="nav"
       ref={navRef}
     >
-      {pathname.includes("meeting") || pathname.includes("handleRoomCode") ? (
-        <Link
-          className="nav-item"
-          to={`/profile/${user.advizotID}`}
-          onClick={() => setNavShown(false)}
-        >
-          <ProfileIcon className="icon" />
-          Profile
-        </Link>
-      ) : (
-        ""
-      )}
+      <Link
+        className="nav-item"
+        to={`/profile/${user.advizotID}`}
+        onClick={() => setNavShown(false)}
+      >
+        <ProfileIcon className="icon" />
+        Profile
+      </Link>
 
-      {pathname.includes("profile") && (
-        <Link
-          className="nav-item"
-          to={`/meeting/${user.group}`}
-          onClick={() => setNavShown(false)}
-        >
-          <MeetingIcon className="icon" />
-          Meeting
-        </Link>
-      )}
+      <Link
+        className="nav-item"
+        to={`/meeting/${user.group}`}
+        onClick={() => setNavShown(false)}
+      >
+        <MeetingIcon className="icon" />
+        Meeting
+      </Link>
 
       <Link
         className="nav-item"
