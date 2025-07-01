@@ -2,6 +2,8 @@ import { useState, useEffect, useContext } from "react";
 import { ToastContext } from "../App";
 // Internal
 import { axiosFetch } from "../helpers";
+// External
+import { useNavigate } from "react-router-dom";
 
 export default function useMemberEdits(currentGroup) {
   const [confirmUserDeleteShown, setConfirmUserDeleteShown] = useState(false);
@@ -13,6 +15,7 @@ export default function useMemberEdits(currentGroup) {
   const { showToast } = useContext(ToastContext);
   const [userEditsEnabled, setUserEditsEnabled] = useState(false);
   const [usersToEdit, setUsersToEdit] = useState([]);
+  const navigate = useNavigate();
 
   /**
    * Whenever the user changes the input to type in a user's name who is being confirmed to be deleted, this Effect checks to see if what is now in the input field matches the user's name. If it does, then it enables the button to delete them.
@@ -155,12 +158,7 @@ export default function useMemberEdits(currentGroup) {
         setConfirmUserDeleteShown(false);
         return setGroupPlacementEnabled(true);
       case "edit":
-        setGroupPlacementEnabled(false);
-        setConfirmUserDeleteShown(false);
-        //TODO Redirect to the user's profile once that feature is ready
-        return alert(
-          "This feature isn't ready yet. Thanks for the interest though!"
-        );
+        return navigate(`/profile/${selectedUser.advizotID}`);
       case "delete":
         setGroupPlacementEnabled(false);
         return setConfirmUserDeleteShown(true);

@@ -56,7 +56,7 @@ export default function MemberEditModal({ currentGroup, handleClose }) {
           >
             <option value="none">-- Select One --</option>
             <option value="move">Move to Another Group</option>
-            <option value="edit">Edit Profile</option>
+            <option value="edit">View & Edit Profile</option>
             <option value="delete" style={{ color: "red" }}>
               Delete Member
             </option>

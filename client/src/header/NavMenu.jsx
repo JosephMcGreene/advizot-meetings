@@ -6,13 +6,12 @@ import { ReactComponent as LogOutIcon } from "../assets/img/right-from-bracket-s
 import { ReactComponent as MeetingIcon } from "../assets/img/people-group-solid.svg";
 import { ReactComponent as ProfileIcon } from "../assets/img/user-tie-solid.svg";
 // External
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 // Hooks
 import useOutsideClick from "../hooks/useOutsideClick";
 
 export default function NavMenu({ setNavShown }) {
-  const { pathname } = useLocation();
   const user = useContext(UserContext);
   const navRef = useRef();
   useOutsideClick(() => setNavShown(false), navRef);
