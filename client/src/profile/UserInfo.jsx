@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { UserContext } from "../App";
 // Assets
 import { ReactComponent as EditPen } from "../assets/img/pen-solid.svg";
+
 // Components
 import EditProfileForm from "./EditProfileForm";
 import ModalTemplate from "../shared/modals/ModalTemplate";
@@ -33,7 +34,6 @@ export default function UserInfo() {
             <EditPen width="28" className="icon" />
           </div>
         </div>
-
         <h1 className="centered-heading">{userFullName}</h1>
         <h3>{user.email}</h3>
       </article>

@@ -36,47 +36,6 @@ export default function useMemberEdits(currentGroup) {
   }, []);
 
   /**
-   * Fetches data for all registered users who are currently assigned as a guest and updates state accordingly.
-   * @param {string} group The group whose members' sign-ins are to be fetched.
-   */
-  async function fetchUsers(group) {
-    try {
-      setLoading(true);
-      const { data } = await axiosFetch("post", "/users", { group });
-      await setUsersToEdit(data);
-    } catch (err) {
-      await showToast(
-        "failure",
-        `Something went wrong, unable to view ${group}`
-      );
-      throw new Error(err);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  /**
-   * Confirms with the user that they would like to move the user they have selected into a new group. If confirmed, calls changeGroup() to initiate the move.
-   * @param {string} groupToPlace The group to place the user into.
-   * @param {object} userInfo     Information about the user to be moved.
-   */
-  function confirmGroupChange(
-    groupToPlace,
-    { advizotID, firstName, lastName, _id }
-  ) {
-    if (window.confirm(`Move ${firstName} ${lastName} to ${groupToPlace}?`)) {
-      changeGroup({
-        advizotID,
-        firstName,
-        _id,
-        groupToPlace,
-      });
-    } else {
-      return;
-    }
-  }
-
-  /**
    * Sends data used to move a user into a new group.
    * @param {object} dataForGroupChange Information about the user and what group to move them to.
    */
@@ -101,6 +60,27 @@ export default function useMemberEdits(currentGroup) {
       throw new Error(err);
     } finally {
       setLoading(false);
+    }
+  }
+
+  /**
+   * Confirms with the user that they would like to move the user they have selected into a new group. If confirmed, calls changeGroup() to initiate the move.
+   * @param {string} groupToPlace The group to place the user into.
+   * @param {object} userInfo     Information about the user to be moved.
+   */
+  function confirmGroupChange(
+    groupToPlace,
+    { advizotID, firstName, lastName, _id }
+  ) {
+    if (window.confirm(`Move ${firstName} ${lastName} to ${groupToPlace}?`)) {
+      changeGroup({
+        advizotID,
+        firstName,
+        _id,
+        groupToPlace,
+      });
+    } else {
+      return;
     }
   }
 
@@ -130,16 +110,22 @@ export default function useMemberEdits(currentGroup) {
   }
 
   /**
-   * Takes a user's advizotID gleaned from a form value, finds the user object associated with that ID, and assigns that user object to state as the currently selected user to edit
-   * @param {string} advizotID The ID of the selected user.
+   * Fetches data for all registered users who are currently assigned as a guest and updates state accordingly.
+   * @param {string} group The group whose members' sign-ins are to be fetched.
    */
-  function selectMember(advizotID) {
-    if (advizotID === "none") {
-      setUserEditsEnabled(false);
-      setSelectedUser("none");
-    } else {
-      setSelectedUser(usersToEdit.find((user) => user.advizotID === advizotID));
-      setUserEditsEnabled(true);
+  async function fetchUsers(group) {
+    try {
+      setLoading(true);
+      const { data } = await axiosFetch("post", "/users", { group });
+      await setUsersToEdit(data);
+    } catch (err) {
+      await showToast(
+        "failure",
+        `Something went wrong, unable to view ${group}`
+      );
+      throw new Error(err);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -165,6 +151,20 @@ export default function useMemberEdits(currentGroup) {
       default:
         setGroupPlacementEnabled(false);
         selectMember("none");
+    }
+  }
+
+  /**
+   * Takes a user's advizotID gleaned from a form value, finds the user object associated with that ID, and assigns that user object to state as the currently selected user to edit
+   * @param {string} advizotID The ID of the selected user.
+   */
+  function selectMember(advizotID) {
+    if (advizotID === "none") {
+      setUserEditsEnabled(false);
+      setSelectedUser("none");
+    } else {
+      setSelectedUser(usersToEdit.find((user) => user.advizotID === advizotID));
+      setUserEditsEnabled(true);
     }
   }
 

@@ -85,20 +85,14 @@ export default function MemberEditModal({ currentGroup, handleClose }) {
       {confirmUserDeleteShown && (
         <>
           <label htmlFor="user-name">
+            {/* prettier-ignore */}
             <p style={{ textAlign: "left" }}>
-              First, this cannot be undone.
-              <br />
-              <br />
-              Furthermore, this will also permanently delete all of{" "}
-              {selectedUser.firstName}'s hard-earned data, and it will be
-              irretrievably lost.
+              Deleting {selectedUser.firstName}'s profile will also permanently
+              delete all of their hard-earned data. This cannot be undone.
               <br />
               <br />
               If you know you will never need this member's information again,
-              type{" "}
-              <em>
-                {selectedUser.firstName} {selectedUser.lastName}
-              </em>{" "}
+              type{" "}<em>{selectedUser.firstName} {selectedUser.lastName}</em>{" "}
               and press delete.
             </p>
             <br />
