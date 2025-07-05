@@ -1,4 +1,5 @@
 import SignIn from "../models/SignIn.js";
+import User from "../models/User.js";
 
 /**
  * Queries the database for all sign-ins that belong to a single user
@@ -9,6 +10,10 @@ async function getCheckIns(id) {
   return await SignIn.find({ userID: id });
 }
 
-const profileQueries = { getCheckIns };
+async function getProfile(profileID) {
+  return await User.findOne({ advizotID: profileID });
+}
+
+const profileQueries = { getCheckIns, getProfile };
 
 export default profileQueries;

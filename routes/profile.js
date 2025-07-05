@@ -3,6 +3,6 @@ import profileController from "../controllers/profile.js";
 
 const profileRouter = Router();
 
-profileRouter.route("/").get(profileController.getSignIns);
+profileRouter.route("/").post(profileController.getFullProfile);
 
 export default profileRouter;
